@@ -169,9 +169,15 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'success',
-          path: '/success',
-          builder: (context, params) => const SuccessWidget(),
+          name: 'form_success',
+          path: '/formSuccess',
+          requireAuth: true,
+          builder: (context, params) => FormSuccessWidget(
+            assignmentId: params.getParam(
+              'assignmentId',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: 'fail',
@@ -196,6 +202,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/mapTesting',
           requireAuth: true,
           builder: (context, params) => const MapTestingWidget(),
+        ),
+        FFRoute(
+          name: 'success_profile',
+          path: '/successProfile',
+          requireAuth: true,
+          builder: (context, params) => SuccessProfileWidget(
+            message: params.getParam(
+              'message',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

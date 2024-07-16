@@ -1748,7 +1748,13 @@ class _PpirWidgetState extends State<PpirWidget> {
                               });
 
                               context.pushNamed(
-                                'success',
+                                'form_success',
+                                queryParameters: {
+                                  'assignmentId': serializeParam(
+                                    ppirPpirFormsRow?.ppirAssignmentid,
+                                    ParamType.String,
+                                  ),
+                                }.withoutNulls,
                                 extra: <String, dynamic>{
                                   kTransitionInfoKey: const TransitionInfo(
                                     hasTransition: true,

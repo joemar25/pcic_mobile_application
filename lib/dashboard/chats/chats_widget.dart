@@ -94,7 +94,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                   padding: const EdgeInsets.all(6.0),
                   child: Text(
                     FFLocalizations.of(context).getText(
-                      'y0w2rxtr' /* Below are messages with your f... */,
+                      '8hlwocb6' /* Below are messages with your f... */,
                     ),
                     style: FlutterFlowTheme.of(context).labelMedium.override(
                           fontFamily: 'Raleway',

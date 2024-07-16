@@ -138,32 +138,32 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // profile
   {
-    'klihs5ae': {
+    'wqj3hsrh': {
+      'en': 'Profile',
+      'tl': '',
+    },
+    '11dsrxu6': {
       'en': 'Switch to Dark Mode',
       'tl': '',
     },
-    'yau913co': {
+    '3uy0o9hw': {
       'en': 'Switch to Light Mode',
       'tl': '',
     },
-    '2ul2xenc': {
+    '8cppvoty': {
       'en': 'Account Settings',
       'tl': '',
     },
-    'hrbpg65x': {
+    'zqsohbrx': {
       'en': 'Change Password',
       'tl': '',
     },
-    '1nrn06bw': {
+    '4ibmae0j': {
       'en': 'Edit Profile',
       'tl': '',
     },
-    'eo4s9jju': {
+    'buokrewg': {
       'en': 'Log Out',
-      'tl': '',
-    },
-    'wqj3hsrh': {
-      'en': 'Profile',
       'tl': '',
     },
     'kcupitz3': {
@@ -173,12 +173,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // chats
   {
-    'y0w2rxtr': {
-      'en': 'Below are messages with your friends.',
-      'tl': '',
-    },
     'yq8kfovp': {
       'en': 'Messages',
+      'tl': '',
+    },
+    '8hlwocb6': {
+      'en': 'Below are messages with your friends.',
       'tl': '',
     },
     'qjs4iqx3': {
@@ -711,7 +711,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
-  // success
+  // form_success
   {
     '0g4vu9er': {
       'en': 'Congrats!',
@@ -721,12 +721,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Tasks Submitted',
       'tl': '',
     },
-    'ai3ttl34': {
-      'en': 'You completed a task from:',
-      'tl': '',
-    },
     'fa57m321': {
-      'en': 'joemar@domain.com',
+      'en': 'Well Done!',
       'tl': '',
     },
     'z6rup7cd': {
@@ -864,6 +860,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '08dw4jhj': {
       'en': 'Page Title',
+      'tl': '',
+    },
+    'hdh6xlcb': {
+      'en': 'Home',
+      'tl': '',
+    },
+  },
+  // success_profile
+  {
+    'e2bluypq': {
+      'en': 'Success!',
       'tl': '',
     },
     'hdh6xlcb': {

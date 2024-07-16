@@ -275,7 +275,15 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           'activity': 'Saving profile.',
                         });
 
-                        context.pushNamed('success');
+                        context.pushNamed(
+                          'success_profile',
+                          queryParameters: {
+                            'message': serializeParam(
+                              'Profile is now updated.',
+                              ParamType.String,
+                            ),
+                          }.withoutNulls,
+                        );
                       },
                       text: FFLocalizations.of(context).getText(
                         'ntj2ozhk' /* Save Changes */,

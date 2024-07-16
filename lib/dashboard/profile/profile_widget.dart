@@ -243,7 +243,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               children: [
                                 Text(
                                   FFLocalizations.of(context).getText(
-                                    'klihs5ae' /* Switch to Dark Mode */,
+                                    '11dsrxu6' /* Switch to Dark Mode */,
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
@@ -335,7 +335,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               children: [
                                 Text(
                                   FFLocalizations.of(context).getText(
-                                    'yau913co' /* Switch to Light Mode */,
+                                    '3uy0o9hw' /* Switch to Light Mode */,
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
@@ -417,7 +417,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             24.0, 12.0, 0.0, 12.0),
                         child: Text(
                           FFLocalizations.of(context).getText(
-                            '2ul2xenc' /* Account Settings */,
+                            '8cppvoty' /* Account Settings */,
                           ),
                           style:
                               FlutterFlowTheme.of(context).labelMedium.override(
@@ -482,7 +482,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                     12.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   FFLocalizations.of(context).getText(
-                                    'hrbpg65x' /* Change Password */,
+                                    'zqsohbrx' /* Change Password */,
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .labelMedium
@@ -557,7 +557,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                     12.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   FFLocalizations.of(context).getText(
-                                    '1nrn06bw' /* Edit Profile */,
+                                    '4ibmae0j' /* Edit Profile */,
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .labelMedium
@@ -619,7 +619,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             context.pushNamedAuth('dashboard', context.mounted);
                           },
                           text: FFLocalizations.of(context).getText(
-                            'eo4s9jju' /* Log Out */,
+                            'buokrewg' /* Log Out */,
                           ),
                           options: FFButtonOptions(
                             width: 90.0,

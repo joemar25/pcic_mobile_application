@@ -11,7 +11,10 @@ export '/dashboard/geotag/geotag_widget.dart' show GeotagWidget;
 export '/dashboard/task_details/task_details_widget.dart'
     show TaskDetailsWidget;
 export '/dashboard/forms/ppir/ppir_widget.dart' show PpirWidget;
-export '/utils/extra/success/success_widget.dart' show SuccessWidget;
+export '/utils/extra/form_success/form_success_widget.dart'
+    show FormSuccessWidget;
 export '/utils/extra/fail/fail_widget.dart' show FailWidget;
 export '/dashboard/dashboard/dashboard_widget.dart' show DashboardWidget;
 export '/dashboard/map_testing/map_testing_widget.dart' show MapTestingWidget;
+export '/utils/extra/success_profile/success_profile_widget.dart'
+    show SuccessProfileWidget;
