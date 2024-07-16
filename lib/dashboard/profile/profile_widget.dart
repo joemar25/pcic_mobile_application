@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'profile_model.dart';
 export 'profile_model.dart';
@@ -24,6 +25,14 @@ class _ProfileWidgetState extends State<ProfileWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ProfileModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await UserLogsTable().insert({
+        'activity': 'Checking user profile',
+        'user_id': currentUserUid,
+      });
+    });
   }
 
   @override
@@ -38,8 +47,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
     return FutureBuilder<List<UsersRow>>(
       future: UsersTable().querySingleRow(
         queryFn: (q) => q.eq(
-          'id',
-          currentUserUid,
+          'email',
+          currentUserEmail,
         ),
       ),
       builder: (context, snapshot) {
@@ -61,6 +70,10 @@ class _ProfileWidgetState extends State<ProfileWidget> {
         }
         List<UsersRow> profileUsersRowList = snapshot.data!;
 
+        // Return an empty Container when the item does not exist.
+        if (snapshot.data!.isEmpty) {
+          return Container();
+        }
         final profileUsersRow =
             profileUsersRowList.isNotEmpty ? profileUsersRowList.first : null;
         return Scaffold(
@@ -579,6 +592,10 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       children: [
                         FFButtonWidget(
                           onPressed: () async {
+                            await UserLogsTable().insert({
+                              'user_id': currentUserUid,
+                              'activity': 'Logging out.',
+                            });
                             GoRouter.of(context).prepareAuthEvent();
                             await authManager.signOut();
                             GoRouter.of(context).clearRedirectLocation();

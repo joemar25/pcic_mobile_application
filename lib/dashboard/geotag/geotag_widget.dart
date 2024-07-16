@@ -1,3 +1,4 @@
+import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -372,6 +373,13 @@ class _GeotagWidgetState extends State<GeotagWidget>
                                                                             ),
                                                                           );
                                                                         }
+                                                                        await UserLogsTable()
+                                                                            .insert({
+                                                                          'user_id':
+                                                                              currentUserUid,
+                                                                          'activity':
+                                                                              'Starting to geotag.',
+                                                                        });
                                                                       },
                                                             text: FFLocalizations
                                                                     .of(context)
@@ -439,6 +447,13 @@ class _GeotagWidgetState extends State<GeotagWidget>
                                                                             true;
                                                                         setState(
                                                                             () {});
+                                                                        await UserLogsTable()
+                                                                            .insert({
+                                                                          'user_id':
+                                                                              currentUserUid,
+                                                                          'activity':
+                                                                              'Geotagging stopped.',
+                                                                        });
 
                                                                         context
                                                                             .pushNamed(

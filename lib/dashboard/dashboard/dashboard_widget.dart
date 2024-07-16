@@ -11,6 +11,7 @@ import '/utils/components/tasks/tasks_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -37,6 +38,14 @@ class _DashboardWidgetState extends State<DashboardWidget>
   void initState() {
     super.initState();
     _model = createModel(context, () => DashboardModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await UserLogsTable().insert({
+        'activity': 'Checking dashboard',
+        'user_id': currentUserUid,
+      });
+    });
 
     _model.textController1 ??= TextEditingController();
 

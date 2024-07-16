@@ -1,8 +1,10 @@
+import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'messages_model.dart';
 export 'messages_model.dart';
@@ -28,6 +30,14 @@ class _MessagesWidgetState extends State<MessagesWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => MessagesModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await UserLogsTable().insert({
+        'activity': 'Chatting with [...]',
+        'user_id': currentUserUid,
+      });
+    });
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();

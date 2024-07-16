@@ -1,3 +1,4 @@
+import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -112,6 +113,12 @@ class _TasksWidgetState extends State<TasksWidget>
             hoverColor: Colors.transparent,
             highlightColor: Colors.transparent,
             onTap: () async {
+              await UserLogsTable().insert({
+                'user_id': currentUserUid,
+                'activity':
+                    'Checking a ${widget.status} task ${containerPpirFormsRow?.ppirAssignmentid}.',
+              });
+
               context.pushNamed(
                 'task_details',
                 queryParameters: {

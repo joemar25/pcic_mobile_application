@@ -41,6 +41,9 @@ class UsersRow extends SupabaseDataRow {
   String? get regionId => getField<String>('region_id');
   set regionId(String? value) => setField<String>('region_id', value);
 
+  bool? get isOnline => getField<bool>('is_online');
+  set isOnline(bool? value) => setField<bool>('is_online', value);
+
   bool? get isDeleted => getField<bool>('is_deleted');
   set isDeleted(bool? value) => setField<bool>('is_deleted', value);
 }

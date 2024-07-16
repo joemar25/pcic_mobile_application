@@ -270,6 +270,10 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           },
                           matchingRows: (rows) => rows,
                         );
+                        await UserLogsTable().insert({
+                          'user_id': currentUserUid,
+                          'activity': 'Saving profile.',
+                        });
 
                         context.pushNamed('success');
                       },

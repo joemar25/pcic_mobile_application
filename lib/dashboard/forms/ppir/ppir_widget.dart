@@ -1,3 +1,4 @@
+import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -38,6 +39,10 @@ class _PpirWidgetState extends State<PpirWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.isRice = true;
       setState(() {});
+      await UserLogsTable().insert({
+        'user_id': currentUserUid,
+        'activity': 'Updating ppir form.',
+      });
     });
 
     _model.trackCoordinatesFocusNode ??= FocusNode();
@@ -620,6 +625,14 @@ class _PpirWidgetState extends State<PpirWidget> {
                                                     highlightColor:
                                                         Colors.transparent,
                                                     onTap: () async {
+                                                      await UserLogsTable()
+                                                          .insert({
+                                                        'user_id':
+                                                            currentUserUid,
+                                                        'activity':
+                                                            'Repeating geotag.',
+                                                      });
+
                                                       context.pushNamed(
                                                         'geotag',
                                                         queryParameters: {
@@ -1653,6 +1666,11 @@ class _PpirWidgetState extends State<PpirWidget> {
                                       ) ??
                                       false;
                               if (confirmDialogResponse) {
+                                await UserLogsTable().insert({
+                                  'user_id': currentUserUid,
+                                  'activity': 'Cancelling ppir form.',
+                                });
+
                                 context.pushNamed(
                                   'dashboard',
                                   extra: <String, dynamic>{
@@ -1723,6 +1741,11 @@ class _PpirWidgetState extends State<PpirWidget> {
                                   widget.taskId,
                                 ),
                               );
+                              await UserLogsTable().insert({
+                                'user_id': currentUserUid,
+                                'activity':
+                                    'Saving PPIR Form for task ${ppirPpirFormsRow?.ppirAssignmentid}.',
+                              });
 
                               context.pushNamed(
                                 'success',
