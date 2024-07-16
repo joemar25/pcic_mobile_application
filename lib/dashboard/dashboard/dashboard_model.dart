@@ -8,15 +8,16 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
 
   final unfocusNode = FocusNode();
   // State field(s) for TextField widget.
-  final textFieldKey1 = GlobalKey();
-  FocusNode? textFieldFocusNode1;
+  final textFieldKey = GlobalKey();
+  FocusNode? textFieldFocusNode;
   TextEditingController? textController1;
-  String? textFieldSelectedOption1;
+  String? textFieldSelectedOption;
   String? Function(BuildContext, String?)? textController1Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode2;
-  TextEditingController? textController2;
-  String? Function(BuildContext, String?)? textController2Validator;
+  // State field(s) for mobileFindTasksInputField widget.
+  FocusNode? mobileFindTasksInputFieldFocusNode;
+  TextEditingController? mobileFindTasksInputFieldTextController;
+  String? Function(BuildContext, String?)?
+      mobileFindTasksInputFieldTextControllerValidator;
   // State field(s) for TabBar widget.
   TabController? tabBarController1;
   int get tabBarCurrentIndex1 =>
@@ -77,10 +78,10 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   @override
   void dispose() {
     unfocusNode.dispose();
-    textFieldFocusNode1?.dispose();
+    textFieldFocusNode?.dispose();
 
-    textFieldFocusNode2?.dispose();
-    textController2?.dispose();
+    mobileFindTasksInputFieldFocusNode?.dispose();
+    mobileFindTasksInputFieldTextController?.dispose();
 
     tabBarController1?.dispose();
     tasksModels1.dispose();

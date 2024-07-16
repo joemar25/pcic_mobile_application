@@ -2,7 +2,6 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/utils/components/chat/chat_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'messages_model.dart';
@@ -29,6 +28,9 @@ class _MessagesWidgetState extends State<MessagesWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => MessagesModel());
+
+    _model.textController ??= TextEditingController();
+    _model.textFieldFocusNode ??= FocusNode();
   }
 
   @override
@@ -98,102 +100,146 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                 );
               },
             ),
-            title: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
-              child: Text(
-                valueOrDefault<String>(
-                  messagesMessagesRow?.receiverName,
-                  'Reciever',
-                ),
-                style: FlutterFlowTheme.of(context).displaySmall.override(
-                      fontFamily: 'Poppins',
-                      fontSize: 16.0,
-                      letterSpacing: 0.0,
+            title: Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+                  child: Text(
+                    valueOrDefault<String>(
+                      messagesMessagesRow?.receiverName,
+                      'Reciever',
                     ),
-              ),
+                    style: FlutterFlowTheme.of(context).displaySmall.override(
+                          fontFamily: 'Poppins',
+                          fontSize: 16.0,
+                          letterSpacing: 0.0,
+                        ),
+                  ),
+                ),
+              ],
             ),
             actions: const [],
             centerTitle: false,
             elevation: 0.0,
           ),
-          body: Align(
-            alignment: const AlignmentDirectional(0.0, -1.0),
-            child: Container(
-              width: double.infinity,
-              constraints: const BoxConstraints(
-                maxWidth: 570.0,
-              ),
-              decoration: const BoxDecoration(),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
+          body: SafeArea(
+            top: true,
+            child: Align(
+              alignment: const AlignmentDirectional(0.0, 0.0),
+              child: Stack(
+                alignment: const AlignmentDirectional(0.0, 1.0),
                 children: [
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // This row exists for when the "app bar" is hidden on desktop, having a way back for the user can work well.
-                      if (responsiveVisibility(
-                        context: context,
-                        phone: false,
-                        tablet: false,
-                      ))
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 0.0, 16.0, 8.0),
-                          child: InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              context.safePop();
-                            },
+                  Align(
+                    alignment: const AlignmentDirectional(0.0, 1.0),
+                    child: Padding(
+                      padding: const EdgeInsets.all(24.0),
+                      child: Container(
+                        width: MediaQuery.sizeOf(context).width * 0.8,
+                        height: 100.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          boxShadow: const [
+                            BoxShadow(
+                              blurRadius: 2.0,
+                              color: Color(0x33000000),
+                              offset: Offset(
+                                2.0,
+                                2.0,
+                              ),
+                              spreadRadius: 2.0,
+                            )
+                          ],
+                          borderRadius: BorderRadius.circular(14.0),
+                        ),
+                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        child: Align(
+                          alignment: const AlignmentDirectional(0.0, -1.0),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 12.0, 0.0, 12.0),
-                                  child: Icon(
-                                    Icons.arrow_back_rounded,
+                                FlutterFlowIconButton(
+                                  borderColor: Colors.transparent,
+                                  borderRadius: 20.0,
+                                  borderWidth: 1.0,
+                                  buttonSize: 40.0,
+                                  icon: Icon(
+                                    Icons.image_outlined,
                                     color: FlutterFlowTheme.of(context)
-                                        .primaryText,
+                                        .secondaryText,
                                     size: 24.0,
                                   ),
+                                  onPressed: () {
+                                    print('IconButton pressed ...');
+                                  },
                                 ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      12.0, 0.0, 0.0, 0.0),
-                                  child: Text(
-                                    FFLocalizations.of(context).getText(
-                                      'r4at3e87' /* Back */,
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Raleway',
-                                          letterSpacing: 0.0,
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        8.0, 0.0, 8.0, 0.0),
+                                    child: TextFormField(
+                                      controller: _model.textController,
+                                      focusNode: _model.textFieldFocusNode,
+                                      autofocus: true,
+                                      obscureText: false,
+                                      decoration: InputDecoration(
+                                        labelText:
+                                            FFLocalizations.of(context).getText(
+                                          'lpnik1fh' /* Type here to respond... */,
                                         ),
+                                        labelStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Raleway',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        hintStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Raleway',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        enabledBorder: InputBorder.none,
+                                        focusedBorder: InputBorder.none,
+                                        errorBorder: InputBorder.none,
+                                        focusedErrorBorder: InputBorder.none,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Raleway',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      maxLines: 5,
+                                      minLines: 1,
+                                      validator: _model.textControllerValidator
+                                          .asValidator(context),
+                                    ),
                                   ),
+                                ),
+                                FlutterFlowIconButton(
+                                  borderColor: Colors.transparent,
+                                  borderRadius: 30.0,
+                                  borderWidth: 1.0,
+                                  buttonSize: 60.0,
+                                  icon: Icon(
+                                    Icons.send_rounded,
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    size: 30.0,
+                                  ),
+                                  onPressed: () {
+                                    print('IconButton pressed ...');
+                                  },
                                 ),
                               ],
                             ),
                           ),
                         ),
-                      Flexible(
-                        child: Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: wrapWithModel(
-                              model: _model.chatModel,
-                              updateCallback: () => setState(() {}),
-                              child: const ChatWidget(),
-                            ),
-                          ),
-                        ),
                       ),
-                    ],
+                    ),
                   ),
                 ],
               ),

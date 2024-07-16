@@ -1,4 +1,4 @@
-# PCICMobileApp
+# PCIC Mobile App
 
 A new Flutter project.
 

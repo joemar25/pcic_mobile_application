@@ -196,17 +196,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/mapTesting',
           requireAuth: true,
           builder: (context, params) => const MapTestingWidget(),
-        ),
-        FFRoute(
-          name: 'messagesCopy',
-          path: '/messageso',
-          requireAuth: true,
-          builder: (context, params) => MessagesCopyWidget(
-            chatId: params.getParam(
-              'chatId',
-              ParamType.String,
-            ),
-          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -393,9 +382,13 @@ class FFRoute {
           final child = appStateNotifier.loading
               ? Container(
                   color: Colors.white,
-                  child: Image.asset(
-                    'assets/images/Animation_-_1720059117867.gif',
-                    fit: BoxFit.none,
+                  child: Center(
+                    child: Image.asset(
+                      'assets/images/Animation_-_1720059117867.gif',
+                      width: 200.0,
+                      height: 200.0,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 )
               : page;

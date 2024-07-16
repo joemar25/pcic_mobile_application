@@ -15,5 +15,3 @@ export '/utils/extra/success/success_widget.dart' show SuccessWidget;
 export '/utils/extra/fail/fail_widget.dart' show FailWidget;
 export '/dashboard/dashboard/dashboard_widget.dart' show DashboardWidget;
 export '/dashboard/map_testing/map_testing_widget.dart' show MapTestingWidget;
-export '/dashboard/messages_copy/messages_copy_widget.dart'
-    show MessagesCopyWidget;

@@ -111,25 +111,44 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Container(
-                            width: 70.0,
-                            height: 70.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context).alternate,
-                              borderRadius: BorderRadius.circular(40.0),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(2.0),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(40.0),
-                                child: Image.network(
-                                  valueOrDefault<String>(
-                                    profileUsersRow?.photoUrl,
-                                    'https://newsko.com.ph/wp-content/uploads/2024/06/Mikha.jpg',
+                          InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              context.pushNamed(
+                                'edit_profile',
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: const TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType: PageTransitionType.scale,
+                                    alignment: Alignment.bottomCenter,
+                                    duration: Duration(milliseconds: 200),
                                   ),
-                                  width: 100.0,
-                                  height: 100.0,
-                                  fit: BoxFit.cover,
+                                },
+                              );
+                            },
+                            child: Container(
+                              width: 70.0,
+                              height: 70.0,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context).alternate,
+                                borderRadius: BorderRadius.circular(40.0),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(2.0),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(40.0),
+                                  child: Image.network(
+                                    valueOrDefault<String>(
+                                      profileUsersRow?.photoUrl,
+                                      'https://newsko.com.ph/wp-content/uploads/2024/06/Mikha.jpg',
+                                    ),
+                                    width: 100.0,
+                                    height: 100.0,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                             ),

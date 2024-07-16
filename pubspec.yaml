@@ -126,7 +126,7 @@ flutter_launcher_icons:
     generate: true
   image_path: 'assets/images/app_launcher_icon.gif'
   adaptive_icon_background: '#0b191e'
-  adaptive_icon_foreground: 'assets/images/adaptive_foreground_icon.gif'
+  adaptive_icon_foreground: 'assets/images/adaptive_foreground_icon.png'
 
 
 # For information on the generic Dart part of this file, see the

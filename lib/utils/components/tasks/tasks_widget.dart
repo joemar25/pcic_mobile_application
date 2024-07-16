@@ -11,11 +11,12 @@ export 'tasks_model.dart';
 class TasksWidget extends StatefulWidget {
   const TasksWidget({
     super.key,
-    required this.task,
+    String? task,
     String? status,
-  }) : status = status ?? 'for dispatch';
+  })  : task = task ?? '123',
+        status = status ?? 'for dispatch';
 
-  final String? task;
+  final String task;
   final String status;
 
   @override
@@ -167,13 +168,13 @@ class _TasksWidgetState extends State<TasksWidget>
                       Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Expanded(
+                          Flexible(
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  'j0q6t8qb' /* N: */,
+                                  'j0q6t8qb' /* N:  */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -186,26 +187,28 @@ class _TasksWidgetState extends State<TasksWidget>
                               ),
                             ),
                           ),
-                          Text(
-                            valueOrDefault<String>(
-                              containerPpirFormsRow?.ppirNorth,
-                              'North',
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .headlineSmall
-                                .override(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                ),
-                          ),
                           Expanded(
+                            child: Text(
+                              valueOrDefault<String>(
+                                containerPpirFormsRow?.ppirNorth,
+                                'North',
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .headlineSmall
+                                  .override(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                          ),
+                          Flexible(
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  'kdar2g2n' /* W: */,
+                                  'kdar2g2n' /* W:  */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -218,31 +221,33 @@ class _TasksWidgetState extends State<TasksWidget>
                               ),
                             ),
                           ),
-                          Text(
-                            valueOrDefault<String>(
-                              containerPpirFormsRow?.ppirWest,
-                              'West',
+                          Expanded(
+                            child: Text(
+                              valueOrDefault<String>(
+                                containerPpirFormsRow?.ppirWest,
+                                'West',
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .headlineSmall
+                                  .override(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                  ),
                             ),
-                            style: FlutterFlowTheme.of(context)
-                                .headlineSmall
-                                .override(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                ),
                           ),
                         ],
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Expanded(
+                          Flexible(
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  'b2p4m05y' /* S: */,
+                                  'b2p4m05y' /* S:  */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -255,26 +260,28 @@ class _TasksWidgetState extends State<TasksWidget>
                               ),
                             ),
                           ),
-                          Text(
-                            valueOrDefault<String>(
-                              containerPpirFormsRow?.ppirSouth,
-                              'South',
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .headlineSmall
-                                .override(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                ),
-                          ),
                           Expanded(
+                            child: Text(
+                              valueOrDefault<String>(
+                                containerPpirFormsRow?.ppirSouth,
+                                'South',
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .headlineSmall
+                                  .override(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                          ),
+                          Flexible(
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  '8zz0rgpr' /* E: */,
+                                  '8zz0rgpr' /* E:  */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -287,18 +294,20 @@ class _TasksWidgetState extends State<TasksWidget>
                               ),
                             ),
                           ),
-                          Text(
-                            valueOrDefault<String>(
-                              containerPpirFormsRow?.ppirEast,
-                              'East',
+                          Expanded(
+                            child: Text(
+                              valueOrDefault<String>(
+                                containerPpirFormsRow?.ppirEast,
+                                'East',
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .headlineSmall
+                                  .override(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                  ),
                             ),
-                            style: FlutterFlowTheme.of(context)
-                                .headlineSmall
-                                .override(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                ),
                           ),
                         ],
                       ),

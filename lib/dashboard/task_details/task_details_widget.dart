@@ -68,6 +68,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
         }
         List<PpirFormsRow> taskDetailsPpirFormsRowList = snapshot.data!;
 
+        // Return an empty Container when the item does not exist.
+        if (snapshot.data!.isEmpty) {
+          return Container();
+        }
         final taskDetailsPpirFormsRow = taskDetailsPpirFormsRowList.isNotEmpty
             ? taskDetailsPpirFormsRowList.first
             : null;
@@ -99,7 +103,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                 padding: const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
                 child: Text(
                   FFLocalizations.of(context).getText(
-                    '4papqutb' /* Task Details */,
+                    'x1jz4y0y' /* Task Details */,
                   ),
                   style: FlutterFlowTheme.of(context).displaySmall.override(
                         fontFamily: 'Poppins',
@@ -147,7 +151,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           0.0, 0.0, 0.0, 12.0),
                                       child: Text(
                                         FFLocalizations.of(context).getText(
-                                          'k4p9gns5' /* Form Details */,
+                                          'ihmcvc23' /* Form Details */,
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
@@ -167,7 +171,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         children: [
                                           Text(
                                             FFLocalizations.of(context).getText(
-                                              'v8dtt2vs' /* Assignment Id */,
+                                              'zvbf8lkk' /* Assignment Id */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
@@ -180,7 +184,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             valueOrDefault<String>(
                                               taskDetailsPpirFormsRow
                                                   ?.ppirAssignmentid,
-                                              'Assignment Id',
+                                              'Assignment ID',
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
@@ -202,7 +206,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         children: [
                                           Text(
                                             FFLocalizations.of(context).getText(
-                                              '6mzh2uon' /* Farmer Name */,
+                                              'x8d6g468' /* Farmer Name */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
@@ -237,7 +241,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         children: [
                                           Text(
                                             FFLocalizations.of(context).getText(
-                                              'umpaaiis' /* Address */,
+                                              'webbx3lh' /* Address */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
@@ -273,7 +277,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         children: [
                                           Text(
                                             FFLocalizations.of(context).getText(
-                                              'd2ykgn36' /* Insurance Id */,
+                                              'qfage2ic' /* Insurance Id */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
@@ -309,7 +313,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         children: [
                                           Text(
                                             FFLocalizations.of(context).getText(
-                                              'ysis00n8' /* Mobile Number */,
+                                              'ezx6meo9' /* Mobile Number */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
@@ -345,7 +349,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         children: [
                                           Text(
                                             FFLocalizations.of(context).getText(
-                                              '7ccgy9wz' /* Farmer Type */,
+                                              'gvdbo0h6' /* Farmer Type */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
@@ -381,7 +385,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         children: [
                                           Text(
                                             FFLocalizations.of(context).getText(
-                                              't6o265ng' /* Group Name */,
+                                              '0blfogwv' /* Group Name */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
@@ -417,7 +421,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         children: [
                                           Text(
                                             FFLocalizations.of(context).getText(
-                                              'tahfceh8' /* Group Address */,
+                                              'lst6ktx6' /* Group Address */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
@@ -453,7 +457,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         children: [
                                           Text(
                                             FFLocalizations.of(context).getText(
-                                              '22hrwz9g' /* Lender Name */,
+                                              'zv71woqo' /* Lender Name */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
@@ -489,7 +493,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         children: [
                                           Text(
                                             FFLocalizations.of(context).getText(
-                                              'fuslprag' /* Lender Address */,
+                                              'jl733wsk' /* Lender Address */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
@@ -525,7 +529,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         children: [
                                           Text(
                                             FFLocalizations.of(context).getText(
-                                              'pm9qvc0q' /* Region */,
+                                              'zop5kb93' /* Region */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
@@ -537,7 +541,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           ),
                                           Text(
                                             FFLocalizations.of(context).getText(
-                                              'fpmzxpbt' /* MAR - Region */,
+                                              'buylf9ux' /* MAR - Region */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
@@ -559,7 +563,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         children: [
                                           Text(
                                             FFLocalizations.of(context).getText(
-                                              '3gw4pxgd' /* Farm Location */,
+                                              'p1282pce' /* Farm Location */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
@@ -595,7 +599,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         children: [
                                           Text(
                                             FFLocalizations.of(context).getText(
-                                              'ezrkfc7v' /* CIC Number */,
+                                              'b12iqcln' /* CIC Number */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
@@ -635,7 +639,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           0.0, 0.0, 0.0, 12.0),
                                       child: Text(
                                         FFLocalizations.of(context).getText(
-                                          '6t1xvbcc' /* Location Sketch Plan */,
+                                          'hvb7985g' /* Location Sketch Plan */,
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
@@ -655,7 +659,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         children: [
                                           Text(
                                             FFLocalizations.of(context).getText(
-                                              'jsqnnkid' /* North */,
+                                              'cat2uvtb' /* North */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
@@ -691,7 +695,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         children: [
                                           Text(
                                             FFLocalizations.of(context).getText(
-                                              '8wbopula' /* East */,
+                                              'hytwamsl' /* East */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
@@ -726,7 +730,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         children: [
                                           Text(
                                             FFLocalizations.of(context).getText(
-                                              '01yqjqhm' /* South */,
+                                              'qtzirwg5' /* South */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .labelLarge
@@ -762,7 +766,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         children: [
                                           Text(
                                             FFLocalizations.of(context).getText(
-                                              'cdxsxifv' /* West */,
+                                              'gmqdadav' /* West */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .labelLarge
@@ -801,7 +805,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           0.0, 0.0, 0.0, 12.0),
                                       child: Text(
                                         FFLocalizations.of(context).getText(
-                                          '8eqbqtc0' /* Location Sketch Plan */,
+                                          'tsu0lxo2' /* Location Sketch Plan */,
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
@@ -821,7 +825,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         children: [
                                           Text(
                                             FFLocalizations.of(context).getText(
-                                              '9i4y79o7' /* Area Planted */,
+                                              '792xrz3k' /* Area Planted */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
@@ -857,7 +861,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         children: [
                                           Text(
                                             FFLocalizations.of(context).getText(
-                                              '9071utka' /* Date of Planting (DS) */,
+                                              'zxmreuh1' /* Date of Planting (DS) */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
@@ -893,7 +897,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         children: [
                                           Text(
                                             FFLocalizations.of(context).getText(
-                                              'oqv0po4g' /* Datee of Planting (TP) */,
+                                              'ncrtgoe1' /* Datee of Planting (TP) */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
@@ -929,7 +933,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         children: [
                                           Text(
                                             FFLocalizations.of(context).getText(
-                                              '7olr9ewi' /* Seed Variety Planted */,
+                                              'nzua63mv' /* Seed Variety Planted */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
@@ -991,7 +995,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   child: Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      'jlh6u081' /* Completed Task  Details */,
+                                                      'dgbzqn0h' /* Completed Task  Details */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -1019,7 +1023,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      'n3mnsnhx' /* Tracking Details */,
+                                                      'nd1fqdu9' /* Tracking Details */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -1047,7 +1051,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      'w10i6i6m' /* Last Coordinates */,
+                                                      'uxt6f9xl' /* Last Coordinates */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -1089,7 +1093,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      '2p949smk' /* Track Date */,
+                                                      'or3srkkk' /* Track Date */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -1131,7 +1135,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      'm5djaddp' /* Total Area (ha) */,
+                                                      '01tvwwxt' /* Total Area (ha) */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -1173,7 +1177,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      '86v4vmu0' /* Total Distance */,
+                                                      'vp2u9vxf' /* Total Distance */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -1225,7 +1229,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      '3skiq927' /* Seed Details */,
+                                                      'v9d4i47l' /* Seed Details */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -1253,7 +1257,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      'me0xag6p' /* Type */,
+                                                      '762mtpey' /* Type */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -1295,7 +1299,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      'iue8io53' /* Variety */,
+                                                      'veh8acpl' /* Variety */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -1347,7 +1351,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      'bqgsxsrk' /* Date Details */,
+                                                      'anco0w5m' /* Date Details */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -1375,7 +1379,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      'bqak90cm' /* Date of Planting (DS) */,
+                                                      '27rka9jx' /* Date of Planting (DS) */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -1417,7 +1421,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      'qiuljlpt' /* Date of Planting (TP) */,
+                                                      '3zj0x11r' /* Date of Planting (TP) */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -1469,7 +1473,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      'b6l66gp3' /* Agent Confirmation */,
+                                                      'lnj6pjl7' /* Agent Confirmation */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -1497,7 +1501,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      'f2g23lnf' /* Remarks */,
+                                                      '966yfol9' /* Remarks */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -1539,7 +1543,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      '9429900j' /* Confirmed By */,
+                                                      '7ftdujb6' /* Confirmed By */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -1581,7 +1585,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      'iph48t8e' /* Signature */,
+                                                      'tjm5ey7c' /* Signature */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -1623,7 +1627,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      '92jn45m4' /* Prepared By */,
+                                                      '8bdkh9n1' /* Prepared By */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -1665,7 +1669,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      '0jg7r026' /* Signature */,
+                                                      'aq1euelx' /* Signature */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -1717,7 +1721,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      'ofswtz4e' /* Geotag */,
+                                                      'ahzx9d2y' /* Geotag */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -1745,7 +1749,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      '3z0jjcg8' /* Recorded */,
+                                                      '096k25yu' /* Recorded */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -1760,7 +1764,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      'mw8epesl' /* Actions here ( */,
+                                                      'e0abx8jq' /* Actions here ( */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -1819,7 +1823,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                 hasTransition: true,
                                 transitionType: PageTransitionType.scale,
                                 alignment: Alignment.bottomCenter,
-                                duration: Duration(milliseconds: 300),
+                                duration: Duration(milliseconds: 200),
                               ),
                             },
                           );
@@ -1861,7 +1865,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                               ),
                               Text(
                                 FFLocalizations.of(context).getText(
-                                  '5u67akkk' /* Geotag */,
+                                  'g06chmkk' /* Geotag */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .titleSmall

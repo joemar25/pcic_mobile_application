@@ -177,11 +177,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Below are messages with your friends.',
       'tl': '',
     },
-    '6gdbj059': {
-      'en':
-          'This was really great, i\'m so glad that we could  catchup this weekend.',
-      'tl': '',
-    },
     'yq8kfovp': {
       'en': 'Messages',
       'tl': '',
@@ -318,8 +313,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // messages
   {
-    'r4at3e87': {
-      'en': 'Back',
+    'lpnik1fh': {
+      'en': 'Type here to respond...',
       'tl': '',
     },
     'zxojetjq': {
@@ -404,196 +399,196 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // task_details
   {
-    'k4p9gns5': {
+    'x1jz4y0y': {
+      'en': 'Task Details',
+      'tl': '',
+    },
+    'ihmcvc23': {
       'en': 'Form Details',
       'tl': '',
     },
-    'v8dtt2vs': {
+    'zvbf8lkk': {
       'en': 'Assignment Id',
       'tl': '',
     },
-    '6mzh2uon': {
+    'x8d6g468': {
       'en': 'Farmer Name',
       'tl': '',
     },
-    'umpaaiis': {
+    'webbx3lh': {
       'en': 'Address',
       'tl': '',
     },
-    'd2ykgn36': {
+    'qfage2ic': {
       'en': 'Insurance Id',
       'tl': '',
     },
-    'ysis00n8': {
+    'ezx6meo9': {
       'en': 'Mobile Number',
       'tl': '',
     },
-    '7ccgy9wz': {
+    'gvdbo0h6': {
       'en': 'Farmer Type',
       'tl': '',
     },
-    't6o265ng': {
+    '0blfogwv': {
       'en': 'Group Name',
       'tl': '',
     },
-    'tahfceh8': {
+    'lst6ktx6': {
       'en': 'Group Address',
       'tl': '',
     },
-    '22hrwz9g': {
+    'zv71woqo': {
       'en': 'Lender Name',
       'tl': '',
     },
-    'fuslprag': {
+    'jl733wsk': {
       'en': 'Lender Address',
       'tl': '',
     },
-    'pm9qvc0q': {
+    'zop5kb93': {
       'en': 'Region',
       'tl': '',
     },
-    'fpmzxpbt': {
+    'buylf9ux': {
       'en': 'MAR - Region',
       'tl': '',
     },
-    '3gw4pxgd': {
+    'p1282pce': {
       'en': 'Farm Location',
       'tl': '',
     },
-    'ezrkfc7v': {
+    'b12iqcln': {
       'en': 'CIC Number',
       'tl': '',
     },
-    '6t1xvbcc': {
+    'hvb7985g': {
       'en': 'Location Sketch Plan',
       'tl': '',
     },
-    'jsqnnkid': {
+    'cat2uvtb': {
       'en': 'North',
       'tl': '',
     },
-    '8wbopula': {
+    'hytwamsl': {
       'en': 'East',
       'tl': '',
     },
-    '01yqjqhm': {
+    'qtzirwg5': {
       'en': 'South',
       'tl': '',
     },
-    'cdxsxifv': {
+    'gmqdadav': {
       'en': 'West',
       'tl': '',
     },
-    '8eqbqtc0': {
+    'tsu0lxo2': {
       'en': 'Location Sketch Plan',
       'tl': '',
     },
-    '9i4y79o7': {
+    '792xrz3k': {
       'en': 'Area Planted',
       'tl': '',
     },
-    '9071utka': {
+    'zxmreuh1': {
       'en': 'Date of Planting (DS)',
       'tl': '',
     },
-    'oqv0po4g': {
+    'ncrtgoe1': {
       'en': 'Datee of Planting (TP)',
       'tl': '',
     },
-    '7olr9ewi': {
+    'nzua63mv': {
       'en': 'Seed Variety Planted',
       'tl': '',
     },
-    'jlh6u081': {
+    'dgbzqn0h': {
       'en': 'Completed Task  Details',
       'tl': '',
     },
-    'n3mnsnhx': {
+    'nd1fqdu9': {
       'en': 'Tracking Details',
       'tl': '',
     },
-    'w10i6i6m': {
+    'uxt6f9xl': {
       'en': 'Last Coordinates',
       'tl': '',
     },
-    '2p949smk': {
+    'or3srkkk': {
       'en': 'Track Date',
       'tl': '',
     },
-    'm5djaddp': {
+    '01tvwwxt': {
       'en': 'Total Area (ha)',
       'tl': '',
     },
-    '86v4vmu0': {
+    'vp2u9vxf': {
       'en': 'Total Distance',
       'tl': '',
     },
-    '3skiq927': {
+    'v9d4i47l': {
       'en': 'Seed Details',
       'tl': '',
     },
-    'me0xag6p': {
+    '762mtpey': {
       'en': 'Type',
       'tl': '',
     },
-    'iue8io53': {
+    'veh8acpl': {
       'en': 'Variety',
       'tl': '',
     },
-    'bqgsxsrk': {
+    'anco0w5m': {
       'en': 'Date Details',
       'tl': '',
     },
-    'bqak90cm': {
+    '27rka9jx': {
       'en': 'Date of Planting (DS)',
       'tl': '',
     },
-    'qiuljlpt': {
+    '3zj0x11r': {
       'en': 'Date of Planting (TP)',
       'tl': '',
     },
-    'b6l66gp3': {
+    'lnj6pjl7': {
       'en': 'Agent Confirmation',
       'tl': '',
     },
-    'f2g23lnf': {
+    '966yfol9': {
       'en': 'Remarks',
       'tl': '',
     },
-    '9429900j': {
+    '7ftdujb6': {
       'en': 'Confirmed By',
       'tl': '',
     },
-    'iph48t8e': {
+    'tjm5ey7c': {
       'en': 'Signature',
       'tl': '',
     },
-    '92jn45m4': {
+    '8bdkh9n1': {
       'en': 'Prepared By',
       'tl': '',
     },
-    '0jg7r026': {
+    'aq1euelx': {
       'en': 'Signature',
       'tl': '',
     },
-    'ofswtz4e': {
+    'ahzx9d2y': {
       'en': 'Geotag',
       'tl': '',
     },
-    '3z0jjcg8': {
+    '096k25yu': {
       'en': 'Recorded',
       'tl': '',
     },
-    'mw8epesl': {
+    'e0abx8jq': {
       'en': 'Actions here (',
       'tl': '',
     },
-    '5u67akkk': {
+    'g06chmkk': {
       'en': 'Geotag',
-      'tl': '',
-    },
-    '4papqutb': {
-      'en': 'Task Details',
       'tl': '',
     },
     '4jnx5njc': {
@@ -780,7 +775,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Ongoing',
       'tl': '',
     },
-    'ld4fzlai': {
+    'v1rudbl9': {
       'en': 'Completed',
       'tl': '',
     },
@@ -876,33 +871,22 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
-  // messagesCopy
-  {
-    'loncu578': {
-      'en': 'Type here to respond...',
-      'tl': '',
-    },
-    '8ujlz6e0': {
-      'en': 'Home',
-      'tl': '',
-    },
-  },
   // tasks
   {
     'j0q6t8qb': {
-      'en': 'N:',
+      'en': 'N: ',
       'tl': '',
     },
     'kdar2g2n': {
-      'en': 'W:',
+      'en': 'W: ',
       'tl': '',
     },
     'b2p4m05y': {
-      'en': 'S:',
+      'en': 'S: ',
       'tl': '',
     },
     '8zz0rgpr': {
-      'en': 'E:',
+      'en': 'E: ',
       'tl': '',
     },
     'vfsgjz34': {

@@ -102,6 +102,10 @@ class _PpirWidgetState extends State<PpirWidget> {
         }
         List<PpirFormsRow> ppirPpirFormsRowList = snapshot.data!;
 
+        // Return an empty Container when the item does not exist.
+        if (snapshot.data!.isEmpty) {
+          return Container();
+        }
         final ppirPpirFormsRow =
             ppirPpirFormsRowList.isNotEmpty ? ppirPpirFormsRowList.first : null;
         return GestureDetector(
