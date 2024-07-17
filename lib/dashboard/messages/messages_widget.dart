@@ -193,7 +193,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                     child: TextFormField(
                                       controller: _model.textController,
                                       focusNode: _model.textFieldFocusNode,
-                                      autofocus: true,
+                                      autofocus: false,
                                       obscureText: false,
                                       decoration: InputDecoration(
                                         labelText:

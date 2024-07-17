@@ -32,12 +32,12 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
   String? Function(BuildContext, String?)? trackFarmlocTextControllerValidator;
   // State field(s) for varietySelection widget.
   FormFieldController<String>? varietySelectionValueController;
-  // State field(s) for DropDown widget.
-  String? dropDownValue1;
-  FormFieldController<String>? dropDownValueController1;
-  // State field(s) for DropDown widget.
-  String? dropDownValue2;
-  FormFieldController<String>? dropDownValueController2;
+  // State field(s) for riceDropdown widget.
+  String? riceDropdownValue;
+  FormFieldController<String>? riceDropdownValueController;
+  // State field(s) for cornDropdown widget.
+  String? cornDropdownValue;
+  FormFieldController<String>? cornDropdownValueController;
   // State field(s) for area_planted_field widget.
   FocusNode? areaPlantedFieldFocusNode;
   TextEditingController? areaPlantedFieldTextController;

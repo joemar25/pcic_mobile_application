@@ -375,9 +375,17 @@ class _GeotagWidgetState extends State<GeotagWidget> {
                                                                 .getText(
                                                               'pkpqltl8' /* Start */,
                                                             ),
+                                                            icon: const Icon(
+                                                              Icons.play_arrow,
+                                                              size: 15.0,
+                                                            ),
                                                             options:
                                                                 FFButtonOptions(
-                                                              width: 100.0,
+                                                              width: MediaQuery
+                                                                          .sizeOf(
+                                                                              context)
+                                                                      .width *
+                                                                  0.2,
                                                               height: 40.0,
                                                               padding:
                                                                   const EdgeInsetsDirectional
@@ -471,9 +479,17 @@ class _GeotagWidgetState extends State<GeotagWidget> {
                                                                 .getText(
                                                               'nu29o86l' /* Stop */,
                                                             ),
+                                                            icon: const Icon(
+                                                              Icons.stop,
+                                                              size: 15.0,
+                                                            ),
                                                             options:
                                                                 FFButtonOptions(
-                                                              width: 100.0,
+                                                              width: MediaQuery
+                                                                          .sizeOf(
+                                                                              context)
+                                                                      .width *
+                                                                  0.2,
                                                               height: 40.0,
                                                               padding:
                                                                   const EdgeInsetsDirectional
@@ -522,6 +538,26 @@ class _GeotagWidgetState extends State<GeotagWidget> {
                                                     ),
                                                   ),
                                                 ],
+                                              ),
+                                            ),
+                                            Align(
+                                              alignment: const AlignmentDirectional(
+                                                  -1.0, 0.0),
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(24.0),
+                                                child: Text(
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'rnhz48li' /* LOCATION: */,
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Raleway',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
                                               ),
                                             ),
                                           ],

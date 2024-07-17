@@ -198,28 +198,30 @@ class _ChangePhotoWidgetState extends State<ChangePhotoWidget> {
                                           },
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(4.0),
-                                        child: Container(
-                                          width: 120.0,
-                                          height: 120.0,
-                                          clipBehavior: Clip.antiAlias,
-                                          decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
-                                          ),
-                                          child: CachedNetworkImage(
-                                            fadeInDuration:
-                                                const Duration(milliseconds: 500),
-                                            fadeOutDuration:
-                                                const Duration(milliseconds: 500),
-                                            imageUrl: valueOrDefault<String>(
-                                              _model.uploadedFileUrl,
-                                              'https://newsko.com.ph/wp-content/uploads/2024/06/Mikha.jpg',
+                                      if (currentUserEmail ==
+                                          'joemar@yahoo.com')
+                                        Padding(
+                                          padding: const EdgeInsets.all(4.0),
+                                          child: Container(
+                                            width: 120.0,
+                                            height: 120.0,
+                                            clipBehavior: Clip.antiAlias,
+                                            decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
                                             ),
-                                            fit: BoxFit.cover,
+                                            child: CachedNetworkImage(
+                                              fadeInDuration:
+                                                  const Duration(milliseconds: 500),
+                                              fadeOutDuration:
+                                                  const Duration(milliseconds: 500),
+                                              imageUrl: valueOrDefault<String>(
+                                                _model.uploadedFileUrl,
+                                                'https://newsko.com.ph/wp-content/uploads/2024/06/Mikha.jpg',
+                                              ),
+                                              fit: BoxFit.cover,
+                                            ),
                                           ),
                                         ),
-                                      ),
                                     ],
                                   ),
                                 ),

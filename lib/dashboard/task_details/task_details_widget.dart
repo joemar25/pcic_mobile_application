@@ -1908,6 +1908,96 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                         ),
                       ),
                     ),
+                  if (!widget.isCompleted)
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 12.0),
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          currentUserLocationValue =
+                              await getCurrentUserLocation(
+                                  defaultLocation: const LatLng(0.0, 0.0));
+                          await UserLogsTable().insert({
+                            'user_id': currentUserUid,
+                            'activity':
+                                'Initializing current device location at  ${currentUserLocationValue?.toString()}for resubmittion.',
+                          });
+
+                          context.pushNamed(
+                            'geotag',
+                            queryParameters: {
+                              'taskId': serializeParam(
+                                widget.taskId,
+                                ParamType.String,
+                              ),
+                            }.withoutNulls,
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: const TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.scale,
+                                alignment: Alignment.bottomCenter,
+                                duration: Duration(milliseconds: 200),
+                              ),
+                            },
+                          );
+                        },
+                        child: Container(
+                          width: 300.0,
+                          height: 50.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).primary,
+                            boxShadow: const [
+                              BoxShadow(
+                                blurRadius: 4.0,
+                                color: Color(0x33000000),
+                                offset: Offset(
+                                  0.0,
+                                  2.0,
+                                ),
+                              )
+                            ],
+                            borderRadius: BorderRadius.circular(12.0),
+                            border: Border.all(
+                              color: FlutterFlowTheme.of(context).accent1,
+                              width: 2.0,
+                            ),
+                          ),
+                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(6.0),
+                                child: Icon(
+                                  Icons.redo_sharp,
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBtnText,
+                                  size: 24.0,
+                                ),
+                              ),
+                              Text(
+                                FFLocalizations.of(context).getText(
+                                  '0267v9wc' /* Resubmit */,
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Raleway',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBtnText,
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
                 ],
               ),
             ),

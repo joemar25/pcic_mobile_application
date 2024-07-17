@@ -332,6 +332,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Stop',
       'tl': '',
     },
+    'rnhz48li': {
+      'en': 'LOCATION:',
+      'tl': '',
+    },
     '0o8w3vlv': {
       'en': 'Home',
       'tl': '',
@@ -529,6 +533,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'g06chmkk': {
       'en': 'Geotag',
+      'tl': '',
+    },
+    '0267v9wc': {
+      'en': 'Resubmit',
       'tl': '',
     },
     '4jnx5njc': {

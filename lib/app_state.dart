@@ -25,10 +25,4 @@ class FFAppState extends ChangeNotifier {
   set routeStarted(bool value) {
     _routeStarted = value;
   }
-
-  String _userName = '';
-  String get userName => _userName;
-  set userName(String value) {
-    _userName = value;
-  }
 }

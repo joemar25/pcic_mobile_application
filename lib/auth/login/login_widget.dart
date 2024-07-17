@@ -1,6 +1,7 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -75,34 +76,44 @@ class _LoginWidgetState extends State<LoginWidget>
           alignment: const AlignmentDirectional(0.0, 0.0),
           child: Stack(
             children: [
-              if (responsiveVisibility(
-                context: context,
-                tablet: false,
-                tabletLandscape: false,
-                desktop: false,
-              ))
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(8.0),
-                  child: Image.asset(
-                    'assets/images/Untitled_design(1)(1).png',
-                    width: MediaQuery.sizeOf(context).width * 1.0,
-                    height: MediaQuery.sizeOf(context).height * 1.0,
-                    fit: BoxFit.cover,
+              InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  await Navigator.push(
+                    context,
+                    PageTransition(
+                      type: PageTransitionType.fade,
+                      child: FlutterFlowExpandedImageView(
+                        image: Image.network(
+                          '',
+                          fit: BoxFit.contain,
+                          alignment: const Alignment(0.0, 0.0),
+                        ),
+                        allowRotation: false,
+                        tag: 'imageTag',
+                        useHeroAnimation: true,
+                      ),
+                    ),
+                  );
+                },
+                child: Hero(
+                  tag: 'imageTag',
+                  transitionOnUserGestures: true,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.network(
+                      '',
+                      width: MediaQuery.sizeOf(context).width * 1.286,
+                      height: MediaQuery.sizeOf(context).height * 1.0,
+                      fit: BoxFit.fill,
+                      alignment: const Alignment(0.0, 0.0),
+                    ),
                   ),
                 ),
-              if (responsiveVisibility(
-                context: context,
-                phone: false,
-                tablet: false,
-                desktop: false,
-              ))
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(8.0),
-                  child: Image.asset(
-                    'assets/images/Untitled_design(1)(1).png',
-                    fit: BoxFit.none,
-                  ),
-                ),
+              ),
               Align(
                 alignment: const AlignmentDirectional(0.0, 0.0),
                 child: Padding(

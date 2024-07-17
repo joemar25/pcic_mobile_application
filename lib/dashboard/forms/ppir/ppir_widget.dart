@@ -896,7 +896,7 @@ class _PpirWidgetState extends State<PpirWidget> {
                                           if (_model.isRice == true)
                                             FlutterFlowDropDown<String>(
                                               controller: _model
-                                                      .dropDownValueController1 ??=
+                                                      .riceDropdownValueController ??=
                                                   FormFieldController<String>(
                                                       null),
                                               options: functions
@@ -904,7 +904,8 @@ class _PpirWidgetState extends State<PpirWidget> {
                                                   .take(5)
                                                   .toList(),
                                               onChanged: (val) => setState(() =>
-                                                  _model.dropDownValue1 = val),
+                                                  _model.riceDropdownValue =
+                                                      val),
                                               width: double.infinity,
                                               height: 56.0,
                                               searchHintTextStyle:
@@ -966,7 +967,7 @@ class _PpirWidgetState extends State<PpirWidget> {
                                           if (_model.isRice == false)
                                             FlutterFlowDropDown<String>(
                                               controller: _model
-                                                      .dropDownValueController2 ??=
+                                                      .cornDropdownValueController ??=
                                                   FormFieldController<String>(
                                                       null),
                                               options: [
@@ -976,7 +977,8 @@ class _PpirWidgetState extends State<PpirWidget> {
                                                 )
                                               ],
                                               onChanged: (val) => setState(() =>
-                                                  _model.dropDownValue2 = val),
+                                                  _model.cornDropdownValue =
+                                                      val),
                                               width: double.infinity,
                                               height: 56.0,
                                               searchHintTextStyle:
