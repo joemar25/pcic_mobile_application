@@ -175,7 +175,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               children: [
                                 Text(
                                   valueOrDefault<String>(
-                                    profileUsersRow?.displayName,
+                                    profileUsersRow?.inspectorName,
                                     'Agent',
                                   ),
                                   style: FlutterFlowTheme.of(context)

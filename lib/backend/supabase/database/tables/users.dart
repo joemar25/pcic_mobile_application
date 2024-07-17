@@ -26,8 +26,14 @@ class UsersRow extends SupabaseDataRow {
   String? get photoUrl => getField<String>('photo_url');
   set photoUrl(String? value) => setField<String>('photo_url', value);
 
-  String get displayName => getField<String>('display_name')!;
-  set displayName(String value) => setField<String>('display_name', value);
+  String get inspectorName => getField<String>('inspector_name')!;
+  set inspectorName(String value) => setField<String>('inspector_name', value);
+
+  String? get mobileNumber => getField<String>('mobile_number');
+  set mobileNumber(String? value) => setField<String>('mobile_number', value);
+
+  bool? get isOnline => getField<bool>('is_online');
+  set isOnline(bool? value) => setField<bool>('is_online', value);
 
   String? get authUserId => getField<String>('auth_user_id');
   set authUserId(String? value) => setField<String>('auth_user_id', value);
@@ -40,9 +46,6 @@ class UsersRow extends SupabaseDataRow {
 
   String? get regionId => getField<String>('region_id');
   set regionId(String? value) => setField<String>('region_id', value);
-
-  bool? get isOnline => getField<bool>('is_online');
-  set isOnline(bool? value) => setField<bool>('is_online', value);
 
   bool? get isDeleted => getField<bool>('is_deleted');
   set isDeleted(bool? value) => setField<bool>('is_deleted', value);

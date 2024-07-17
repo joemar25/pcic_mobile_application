@@ -255,7 +255,7 @@ class _FormSuccessWidgetState extends State<FormSuccessWidget>
     return FutureBuilder<List<UsersRow>>(
       future: UsersTable().querySingleRow(
         queryFn: (q) => q.eq(
-          'display_name',
+          'id',
           currentUserUid,
         ),
       ),
@@ -476,7 +476,11 @@ class _FormSuccessWidgetState extends State<FormSuccessWidget>
                                                         BorderRadius.circular(
                                                             40.0),
                                                     child: Image.network(
-                                                      'https://newsko.com.ph/wp-content/uploads/2024/06/Mikha.jpg',
+                                                      valueOrDefault<String>(
+                                                        formSuccessUsersRow
+                                                            ?.photoUrl,
+                                                        'https://newsko.com.ph/wp-content/uploads/2024/06/Mikha.jpg',
+                                                      ),
                                                       width: 60.0,
                                                       height: 60.0,
                                                       fit: BoxFit.cover,

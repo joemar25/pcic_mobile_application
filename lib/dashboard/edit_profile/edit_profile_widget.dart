@@ -194,7 +194,10 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                   child: TextFormField(
                     controller: _model.displayNameTextController ??=
                         TextEditingController(
-                      text: columnUsersRow?.displayName,
+                      text: valueOrDefault<String>(
+                        columnUsersRow?.inspectorName,
+                        'Agent',
+                      ),
                     ),
                     focusNode: _model.displayNameFocusNode,
                     textCapitalization: TextCapitalization.words,
@@ -266,7 +269,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                         await UsersTable().update(
                           data: {
                             'photo_url': columnUsersRow?.photoUrl,
-                            'display_name': columnUsersRow?.displayName,
+                            'inspector_name':
+                                _model.displayNameTextController.text,
                           },
                           matchingRows: (rows) => rows,
                         );

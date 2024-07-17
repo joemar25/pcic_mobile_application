@@ -248,7 +248,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                   0.0, 4.0, 0.0, 0.0),
                                           child: Text(
                                             valueOrDefault<String>(
-                                              dashboardUsersRow?.displayName,
+                                              dashboardUsersRow?.inspectorName,
                                               'Agent',
                                             ),
                                             style: FlutterFlowTheme.of(context)
