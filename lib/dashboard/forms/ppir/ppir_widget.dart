@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_radio_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -897,16 +898,11 @@ class _PpirWidgetState extends State<PpirWidget> {
                                               controller: _model
                                                       .dropDownValueController1 ??=
                                                   FormFieldController<String>(
-                                                _model.dropDownValue1 ??=
-                                                    ppirPpirFormsRow
-                                                        ?.ppirVariety,
-                                              ),
-                                              options: [
-                                                FFLocalizations.of(context)
-                                                    .getText(
-                                                  'a7yszlux' /* this is the rice */,
-                                                )
-                                              ],
+                                                      null),
+                                              options: functions
+                                                  .seeds('seeds')!
+                                                  .take(5)
+                                                  .toList(),
                                               onChanged: (val) => setState(() =>
                                                   _model.dropDownValue1 = val),
                                               width: double.infinity,

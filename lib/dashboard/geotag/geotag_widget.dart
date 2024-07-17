@@ -22,12 +22,10 @@ class GeotagWidget extends StatefulWidget {
   State<GeotagWidget> createState() => _GeotagWidgetState();
 }
 
-class _GeotagWidgetState extends State<GeotagWidget>
-    with TickerProviderStateMixin {
+class _GeotagWidgetState extends State<GeotagWidget> {
   late GeotagModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  LatLng? currentUserLocationValue;
 
   @override
   void initState() {
@@ -39,14 +37,6 @@ class _GeotagWidgetState extends State<GeotagWidget>
       _model.isGeotagStart = false;
       setState(() {});
     });
-
-    getCurrentUserLocation(defaultLocation: const LatLng(0.0, 0.0), cached: true)
-        .then((loc) => setState(() => currentUserLocationValue = loc));
-    _model.tabBarController = TabController(
-      vsync: this,
-      length: 3,
-      initialIndex: 0,
-    )..addListener(() => setState(() {}));
   }
 
   @override
@@ -58,22 +48,6 @@ class _GeotagWidgetState extends State<GeotagWidget>
 
   @override
   Widget build(BuildContext context) {
-    if (currentUserLocationValue == null) {
-      return Container(
-        color: FlutterFlowTheme.of(context).primaryBackground,
-        child: Center(
-          child: SizedBox(
-            width: 100.0,
-            height: 100.0,
-            child: SpinKitRipple(
-              color: FlutterFlowTheme.of(context).primary,
-              size: 100.0,
-            ),
-          ),
-        ),
-      );
-    }
-
     return FutureBuilder<List<PpirFormsRow>>(
       future: PpirFormsTable().querySingleRow(
         queryFn: (q) => q.eq(
@@ -107,12 +81,12 @@ class _GeotagWidgetState extends State<GeotagWidget>
           onTap: () => _model.unfocusNode.canRequestFocus
               ? FocusScope.of(context).requestFocus(_model.unfocusNode)
               : FocusScope.of(context).unfocus(),
-          child: Scaffold(
-            key: scaffoldKey,
-            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-            body: SafeArea(
-              top: true,
-              child: FutureBuilder<List<TasksRow>>(
+          child: WillPopScope(
+            onWillPop: () async => false,
+            child: Scaffold(
+              key: scaffoldKey,
+              backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+              body: FutureBuilder<List<TasksRow>>(
                 future: TasksTable().querySingleRow(
                   queryFn: (q) => q.eq(
                     'id',
@@ -193,7 +167,19 @@ class _GeotagWidgetState extends State<GeotagWidget>
                                       size: 20.0,
                                     ),
                                     onPressed: () async {
-                                      context.safePop();
+                                      context.pushNamed(
+                                        'task_details',
+                                        queryParameters: {
+                                          'taskId': serializeParam(
+                                            stackTasksRow?.id,
+                                            ParamType.String,
+                                          ),
+                                          'isCompleted': serializeParam(
+                                            true,
+                                            ParamType.bool,
+                                          ),
+                                        }.withoutNulls,
+                                      );
                                     },
                                   ),
                                 ),
@@ -213,7 +199,7 @@ class _GeotagWidgetState extends State<GeotagWidget>
                                   alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 600.0, 0.0, 0.0),
+                                        0.0, 800.0, 0.0, 0.0),
                                     child: Container(
                                       width: double.infinity,
                                       height: 300.0,
@@ -253,7 +239,7 @@ class _GeotagWidgetState extends State<GeotagWidget>
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
-                                                        .spaceAround,
+                                                        .spaceBetween,
                                                 children: [
                                                   Column(
                                                     mainAxisSize:
@@ -344,6 +330,9 @@ class _GeotagWidgetState extends State<GeotagWidget>
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
                                                       children: [
                                                         Padding(
                                                           padding:
@@ -533,456 +522,6 @@ class _GeotagWidgetState extends State<GeotagWidget>
                                                     ),
                                                   ),
                                                 ],
-                                              ),
-                                            ),
-                                            Expanded(
-                                              child: Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 12.0, 0.0, 0.0),
-                                                child: Column(
-                                                  children: [
-                                                    Align(
-                                                      alignment:
-                                                          const Alignment(0.0, 0),
-                                                      child: TabBar(
-                                                        labelColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                        unselectedLabelColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                        labelStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Raleway',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                        unselectedLabelStyle:
-                                                            const TextStyle(),
-                                                        indicatorColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                        tabs: [
-                                                          Tab(
-                                                            text: FFLocalizations
-                                                                    .of(context)
-                                                                .getText(
-                                                              'f2po16v3' /* Geotag */,
-                                                            ),
-                                                          ),
-                                                          Tab(
-                                                            text: FFLocalizations
-                                                                    .of(context)
-                                                                .getText(
-                                                              '3j41u30c' /* Farmer */,
-                                                            ),
-                                                          ),
-                                                          Tab(
-                                                            text: FFLocalizations
-                                                                    .of(context)
-                                                                .getText(
-                                                              'i5dlnb98' /* Form */,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                        controller: _model
-                                                            .tabBarController,
-                                                        onTap: (i) async {
-                                                          [
-                                                            () async {},
-                                                            () async {},
-                                                            () async {}
-                                                          ][i]();
-                                                        },
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                      child: TabBarView(
-                                                        controller: _model
-                                                            .tabBarController,
-                                                        children: [
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        20.0,
-                                                                        0.0,
-                                                                        20.0,
-                                                                        24.0),
-                                                            child: ListView(
-                                                              padding:
-                                                                  EdgeInsets
-                                                                      .zero,
-                                                              scrollDirection:
-                                                                  Axis.vertical,
-                                                              children: [
-                                                                Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          16.0,
-                                                                          12.0,
-                                                                          16.0,
-                                                                          8.0),
-                                                                  child: Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceBetween,
-                                                                    children: [
-                                                                      Expanded(
-                                                                        child:
-                                                                            Column(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.max,
-                                                                          crossAxisAlignment:
-                                                                              CrossAxisAlignment.start,
-                                                                          children: [
-                                                                            Text(
-                                                                              FFLocalizations.of(context).getText(
-                                                                                'zylazy17' /* Location */,
-                                                                              ),
-                                                                              style: FlutterFlowTheme.of(context).bodySmall.override(
-                                                                                    fontFamily: 'Raleway',
-                                                                                    color: FlutterFlowTheme.of(context).primary,
-                                                                                    letterSpacing: 0.0,
-                                                                                  ),
-                                                                            ),
-                                                                            Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 8.0),
-                                                                              child: Text(
-                                                                                valueOrDefault<String>(
-                                                                                  currentUserLocationValue?.toString(),
-                                                                                  'Location',
-                                                                                ),
-                                                                                style: FlutterFlowTheme.of(context).headlineSmall.override(
-                                                                                      fontFamily: 'Poppins',
-                                                                                      letterSpacing: 0.0,
-                                                                                    ),
-                                                                              ),
-                                                                            ),
-                                                                            Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
-                                                                              child: Text(
-                                                                                FFLocalizations.of(context).getText(
-                                                                                  '84gcw4vd' /* Data */,
-                                                                                ),
-                                                                                style: FlutterFlowTheme.of(context).bodySmall.override(
-                                                                                      fontFamily: 'Raleway',
-                                                                                      color: FlutterFlowTheme.of(context).primary,
-                                                                                      letterSpacing: 0.0,
-                                                                                    ),
-                                                                              ),
-                                                                            ),
-                                                                            Text(
-                                                                              valueOrDefault<String>(
-                                                                                dateTimeFormat(
-                                                                                  'yMMMd',
-                                                                                  getCurrentTimestamp,
-                                                                                  locale: FFLocalizations.of(context).languageCode,
-                                                                                ),
-                                                                                'Time',
-                                                                              ),
-                                                                              style: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                    fontFamily: 'Raleway',
-                                                                                    letterSpacing: 0.0,
-                                                                                  ),
-                                                                            ),
-                                                                            Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
-                                                                              child: Text(
-                                                                                FFLocalizations.of(context).getText(
-                                                                                  'cnjmpf7g' /* Geotagiging Status */,
-                                                                                ),
-                                                                                style: FlutterFlowTheme.of(context).bodySmall.override(
-                                                                                      fontFamily: 'Raleway',
-                                                                                      color: FlutterFlowTheme.of(context).primary,
-                                                                                      letterSpacing: 0.0,
-                                                                                    ),
-                                                                              ),
-                                                                            ),
-                                                                            Row(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              children: [
-                                                                                Text(
-                                                                                  FFLocalizations.of(context).getText(
-                                                                                    'dr5lt5bq' /* Start =  */,
-                                                                                  ),
-                                                                                  style: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                        fontFamily: 'Raleway',
-                                                                                        letterSpacing: 0.0,
-                                                                                      ),
-                                                                                ),
-                                                                                Text(
-                                                                                  _model.isGeotagStart.toString(),
-                                                                                  style: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                        fontFamily: 'Raleway',
-                                                                                        letterSpacing: 0.0,
-                                                                                      ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        20.0,
-                                                                        0.0,
-                                                                        20.0,
-                                                                        24.0),
-                                                            child: ListView(
-                                                              padding:
-                                                                  EdgeInsets
-                                                                      .zero,
-                                                              primary: false,
-                                                              shrinkWrap: true,
-                                                              scrollDirection:
-                                                                  Axis.vertical,
-                                                              children: [
-                                                                Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          16.0,
-                                                                          0.0,
-                                                                          16.0,
-                                                                          8.0),
-                                                                  child: Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceBetween,
-                                                                    children: [
-                                                                      Expanded(
-                                                                        child:
-                                                                            Column(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.max,
-                                                                          crossAxisAlignment:
-                                                                              CrossAxisAlignment.start,
-                                                                          children: [
-                                                                            Text(
-                                                                              FFLocalizations.of(context).getText(
-                                                                                'orn89csd' /* - */,
-                                                                              ),
-                                                                              style: FlutterFlowTheme.of(context).bodySmall.override(
-                                                                                    fontFamily: 'Raleway',
-                                                                                    color: FlutterFlowTheme.of(context).primary,
-                                                                                    letterSpacing: 0.0,
-                                                                                  ),
-                                                                            ),
-                                                                            Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 8.0),
-                                                                              child: Text(
-                                                                                FFLocalizations.of(context).getText(
-                                                                                  'jr3ttmbd' /* - */,
-                                                                                ),
-                                                                                style: FlutterFlowTheme.of(context).headlineSmall.override(
-                                                                                      fontFamily: 'Poppins',
-                                                                                      letterSpacing: 0.0,
-                                                                                    ),
-                                                                              ),
-                                                                            ),
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                                Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          16.0,
-                                                                          0.0,
-                                                                          16.0,
-                                                                          8.0),
-                                                                  child: Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceBetween,
-                                                                    children: [
-                                                                      Expanded(
-                                                                        child:
-                                                                            Column(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.max,
-                                                                          crossAxisAlignment:
-                                                                              CrossAxisAlignment.start,
-                                                                          children: [
-                                                                            Text(
-                                                                              FFLocalizations.of(context).getText(
-                                                                                't1wzhx1o' /* - */,
-                                                                              ),
-                                                                              style: FlutterFlowTheme.of(context).bodySmall.override(
-                                                                                    fontFamily: 'Raleway',
-                                                                                    color: FlutterFlowTheme.of(context).primary,
-                                                                                    letterSpacing: 0.0,
-                                                                                  ),
-                                                                            ),
-                                                                            Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 8.0),
-                                                                              child: Text(
-                                                                                FFLocalizations.of(context).getText(
-                                                                                  'iu8si2g9' /* - */,
-                                                                                ),
-                                                                                style: FlutterFlowTheme.of(context).headlineSmall.override(
-                                                                                      fontFamily: 'Poppins',
-                                                                                      letterSpacing: 0.0,
-                                                                                    ),
-                                                                              ),
-                                                                            ),
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                          Container(
-                                                            width:
-                                                                double.infinity,
-                                                            height:
-                                                                double.infinity,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primaryBackground,
-                                                            ),
-                                                            child: Padding(
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          20.0,
-                                                                          0.0,
-                                                                          20.0,
-                                                                          0.0),
-                                                              child: ListView(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .zero,
-                                                                scrollDirection:
-                                                                    Axis.vertical,
-                                                                children: [
-                                                                  Column(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .start,
-                                                                    children: [
-                                                                      Text(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          'xhdkna2k' /* - */,
-                                                                        ),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodySmall
-                                                                            .override(
-                                                                              fontFamily: 'Raleway',
-                                                                              color: FlutterFlowTheme.of(context).primary,
-                                                                              letterSpacing: 0.0,
-                                                                            ),
-                                                                      ),
-                                                                      Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            4.0,
-                                                                            0.0,
-                                                                            8.0),
-                                                                        child:
-                                                                            Text(
-                                                                          FFLocalizations.of(context)
-                                                                              .getText(
-                                                                            '9bpfk3kg' /* - */,
-                                                                          ),
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .headlineSmall
-                                                                              .override(
-                                                                                fontFamily: 'Poppins',
-                                                                                letterSpacing: 0.0,
-                                                                              ),
-                                                                        ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                  Column(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .start,
-                                                                    children: [
-                                                                      Text(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          'd6unw9y8' /* - */,
-                                                                        ),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodySmall
-                                                                            .override(
-                                                                              fontFamily: 'Raleway',
-                                                                              color: FlutterFlowTheme.of(context).primary,
-                                                                              letterSpacing: 0.0,
-                                                                            ),
-                                                                      ),
-                                                                      Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            4.0,
-                                                                            0.0,
-                                                                            8.0),
-                                                                        child:
-                                                                            Text(
-                                                                          FFLocalizations.of(context)
-                                                                              .getText(
-                                                                            'wqm0d69x' /* - */,
-                                                                          ),
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .headlineSmall
-                                                                              .override(
-                                                                                fontFamily: 'Poppins',
-                                                                                letterSpacing: 0.0,
-                                                                              ),
-                                                                        ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
                                               ),
                                             ),
                                           ],

@@ -98,7 +98,16 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                   size: 30.0,
                 ),
                 onPressed: () async {
-                  context.safePop();
+                  context.pushNamed(
+                    'dashboard',
+                    extra: <String, dynamic>{
+                      kTransitionInfoKey: const TransitionInfo(
+                        hasTransition: true,
+                        transitionType: PageTransitionType.topToBottom,
+                        duration: Duration(milliseconds: 200),
+                      ),
+                    },
+                  );
                 },
               ),
               title: Padding(
@@ -123,18 +132,21 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
               top: true,
               child: Column(
                 mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Expanded(
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
-                                10.0, 0.0, 10.0, 16.0),
+                                30.0, 0.0, 30.0, 0.0),
                             child: Container(
-                              width: double.infinity,
+                              width: 600.0,
                               constraints: const BoxConstraints(
                                 maxWidth: 570.0,
                               ),
@@ -142,10 +154,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(10.0),
+                                padding: const EdgeInsets.all(8.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
@@ -978,7 +990,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         width: double.infinity,
                                         height: 800.0,
                                         constraints: const BoxConstraints(
-                                          maxWidth: 570.0,
+                                          maxWidth: double.infinity,
                                         ),
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
@@ -986,6 +998,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         ),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.stretch,
                                           children: [
                                             Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -1840,7 +1856,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                           );
                         },
                         child: Container(
-                          width: double.infinity,
+                          width: 300.0,
                           height: 50.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context).primary,

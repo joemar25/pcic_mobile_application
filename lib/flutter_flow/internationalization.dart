@@ -332,66 +332,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Stop',
       'tl': '',
     },
-    'f2po16v3': {
-      'en': 'Geotag',
-      'tl': '',
-    },
-    'zylazy17': {
-      'en': 'Location',
-      'tl': '',
-    },
-    '84gcw4vd': {
-      'en': 'Data',
-      'tl': '',
-    },
-    'cnjmpf7g': {
-      'en': 'Geotagiging Status',
-      'tl': '',
-    },
-    'dr5lt5bq': {
-      'en': 'Start = ',
-      'tl': '',
-    },
-    '3j41u30c': {
-      'en': 'Farmer',
-      'tl': '',
-    },
-    'orn89csd': {
-      'en': '-',
-      'tl': '',
-    },
-    'jr3ttmbd': {
-      'en': '-',
-      'tl': '',
-    },
-    't1wzhx1o': {
-      'en': '-',
-      'tl': '',
-    },
-    'iu8si2g9': {
-      'en': '-',
-      'tl': '',
-    },
-    'i5dlnb98': {
-      'en': 'Form',
-      'tl': '',
-    },
-    'xhdkna2k': {
-      'en': '-',
-      'tl': '',
-    },
-    '9bpfk3kg': {
-      'en': '-',
-      'tl': '',
-    },
-    'd6unw9y8': {
-      'en': '-',
-      'tl': '',
-    },
-    'wqm0d69x': {
-      'en': '-',
-      'tl': '',
-    },
     '0o8w3vlv': {
       'en': 'Home',
       'tl': '',
