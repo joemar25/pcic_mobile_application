@@ -1,0 +1,45 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.quanby.pcicmobileapp-mergeProfileResources-5:/values/values.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\joema\\Documents\\Quanby-IT-Solutions-Projects\\pcic_mobile_application\\android\\app\\src\\main\\res\\values\\styles.xml",
+                    "from": {
+                        "startLines": "3,14",
+                        "startColumns": "4,4",
+                        "startOffsets": "176,830",
+                        "endLines": "7,16",
+                        "endColumns": "12,12",
+                        "endOffsets": "472,996"
+                    },
+                    "to": {
+                        "startLines": "3,7",
+                        "startColumns": "4,4",
+                        "startOffsets": "108,289",
+                        "endLines": "6,9",
+                        "endColumns": "12,12",
+                        "endOffsets": "284,453"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\joema\\Documents\\Quanby-IT-Solutions-Projects\\pcic_mobile_application\\android\\app\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "58",
+                        "endColumns": "52",
+                        "endOffsets": "106"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "52",
+                        "endOffsets": "103"
+                    }
+                }
+            ]
+        }
+    ]
+}

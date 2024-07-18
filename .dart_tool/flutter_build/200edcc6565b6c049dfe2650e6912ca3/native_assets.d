@@ -1,0 +1,1 @@
+ C:\\Users\\joema\\Documents\\Quanby-IT-Solutions-Projects\\pcic_mobile_application\\.dart_tool\\flutter_build\\200edcc6565b6c049dfe2650e6912ca3\\native_assets.yaml: 
