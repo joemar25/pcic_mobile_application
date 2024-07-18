@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'form_success_model.dart';
@@ -34,6 +35,22 @@ class _FormSuccessWidgetState extends State<FormSuccessWidget>
   void initState() {
     super.initState();
     _model = createModel(context, () => FormSuccessModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await Future.delayed(const Duration(milliseconds: 1000));
+
+      context.pushNamed(
+        'dashboard',
+        extra: <String, dynamic>{
+          kTransitionInfoKey: const TransitionInfo(
+            hasTransition: true,
+            transitionType: PageTransitionType.fade,
+            duration: Duration(milliseconds: 200),
+          ),
+        },
+      );
+    });
 
     animationsMap.addAll({
       'containerOnPageLoadAnimation': AnimationInfo(

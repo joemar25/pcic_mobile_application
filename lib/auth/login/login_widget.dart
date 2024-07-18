@@ -358,6 +358,8 @@ class _LoginWidgetState extends State<LoginWidget>
                                       )}.',
                                     });
 
+                                    setState(() {});
+
                                     context.goNamedAuth(
                                         'dashboard', context.mounted);
                                   },

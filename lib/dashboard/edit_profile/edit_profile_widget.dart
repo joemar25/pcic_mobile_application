@@ -41,71 +41,75 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-      appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        automaticallyImplyLeading: false,
-        leading: FlutterFlowIconButton(
-          borderColor: Colors.transparent,
-          borderRadius: 30.0,
-          borderWidth: 1.0,
-          buttonSize: 60.0,
-          icon: Icon(
-            Icons.chevron_left,
-            color: FlutterFlowTheme.of(context).primaryText,
-            size: 30.0,
-          ),
-          onPressed: () async {
-            context.safePop();
-          },
+    return FutureBuilder<List<UsersRow>>(
+      future: UsersTable().querySingleRow(
+        queryFn: (q) => q.eq(
+          'email',
+          currentUserEmail,
         ),
-        title: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
-          child: Text(
-            FFLocalizations.of(context).getText(
-              '5fv645iv' /* Edit Profile */,
-            ),
-            style: FlutterFlowTheme.of(context).displaySmall.override(
-                  fontFamily: 'Poppins',
-                  fontSize: 16.0,
-                  letterSpacing: 0.0,
-                ),
-          ),
-        ),
-        actions: const [],
-        centerTitle: false,
-        elevation: 0.0,
       ),
-      body: SafeArea(
-        top: true,
-        child: FutureBuilder<List<UsersRow>>(
-          future: UsersTable().querySingleRow(
-            queryFn: (q) => q.eq(
-              'email',
-              currentUserEmail,
-            ),
-          ),
-          builder: (context, snapshot) {
-            // Customize what your widget looks like when it's loading.
-            if (!snapshot.hasData) {
-              return Center(
-                child: SizedBox(
-                  width: 100.0,
-                  height: 100.0,
-                  child: SpinKitRipple(
-                    color: FlutterFlowTheme.of(context).primary,
-                    size: 100.0,
-                  ),
+      builder: (context, snapshot) {
+        // Customize what your widget looks like when it's loading.
+        if (!snapshot.hasData) {
+          return Scaffold(
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            body: Center(
+              child: SizedBox(
+                width: 100.0,
+                height: 100.0,
+                child: SpinKitRipple(
+                  color: FlutterFlowTheme.of(context).primary,
+                  size: 100.0,
                 ),
-              );
-            }
-            List<UsersRow> columnUsersRowList = snapshot.data!;
+              ),
+            ),
+          );
+        }
+        List<UsersRow> editProfileUsersRowList = snapshot.data!;
 
-            final columnUsersRow =
-                columnUsersRowList.isNotEmpty ? columnUsersRowList.first : null;
-            return Column(
+        final editProfileUsersRow = editProfileUsersRowList.isNotEmpty
+            ? editProfileUsersRowList.first
+            : null;
+        return Scaffold(
+          key: scaffoldKey,
+          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          appBar: AppBar(
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            automaticallyImplyLeading: false,
+            leading: FlutterFlowIconButton(
+              borderColor: Colors.transparent,
+              borderRadius: 30.0,
+              borderWidth: 1.0,
+              buttonSize: 60.0,
+              icon: Icon(
+                Icons.chevron_left,
+                color: FlutterFlowTheme.of(context).primaryText,
+                size: 30.0,
+              ),
+              onPressed: () async {
+                context.safePop();
+              },
+            ),
+            title: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+              child: Text(
+                FFLocalizations.of(context).getText(
+                  '5fv645iv' /* Edit Profile */,
+                ),
+                style: FlutterFlowTheme.of(context).displaySmall.override(
+                      fontFamily: 'Poppins',
+                      fontSize: 16.0,
+                      letterSpacing: 0.0,
+                    ),
+              ),
+            ),
+            actions: const [],
+            centerTitle: false,
+            elevation: 0.0,
+          ),
+          body: SafeArea(
+            top: true,
+            child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
                 Align(
@@ -154,7 +158,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                       fadeOutDuration:
                                           const Duration(milliseconds: 300),
                                       imageUrl: valueOrDefault<String>(
-                                        columnUsersRow?.photoUrl,
+                                        editProfileUsersRow?.photoUrl,
                                         'https://newsko.com.ph/wp-content/uploads/2024/06/Mikha.jpg',
                                       ),
                                       fit: BoxFit.cover,
@@ -195,7 +199,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                     controller: _model.displayNameTextController ??=
                         TextEditingController(
                       text: valueOrDefault<String>(
-                        columnUsersRow?.inspectorName,
+                        editProfileUsersRow?.inspectorName,
                         'Agent',
                       ),
                     ),
@@ -268,7 +272,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                       onPressed: () async {
                         await UsersTable().update(
                           data: {
-                            'photo_url': columnUsersRow?.photoUrl,
+                            'photo_url': editProfileUsersRow?.photoUrl,
                             'inspector_name':
                                 _model.displayNameTextController.text,
                           },
@@ -317,10 +321,10 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                   ),
                 ),
               ],
-            );
-          },
-        ),
-      ),
+            ),
+          ),
+        );
+      },
     );
   }
 }
