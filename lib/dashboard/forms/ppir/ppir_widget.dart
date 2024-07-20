@@ -1,4 +1,3 @@
-import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -7,7 +6,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/utils/components/signature/signature_widget.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -41,10 +39,6 @@ class _PpirWidgetState extends State<PpirWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.isRice = true;
       setState(() {});
-      await UserLogsTable().insert({
-        'user_id': currentUserUid,
-        'activity': 'Updating ppir form.',
-      });
     });
 
     _model.trackCoordinatesFocusNode ??= FocusNode();
@@ -136,7 +130,29 @@ class _PpirWidgetState extends State<PpirWidget> {
                   size: 30.0,
                 ),
                 onPressed: () async {
-                  context.pop();
+                  var confirmDialogResponse = await showDialog<bool>(
+                        context: context,
+                        builder: (alertDialogContext) {
+                          return AlertDialog(
+                            title: const Text('Info'),
+                            content: const Text(
+                                'This will cancel your current progress in the tasks. Are you sure to cancel?'),
+                            actions: [
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(alertDialogContext, false),
+                                child: const Text('Cancel'),
+                              ),
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(alertDialogContext, true),
+                                child: const Text('Confirm'),
+                              ),
+                            ],
+                          );
+                        },
+                      ) ??
+                      false;
                 },
               ),
               title: Text(
@@ -746,14 +762,6 @@ class _PpirWidgetState extends State<PpirWidget> {
                                                     highlightColor:
                                                         Colors.transparent,
                                                     onTap: () async {
-                                                      await UserLogsTable()
-                                                          .insert({
-                                                        'user_id':
-                                                            currentUserUid,
-                                                        'activity':
-                                                            'Repeating geotag.',
-                                                      });
-
                                                       context.pushNamed(
                                                         'geotag',
                                                         queryParameters: {
@@ -1056,10 +1064,16 @@ class _PpirWidgetState extends State<PpirWidget> {
                                                       .riceDropdownValueController ??=
                                                   FormFieldController<String>(
                                                       null),
-                                              options: functions
-                                                  .seeds('seeds')!
-                                                  .take(5)
-                                                  .toList(),
+                                              options: [
+                                                FFLocalizations.of(context)
+                                                    .getText(
+                                                  'a7yszlux' /* this is the rice */,
+                                                ),
+                                                FFLocalizations.of(context)
+                                                    .getText(
+                                                  'ay6l8aig' /* r */,
+                                                )
+                                              ],
                                               onChanged: (val) => setState(() =>
                                                   _model.riceDropdownValue =
                                                       val),
@@ -1158,6 +1172,10 @@ class _PpirWidgetState extends State<PpirWidget> {
                                                 FFLocalizations.of(context)
                                                     .getText(
                                                   'nmjyhx0m' /* Corn Options */,
+                                                ),
+                                                FFLocalizations.of(context)
+                                                    .getText(
+                                                  '0as0cy4p' /* c */,
                                                 )
                                               ],
                                               onChanged: (val) => setState(() =>
@@ -2231,6 +2249,9 @@ class _PpirWidgetState extends State<PpirWidget> {
                                         },
                                       ) ??
                                       false;
+                              if (confirmDialogResponse) {
+                                context.pushNamed('dashboard');
+                              }
                             },
                             child: const Icon(
                               Icons.close_sharp,
@@ -2263,6 +2284,24 @@ class _PpirWidgetState extends State<PpirWidget> {
                                   'id',
                                   widget.taskId,
                                 ),
+                              );
+
+                              context.pushNamed(
+                                'form_success',
+                                queryParameters: {
+                                  'assignmentId': serializeParam(
+                                    ppirPpirFormsRow?.ppirAssignmentid,
+                                    ParamType.String,
+                                  ),
+                                }.withoutNulls,
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: const TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType: PageTransitionType.scale,
+                                    alignment: Alignment.bottomCenter,
+                                    duration: Duration(milliseconds: 200),
+                                  ),
+                                },
                               );
                             },
                             child: const Icon(

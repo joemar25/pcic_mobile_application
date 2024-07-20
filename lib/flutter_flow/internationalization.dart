@@ -287,7 +287,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // geotag
   {
     'kj67slj5': {
-      'en': 'Route Points',
+      'en': 'Geotagging',
       'tl': '',
     },
     'pkpqltl8': {
@@ -592,6 +592,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'this is the rice',
       'tl': '',
     },
+    'ay6l8aig': {
+      'en': 'r',
+      'tl': '',
+    },
     'hgkqza7h': {
       'en': 'Please select...',
       'tl': '',
@@ -602,6 +606,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'nmjyhx0m': {
       'en': 'Corn Options',
+      'tl': '',
+    },
+    '0as0cy4p': {
+      'en': 'c',
       'tl': '',
     },
     'niuf5yh1': {

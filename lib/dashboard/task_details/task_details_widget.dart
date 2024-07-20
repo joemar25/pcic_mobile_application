@@ -2550,6 +2550,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                 widget.taskId,
                                 ParamType.String,
                               ),
+                              'taskType': serializeParam(
+                                'ppir',
+                                ParamType.String,
+                              ),
                             }.withoutNulls,
                             extra: <String, dynamic>{
                               kTransitionInfoKey: const TransitionInfo(
