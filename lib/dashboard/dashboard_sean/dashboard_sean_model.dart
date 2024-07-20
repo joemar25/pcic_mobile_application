@@ -1,13 +1,9 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/tasks/tasks_widget.dart';
-import 'dashboard_widget.dart' show DashboardWidget;
+import 'dashboard_sean_widget.dart' show DashboardSeanWidget;
 import 'package:flutter/material.dart';
 
-class DashboardModel extends FlutterFlowModel<DashboardWidget> {
-  ///  Local state fields for this page.
-
-  int? forDispatchCount = 0;
-
+class DashboardSeanModel extends FlutterFlowModel<DashboardSeanWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'chat_model.dart';
 export 'chat_model.dart';
 
@@ -93,19 +94,27 @@ class _ChatWidgetState extends State<ChatWidget> {
                     focusNode: _model.fullNameFocusNode,
                     obscureText: false,
                     decoration: InputDecoration(
-                      labelStyle:
-                          FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Raleway',
-                                letterSpacing: 0.0,
-                              ),
+                      labelStyle: FlutterFlowTheme.of(context)
+                          .labelMedium
+                          .override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).labelMediumFamily,
+                            letterSpacing: 0.0,
+                            useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                FlutterFlowTheme.of(context).labelMediumFamily),
+                          ),
                       hintText: FFLocalizations.of(context).getText(
                         'fti6qnj7' /* Type here to respond... */,
                       ),
-                      hintStyle:
-                          FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Raleway',
-                                letterSpacing: 0.0,
-                              ),
+                      hintStyle: FlutterFlowTheme.of(context)
+                          .labelMedium
+                          .override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).labelMediumFamily,
+                            letterSpacing: 0.0,
+                            useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                FlutterFlowTheme.of(context).labelMediumFamily),
+                          ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color:
@@ -142,8 +151,11 @@ class _ChatWidgetState extends State<ChatWidget> {
                           12.0, 24.0, 20.0, 24.0),
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Raleway',
+                          fontFamily:
+                              FlutterFlowTheme.of(context).bodyMediumFamily,
                           letterSpacing: 0.0,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(
+                              FlutterFlowTheme.of(context).bodyMediumFamily),
                         ),
                     maxLines: 5,
                     minLines: 1,

@@ -1,8 +1,0 @@
-com.quanby.pcicmobileapp-debug-0 C:\Users\joema\Documents\Quanby-IT-Solutions-Projects\pcic_mobile_application\android\app\src\debug\res
-com.quanby.pcicmobileapp-main-1 C:\Users\joema\Documents\Quanby-IT-Solutions-Projects\pcic_mobile_application\android\app\src\main\res
-com.quanby.pcicmobileapp-pngs-2 C:\Users\joema\Documents\Quanby-IT-Solutions-Projects\pcic_mobile_application\build\app\generated\res\pngs\debug
-com.quanby.pcicmobileapp-resValues-3 C:\Users\joema\Documents\Quanby-IT-Solutions-Projects\pcic_mobile_application\build\app\generated\res\resValues\debug
-com.quanby.pcicmobileapp-rs-4 C:\Users\joema\Documents\Quanby-IT-Solutions-Projects\pcic_mobile_application\build\app\generated\res\rs\debug
-com.quanby.pcicmobileapp-mergeDebugResources-5 C:\Users\joema\Documents\Quanby-IT-Solutions-Projects\pcic_mobile_application\build\app\intermediates\incremental\debug\mergeDebugResources\merged.dir
-com.quanby.pcicmobileapp-mergeDebugResources-6 C:\Users\joema\Documents\Quanby-IT-Solutions-Projects\pcic_mobile_application\build\app\intermediates\incremental\debug\mergeDebugResources\stripped.dir
-com.quanby.pcicmobileapp-merged_res-7 C:\Users\joema\Documents\Quanby-IT-Solutions-Projects\pcic_mobile_application\build\app\intermediates\merged_res\debug

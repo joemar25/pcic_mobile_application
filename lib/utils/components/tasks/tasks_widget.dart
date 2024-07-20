@@ -1,4 +1,3 @@
-import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -6,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'tasks_model.dart';
 export 'tasks_model.dart';
 
@@ -113,12 +113,6 @@ class _TasksWidgetState extends State<TasksWidget>
             hoverColor: Colors.transparent,
             highlightColor: Colors.transparent,
             onTap: () async {
-              await UserLogsTable().insert({
-                'user_id': currentUserUid,
-                'activity':
-                    'Checking a ${widget.status} task ${containerPpirFormsRow?.ppirAssignmentid}.',
-              });
-
               context.pushNamed(
                 'task_details',
                 queryParameters: {
@@ -161,19 +155,31 @@ class _TasksWidgetState extends State<TasksWidget>
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        valueOrDefault<String>(
-                          containerPpirFormsRow?.ppirFarmername,
-                          'Farmer Name',
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+                        child: Text(
+                          valueOrDefault<String>(
+                            containerPpirFormsRow?.ppirFarmername,
+                            'Farmer Name',
+                          ),
+                          style: FlutterFlowTheme.of(context)
+                              .headlineSmall
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .headlineSmallFamily,
+                                fontSize: 22.0,
+                                letterSpacing: 0.0,
+                                fontWeight: FontWeight.w300,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .headlineSmallFamily),
+                              ),
                         ),
-                        style:
-                            FlutterFlowTheme.of(context).headlineSmall.override(
-                                  fontFamily: 'Poppins',
-                                  letterSpacing: 0.0,
-                                ),
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Flexible(
                             child: Padding(
@@ -186,10 +192,15 @@ class _TasksWidgetState extends State<TasksWidget>
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Raleway',
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily,
                                       color:
                                           FlutterFlowTheme.of(context).primary,
                                       letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
                                     ),
                               ),
                             ),
@@ -203,9 +214,14 @@ class _TasksWidgetState extends State<TasksWidget>
                               style: FlutterFlowTheme.of(context)
                                   .headlineSmall
                                   .override(
-                                    fontFamily: 'Poppins',
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .headlineSmallFamily,
                                     fontSize: 14.0,
                                     letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .headlineSmallFamily),
                                   ),
                             ),
                           ),
@@ -220,10 +236,15 @@ class _TasksWidgetState extends State<TasksWidget>
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Raleway',
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily,
                                       color:
                                           FlutterFlowTheme.of(context).primary,
                                       letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
                                     ),
                               ),
                             ),
@@ -237,9 +258,14 @@ class _TasksWidgetState extends State<TasksWidget>
                               style: FlutterFlowTheme.of(context)
                                   .headlineSmall
                                   .override(
-                                    fontFamily: 'Poppins',
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .headlineSmallFamily,
                                     fontSize: 14.0,
                                     letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .headlineSmallFamily),
                                   ),
                             ),
                           ),
@@ -247,6 +273,7 @@ class _TasksWidgetState extends State<TasksWidget>
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Flexible(
                             child: Padding(
@@ -259,10 +286,15 @@ class _TasksWidgetState extends State<TasksWidget>
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Raleway',
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily,
                                       color:
                                           FlutterFlowTheme.of(context).primary,
                                       letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
                                     ),
                               ),
                             ),
@@ -276,9 +308,14 @@ class _TasksWidgetState extends State<TasksWidget>
                               style: FlutterFlowTheme.of(context)
                                   .headlineSmall
                                   .override(
-                                    fontFamily: 'Poppins',
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .headlineSmallFamily,
                                     fontSize: 14.0,
                                     letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .headlineSmallFamily),
                                   ),
                             ),
                           ),
@@ -293,10 +330,15 @@ class _TasksWidgetState extends State<TasksWidget>
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Raleway',
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily,
                                       color:
                                           FlutterFlowTheme.of(context).primary,
                                       letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
                                     ),
                               ),
                             ),
@@ -310,9 +352,14 @@ class _TasksWidgetState extends State<TasksWidget>
                               style: FlutterFlowTheme.of(context)
                                   .headlineSmall
                                   .override(
-                                    fontFamily: 'Poppins',
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .headlineSmallFamily,
                                     fontSize: 14.0,
                                     letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .headlineSmallFamily),
                                   ),
                             ),
                           ),
@@ -334,8 +381,12 @@ class _TasksWidgetState extends State<TasksWidget>
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Raleway',
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily,
                                   letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily),
                                 ),
                           ),
                           Expanded(
@@ -350,10 +401,15 @@ class _TasksWidgetState extends State<TasksWidget>
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Raleway',
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily,
                                       color:
                                           FlutterFlowTheme.of(context).primary,
                                       letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
                                     ),
                               ),
                             ),
@@ -371,8 +427,12 @@ class _TasksWidgetState extends State<TasksWidget>
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Raleway',
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily,
                                   letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily),
                                 ),
                           ),
                           Expanded(
@@ -387,10 +447,15 @@ class _TasksWidgetState extends State<TasksWidget>
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Raleway',
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily,
                                       color:
                                           FlutterFlowTheme.of(context).primary,
                                       letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
                                     ),
                               ),
                             ),

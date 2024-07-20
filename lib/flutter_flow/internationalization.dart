@@ -107,28 +107,52 @@ Locale createLocale(String language) => language.contains('_')
 final kTranslationsMap = <Map<String, Map<String, String>>>[
   // login
   {
-    'jt05juc8': {
+    'hsmsoal9': {
       'en': 'Login',
       'tl': '',
     },
-    '732ldtxr': {
+    'onarar2h': {
       'en': 'Please sign in to continue',
       'tl': '',
     },
-    'zrugc18v': {
-      'en': 'Please enter your email address',
+    'js4zrnhp': {
+      'en': 'Enter your email address',
       'tl': '',
     },
-    'wwu2ppy8': {
+    '5i1rsq7x': {
+      'en': '',
+      'tl': '',
+    },
+    'tei5629d': {
       'en': 'Enter your password',
       'tl': '',
     },
-    '55s98hwg': {
+    'bws7du9e': {
       'en': 'Login',
       'tl': '',
     },
-    'es23frz3': {
+    'qpfpmvtl': {
       'en': 'Forgot Password?',
+      'tl': '',
+    },
+    'w45297gi': {
+      'en': 'Field is required',
+      'tl': '',
+    },
+    'yc7u2stc': {
+      'en': 'Please choose an option from the dropdown',
+      'tl': '',
+    },
+    'g6x5ocx1': {
+      'en': 'Field is required',
+      'tl': '',
+    },
+    'mpoif9dk': {
+      'en': 'Password must be atleast 8 characters',
+      'tl': '',
+    },
+    '97dgo696': {
+      'en': 'Please choose an option from the dropdown',
       'tl': '',
     },
     'wg8l5x4u': {
@@ -142,6 +166,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Profile',
       'tl': '',
     },
+    '8cppvoty': {
+      'en': 'Account Settings',
+      'tl': '',
+    },
     '11dsrxu6': {
       'en': 'Switch to Dark Mode',
       'tl': '',
@@ -150,16 +178,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Switch to Light Mode',
       'tl': '',
     },
-    '8cppvoty': {
-      'en': 'Account Settings',
+    '4ibmae0j': {
+      'en': 'Edit Profile',
       'tl': '',
     },
     'zqsohbrx': {
       'en': 'Change Password',
-      'tl': '',
-    },
-    '4ibmae0j': {
-      'en': 'Edit Profile',
       'tl': '',
     },
     'buokrewg': {
@@ -178,6 +202,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     '8hlwocb6': {
+      'en': 'Below are messages with your friends.',
+      'tl': '',
+    },
+    'y0w2rxtr': {
       'en': 'Below are messages with your friends.',
       'tl': '',
     },
@@ -225,72 +253,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm Changes',
       'tl': '',
     },
-    '8gn7gyn6': {
-      'en':
-          'We will reset your password. Please enter the password and confirmation password below, and then confirm.',
-      'tl': '',
-    },
-    '8czpn5by': {
-      'en': 'Old Password',
-      'tl': '',
-    },
-    'ymf9vfxa': {
-      'en': 'Enter Old Password...',
-      'tl': '',
-    },
-    'shhywakx': {
-      'en': 'New Password',
-      'tl': '',
-    },
-    'v83gfzii': {
-      'en': 'Enter New Password...',
-      'tl': '',
-    },
-    'ay6qixx3': {
-      'en': 'Confirm Password',
-      'tl': '',
-    },
-    'rnbffd2o': {
-      'en': 'Confirm New Password...',
-      'tl': '',
-    },
-    '95gjq5pg': {
-      'en': 'Confirm Changes',
-      'tl': '',
-    },
-    'f8nam65m': {
-      'en':
-          'We will reset your password. Please enter the password and confirmation password below, and then confirm.',
-      'tl': '',
-    },
-    'lzuqa0w8': {
-      'en': 'Old Password',
-      'tl': '',
-    },
-    'ricrz5ul': {
-      'en': 'Enter Old Password...',
-      'tl': '',
-    },
-    'ryc7q1bn': {
-      'en': 'New Password',
-      'tl': '',
-    },
-    'ys7x94x3': {
-      'en': 'Enter New Password...',
-      'tl': '',
-    },
-    'kpj4y9s2': {
-      'en': 'Confirm Password',
-      'tl': '',
-    },
-    '7412oguu': {
-      'en': 'Confirm New Password...',
-      'tl': '',
-    },
-    'b9rmlc3s': {
-      'en': 'Confirm Changes',
-      'tl': '',
-    },
     'i10lphec': {
       'en': 'Home',
       'tl': '',
@@ -324,16 +286,48 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // geotag
   {
+    'kj67slj5': {
+      'en': 'Route Points',
+      'tl': '',
+    },
     'pkpqltl8': {
       'en': 'Start',
       'tl': '',
     },
     'nu29o86l': {
+      'en': 'Pin',
+      'tl': '',
+    },
+    'deno2yfk': {
       'en': 'Stop',
       'tl': '',
     },
     'rnhz48li': {
-      'en': 'LOCATION:',
+      'en': 'LOCATION',
+      'tl': '',
+    },
+    'ey2bf2v4': {
+      'en': 'Coordinates',
+      'tl': '',
+    },
+    'dbfzcdfn': {
+      'en': 'Latitude',
+      'tl': '',
+    },
+    'lcq0p9ow': {
+      'en': 'Longitude',
+      'tl': '',
+    },
+    't8xuzuli': {
+      'en': 'Address',
+      'tl': '',
+    },
+    'lfxoimt6': {
+      'en': '[address]',
+      'tl': '',
+    },
+    '68rofs77': {
+      'en': 'Mar Test (Do not remove) - Is Route Started?',
       'tl': '',
     },
     '0o8w3vlv': {
@@ -646,12 +640,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Actual Date of Plantin (TP)',
       'tl': '',
     },
-    'alw8i4ys': {
-      'en': 'Cancel',
+    'rkv9xt3s': {
+      'en': 'Signature',
       'tl': '',
     },
-    'te54zxo0': {
-      'en': 'Save',
+    '2n6hawkd': {
+      'en': 'Signature',
       'tl': '',
     },
     '4ho4omqk': {
@@ -707,7 +701,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '!',
       'tl': '',
     },
-    '3j3z3g1c': {
+    'vte71nhh': {
       'en': 'Task Overview',
       'tl': '',
     },
@@ -723,44 +717,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Completed',
       'tl': '',
     },
-    '177zd66x': {
-      'en': 'For Dispatch',
-      'tl': '',
-    },
-    '48zqsd5y': {
-      'en': 'Ongoing',
-      'tl': '',
-    },
-    'sq6fc48l': {
-      'en': 'Completed',
-      'tl': '',
-    },
-    'xkyxse1s': {
-      'en': 'For Dispatch',
-      'tl': '',
-    },
-    'bfdm0w23': {
-      'en': 'Ongoing',
-      'tl': '',
-    },
-    'qw8wzlx9': {
-      'en': 'Completed',
-      'tl': '',
-    },
     'ofobycr1': {
       'en': 'Find your task...',
       'tl': '',
     },
     'msy3t5xu': {
       'en': 'Option 1',
-      'tl': '',
-    },
-    'nu2n1800': {
-      'en': 'My Tasks',
-      'tl': '',
-    },
-    'd1a9eor7': {
-      'en': 'Find your task...',
       'tl': '',
     },
     '40z3ewor': {
@@ -772,30 +734,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     'i9ibpnoq': {
-      'en': 'Completed',
-      'tl': '',
-    },
-    'w2vfxllh': {
-      'en': 'For Dispatch',
-      'tl': '',
-    },
-    '1kfbj74g': {
-      'en': 'Ongoing',
-      'tl': '',
-    },
-    '75sfmuuv': {
-      'en': 'Completed',
-      'tl': '',
-    },
-    '8f6ijlwy': {
-      'en': 'For Dispatch',
-      'tl': '',
-    },
-    'n9x0ua1h': {
-      'en': 'Ongoing',
-      'tl': '',
-    },
-    '18ta8q88': {
       'en': 'Completed',
       'tl': '',
     },
@@ -822,6 +760,116 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     'hdh6xlcb': {
+      'en': 'Home',
+      'tl': '',
+    },
+  },
+  // marApiTest
+  {
+    '0ov0kosw': {
+      'en': 'API Tester',
+      'tl': '',
+    },
+    'lgzgz3y8': {
+      'en': 'Test API Calls',
+      'tl': '',
+    },
+    'u0bh28ib': {
+      'en': 'Test GET',
+      'tl': '',
+    },
+    'y9wod308': {
+      'en': 'Test POST',
+      'tl': '',
+    },
+    'lh091m1k': {
+      'en': 'Test PUT',
+      'tl': '',
+    },
+    '05jb6auu': {
+      'en': 'Test DELETE',
+      'tl': '',
+    },
+  },
+  // forgotPassword
+  {
+    'ajwqbdpu': {
+      'en': 'Forgot Password',
+      'tl': '',
+    },
+    'owzqo8qh': {
+      'en':
+          'We will send you an email with a link to reset your password, please enter the email associated with your account below.',
+      'tl': '',
+    },
+    '7xh7q3rt': {
+      'en': 'Your email address...',
+      'tl': '',
+    },
+    'a29ygr1c': {
+      'en': 'Enter your email...',
+      'tl': '',
+    },
+    'x3d82sua': {
+      'en': 'Send Link',
+      'tl': '',
+    },
+    '8sw5dww3': {
+      'en': 'Home',
+      'tl': '',
+    },
+  },
+  // dashboardSean
+  {
+    '7ilejehv': {
+      'en': 'Welcome',
+      'tl': '',
+    },
+    '232c6o5k': {
+      'en': 'Good morning ',
+      'tl': '',
+    },
+    '0erxlmcx': {
+      'en': '!',
+      'tl': '',
+    },
+    '3j3z3g1c': {
+      'en': 'Task Overview',
+      'tl': '',
+    },
+    'xj9w45k6': {
+      'en': 'For Dispatch',
+      'tl': '',
+    },
+    'muudowfh': {
+      'en': 'Ongoing',
+      'tl': '',
+    },
+    'lkainj4r': {
+      'en': 'Completed',
+      'tl': '',
+    },
+    '3krdc9ra': {
+      'en': 'Find your task...',
+      'tl': '',
+    },
+    '3mm3o2bl': {
+      'en': 'Option 1',
+      'tl': '',
+    },
+    'iqumide1': {
+      'en': 'For Dispatch',
+      'tl': '',
+    },
+    'uuu1dl03': {
+      'en': 'Ongoing',
+      'tl': '',
+    },
+    'azq0jpmo': {
+      'en': 'Completed',
+      'tl': '',
+    },
+    '7klrpw4p': {
       'en': 'Home',
       'tl': '',
     },
@@ -909,6 +957,21 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
+  // signature
+  {
+    'nsefvndz': {
+      'en': 'Signature',
+      'tl': '',
+    },
+    's03qmvgh': {
+      'en': 'Retry signature',
+      'tl': '',
+    },
+    '6si6e5tk': {
+      'en': 'Save',
+      'tl': '',
+    },
+  },
   // Miscellaneous
   {
     '0ftylq1b': {
@@ -919,10 +982,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '2kgfkeu0': {
       'en':
           'PCIC Mobile Application needs access to your photo library to enable Geotagging. This will help us select and tag photos with your current location for better service delivery and documentation. Please grant photo library access to continue.',
-      'tl': '',
-    },
-    '5i1rsq7x': {
-      'en': '',
       'tl': '',
     },
     'klzb3gt7': {

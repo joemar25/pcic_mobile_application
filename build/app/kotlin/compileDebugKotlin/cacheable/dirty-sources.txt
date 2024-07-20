@@ -1,1 +1,0 @@
-C:\Users\joema\Documents\Quanby-IT-Solutions-Projects\pcic_mobile_application\android\app\src\main\kotlin\com\example\my_project\MainActivity.kt

@@ -11,15 +11,48 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
   FocusNode? emailFieldFocusNode;
   TextEditingController? emailFieldTextController;
   String? Function(BuildContext, String?)? emailFieldTextControllerValidator;
+  String? _emailFieldTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        'w45297gi' /* Field is required */,
+      );
+    }
+
+    if (!RegExp(kTextValidatorEmailRegex).hasMatch(val)) {
+      return 'Has to be a valid email address.';
+    }
+    return null;
+  }
+
   // State field(s) for passwordField widget.
   FocusNode? passwordFieldFocusNode;
   TextEditingController? passwordFieldTextController;
   late bool passwordFieldVisibility;
   String? Function(BuildContext, String?)? passwordFieldTextControllerValidator;
+  String? _passwordFieldTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        'g6x5ocx1' /* Field is required */,
+      );
+    }
+
+    if (val.length < 8) {
+      return FFLocalizations.of(context).getText(
+        'mpoif9dk' /* Password must be atleast 8 cha... */,
+      );
+    }
+
+    return null;
+  }
 
   @override
   void initState(BuildContext context) {
+    emailFieldTextControllerValidator = _emailFieldTextControllerValidator;
     passwordFieldVisibility = false;
+    passwordFieldTextControllerValidator =
+        _passwordFieldTextControllerValidator;
   }
 
   @override

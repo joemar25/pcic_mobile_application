@@ -2,6 +2,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'map_testing_model.dart';
 export 'map_testing_model.dart';
@@ -50,10 +51,12 @@ class _MapTestingWidgetState extends State<MapTestingWidget> {
               '08dw4jhj' /* Page Title */,
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Poppins',
+                  fontFamily: FlutterFlowTheme.of(context).headlineMediumFamily,
                   color: Colors.white,
                   fontSize: 22.0,
                   letterSpacing: 0.0,
+                  useGoogleFonts: GoogleFonts.asMap().containsKey(
+                      FlutterFlowTheme.of(context).headlineMediumFamily),
                 ),
           ),
           actions: const [],
@@ -91,12 +94,17 @@ class _MapTestingWidgetState extends State<MapTestingWidget> {
                           iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Raleway',
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                  ),
+                          textStyle: FlutterFlowTheme.of(context)
+                              .titleSmall
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .titleSmallFamily,
+                                color: Colors.white,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .titleSmallFamily),
+                              ),
                           elevation: 3.0,
                           borderSide: const BorderSide(
                             color: Colors.transparent,

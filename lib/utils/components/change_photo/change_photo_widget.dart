@@ -7,6 +7,7 @@ import '/flutter_flow/upload_data.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'change_photo_model.dart';
 export 'change_photo_model.dart';
 
@@ -94,8 +95,14 @@ class _ChangePhotoWidgetState extends State<ChangePhotoWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .headlineMedium
                                         .override(
-                                          fontFamily: 'Poppins',
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .headlineMediumFamily,
                                           letterSpacing: 0.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .headlineMediumFamily),
                                         ),
                                   ),
                                 ),
@@ -116,8 +123,14 @@ class _ChangePhotoWidgetState extends State<ChangePhotoWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
-                                          fontFamily: 'Raleway',
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMediumFamily,
                                           letterSpacing: 0.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMediumFamily),
                                         ),
                                   ),
                                 ),
@@ -305,8 +318,14 @@ class _ChangePhotoWidgetState extends State<ChangePhotoWidget> {
                                     textStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
-                                          fontFamily: 'Raleway',
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMediumFamily,
                                           letterSpacing: 0.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMediumFamily),
                                         ),
                                     elevation: 2.0,
                                     borderSide: const BorderSide(

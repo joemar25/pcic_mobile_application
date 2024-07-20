@@ -2,6 +2,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'toast_model.dart';
 export 'toast_model.dart';
 
@@ -83,8 +84,12 @@ class _ToastWidgetState extends State<ToastWidget> {
                           'gkhial38' /* Notification Title */,
                         ),
                         style: FlutterFlowTheme.of(context).titleSmall.override(
-                              fontFamily: 'Raleway',
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).titleSmallFamily,
                               letterSpacing: 0.0,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .titleSmallFamily),
                             ),
                       ),
                     ].divide(const SizedBox(width: 8.0)),
@@ -94,9 +99,12 @@ class _ToastWidgetState extends State<ToastWidget> {
                       '7xn0va3a' /* Some body copy that is present... */,
                     ),
                     style: FlutterFlowTheme.of(context).labelMedium.override(
-                          fontFamily: 'Raleway',
+                          fontFamily:
+                              FlutterFlowTheme.of(context).labelMediumFamily,
                           color: FlutterFlowTheme.of(context).accent4,
                           letterSpacing: 0.0,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(
+                              FlutterFlowTheme.of(context).labelMediumFamily),
                         ),
                   ),
                 ].divide(const SizedBox(height: 4.0)),

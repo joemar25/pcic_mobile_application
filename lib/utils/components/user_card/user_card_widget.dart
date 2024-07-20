@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'user_card_model.dart';
 export 'user_card_model.dart';
 
@@ -76,8 +77,11 @@ class _UserCardWidgetState extends State<UserCardWidget> {
                     'q2srxkm7' /* UserName */,
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Raleway',
+                        fontFamily:
+                            FlutterFlowTheme.of(context).bodyMediumFamily,
                         letterSpacing: 0.0,
+                        useGoogleFonts: GoogleFonts.asMap().containsKey(
+                            FlutterFlowTheme.of(context).bodyMediumFamily),
                       ),
                 ),
               ),
@@ -88,8 +92,11 @@ class _UserCardWidgetState extends State<UserCardWidget> {
                     'e7kvimdo' /* Subtitle */,
                   ),
                   style: FlutterFlowTheme.of(context).labelSmall.override(
-                        fontFamily: 'Raleway',
+                        fontFamily:
+                            FlutterFlowTheme.of(context).labelSmallFamily,
                         letterSpacing: 0.0,
+                        useGoogleFonts: GoogleFonts.asMap().containsKey(
+                            FlutterFlowTheme.of(context).labelSmallFamily),
                       ),
                 ),
               ),

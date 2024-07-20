@@ -1,4 +1,3 @@
-import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -6,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'task_details_model.dart';
 export 'task_details_model.dart';
 
@@ -117,10 +117,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                     'x1jz4y0y' /* Task Details */,
                   ),
                   style: FlutterFlowTheme.of(context).displaySmall.override(
-                        fontFamily: 'Poppins',
+                        fontFamily:
+                            FlutterFlowTheme.of(context).displaySmallFamily,
                         color: Colors.white,
                         fontSize: 16.0,
                         letterSpacing: 0.0,
+                        useGoogleFonts: GoogleFonts.asMap().containsKey(
+                            FlutterFlowTheme.of(context).displaySmallFamily),
                       ),
                 ),
               ),
@@ -170,8 +173,16 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
                                             .override(
-                                              fontFamily: 'Raleway',
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLargeFamily,
                                               letterSpacing: 0.0,
+                                              useGoogleFonts:
+                                                  GoogleFonts.asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyLargeFamily),
                                             ),
                                       ),
                                     ),
@@ -190,8 +201,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMediumFamily,
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMediumFamily),
                                                 ),
                                           ),
                                           Text(
@@ -203,8 +223,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily,
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily),
                                                 ),
                                           ),
                                         ],
@@ -225,8 +254,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMediumFamily,
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMediumFamily),
                                                 ),
                                           ),
                                           Text(
@@ -238,8 +276,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily,
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily),
                                                 ),
                                           ),
                                         ],
@@ -260,9 +307,18 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMediumFamily,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMediumFamily),
                                                 ),
                                           ),
                                           Text(
@@ -274,8 +330,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily,
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily),
                                                 ),
                                           ),
                                         ],
@@ -296,9 +361,18 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMediumFamily,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMediumFamily),
                                                 ),
                                           ),
                                           Text(
@@ -310,8 +384,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily,
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily),
                                                 ),
                                           ),
                                         ],
@@ -332,9 +415,18 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMediumFamily,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMediumFamily),
                                                 ),
                                           ),
                                           Text(
@@ -346,8 +438,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily,
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily),
                                                 ),
                                           ),
                                         ],
@@ -368,9 +469,18 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMediumFamily,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMediumFamily),
                                                 ),
                                           ),
                                           Text(
@@ -382,8 +492,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily,
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily),
                                                 ),
                                           ),
                                         ],
@@ -404,9 +523,18 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMediumFamily,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMediumFamily),
                                                 ),
                                           ),
                                           Text(
@@ -418,8 +546,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily,
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily),
                                                 ),
                                           ),
                                         ],
@@ -440,9 +577,18 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMediumFamily,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMediumFamily),
                                                 ),
                                           ),
                                           Text(
@@ -454,8 +600,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily,
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily),
                                                 ),
                                           ),
                                         ],
@@ -476,9 +631,18 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMediumFamily,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMediumFamily),
                                                 ),
                                           ),
                                           Text(
@@ -490,8 +654,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily,
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily),
                                                 ),
                                           ),
                                         ],
@@ -512,9 +685,18 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMediumFamily,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMediumFamily),
                                                 ),
                                           ),
                                           Text(
@@ -526,8 +708,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily,
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily),
                                                 ),
                                           ),
                                         ],
@@ -548,9 +739,18 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMediumFamily,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMediumFamily),
                                                 ),
                                           ),
                                           Text(
@@ -560,8 +760,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily,
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily),
                                                 ),
                                           ),
                                         ],
@@ -582,9 +791,18 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMediumFamily,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMediumFamily),
                                                 ),
                                           ),
                                           Text(
@@ -596,8 +814,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily,
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily),
                                                 ),
                                           ),
                                         ],
@@ -618,9 +845,18 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMediumFamily,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMediumFamily),
                                                 ),
                                           ),
                                           Text(
@@ -632,8 +868,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily,
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily),
                                                 ),
                                           ),
                                         ],
@@ -658,8 +903,16 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
                                             .override(
-                                              fontFamily: 'Raleway',
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLargeFamily,
                                               letterSpacing: 0.0,
+                                              useGoogleFonts:
+                                                  GoogleFonts.asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyLargeFamily),
                                             ),
                                       ),
                                     ),
@@ -678,9 +931,18 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMediumFamily,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMediumFamily),
                                                 ),
                                           ),
                                           Text(
@@ -692,8 +954,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily,
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily),
                                                 ),
                                           ),
                                         ],
@@ -714,9 +985,18 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMediumFamily,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMediumFamily),
                                                 ),
                                           ),
                                           Text(
@@ -727,8 +1007,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily,
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily),
                                                 ),
                                           ),
                                         ],
@@ -749,9 +1038,18 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .labelLarge
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelLargeFamily,
                                                   fontSize: 14.0,
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelLargeFamily),
                                                 ),
                                           ),
                                           Text(
@@ -763,8 +1061,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily,
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily),
                                                 ),
                                           ),
                                         ],
@@ -785,9 +1092,18 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .labelLarge
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelLargeFamily,
                                                   fontSize: 14.0,
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelLargeFamily),
                                                 ),
                                           ),
                                           Text(
@@ -798,8 +1114,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily,
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily),
                                                 ),
                                           ),
                                         ],
@@ -824,8 +1149,16 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
                                             .override(
-                                              fontFamily: 'Raleway',
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLargeFamily,
                                               letterSpacing: 0.0,
+                                              useGoogleFonts:
+                                                  GoogleFonts.asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyLargeFamily),
                                             ),
                                       ),
                                     ),
@@ -844,9 +1177,18 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMediumFamily,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMediumFamily),
                                                 ),
                                           ),
                                           Text(
@@ -858,8 +1200,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily,
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily),
                                                 ),
                                           ),
                                         ],
@@ -880,9 +1231,18 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMediumFamily,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMediumFamily),
                                                 ),
                                           ),
                                           Text(
@@ -894,8 +1254,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily,
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily),
                                                 ),
                                           ),
                                         ],
@@ -916,9 +1285,18 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMediumFamily,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMediumFamily),
                                                 ),
                                           ),
                                           Text(
@@ -930,8 +1308,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily,
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily),
                                                 ),
                                           ),
                                         ],
@@ -952,9 +1339,18 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMediumFamily,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMediumFamily),
                                                 ),
                                           ),
                                           Text(
@@ -966,8 +1362,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Raleway',
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily,
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily),
                                                 ),
                                           ),
                                         ],
@@ -1019,11 +1424,20 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .bodyLarge
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyLargeFamily,
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primary,
                                                           letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyLargeFamily),
                                                         ),
                                                   ),
                                                 ),
@@ -1047,10 +1461,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .labelMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMediumFamily,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily),
                                                         ),
                                                   ),
                                                 ],
@@ -1075,10 +1498,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .labelMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMediumFamily,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily),
                                                         ),
                                                   ),
                                                   Text(
@@ -1091,8 +1523,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
                                                           letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
                                                         ),
                                                   ),
                                                 ],
@@ -1117,10 +1558,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .labelMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMediumFamily,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily),
                                                         ),
                                                   ),
                                                   Text(
@@ -1133,8 +1583,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
                                                           letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
                                                         ),
                                                   ),
                                                 ],
@@ -1159,10 +1618,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .labelMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMediumFamily,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily),
                                                         ),
                                                   ),
                                                   Text(
@@ -1175,8 +1643,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
                                                           letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
                                                         ),
                                                   ),
                                                 ],
@@ -1201,10 +1678,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .labelMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMediumFamily,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily),
                                                         ),
                                                   ),
                                                   Text(
@@ -1217,8 +1703,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
                                                           letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
                                                         ),
                                                   ),
                                                 ],
@@ -1253,10 +1748,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .labelMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMediumFamily,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily),
                                                         ),
                                                   ),
                                                 ],
@@ -1281,10 +1785,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .labelMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMediumFamily,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily),
                                                         ),
                                                   ),
                                                   Text(
@@ -1297,8 +1810,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
                                                           letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
                                                         ),
                                                   ),
                                                 ],
@@ -1323,10 +1845,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .labelMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMediumFamily,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily),
                                                         ),
                                                   ),
                                                   Text(
@@ -1339,8 +1870,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
                                                           letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
                                                         ),
                                                   ),
                                                 ],
@@ -1375,10 +1915,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .labelMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMediumFamily,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily),
                                                         ),
                                                   ),
                                                 ],
@@ -1403,10 +1952,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .labelMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMediumFamily,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily),
                                                         ),
                                                   ),
                                                   Text(
@@ -1419,8 +1977,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
                                                           letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
                                                         ),
                                                   ),
                                                 ],
@@ -1445,10 +2012,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .labelMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMediumFamily,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily),
                                                         ),
                                                   ),
                                                   Text(
@@ -1461,8 +2037,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
                                                           letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
                                                         ),
                                                   ),
                                                 ],
@@ -1497,10 +2082,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .labelMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMediumFamily,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily),
                                                         ),
                                                   ),
                                                 ],
@@ -1525,10 +2119,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .labelMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMediumFamily,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily),
                                                         ),
                                                   ),
                                                   Text(
@@ -1541,8 +2144,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
                                                           letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
                                                         ),
                                                   ),
                                                 ],
@@ -1567,10 +2179,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .labelMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMediumFamily,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily),
                                                         ),
                                                   ),
                                                   Text(
@@ -1583,8 +2204,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
                                                           letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
                                                         ),
                                                   ),
                                                 ],
@@ -1609,10 +2239,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .labelMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMediumFamily,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily),
                                                         ),
                                                   ),
                                                   Text(
@@ -1625,8 +2264,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
                                                           letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
                                                         ),
                                                   ),
                                                 ],
@@ -1651,10 +2299,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .labelMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMediumFamily,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily),
                                                         ),
                                                   ),
                                                   Text(
@@ -1667,8 +2324,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
                                                           letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
                                                         ),
                                                   ),
                                                 ],
@@ -1693,10 +2359,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .labelMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMediumFamily,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily),
                                                         ),
                                                   ),
                                                   Text(
@@ -1709,8 +2384,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
                                                           letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
                                                         ),
                                                   ),
                                                 ],
@@ -1745,10 +2429,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .labelMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMediumFamily,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily),
                                                         ),
                                                   ),
                                                 ],
@@ -1773,10 +2466,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .labelMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMediumFamily,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily),
                                                         ),
                                                   ),
                                                   Text(
@@ -1788,8 +2490,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily: 'Raleway',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
                                                           letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
                                                         ),
                                                   ),
                                                 ],
@@ -1831,11 +2542,6 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                           currentUserLocationValue =
                               await getCurrentUserLocation(
                                   defaultLocation: const LatLng(0.0, 0.0));
-                          await UserLogsTable().insert({
-                            'user_id': currentUserUid,
-                            'activity':
-                                'Initializing current device location at  ${currentUserLocationValue?.toString()}.',
-                          });
 
                           context.pushNamed(
                             'geotag',
@@ -1897,10 +2603,15 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
-                                      fontFamily: 'Raleway',
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .titleSmallFamily,
                                       color: FlutterFlowTheme.of(context)
                                           .primaryBtnText,
                                       letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmallFamily),
                                     ),
                               ),
                             ],
@@ -1921,11 +2632,6 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                           currentUserLocationValue =
                               await getCurrentUserLocation(
                                   defaultLocation: const LatLng(0.0, 0.0));
-                          await UserLogsTable().insert({
-                            'user_id': currentUserUid,
-                            'activity':
-                                'Initializing current device location at  ${currentUserLocationValue?.toString()}for resubmittion.',
-                          });
 
                           context.pushNamed(
                             'geotag',
@@ -1987,10 +2693,15 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
-                                      fontFamily: 'Raleway',
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .titleSmallFamily,
                                       color: FlutterFlowTheme.of(context)
                                           .primaryBtnText,
                                       letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmallFamily),
                                     ),
                               ),
                             ],

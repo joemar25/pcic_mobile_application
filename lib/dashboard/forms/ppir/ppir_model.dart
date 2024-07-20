@@ -2,7 +2,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'ppir_widget.dart' show PpirWidget;
 import 'package:flutter/material.dart';
-import 'package:signature/signature.dart';
 
 class PpirModel extends FlutterFlowModel<PpirWidget> {
   ///  Local state fields for this page.
@@ -68,8 +67,6 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
   TextEditingController? preparedByNameFieldTextController;
   String? Function(BuildContext, String?)?
       preparedByNameFieldTextControllerValidator;
-  // State field(s) for prepared_by_sig_field widget.
-  SignatureController? preparedBySigFieldController;
 
   @override
   void initState(BuildContext context) {}
@@ -106,8 +103,6 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
 
     preparedByNameFieldFocusNode?.dispose();
     preparedByNameFieldTextController?.dispose();
-
-    preparedBySigFieldController?.dispose();
   }
 
   /// Additional helper methods.

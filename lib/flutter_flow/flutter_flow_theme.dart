@@ -8,7 +8,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 const kThemeModeKey = '__theme_mode__';
 SharedPreferences? _prefs;
 
+enum DeviceSize {
+  mobile,
+  tablet,
+  desktop,
+}
+
 abstract class FlutterFlowTheme {
+  static DeviceSize deviceSize = DeviceSize.mobile;
+
   static Future initialize() async =>
       _prefs = await SharedPreferences.getInstance();
   static ThemeMode get themeMode {
@@ -25,6 +33,7 @@ abstract class FlutterFlowTheme {
       : _prefs?.setBool(kThemeModeKey, mode == ThemeMode.dark);
 
   static FlutterFlowTheme of(BuildContext context) {
+    deviceSize = getDeviceSize(context);
     return Theme.of(context).brightness == Brightness.dark
         ? DarkModeTheme()
         : LightModeTheme();
@@ -129,7 +138,22 @@ abstract class FlutterFlowTheme {
   String get bodySmallFamily => typography.bodySmallFamily;
   TextStyle get bodySmall => typography.bodySmall;
 
-  Typography get typography => ThemeTypography(this);
+  Typography get typography => {
+        DeviceSize.mobile: MobileTypography(this),
+        DeviceSize.tablet: TabletTypography(this),
+        DeviceSize.desktop: DesktopTypography(this),
+      }[deviceSize]!;
+}
+
+DeviceSize getDeviceSize(BuildContext context) {
+  final width = MediaQuery.sizeOf(context).width;
+  if (width < 479) {
+    return DeviceSize.mobile;
+  } else if (width < 991) {
+    return DeviceSize.tablet;
+  } else {
+    return DeviceSize.desktop;
+  }
 }
 
 class LightModeTheme extends FlutterFlowTheme {
@@ -206,112 +230,336 @@ abstract class Typography {
   TextStyle get bodySmall;
 }
 
-class ThemeTypography extends Typography {
-  ThemeTypography(this.theme);
+class MobileTypography extends Typography {
+  MobileTypography(this.theme);
 
   final FlutterFlowTheme theme;
 
-  String get displayLargeFamily => 'Poppins';
+  String get displayLargeFamily => 'Rubik';
   TextStyle get displayLarge => GoogleFonts.getFont(
-        'Poppins',
+        'Rubik',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 52.0,
       );
-  String get displayMediumFamily => 'Poppins';
+  String get displayMediumFamily => 'Rubik';
   TextStyle get displayMedium => GoogleFonts.getFont(
-        'Poppins',
+        'Rubik',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 44.0,
       );
-  String get displaySmallFamily => 'Poppins';
+  String get displaySmallFamily => 'Rubik';
   TextStyle get displaySmall => GoogleFonts.getFont(
-        'Poppins',
+        'Rubik',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 36.0,
       );
-  String get headlineLargeFamily => 'Poppins';
+  String get headlineLargeFamily => 'Rubik';
   TextStyle get headlineLarge => GoogleFonts.getFont(
-        'Poppins',
+        'Rubik',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 36.0,
       );
-  String get headlineMediumFamily => 'Poppins';
+  String get headlineMediumFamily => 'Rubik';
   TextStyle get headlineMedium => GoogleFonts.getFont(
-        'Poppins',
+        'Rubik',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 24.0,
       );
-  String get headlineSmallFamily => 'Poppins';
+  String get headlineSmallFamily => 'Rubik';
   TextStyle get headlineSmall => GoogleFonts.getFont(
-        'Poppins',
+        'Rubik',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 24.0,
       );
-  String get titleLargeFamily => 'Poppins';
+  String get titleLargeFamily => 'Rubik';
   TextStyle get titleLarge => GoogleFonts.getFont(
-        'Poppins',
+        'Rubik',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 22.0,
       );
-  String get titleMediumFamily => 'Raleway';
+  String get titleMediumFamily => 'Rubik';
   TextStyle get titleMedium => GoogleFonts.getFont(
-        'Raleway',
+        'Rubik',
         color: theme.info,
         fontWeight: FontWeight.w600,
         fontSize: 18.0,
       );
-  String get titleSmallFamily => 'Raleway';
+  String get titleSmallFamily => 'Rubik';
   TextStyle get titleSmall => GoogleFonts.getFont(
-        'Raleway',
+        'Rubik',
         color: theme.info,
         fontWeight: FontWeight.w600,
         fontSize: 18.0,
       );
-  String get labelLargeFamily => 'Raleway';
+  String get labelLargeFamily => 'Rubik';
   TextStyle get labelLarge => GoogleFonts.getFont(
-        'Raleway',
+        'Rubik',
         color: theme.secondaryText,
         fontWeight: FontWeight.w500,
         fontSize: 16.0,
       );
-  String get labelMediumFamily => 'Raleway';
+  String get labelMediumFamily => 'Rubik';
   TextStyle get labelMedium => GoogleFonts.getFont(
-        'Raleway',
+        'Rubik',
         color: theme.secondaryText,
         fontWeight: FontWeight.w500,
         fontSize: 14.0,
       );
-  String get labelSmallFamily => 'Raleway';
+  String get labelSmallFamily => 'Rubik';
   TextStyle get labelSmall => GoogleFonts.getFont(
-        'Raleway',
+        'Rubik',
         color: theme.secondaryText,
         fontWeight: FontWeight.w500,
         fontSize: 12.0,
       );
-  String get bodyLargeFamily => 'Raleway';
+  String get bodyLargeFamily => 'Rubik';
   TextStyle get bodyLarge => GoogleFonts.getFont(
-        'Raleway',
+        'Rubik',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 16.0,
       );
-  String get bodyMediumFamily => 'Raleway';
+  String get bodyMediumFamily => 'Rubik';
   TextStyle get bodyMedium => GoogleFonts.getFont(
-        'Raleway',
+        'Rubik',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 14.0,
       );
-  String get bodySmallFamily => 'Raleway';
+  String get bodySmallFamily => 'Rubik';
   TextStyle get bodySmall => GoogleFonts.getFont(
-        'Raleway',
+        'Rubik',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 12.0,
+      );
+}
+
+class TabletTypography extends Typography {
+  TabletTypography(this.theme);
+
+  final FlutterFlowTheme theme;
+
+  String get displayLargeFamily => 'Rubik';
+  TextStyle get displayLarge => GoogleFonts.getFont(
+        'Rubik',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 52.0,
+      );
+  String get displayMediumFamily => 'Rubik';
+  TextStyle get displayMedium => GoogleFonts.getFont(
+        'Rubik',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 44.0,
+      );
+  String get displaySmallFamily => 'Rubik';
+  TextStyle get displaySmall => GoogleFonts.getFont(
+        'Rubik',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 36.0,
+      );
+  String get headlineLargeFamily => 'Rubik';
+  TextStyle get headlineLarge => GoogleFonts.getFont(
+        'Rubik',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 36.0,
+      );
+  String get headlineMediumFamily => 'Rubik';
+  TextStyle get headlineMedium => GoogleFonts.getFont(
+        'Rubik',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 24.0,
+      );
+  String get headlineSmallFamily => 'Rubik';
+  TextStyle get headlineSmall => GoogleFonts.getFont(
+        'Rubik',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 24.0,
+      );
+  String get titleLargeFamily => 'Rubik';
+  TextStyle get titleLarge => GoogleFonts.getFont(
+        'Rubik',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 22.0,
+      );
+  String get titleMediumFamily => 'Rubik';
+  TextStyle get titleMedium => GoogleFonts.getFont(
+        'Rubik',
+        color: theme.info,
+        fontWeight: FontWeight.w600,
+        fontSize: 18.0,
+      );
+  String get titleSmallFamily => 'Rubik';
+  TextStyle get titleSmall => GoogleFonts.getFont(
+        'Rubik',
+        color: theme.info,
+        fontWeight: FontWeight.w600,
+        fontSize: 18.0,
+      );
+  String get labelLargeFamily => 'Rubik';
+  TextStyle get labelLarge => GoogleFonts.getFont(
+        'Rubik',
+        color: theme.secondaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 16.0,
+      );
+  String get labelMediumFamily => 'Rubik';
+  TextStyle get labelMedium => GoogleFonts.getFont(
+        'Rubik',
+        color: theme.secondaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 14.0,
+      );
+  String get labelSmallFamily => 'Rubik';
+  TextStyle get labelSmall => GoogleFonts.getFont(
+        'Rubik',
+        color: theme.secondaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 12.0,
+      );
+  String get bodyLargeFamily => 'Rubik';
+  TextStyle get bodyLarge => GoogleFonts.getFont(
+        'Rubik',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 16.0,
+      );
+  String get bodyMediumFamily => 'Rubik';
+  TextStyle get bodyMedium => GoogleFonts.getFont(
+        'Rubik',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 14.0,
+      );
+  String get bodySmallFamily => 'Rubik';
+  TextStyle get bodySmall => GoogleFonts.getFont(
+        'Rubik',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 12.0,
+      );
+}
+
+class DesktopTypography extends Typography {
+  DesktopTypography(this.theme);
+
+  final FlutterFlowTheme theme;
+
+  String get displayLargeFamily => 'Rubik';
+  TextStyle get displayLarge => GoogleFonts.getFont(
+        'Rubik',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 52.0,
+      );
+  String get displayMediumFamily => 'Rubik';
+  TextStyle get displayMedium => GoogleFonts.getFont(
+        'Rubik',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 44.0,
+      );
+  String get displaySmallFamily => 'Rubik';
+  TextStyle get displaySmall => GoogleFonts.getFont(
+        'Rubik',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 36.0,
+      );
+  String get headlineLargeFamily => 'Rubik';
+  TextStyle get headlineLarge => GoogleFonts.getFont(
+        'Rubik',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 36.0,
+      );
+  String get headlineMediumFamily => 'Rubik';
+  TextStyle get headlineMedium => GoogleFonts.getFont(
+        'Rubik',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 24.0,
+      );
+  String get headlineSmallFamily => 'Rubik';
+  TextStyle get headlineSmall => GoogleFonts.getFont(
+        'Rubik',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 24.0,
+      );
+  String get titleLargeFamily => 'Rubik';
+  TextStyle get titleLarge => GoogleFonts.getFont(
+        'Rubik',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 22.0,
+      );
+  String get titleMediumFamily => 'Rubik';
+  TextStyle get titleMedium => GoogleFonts.getFont(
+        'Rubik',
+        color: theme.info,
+        fontWeight: FontWeight.w600,
+        fontSize: 18.0,
+      );
+  String get titleSmallFamily => 'Rubik';
+  TextStyle get titleSmall => GoogleFonts.getFont(
+        'Rubik',
+        color: theme.info,
+        fontWeight: FontWeight.w600,
+        fontSize: 18.0,
+      );
+  String get labelLargeFamily => 'Rubik';
+  TextStyle get labelLarge => GoogleFonts.getFont(
+        'Rubik',
+        color: theme.secondaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 16.0,
+      );
+  String get labelMediumFamily => 'Rubik';
+  TextStyle get labelMedium => GoogleFonts.getFont(
+        'Rubik',
+        color: theme.secondaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 14.0,
+      );
+  String get labelSmallFamily => 'Rubik';
+  TextStyle get labelSmall => GoogleFonts.getFont(
+        'Rubik',
+        color: theme.secondaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 12.0,
+      );
+  String get bodyLargeFamily => 'Rubik';
+  TextStyle get bodyLarge => GoogleFonts.getFont(
+        'Rubik',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 16.0,
+      );
+  String get bodyMediumFamily => 'Rubik';
+  TextStyle get bodyMedium => GoogleFonts.getFont(
+        'Rubik',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 14.0,
+      );
+  String get bodySmallFamily => 'Rubik';
+  TextStyle get bodySmall => GoogleFonts.getFont(
+        'Rubik',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 12.0,

@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'fail_model.dart';
 export 'fail_model.dart';
 
@@ -259,8 +260,13 @@ class _FailWidgetState extends State<FailWidget> with TickerProviderStateMixin {
                                 style: FlutterFlowTheme.of(context)
                                     .displaySmall
                                     .override(
-                                      fontFamily: 'Poppins',
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .displaySmallFamily,
                                       letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .displaySmallFamily),
                                     ),
                               ).animateOnPageLoad(
                                   animationsMap['textOnPageLoadAnimation1']!),
@@ -272,9 +278,14 @@ class _FailWidgetState extends State<FailWidget> with TickerProviderStateMixin {
                                 style: FlutterFlowTheme.of(context)
                                     .displaySmall
                                     .override(
-                                      fontFamily: 'Poppins',
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .displaySmallFamily,
                                       fontSize: 20.0,
                                       letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .displaySmallFamily),
                                     ),
                               ).animateOnPageLoad(
                                   animationsMap['textOnPageLoadAnimation2']!),

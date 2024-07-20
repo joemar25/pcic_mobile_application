@@ -213,6 +213,22 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'marApiTest',
+          path: '/marApiTest',
+          builder: (context, params) => const MarApiTestWidget(),
+        ),
+        FFRoute(
+          name: 'forgotPassword',
+          path: '/forgotPassword',
+          builder: (context, params) => const ForgotPasswordWidget(),
+        ),
+        FFRoute(
+          name: 'dashboardSean',
+          path: '/dashboardSean',
+          requireAuth: true,
+          builder: (context, params) => const DashboardSeanWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

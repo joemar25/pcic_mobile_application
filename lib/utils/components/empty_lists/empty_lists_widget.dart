@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'empty_lists_model.dart';
 export 'empty_lists_model.dart';
 
@@ -56,8 +57,11 @@ class _EmptyListsWidgetState extends State<EmptyListsWidget> {
                   'qc74sp6j' /* No  */,
                 ),
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily: 'Poppins',
+                      fontFamily:
+                          FlutterFlowTheme.of(context).headlineMediumFamily,
                       letterSpacing: 0.0,
+                      useGoogleFonts: GoogleFonts.asMap().containsKey(
+                          FlutterFlowTheme.of(context).headlineMediumFamily),
                     ),
               ),
             ),
@@ -66,8 +70,11 @@ class _EmptyListsWidgetState extends State<EmptyListsWidget> {
               child: Text(
                 widget.type,
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily: 'Poppins',
+                      fontFamily:
+                          FlutterFlowTheme.of(context).headlineMediumFamily,
                       letterSpacing: 0.0,
+                      useGoogleFonts: GoogleFonts.asMap().containsKey(
+                          FlutterFlowTheme.of(context).headlineMediumFamily),
                     ),
               ),
             ),
@@ -81,8 +88,10 @@ class _EmptyListsWidgetState extends State<EmptyListsWidget> {
             ),
             textAlign: TextAlign.center,
             style: FlutterFlowTheme.of(context).labelMedium.override(
-                  fontFamily: 'Raleway',
+                  fontFamily: FlutterFlowTheme.of(context).labelMediumFamily,
                   letterSpacing: 0.0,
+                  useGoogleFonts: GoogleFonts.asMap().containsKey(
+                      FlutterFlowTheme.of(context).labelMediumFamily),
                 ),
           ),
         ),

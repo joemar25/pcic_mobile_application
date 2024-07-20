@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'messages_model.dart';
 export 'messages_model.dart';
 
@@ -121,9 +122,12 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                       'Reciever',
                     ),
                     style: FlutterFlowTheme.of(context).displaySmall.override(
-                          fontFamily: 'Poppins',
+                          fontFamily:
+                              FlutterFlowTheme.of(context).displaySmallFamily,
                           fontSize: 16.0,
                           letterSpacing: 0.0,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(
+                              FlutterFlowTheme.of(context).displaySmallFamily),
                         ),
                   ),
                 ),
@@ -203,14 +207,30 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .labelMedium
                                             .override(
-                                              fontFamily: 'Raleway',
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMediumFamily,
                                               letterSpacing: 0.0,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMediumFamily),
                                             ),
                                         hintStyle: FlutterFlowTheme.of(context)
                                             .labelMedium
                                             .override(
-                                              fontFamily: 'Raleway',
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMediumFamily,
                                               letterSpacing: 0.0,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMediumFamily),
                                             ),
                                         enabledBorder: InputBorder.none,
                                         focusedBorder: InputBorder.none,
@@ -220,8 +240,14 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Raleway',
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily,
                                             letterSpacing: 0.0,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMediumFamily),
                                           ),
                                       maxLines: 5,
                                       minLines: 1,
