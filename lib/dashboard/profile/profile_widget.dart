@@ -34,6 +34,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
         'user_id': currentUserUid,
       });
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

@@ -205,7 +205,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Below are messages with your friends.',
       'tl': '',
     },
-    'y0w2rxtr': {
+    'gcfnxasp': {
       'en': 'Below are messages with your friends.',
       'tl': '',
     },
@@ -310,24 +310,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Coordinates',
       'tl': '',
     },
-    'dbfzcdfn': {
-      'en': 'Latitude',
-      'tl': '',
-    },
-    'lcq0p9ow': {
-      'en': 'Longitude',
-      'tl': '',
-    },
     't8xuzuli': {
       'en': 'Address',
       'tl': '',
     },
     'lfxoimt6': {
       'en': '[address]',
-      'tl': '',
-    },
-    '68rofs77': {
-      'en': 'Mar Test (Do not remove) - Is Route Started?',
       'tl': '',
     },
     '0o8w3vlv': {
@@ -529,7 +517,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Geotag',
       'tl': '',
     },
-    '0267v9wc': {
+    'm6egon7b': {
       'en': 'Resubmit',
       'tl': '',
     },
@@ -592,10 +580,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'this is the rice',
       'tl': '',
     },
-    'ay6l8aig': {
-      'en': 'r',
-      'tl': '',
-    },
     'hgkqza7h': {
       'en': 'Please select...',
       'tl': '',
@@ -636,20 +620,20 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Signatures',
       'tl': '',
     },
-    '99efrqt6': {
-      'en': 'Actual Date of Plantin (DS)',
-      'tl': '',
-    },
     '762st5cb': {
       'en': 'Remarks',
       'tl': '',
     },
-    '8zawh1wx': {
-      'en': 'Actual Date of Plantin (TP)',
+    '99efrqt6': {
+      'en': 'Prepared by',
       'tl': '',
     },
     'rkv9xt3s': {
       'en': 'Signature',
+      'tl': '',
+    },
+    '8zawh1wx': {
+      'en': 'Confirm by',
       'tl': '',
     },
     '2n6hawkd': {
@@ -710,7 +694,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     'vte71nhh': {
-      'en': 'Task Overview',
+      'en': 'Task Overview (mar-link)',
       'tl': '',
     },
     'm10j35jr': {
@@ -767,7 +751,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Success!',
       'tl': '',
     },
-    'hdh6xlcb': {
+    'ioe9pmrx': {
       'en': 'Home',
       'tl': '',
     },
@@ -822,62 +806,134 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Send Link',
       'tl': '',
     },
-    '8sw5dww3': {
+    '2stfj7a7': {
       'en': 'Home',
       'tl': '',
     },
   },
-  // dashboardSean
+  // Details47PropertyListing
   {
-    '7ilejehv': {
-      'en': 'Welcome',
+    'gm5lg2vm': {
+      'en': 'Quaint Studio SOHO',
       'tl': '',
     },
-    '232c6o5k': {
-      'en': 'Good morning ',
+    '6nfu1039': {
+      'en': 'Wooster St.',
       'tl': '',
     },
-    '0erxlmcx': {
-      'en': '!',
+    'qzo7zkm1': {
+      'en': ' || ',
       'tl': '',
     },
-    '3j3z3g1c': {
-      'en': 'Task Overview',
+    '2vvq05h5': {
+      'en': '0.8 mi',
       'tl': '',
     },
-    'xj9w45k6': {
-      'en': 'For Dispatch',
+    '9k3bz27h': {
+      'en': 'Available',
       'tl': '',
     },
-    'muudowfh': {
-      'en': 'Ongoing',
+    '46u0hwtw': {
+      'en': '4 beds',
       'tl': '',
     },
-    'lkainj4r': {
-      'en': 'Completed',
+    'o6ph6ha7': {
+      'en': '2 baths',
       'tl': '',
     },
-    '3krdc9ra': {
-      'en': 'Find your task...',
+    '2svktyr6': {
+      'en': '1,250 sqft',
       'tl': '',
     },
-    '3mm3o2bl': {
-      'en': 'Option 1',
+    's603jkwe': {
+      'en': 'Rate',
       'tl': '',
     },
-    'iqumide1': {
-      'en': 'For Dispatch',
+    '1909d0zv': {
+      'en': '\$2,520',
       'tl': '',
     },
-    'uuu1dl03': {
-      'en': 'Ongoing',
+    '3279zeps': {
+      'en': 'per month',
       'tl': '',
     },
-    'azq0jpmo': {
-      'en': 'Completed',
+    'jyxe5x7t': {
+      'en': 'Inquire',
       'tl': '',
     },
-    '7klrpw4p': {
+    'ua3kq8vl': {
+      'en': 'Hosted By',
+      'tl': '',
+    },
+    'cgs4dc1b': {
+      'en': 'Henry Lewis',
+      'tl': '',
+    },
+    '23z4sr8y': {
+      'en': 'henry@realestate.com',
+      'tl': '',
+    },
+    'mdg5p505': {
+      'en': 'Description',
+      'tl': '',
+    },
+    '140ee396': {
+      'en':
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ',
+      'tl': '',
+    },
+    'emow95sf': {
+      'en': 'Address',
+      'tl': '',
+    },
+    'n4wdpfa2': {
+      'en': '123 Disney Way, New York, NY 10294',
+      'tl': '',
+    },
+    'wy99dcc2': {
+      'en': 'Map goes here...',
+      'tl': '',
+    },
+    'ni951uts': {
+      'en': 'Home',
+      'tl': '',
+    },
+  },
+  // geotagCopy
+  {
+    '9mvo6120': {
+      'en': 'Geotagging',
+      'tl': '',
+    },
+    'f3zkx5bp': {
+      'en': 'Start',
+      'tl': '',
+    },
+    'cex5hbel': {
+      'en': 'Pin',
+      'tl': '',
+    },
+    'b1u96vze': {
+      'en': 'Stop',
+      'tl': '',
+    },
+    'lyn5w37z': {
+      'en': 'LOCATION',
+      'tl': '',
+    },
+    'jmsb3i4y': {
+      'en': 'Coordinates',
+      'tl': '',
+    },
+    'b3df06kv': {
+      'en': 'Address',
+      'tl': '',
+    },
+    'n9zkx1lu': {
+      'en': '[address]',
+      'tl': '',
+    },
+    '24h3f641': {
       'en': 'Home',
       'tl': '',
     },
@@ -885,19 +941,19 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // tasks
   {
     'j0q6t8qb': {
-      'en': 'N: ',
+      'en': 'North: ',
       'tl': '',
     },
     'kdar2g2n': {
-      'en': 'W: ',
+      'en': 'West: ',
       'tl': '',
     },
     'b2p4m05y': {
-      'en': 'S: ',
+      'en': 'South: ',
       'tl': '',
     },
     '8zz0rgpr': {
-      'en': 'E: ',
+      'en': 'East: ',
       'tl': '',
     },
     'vfsgjz34': {
@@ -980,6 +1036,53 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
+  // ImageView
+  {
+    '4dvpzqez': {
+      'en': 'Geotagging',
+      'tl': '',
+    },
+    '0dhjdczh': {
+      'en': 'Start',
+      'tl': '',
+    },
+    'z7iocca5': {
+      'en': 'Pin drop',
+      'tl': '',
+    },
+    'bryj461x': {
+      'en': 'Stop',
+      'tl': '',
+    },
+    'u9apm1jr': {
+      'en': 'Location',
+      'tl': '',
+    },
+    '2ugch3dd': {
+      'en': 'Coordinates',
+      'tl': '',
+    },
+    '2g99ky91': {
+      'en': 'Hello World',
+      'tl': '',
+    },
+    'qdfww9v5': {
+      'en': 'Hello World',
+      'tl': '',
+    },
+    'e8w0ri0f': {
+      'en': 'Address',
+      'tl': '',
+    },
+    '507lgqrm': {
+      'en': 'Hello World',
+      'tl': '',
+    },
+    'dcziw3kd': {
+      'en': 'Hello World',
+      'tl': '',
+    },
+  },
   // Miscellaneous
   {
     '0ftylq1b': {
@@ -990,6 +1093,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '2kgfkeu0': {
       'en':
           'PCIC Mobile Application needs access to your photo library to enable Geotagging. This will help us select and tag photos with your current location for better service delivery and documentation. Please grant photo library access to continue.',
+      'tl': '',
+    },
+    '9xlvkb3u': {
+      'en': '',
       'tl': '',
     },
     'klzb3gt7': {

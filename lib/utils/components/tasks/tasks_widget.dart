@@ -68,6 +68,8 @@ class _TasksWidgetState extends State<TasksWidget>
           !anim.applyInitialState),
       this,
     );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -187,7 +189,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                   8.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  'j0q6t8qb' /* N:  */,
+                                  'j0q6t8qb' /* North:  */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -231,7 +233,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                   8.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  'kdar2g2n' /* W:  */,
+                                  'kdar2g2n' /* West:  */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -281,7 +283,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                   8.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  'b2p4m05y' /* S:  */,
+                                  'b2p4m05y' /* South:  */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -325,7 +327,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                   8.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  '8zz0rgpr' /* E:  */,
+                                  '8zz0rgpr' /* East:  */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium

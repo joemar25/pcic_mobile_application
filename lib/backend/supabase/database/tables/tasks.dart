@@ -20,11 +20,11 @@ class TasksRow extends SupabaseDataRow {
   String get taskNumber => getField<String>('task_number')!;
   set taskNumber(String value) => setField<String>('task_number', value);
 
-  String get serviceGroup => getField<String>('service_group')!;
-  set serviceGroup(String value) => setField<String>('service_group', value);
+  String? get serviceGroup => getField<String>('service_group');
+  set serviceGroup(String? value) => setField<String>('service_group', value);
 
-  String? get serviceType => getField<String>('service_type');
-  set serviceType(String? value) => setField<String>('service_type', value);
+  String get serviceType => getField<String>('service_type')!;
+  set serviceType(String value) => setField<String>('service_type', value);
 
   String? get priority => getField<String>('priority');
   set priority(String? value) => setField<String>('priority', value);

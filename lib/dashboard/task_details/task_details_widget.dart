@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'task_details_model.dart';
 export 'task_details_model.dart';
@@ -33,6 +32,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => TaskDetailsModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -2593,8 +2594,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.all(6.0),
-                                child: FaIcon(
-                                  FontAwesomeIcons.mapMarkedAlt,
+                                child: Icon(
+                                  Icons.map_outlined,
                                   color: FlutterFlowTheme.of(context)
                                       .primaryBtnText,
                                   size: 24.0,
@@ -2692,7 +2693,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                               ),
                               Text(
                                 FFLocalizations.of(context).getText(
-                                  '0267v9wc' /* Resubmit */,
+                                  'm6egon7b' /* Resubmit */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .titleSmall

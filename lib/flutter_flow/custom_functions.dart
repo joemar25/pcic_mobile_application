@@ -12,15 +12,10 @@ import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/auth/supabase_auth/auth_util.dart';
 
-List<String>? seeds(String? type) {
-  // create a seed with two types
-  List<String>? seeds(String? type) {
-    if (type == 'rice') {
-      return ['apple', 'banana', 'orange'];
-    } else if (type == 'corn') {
-      return ['carrot', 'broccoli', 'spinach'];
-    } else {
-      return null;
-    }
-  }
+double? getLat(LatLng? latlng) {
+  return latlng?.latitude;
+}
+
+double? getLng(LatLng? latlng) {
+  return latlng?.longitude;
 }

@@ -29,8 +29,8 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
   FocusNode? trackFarmlocFocusNode;
   TextEditingController? trackFarmlocTextController;
   String? Function(BuildContext, String?)? trackFarmlocTextControllerValidator;
-  // State field(s) for varietySelection widget.
-  FormFieldController<String>? varietySelectionValueController;
+  // State field(s) for seedVarietySelection widget.
+  FormFieldController<String>? seedVarietySelectionValueController;
   // State field(s) for riceDropdown widget.
   String? riceDropdownValue;
   FormFieldController<String>? riceDropdownValueController;
@@ -52,16 +52,16 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
   TextEditingController? areaDopTsFieldTextController;
   String? Function(BuildContext, String?)?
       areaDopTsFieldTextControllerValidator;
-  // State field(s) for confirmed_by_name_field widget.
-  FocusNode? confirmedByNameFieldFocusNode;
-  TextEditingController? confirmedByNameFieldTextController;
-  String? Function(BuildContext, String?)?
-      confirmedByNameFieldTextControllerValidator;
   // State field(s) for confirmed_by_sig_field widget.
   FocusNode? confirmedBySigFieldFocusNode;
   TextEditingController? confirmedBySigFieldTextController;
   String? Function(BuildContext, String?)?
       confirmedBySigFieldTextControllerValidator;
+  // State field(s) for confirmed_by_name_field widget.
+  FocusNode? confirmedByNameFieldFocusNode;
+  TextEditingController? confirmedByNameFieldTextController;
+  String? Function(BuildContext, String?)?
+      confirmedByNameFieldTextControllerValidator;
   // State field(s) for prepared_by_name_field widget.
   FocusNode? preparedByNameFieldFocusNode;
   TextEditingController? preparedByNameFieldTextController;
@@ -95,16 +95,17 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
     areaDopTsFieldFocusNode?.dispose();
     areaDopTsFieldTextController?.dispose();
 
-    confirmedByNameFieldFocusNode?.dispose();
-    confirmedByNameFieldTextController?.dispose();
-
     confirmedBySigFieldFocusNode?.dispose();
     confirmedBySigFieldTextController?.dispose();
+
+    confirmedByNameFieldFocusNode?.dispose();
+    confirmedByNameFieldTextController?.dispose();
 
     preparedByNameFieldFocusNode?.dispose();
     preparedByNameFieldTextController?.dispose();
   }
 
   /// Additional helper methods.
-  String? get varietySelectionValue => varietySelectionValueController?.value;
+  String? get seedVarietySelectionValue =>
+      seedVarietySelectionValueController?.value;
 }

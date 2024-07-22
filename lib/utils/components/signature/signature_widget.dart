@@ -63,6 +63,8 @@ class _SignatureWidgetState extends State<SignatureWidget>
         ],
       ),
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -272,7 +274,7 @@ class _SignatureWidgetState extends State<SignatureWidget>
                                                 backgroundColor:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                height: 120.0,
+                                                height: 300.0,
                                               ),
                                             ),
                                           ),

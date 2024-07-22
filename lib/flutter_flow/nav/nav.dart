@@ -229,10 +229,24 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const ForgotPasswordWidget(),
         ),
         FFRoute(
-          name: 'dashboardSean',
-          path: '/dashboardSean',
+          name: 'Details47PropertyListing',
+          path: '/details47PropertyListing',
+          builder: (context, params) => const Details47PropertyListingWidget(),
+        ),
+        FFRoute(
+          name: 'geotagCopy',
+          path: '/geotagCopy',
           requireAuth: true,
-          builder: (context, params) => const DashboardSeanWidget(),
+          builder: (context, params) => GeotagCopyWidget(
+            taskId: params.getParam(
+              'taskId',
+              ParamType.String,
+            ),
+            taskType: params.getParam(
+              'taskType',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

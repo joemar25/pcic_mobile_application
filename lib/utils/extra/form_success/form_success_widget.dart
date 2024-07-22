@@ -259,6 +259,8 @@ class _FormSuccessWidgetState extends State<FormSuccessWidget>
         ],
       ),
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

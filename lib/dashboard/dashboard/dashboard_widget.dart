@@ -14,7 +14,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'dashboard_model.dart';
@@ -104,6 +103,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
         ],
       ),
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -387,7 +388,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     context.pushNamed(
-                                      'marApiTest',
+                                      'mapTesting',
                                       extra: <String, dynamic>{
                                         kTransitionInfoKey: const TransitionInfo(
                                           hasTransition: true,
@@ -400,7 +401,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                   },
                                   child: Text(
                                     FFLocalizations.of(context).getText(
-                                      'vte71nhh' /* Task Overview */,
+                                      'vte71nhh' /* Task Overview (mar-link) */,
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .headlineSmall
@@ -408,6 +409,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                           fontFamily:
                                               FlutterFlowTheme.of(context)
                                                   .headlineSmallFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.bold,
                                           useGoogleFonts: GoogleFonts.asMap()
@@ -538,9 +541,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                             .displaySmallFamily),
                                                               ),
                                                         ),
-                                                        FaIcon(
-                                                          FontAwesomeIcons
-                                                              .clock,
+                                                        Icon(
+                                                          Icons.timer_sharp,
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .forDispatchIcon,
