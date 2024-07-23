@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'success_profile_model.dart';
 export 'success_profile_model.dart';
 
@@ -35,7 +36,7 @@ class _SuccessProfileWidgetState extends State<SuccessProfileWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await Future.delayed(const Duration(milliseconds: 1000));
+      await Future.delayed(const Duration(milliseconds: 5000));
 
       context.pushNamed(
         'dashboard',
@@ -153,8 +154,6 @@ class _SuccessProfileWidgetState extends State<SuccessProfileWidget>
         ],
       ),
     });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -215,49 +214,67 @@ class _SuccessProfileWidgetState extends State<SuccessProfileWidget>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Align(
-                              alignment: const AlignmentDirectional(0.0, -1.0),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 44.0, 0.0, 0.0),
-                                child: Container(
-                                  width: 120.0,
-                                  height: 120.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context).accent2,
-                                    shape: BoxShape.circle,
-                                    border: Border.all(
-                                      color:
-                                          FlutterFlowTheme.of(context).accent2,
-                                      width: 4.0,
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Container(
-                                      width: 140.0,
-                                      height: 140.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondary,
-                                        shape: BoxShape.circle,
-                                        border: Border.all(
-                                          color: FlutterFlowTheme.of(context)
-                                              .accent2,
-                                          width: 4.0,
-                                        ),
-                                      ),
-                                      child: Icon(
-                                        Icons.check_rounded,
-                                        color:
-                                            FlutterFlowTheme.of(context).info,
-                                        size: 64.0,
-                                      ),
-                                    ),
-                                  ),
-                                ).animateOnPageLoad(animationsMap[
-                                    'containerOnPageLoadAnimation']!),
+                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              child: Lottie.asset(
+                                'assets/lottie_animations/Animation_-_1721724548119.json',
+                                width: 250.0,
+                                height: 184.0,
+                                fit: BoxFit.cover,
+                                animate: true,
                               ),
                             ),
+                            if (responsiveVisibility(
+                              context: context,
+                              phone: false,
+                              tablet: false,
+                              tabletLandscape: false,
+                              desktop: false,
+                            ))
+                              Align(
+                                alignment: const AlignmentDirectional(0.0, -1.0),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 44.0, 0.0, 0.0),
+                                  child: Container(
+                                    width: 120.0,
+                                    height: 120.0,
+                                    decoration: BoxDecoration(
+                                      color:
+                                          FlutterFlowTheme.of(context).accent2,
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        color: FlutterFlowTheme.of(context)
+                                            .accent2,
+                                        width: 4.0,
+                                      ),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Container(
+                                        width: 140.0,
+                                        height: 140.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondary,
+                                          shape: BoxShape.circle,
+                                          border: Border.all(
+                                            color: FlutterFlowTheme.of(context)
+                                                .accent2,
+                                            width: 4.0,
+                                          ),
+                                        ),
+                                        child: Icon(
+                                          Icons.check_rounded,
+                                          color:
+                                              FlutterFlowTheme.of(context).info,
+                                          size: 64.0,
+                                        ),
+                                      ),
+                                    ),
+                                  ).animateOnPageLoad(animationsMap[
+                                      'containerOnPageLoadAnimation']!),
+                                ),
+                              ),
                             Align(
                               alignment: const AlignmentDirectional(0.0, -1.0),
                               child: Text(

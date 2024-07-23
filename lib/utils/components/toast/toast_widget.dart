@@ -26,8 +26,6 @@ class _ToastWidgetState extends State<ToastWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ToastModel());
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

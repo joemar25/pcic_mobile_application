@@ -24,8 +24,6 @@ class _MapTestingWidgetState extends State<MapTestingWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => MapTestingModel());
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -66,90 +64,86 @@ class _MapTestingWidgetState extends State<MapTestingWidget> {
           centerTitle: false,
           elevation: 2.0,
         ),
-        body: SafeArea(
-          top: true,
-          child: Stack(
-            children: [
-              const Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  SizedBox(
+        body: Stack(
+          children: [
+            const Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                SizedBox(
+                  width: double.infinity,
+                  height: 600.0,
+                  child: custom_widgets.GeotagMap(
                     width: double.infinity,
                     height: 600.0,
-                    child: custom_widgets.GeotagMap(
-                      width: double.infinity,
-                      height: 600.0,
-                    ),
                   ),
-                ],
-              ),
-              Align(
-                alignment: const AlignmentDirectional(0.0, 1.0),
-                child: Container(
-                  width: double.infinity,
-                  height: 200.0,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).alternate,
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(0.0),
-                      bottomRight: Radius.circular(0.0),
-                      topLeft: Radius.circular(50.0),
-                      topRight: Radius.circular(50.0),
-                    ),
+                ),
+              ],
+            ),
+            Align(
+              alignment: const AlignmentDirectional(0.0, 1.0),
+              child: Container(
+                width: double.infinity,
+                height: 208.0,
+                decoration: BoxDecoration(
+                  color: FlutterFlowTheme.of(context).alternate,
+                  borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(0.0),
+                    bottomRight: Radius.circular(0.0),
+                    topLeft: Radius.circular(50.0),
+                    topRight: Radius.circular(50.0),
                   ),
+                ),
+                alignment: const AlignmentDirectional(0.0, 0.0),
+                child: Align(
                   alignment: const AlignmentDirectional(0.0, 0.0),
-                  child: Align(
-                    alignment: const AlignmentDirectional(0.0, 0.0),
-                    child: FFButtonWidget(
-                      onPressed: (FFAppState().routeStarted ? true : false)
-                          ? null
-                          : () async {
-                              FFAppState().routeStarted =
-                                  !FFAppState().routeStarted;
-                              setState(() {});
-                            },
-                      text: FFAppState().routeStarted ? 'STOP' : 'START',
-                      icon: Icon(
-                        Icons.not_started,
-                        color: FFAppState().routeStarted
-                            ? FlutterFlowTheme.of(context).error
-                            : FlutterFlowTheme.of(context).primary,
-                        size: 20.0,
+                  child: FFButtonWidget(
+                    onPressed: (FFAppState().routeStarted ? true : false)
+                        ? null
+                        : () async {
+                            FFAppState().routeStarted =
+                                !FFAppState().routeStarted;
+                            setState(() {});
+                          },
+                    text: FFAppState().routeStarted ? 'STOP' : 'START',
+                    icon: Icon(
+                      Icons.not_started,
+                      color: FFAppState().routeStarted
+                          ? FlutterFlowTheme.of(context).error
+                          : FlutterFlowTheme.of(context).primary,
+                      size: 20.0,
+                    ),
+                    options: FFButtonOptions(
+                      width: 100.0,
+                      height: 100.0,
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                      iconPadding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: FFAppState().routeStarted
+                          ? FlutterFlowTheme.of(context).error
+                          : FlutterFlowTheme.of(context).primary,
+                      textStyle: FlutterFlowTheme.of(context)
+                          .titleSmall
+                          .override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).titleSmallFamily,
+                            color: Colors.white,
+                            letterSpacing: 0.0,
+                            useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                FlutterFlowTheme.of(context).titleSmallFamily),
+                          ),
+                      elevation: 3.0,
+                      borderSide: const BorderSide(
+                        color: Colors.transparent,
+                        width: 1.0,
                       ),
-                      options: FFButtonOptions(
-                        width: 100.0,
-                        height: 100.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            24.0, 0.0, 24.0, 0.0),
-                        iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FFAppState().routeStarted
-                            ? FlutterFlowTheme.of(context).error
-                            : FlutterFlowTheme.of(context).primary,
-                        textStyle: FlutterFlowTheme.of(context)
-                            .titleSmall
-                            .override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).titleSmallFamily,
-                              color: Colors.white,
-                              letterSpacing: 0.0,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context)
-                                      .titleSmallFamily),
-                            ),
-                        elevation: 3.0,
-                        borderSide: const BorderSide(
-                          color: Colors.transparent,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.circular(50.0),
-                      ),
+                      borderRadius: BorderRadius.circular(50.0),
                     ),
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

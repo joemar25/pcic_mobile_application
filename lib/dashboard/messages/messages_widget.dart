@@ -42,8 +42,6 @@ class _MessagesWidgetState extends State<MessagesWidget> {
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -204,7 +202,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                       decoration: InputDecoration(
                                         labelText:
                                             FFLocalizations.of(context).getText(
-                                          'lpnik1fh' /* Type here to respond... */,
+                                          'emndaizi' /* Type here to respond... */,
                                         ),
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .labelMedium
@@ -275,6 +273,114 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                               ],
                             ),
                           ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: const AlignmentDirectional(-0.61, 0.64),
+                    child: Padding(
+                      padding: const EdgeInsets.all(24.0),
+                      child: Container(
+                        width: MediaQuery.sizeOf(context).width * 0.658,
+                        height: 74.0,
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.of(context).secondary,
+                          boxShadow: const [
+                            BoxShadow(
+                              blurRadius: 2.0,
+                              color: Color(0x33000000),
+                              offset: Offset(
+                                2.0,
+                                2.0,
+                              ),
+                              spreadRadius: 2.0,
+                            )
+                          ],
+                          borderRadius: BorderRadius.circular(14.0),
+                        ),
+                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        child: Stack(
+                          children: [
+                            Container(
+                              width: 241.0,
+                              height: 44.0,
+                              decoration: const BoxDecoration(),
+                              child: Align(
+                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                child: Text(
+                                  FFLocalizations.of(context).getText(
+                                    'rbq8h8d1' /* hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh... */,
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .bodyMediumFamily,
+                                        letterSpacing: 0.0,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily),
+                                      ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: const AlignmentDirectional(0.55, 0.38),
+                    child: Padding(
+                      padding: const EdgeInsets.all(24.0),
+                      child: Container(
+                        width: MediaQuery.sizeOf(context).width * 0.658,
+                        height: 74.0,
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.of(context).tertiary,
+                          boxShadow: const [
+                            BoxShadow(
+                              blurRadius: 2.0,
+                              color: Color(0x33000000),
+                              offset: Offset(
+                                2.0,
+                                2.0,
+                              ),
+                              spreadRadius: 2.0,
+                            )
+                          ],
+                          borderRadius: BorderRadius.circular(14.0),
+                        ),
+                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        child: Stack(
+                          children: [
+                            Container(
+                              width: 241.0,
+                              height: 44.0,
+                              decoration: const BoxDecoration(),
+                              child: Align(
+                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                child: Text(
+                                  FFLocalizations.of(context).getText(
+                                    'yav59de8' /* hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh... */,
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .bodyMediumFamily,
+                                        letterSpacing: 0.0,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily),
+                                      ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),

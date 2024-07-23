@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'image_view_widget.dart' show ImageViewWidget;
+import 'slider_container_widget.dart' show SliderContainerWidget;
 import 'package:flutter/material.dart';
 
-class ImageViewModel extends FlutterFlowModel<ImageViewWidget> {
+class SliderContainerModel extends FlutterFlowModel<SliderContainerWidget> {
   ///  Local state fields for this component.
 
   bool isGeotagStart = true;

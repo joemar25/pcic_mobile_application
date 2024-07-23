@@ -63,8 +63,6 @@ class _SignatureWidgetState extends State<SignatureWidget>
         ],
       ),
     });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -299,7 +297,7 @@ class _SignatureWidgetState extends State<SignatureWidget>
                                           },
                                           text: FFLocalizations.of(context)
                                               .getText(
-                                            '6si6e5tk' /* Save */,
+                                            'ruciwbye' /* Save */,
                                           ),
                                           options: FFButtonOptions(
                                             height: 50.0,

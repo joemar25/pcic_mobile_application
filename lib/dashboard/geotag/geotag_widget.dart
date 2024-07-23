@@ -17,10 +17,12 @@ class GeotagWidget extends StatefulWidget {
     super.key,
     required this.taskId,
     String? taskType,
+    required this.taskStatus,
   }) : taskType = taskType ?? 'ppir';
 
   final String? taskId;
   final String taskType;
+  final String? taskStatus;
 
   @override
   State<GeotagWidget> createState() => _GeotagWidgetState();
@@ -41,11 +43,28 @@ class _GeotagWidgetState extends State<GeotagWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.isGeotagStart = false;
       setState(() {});
+      if (widget.taskStatus == 'completed') {
+        await AttemptsTable().insert({
+          'task_id': widget.taskId,
+        });
+      } else {
+        await AttemptsTable().insert({
+          'task_id': widget.taskId,
+        });
+        await TasksTable().update(
+          data: {
+            'status': 'ongoing',
+          },
+          matchingRows: (rows) => rows.eq(
+            'id',
+            widget.taskId,
+          ),
+        );
+      }
     });
 
     getCurrentUserLocation(defaultLocation: const LatLng(0.0, 0.0), cached: true)
         .then((loc) => setState(() => currentUserLocationValue = loc));
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -883,15 +902,18 @@ class _GeotagWidgetState extends State<GeotagWidget> {
                           ),
                         ),
                       ),
-                    SizedBox(
-                      width: MediaQuery.sizeOf(context).width * 1.0,
-                      height: MediaQuery.sizeOf(context).height * 1.0,
-                      child: custom_widgets.CustomSlidingUpPanel(
+                    Align(
+                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      child: SizedBox(
                         width: MediaQuery.sizeOf(context).width * 1.0,
                         height: MediaQuery.sizeOf(context).height * 1.0,
-                        title: 'Task Type: ${widget.taskType}',
-                        body: geotagPpirFormsRow!.ppirAssignmentid,
-                        taskId: widget.taskId!,
+                        child: custom_widgets.CustomSlidingUpPanel(
+                          width: MediaQuery.sizeOf(context).width * 1.0,
+                          height: MediaQuery.sizeOf(context).height * 1.0,
+                          title: 'Task Type: ${widget.taskType}',
+                          body: geotagPpirFormsRow!.ppirAssignmentid,
+                          taskId: widget.taskId!,
+                        ),
                       ),
                     ),
                   ],

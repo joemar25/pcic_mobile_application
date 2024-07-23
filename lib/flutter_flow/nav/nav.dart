@@ -144,6 +144,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'taskType',
               ParamType.String,
             ),
+            taskStatus: params.getParam(
+              'taskStatus',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(
@@ -177,8 +181,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/formSuccess',
           requireAuth: true,
           builder: (context, params) => FormSuccessWidget(
-            assignmentId: params.getParam(
-              'assignmentId',
+            taskId: params.getParam(
+              'taskId',
               ParamType.String,
             ),
           ),
@@ -229,15 +233,35 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const ForgotPasswordWidget(),
         ),
         FFRoute(
-          name: 'Details47PropertyListing',
-          path: '/details47PropertyListing',
-          builder: (context, params) => const Details47PropertyListingWidget(),
-        ),
-        FFRoute(
           name: 'geotagCopy',
           path: '/geotagCopy',
           requireAuth: true,
           builder: (context, params) => GeotagCopyWidget(
+            taskId: params.getParam(
+              'taskId',
+              ParamType.String,
+            ),
+            taskType: params.getParam(
+              'taskType',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'ppirCopy',
+          path: '/ppirCopy',
+          requireAuth: true,
+          builder: (context, params) => PpirCopyWidget(
+            taskId: params.getParam(
+              'taskId',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'geotaggingV2',
+          path: '/geotaggingV2',
+          builder: (context, params) => GeotaggingV2Widget(
             taskId: params.getParam(
               'taskId',
               ParamType.String,

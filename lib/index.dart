@@ -21,6 +21,7 @@ export '/utils/extra/success_profile/success_profile_widget.dart'
 export '/mar_api_test/mar_api_test_widget.dart' show MarApiTestWidget;
 export '/auth/forgot_password/forgot_password_widget.dart'
     show ForgotPasswordWidget;
-export '/details47_property_listing/details47_property_listing_widget.dart'
-    show Details47PropertyListingWidget;
 export '/dashboard/geotag_copy/geotag_copy_widget.dart' show GeotagCopyWidget;
+export '/dashboard/forms/ppir_copy/ppir_copy_widget.dart' show PpirCopyWidget;
+export '/dashboard/geotagging_v2/geotagging_v2_widget.dart'
+    show GeotaggingV2Widget;

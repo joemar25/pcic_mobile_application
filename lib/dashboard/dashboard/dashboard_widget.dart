@@ -103,8 +103,6 @@ class _DashboardWidgetState extends State<DashboardWidget>
         ],
       ),
     });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

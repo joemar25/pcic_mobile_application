@@ -1,13 +1,15 @@
 import '/backend/supabase/supabase.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_radio_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/utils/components/signature/signature_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'ppir_model.dart';
@@ -25,21 +27,17 @@ class PpirWidget extends StatefulWidget {
   State<PpirWidget> createState() => _PpirWidgetState();
 }
 
-class _PpirWidgetState extends State<PpirWidget> {
+class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
   late PpirModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => PpirModel());
-
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.isRice = true;
-      setState(() {});
-    });
 
     _model.trackCoordinatesFocusNode ??= FocusNode();
 
@@ -48,6 +46,12 @@ class _PpirWidgetState extends State<PpirWidget> {
     _model.trackTotalAreaFocusNode ??= FocusNode();
 
     _model.trackFarmlocFocusNode ??= FocusNode();
+
+    _model.azzTextController1 ??= TextEditingController();
+    _model.azzFocusNode1 ??= FocusNode();
+
+    _model.azzTextController2 ??= TextEditingController();
+    _model.azzFocusNode2 ??= FocusNode();
 
     _model.areaPlantedFieldTextController ??= TextEditingController();
     _model.areaPlantedFieldFocusNode ??= FocusNode();
@@ -67,7 +71,39 @@ class _PpirWidgetState extends State<PpirWidget> {
     _model.preparedByNameFieldTextController ??= TextEditingController();
     _model.preparedByNameFieldFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    animationsMap.addAll({
+      'dropDownOnActionTriggerAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onActionTrigger,
+        applyInitialState: true,
+        effectsBuilder: () => [
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: const Offset(0.0, 0.0),
+            end: const Offset(0.0, 0.0),
+          ),
+        ],
+      ),
+      'dropDownOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: const Offset(0.0, 0.0),
+            end: const Offset(0.0, 0.0),
+          ),
+        ],
+      ),
+    });
+    setupAnimations(
+      animationsMap.values.where((anim) =>
+          anim.trigger == AnimationTrigger.onActionTrigger ||
+          !anim.applyInitialState),
+      this,
+    );
   }
 
   @override
@@ -192,7 +228,7 @@ class _PpirWidgetState extends State<PpirWidget> {
                           children: [
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  10.0, 16.0, 10.0, 0.0),
+                                  10.0, 16.0, 10.0, 50.0),
                               child: Container(
                                 width: double.infinity,
                                 constraints: const BoxConstraints(
@@ -771,6 +807,8 @@ class _PpirWidgetState extends State<PpirWidget> {
                                             ),
                                             Row(
                                               mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               children: [
                                                 Expanded(
                                                   child: Padding(
@@ -778,99 +816,63 @@ class _PpirWidgetState extends State<PpirWidget> {
                                                         const EdgeInsetsDirectional
                                                             .fromSTEB(16.0, 8.0,
                                                                 16.0, 12.0),
-                                                    child: InkWell(
-                                                      splashColor:
-                                                          Colors.transparent,
-                                                      focusColor:
-                                                          Colors.transparent,
-                                                      hoverColor:
-                                                          Colors.transparent,
-                                                      highlightColor:
-                                                          Colors.transparent,
-                                                      onTap: () async {
-                                                        context.pushNamed(
-                                                          'geotag',
-                                                          queryParameters: {
-                                                            'taskId':
-                                                                serializeParam(
-                                                              widget.taskId,
-                                                              ParamType.String,
+                                                    child: Container(
+                                                      width: 40.0,
+                                                      height: 40.0,
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        boxShadow: const [
+                                                          BoxShadow(
+                                                            blurRadius: 4.0,
+                                                            color: Color(
+                                                                0x33000000),
+                                                            offset: Offset(
+                                                              0.0,
+                                                              2.0,
                                                             ),
-                                                          }.withoutNulls,
-                                                          extra: <String,
-                                                              dynamic>{
-                                                            kTransitionInfoKey:
-                                                                const TransitionInfo(
-                                                              hasTransition:
-                                                                  true,
-                                                              transitionType:
-                                                                  PageTransitionType
-                                                                      .fade,
-                                                              duration: Duration(
-                                                                  milliseconds:
-                                                                      200),
-                                                            ),
-                                                          },
-                                                        );
-                                                      },
-                                                      child: Container(
-                                                        width: 40.0,
-                                                        height: 40.0,
-                                                        decoration:
-                                                            BoxDecoration(
+                                                          )
+                                                        ],
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(12.0),
+                                                        border: Border.all(
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .error,
-                                                          boxShadow: const [
-                                                            BoxShadow(
-                                                              blurRadius: 4.0,
-                                                              color: Color(
-                                                                  0x33000000),
-                                                              offset: Offset(
-                                                                0.0,
-                                                                2.0,
-                                                              ),
-                                                            )
-                                                          ],
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      12.0),
-                                                          border: Border.all(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .accent1,
-                                                            width: 2.0,
-                                                          ),
+                                                              .accent1,
+                                                          width: 2.0,
                                                         ),
-                                                        alignment:
-                                                            const AlignmentDirectional(
-                                                                0.0, 0.0),
-                                                        child: Text(
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                            'bi2tyefd' /* Repeat Again */,
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .titleSmall
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmallFamily,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryBtnText,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .titleSmallFamily),
-                                                              ),
+                                                      ),
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: Text(
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          'bi2tyefd' /* Repeat Again */,
                                                         ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmallFamily,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryBtnText,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .titleSmallFamily),
+                                                                ),
                                                       ),
                                                     ),
                                                   ),
@@ -1022,16 +1024,7 @@ class _PpirWidgetState extends State<PpirWidget> {
                                                 '3zzenggt' /* corn */,
                                               )
                                             ].toList(),
-                                            onChanged: (val) async {
-                                              setState(() {});
-                                              if (_model
-                                                      .seedVarietySelectionValue ==
-                                                  'Rice') {
-                                                _model.isRice = true;
-                                              } else {
-                                                _model.isRice = false;
-                                              }
-                                            },
+                                            onChanged: (val) => setState(() {}),
                                             controller: _model
                                                     .seedVarietySelectionValueController ??=
                                                 FormFieldController<String>(
@@ -1091,100 +1084,409 @@ class _PpirWidgetState extends State<PpirWidget> {
                                         decoration: const BoxDecoration(),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
                                           children: [
-                                            if (_model.isRice == true)
-                                              FutureBuilder<List<SeedsRow>>(
-                                                future: SeedsTable().queryRows(
-                                                  queryFn: (q) => q
-                                                      .eq(
-                                                        'seed_type',
-                                                        'rice',
-                                                      )
-                                                      .order('seed',
-                                                          ascending: true),
-                                                ),
-                                                builder: (context, snapshot) {
-                                                  // Customize what your widget looks like when it's loading.
-                                                  if (!snapshot.hasData) {
-                                                    return Center(
-                                                      child: SizedBox(
-                                                        width: 100.0,
-                                                        height: 100.0,
-                                                        child: SpinKitRipple(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          size: 100.0,
-                                                        ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Text(
+                                                  'Select the Type of Rice ${_model.seedVarietySelectionValue == 'corn' ? ' (disabled)' : ' (active)'}',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .labelSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelSmallFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmallFamily),
                                                       ),
-                                                    );
-                                                  }
-                                                  List<SeedsRow>
-                                                      riceDropdownSeedsRowList =
-                                                      snapshot.data!;
-
-                                                  return FlutterFlowDropDown<
-                                                      String>(
-                                                    controller: _model
-                                                            .riceDropdownValueController ??=
-                                                        FormFieldController<
-                                                            String>(
-                                                      _model.riceDropdownValue ??=
-                                                          ppirPpirFormsRow
-                                                              ?.ppirVariety,
+                                                ),
+                                              ],
+                                            ),
+                                            FutureBuilder<List<SeedsRow>>(
+                                              future: SeedsTable().queryRows(
+                                                queryFn: (q) => q
+                                                    .eq(
+                                                      'seed_type',
+                                                      'rice',
+                                                    )
+                                                    .order('seed',
+                                                        ascending: true),
+                                              ),
+                                              builder: (context, snapshot) {
+                                                // Customize what your widget looks like when it's loading.
+                                                if (!snapshot.hasData) {
+                                                  return Center(
+                                                    child: SizedBox(
+                                                      width: 100.0,
+                                                      height: 100.0,
+                                                      child: SpinKitRipple(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        size: 100.0,
+                                                      ),
                                                     ),
-                                                    options: List<String>.from(
+                                                  );
+                                                }
+                                                List<SeedsRow>
+                                                    riceDropdownSeedsRowList =
+                                                    snapshot.data!;
+
+                                                return FlutterFlowDropDown<
+                                                    String>(
+                                                  controller: _model
+                                                          .riceDropdownValueController ??=
+                                                      FormFieldController<
+                                                          String>(
+                                                    _model.riceDropdownValue ??=
+                                                        _model.isRice
+                                                            ? ppirPpirFormsRow
+                                                                ?.ppirSvpAct
+                                                            : ' ',
+                                                  ),
+                                                  options:
+                                                      riceDropdownSeedsRowList
+                                                          .map((e) => e.seed)
+                                                          .toList(),
+                                                  onChanged: (val) async {
+                                                    setState(() => _model
+                                                            .riceDropdownValue =
+                                                        val);
+                                                    _model.riceSelectedValue =
                                                         riceDropdownSeedsRowList
-                                                            .map((e) => e.seed)
-                                                            .toList()),
-                                                    optionLabels:
-                                                        riceDropdownSeedsRowList
-                                                            .map((e) => e.seed)
-                                                            .toList(),
-                                                    onChanged: (val) =>
-                                                        setState(() => _model
-                                                                .riceDropdownValue =
-                                                            val),
-                                                    width: double.infinity,
-                                                    height: 56.0,
-                                                    searchHintTextStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMediumFamily,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              useGoogleFonts: GoogleFonts
-                                                                      .asMap()
-                                                                  .containsKey(
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .labelMediumFamily),
-                                                            ),
-                                                    searchTextStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              useGoogleFonts: GoogleFonts
-                                                                      .asMap()
-                                                                  .containsKey(
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMediumFamily),
-                                                            ),
-                                                    textStyle: FlutterFlowTheme
-                                                            .of(context)
+                                                            .where((e) =>
+                                                                e.seed ==
+                                                                _model
+                                                                    .riceDropdownValue)
+                                                            .toList()
+                                                            .first
+                                                            .seed;
+                                                    setState(() {});
+                                                  },
+                                                  width: double.infinity,
+                                                  height: 56.0,
+                                                  searchHintTextStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMediumFamily,
+                                                            letterSpacing: 0.0,
+                                                            useGoogleFonts: GoogleFonts
+                                                                    .asMap()
+                                                                .containsKey(
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelMediumFamily),
+                                                          ),
+                                                  searchTextStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                            letterSpacing: 0.0,
+                                                            useGoogleFonts: GoogleFonts
+                                                                    .asMap()
+                                                                .containsKey(
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMediumFamily),
+                                                          ),
+                                                  textStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                            color: _model
+                                                                        .seedVarietySelectionValue ==
+                                                                    'corn'
+                                                                ? FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText
+                                                                : FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
+                                                            letterSpacing: 0.0,
+                                                            useGoogleFonts: GoogleFonts
+                                                                    .asMap()
+                                                                .containsKey(
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMediumFamily),
+                                                          ),
+                                                  hintText: FFLocalizations.of(
+                                                          context)
+                                                      .getText(
+                                                    'hgkqza7h' /* Please select... */,
+                                                  ),
+                                                  searchHintText:
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .getText(
+                                                    'za7pn038' /* Search for an item... */,
+                                                  ),
+                                                  icon: Icon(
+                                                    Icons
+                                                        .keyboard_arrow_down_rounded,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryText,
+                                                    size: 24.0,
+                                                  ),
+                                                  fillColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondaryBackground,
+                                                  elevation: 2.0,
+                                                  borderColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .alternate,
+                                                  borderWidth: 2.0,
+                                                  borderRadius: 8.0,
+                                                  margin: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          16.0, 4.0, 16.0, 4.0),
+                                                  hidesUnderline: true,
+                                                  disabled: _model
+                                                          .seedVarietySelectionValue ==
+                                                      'corn',
+                                                  isOverButton: true,
+                                                  isSearchable: true,
+                                                  isMultiSelect: false,
+                                                ).animateOnActionTrigger(
+                                                  animationsMap[
+                                                      'dropDownOnActionTriggerAnimation']!,
+                                                );
+                                              },
+                                            ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Text(
+                                                  'Select the Type of Rice ${_model.seedVarietySelectionValue == 'rice' ? ' (disabled)' : ' (active)'}',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .labelSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelSmallFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmallFamily),
+                                                      ),
+                                                ),
+                                              ],
+                                            ),
+                                            FutureBuilder<List<SeedsRow>>(
+                                              future: SeedsTable().queryRows(
+                                                queryFn: (q) => q
+                                                    .eq(
+                                                      'seed_type',
+                                                      'corn',
+                                                    )
+                                                    .order('seed',
+                                                        ascending: true),
+                                              ),
+                                              builder: (context, snapshot) {
+                                                // Customize what your widget looks like when it's loading.
+                                                if (!snapshot.hasData) {
+                                                  return Center(
+                                                    child: SizedBox(
+                                                      width: 100.0,
+                                                      height: 100.0,
+                                                      child: SpinKitRipple(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        size: 100.0,
+                                                      ),
+                                                    ),
+                                                  );
+                                                }
+                                                List<SeedsRow>
+                                                    cornDropdownSeedsRowList =
+                                                    snapshot.data!;
+
+                                                return FlutterFlowDropDown<
+                                                    String>(
+                                                  controller: _model
+                                                          .cornDropdownValueController ??=
+                                                      FormFieldController<
+                                                          String>(
+                                                    _model.cornDropdownValue ??=
+                                                        !_model.isRice
+                                                            ? ppirPpirFormsRow
+                                                                ?.ppirSvpAct
+                                                            : ' ',
+                                                  ),
+                                                  options:
+                                                      cornDropdownSeedsRowList
+                                                          .map((e) => e.seed)
+                                                          .toList(),
+                                                  onChanged: (val) async {
+                                                    setState(() => _model
+                                                            .cornDropdownValue =
+                                                        val);
+                                                    _model.cornSelectedValue =
+                                                        cornDropdownSeedsRowList
+                                                            .where((e) =>
+                                                                e.seed ==
+                                                                _model
+                                                                    .cornDropdownValue)
+                                                            .toList()
+                                                            .first
+                                                            .seed;
+                                                    setState(() {});
+                                                  },
+                                                  width: double.infinity,
+                                                  height: 56.0,
+                                                  searchHintTextStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMediumFamily,
+                                                            letterSpacing: 0.0,
+                                                            useGoogleFonts: GoogleFonts
+                                                                    .asMap()
+                                                                .containsKey(
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelMediumFamily),
+                                                          ),
+                                                  searchTextStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                            letterSpacing: 0.0,
+                                                            useGoogleFonts: GoogleFonts
+                                                                    .asMap()
+                                                                .containsKey(
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMediumFamily),
+                                                          ),
+                                                  textStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                            color: _model
+                                                                        .seedVarietySelectionValue ==
+                                                                    'rice'
+                                                                ? FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText
+                                                                : FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
+                                                            letterSpacing: 0.0,
+                                                            useGoogleFonts: GoogleFonts
+                                                                    .asMap()
+                                                                .containsKey(
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMediumFamily),
+                                                          ),
+                                                  hintText: FFLocalizations.of(
+                                                          context)
+                                                      .getText(
+                                                    'f7j9hfpn' /* Please select... */,
+                                                  ),
+                                                  searchHintText:
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .getText(
+                                                    'rxggzdj9' /* Search for an item... */,
+                                                  ),
+                                                  icon: Icon(
+                                                    Icons
+                                                        .keyboard_arrow_down_rounded,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryText,
+                                                    size: 24.0,
+                                                  ),
+                                                  fillColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondaryBackground,
+                                                  elevation: 2.0,
+                                                  borderColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .alternate,
+                                                  borderWidth: 2.0,
+                                                  borderRadius: 8.0,
+                                                  margin: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          16.0, 4.0, 16.0, 4.0),
+                                                  hidesUnderline: true,
+                                                  disabled: _model
+                                                          .seedVarietySelectionValue ==
+                                                      'rice',
+                                                  isOverButton: true,
+                                                  isSearchable: true,
+                                                  isMultiSelect: false,
+                                                ).animateOnPageLoad(animationsMap[
+                                                    'dropDownOnPageLoadAnimation']!);
+                                              },
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 22.0, 0.0, 22.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    'isRice=${_model.isRice.toString()}',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
@@ -1199,141 +1501,11 @@ class _PpirWidgetState extends State<PpirWidget> {
                                                                           context)
                                                                       .bodyMediumFamily),
                                                         ),
-                                                    hintText:
-                                                        FFLocalizations.of(
-                                                                context)
-                                                            .getText(
-                                                      'hgkqza7h' /* Please select... */,
-                                                    ),
-                                                    searchHintText:
-                                                        FFLocalizations.of(
-                                                                context)
-                                                            .getText(
-                                                      'za7pn038' /* Search for an item... */,
-                                                    ),
-                                                    icon: Icon(
-                                                      Icons
-                                                          .keyboard_arrow_down_rounded,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
-                                                      size: 24.0,
-                                                    ),
-                                                    fillColor: FlutterFlowTheme
-                                                            .of(context)
-                                                        .secondaryBackground,
-                                                    elevation: 2.0,
-                                                    borderColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .alternate,
-                                                    borderWidth: 2.0,
-                                                    borderRadius: 8.0,
-                                                    margin:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(16.0, 4.0,
-                                                                16.0, 4.0),
-                                                    hidesUnderline: true,
-                                                    isOverButton: true,
-                                                    isSearchable: true,
-                                                    isMultiSelect: false,
-                                                  );
-                                                },
-                                              ),
-                                            if (_model.isRice == false)
-                                              FutureBuilder<List<SeedsRow>>(
-                                                future: SeedsTable().queryRows(
-                                                  queryFn: (q) => q
-                                                      .eq(
-                                                        'seed_type',
-                                                        'corn',
-                                                      )
-                                                      .order('seed',
-                                                          ascending: true),
-                                                ),
-                                                builder: (context, snapshot) {
-                                                  // Customize what your widget looks like when it's loading.
-                                                  if (!snapshot.hasData) {
-                                                    return Center(
-                                                      child: SizedBox(
-                                                        width: 100.0,
-                                                        height: 100.0,
-                                                        child: SpinKitRipple(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          size: 100.0,
-                                                        ),
-                                                      ),
-                                                    );
-                                                  }
-                                                  List<SeedsRow>
-                                                      cornDropdownSeedsRowList =
-                                                      snapshot.data!;
-
-                                                  return FlutterFlowDropDown<
-                                                      String>(
-                                                    controller: _model
-                                                            .cornDropdownValueController ??=
-                                                        FormFieldController<
-                                                            String>(
-                                                      _model.cornDropdownValue ??=
-                                                          ppirPpirFormsRow
-                                                              ?.ppirVariety,
-                                                    ),
-                                                    options: List<String>.from(
-                                                        cornDropdownSeedsRowList
-                                                            .map((e) => e.seed)
-                                                            .toList()),
-                                                    optionLabels:
-                                                        cornDropdownSeedsRowList
-                                                            .map((e) => e.seed)
-                                                            .toList(),
-                                                    onChanged: (val) =>
-                                                        setState(() => _model
-                                                                .cornDropdownValue =
-                                                            val),
-                                                    width: double.infinity,
-                                                    height: 56.0,
-                                                    searchHintTextStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMediumFamily,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              useGoogleFonts: GoogleFonts
-                                                                      .asMap()
-                                                                  .containsKey(
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .labelMediumFamily),
-                                                            ),
-                                                    searchTextStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              useGoogleFonts: GoogleFonts
-                                                                      .asMap()
-                                                                  .containsKey(
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMediumFamily),
-                                                            ),
-                                                    textStyle: FlutterFlowTheme
-                                                            .of(context)
+                                                  ),
+                                                  Text(
+                                                    ' SeedVarietySelection=${_model.seedVarietySelectionValue}',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
@@ -1348,49 +1520,325 @@ class _PpirWidgetState extends State<PpirWidget> {
                                                                           context)
                                                                       .bodyMediumFamily),
                                                         ),
-                                                    hintText:
-                                                        FFLocalizations.of(
-                                                                context)
-                                                            .getText(
-                                                      'niuf5yh1' /* Please select... */,
-                                                    ),
-                                                    searchHintText:
-                                                        FFLocalizations.of(
-                                                                context)
-                                                            .getText(
-                                                      '7v7xn67o' /* Search for an item... */,
-                                                    ),
-                                                    icon: Icon(
-                                                      Icons
-                                                          .keyboard_arrow_down_rounded,
-                                                      color:
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Text(
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'tm2j0mp6' /* DR= */,
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
+                                                ),
+                                                Expanded(
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(8.0, 0.0,
+                                                                8.0, 0.0),
+                                                    child: TextFormField(
+                                                      controller: _model
+                                                          .azzTextController1,
+                                                      focusNode:
+                                                          _model.azzFocusNode1,
+                                                      autofocus: false,
+                                                      readOnly: true,
+                                                      obscureText: false,
+                                                      decoration:
+                                                          InputDecoration(
+                                                        labelText: _model
+                                                            .riceDropdownValue,
+                                                        labelStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .labelMediumFamily),
+                                                                ),
+                                                        hintStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .labelMediumFamily),
+                                                                ),
+                                                        enabledBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .alternate,
+                                                            width: 2.0,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
+                                                        focusedBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primary,
+                                                            width: 2.0,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
+                                                        errorBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .error,
+                                                            width: 2.0,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
+                                                        focusedErrorBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .error,
+                                                            width: 2.0,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
+                                                      ),
+                                                      style:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .secondaryText,
-                                                      size: 24.0,
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyMediumFamily),
+                                                              ),
+                                                      validator: _model
+                                                          .azzTextController1Validator
+                                                          .asValidator(context),
                                                     ),
-                                                    fillColor: FlutterFlowTheme
-                                                            .of(context)
-                                                        .secondaryBackground,
-                                                    elevation: 2.0,
-                                                    borderColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .alternate,
-                                                    borderWidth: 2.0,
-                                                    borderRadius: 8.0,
-                                                    margin:
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Text(
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    '3q6tilqg' /* DC= */,
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
+                                                ),
+                                                Expanded(
+                                                  child: Padding(
+                                                    padding:
                                                         const EdgeInsetsDirectional
-                                                            .fromSTEB(16.0, 4.0,
-                                                                16.0, 4.0),
-                                                    hidesUnderline: true,
-                                                    isOverButton: true,
-                                                    isSearchable: true,
-                                                    isMultiSelect: false,
-                                                  );
-                                                },
-                                              ),
-                                          ],
+                                                            .fromSTEB(8.0, 0.0,
+                                                                8.0, 0.0),
+                                                    child: TextFormField(
+                                                      controller: _model
+                                                          .azzTextController2,
+                                                      focusNode:
+                                                          _model.azzFocusNode2,
+                                                      autofocus: false,
+                                                      readOnly: true,
+                                                      obscureText: false,
+                                                      decoration:
+                                                          InputDecoration(
+                                                        labelText: _model
+                                                            .cornDropdownValue,
+                                                        labelStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .labelMediumFamily),
+                                                                ),
+                                                        hintStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .labelMediumFamily),
+                                                                ),
+                                                        enabledBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .alternate,
+                                                            width: 2.0,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
+                                                        focusedBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primary,
+                                                            width: 2.0,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
+                                                        errorBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .error,
+                                                            width: 2.0,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
+                                                        focusedErrorBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .error,
+                                                            width: 2.0,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
+                                                      ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyMediumFamily),
+                                                              ),
+                                                      validator: _model
+                                                          .azzTextController2Validator
+                                                          .asValidator(context),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ]
+                                              .divide(const SizedBox(height: 20.0))
+                                              .around(const SizedBox(height: 20.0)),
                                         ),
                                       ),
                                       Padding(
@@ -1759,29 +2207,6 @@ class _PpirWidgetState extends State<PpirWidget> {
                                               .primaryText,
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 12.0),
-                                        child: Text(
-                                          FFLocalizations.of(context).getText(
-                                            'vp0zoc5w' /* Signatures */,
-                                          ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyLarge
-                                              .override(
-                                                fontFamily:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyLargeFamily,
-                                                letterSpacing: 0.0,
-                                                useGoogleFonts: GoogleFonts
-                                                        .asMap()
-                                                    .containsKey(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyLargeFamily),
-                                              ),
-                                        ),
-                                      ),
                                       TextFormField(
                                         controller: _model
                                             .confirmedBySigFieldTextController,
@@ -2006,15 +2431,6 @@ class _PpirWidgetState extends State<PpirWidget> {
                                           validator: _model
                                               .confirmedByNameFieldTextControllerValidator
                                               .asValidator(context),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 16.0, 0.0, 16.0),
-                                        child: Divider(
-                                          thickness: 2.0,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
                                         ),
                                       ),
                                       Align(
@@ -2364,6 +2780,15 @@ class _PpirWidgetState extends State<PpirWidget> {
                                           ),
                                         ),
                                       ),
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 16.0, 0.0, 16.0),
+                                        child: Divider(
+                                          thickness: 2.0,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -2373,81 +2798,142 @@ class _PpirWidgetState extends State<PpirWidget> {
                         ),
                       ),
                     ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(24.0),
-                          child: Container(
-                            width: 50.0,
-                            height: 50.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context).error,
-                              shape: BoxShape.circle,
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          FFButtonWidget(
+                            onPressed: () async {
+                              var confirmDialogResponse =
+                                  await showDialog<bool>(
+                                        context: context,
+                                        builder: (alertDialogContext) {
+                                          return AlertDialog(
+                                            title: const Text('Info'),
+                                            content: const Text(
+                                                'This will cancel your current progress in the tasks. Are you sure to cancel?'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, false),
+                                                child: const Text('Cancel'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, true),
+                                                child: const Text('Confirm'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      ) ??
+                                      false;
+                              if (confirmDialogResponse) {
+                                context.pushNamed('dashboard');
+                              }
+                            },
+                            text: FFLocalizations.of(context).getText(
+                              '6si6e5tk' /* Cancel */,
                             ),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                var confirmDialogResponse =
-                                    await showDialog<bool>(
-                                          context: context,
-                                          builder: (alertDialogContext) {
-                                            return AlertDialog(
-                                              title: const Text('Info'),
-                                              content: const Text(
-                                                  'This will cancel your current progress in the tasks. Are you sure to cancel?'),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext,
-                                                          false),
-                                                  child: const Text('Cancel'),
-                                                ),
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext,
-                                                          true),
-                                                  child: const Text('Confirm'),
-                                                ),
-                                              ],
-                                            );
-                                          },
-                                        ) ??
-                                        false;
-                                if (confirmDialogResponse) {
-                                  context.pushNamed('dashboard');
-                                }
-                              },
-                              child: const Icon(
-                                Icons.close_sharp,
-                                color: Colors.white,
-                                size: 35.0,
+                            icon: const Icon(
+                              Icons.backspace_rounded,
+                              size: 15.0,
+                            ),
+                            options: FFButtonOptions(
+                              height: 40.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 24.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).error,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .titleSmallFamily,
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .titleSmallFamily),
+                                  ),
+                              elevation: 3.0,
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
                               ),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(24.0),
-                          child: Container(
-                            width: 50.0,
-                            height: 50.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context).primary,
-                              shape: BoxShape.circle,
-                            ),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
+                          FFButtonWidget(
+                            onPressed: () async {
+                              var confirmDialogResponse =
+                                  await showDialog<bool>(
+                                        context: context,
+                                        builder: (alertDialogContext) {
+                                          return AlertDialog(
+                                            title: const Text('Info'),
+                                            content: const Text(
+                                                'Are you sure to that the above data is correct?'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, false),
+                                                child: const Text('Cancel'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, true),
+                                                child: const Text('Confirm'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      ) ??
+                                      false;
+                              if (confirmDialogResponse) {
+                                await PpirFormsTable().update(
+                                  data: {
+                                    'track_last_coord': '11',
+                                    'track_date_time': '11',
+                                    'track_total_area': '11',
+                                    'track_total_distance': 'distance',
+                                    'ppir_svp_act':
+                                        _model.seedVarietySelectionValue,
+                                  },
+                                  matchingRows: (rows) => rows.eq(
+                                    'task_id',
+                                    widget.taskId,
+                                  ),
+                                );
+                                if (_model.seedVarietySelectionValue ==
+                                    'rice') {
+                                  await PpirFormsTable().update(
+                                    data: {
+                                      'ppir_variety': _model.riceDropdownValue,
+                                    },
+                                    matchingRows: (rows) => rows.eq(
+                                      'task_id',
+                                      widget.taskId,
+                                    ),
+                                  );
+                                } else {
+                                  await PpirFormsTable().update(
+                                    data: {
+                                      'ppir_variety': _model.cornDropdownValue,
+                                    },
+                                    matchingRows: (rows) => rows.eq(
+                                      'task_id',
+                                      widget.taskId,
+                                    ),
+                                  );
+                                }
+
                                 await TasksTable().update(
                                   data: {
                                     'status': 'completed',
@@ -2457,78 +2943,64 @@ class _PpirWidgetState extends State<PpirWidget> {
                                     widget.taskId,
                                   ),
                                 );
-                                await PpirFormsTable().update(
-                                  data: {
-                                    'task_id': '',
-                                    'ppir_insuranceid': '',
-                                    'ppir_assignmentid': '',
-                                    'ppir_farmername': '',
-                                    'ppir_address': '',
-                                    'ppir_farmertype': '',
-                                    'ppir_mobileno': '',
-                                    'ppir_groupname': '',
-                                    'ppir_groupaddress': '',
-                                    'ppir_lendername': '',
-                                    'ppir_lenderaddress': '',
-                                    'ppir_cicno': '',
-                                    'ppir_farmloc': '',
-                                    'ppir_north': '',
-                                    'ppir_south': '',
-                                    'ppir_east': '',
-                                    'ppir_west': '',
-                                    'ppir_att_1': '',
-                                    'ppir_att_2': '',
-                                    'ppir_att_3': '',
-                                    'ppir_att_4': '',
-                                    'ppir_area_aci': '',
-                                    'ppir_area_act': '',
-                                    'ppir_dopds_aci': '',
-                                    'ppir_dopds_act': '',
-                                    'ppir_doptp_aci': '',
-                                    'ppir_doptp_act': '',
-                                    'ppir_svp_aci': '',
-                                    'ppir_svp_act': '',
-                                    'ppir_variety': '',
-                                    'ppir_stagecrop': '',
-                                    'ppir_remarks': '',
-                                    'ppir_name_insured': '',
-                                    'ppir_name_iuia': '',
-                                    'ppir_sig_insured': '',
-                                    'ppir_sig_iuia': '',
-                                  },
-                                  matchingRows: (rows) => rows.eq(
-                                    'task_id',
-                                    widget.taskId,
-                                  ),
-                                );
+                              }
 
-                                context.pushNamed(
-                                  'form_success',
-                                  queryParameters: {
-                                    'assignmentId': serializeParam(
-                                      ppirPpirFormsRow?.ppirAssignmentid,
-                                      ParamType.String,
-                                    ),
-                                  }.withoutNulls,
-                                  extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
-                                      hasTransition: true,
-                                      transitionType: PageTransitionType.scale,
-                                      alignment: Alignment.bottomCenter,
-                                      duration: Duration(milliseconds: 200),
-                                    ),
-                                  },
-                                );
-                              },
-                              child: const Icon(
-                                Icons.check_rounded,
-                                color: Colors.white,
-                                size: 35.0,
+                              context.pushNamed(
+                                'form_success',
+                                queryParameters: {
+                                  'taskId': serializeParam(
+                                    ppirPpirFormsRow?.taskId,
+                                    ParamType.String,
+                                  ),
+                                }.withoutNulls,
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: const TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType: PageTransitionType.scale,
+                                    alignment: Alignment.bottomCenter,
+                                    duration: Duration(milliseconds: 200),
+                                  ),
+                                },
+                              );
+
+                              setState(() {});
+                            },
+                            text: FFLocalizations.of(context).getText(
+                              'vxop43vj' /* Submit */,
+                            ),
+                            icon: const Icon(
+                              Icons.check_sharp,
+                              size: 15.0,
+                            ),
+                            options: FFButtonOptions(
+                              height: 40.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 24.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).primary,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .titleSmallFamily,
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .titleSmallFamily),
+                                  ),
+                              elevation: 3.0,
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
                               ),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ],
                 ),

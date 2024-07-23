@@ -275,8 +275,16 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // messages
   {
-    'lpnik1fh': {
+    'emndaizi': {
       'en': 'Type here to respond...',
+      'tl': '',
+    },
+    'rbq8h8d1': {
+      'en': 'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',
+      'tl': '',
+    },
+    'yav59de8': {
+      'en': 'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',
       'tl': '',
     },
     'zxojetjq': {
@@ -588,20 +596,24 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Search for an item...',
       'tl': '',
     },
-    'nmjyhx0m': {
-      'en': 'Corn Options',
+    'kd2ri9yq': {
+      'en': 'this is the rice',
       'tl': '',
     },
-    '0as0cy4p': {
-      'en': 'c',
-      'tl': '',
-    },
-    'niuf5yh1': {
+    'f7j9hfpn': {
       'en': 'Please select...',
       'tl': '',
     },
-    '7v7xn67o': {
+    'rxggzdj9': {
       'en': 'Search for an item...',
+      'tl': '',
+    },
+    'tm2j0mp6': {
+      'en': 'DR=',
+      'tl': '',
+    },
+    '3q6tilqg': {
+      'en': 'DC=',
       'tl': '',
     },
     '4x78xwmh': {
@@ -614,10 +626,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'msrak9du': {
       'en': 'Actual Date of Planting (TS)',
-      'tl': '',
-    },
-    'vp0zoc5w': {
-      'en': 'Signatures',
       'tl': '',
     },
     '762st5cb': {
@@ -638,6 +646,14 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '2n6hawkd': {
       'en': 'Signature',
+      'tl': '',
+    },
+    '6si6e5tk': {
+      'en': 'Cancel',
+      'tl': '',
+    },
+    'vxop43vj': {
+      'en': 'Submit',
       'tl': '',
     },
     '4ho4omqk': {
@@ -811,94 +827,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
-  // Details47PropertyListing
-  {
-    'gm5lg2vm': {
-      'en': 'Quaint Studio SOHO',
-      'tl': '',
-    },
-    '6nfu1039': {
-      'en': 'Wooster St.',
-      'tl': '',
-    },
-    'qzo7zkm1': {
-      'en': ' || ',
-      'tl': '',
-    },
-    '2vvq05h5': {
-      'en': '0.8 mi',
-      'tl': '',
-    },
-    '9k3bz27h': {
-      'en': 'Available',
-      'tl': '',
-    },
-    '46u0hwtw': {
-      'en': '4 beds',
-      'tl': '',
-    },
-    'o6ph6ha7': {
-      'en': '2 baths',
-      'tl': '',
-    },
-    '2svktyr6': {
-      'en': '1,250 sqft',
-      'tl': '',
-    },
-    's603jkwe': {
-      'en': 'Rate',
-      'tl': '',
-    },
-    '1909d0zv': {
-      'en': '\$2,520',
-      'tl': '',
-    },
-    '3279zeps': {
-      'en': 'per month',
-      'tl': '',
-    },
-    'jyxe5x7t': {
-      'en': 'Inquire',
-      'tl': '',
-    },
-    'ua3kq8vl': {
-      'en': 'Hosted By',
-      'tl': '',
-    },
-    'cgs4dc1b': {
-      'en': 'Henry Lewis',
-      'tl': '',
-    },
-    '23z4sr8y': {
-      'en': 'henry@realestate.com',
-      'tl': '',
-    },
-    'mdg5p505': {
-      'en': 'Description',
-      'tl': '',
-    },
-    '140ee396': {
-      'en':
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ',
-      'tl': '',
-    },
-    'emow95sf': {
-      'en': 'Address',
-      'tl': '',
-    },
-    'n4wdpfa2': {
-      'en': '123 Disney Way, New York, NY 10294',
-      'tl': '',
-    },
-    'wy99dcc2': {
-      'en': 'Map goes here...',
-      'tl': '',
-    },
-    'ni951uts': {
-      'en': 'Home',
-      'tl': '',
-    },
-  },
   // geotagCopy
   {
     '9mvo6120': {
@@ -934,6 +862,148 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     '24h3f641': {
+      'en': 'Home',
+      'tl': '',
+    },
+  },
+  // ppirCopy
+  {
+    '8vjgr2lb': {
+      'en': 'PPIR Form',
+      'tl': '',
+    },
+    'gnuhl5kg': {
+      'en': 'Geotag Information',
+      'tl': '',
+    },
+    'psshfex4': {
+      'en': 'Last Coordinates',
+      'tl': '',
+    },
+    'rr93i3cq': {
+      'en': 'Date Time',
+      'tl': '',
+    },
+    'w7j1bwgc': {
+      'en': 'Total Hectares',
+      'tl': '',
+    },
+    'jaoyouw4': {
+      'en': 'Farm Location',
+      'tl': '',
+    },
+    'ys92arht': {
+      'en': 'Geotag Control',
+      'tl': '',
+    },
+    '0f296y90': {
+      'en': 'Repeat Again',
+      'tl': '',
+    },
+    'x8nohpy6': {
+      'en': 'View Geotag',
+      'tl': '',
+    },
+    'h8eofgpb': {
+      'en': 'Seed Variety',
+      'tl': '',
+    },
+    'yyjr8iaw': {
+      'en': 'rice',
+      'tl': '',
+    },
+    'zwe99a3m': {
+      'en': 'corn',
+      'tl': '',
+    },
+    'wmhbg4ae': {
+      'en': 'this is the rice',
+      'tl': '',
+    },
+    'ne24rpfv': {
+      'en': 'Please select...',
+      'tl': '',
+    },
+    'km9ubv65': {
+      'en': 'Search for an item...',
+      'tl': '',
+    },
+    '265pg9q3': {
+      'en': 'Corn Options',
+      'tl': '',
+    },
+    'het77emi': {
+      'en': 'c',
+      'tl': '',
+    },
+    '9dqjnq6f': {
+      'en': 'Please select...',
+      'tl': '',
+    },
+    '6jp5h0rv': {
+      'en': 'Search for an item...',
+      'tl': '',
+    },
+    'wr77bqlw': {
+      'en': 'Actual Area Planted',
+      'tl': '',
+    },
+    '750t3ie5': {
+      'en': 'Actual Date of Planting (DS)',
+      'tl': '',
+    },
+    'ay9zaj06': {
+      'en': 'Actual Date of Planting (TS)',
+      'tl': '',
+    },
+    'cs1kh2u2': {
+      'en': 'Remarks',
+      'tl': '',
+    },
+    'qp2cxhu8': {
+      'en': 'Prepared by',
+      'tl': '',
+    },
+    'cvbc4ziv': {
+      'en': 'Signature',
+      'tl': '',
+    },
+    'yifqrtvz': {
+      'en': 'Confirm by',
+      'tl': '',
+    },
+    'cx6wsjmw': {
+      'en': 'Signature',
+      'tl': '',
+    },
+    'hdh6xlcb': {
+      'en': 'Home',
+      'tl': '',
+    },
+  },
+  // geotaggingV2
+  {
+    'wkawnowa': {
+      'en': 'A',
+      'tl': '',
+    },
+    '13mvml38': {
+      'en': 'B',
+      'tl': '',
+    },
+    'a5yu1u02': {
+      'en': 'C',
+      'tl': '',
+    },
+    'brrixmb6': {
+      'en': 'Start',
+      'tl': '',
+    },
+    'r1zjbuy2': {
+      'en': 'Finish',
+      'tl': '',
+    },
+    '8sw5dww3': {
       'en': 'Home',
       'tl': '',
     },
@@ -1031,12 +1101,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Retry signature',
       'tl': '',
     },
-    '6si6e5tk': {
+    'ruciwbye': {
       'en': 'Save',
       'tl': '',
     },
   },
-  // ImageView
+  // sliderContainer
   {
     '4dvpzqez': {
       'en': 'Geotagging',
@@ -1085,7 +1155,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // Miscellaneous
   {
-    '0ftylq1b': {
+    'mb684p3z': {
       'en':
           'PCIC Mobile Application needs access to your camera to enable Geotagging. This will help us accurately tag photos with your current location for better service delivery and documentation. Please grant camera access to continue.',
       'tl': '',

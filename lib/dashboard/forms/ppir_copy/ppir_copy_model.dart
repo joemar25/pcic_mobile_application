@@ -1,17 +1,13 @@
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
-import 'ppir_widget.dart' show PpirWidget;
+import 'ppir_copy_widget.dart' show PpirCopyWidget;
 import 'package:flutter/material.dart';
 
-class PpirModel extends FlutterFlowModel<PpirWidget> {
+class PpirCopyModel extends FlutterFlowModel<PpirCopyWidget> {
   ///  Local state fields for this page.
 
   bool isRice = true;
-
-  String? riceSelectedValue;
-
-  String? cornSelectedValue;
 
   ///  State fields for stateful widgets in this page.
 
@@ -36,20 +32,12 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
   String? Function(BuildContext, String?)? trackFarmlocTextControllerValidator;
   // State field(s) for seedVarietySelection widget.
   FormFieldController<String>? seedVarietySelectionValueController;
-  // State field(s) for riceDropdown widget.
-  String? riceDropdownValue;
-  FormFieldController<String>? riceDropdownValueController;
-  // State field(s) for cornDropdown widget.
-  String? cornDropdownValue;
-  FormFieldController<String>? cornDropdownValueController;
-  // State field(s) for azz widget.
-  FocusNode? azzFocusNode1;
-  TextEditingController? azzTextController1;
-  String? Function(BuildContext, String?)? azzTextController1Validator;
-  // State field(s) for azz widget.
-  FocusNode? azzFocusNode2;
-  TextEditingController? azzTextController2;
-  String? Function(BuildContext, String?)? azzTextController2Validator;
+  // State field(s) for riceDropdownA widget.
+  String? riceDropdownAValue;
+  FormFieldController<String>? riceDropdownAValueController;
+  // State field(s) for cornDropdownB widget.
+  String? cornDropdownBValue;
+  FormFieldController<String>? cornDropdownBValueController;
   // State field(s) for area_planted_field widget.
   FocusNode? areaPlantedFieldFocusNode;
   TextEditingController? areaPlantedFieldTextController;
@@ -80,12 +68,8 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
   TextEditingController? preparedByNameFieldTextController;
   String? Function(BuildContext, String?)?
       preparedByNameFieldTextControllerValidator;
-  // Stores action output result for [Backend Call - Update Row(s)] action in submitButton widget.
+  // Stores action output result for [Backend Call - Update Row(s)] action in Icon widget.
   List<PpirFormsRow>? updatedPPIR;
-  // Stores action output result for [Backend Call - Update Row(s)] action in submitButton widget.
-  List<PpirFormsRow>? riceVariety;
-  // Stores action output result for [Backend Call - Update Row(s)] action in submitButton widget.
-  List<PpirFormsRow>? cornVariety;
 
   @override
   void initState(BuildContext context) {}
@@ -104,12 +88,6 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
 
     trackFarmlocFocusNode?.dispose();
     trackFarmlocTextController?.dispose();
-
-    azzFocusNode1?.dispose();
-    azzTextController1?.dispose();
-
-    azzFocusNode2?.dispose();
-    azzTextController2?.dispose();
 
     areaPlantedFieldFocusNode?.dispose();
     areaPlantedFieldTextController?.dispose();

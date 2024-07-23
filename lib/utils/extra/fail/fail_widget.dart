@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'fail_model.dart';
 export 'fail_model.dart';
 
@@ -152,8 +153,6 @@ class _FailWidgetState extends State<FailWidget> with TickerProviderStateMixin {
         ],
       ),
     });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -211,48 +210,66 @@ class _FailWidgetState extends State<FailWidget> with TickerProviderStateMixin {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Align(
-                              alignment: const AlignmentDirectional(0.0, -1.0),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 44.0, 0.0, 0.0),
-                                child: Container(
-                                  width: 120.0,
-                                  height: 120.0,
-                                  decoration: BoxDecoration(
-                                    color: const Color(0x77C4454D),
-                                    shape: BoxShape.circle,
-                                    border: Border.all(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 4.0,
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Container(
-                                      width: 140.0,
-                                      height: 140.0,
-                                      decoration: BoxDecoration(
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        shape: BoxShape.circle,
-                                        border: Border.all(
-                                          color: FlutterFlowTheme.of(context)
-                                              .accent2,
-                                          width: 4.0,
-                                        ),
-                                      ),
-                                      child: Icon(
-                                        Icons.gpp_bad,
-                                        color:
-                                            FlutterFlowTheme.of(context).info,
-                                        size: 64.0,
-                                      ),
-                                    ),
-                                  ),
-                                ).animateOnPageLoad(animationsMap[
-                                    'containerOnPageLoadAnimation']!),
+                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              child: Lottie.asset(
+                                'assets/lottie_animations/Animation_-_1721725004110.json',
+                                width: 150.0,
+                                height: 149.0,
+                                fit: BoxFit.cover,
+                                animate: true,
                               ),
                             ),
+                            if (responsiveVisibility(
+                              context: context,
+                              phone: false,
+                              tablet: false,
+                              tabletLandscape: false,
+                              desktop: false,
+                            ))
+                              Align(
+                                alignment: const AlignmentDirectional(0.0, -1.0),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 44.0, 0.0, 0.0),
+                                  child: Container(
+                                    width: 120.0,
+                                    height: 120.0,
+                                    decoration: BoxDecoration(
+                                      color: const Color(0x77C4454D),
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        width: 4.0,
+                                      ),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Container(
+                                        width: 140.0,
+                                        height: 140.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          shape: BoxShape.circle,
+                                          border: Border.all(
+                                            color: FlutterFlowTheme.of(context)
+                                                .accent2,
+                                            width: 4.0,
+                                          ),
+                                        ),
+                                        child: Icon(
+                                          Icons.gpp_bad,
+                                          color:
+                                              FlutterFlowTheme.of(context).info,
+                                          size: 64.0,
+                                        ),
+                                      ),
+                                    ),
+                                  ).animateOnPageLoad(animationsMap[
+                                      'containerOnPageLoadAnimation']!),
+                                ),
+                              ),
                             Align(
                               alignment: const AlignmentDirectional(0.0, -1.0),
                               child: Text(

@@ -25,4 +25,10 @@ class FFAppState extends ChangeNotifier {
   set routeStarted(bool value) {
     _routeStarted = value;
   }
+
+  bool _DEBUG = false;
+  bool get DEBUG => _DEBUG;
+  set DEBUG(bool value) {
+    _DEBUG = value;
+  }
 }

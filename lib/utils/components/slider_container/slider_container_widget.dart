@@ -3,27 +3,29 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'image_view_model.dart';
-export 'image_view_model.dart';
+import 'slider_container_model.dart';
+export 'slider_container_model.dart';
 
-class ImageViewWidget extends StatefulWidget {
-  const ImageViewWidget({
+class SliderContainerWidget extends StatefulWidget {
+  const SliderContainerWidget({
     super.key,
     required this.title,
     required this.body,
     required this.taskId,
-  });
+    String? ppirSvpActInit,
+  }) : ppirSvpActInit = ppirSvpActInit ?? 'rice';
 
   final String? title;
   final String? body;
   final String? taskId;
+  final String ppirSvpActInit;
 
   @override
-  State<ImageViewWidget> createState() => _ImageViewWidgetState();
+  State<SliderContainerWidget> createState() => _SliderContainerWidgetState();
 }
 
-class _ImageViewWidgetState extends State<ImageViewWidget> {
-  late ImageViewModel _model;
+class _SliderContainerWidgetState extends State<SliderContainerWidget> {
+  late SliderContainerModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -34,15 +36,13 @@ class _ImageViewWidgetState extends State<ImageViewWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ImageViewModel());
+    _model = createModel(context, () => SliderContainerModel());
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.isGeotagStart = false;
       setState(() {});
     });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

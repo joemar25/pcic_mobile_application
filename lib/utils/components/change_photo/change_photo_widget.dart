@@ -31,8 +31,6 @@ class _ChangePhotoWidgetState extends State<ChangePhotoWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ChangePhotoModel());
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -68,7 +66,7 @@ class _ChangePhotoWidgetState extends State<ChangePhotoWidget> {
                   alignment: const AlignmentDirectional(0.0, 1.0),
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(20.0, 8.0, 20.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
@@ -82,14 +80,14 @@ class _ChangePhotoWidgetState extends State<ChangePhotoWidget> {
                             color:
                                 FlutterFlowTheme.of(context).primaryBackground,
                           ),
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 4.0, 16.0, 0.0),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 10.0, 0.0, 0.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
                                   child: Text(
                                     FFLocalizations.of(context).getText(
                                       'n5sjoaqa' /* Change Photo */,
@@ -108,8 +106,8 @@ class _ChangePhotoWidgetState extends State<ChangePhotoWidget> {
                                         ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                           Row(
                             mainAxisSize: MainAxisSize.max,

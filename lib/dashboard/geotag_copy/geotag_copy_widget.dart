@@ -44,7 +44,6 @@ class _GeotagCopyWidgetState extends State<GeotagCopyWidget> {
 
     getCurrentUserLocation(defaultLocation: const LatLng(0.0, 0.0), cached: true)
         .then((loc) => setState(() => currentUserLocationValue = loc));
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

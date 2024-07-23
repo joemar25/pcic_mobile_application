@@ -20,8 +20,8 @@ class AttemptsRow extends SupabaseDataRow {
   String? get taskId => getField<String>('task_id');
   set taskId(String? value) => setField<String>('task_id', value);
 
-  int get attemptNumber => getField<int>('attempt_number')!;
-  set attemptNumber(int value) => setField<int>('attempt_number', value);
+  int? get attemptNumber => getField<int>('attempt_number');
+  set attemptNumber(int? value) => setField<int>('attempt_number', value);
 
   DateTime? get attemptDate => getField<DateTime>('attempt_date');
   set attemptDate(DateTime? value) => setField<DateTime>('attempt_date', value);
@@ -37,4 +37,7 @@ class AttemptsRow extends SupabaseDataRow {
 
   DateTime? get updatedAt => getField<DateTime>('updated_at');
   set updatedAt(DateTime? value) => setField<DateTime>('updated_at', value);
+
+  bool? get isUpdating => getField<bool>('is_updating');
+  set isUpdating(bool? value) => setField<bool>('is_updating', value);
 }

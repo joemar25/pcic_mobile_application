@@ -47,8 +47,8 @@ class TasksRow extends SupabaseDataRow {
   String? get taskType => getField<String>('task_type');
   set taskType(String? value) => setField<String>('task_type', value);
 
-  int get attemptCount => getField<int>('attempt_count')!;
-  set attemptCount(int value) => setField<int>('attempt_count', value);
+  int? get attemptCount => getField<int>('attempt_count');
+  set attemptCount(int? value) => setField<int>('attempt_count', value);
 
   DateTime? get createdAt => getField<DateTime>('created_at');
   set createdAt(DateTime? value) => setField<DateTime>('created_at', value);
@@ -58,4 +58,7 @@ class TasksRow extends SupabaseDataRow {
 
   bool? get isDeleted => getField<bool>('is_deleted');
   set isDeleted(bool? value) => setField<bool>('is_deleted', value);
+
+  bool? get isUpdating => getField<bool>('is_updating');
+  set isUpdating(bool? value) => setField<bool>('is_updating', value);
 }

@@ -2,6 +2,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'empty_lists_model.dart';
 export 'empty_lists_model.dart';
 
@@ -30,8 +31,6 @@ class _EmptyListsWidgetState extends State<EmptyListsWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => EmptyListsModel());
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -47,6 +46,13 @@ class _EmptyListsWidgetState extends State<EmptyListsWidget> {
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        Lottie.asset(
+          'assets/lottie_animations/Animation_-_1721726542727.json',
+          width: 150.0,
+          height: 130.0,
+          fit: BoxFit.cover,
+          animate: true,
+        ),
         Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,

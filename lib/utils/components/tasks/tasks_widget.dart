@@ -68,8 +68,6 @@ class _TasksWidgetState extends State<TasksWidget>
           !anim.applyInitialState),
       this,
     );
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
