@@ -271,6 +271,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'geotaggingV2Copy',
+          path: '/geotaggingV2Copy',
+          builder: (context, params) => GeotaggingV2CopyWidget(
+            taskId: params.getParam(
+              'taskId',
+              ParamType.String,
+            ),
+            taskType: params.getParam(
+              'taskType',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

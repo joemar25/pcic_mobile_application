@@ -991,7 +991,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'B',
       'tl': '',
     },
-    'a5yu1u02': {
+    '9f0iuvhd': {
       'en': 'C',
       'tl': '',
     },
@@ -999,11 +999,38 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Start',
       'tl': '',
     },
-    'r1zjbuy2': {
+    '9cprrmc5': {
       'en': 'Finish',
       'tl': '',
     },
     '8sw5dww3': {
+      'en': 'Home',
+      'tl': '',
+    },
+  },
+  // geotaggingV2Copy
+  {
+    'uqasj1v6': {
+      'en': 'A',
+      'tl': '',
+    },
+    'g2bxjn8j': {
+      'en': 'B',
+      'tl': '',
+    },
+    'a5yu1u02': {
+      'en': 'C',
+      'tl': '',
+    },
+    '5fhm7wcy': {
+      'en': 'Start',
+      'tl': '',
+    },
+    'r1zjbuy2': {
+      'en': 'Finish',
+      'tl': '',
+    },
+    '7klrpw4p': {
       'en': 'Home',
       'tl': '',
     },

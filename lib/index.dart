@@ -25,3 +25,5 @@ export '/dashboard/geotag_copy/geotag_copy_widget.dart' show GeotagCopyWidget;
 export '/dashboard/forms/ppir_copy/ppir_copy_widget.dart' show PpirCopyWidget;
 export '/dashboard/geotagging_v2/geotagging_v2_widget.dart'
     show GeotaggingV2Widget;
+export '/dashboard/geotagging_v2_copy/geotagging_v2_copy_widget.dart'
+    show GeotaggingV2CopyWidget;

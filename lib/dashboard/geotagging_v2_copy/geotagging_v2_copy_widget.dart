@@ -2,17 +2,15 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'geotagging_v2_model.dart';
-export 'geotagging_v2_model.dart';
+import 'geotagging_v2_copy_model.dart';
+export 'geotagging_v2_copy_model.dart';
 
-class GeotaggingV2Widget extends StatefulWidget {
-  const GeotaggingV2Widget({
+class GeotaggingV2CopyWidget extends StatefulWidget {
+  const GeotaggingV2CopyWidget({
     super.key,
     required this.taskId,
     required this.taskType,
@@ -22,18 +20,18 @@ class GeotaggingV2Widget extends StatefulWidget {
   final String? taskType;
 
   @override
-  State<GeotaggingV2Widget> createState() => _GeotaggingV2WidgetState();
+  State<GeotaggingV2CopyWidget> createState() => _GeotaggingV2CopyWidgetState();
 }
 
-class _GeotaggingV2WidgetState extends State<GeotaggingV2Widget> {
-  late GeotaggingV2Model _model;
+class _GeotaggingV2CopyWidgetState extends State<GeotaggingV2CopyWidget> {
+  late GeotaggingV2CopyModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => GeotaggingV2Model());
+    _model = createModel(context, () => GeotaggingV2CopyModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -75,11 +73,12 @@ class _GeotaggingV2WidgetState extends State<GeotaggingV2Widget> {
             ),
           );
         }
-        List<PpirFormsRow> geotaggingV2PpirFormsRowList = snapshot.data!;
+        List<PpirFormsRow> geotaggingV2CopyPpirFormsRowList = snapshot.data!;
 
-        final geotaggingV2PpirFormsRow = geotaggingV2PpirFormsRowList.isNotEmpty
-            ? geotaggingV2PpirFormsRowList.first
-            : null;
+        final geotaggingV2CopyPpirFormsRow =
+            geotaggingV2CopyPpirFormsRowList.isNotEmpty
+                ? geotaggingV2CopyPpirFormsRowList.first
+                : null;
         return GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
               ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -101,13 +100,11 @@ class _GeotaggingV2WidgetState extends State<GeotaggingV2Widget> {
                           child: Stack(
                             alignment: const AlignmentDirectional(0.0, 0.0),
                             children: [
-                              const SizedBox(
+                              Image.network(
+                                'https://images.unsplash.com/photo-1578403881967-084f9885be74?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHw1fHxtYXB8ZW58MHx8fHwxNzIxNzQ3NjgwfDA&ixlib=rb-4.0.3&q=80&w=400',
                                 width: double.infinity,
-                                height: 600.0,
-                                child: custom_widgets.GeotagMap(
-                                  width: double.infinity,
-                                  height: 600.0,
-                                ),
+                                height: double.infinity,
+                                fit: BoxFit.cover,
                               ),
                               Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -145,7 +142,7 @@ class _GeotaggingV2WidgetState extends State<GeotaggingV2Widget> {
                                                   'task_details',
                                                   queryParameters: {
                                                     'taskId': serializeParam(
-                                                      geotaggingV2PpirFormsRow
+                                                      geotaggingV2CopyPpirFormsRow
                                                           ?.taskId,
                                                       ParamType.String,
                                                     ),
@@ -212,7 +209,8 @@ class _GeotaggingV2WidgetState extends State<GeotaggingV2Widget> {
                             children: [
                               Text(
                                 valueOrDefault<String>(
-                                  geotaggingV2PpirFormsRow?.ppirAssignmentid,
+                                  geotaggingV2CopyPpirFormsRow
+                                      ?.ppirAssignmentid,
                                   'Assignment',
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -268,7 +266,7 @@ class _GeotaggingV2WidgetState extends State<GeotaggingV2Widget> {
                               24.0, 5.0, 0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
-                              'wkawnowa' /* A */,
+                              'uqasj1v6' /* A */,
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .labelSmall
@@ -287,7 +285,7 @@ class _GeotaggingV2WidgetState extends State<GeotaggingV2Widget> {
                               24.0, 5.0, 0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
-                              '13mvml38' /* B */,
+                              'g2bxjn8j' /* B */,
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .labelSmall
@@ -306,7 +304,7 @@ class _GeotaggingV2WidgetState extends State<GeotaggingV2Widget> {
                               24.0, 5.0, 0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
-                              '9f0iuvhd' /* C */,
+                              'a5yu1u02' /* C */,
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .labelSmall
@@ -361,19 +359,9 @@ class _GeotaggingV2WidgetState extends State<GeotaggingV2Widget> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 5.0, 0.0),
-                                child: FaIcon(
-                                  FontAwesomeIcons.play,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  size: 20.0,
-                                ),
-                              ),
                               Text(
                                 FFLocalizations.of(context).getText(
-                                  'brrixmb6' /* Start */,
+                                  '5fhm7wcy' /* Start */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge
@@ -401,18 +389,19 @@ class _GeotaggingV2WidgetState extends State<GeotaggingV2Widget> {
                             setState(() {});
                             await PpirFormsTable().update(
                               data: {
-                                'track_last_coord':
-                                    geotaggingV2PpirFormsRow?.trackLastCoord,
+                                'track_last_coord': geotaggingV2CopyPpirFormsRow
+                                    ?.trackLastCoord,
                                 'track_date_time':
-                                    geotaggingV2PpirFormsRow?.trackDateTime,
-                                'track_total_area':
-                                    geotaggingV2PpirFormsRow?.trackTotalArea,
-                                'track_total_distance': geotaggingV2PpirFormsRow
-                                    ?.trackTotalDistance,
+                                    geotaggingV2CopyPpirFormsRow?.trackDateTime,
+                                'track_total_area': geotaggingV2CopyPpirFormsRow
+                                    ?.trackTotalArea,
+                                'track_total_distance':
+                                    geotaggingV2CopyPpirFormsRow
+                                        ?.trackTotalDistance,
                               },
                               matchingRows: (rows) => rows.eq(
                                 'task_id',
-                                geotaggingV2PpirFormsRow?.taskId,
+                                geotaggingV2CopyPpirFormsRow?.taskId,
                               ),
                             );
 
@@ -420,7 +409,7 @@ class _GeotaggingV2WidgetState extends State<GeotaggingV2Widget> {
                               'ppir',
                               queryParameters: {
                                 'taskId': serializeParam(
-                                  geotaggingV2PpirFormsRow?.taskId,
+                                  geotaggingV2CopyPpirFormsRow?.taskId,
                                   ParamType.String,
                                 ),
                               }.withoutNulls,
@@ -438,19 +427,9 @@ class _GeotaggingV2WidgetState extends State<GeotaggingV2Widget> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 5.0, 0.0),
-                                child: FaIcon(
-                                  FontAwesomeIcons.stop,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  size: 20.0,
-                                ),
-                              ),
                               Text(
                                 FFLocalizations.of(context).getText(
-                                  '9cprrmc5' /* Finish */,
+                                  'r1zjbuy2' /* Finish */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge
