@@ -132,25 +132,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'geotag',
-          path: '/geotag',
-          requireAuth: true,
-          builder: (context, params) => GeotagWidget(
-            taskId: params.getParam(
-              'taskId',
-              ParamType.String,
-            ),
-            taskType: params.getParam(
-              'taskType',
-              ParamType.String,
-            ),
-            taskStatus: params.getParam(
-              'taskStatus',
-              ParamType.String,
-            ),
-          ),
-        ),
-        FFRoute(
           name: 'task_details',
           path: '/task_details',
           requireAuth: true,
@@ -233,49 +214,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const ForgotPasswordWidget(),
         ),
         FFRoute(
-          name: 'geotagCopy',
-          path: '/geotagCopy',
+          name: 'geotagging',
+          path: '/geotagging',
           requireAuth: true,
-          builder: (context, params) => GeotagCopyWidget(
-            taskId: params.getParam(
-              'taskId',
-              ParamType.String,
-            ),
-            taskType: params.getParam(
-              'taskType',
-              ParamType.String,
-            ),
-          ),
-        ),
-        FFRoute(
-          name: 'ppirCopy',
-          path: '/ppirCopy',
-          requireAuth: true,
-          builder: (context, params) => PpirCopyWidget(
-            taskId: params.getParam(
-              'taskId',
-              ParamType.String,
-            ),
-          ),
-        ),
-        FFRoute(
-          name: 'geotaggingV2',
-          path: '/geotaggingV2',
-          builder: (context, params) => GeotaggingV2Widget(
-            taskId: params.getParam(
-              'taskId',
-              ParamType.String,
-            ),
-            taskType: params.getParam(
-              'taskType',
-              ParamType.String,
-            ),
-          ),
-        ),
-        FFRoute(
-          name: 'geotaggingV2Copy',
-          path: '/geotaggingV2Copy',
-          builder: (context, params) => GeotaggingV2CopyWidget(
+          builder: (context, params) => GeotaggingWidget(
             taskId: params.getParam(
               'taskId',
               ParamType.String,

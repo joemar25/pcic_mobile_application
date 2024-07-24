@@ -2,15 +2,18 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/custom_code/widgets/index.dart' as custom_widgets;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'geotagging_v2_copy_model.dart';
-export 'geotagging_v2_copy_model.dart';
+import 'geotagging_model.dart';
+export 'geotagging_model.dart';
 
-class GeotaggingV2CopyWidget extends StatefulWidget {
-  const GeotaggingV2CopyWidget({
+class GeotaggingWidget extends StatefulWidget {
+  const GeotaggingWidget({
     super.key,
     required this.taskId,
     required this.taskType,
@@ -20,24 +23,28 @@ class GeotaggingV2CopyWidget extends StatefulWidget {
   final String? taskType;
 
   @override
-  State<GeotaggingV2CopyWidget> createState() => _GeotaggingV2CopyWidgetState();
+  State<GeotaggingWidget> createState() => _GeotaggingWidgetState();
 }
 
-class _GeotaggingV2CopyWidgetState extends State<GeotaggingV2CopyWidget> {
-  late GeotaggingV2CopyModel _model;
+class _GeotaggingWidgetState extends State<GeotaggingWidget> {
+  late GeotaggingModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  LatLng? currentUserLocationValue;
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => GeotaggingV2CopyModel());
+    _model = createModel(context, () => GeotaggingModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.isGeotagStart = false;
       setState(() {});
     });
+
+    getCurrentUserLocation(defaultLocation: const LatLng(0.0, 0.0), cached: true)
+        .then((loc) => setState(() => currentUserLocationValue = loc));
   }
 
   @override
@@ -49,6 +56,22 @@ class _GeotaggingV2CopyWidgetState extends State<GeotaggingV2CopyWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (currentUserLocationValue == null) {
+      return Container(
+        color: FlutterFlowTheme.of(context).primaryBackground,
+        child: Center(
+          child: SizedBox(
+            width: 100.0,
+            height: 100.0,
+            child: SpinKitRipple(
+              color: FlutterFlowTheme.of(context).primary,
+              size: 100.0,
+            ),
+          ),
+        ),
+      );
+    }
+
     return FutureBuilder<List<PpirFormsRow>>(
       future: PpirFormsTable().querySingleRow(
         queryFn: (q) => q.eq(
@@ -73,12 +96,11 @@ class _GeotaggingV2CopyWidgetState extends State<GeotaggingV2CopyWidget> {
             ),
           );
         }
-        List<PpirFormsRow> geotaggingV2CopyPpirFormsRowList = snapshot.data!;
+        List<PpirFormsRow> geotaggingPpirFormsRowList = snapshot.data!;
 
-        final geotaggingV2CopyPpirFormsRow =
-            geotaggingV2CopyPpirFormsRowList.isNotEmpty
-                ? geotaggingV2CopyPpirFormsRowList.first
-                : null;
+        final geotaggingPpirFormsRow = geotaggingPpirFormsRowList.isNotEmpty
+            ? geotaggingPpirFormsRowList.first
+            : null;
         return GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
               ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -100,11 +122,14 @@ class _GeotaggingV2CopyWidgetState extends State<GeotaggingV2CopyWidget> {
                           child: Stack(
                             alignment: const AlignmentDirectional(0.0, 0.0),
                             children: [
-                              Image.network(
-                                'https://images.unsplash.com/photo-1578403881967-084f9885be74?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHw1fHxtYXB8ZW58MHx8fHwxNzIxNzQ3NjgwfDA&ixlib=rb-4.0.3&q=80&w=400',
+                              SizedBox(
                                 width: double.infinity,
-                                height: double.infinity,
-                                fit: BoxFit.cover,
+                                height: MediaQuery.sizeOf(context).height * 1.0,
+                                child: custom_widgets.GeotagMap(
+                                  width: double.infinity,
+                                  height:
+                                      MediaQuery.sizeOf(context).height * 1.0,
+                                ),
                               ),
                               Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -142,7 +167,7 @@ class _GeotaggingV2CopyWidgetState extends State<GeotaggingV2CopyWidget> {
                                                   'task_details',
                                                   queryParameters: {
                                                     'taskId': serializeParam(
-                                                      geotaggingV2CopyPpirFormsRow
+                                                      geotaggingPpirFormsRow
                                                           ?.taskId,
                                                       ParamType.String,
                                                     ),
@@ -209,8 +234,7 @@ class _GeotaggingV2CopyWidgetState extends State<GeotaggingV2CopyWidget> {
                             children: [
                               Text(
                                 valueOrDefault<String>(
-                                  geotaggingV2CopyPpirFormsRow
-                                      ?.ppirAssignmentid,
+                                  geotaggingPpirFormsRow?.ppirAssignmentid,
                                   'Assignment',
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -261,62 +285,198 @@ class _GeotaggingV2CopyWidgetState extends State<GeotaggingV2CopyWidget> {
                             ],
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              24.0, 5.0, 0.0, 0.0),
-                          child: Text(
-                            FFLocalizations.of(context).getText(
-                              'uqasj1v6' /* A */,
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .labelSmall
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .labelSmallFamily,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .labelSmallFamily),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 5.0, 0.0, 0.0),
+                              child: Text(
+                                FFLocalizations.of(context).getText(
+                                  'wkawnowa' /* Lat */,
                                 ),
-                          ),
+                                style: FlutterFlowTheme.of(context)
+                                    .labelSmall
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .labelSmallFamily,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .labelSmallFamily),
+                                    ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 5.0, 0.0, 0.0),
+                              child: Text(
+                                functions
+                                    .getLat(currentUserLocationValue)
+                                    .toString(),
+                                style: FlutterFlowTheme.of(context)
+                                    .labelSmall
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .labelSmallFamily,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .labelSmallFamily),
+                                    ),
+                              ),
+                            ),
+                          ],
                         ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              24.0, 5.0, 0.0, 0.0),
-                          child: Text(
-                            FFLocalizations.of(context).getText(
-                              'g2bxjn8j' /* B */,
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .labelSmall
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .labelSmallFamily,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .labelSmallFamily),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 5.0, 0.0, 0.0),
+                              child: Text(
+                                FFLocalizations.of(context).getText(
+                                  'lvzg53kl' /* Lng */,
                                 ),
-                          ),
+                                style: FlutterFlowTheme.of(context)
+                                    .labelSmall
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .labelSmallFamily,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .labelSmallFamily),
+                                    ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 5.0, 0.0, 0.0),
+                              child: Text(
+                                functions
+                                    .getLng(currentUserLocationValue)
+                                    .toString(),
+                                style: FlutterFlowTheme.of(context)
+                                    .labelSmall
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .labelSmallFamily,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .labelSmallFamily),
+                                    ),
+                              ),
+                            ),
+                          ],
                         ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              24.0, 5.0, 0.0, 0.0),
-                          child: Text(
-                            FFLocalizations.of(context).getText(
-                              'a5yu1u02' /* C */,
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .labelSmall
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .labelSmallFamily,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .labelSmallFamily),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 5.0, 0.0, 0.0),
+                              child: Text(
+                                FFLocalizations.of(context).getText(
+                                  'qx4ly86s' /* Address */,
                                 ),
-                          ),
+                                style: FlutterFlowTheme.of(context)
+                                    .labelSmall
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .labelSmallFamily,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .labelSmallFamily),
+                                    ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 5.0, 0.0, 0.0),
+                              child: Text(
+                                functions
+                                    .getLng(currentUserLocationValue)
+                                    .toString(),
+                                style: FlutterFlowTheme.of(context)
+                                    .labelSmall
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .labelSmallFamily,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .labelSmallFamily),
+                                    ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 5.0, 0.0, 0.0),
+                              child: Text(
+                                FFLocalizations.of(context).getText(
+                                  '5rckehtu' /* Assignment Id */,
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .labelSmall
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .labelSmallFamily,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .labelSmallFamily),
+                                    ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 5.0, 0.0, 0.0),
+                              child: Text(
+                                valueOrDefault<String>(
+                                  geotaggingPpirFormsRow?.ppirAssignmentid,
+                                  'a',
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .labelSmall
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .labelSmallFamily,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .labelSmallFamily),
+                                    ),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -359,9 +519,19 @@ class _GeotaggingV2CopyWidgetState extends State<GeotaggingV2CopyWidget> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 5.0, 0.0),
+                                child: FaIcon(
+                                  FontAwesomeIcons.play,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 20.0,
+                                ),
+                              ),
                               Text(
                                 FFLocalizations.of(context).getText(
-                                  '5fhm7wcy' /* Start */,
+                                  'brrixmb6' /* Start */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge
@@ -389,19 +559,18 @@ class _GeotaggingV2CopyWidgetState extends State<GeotaggingV2CopyWidget> {
                             setState(() {});
                             await PpirFormsTable().update(
                               data: {
-                                'track_last_coord': geotaggingV2CopyPpirFormsRow
-                                    ?.trackLastCoord,
+                                'track_last_coord':
+                                    geotaggingPpirFormsRow?.trackLastCoord,
                                 'track_date_time':
-                                    geotaggingV2CopyPpirFormsRow?.trackDateTime,
-                                'track_total_area': geotaggingV2CopyPpirFormsRow
-                                    ?.trackTotalArea,
+                                    geotaggingPpirFormsRow?.trackDateTime,
+                                'track_total_area':
+                                    geotaggingPpirFormsRow?.trackTotalArea,
                                 'track_total_distance':
-                                    geotaggingV2CopyPpirFormsRow
-                                        ?.trackTotalDistance,
+                                    geotaggingPpirFormsRow?.trackTotalDistance,
                               },
                               matchingRows: (rows) => rows.eq(
                                 'task_id',
-                                geotaggingV2CopyPpirFormsRow?.taskId,
+                                geotaggingPpirFormsRow?.taskId,
                               ),
                             );
 
@@ -409,7 +578,7 @@ class _GeotaggingV2CopyWidgetState extends State<GeotaggingV2CopyWidget> {
                               'ppir',
                               queryParameters: {
                                 'taskId': serializeParam(
-                                  geotaggingV2CopyPpirFormsRow?.taskId,
+                                  geotaggingPpirFormsRow?.taskId,
                                   ParamType.String,
                                 ),
                               }.withoutNulls,
@@ -427,9 +596,19 @@ class _GeotaggingV2CopyWidgetState extends State<GeotaggingV2CopyWidget> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 5.0, 0.0),
+                                child: FaIcon(
+                                  FontAwesomeIcons.stop,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 20.0,
+                                ),
+                              ),
                               Text(
                                 FFLocalizations.of(context).getText(
-                                  'r1zjbuy2' /* Finish */,
+                                  'brrixmb6' /* Finish */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge

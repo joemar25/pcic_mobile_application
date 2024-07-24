@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'geotag_widget.dart' show GeotagWidget;
+import 'geotagging_widget.dart' show GeotaggingWidget;
 import 'package:flutter/material.dart';
 
-class GeotagModel extends FlutterFlowModel<GeotagWidget> {
+class GeotaggingModel extends FlutterFlowModel<GeotaggingWidget> {
   ///  Local state fields for this page.
 
   bool isGeotagStart = true;
@@ -18,7 +18,4 @@ class GeotagModel extends FlutterFlowModel<GeotagWidget> {
   void dispose() {
     unfocusNode.dispose();
   }
-
-  /// Action blocks.
-  Future test(BuildContext context) async {}
 }

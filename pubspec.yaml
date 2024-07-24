@@ -78,7 +78,6 @@ dependencies:
   sign_in_with_apple_platform_interface: 1.0.0
   sign_in_with_apple_web: 1.0.1
   signature: 5.4.0
-  sliding_up_panel: ^2.0.0+1
   sqflite: 2.2.6
   storage_client: 1.5.4
   substring_highlight: 1.0.33

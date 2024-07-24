@@ -297,7 +297,7 @@ class _SignatureWidgetState extends State<SignatureWidget>
                                           },
                                           text: FFLocalizations.of(context)
                                               .getText(
-                                            'ruciwbye' /* Save */,
+                                            '6si6e5tk' /* Save */,
                                           ),
                                           options: FFButtonOptions(
                                             height: 50.0,

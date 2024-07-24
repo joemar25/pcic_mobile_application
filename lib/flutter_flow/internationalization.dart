@@ -292,45 +292,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
-  // geotag
-  {
-    'kj67slj5': {
-      'en': 'Geotagging',
-      'tl': '',
-    },
-    'pkpqltl8': {
-      'en': 'Start',
-      'tl': '',
-    },
-    'nu29o86l': {
-      'en': 'Pin',
-      'tl': '',
-    },
-    'deno2yfk': {
-      'en': 'Stop',
-      'tl': '',
-    },
-    'rnhz48li': {
-      'en': 'LOCATION',
-      'tl': '',
-    },
-    'ey2bf2v4': {
-      'en': 'Coordinates',
-      'tl': '',
-    },
-    't8xuzuli': {
-      'en': 'Address',
-      'tl': '',
-    },
-    'lfxoimt6': {
-      'en': '[address]',
-      'tl': '',
-    },
-    '0o8w3vlv': {
-      'en': 'Home',
-      'tl': '',
-    },
-  },
   // task_details
   {
     'x1jz4y0y': {
@@ -584,6 +545,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'corn',
       'tl': '',
     },
+    'e3nzk0t1': {
+      'en': 'Select the Type of Rice ',
+      'tl': '',
+    },
     'a7yszlux': {
       'en': 'this is the rice',
       'tl': '',
@@ -596,6 +561,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Search for an item...',
       'tl': '',
     },
+    'uj8vq3kw': {
+      'en': 'Select the Type of Corn ',
+      'tl': '',
+    },
     'kd2ri9yq': {
       'en': 'this is the rice',
       'tl': '',
@@ -606,14 +575,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'rxggzdj9': {
       'en': 'Search for an item...',
-      'tl': '',
-    },
-    'tm2j0mp6': {
-      'en': 'DR=',
-      'tl': '',
-    },
-    '3q6tilqg': {
-      'en': 'DC=',
       'tl': '',
     },
     '4x78xwmh': {
@@ -827,210 +788,29 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
-  // geotagCopy
+  // geotagging
   {
-    '9mvo6120': {
-      'en': 'Geotagging',
+    'wkawnowa': {
+      'en': 'Lat',
       'tl': '',
     },
-    'f3zkx5bp': {
-      'en': 'Start',
+    'lvzg53kl': {
+      'en': 'Lng',
       'tl': '',
     },
-    'cex5hbel': {
-      'en': 'Pin',
-      'tl': '',
-    },
-    'b1u96vze': {
-      'en': 'Stop',
-      'tl': '',
-    },
-    'lyn5w37z': {
-      'en': 'LOCATION',
-      'tl': '',
-    },
-    'jmsb3i4y': {
-      'en': 'Coordinates',
-      'tl': '',
-    },
-    'b3df06kv': {
+    'qx4ly86s': {
       'en': 'Address',
       'tl': '',
     },
-    'n9zkx1lu': {
-      'en': '[address]',
-      'tl': '',
-    },
-    '24h3f641': {
-      'en': 'Home',
-      'tl': '',
-    },
-  },
-  // ppirCopy
-  {
-    '8vjgr2lb': {
-      'en': 'PPIR Form',
-      'tl': '',
-    },
-    'gnuhl5kg': {
-      'en': 'Geotag Information',
-      'tl': '',
-    },
-    'psshfex4': {
-      'en': 'Last Coordinates',
-      'tl': '',
-    },
-    'rr93i3cq': {
-      'en': 'Date Time',
-      'tl': '',
-    },
-    'w7j1bwgc': {
-      'en': 'Total Hectares',
-      'tl': '',
-    },
-    'jaoyouw4': {
-      'en': 'Farm Location',
-      'tl': '',
-    },
-    'ys92arht': {
-      'en': 'Geotag Control',
-      'tl': '',
-    },
-    '0f296y90': {
-      'en': 'Repeat Again',
-      'tl': '',
-    },
-    'x8nohpy6': {
-      'en': 'View Geotag',
-      'tl': '',
-    },
-    'h8eofgpb': {
-      'en': 'Seed Variety',
-      'tl': '',
-    },
-    'yyjr8iaw': {
-      'en': 'rice',
-      'tl': '',
-    },
-    'zwe99a3m': {
-      'en': 'corn',
-      'tl': '',
-    },
-    'wmhbg4ae': {
-      'en': 'this is the rice',
-      'tl': '',
-    },
-    'ne24rpfv': {
-      'en': 'Please select...',
-      'tl': '',
-    },
-    'km9ubv65': {
-      'en': 'Search for an item...',
-      'tl': '',
-    },
-    '265pg9q3': {
-      'en': 'Corn Options',
-      'tl': '',
-    },
-    'het77emi': {
-      'en': 'c',
-      'tl': '',
-    },
-    '9dqjnq6f': {
-      'en': 'Please select...',
-      'tl': '',
-    },
-    '6jp5h0rv': {
-      'en': 'Search for an item...',
-      'tl': '',
-    },
-    'wr77bqlw': {
-      'en': 'Actual Area Planted',
-      'tl': '',
-    },
-    '750t3ie5': {
-      'en': 'Actual Date of Planting (DS)',
-      'tl': '',
-    },
-    'ay9zaj06': {
-      'en': 'Actual Date of Planting (TS)',
-      'tl': '',
-    },
-    'cs1kh2u2': {
-      'en': 'Remarks',
-      'tl': '',
-    },
-    'qp2cxhu8': {
-      'en': 'Prepared by',
-      'tl': '',
-    },
-    'cvbc4ziv': {
-      'en': 'Signature',
-      'tl': '',
-    },
-    'yifqrtvz': {
-      'en': 'Confirm by',
-      'tl': '',
-    },
-    'cx6wsjmw': {
-      'en': 'Signature',
-      'tl': '',
-    },
-    'hdh6xlcb': {
-      'en': 'Home',
-      'tl': '',
-    },
-  },
-  // geotaggingV2
-  {
-    'wkawnowa': {
-      'en': 'A',
-      'tl': '',
-    },
-    '13mvml38': {
-      'en': 'B',
-      'tl': '',
-    },
-    '9f0iuvhd': {
-      'en': 'C',
+    '5rckehtu': {
+      'en': 'Assignment Id',
       'tl': '',
     },
     'brrixmb6': {
-      'en': 'Start',
-      'tl': '',
-    },
-    '9cprrmc5': {
       'en': 'Finish',
       'tl': '',
     },
-    '8sw5dww3': {
-      'en': 'Home',
-      'tl': '',
-    },
-  },
-  // geotaggingV2Copy
-  {
-    'uqasj1v6': {
-      'en': 'A',
-      'tl': '',
-    },
-    'g2bxjn8j': {
-      'en': 'B',
-      'tl': '',
-    },
-    'a5yu1u02': {
-      'en': 'C',
-      'tl': '',
-    },
-    '5fhm7wcy': {
-      'en': 'Start',
-      'tl': '',
-    },
-    'r1zjbuy2': {
-      'en': 'Finish',
-      'tl': '',
-    },
-    '7klrpw4p': {
+    '0o8w3vlv': {
       'en': 'Home',
       'tl': '',
     },
@@ -1128,7 +908,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Retry signature',
       'tl': '',
     },
-    'ruciwbye': {
+    '6si6e5tk': {
       'en': 'Save',
       'tl': '',
     },
@@ -1182,7 +962,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // Miscellaneous
   {
-    'mb684p3z': {
+    '0ftylq1b': {
       'en':
           'PCIC Mobile Application needs access to your camera to enable Geotagging. This will help us accurately tag photos with your current location for better service delivery and documentation. Please grant camera access to continue.',
       'tl': '',

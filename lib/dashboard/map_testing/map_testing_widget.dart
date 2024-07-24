@@ -101,7 +101,7 @@ class _MapTestingWidgetState extends State<MapTestingWidget> {
                         ? null
                         : () async {
                             FFAppState().routeStarted =
-                                !FFAppState().routeStarted;
+                                !(FFAppState().routeStarted ?? true);
                             setState(() {});
                           },
                     text: FFAppState().routeStarted ? 'STOP' : 'START',

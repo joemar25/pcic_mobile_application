@@ -2037,7 +2037,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       Text(
                                                         valueOrDefault<String>(
                                                           taskDetailsPpirFormsRow
-                                                              ?.ppirVariety,
+                                                              ?.ppirSvpAci,
                                                           'Variety',
                                                         ),
                                                         style:
@@ -2755,7 +2755,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                       defaultLocation: const LatLng(0.0, 0.0));
 
                               context.pushNamed(
-                                'geotaggingV2',
+                                'geotagging',
                                 queryParameters: {
                                   'taskId': serializeParam(
                                     widget.taskId,
@@ -2853,18 +2853,14 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                               });
 
                               context.pushNamed(
-                                'geotag',
+                                'geotagging',
                                 queryParameters: {
                                   'taskId': serializeParam(
                                     widget.taskId,
                                     ParamType.String,
                                   ),
                                   'taskType': serializeParam(
-                                    '',
-                                    ParamType.String,
-                                  ),
-                                  'taskStatus': serializeParam(
-                                    parentColumnTasksRow?.status,
+                                    parentColumnTasksRow?.taskType,
                                     ParamType.String,
                                   ),
                                 }.withoutNulls,

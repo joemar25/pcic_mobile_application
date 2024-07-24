@@ -7,7 +7,6 @@ export '/dashboard/edit_password/edit_password_widget.dart'
 export '/dashboard/edit_profile/edit_profile_widget.dart'
     show EditProfileWidget;
 export '/dashboard/messages/messages_widget.dart' show MessagesWidget;
-export '/dashboard/geotag/geotag_widget.dart' show GeotagWidget;
 export '/dashboard/task_details/task_details_widget.dart'
     show TaskDetailsWidget;
 export '/dashboard/forms/ppir/ppir_widget.dart' show PpirWidget;
@@ -21,9 +20,4 @@ export '/utils/extra/success_profile/success_profile_widget.dart'
 export '/mar_api_test/mar_api_test_widget.dart' show MarApiTestWidget;
 export '/auth/forgot_password/forgot_password_widget.dart'
     show ForgotPasswordWidget;
-export '/dashboard/geotag_copy/geotag_copy_widget.dart' show GeotagCopyWidget;
-export '/dashboard/forms/ppir_copy/ppir_copy_widget.dart' show PpirCopyWidget;
-export '/dashboard/geotagging_v2/geotagging_v2_widget.dart'
-    show GeotaggingV2Widget;
-export '/dashboard/geotagging_v2_copy/geotagging_v2_copy_widget.dart'
-    show GeotaggingV2CopyWidget;
+export '/dashboard/geotagging/geotagging_widget.dart' show GeotaggingWidget;

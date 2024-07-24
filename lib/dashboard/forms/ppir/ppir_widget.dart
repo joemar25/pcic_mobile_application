@@ -47,12 +47,6 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
 
     _model.trackFarmlocFocusNode ??= FocusNode();
 
-    _model.azzTextController1 ??= TextEditingController();
-    _model.azzFocusNode1 ??= FocusNode();
-
-    _model.azzTextController2 ??= TextEditingController();
-    _model.azzFocusNode2 ??= FocusNode();
-
     _model.areaPlantedFieldTextController ??= TextEditingController();
     _model.areaPlantedFieldFocusNode ??= FocusNode();
 
@@ -62,14 +56,14 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
     _model.areaDopTsFieldTextController ??= TextEditingController();
     _model.areaDopTsFieldFocusNode ??= FocusNode();
 
-    _model.confirmedBySigFieldTextController ??= TextEditingController();
-    _model.confirmedBySigFieldFocusNode ??= FocusNode();
-
-    _model.confirmedByNameFieldTextController ??= TextEditingController();
-    _model.confirmedByNameFieldFocusNode ??= FocusNode();
+    _model.remarksFieldTextController ??= TextEditingController();
+    _model.remarksFieldFocusNode ??= FocusNode();
 
     _model.preparedByNameFieldTextController ??= TextEditingController();
     _model.preparedByNameFieldFocusNode ??= FocusNode();
+
+    _model.confirmedByNameFieldTextController ??= TextEditingController();
+    _model.confirmedByNameFieldFocusNode ??= FocusNode();
 
     animationsMap.addAll({
       'dropDownOnActionTriggerAnimation': AnimationInfo(
@@ -652,7 +646,6 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                           focusNode:
                                               _model.trackFarmlocFocusNode,
                                           autofocus: false,
-                                          readOnly: true,
                                           obscureText: false,
                                           decoration: InputDecoration(
                                             labelText:
@@ -668,6 +661,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .labelMediumFamily,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
                                                       letterSpacing: 0.0,
                                                       useGoogleFonts: GoogleFonts
                                                               .asMap()
@@ -684,6 +681,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .labelMediumFamily,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
                                                       letterSpacing: 0.0,
                                                       useGoogleFonts: GoogleFonts
                                                               .asMap()
@@ -1091,7 +1092,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Text(
-                                                  'Select the Type of Rice ${_model.seedVarietySelectionValue == 'corn' ? ' (disabled)' : ' (active)'}',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'e3nzk0t1' /* Select the Type of Rice  */,
+                                                  ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .labelSmall
@@ -1108,6 +1112,38 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                                         context)
                                                                     .labelSmallFamily),
                                                       ),
+                                                ),
+                                                Text(
+                                                  _model.seedVarietySelectionValue ==
+                                                          'rice'
+                                                      ? '(enabled)'
+                                                      : '(disabled)',
+                                                  style:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelSmall
+                                                          .override(
+                                                            fontFamily:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmallFamily,
+                                                            color: _model
+                                                                        .seedVarietySelectionValue ==
+                                                                    'rice'
+                                                                ? FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary
+                                                                : FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                            letterSpacing: 0.0,
+                                                            useGoogleFonts: GoogleFonts
+                                                                    .asMap()
+                                                                .containsKey(
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelSmallFamily),
+                                                          ),
                                                 ),
                                               ],
                                             ),
@@ -1149,9 +1185,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                       FormFieldController<
                                                           String>(
                                                     _model.riceDropdownValue ??=
-                                                        _model.isRice
+                                                        _model.seedVarietySelectionValue ==
+                                                                'rice'
                                                             ? ppirPpirFormsRow
-                                                                ?.ppirSvpAct
+                                                                ?.ppirVariety
                                                             : ' ',
                                                   ),
                                                   options:
@@ -1285,7 +1322,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Text(
-                                                  'Select the Type of Rice ${_model.seedVarietySelectionValue == 'rice' ? ' (disabled)' : ' (active)'}',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'uj8vq3kw' /* Select the Type of Corn  */,
+                                                  ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .labelSmall
@@ -1302,6 +1342,38 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                                         context)
                                                                     .labelSmallFamily),
                                                       ),
+                                                ),
+                                                Text(
+                                                  _model.seedVarietySelectionValue ==
+                                                          'corn'
+                                                      ? '(enabled)'
+                                                      : '(disabled)',
+                                                  style:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelSmall
+                                                          .override(
+                                                            fontFamily:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmallFamily,
+                                                            color: _model
+                                                                        .seedVarietySelectionValue ==
+                                                                    'corn'
+                                                                ? FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary
+                                                                : FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                            letterSpacing: 0.0,
+                                                            useGoogleFonts: GoogleFonts
+                                                                    .asMap()
+                                                                .containsKey(
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelSmallFamily),
+                                                          ),
                                                 ),
                                               ],
                                             ),
@@ -1343,9 +1415,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                       FormFieldController<
                                                           String>(
                                                     _model.cornDropdownValue ??=
-                                                        !_model.isRice
+                                                        _model.seedVarietySelectionValue ==
+                                                                'corn'
                                                             ? ppirPpirFormsRow
-                                                                ?.ppirSvpAct
+                                                                ?.ppirVariety
                                                             : ' ',
                                                   ),
                                                   options:
@@ -1472,369 +1545,6 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                 ).animateOnPageLoad(animationsMap[
                                                     'dropDownOnPageLoadAnimation']!);
                                               },
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      0.0, 22.0, 0.0, 22.0),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    'isRice=${_model.isRice.toString()}',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
-                                                        ),
-                                                  ),
-                                                  Text(
-                                                    ' SeedVarietySelection=${_model.seedVarietySelectionValue}',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
-                                                        ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    'tm2j0mp6' /* DR= */,
-                                                  ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
-                                                      ),
-                                                ),
-                                                Expanded(
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(8.0, 0.0,
-                                                                8.0, 0.0),
-                                                    child: TextFormField(
-                                                      controller: _model
-                                                          .azzTextController1,
-                                                      focusNode:
-                                                          _model.azzFocusNode1,
-                                                      autofocus: false,
-                                                      readOnly: true,
-                                                      obscureText: false,
-                                                      decoration:
-                                                          InputDecoration(
-                                                        labelText: _model
-                                                            .riceDropdownValue,
-                                                        labelStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMediumFamily,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .labelMediumFamily),
-                                                                ),
-                                                        hintStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMediumFamily,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .labelMediumFamily),
-                                                                ),
-                                                        enabledBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .alternate,
-                                                            width: 2.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                        ),
-                                                        focusedBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primary,
-                                                            width: 2.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                        ),
-                                                        errorBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .error,
-                                                            width: 2.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                        ),
-                                                        focusedErrorBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .error,
-                                                            width: 2.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                        ),
-                                                      ),
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily),
-                                                              ),
-                                                      validator: _model
-                                                          .azzTextController1Validator
-                                                          .asValidator(context),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    '3q6tilqg' /* DC= */,
-                                                  ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
-                                                      ),
-                                                ),
-                                                Expanded(
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(8.0, 0.0,
-                                                                8.0, 0.0),
-                                                    child: TextFormField(
-                                                      controller: _model
-                                                          .azzTextController2,
-                                                      focusNode:
-                                                          _model.azzFocusNode2,
-                                                      autofocus: false,
-                                                      readOnly: true,
-                                                      obscureText: false,
-                                                      decoration:
-                                                          InputDecoration(
-                                                        labelText: _model
-                                                            .cornDropdownValue,
-                                                        labelStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMediumFamily,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .labelMediumFamily),
-                                                                ),
-                                                        hintStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMediumFamily,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .labelMediumFamily),
-                                                                ),
-                                                        enabledBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .alternate,
-                                                            width: 2.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                        ),
-                                                        focusedBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primary,
-                                                            width: 2.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                        ),
-                                                        errorBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .error,
-                                                            width: 2.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                        ),
-                                                        focusedErrorBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .error,
-                                                            width: 2.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                        ),
-                                                      ),
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily),
-                                                              ),
-                                                      validator: _model
-                                                          .azzTextController2Validator
-                                                          .asValidator(context),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
                                             ),
                                           ]
                                               .divide(const SizedBox(height: 20.0))
@@ -2208,11 +1918,11 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                         ),
                                       ),
                                       TextFormField(
-                                        controller: _model
-                                            .confirmedBySigFieldTextController,
-                                        focusNode:
-                                            _model.confirmedBySigFieldFocusNode,
+                                        controller:
+                                            _model.remarksFieldTextController,
+                                        focusNode: _model.remarksFieldFocusNode,
                                         autofocus: false,
+                                        textInputAction: TextInputAction.next,
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           labelStyle: FlutterFlowTheme.of(
@@ -2314,7 +2024,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                             FlutterFlowTheme.of(context)
                                                 .primary,
                                         validator: _model
-                                            .confirmedBySigFieldTextControllerValidator
+                                            .remarksFieldTextControllerValidator
                                             .asValidator(context),
                                       ),
                                       Padding(
@@ -2322,9 +2032,9 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                             0.0, 10.0, 0.0, 10.0),
                                         child: TextFormField(
                                           controller: _model
-                                              .confirmedByNameFieldTextController,
+                                              .preparedByNameFieldTextController,
                                           focusNode: _model
-                                              .confirmedByNameFieldFocusNode,
+                                              .preparedByNameFieldFocusNode,
                                           autofocus: false,
                                           textInputAction: TextInputAction.next,
                                           obscureText: false,
@@ -2429,7 +2139,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               FlutterFlowTheme.of(context)
                                                   .primary,
                                           validator: _model
-                                              .confirmedByNameFieldTextControllerValidator
+                                              .preparedByNameFieldTextControllerValidator
                                               .asValidator(context),
                                         ),
                                       ),
@@ -2548,9 +2258,9 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                             0.0, 10.0, 0.0, 10.0),
                                         child: TextFormField(
                                           controller: _model
-                                              .preparedByNameFieldTextController,
+                                              .confirmedByNameFieldTextController,
                                           focusNode: _model
-                                              .preparedByNameFieldFocusNode,
+                                              .confirmedByNameFieldFocusNode,
                                           autofocus: false,
                                           textCapitalization:
                                               TextCapitalization.none,
@@ -2657,7 +2367,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               FlutterFlowTheme.of(context)
                                                   .primary,
                                           validator: _model
-                                              .preparedByNameFieldTextControllerValidator
+                                              .confirmedByNameFieldTextControllerValidator
                                               .asValidator(context),
                                         ),
                                       ),
@@ -2905,6 +2615,17 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                     'track_total_distance': 'distance',
                                     'ppir_svp_act':
                                         _model.seedVarietySelectionValue,
+                                    'ppir_dopds_act': _model
+                                        .areaDopDsFieldTextController.text,
+                                    'ppir_doptp_aci': _model
+                                        .areaDopTsFieldTextController.text,
+                                    'ppir_remarks':
+                                        _model.remarksFieldTextController.text,
+                                    'ppir_name_insured': _model
+                                        .confirmedByNameFieldTextController
+                                        .text,
+                                    'ppir_name_iuia': _model
+                                        .preparedByNameFieldTextController.text,
                                   },
                                   matchingRows: (rows) => rows.eq(
                                     'task_id',

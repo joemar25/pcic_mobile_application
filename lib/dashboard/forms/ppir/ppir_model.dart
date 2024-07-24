@@ -34,22 +34,14 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
   FocusNode? trackFarmlocFocusNode;
   TextEditingController? trackFarmlocTextController;
   String? Function(BuildContext, String?)? trackFarmlocTextControllerValidator;
-  // State field(s) for seedVarietySelection widget.
+  // State field(s) for seed_variety_selection widget.
   FormFieldController<String>? seedVarietySelectionValueController;
-  // State field(s) for riceDropdown widget.
+  // State field(s) for rice_dropdown widget.
   String? riceDropdownValue;
   FormFieldController<String>? riceDropdownValueController;
-  // State field(s) for cornDropdown widget.
+  // State field(s) for corn_dropdown widget.
   String? cornDropdownValue;
   FormFieldController<String>? cornDropdownValueController;
-  // State field(s) for azz widget.
-  FocusNode? azzFocusNode1;
-  TextEditingController? azzTextController1;
-  String? Function(BuildContext, String?)? azzTextController1Validator;
-  // State field(s) for azz widget.
-  FocusNode? azzFocusNode2;
-  TextEditingController? azzTextController2;
-  String? Function(BuildContext, String?)? azzTextController2Validator;
   // State field(s) for area_planted_field widget.
   FocusNode? areaPlantedFieldFocusNode;
   TextEditingController? areaPlantedFieldTextController;
@@ -65,21 +57,20 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
   TextEditingController? areaDopTsFieldTextController;
   String? Function(BuildContext, String?)?
       areaDopTsFieldTextControllerValidator;
-  // State field(s) for confirmed_by_sig_field widget.
-  FocusNode? confirmedBySigFieldFocusNode;
-  TextEditingController? confirmedBySigFieldTextController;
-  String? Function(BuildContext, String?)?
-      confirmedBySigFieldTextControllerValidator;
-  // State field(s) for confirmed_by_name_field widget.
-  FocusNode? confirmedByNameFieldFocusNode;
-  TextEditingController? confirmedByNameFieldTextController;
-  String? Function(BuildContext, String?)?
-      confirmedByNameFieldTextControllerValidator;
+  // State field(s) for remarks_field widget.
+  FocusNode? remarksFieldFocusNode;
+  TextEditingController? remarksFieldTextController;
+  String? Function(BuildContext, String?)? remarksFieldTextControllerValidator;
   // State field(s) for prepared_by_name_field widget.
   FocusNode? preparedByNameFieldFocusNode;
   TextEditingController? preparedByNameFieldTextController;
   String? Function(BuildContext, String?)?
       preparedByNameFieldTextControllerValidator;
+  // State field(s) for confirmed_by_name_field widget.
+  FocusNode? confirmedByNameFieldFocusNode;
+  TextEditingController? confirmedByNameFieldTextController;
+  String? Function(BuildContext, String?)?
+      confirmedByNameFieldTextControllerValidator;
   // Stores action output result for [Backend Call - Update Row(s)] action in submitButton widget.
   List<PpirFormsRow>? updatedPPIR;
   // Stores action output result for [Backend Call - Update Row(s)] action in submitButton widget.
@@ -105,12 +96,6 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
     trackFarmlocFocusNode?.dispose();
     trackFarmlocTextController?.dispose();
 
-    azzFocusNode1?.dispose();
-    azzTextController1?.dispose();
-
-    azzFocusNode2?.dispose();
-    azzTextController2?.dispose();
-
     areaPlantedFieldFocusNode?.dispose();
     areaPlantedFieldTextController?.dispose();
 
@@ -120,14 +105,14 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
     areaDopTsFieldFocusNode?.dispose();
     areaDopTsFieldTextController?.dispose();
 
-    confirmedBySigFieldFocusNode?.dispose();
-    confirmedBySigFieldTextController?.dispose();
-
-    confirmedByNameFieldFocusNode?.dispose();
-    confirmedByNameFieldTextController?.dispose();
+    remarksFieldFocusNode?.dispose();
+    remarksFieldTextController?.dispose();
 
     preparedByNameFieldFocusNode?.dispose();
     preparedByNameFieldTextController?.dispose();
+
+    confirmedByNameFieldFocusNode?.dispose();
+    confirmedByNameFieldTextController?.dispose();
   }
 
   /// Additional helper methods.
