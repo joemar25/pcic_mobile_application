@@ -2626,6 +2626,8 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                         .text,
                                     'ppir_name_iuia': _model
                                         .preparedByNameFieldTextController.text,
+                                    'ppir_farmloc':
+                                        _model.trackFarmlocTextController.text,
                                   },
                                   matchingRows: (rows) => rows.eq(
                                     'task_id',
