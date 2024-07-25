@@ -26,3 +26,5 @@ Future updateUserStatusIfOnline(BuildContext context) async {
     );
   }
 }
+
+Future updateLogs(BuildContext context) async {}
