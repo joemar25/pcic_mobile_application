@@ -48,7 +48,7 @@
 	<true/>
 
 	<key>NSLocationWhenInUseUsageDescription</key>
-    <string>In order to search nearby, this app requires access to your current location.</string>
+    <string>PCIC Mobile Application needs access to your location to enable Geotagging. This will help us accurately get gpx data with your current location for better service. Please grant Location access to continue.</string>
 	<key>NSCameraUsageDescription</key>
     <string>PCIC Mobile Application needs access to your camera to enable Geotagging. This will help us accurately tag photos with your current location for better service delivery and documentation. Please grant camera access to continue.</string>
 	<key>NSPhotoLibraryUsageDescription</key>

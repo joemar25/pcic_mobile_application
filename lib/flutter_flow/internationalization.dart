@@ -966,7 +966,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     '9xlvkb3u': {
-      'en': '',
+      'en':
+          'PCIC Mobile Application needs access to your location to enable Geotagging. This will help us accurately get gpx data with your current location for better service. Please grant Location access to continue.',
       'tl': '',
     },
     'klzb3gt7': {

@@ -48,18 +48,6 @@ class _DashboardWidgetState extends State<DashboardWidget>
       await requestPermission(locationPermission);
       await requestPermission(cameraPermission);
       await requestPermission(photoLibraryPermission);
-      await UserLogsTable().insert({
-        'user_id': currentUserUid,
-        'activity': 'Logging in as ${currentUserEmail} at ${dateTimeFormat(
-          'yMMMd',
-          getCurrentTimestamp,
-          locale: FFLocalizations.of(context).languageCode,
-        )}.',
-      });
-      await UserLogsTable().insert({
-        'activity': 'Checking dashboard',
-        'user_id': currentUserUid,
-      });
     });
 
     _model.textController ??= TextEditingController();
