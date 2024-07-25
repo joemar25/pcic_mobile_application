@@ -3,9 +3,13 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'login_model.dart';
 export 'login_model.dart';
 
@@ -72,27 +76,27 @@ class _LoginWidgetState extends State<LoginWidget>
           body: SafeArea(
             top: true,
             child: Align(
-              alignment: const AlignmentDirectional(0.0, 0.0),
+              alignment: AlignmentDirectional(0.0, 0.0),
               child: Container(
                 width: double.infinity,
                 height: double.infinity,
-                constraints: const BoxConstraints(
+                constraints: BoxConstraints(
                   maxWidth: 600.0,
                 ),
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).primaryBackground,
                   borderRadius: BorderRadius.circular(0.0),
                 ),
-                alignment: const AlignmentDirectional(0.0, 0.0),
-                child: SizedBox(
+                alignment: AlignmentDirectional(0.0, 0.0),
+                child: Container(
                   width: double.infinity,
                   height: double.infinity,
                   child: Stack(
                     children: [
                       Align(
-                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        alignment: AlignmentDirectional(0.0, 0.0),
                         child: Padding(
-                          padding: const EdgeInsets.all(24.0),
+                          padding: EdgeInsets.all(24.0),
                           child: SingleChildScrollView(
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -100,9 +104,9 @@ class _LoginWidgetState extends State<LoginWidget>
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, -1.0),
+                                  alignment: AlignmentDirectional(0.0, -1.0),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(60.0),
+                                    padding: EdgeInsets.all(60.0),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(10.0),
                                       child: Image.asset(
@@ -127,9 +131,9 @@ class _LoginWidgetState extends State<LoginWidget>
                                   clipBehavior: Clip.none,
                                   children: [
                                     Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
                                       child: Container(
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
@@ -138,7 +142,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                               CrossAxisAlignment.start,
                                           children: [
                                             Align(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   0.0, 1.0),
                                               child: Text(
                                                 FFLocalizations.of(context)
@@ -153,7 +157,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                               ),
                                             ),
                                             Align(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Text(
                                                 FFLocalizations.of(context)
@@ -181,13 +185,13 @@ class _LoginWidgetState extends State<LoginWidget>
                                                         ),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(height: 10.0)),
+                                          ].divide(SizedBox(height: 10.0)),
                                         ),
                                       ),
                                     ),
                                     Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
-                                      child: SizedBox(
+                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      child: Container(
                                         width: double.infinity,
                                         child: Form(
                                           key: _model.formKey,
@@ -195,9 +199,9 @@ class _LoginWidgetState extends State<LoginWidget>
                                               AutovalidateMode.always,
                                           child: Align(
                                             alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
+                                                AlignmentDirectional(0.0, 0.0),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(24.0),
+                                              padding: EdgeInsets.all(24.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
@@ -205,7 +209,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.stretch,
                                                 children: [
-                                                  SizedBox(
+                                                  Container(
                                                     width:
                                                         valueOrDefault<double>(
                                                       () {
@@ -362,7 +366,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                                       12.0),
                                                         ),
                                                         contentPadding:
-                                                            const EdgeInsets.all(
+                                                            EdgeInsets.all(
                                                                 22.0),
                                                       ),
                                                       style:
@@ -398,7 +402,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                           .asValidator(context),
                                                     ),
                                                   ),
-                                                  SizedBox(
+                                                  Container(
                                                     width: () {
                                                       if (MediaQuery.sizeOf(
                                                                   context)
@@ -528,7 +532,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                                       12.0),
                                                         ),
                                                         contentPadding:
-                                                            const EdgeInsets.all(
+                                                            EdgeInsets.all(
                                                                 24.0),
                                                         suffixIcon: InkWell(
                                                           onTap: () => setState(
@@ -584,7 +588,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: FFButtonWidget(
                                                       onPressed: () async {
@@ -651,14 +655,14 @@ class _LoginWidgetState extends State<LoginWidget>
                                                         }(),
                                                         height: 50.0,
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     24.0,
                                                                     0.0,
                                                                     24.0,
                                                                     0.0),
                                                         iconPadding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -688,7 +692,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                                               .titleSmallFamily),
                                                                 ),
                                                         elevation: 3.0,
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color: Colors
                                                               .transparent,
                                                           width: 1.0,
@@ -701,7 +705,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: InkWell(
                                                       splashColor:
@@ -718,7 +722,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                           extra: <String,
                                                               dynamic>{
                                                             kTransitionInfoKey:
-                                                                const TransitionInfo(
+                                                                TransitionInfo(
                                                               hasTransition:
                                                                   true,
                                                               transitionType:
@@ -763,9 +767,9 @@ class _LoginWidgetState extends State<LoginWidget>
                                                   ),
                                                 ]
                                                     .divide(
-                                                        const SizedBox(height: 24.0))
+                                                        SizedBox(height: 24.0))
                                                     .around(
-                                                        const SizedBox(height: 24.0)),
+                                                        SizedBox(height: 24.0)),
                                               ),
                                             ),
                                           ),

@@ -2,10 +2,13 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'tasks_model.dart';
 export 'tasks_model.dart';
 
@@ -14,8 +17,8 @@ class TasksWidget extends StatefulWidget {
     super.key,
     String? task,
     String? status,
-  })  : task = task ?? '123',
-        status = status ?? 'for dispatch';
+  })  : this.task = task ?? '123',
+        this.status = status ?? 'for dispatch';
 
   final String task;
   final String status;
@@ -56,8 +59,8 @@ class _TasksWidgetState extends State<TasksWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 30.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 30.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -80,12 +83,12 @@ class _TasksWidgetState extends State<TasksWidget>
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+      padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
       child: FutureBuilder<List<PpirFormsRow>>(
         future: PpirFormsTable().querySingleRow(
           queryFn: (q) => q.eq(
             'task_id',
-            widget.task,
+            widget!.task,
           ),
         ),
         builder: (context, snapshot) {
@@ -117,16 +120,16 @@ class _TasksWidgetState extends State<TasksWidget>
                 'task_details',
                 queryParameters: {
                   'taskId': serializeParam(
-                    widget.task,
+                    widget!.task,
                     ParamType.String,
                   ),
                   'isCompleted': serializeParam(
-                    widget.status != 'completed',
+                    widget!.status != 'completed',
                     ParamType.bool,
                   ),
                 }.withoutNulls,
                 extra: <String, dynamic>{
-                  kTransitionInfoKey: const TransitionInfo(
+                  kTransitionInfoKey: TransitionInfo(
                     hasTransition: true,
                     transitionType: PageTransitionType.bottomToTop,
                     duration: Duration(milliseconds: 200),
@@ -150,14 +153,14 @@ class _TasksWidgetState extends State<TasksWidget>
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(12.0),
+                  padding: EdgeInsets.all(12.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
                         child: Text(
                           valueOrDefault<String>(
                             containerPpirFormsRow?.ppirFarmername,
@@ -183,7 +186,7 @@ class _TasksWidgetState extends State<TasksWidget>
                         children: [
                           Flexible(
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
@@ -227,7 +230,7 @@ class _TasksWidgetState extends State<TasksWidget>
                           ),
                           Flexible(
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
@@ -277,7 +280,7 @@ class _TasksWidgetState extends State<TasksWidget>
                         children: [
                           Flexible(
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
@@ -321,7 +324,7 @@ class _TasksWidgetState extends State<TasksWidget>
                           ),
                           Flexible(
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
@@ -391,7 +394,7 @@ class _TasksWidgetState extends State<TasksWidget>
                           ),
                           Expanded(
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 valueOrDefault<String>(
@@ -437,7 +440,7 @@ class _TasksWidgetState extends State<TasksWidget>
                           ),
                           Expanded(
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 valueOrDefault<String>(

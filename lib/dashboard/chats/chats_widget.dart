@@ -2,10 +2,12 @@ import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'chats_model.dart';
 export 'chats_model.dart';
 
@@ -75,14 +77,14 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                         ),
                   ),
                 ),
-                const Icon(
+                Icon(
                   Icons.add,
                   color: Colors.white,
                   size: 30.0,
                 ),
               ],
             ),
-            actions: const [],
+            actions: [],
             centerTitle: true,
             elevation: 2.0,
           ),
@@ -92,7 +94,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -105,7 +107,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                         desktop: false,
                       ))
                         Padding(
-                          padding: const EdgeInsets.all(6.0),
+                          padding: EdgeInsets.all(6.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
                               '8hlwocb6' /* Below are messages with your f... */,
@@ -127,9 +129,9 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                         phone: false,
                       ))
                         Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           child: Padding(
-                            padding: const EdgeInsets.all(24.0),
+                            padding: EdgeInsets.all(24.0),
                             child: Text(
                               FFLocalizations.of(context).getText(
                                 'gcfnxasp' /* Below are messages with your f... */,
@@ -171,7 +173,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                 borderRadius: BorderRadius.circular(0.0),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(6.0),
+                                padding: EdgeInsets.all(6.0),
                                 child: FutureBuilder<List<ChatsRow>>(
                                   future: ChatsTable().queryRows(
                                     queryFn: (q) => q.order('updated_at'),
@@ -255,7 +257,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                   }.withoutNulls,
                                                   extra: <String, dynamic>{
                                                     kTransitionInfoKey:
-                                                        const TransitionInfo(
+                                                        TransitionInfo(
                                                       hasTransition: true,
                                                       transitionType:
                                                           PageTransitionType
@@ -273,7 +275,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                           0.0),
                                                 ),
                                                 child: Padding(
-                                                  padding: const EdgeInsets.all(12.0),
+                                                  padding: EdgeInsets.all(12.0),
                                                   child: Row(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -300,7 +302,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                         ),
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsets.all(
+                                                              EdgeInsets.all(
                                                                   2.0),
                                                           child: ClipRRect(
                                                             borderRadius:
@@ -320,7 +322,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                       Expanded(
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       8.0,
                                                                       0.0,
@@ -361,7 +363,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                               ),
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             4.0,
@@ -399,7 +401,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                         .spaceBetween,
                                                                 children: [
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             4.0,

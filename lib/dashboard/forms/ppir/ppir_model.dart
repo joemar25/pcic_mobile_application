@@ -1,8 +1,21 @@
 import '/backend/supabase/supabase.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_radio_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/utils/components/signature/signature_widget.dart';
+import 'dart:math';
 import 'ppir_widget.dart' show PpirWidget;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class PpirModel extends FlutterFlowModel<PpirWidget> {
   ///  Local state fields for this page.
@@ -16,61 +29,64 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // State field(s) for track_coordinates widget.
-  FocusNode? trackCoordinatesFocusNode;
-  TextEditingController? trackCoordinatesTextController;
+  // State field(s) for ppir_track_coordinates widget.
+  FocusNode? ppirTrackCoordinatesFocusNode;
+  TextEditingController? ppirTrackCoordinatesTextController;
   String? Function(BuildContext, String?)?
-      trackCoordinatesTextControllerValidator;
-  // State field(s) for track_date_time widget.
-  FocusNode? trackDateTimeFocusNode;
-  TextEditingController? trackDateTimeTextController;
-  String? Function(BuildContext, String?)? trackDateTimeTextControllerValidator;
-  // State field(s) for track_total_area widget.
-  FocusNode? trackTotalAreaFocusNode;
-  TextEditingController? trackTotalAreaTextController;
+      ppirTrackCoordinatesTextControllerValidator;
+  // State field(s) for ppir_track_date_time widget.
+  FocusNode? ppirTrackDateTimeFocusNode;
+  TextEditingController? ppirTrackDateTimeTextController;
   String? Function(BuildContext, String?)?
-      trackTotalAreaTextControllerValidator;
-  // State field(s) for track_farmloc widget.
-  FocusNode? trackFarmlocFocusNode;
-  TextEditingController? trackFarmlocTextController;
-  String? Function(BuildContext, String?)? trackFarmlocTextControllerValidator;
-  // State field(s) for svp_act_selection widget.
-  FormFieldController<String>? svpActSelectionValueController;
-  // State field(s) for seed_var_rice_dropdown widget.
-  String? seedVarRiceDropdownValue;
-  FormFieldController<String>? seedVarRiceDropdownValueController;
-  // State field(s) for seed_var_corn_dropdown widget.
-  String? seedVarCornDropdownValue;
-  FormFieldController<String>? seedVarCornDropdownValueController;
-  // State field(s) for area_planted_field widget.
-  FocusNode? areaPlantedFieldFocusNode;
-  TextEditingController? areaPlantedFieldTextController;
+      ppirTrackDateTimeTextControllerValidator;
+  // State field(s) for ppir_track_total_area widget.
+  FocusNode? ppirTrackTotalAreaFocusNode;
+  TextEditingController? ppirTrackTotalAreaTextController;
   String? Function(BuildContext, String?)?
-      areaPlantedFieldTextControllerValidator;
-  // State field(s) for area_dop_ds_field widget.
-  FocusNode? areaDopDsFieldFocusNode;
-  TextEditingController? areaDopDsFieldTextController;
+      ppirTrackTotalAreaTextControllerValidator;
+  // State field(s) for ppir_track_farmloc widget.
+  FocusNode? ppirTrackFarmlocFocusNode;
+  TextEditingController? ppirTrackFarmlocTextController;
   String? Function(BuildContext, String?)?
-      areaDopDsFieldTextControllerValidator;
-  // State field(s) for area_dop_ts_field widget.
-  FocusNode? areaDopTsFieldFocusNode;
-  TextEditingController? areaDopTsFieldTextController;
+      ppirTrackFarmlocTextControllerValidator;
+  // State field(s) for ppir_svp_act_selection widget.
+  FormFieldController<String>? ppirSvpActSelectionValueController;
+  // State field(s) for ppir_seed_var_rice_dropdown widget.
+  String? ppirSeedVarRiceDropdownValue;
+  FormFieldController<String>? ppirSeedVarRiceDropdownValueController;
+  // State field(s) for ppir_seed_var_corn_dropdown widget.
+  String? ppirSeedVarCornDropdownValue;
+  FormFieldController<String>? ppirSeedVarCornDropdownValueController;
+  // State field(s) for ppir_area_act_field widget.
+  FocusNode? ppirAreaActFieldFocusNode;
+  TextEditingController? ppirAreaActFieldTextController;
   String? Function(BuildContext, String?)?
-      areaDopTsFieldTextControllerValidator;
-  // State field(s) for remarks_field widget.
-  FocusNode? remarksFieldFocusNode;
-  TextEditingController? remarksFieldTextController;
-  String? Function(BuildContext, String?)? remarksFieldTextControllerValidator;
-  // State field(s) for prepared_by_name_field widget.
-  FocusNode? preparedByNameFieldFocusNode;
-  TextEditingController? preparedByNameFieldTextController;
+      ppirAreaActFieldTextControllerValidator;
+  // State field(s) for ppir_area_dop_ds_field widget.
+  FocusNode? ppirAreaDopDsFieldFocusNode;
+  TextEditingController? ppirAreaDopDsFieldTextController;
   String? Function(BuildContext, String?)?
-      preparedByNameFieldTextControllerValidator;
-  // State field(s) for confirmed_by_name_field widget.
-  FocusNode? confirmedByNameFieldFocusNode;
-  TextEditingController? confirmedByNameFieldTextController;
+      ppirAreaDopDsFieldTextControllerValidator;
+  // State field(s) for ppir_area_dop_ts_field widget.
+  FocusNode? ppirAreaDopTsFieldFocusNode;
+  TextEditingController? ppirAreaDopTsFieldTextController;
   String? Function(BuildContext, String?)?
-      confirmedByNameFieldTextControllerValidator;
+      ppirAreaDopTsFieldTextControllerValidator;
+  // State field(s) for ppir_remarks_field widget.
+  FocusNode? ppirRemarksFieldFocusNode;
+  TextEditingController? ppirRemarksFieldTextController;
+  String? Function(BuildContext, String?)?
+      ppirRemarksFieldTextControllerValidator;
+  // State field(s) for ppir_prepared_by_name_field widget.
+  FocusNode? ppirPreparedByNameFieldFocusNode;
+  TextEditingController? ppirPreparedByNameFieldTextController;
+  String? Function(BuildContext, String?)?
+      ppirPreparedByNameFieldTextControllerValidator;
+  // State field(s) for ppir_confirmed_by_name_field widget.
+  FocusNode? ppirConfirmedByNameFieldFocusNode;
+  TextEditingController? ppirConfirmedByNameFieldTextController;
+  String? Function(BuildContext, String?)?
+      ppirConfirmedByNameFieldTextControllerValidator;
   // Stores action output result for [Backend Call - Update Row(s)] action in submitButton widget.
   List<PpirFormsRow>? updatedPPIR;
   // Stores action output result for [Backend Call - Update Row(s)] action in submitButton widget.
@@ -84,37 +100,38 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
   @override
   void dispose() {
     unfocusNode.dispose();
-    trackCoordinatesFocusNode?.dispose();
-    trackCoordinatesTextController?.dispose();
+    ppirTrackCoordinatesFocusNode?.dispose();
+    ppirTrackCoordinatesTextController?.dispose();
 
-    trackDateTimeFocusNode?.dispose();
-    trackDateTimeTextController?.dispose();
+    ppirTrackDateTimeFocusNode?.dispose();
+    ppirTrackDateTimeTextController?.dispose();
 
-    trackTotalAreaFocusNode?.dispose();
-    trackTotalAreaTextController?.dispose();
+    ppirTrackTotalAreaFocusNode?.dispose();
+    ppirTrackTotalAreaTextController?.dispose();
 
-    trackFarmlocFocusNode?.dispose();
-    trackFarmlocTextController?.dispose();
+    ppirTrackFarmlocFocusNode?.dispose();
+    ppirTrackFarmlocTextController?.dispose();
 
-    areaPlantedFieldFocusNode?.dispose();
-    areaPlantedFieldTextController?.dispose();
+    ppirAreaActFieldFocusNode?.dispose();
+    ppirAreaActFieldTextController?.dispose();
 
-    areaDopDsFieldFocusNode?.dispose();
-    areaDopDsFieldTextController?.dispose();
+    ppirAreaDopDsFieldFocusNode?.dispose();
+    ppirAreaDopDsFieldTextController?.dispose();
 
-    areaDopTsFieldFocusNode?.dispose();
-    areaDopTsFieldTextController?.dispose();
+    ppirAreaDopTsFieldFocusNode?.dispose();
+    ppirAreaDopTsFieldTextController?.dispose();
 
-    remarksFieldFocusNode?.dispose();
-    remarksFieldTextController?.dispose();
+    ppirRemarksFieldFocusNode?.dispose();
+    ppirRemarksFieldTextController?.dispose();
 
-    preparedByNameFieldFocusNode?.dispose();
-    preparedByNameFieldTextController?.dispose();
+    ppirPreparedByNameFieldFocusNode?.dispose();
+    ppirPreparedByNameFieldTextController?.dispose();
 
-    confirmedByNameFieldFocusNode?.dispose();
-    confirmedByNameFieldTextController?.dispose();
+    ppirConfirmedByNameFieldFocusNode?.dispose();
+    ppirConfirmedByNameFieldTextController?.dispose();
   }
 
   /// Additional helper methods.
-  String? get svpActSelectionValue => svpActSelectionValueController?.value;
+  String? get ppirSvpActSelectionValue =>
+      ppirSvpActSelectionValueController?.value;
 }

@@ -3,10 +3,12 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'messages_model.dart';
 export 'messages_model.dart';
 
@@ -57,7 +59,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
       future: MessagesTable().querySingleRow(
         queryFn: (q) => q.eq(
           'chat_id',
-          widget.chatId,
+          widget!.chatId,
         ),
       ),
       builder: (context, snapshot) {
@@ -102,7 +104,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                 context.pushNamed(
                   'chats',
                   extra: <String, dynamic>{
-                    kTransitionInfoKey: const TransitionInfo(
+                    kTransitionInfoKey: TransitionInfo(
                       hasTransition: true,
                       transitionType: PageTransitionType.topToBottom,
                       duration: Duration(milliseconds: 200),
@@ -115,7 +117,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
                   child: Text(
                     valueOrDefault<String>(
                       messagesMessagesRow?.receiverName,
@@ -133,28 +135,28 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                 ),
               ],
             ),
-            actions: const [],
+            actions: [],
             centerTitle: false,
             elevation: 0.0,
           ),
           body: SafeArea(
             top: true,
             child: Align(
-              alignment: const AlignmentDirectional(0.0, 0.0),
+              alignment: AlignmentDirectional(0.0, 0.0),
               child: Stack(
-                alignment: const AlignmentDirectional(0.0, 1.0),
+                alignment: AlignmentDirectional(0.0, 1.0),
                 children: [
                   Align(
-                    alignment: const AlignmentDirectional(0.0, 1.0),
+                    alignment: AlignmentDirectional(0.0, 1.0),
                     child: Padding(
-                      padding: const EdgeInsets.all(24.0),
+                      padding: EdgeInsets.all(24.0),
                       child: Container(
                         width: MediaQuery.sizeOf(context).width * 0.8,
                         height: 100.0,
                         decoration: BoxDecoration(
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
-                          boxShadow: const [
+                          boxShadow: [
                             BoxShadow(
                               blurRadius: 2.0,
                               color: Color(0x33000000),
@@ -167,11 +169,11 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                           ],
                           borderRadius: BorderRadius.circular(14.0),
                         ),
-                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        alignment: AlignmentDirectional(0.0, 0.0),
                         child: Align(
-                          alignment: const AlignmentDirectional(0.0, -1.0),
+                          alignment: AlignmentDirectional(0.0, -1.0),
                           child: Padding(
-                            padding: const EdgeInsets.all(10.0),
+                            padding: EdgeInsets.all(10.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -192,7 +194,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                 ),
                                 Expanded(
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 0.0, 8.0, 0.0),
                                     child: TextFormField(
                                       controller: _model.textController,
@@ -278,15 +280,15 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                     ),
                   ),
                   Align(
-                    alignment: const AlignmentDirectional(-0.61, 0.64),
+                    alignment: AlignmentDirectional(-0.61, 0.64),
                     child: Padding(
-                      padding: const EdgeInsets.all(24.0),
+                      padding: EdgeInsets.all(24.0),
                       child: Container(
                         width: MediaQuery.sizeOf(context).width * 0.658,
                         height: 74.0,
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).secondary,
-                          boxShadow: const [
+                          boxShadow: [
                             BoxShadow(
                               blurRadius: 2.0,
                               color: Color(0x33000000),
@@ -299,15 +301,15 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                           ],
                           borderRadius: BorderRadius.circular(14.0),
                         ),
-                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        alignment: AlignmentDirectional(0.0, 0.0),
                         child: Stack(
                           children: [
                             Container(
                               width: 241.0,
                               height: 44.0,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Text(
                                   FFLocalizations.of(context).getText(
                                     'rbq8h8d1' /* hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh... */,
@@ -332,15 +334,15 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                     ),
                   ),
                   Align(
-                    alignment: const AlignmentDirectional(0.55, 0.38),
+                    alignment: AlignmentDirectional(0.55, 0.38),
                     child: Padding(
-                      padding: const EdgeInsets.all(24.0),
+                      padding: EdgeInsets.all(24.0),
                       child: Container(
                         width: MediaQuery.sizeOf(context).width * 0.658,
                         height: 74.0,
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).tertiary,
-                          boxShadow: const [
+                          boxShadow: [
                             BoxShadow(
                               blurRadius: 2.0,
                               color: Color(0x33000000),
@@ -353,15 +355,15 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                           ],
                           borderRadius: BorderRadius.circular(14.0),
                         ),
-                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        alignment: AlignmentDirectional(0.0, 0.0),
                         child: Stack(
                           children: [
                             Container(
                               width: 241.0,
                               height: 44.0,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Text(
                                   FFLocalizations.of(context).getText(
                                     'yav59de8' /* hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh... */,

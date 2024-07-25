@@ -299,6 +299,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     'ihmcvc23': {
+      'en': 'This task is completed',
+      'tl': '',
+    },
+    'j9rxgs8h': {
       'en': 'Form Details',
       'tl': '',
     },
@@ -479,7 +483,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     'e0abx8jq': {
-      'en': 'Actions here (',
+      'en': 'Actions',
       'tl': '',
     },
     'g06chmkk': {

@@ -4,7 +4,9 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'forgot_password_model.dart';
 export 'forgot_password_model.dart';
 
@@ -59,7 +61,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
             context.pushNamed(
               'login',
               extra: <String, dynamic>{
-                kTransitionInfoKey: const TransitionInfo(
+                kTransitionInfoKey: TransitionInfo(
                   hasTransition: true,
                   transitionType: PageTransitionType.bottomToTop,
                   duration: Duration(milliseconds: 200),
@@ -68,28 +70,28 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
             );
           },
         ),
-        actions: const [],
+        actions: [],
         centerTitle: false,
         elevation: 0.0,
       ),
       body: SafeArea(
         top: true,
         child: Align(
-          alignment: const AlignmentDirectional(0.0, -1.0),
+          alignment: AlignmentDirectional(0.0, -1.0),
           child: Container(
             width: double.infinity,
-            constraints: const BoxConstraints(
+            constraints: BoxConstraints(
               maxWidth: 570.0,
             ),
-            decoration: const BoxDecoration(),
+            decoration: BoxDecoration(),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  alignment: AlignmentDirectional(0.0, 0.0),
                   child: Padding(
-                    padding: const EdgeInsets.all(24.0),
+                    padding: EdgeInsets.all(24.0),
                     child: Text(
                       FFLocalizations.of(context).getText(
                         'ajwqbdpu' /* Forgot Password */,
@@ -107,7 +109,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(24.0),
+                  padding: EdgeInsets.all(24.0),
                   child: Text(
                     FFLocalizations.of(context).getText(
                       'owzqo8qh' /* We will send you an email with... */,
@@ -123,13 +125,13 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                 ),
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(24.0, 12.0, 24.0, 0.0),
-                  child: SizedBox(
+                      EdgeInsetsDirectional.fromSTEB(24.0, 12.0, 24.0, 0.0),
+                  child: Container(
                     width: double.infinity,
                     child: TextFormField(
                       controller: _model.emailAddressTextController,
                       focusNode: _model.emailAddressFocusNode,
-                      autofillHints: const [AutofillHints.email],
+                      autofillHints: [AutofillHints.email],
                       textInputAction: TextInputAction.done,
                       obscureText: false,
                       decoration: InputDecoration(
@@ -188,7 +190,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                         filled: true,
                         fillColor:
                             FlutterFlowTheme.of(context).secondaryBackground,
-                        contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                        contentPadding: EdgeInsetsDirectional.fromSTEB(
                             24.0, 24.0, 20.0, 24.0),
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -207,14 +209,14 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                   ),
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  alignment: AlignmentDirectional(0.0, 0.0),
                   child: Padding(
-                    padding: const EdgeInsets.all(24.0),
+                    padding: EdgeInsets.all(24.0),
                     child: FFButtonWidget(
                       onPressed: () async {
                         if (_model.emailAddressTextController.text.isEmpty) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
+                            SnackBar(
                               content: Text(
                                 'Email required!',
                               ),
@@ -234,9 +236,9 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                         width: double.infinity,
                         height: 50.0,
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle: FlutterFlowTheme.of(context)
                             .titleSmall
@@ -249,7 +251,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                                       .titleSmallFamily),
                             ),
                         elevation: 3.0,
-                        borderSide: const BorderSide(
+                        borderSide: BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),

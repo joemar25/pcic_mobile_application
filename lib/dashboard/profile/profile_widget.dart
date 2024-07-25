@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'profile_model.dart';
 export 'profile_model.dart';
 
@@ -99,7 +100,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           FlutterFlowTheme.of(context).displaySmallFamily),
                     ),
               ),
-              actions: const [],
+              actions: [],
               centerTitle: true,
               elevation: 2.0,
             ),
@@ -111,7 +112,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      alignment: AlignmentDirectional(0.0, 0.0),
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(0.0),
@@ -134,7 +135,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                         blurRadius: 1.0,
                                         color: FlutterFlowTheme.of(context)
                                             .primaryBackground,
-                                        offset: const Offset(
+                                        offset: Offset(
                                           0.0,
                                           0.0,
                                         ),
@@ -144,7 +145,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                     shape: BoxShape.rectangle,
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         24.0, 12.0, 24.0, 12.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -159,7 +160,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                               'edit_profile',
                                               extra: <String, dynamic>{
                                                 kTransitionInfoKey:
-                                                    const TransitionInfo(
+                                                    TransitionInfo(
                                                   hasTransition: true,
                                                   transitionType:
                                                       PageTransitionType.scale,
@@ -180,7 +181,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                   BorderRadius.circular(40.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(2.0),
+                                              padding: EdgeInsets.all(2.0),
                                               child: ClipRRect(
                                                 borderRadius:
                                                     BorderRadius.circular(40.0),
@@ -199,7 +200,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 0.0, 0.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -231,7 +232,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                         ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 4.0, 0.0, 0.0),
                                                 child: Text(
@@ -275,7 +276,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           24.0, 12.0, 0.0, 12.0),
                                       child: Text(
                                         FFLocalizations.of(context).getText(
@@ -323,7 +324,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                             .secondaryBackground,
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             24.0, 12.0, 24.0, 12.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -363,16 +364,16 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                     BorderRadius.circular(20.0),
                                               ),
                                               child: Stack(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 children: [
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.95, 0.0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -390,7 +391,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             -0.85, 0.0),
                                                     child: Container(
                                                       width: 36.0,
@@ -399,7 +400,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                         color: FlutterFlowTheme
                                                                 .of(context)
                                                             .secondaryBackground,
-                                                        boxShadow: const [
+                                                        boxShadow: [
                                                           BoxShadow(
                                                             blurRadius: 4.0,
                                                             color: Color(
@@ -443,7 +444,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                             .secondaryBackground,
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             24.0, 12.0, 24.0, 12.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -483,16 +484,16 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                     BorderRadius.circular(20.0),
                                               ),
                                               child: Stack(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 children: [
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             -0.9, 0.0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   8.0,
                                                                   2.0,
@@ -510,7 +511,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.9, 0.0),
                                                     child: Container(
                                                       width: 36.0,
@@ -519,7 +520,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                         color: FlutterFlowTheme
                                                                 .of(context)
                                                             .secondaryBackground,
-                                                        boxShadow: const [
+                                                        boxShadow: [
                                                           BoxShadow(
                                                             blurRadius: 4.0,
                                                             color: Color(
@@ -549,7 +550,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               ],
                             ),
                             Padding(
-                              padding: const EdgeInsets.all(24.0),
+                              padding: EdgeInsets.all(24.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
@@ -561,13 +562,13 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                           : MediaQuery.sizeOf(context).width,
                                       417.0,
                                     ),
-                                    decoration: const BoxDecoration(),
+                                    decoration: BoxDecoration(),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   20.0, 0.0, 20.0, 20.0),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
@@ -579,7 +580,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                 'edit_profile',
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
-                                                      const TransitionInfo(
+                                                      TransitionInfo(
                                                     hasTransition: true,
                                                     transitionType:
                                                         PageTransitionType.fade,
@@ -596,7 +597,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                boxShadow: const [
+                                                boxShadow: [
                                                   BoxShadow(
                                                     blurRadius: 5.0,
                                                     color: Color(0x3416202A),
@@ -611,14 +612,14 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                 shape: BoxShape.rectangle,
                                               ),
                                               child: Padding(
-                                                padding: const EdgeInsets.all(8.0),
+                                                padding: EdgeInsets.all(8.0),
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   12.0,
                                                                   0.0,
@@ -651,7 +652,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                     Expanded(
                                                       child: Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 0.9, 0.0),
                                                         child: Icon(
                                                           Icons
@@ -671,7 +672,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   20.0, 0.0, 20.0, 20.0),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
@@ -683,7 +684,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                 'edit_password',
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
-                                                      const TransitionInfo(
+                                                      TransitionInfo(
                                                     hasTransition: true,
                                                     transitionType:
                                                         PageTransitionType.fade,
@@ -700,7 +701,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                boxShadow: const [
+                                                boxShadow: [
                                                   BoxShadow(
                                                     blurRadius: 5.0,
                                                     color: Color(0x3416202A),
@@ -715,14 +716,14 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                 shape: BoxShape.rectangle,
                                               ),
                                               child: Padding(
-                                                padding: const EdgeInsets.all(8.0),
+                                                padding: EdgeInsets.all(8.0),
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   12.0,
                                                                   0.0,
@@ -755,7 +756,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                     Expanded(
                                                       child: Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 0.9, 0.0),
                                                         child: Icon(
                                                           Icons
@@ -775,7 +776,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 20.0, 0.0, 20.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -790,13 +791,15 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                   GoRouter.of(context)
                                                       .clearRedirectLocation();
 
-                                                  if (currentUserEmail == '') {
+                                                  if (currentUserEmail ==
+                                                          null ||
+                                                      currentUserEmail == '') {
                                                     context.pushNamedAuth(
                                                       'login',
                                                       context.mounted,
                                                       extra: <String, dynamic>{
                                                         kTransitionInfoKey:
-                                                            const TransitionInfo(
+                                                            TransitionInfo(
                                                           hasTransition: true,
                                                           transitionType:
                                                               PageTransitionType
@@ -823,11 +826,11 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                 options: FFButtonOptions(
                                                   width: 90.0,
                                                   height: 40.0,
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 0.0),
                                                   iconPadding:
-                                                      const EdgeInsetsDirectional
+                                                      EdgeInsetsDirectional
                                                           .fromSTEB(0.0, 0.0,
                                                               0.0, 0.0),
                                                   color: FlutterFlowTheme.of(
@@ -853,7 +856,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                                     'Lexend Deca'),
                                                       ),
                                                   elevation: 1.0,
-                                                  borderSide: const BorderSide(
+                                                  borderSide: BorderSide(
                                                     color: Colors.transparent,
                                                     width: 1.0,
                                                   ),

@@ -281,7 +281,7 @@ Future<LatLng?> queryCurrentUserLocation() async {
   }
 
   final position = await Geolocator.getCurrentPosition();
-  return position.latitude != 0 && position.longitude != 0
+  return position != null && position.latitude != 0 && position.longitude != 0
       ? LatLng(position.latitude, position.longitude)
       : null;
 }
@@ -327,12 +327,12 @@ void showSnackbar(
       content: Row(
         children: [
           if (loading)
-            const Padding(
+            Padding(
               padding: EdgeInsetsDirectional.only(end: 10.0),
-              child: SizedBox(
+              child: Container(
                 height: 20,
                 width: 20,
-                child: CircularProgressIndicator(
+                child: const CircularProgressIndicator(
                   color: Colors.white,
                 ),
               ),
