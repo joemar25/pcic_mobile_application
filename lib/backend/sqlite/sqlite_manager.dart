@@ -56,10 +56,10 @@ class SQLiteManager {
         _database,
       );
 
-  Future<List<SELECTPROFILEzRow>> sELECTPROFILEz({
+  Future<List<SelectProfileRow>> selectProfile({
     String? email,
   }) =>
-      performSELECTPROFILEz(
+      performSelectProfile(
         _database,
         email: email,
       );

@@ -268,8 +268,8 @@ dynamic deserializeParam<T>(
             return SelectSyncLogsRow(data);
           case SelectAttemptsRow:
             return SelectAttemptsRow(data);
-          case SELECTPROFILEzRow:
-            return SELECTPROFILEzRow(data);
+          case SelectProfileRow:
+            return SelectProfileRow(data);
           default:
             return null;
         }

@@ -453,6 +453,34 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                 .warning,
                                         shape: BoxShape.circle,
                                       ),
+                                      child: Stack(
+                                        children: [
+                                          if (FFAppState().ONLINE)
+                                            Align(
+                                              alignment: const AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: Icon(
+                                                Icons.wifi,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                size: 24.0,
+                                              ),
+                                            ),
+                                          if (!FFAppState().ONLINE)
+                                            Align(
+                                              alignment: const AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: Icon(
+                                                Icons.wifi_off,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                size: 24.0,
+                                              ),
+                                            ),
+                                        ],
+                                      ),
                                     ).animateOnPageLoad(animationsMap[
                                         'containerOnPageLoadAnimation1']!),
                                   ],

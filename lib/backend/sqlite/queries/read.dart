@@ -244,19 +244,19 @@ class SelectAttemptsRow extends SqliteRow {
 
 /// END SELECT ATTEMPTS
 
-/// BEGIN SELECT PROFILEZ
-Future<List<SELECTPROFILEzRow>> performSELECTPROFILEz(
+/// BEGIN SELECT PROFILE
+Future<List<SelectProfileRow>> performSelectProfile(
   Database database, {
   String? email,
 }) {
   final query = '''
 SELECT * FROM users WHERE email = '$email'
 ''';
-  return _readQuery(database, query, (d) => SELECTPROFILEzRow(d));
+  return _readQuery(database, query, (d) => SelectProfileRow(d));
 }
 
-class SELECTPROFILEzRow extends SqliteRow {
-  SELECTPROFILEzRow(super.data);
+class SelectProfileRow extends SqliteRow {
+  SelectProfileRow(super.data);
 
   String? get id => data['id'] as String?;
   String? get role => data['role'] as String?;
@@ -272,4 +272,4 @@ class SELECTPROFILEzRow extends SqliteRow {
   String? get regionId => data['region_id'] as String?;
 }
 
-/// END SELECT PROFILEZ
+/// END SELECT PROFILE
