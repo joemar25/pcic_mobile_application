@@ -17,7 +17,8 @@ export '/dashboard/dashboard/dashboard_widget.dart' show DashboardWidget;
 export '/dashboard/map_testing/map_testing_widget.dart' show MapTestingWidget;
 export '/utils/extra/success_profile/success_profile_widget.dart'
     show SuccessProfileWidget;
-export '/mar_api_test/mar_api_test_widget.dart' show MarApiTestWidget;
+export '/utils/test/mar_api_test/mar_api_test_widget.dart'
+    show MarApiTestWidget;
 export '/auth/forgot_password/forgot_password_widget.dart'
     show ForgotPasswordWidget;
 export '/dashboard/geotagging/geotagging_widget.dart' show GeotaggingWidget;
