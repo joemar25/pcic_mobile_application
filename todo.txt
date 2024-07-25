@@ -1,0 +1,17 @@
+July 25, 2024
+
+list of realization of todo's for now:
+    asset profile update
+    offline db
+    map (online)
+    map (offline)
+    .gpx
+    .task
+    .png's
+    message chats
+    message ui
+    dashboard ui
+    login verification bug
+    profile change picture functionality
+
+
