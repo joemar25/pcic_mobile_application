@@ -8,7 +8,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/empty_lists/empty_lists_widget.dart';
 import '/utils/components/tasks/tasks_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import '/flutter_flow/permissions_util.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -42,11 +41,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
     _model = createModel(context, () => DashboardModel());
 
     // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await requestPermission(locationPermission);
-      await requestPermission(cameraPermission);
-      await requestPermission(photoLibraryPermission);
-    });
+    SchedulerBinding.instance.addPostFrameCallback((_) async {});
 
     _model.textController ??= TextEditingController();
 
