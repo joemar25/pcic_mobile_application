@@ -2,7 +2,6 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/toast/toast_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
@@ -10,7 +9,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'task_details_model.dart';
 export 'task_details_model.dart';
 
@@ -19,7 +17,7 @@ class TaskDetailsWidget extends StatefulWidget {
     super.key,
     required this.taskId,
     bool? isCompleted,
-  }) : this.isCompleted = isCompleted ?? true;
+  }) : isCompleted = isCompleted ?? true;
 
   final String? taskId;
   final bool isCompleted;
@@ -61,7 +59,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
       future: PpirFormsTable().querySingleRow(
         queryFn: (q) => q.eq(
           'task_id',
-          widget!.taskId,
+          widget.taskId,
         ),
       ),
       builder: (context, snapshot) {
@@ -105,7 +103,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                 borderRadius: 30.0,
                 borderWidth: 1.0,
                 buttonSize: 60.0,
-                icon: Icon(
+                icon: const Icon(
                   Icons.chevron_left,
                   color: Colors.white,
                   size: 30.0,
@@ -114,7 +112,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                   context.pushNamed(
                     'dashboard',
                     extra: <String, dynamic>{
-                      kTransitionInfoKey: TransitionInfo(
+                      kTransitionInfoKey: const TransitionInfo(
                         hasTransition: true,
                         transitionType: PageTransitionType.topToBottom,
                         duration: Duration(milliseconds: 200),
@@ -128,7 +126,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
                     child: Text(
                       FFLocalizations.of(context).getText(
                         'x1jz4y0y' /* Task Details */,
@@ -147,7 +145,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                   ),
                   Stack(
                     children: [
-                      if (widget!.isCompleted && (_model.isEditing == false))
+                      if (widget.isCompleted && (_model.isEditing == false))
                         InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
@@ -157,7 +155,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                             _model.isEditing = !(_model.isEditing ?? true);
                             setState(() {});
                           },
-                          child: Icon(
+                          child: const Icon(
                             Icons.edit,
                             color: Colors.white,
                             size: 24.0,
@@ -179,7 +177,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                               },
                               matchingRows: (rows) => rows.eq(
                                 'task_id',
-                                widget!.taskId,
+                                widget.taskId,
                               ),
                             );
                             await showModalBottomSheet(
@@ -197,11 +195,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           : FocusScope.of(context).unfocus(),
                                   child: Padding(
                                     padding: MediaQuery.viewInsetsOf(context),
-                                    child: Container(
+                                    child: SizedBox(
                                       height:
                                           MediaQuery.sizeOf(context).height *
                                               0.1,
-                                      child: ToastWidget(
+                                      child: const ToastWidget(
                                         notificationTitle: 'Success',
                                         notificationMessage:
                                             'You have successfully edited the farm location!',
@@ -212,7 +210,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                               },
                             ).then((value) => safeSetState(() {}));
                           },
-                          child: FaIcon(
+                          child: const FaIcon(
                             FontAwesomeIcons.save,
                             color: Colors.white,
                             size: 24.0,
@@ -222,7 +220,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                   ),
                 ],
               ),
-              actions: [],
+              actions: const [],
               centerTitle: false,
               elevation: 0.0,
             ),
@@ -232,7 +230,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                 future: TasksTable().querySingleRow(
                   queryFn: (q) => q.eq(
                     'id',
-                    widget!.taskId,
+                    widget.taskId,
                   ),
                 ),
                 builder: (context, snapshot) {
@@ -268,18 +266,18 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     30.0, 0.0, 30.0, 0.0),
                                 child: Container(
                                   width: 600.0,
-                                  constraints: BoxConstraints(
+                                  constraints: const BoxConstraints(
                                     maxWidth: 570.0,
                                   ),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(12.0),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.all(8.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
@@ -290,9 +288,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
-                                            if (!widget!.isCompleted)
+                                            if (!widget.isCompleted)
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 12.0),
                                                 child: Text(
@@ -326,7 +324,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 12.0),
                                           child: Text(
                                             FFLocalizations.of(context).getText(
@@ -351,7 +349,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 8.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -408,7 +406,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 8.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -465,7 +463,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 8.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -524,7 +522,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 8.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -583,7 +581,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 8.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -642,7 +640,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 8.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -701,7 +699,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 8.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -760,7 +758,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 8.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -819,7 +817,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 8.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -878,7 +876,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 8.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -937,7 +935,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 8.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -997,7 +995,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 8.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1056,7 +1054,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 8.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1097,7 +1095,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ),
                                               Expanded(
                                                 child: Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           8.0, 0.0, 8.0, 0.0),
                                                   child: TextFormField(
@@ -1118,7 +1116,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                         _model.isEditing ==
                                                             false,
                                                     obscureText: false,
-                                                    decoration: InputDecoration(
+                                                    decoration: const InputDecoration(
                                                       enabledBorder:
                                                           InputBorder.none,
                                                       focusedBorder:
@@ -1156,7 +1154,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 16.0, 0.0, 16.0),
                                           child: Divider(
                                             thickness: 2.0,
@@ -1166,7 +1164,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 12.0),
                                           child: Text(
                                             FFLocalizations.of(context).getText(
@@ -1191,7 +1189,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 8.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1250,7 +1248,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 8.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1309,7 +1307,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 8.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1367,7 +1365,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 8.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1425,7 +1423,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 16.0, 0.0, 16.0),
                                           child: Divider(
                                             thickness: 2.0,
@@ -1435,7 +1433,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 12.0),
                                           child: Text(
                                             FFLocalizations.of(context).getText(
@@ -1460,7 +1458,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 8.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1519,7 +1517,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 8.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1578,7 +1576,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 8.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1637,7 +1635,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 8.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1696,7 +1694,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 16.0, 0.0, 16.0),
                                           child: Divider(
                                             thickness: 2.0,
@@ -1705,13 +1703,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           ),
                                         ),
                                         if (!valueOrDefault<bool>(
-                                          widget!.isCompleted,
+                                          widget.isCompleted,
                                           false,
                                         ))
                                           Container(
                                             width: double.infinity,
                                             height: 800.0,
-                                            constraints: BoxConstraints(
+                                            constraints: const BoxConstraints(
                                               maxWidth: double.infinity,
                                             ),
                                             decoration: BoxDecoration(
@@ -1733,7 +1731,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -1769,7 +1767,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 8.0,
                                                                 0.0, 0.0),
                                                     child: Row(
@@ -1809,7 +1807,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(20.0, 8.0,
                                                                 20.0, 0.0),
                                                     child: Row(
@@ -1872,7 +1870,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(20.0, 8.0,
                                                                 20.0, 0.0),
                                                     child: Row(
@@ -1935,7 +1933,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(20.0, 8.0,
                                                                 20.0, 0.0),
                                                     child: Row(
@@ -1998,7 +1996,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(20.0, 8.0,
                                                                 20.0, 0.0),
                                                     child: Row(
@@ -2061,7 +2059,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 16.0,
                                                                 0.0, 16.0),
                                                     child: Divider(
@@ -2074,7 +2072,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 8.0,
                                                                 0.0, 0.0),
                                                     child: Row(
@@ -2114,7 +2112,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(20.0, 8.0,
                                                                 20.0, 0.0),
                                                     child: Row(
@@ -2177,7 +2175,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(20.0, 8.0,
                                                                 20.0, 0.0),
                                                     child: Row(
@@ -2240,7 +2238,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 16.0,
                                                                 0.0, 16.0),
                                                     child: Divider(
@@ -2253,7 +2251,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 8.0,
                                                                 0.0, 0.0),
                                                     child: Row(
@@ -2293,7 +2291,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(20.0, 8.0,
                                                                 20.0, 0.0),
                                                     child: Row(
@@ -2356,7 +2354,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(20.0, 8.0,
                                                                 20.0, 0.0),
                                                     child: Row(
@@ -2419,7 +2417,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 16.0,
                                                                 0.0, 16.0),
                                                     child: Divider(
@@ -2432,7 +2430,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 8.0,
                                                                 0.0, 0.0),
                                                     child: Row(
@@ -2472,7 +2470,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(20.0, 8.0,
                                                                 20.0, 0.0),
                                                     child: Row(
@@ -2535,7 +2533,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(20.0, 8.0,
                                                                 20.0, 0.0),
                                                     child: Row(
@@ -2598,7 +2596,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(20.0, 8.0,
                                                                 20.0, 0.0),
                                                     child: Row(
@@ -2661,7 +2659,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(20.0, 8.0,
                                                                 20.0, 0.0),
                                                     child: Row(
@@ -2724,7 +2722,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(20.0, 8.0,
                                                                 20.0, 0.0),
                                                     child: Row(
@@ -2787,7 +2785,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 16.0,
                                                                 0.0, 16.0),
                                                     child: Divider(
@@ -2800,7 +2798,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 8.0,
                                                                 0.0, 0.0),
                                                     child: Row(
@@ -2840,7 +2838,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(20.0, 8.0,
                                                                 20.0, 0.0),
                                                     child: Row(
@@ -2902,7 +2900,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 16.0,
                                                                 0.0, 16.0),
                                                     child: Divider(
@@ -2917,7 +2915,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ),
                                             ),
                                           ),
-                                      ].divide(SizedBox(height: 10.0)),
+                                      ].divide(const SizedBox(height: 10.0)),
                                     ),
                                   ),
                                 ),
@@ -2926,9 +2924,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                           ),
                         ),
                       ),
-                      if (widget!.isCompleted)
+                      if (widget.isCompleted)
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 8.0, 16.0, 12.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
@@ -2938,7 +2936,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                             onTap: () async {
                               currentUserLocationValue =
                                   await getCurrentUserLocation(
-                                      defaultLocation: LatLng(0.0, 0.0));
+                                      defaultLocation: const LatLng(0.0, 0.0));
                               if (_model.isEditing!) {
                                 await showModalBottomSheet(
                                   isScrollControlled: true,
@@ -2956,11 +2954,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                       child: Padding(
                                         padding:
                                             MediaQuery.viewInsetsOf(context),
-                                        child: Container(
+                                        child: SizedBox(
                                           height: MediaQuery.sizeOf(context)
                                                   .height *
                                               0.1,
-                                          child: ToastWidget(
+                                          child: const ToastWidget(
                                             notificationTitle: 'Fail',
                                             notificationMessage:
                                                 'You are still editing the farm location. Please finishi it first.',
@@ -2975,7 +2973,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                   'geotagging',
                                   queryParameters: {
                                     'taskId': serializeParam(
-                                      widget!.taskId,
+                                      widget.taskId,
                                       ParamType.String,
                                     ),
                                     'taskType': serializeParam(
@@ -2984,7 +2982,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                     ),
                                   }.withoutNulls,
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: TransitionInfo(
+                                    kTransitionInfoKey: const TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.scale,
                                       alignment: Alignment.bottomCenter,
@@ -2999,7 +2997,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                               height: 50.0,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context).primary,
-                                boxShadow: [
+                                boxShadow: const [
                                   BoxShadow(
                                     blurRadius: 4.0,
                                     color: Color(0x33000000),
@@ -3015,13 +3013,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                   width: 2.0,
                                 ),
                               ),
-                              alignment: AlignmentDirectional(0.0, 0.0),
+                              alignment: const AlignmentDirectional(0.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.all(6.0),
+                                    padding: const EdgeInsets.all(6.0),
                                     child: Icon(
                                       Icons.map_outlined,
                                       color: FlutterFlowTheme.of(context)
@@ -3053,9 +3051,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                             ),
                           ),
                         ),
-                      if (!widget!.isCompleted)
+                      if (!widget.isCompleted)
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 8.0, 16.0, 12.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
@@ -3065,16 +3063,16 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                             onTap: () async {
                               currentUserLocationValue =
                                   await getCurrentUserLocation(
-                                      defaultLocation: LatLng(0.0, 0.0));
+                                      defaultLocation: const LatLng(0.0, 0.0));
                               await AttemptsTable().insert({
-                                'task_id': widget!.taskId,
+                                'task_id': widget.taskId,
                               });
 
                               context.pushNamed(
                                 'geotagging',
                                 queryParameters: {
                                   'taskId': serializeParam(
-                                    widget!.taskId,
+                                    widget.taskId,
                                     ParamType.String,
                                   ),
                                   'taskType': serializeParam(
@@ -3083,7 +3081,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                   ),
                                 }.withoutNulls,
                                 extra: <String, dynamic>{
-                                  kTransitionInfoKey: TransitionInfo(
+                                  kTransitionInfoKey: const TransitionInfo(
                                     hasTransition: true,
                                     transitionType: PageTransitionType.scale,
                                     alignment: Alignment.bottomCenter,
@@ -3097,7 +3095,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                               height: 50.0,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context).primary,
-                                boxShadow: [
+                                boxShadow: const [
                                   BoxShadow(
                                     blurRadius: 4.0,
                                     color: Color(0x33000000),
@@ -3113,13 +3111,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                   width: 2.0,
                                 ),
                               ),
-                              alignment: AlignmentDirectional(0.0, 0.0),
+                              alignment: const AlignmentDirectional(0.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.all(6.0),
+                                    padding: const EdgeInsets.all(6.0),
                                     child: Icon(
                                       Icons.redo_sharp,
                                       color: FlutterFlowTheme.of(context)

@@ -2,9 +2,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'slider_container_model.dart';
 export 'slider_container_model.dart';
 
@@ -15,7 +13,7 @@ class SliderContainerWidget extends StatefulWidget {
     required this.body,
     required this.taskId,
     String? ppirSvpActInit,
-  }) : this.ppirSvpActInit = ppirSvpActInit ?? 'rice';
+  }) : ppirSvpActInit = ppirSvpActInit ?? 'rice';
 
   final String? title;
   final String? body;
@@ -60,7 +58,7 @@ class _SliderContainerWidgetState extends State<SliderContainerWidget> {
       mainAxisSize: MainAxisSize.max,
       children: [
         Padding(
-          padding: EdgeInsets.all(24.0),
+          padding: const EdgeInsets.all(24.0),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -83,7 +81,7 @@ class _SliderContainerWidgetState extends State<SliderContainerWidget> {
                   ),
                   Text(
                     valueOrDefault<String>(
-                      widget!.body,
+                      widget.body,
                       'ssda',
                     ),
                     style: FlutterFlowTheme.of(context).labelMedium.override(
@@ -102,7 +100,7 @@ class _SliderContainerWidgetState extends State<SliderContainerWidget> {
                 children: [
                   Text(
                     valueOrDefault<String>(
-                      widget!.title,
+                      widget.title,
                       'lol',
                     ),
                     style: FlutterFlowTheme.of(context).titleLarge.override(
@@ -128,7 +126,7 @@ class _SliderContainerWidgetState extends State<SliderContainerWidget> {
         ),
         Container(
           width: MediaQuery.sizeOf(context).width * 1.0,
-          decoration: BoxDecoration(),
+          decoration: const BoxDecoration(),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -138,7 +136,7 @@ class _SliderContainerWidgetState extends State<SliderContainerWidget> {
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                     child: Container(
                       width: 70.0,
                       height: 70.0,
@@ -184,7 +182,7 @@ class _SliderContainerWidgetState extends State<SliderContainerWidget> {
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                     child: Container(
                       width: 70.0,
                       height: 70.0,
@@ -218,7 +216,7 @@ class _SliderContainerWidgetState extends State<SliderContainerWidget> {
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                     child: Container(
                       width: 70.0,
                       height: 70.0,
@@ -239,12 +237,12 @@ class _SliderContainerWidgetState extends State<SliderContainerWidget> {
                             'ppir',
                             queryParameters: {
                               'taskId': serializeParam(
-                                widget!.taskId,
+                                widget.taskId,
                                 ParamType.String,
                               ),
                             }.withoutNulls,
                             extra: <String, dynamic>{
-                              kTransitionInfoKey: TransitionInfo(
+                              kTransitionInfoKey: const TransitionInfo(
                                 hasTransition: true,
                                 transitionType: PageTransitionType.fade,
                                 duration: Duration(milliseconds: 200),
@@ -284,9 +282,9 @@ class _SliderContainerWidgetState extends State<SliderContainerWidget> {
           color: FlutterFlowTheme.of(context).secondaryText,
         ),
         Align(
-          alignment: AlignmentDirectional(-1.0, 0.0),
+          alignment: const AlignmentDirectional(-1.0, 0.0),
           child: Padding(
-            padding: EdgeInsets.all(24.0),
+            padding: const EdgeInsets.all(24.0),
             child: Text(
               FFLocalizations.of(context).getText(
                 'u9apm1jr' /* Location */,
@@ -307,7 +305,7 @@ class _SliderContainerWidgetState extends State<SliderContainerWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsets.all(24.0),
+                  padding: const EdgeInsets.all(24.0),
                   child: Icon(
                     Icons.route,
                     color: FlutterFlowTheme.of(context).secondaryText,
@@ -363,7 +361,7 @@ class _SliderContainerWidgetState extends State<SliderContainerWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsets.all(24.0),
+                  padding: const EdgeInsets.all(24.0),
                   child: Icon(
                     Icons.maps_home_work_outlined,
                     color: FlutterFlowTheme.of(context).secondaryText,

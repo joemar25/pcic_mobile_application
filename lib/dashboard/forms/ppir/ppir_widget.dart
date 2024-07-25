@@ -8,13 +8,10 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/utils/components/signature/signature_widget.dart';
-import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'ppir_model.dart';
 export 'ppir_model.dart';
 
@@ -77,8 +74,8 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 0.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 0.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -89,8 +86,8 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 0.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 0.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -116,7 +113,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
       future: PpirFormsTable().querySingleRow(
         queryFn: (q) => q.eq(
           'task_id',
-          widget!.taskId,
+          widget.taskId,
         ),
       ),
       builder: (context, snapshot) {
@@ -172,19 +169,19 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                           context: context,
                           builder: (alertDialogContext) {
                             return AlertDialog(
-                              title: Text('Info'),
-                              content: Text(
+                              title: const Text('Info'),
+                              content: const Text(
                                   'This will cancel your current progress in the tasks. Are you sure to cancel?'),
                               actions: [
                                 TextButton(
                                   onPressed: () =>
                                       Navigator.pop(alertDialogContext, false),
-                                  child: Text('Cancel'),
+                                  child: const Text('Cancel'),
                                 ),
                                 TextButton(
                                   onPressed: () =>
                                       Navigator.pop(alertDialogContext, true),
-                                  child: Text('Confirm'),
+                                  child: const Text('Confirm'),
                                 ),
                               ],
                             );
@@ -208,7 +205,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                             FlutterFlowTheme.of(context).titleLargeFamily),
                       ),
                 ),
-                actions: [],
+                actions: const [],
                 centerTitle: false,
                 elevation: 0.0,
               ),
@@ -224,11 +221,11 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   10.0, 16.0, 10.0, 50.0),
                               child: Container(
                                 width: double.infinity,
-                                constraints: BoxConstraints(
+                                constraints: const BoxConstraints(
                                   maxWidth: 570.0,
                                 ),
                                 decoration: BoxDecoration(
@@ -237,7 +234,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                   borderRadius: BorderRadius.circular(12.0),
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       10.0, 0.0, 10.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -245,7 +242,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 12.0),
                                         child: Text(
                                           FFLocalizations.of(context).getText(
@@ -268,7 +265,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 10.0, 0.0, 10.0),
                                         child: TextFormField(
                                           controller: _model
@@ -372,7 +369,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                 FlutterFlowTheme.of(context)
                                                     .secondaryBackground,
                                             contentPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 12.0, 16.0, 12.0),
                                           ),
                                           style: FlutterFlowTheme.of(context)
@@ -398,7 +395,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 10.0, 0.0, 10.0),
                                         child: TextFormField(
                                           controller: _model
@@ -492,7 +489,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                   BorderRadius.circular(12.0),
                                             ),
                                             contentPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 12.0, 16.0, 12.0),
                                           ),
                                           style: FlutterFlowTheme.of(context)
@@ -518,7 +515,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 10.0, 0.0, 10.0),
                                         child: TextFormField(
                                           controller: _model
@@ -612,7 +609,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                   BorderRadius.circular(12.0),
                                             ),
                                             contentPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 12.0, 16.0, 12.0),
                                           ),
                                           style: FlutterFlowTheme.of(context)
@@ -638,7 +635,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 10.0, 0.0, 10.0),
                                         child: TextFormField(
                                           controller: _model
@@ -738,7 +735,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                   BorderRadius.circular(12.0),
                                             ),
                                             contentPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 12.0, 16.0, 12.0),
                                           ),
                                           style: FlutterFlowTheme.of(context)
@@ -764,7 +761,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 16.0, 0.0, 16.0),
                                         child: Divider(
                                           thickness: 2.0,
@@ -773,7 +770,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                         ),
                                       ),
                                       Container(
-                                        decoration: BoxDecoration(),
+                                        decoration: const BoxDecoration(),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -781,7 +778,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 12.0),
                                                   child: Text(
@@ -817,7 +814,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                 Expanded(
                                                   child: Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(16.0, 8.0,
                                                                 16.0, 12.0),
                                                     child: Container(
@@ -828,7 +825,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .error,
-                                                        boxShadow: [
+                                                        boxShadow: const [
                                                           BoxShadow(
                                                             blurRadius: 4.0,
                                                             color: Color(
@@ -850,7 +847,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                         ),
                                                       ),
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               0.0, 0.0),
                                                       child: Text(
                                                         FFLocalizations.of(
@@ -884,7 +881,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                 Expanded(
                                                   child: Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(16.0, 8.0,
                                                                 16.0, 12.0),
                                                     child: InkWell(
@@ -902,7 +899,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                           extra: <String,
                                                               dynamic>{
                                                             kTransitionInfoKey:
-                                                                TransitionInfo(
+                                                                const TransitionInfo(
                                                               hasTransition:
                                                                   true,
                                                               transitionType:
@@ -923,7 +920,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondary,
-                                                          boxShadow: [
+                                                          boxShadow: const [
                                                             BoxShadow(
                                                               blurRadius: 4.0,
                                                               color: Color(
@@ -946,7 +943,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                           ),
                                                         ),
                                                         alignment:
-                                                            AlignmentDirectional(
+                                                            const AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: Text(
                                                           FFLocalizations.of(
@@ -983,7 +980,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 16.0, 0.0, 16.0),
                                         child: Divider(
                                           thickness: 2.0,
@@ -992,7 +989,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 12.0),
                                         child: Text(
                                           FFLocalizations.of(context).getText(
@@ -1085,7 +1082,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                         ],
                                       ),
                                       Container(
-                                        decoration: BoxDecoration(),
+                                        decoration: const BoxDecoration(),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
@@ -1305,7 +1302,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                           .alternate,
                                                   borderWidth: 2.0,
                                                   borderRadius: 8.0,
-                                                  margin: EdgeInsetsDirectional
+                                                  margin: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           16.0, 4.0, 16.0, 4.0),
                                                   hidesUnderline: true,
@@ -1535,7 +1532,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                           .alternate,
                                                   borderWidth: 2.0,
                                                   borderRadius: 8.0,
-                                                  margin: EdgeInsetsDirectional
+                                                  margin: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           16.0, 4.0, 16.0, 4.0),
                                                   hidesUnderline: true,
@@ -1550,12 +1547,12 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               },
                                             ),
                                           ]
-                                              .divide(SizedBox(height: 20.0))
-                                              .around(SizedBox(height: 20.0)),
+                                              .divide(const SizedBox(height: 20.0))
+                                              .around(const SizedBox(height: 20.0)),
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 16.0, 0.0, 16.0),
                                         child: Divider(
                                           thickness: 2.0,
@@ -1564,7 +1561,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 10.0, 0.0, 10.0),
                                         child: TextFormField(
                                           controller: _model
@@ -1654,7 +1651,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                   BorderRadius.circular(12.0),
                                             ),
                                             contentPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 12.0, 16.0, 12.0),
                                           ),
                                           style: FlutterFlowTheme.of(context)
@@ -1680,7 +1677,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 10.0, 0.0, 10.0),
                                         child: TextFormField(
                                           controller: _model
@@ -1770,7 +1767,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                   BorderRadius.circular(12.0),
                                             ),
                                             contentPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 12.0, 16.0, 12.0),
                                           ),
                                           style: FlutterFlowTheme.of(context)
@@ -1796,7 +1793,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 10.0, 0.0, 10.0),
                                         child: TextFormField(
                                           controller: _model
@@ -1886,7 +1883,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                   BorderRadius.circular(12.0),
                                             ),
                                             contentPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 12.0, 16.0, 12.0),
                                           ),
                                           style: FlutterFlowTheme.of(context)
@@ -1912,7 +1909,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 16.0, 0.0, 16.0),
                                         child: Divider(
                                           thickness: 2.0,
@@ -2005,7 +2002,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                 BorderRadius.circular(12.0),
                                           ),
                                           contentPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 24.0, 16.0, 12.0),
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -2032,7 +2029,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                             .asValidator(context),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 10.0, 0.0, 10.0),
                                         child: TextFormField(
                                           controller: _model
@@ -2122,7 +2119,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                   BorderRadius.circular(12.0),
                                             ),
                                             contentPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 12.0, 16.0, 12.0),
                                           ),
                                           style: FlutterFlowTheme.of(context)
@@ -2149,7 +2146,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                       ),
                                       Align(
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Container(
                                           height: MediaQuery.sizeOf(context)
                                                   .height *
@@ -2167,7 +2164,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                           ),
                                           child: Align(
                                             alignment:
-                                                AlignmentDirectional(0.0, 0.0),
+                                                const AlignmentDirectional(0.0, 0.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
@@ -2227,7 +2224,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                                 .viewInsetsOf(
                                                                     context),
                                                             child:
-                                                                SignatureWidget(),
+                                                                const SignatureWidget(),
                                                           ),
                                                         );
                                                       },
@@ -2258,7 +2255,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 10.0, 0.0, 10.0),
                                         child: TextFormField(
                                           controller: _model
@@ -2350,7 +2347,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                   BorderRadius.circular(12.0),
                                             ),
                                             contentPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 12.0, 16.0, 12.0),
                                           ),
                                           style: FlutterFlowTheme.of(context)
@@ -2377,10 +2374,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                       ),
                                       Align(
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 40.0, 0.0, 40.0),
                                           child: Container(
                                             height: MediaQuery.sizeOf(context)
@@ -2399,7 +2396,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               ),
                                             ),
                                             child: Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
@@ -2461,7 +2458,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                                   .viewInsetsOf(
                                                                       context),
                                                               child:
-                                                                  SignatureWidget(),
+                                                                  const SignatureWidget(),
                                                             ),
                                                           );
                                                         },
@@ -2495,7 +2492,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 16.0, 0.0, 16.0),
                                         child: Divider(
                                           thickness: 2.0,
@@ -2514,7 +2511,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -2527,19 +2524,19 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                         context: context,
                                         builder: (alertDialogContext) {
                                           return AlertDialog(
-                                            title: Text('Info'),
-                                            content: Text(
+                                            title: const Text('Info'),
+                                            content: const Text(
                                                 'This will cancel your current progress in the tasks. Are you sure to cancel?'),
                                             actions: [
                                               TextButton(
                                                 onPressed: () => Navigator.pop(
                                                     alertDialogContext, false),
-                                                child: Text('Cancel'),
+                                                child: const Text('Cancel'),
                                               ),
                                               TextButton(
                                                 onPressed: () => Navigator.pop(
                                                     alertDialogContext, true),
-                                                child: Text('Confirm'),
+                                                child: const Text('Confirm'),
                                               ),
                                             ],
                                           );
@@ -2553,15 +2550,15 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                             text: FFLocalizations.of(context).getText(
                               'vxop43vj' /* Cancel */,
                             ),
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.cancel_presentation_sharp,
                               size: 15.0,
                             ),
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).error,
                               textStyle: FlutterFlowTheme.of(context)
@@ -2577,7 +2574,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                 .titleSmallFamily),
                                   ),
                               elevation: 3.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -2591,19 +2588,19 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                         context: context,
                                         builder: (alertDialogContext) {
                                           return AlertDialog(
-                                            title: Text('Info'),
-                                            content: Text(
+                                            title: const Text('Info'),
+                                            content: const Text(
                                                 'Are you sure to that the above data is correct?'),
                                             actions: [
                                               TextButton(
                                                 onPressed: () => Navigator.pop(
                                                     alertDialogContext, false),
-                                                child: Text('Cancel'),
+                                                child: const Text('Cancel'),
                                               ),
                                               TextButton(
                                                 onPressed: () => Navigator.pop(
                                                     alertDialogContext, true),
-                                                child: Text('Confirm'),
+                                                child: const Text('Confirm'),
                                               ),
                                             ],
                                           );
@@ -2638,7 +2635,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                   },
                                   matchingRows: (rows) => rows.eq(
                                     'task_id',
-                                    widget!.taskId,
+                                    widget.taskId,
                                   ),
                                 );
                                 if (_model.ppirSvpActSelectionValue == 'rice') {
@@ -2649,7 +2646,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                     },
                                     matchingRows: (rows) => rows.eq(
                                       'task_id',
-                                      widget!.taskId,
+                                      widget.taskId,
                                     ),
                                   );
                                 } else {
@@ -2660,7 +2657,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                     },
                                     matchingRows: (rows) => rows.eq(
                                       'task_id',
-                                      widget!.taskId,
+                                      widget.taskId,
                                     ),
                                   );
                                 }
@@ -2671,7 +2668,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                   },
                                   matchingRows: (rows) => rows.eq(
                                     'id',
-                                    widget!.taskId,
+                                    widget.taskId,
                                   ),
                                 );
                               }
@@ -2685,7 +2682,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                   ),
                                 }.withoutNulls,
                                 extra: <String, dynamic>{
-                                  kTransitionInfoKey: TransitionInfo(
+                                  kTransitionInfoKey: const TransitionInfo(
                                     hasTransition: true,
                                     transitionType: PageTransitionType.scale,
                                     alignment: Alignment.bottomCenter,
@@ -2699,15 +2696,15 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                             text: FFLocalizations.of(context).getText(
                               'kyab355w' /* Submit */,
                             ),
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.check_sharp,
                               size: 15.0,
                             ),
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
@@ -2723,7 +2720,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                 .titleSmallFamily),
                                   ),
                               elevation: 3.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
