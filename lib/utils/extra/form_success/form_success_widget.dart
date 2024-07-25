@@ -17,9 +17,11 @@ class FormSuccessWidget extends StatefulWidget {
   const FormSuccessWidget({
     super.key,
     required this.taskId,
-  });
+    String? type,
+  }) : type = type ?? 'submission';
 
   final String? taskId;
+  final String type;
 
   @override
   State<FormSuccessWidget> createState() => _FormSuccessWidgetState();
@@ -55,7 +57,7 @@ class _FormSuccessWidgetState extends State<FormSuccessWidget>
     });
 
     animationsMap.addAll({
-      'containerOnPageLoadAnimation': AnimationInfo(
+      'containerOnPageLoadAnimation1': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
           VisibilityEffect(duration: 1.ms),
@@ -157,6 +159,40 @@ class _FormSuccessWidgetState extends State<FormSuccessWidget>
           ),
         ],
       ),
+      'textOnPageLoadAnimation3': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          VisibilityEffect(duration: 150.ms),
+          FadeEffect(
+            curve: Curves.easeInOut,
+            delay: 150.0.ms,
+            duration: 300.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+          ScaleEffect(
+            curve: Curves.easeInOut,
+            delay: 150.0.ms,
+            duration: 300.0.ms,
+            begin: const Offset(0.8, 0.8),
+            end: const Offset(1.0, 1.0),
+          ),
+          TiltEffect(
+            curve: Curves.easeInOut,
+            delay: 150.0.ms,
+            duration: 300.0.ms,
+            begin: const Offset(0, 1.396),
+            end: const Offset(0, 0),
+          ),
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 150.0.ms,
+            duration: 300.0.ms,
+            begin: const Offset(0.0, 40.0),
+            end: const Offset(0.0, 0.0),
+          ),
+        ],
+      ),
       'dividerOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
@@ -222,6 +258,31 @@ class _FormSuccessWidgetState extends State<FormSuccessWidget>
             duration: 300.0.ms,
             begin: const Offset(0.0, 40.0),
             end: const Offset(0.0, 0.0),
+          ),
+        ],
+      ),
+      'containerOnPageLoadAnimation2': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: const Offset(0.0, 0.0),
+            end: const Offset(0.0, 0.0),
+          ),
+        ],
+      ),
+      'iconOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          ShakeEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 1000.0.ms,
+            hz: 4,
+            offset: const Offset(0.0, 0.0),
+            rotation: 0.087,
           ),
         ],
       ),
@@ -378,7 +439,7 @@ class _FormSuccessWidgetState extends State<FormSuccessWidget>
                                       ),
                                     ),
                                   ).animateOnPageLoad(animationsMap[
-                                      'containerOnPageLoadAnimation']!),
+                                      'containerOnPageLoadAnimation1']!),
                                 ),
                               ),
                             Align(
@@ -401,25 +462,51 @@ class _FormSuccessWidgetState extends State<FormSuccessWidget>
                               ).animateOnPageLoad(
                                   animationsMap['textOnPageLoadAnimation1']!),
                             ),
-                            Align(
-                              alignment: const AlignmentDirectional(0.0, -1.0),
-                              child: Text(
-                                FFLocalizations.of(context).getText(
-                                  '4pa6ldza' /* Tasks Submitted */,
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .labelMedium
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .labelMediumFamily,
-                                      letterSpacing: 0.0,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .labelMediumFamily),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Align(
+                                  alignment: const AlignmentDirectional(0.0, -1.0),
+                                  child: Text(
+                                    FFLocalizations.of(context).getText(
+                                      '4pa6ldza' /* Tasks  */,
                                     ),
-                              ).animateOnPageLoad(
-                                  animationsMap['textOnPageLoadAnimation2']!),
+                                    style: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMediumFamily,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMediumFamily),
+                                        ),
+                                  ).animateOnPageLoad(animationsMap[
+                                      'textOnPageLoadAnimation2']!),
+                                ),
+                                Align(
+                                  alignment: const AlignmentDirectional(0.0, -1.0),
+                                  child: Text(
+                                    widget.type,
+                                    style: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMediumFamily,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMediumFamily),
+                                        ),
+                                  ).animateOnPageLoad(animationsMap[
+                                      'textOnPageLoadAnimation3']!),
+                                ),
+                              ],
                             ),
                             Divider(
                               height: 44.0,
@@ -466,7 +553,9 @@ class _FormSuccessWidgetState extends State<FormSuccessWidget>
                                                 ? textTasksRowList.first
                                                 : null;
                                         return Text(
-                                          'You completed the ${textTasksRow?.taskNumber}.',
+                                          widget.type == 'submit'
+                                              ? 'You completed the ${textTasksRow?.taskNumber}.'
+                                              : 'Sucessfully saved',
                                           style: FlutterFlowTheme.of(context)
                                               .labelMedium
                                               .override(
@@ -601,7 +690,8 @@ class _FormSuccessWidgetState extends State<FormSuccessWidget>
                                                         BorderRadius.circular(
                                                             2.0),
                                                   ),
-                                                ),
+                                                ).animateOnPageLoad(animationsMap[
+                                                    'containerOnPageLoadAnimation2']!),
                                               ),
                                               Container(
                                                 width: 44.0,
@@ -621,7 +711,8 @@ class _FormSuccessWidgetState extends State<FormSuccessWidget>
                                                           context)
                                                       .info,
                                                   size: 32.0,
-                                                ),
+                                                ).animateOnPageLoad(animationsMap[
+                                                    'iconOnPageLoadAnimation']!),
                                               ),
                                             ],
                                           ),

@@ -165,6 +165,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'taskId',
               ParamType.String,
             ),
+            type: params.getParam(
+              'type',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(

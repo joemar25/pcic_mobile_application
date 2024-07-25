@@ -601,16 +601,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Prepared by',
       'tl': '',
     },
-    'rkv9xt3s': {
-      'en': 'Signature',
-      'tl': '',
-    },
     '8zawh1wx': {
       'en': 'Confirm by',
-      'tl': '',
-    },
-    '2n6hawkd': {
-      'en': 'Signature',
       'tl': '',
     },
     'vxop43vj': {
@@ -618,6 +610,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     'kyab355w': {
+      'en': 'Save',
+      'tl': '',
+    },
+    '7i7p5yr3': {
       'en': 'Submit',
       'tl': '',
     },
@@ -633,7 +629,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     '4pa6ldza': {
-      'en': 'Tasks Submitted',
+      'en': 'Tasks ',
       'tl': '',
     },
     'fa57m321': {
@@ -916,7 +912,15 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Retry signature',
       'tl': '',
     },
+    'fts37cq3': {
+      'en': 'Clear',
+      'tl': '',
+    },
     '6si6e5tk': {
+      'en': 'Cancel',
+      'tl': '',
+    },
+    'a0f7s2dm': {
       'en': 'Save',
       'tl': '',
     },

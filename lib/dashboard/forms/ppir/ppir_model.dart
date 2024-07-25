@@ -74,6 +74,12 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
   TextEditingController? ppirConfirmedByNameFieldTextController;
   String? Function(BuildContext, String?)?
       ppirConfirmedByNameFieldTextControllerValidator;
+  // Stores action output result for [Backend Call - Update Row(s)] action in saveButton widget.
+  List<PpirFormsRow>? savePPIR;
+  // Stores action output result for [Backend Call - Update Row(s)] action in saveButton widget.
+  List<PpirFormsRow>? saveRiceVariety;
+  // Stores action output result for [Backend Call - Update Row(s)] action in saveButton widget.
+  List<PpirFormsRow>? saveCornVariety;
   // Stores action output result for [Backend Call - Update Row(s)] action in submitButton widget.
   List<PpirFormsRow>? updatedPPIR;
   // Stores action output result for [Backend Call - Update Row(s)] action in submitButton widget.

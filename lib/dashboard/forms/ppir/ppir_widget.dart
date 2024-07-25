@@ -2218,109 +2218,119 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                       Align(
                                         alignment:
                                             const AlignmentDirectional(0.0, 0.0),
-                                        child: Container(
-                                          height: MediaQuery.sizeOf(context)
-                                                  .height *
-                                              0.2,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(10.0),
-                                            border: Border.all(
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 40.0, 0.0, 40.0),
+                                          child: Container(
+                                            height: MediaQuery.sizeOf(context)
+                                                    .height *
+                                                0.2,
+                                            decoration: BoxDecoration(
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .alternate,
+                                                      .secondaryBackground,
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                              border: Border.all(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                              ),
                                             ),
-                                          ),
-                                          child: Align(
-                                            alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    'rkv9xt3s' /* Signature */,
+                                            child: Align(
+                                              alignment: const AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Text(
+                                                    ppirPpirFormsRow
+                                                                ?.ppirSigInsured ==
+                                                            ''
+                                                        ? 'Tap to signature'
+                                                        : 'Tap to update signature',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
+                                                        ),
                                                   ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
+                                                  InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      await showModalBottomSheet(
+                                                        isScrollControlled:
+                                                            true,
+                                                        backgroundColor:
+                                                            Colors.transparent,
+                                                        enableDrag: false,
+                                                        context: context,
+                                                        builder: (context) {
+                                                          return GestureDetector(
+                                                            onTap: () => _model
+                                                                    .unfocusNode
+                                                                    .canRequestFocus
+                                                                ? FocusScope.of(
                                                                         context)
-                                                                    .bodyMediumFamily),
+                                                                    .requestFocus(
+                                                                        _model
+                                                                            .unfocusNode)
+                                                                : FocusScope.of(
+                                                                        context)
+                                                                    .unfocus(),
+                                                            child: Padding(
+                                                              padding: MediaQuery
+                                                                  .viewInsetsOf(
+                                                                      context),
+                                                              child:
+                                                                  const SignatureWidget(),
+                                                            ),
+                                                          );
+                                                        },
+                                                      ).then((value) =>
+                                                          safeSetState(() {}));
+                                                    },
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                      child: Image.asset(
+                                                        'assets/images/signature.png',
+                                                        width:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .width *
+                                                                0.6,
+                                                        height:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .height *
+                                                                0.15,
+                                                        fit: BoxFit.contain,
                                                       ),
-                                                ),
-                                                InkWell(
-                                                  splashColor:
-                                                      Colors.transparent,
-                                                  focusColor:
-                                                      Colors.transparent,
-                                                  hoverColor:
-                                                      Colors.transparent,
-                                                  highlightColor:
-                                                      Colors.transparent,
-                                                  onTap: () async {
-                                                    await showModalBottomSheet(
-                                                      isScrollControlled: true,
-                                                      backgroundColor:
-                                                          Colors.transparent,
-                                                      enableDrag: false,
-                                                      context: context,
-                                                      builder: (context) {
-                                                        return GestureDetector(
-                                                          onTap: () => _model
-                                                                  .unfocusNode
-                                                                  .canRequestFocus
-                                                              ? FocusScope.of(
-                                                                      context)
-                                                                  .requestFocus(
-                                                                      _model
-                                                                          .unfocusNode)
-                                                              : FocusScope.of(
-                                                                      context)
-                                                                  .unfocus(),
-                                                          child: Padding(
-                                                            padding: MediaQuery
-                                                                .viewInsetsOf(
-                                                                    context),
-                                                            child:
-                                                                const SignatureWidget(),
-                                                          ),
-                                                        );
-                                                      },
-                                                    ).then((value) =>
-                                                        safeSetState(() {}));
-                                                  },
-                                                  child: ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
-                                                    child: Image.asset(
-                                                      'assets/images/signature.png',
-                                                      width: MediaQuery.sizeOf(
-                                                                  context)
-                                                              .width *
-                                                          0.6,
-                                                      height: MediaQuery.sizeOf(
-                                                                  context)
-                                                              .height *
-                                                          0.15,
-                                                      fit: BoxFit.contain,
                                                     ),
                                                   ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -2477,10 +2487,11 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Text(
-                                                    FFLocalizations.of(context)
-                                                        .getText(
-                                                      '2n6hawkd' /* Signature */,
-                                                    ),
+                                                    ppirPpirFormsRow
+                                                                ?.ppirSigIuia ==
+                                                            ''
+                                                        ? 'Tap to signature'
+                                                        : 'Tap to update signature',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
@@ -2665,6 +2676,146 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                           return AlertDialog(
                                             title: const Text('Info'),
                                             content: const Text(
+                                                'Do you want to save the data above?'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, false),
+                                                child: const Text('Cancel'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, true),
+                                                child: const Text('Confirm'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      ) ??
+                                      false;
+                              if (confirmDialogResponse) {
+                                await PpirFormsTable().update(
+                                  data: {
+                                    'track_last_coord': '11',
+                                    'track_date_time': '11',
+                                    'track_total_area': '11',
+                                    'track_total_distance': 'distance',
+                                    'ppir_svp_act':
+                                        _model.ppirSvpActSelectionValue,
+                                    'ppir_dopds_act': _model
+                                        .ppirAreaDopDsFieldTextController.text,
+                                    'ppir_doptp_act': _model
+                                        .ppirAreaDopTpFieldTextController.text,
+                                    'ppir_remarks': _model
+                                        .ppirRemarksFieldTextController.text,
+                                    'ppir_name_insured': _model
+                                        .ppirConfirmedByNameFieldTextController
+                                        .text,
+                                    'ppir_name_iuia': _model
+                                        .ppirPreparedByNameFieldTextController
+                                        .text,
+                                    'ppir_farmloc': _model
+                                        .ppirTrackFarmlocTextController.text,
+                                    'ppir_area_act': _model
+                                        .ppirAreaActFieldTextController.text,
+                                  },
+                                  matchingRows: (rows) => rows.eq(
+                                    'task_id',
+                                    widget.taskId,
+                                  ),
+                                );
+                                if (_model.ppirSvpActSelectionValue == 'rice') {
+                                  await PpirFormsTable().update(
+                                    data: {
+                                      'ppir_variety':
+                                          _model.ppirSeedVarRiceDropdownValue,
+                                    },
+                                    matchingRows: (rows) => rows.eq(
+                                      'task_id',
+                                      widget.taskId,
+                                    ),
+                                  );
+                                } else {
+                                  await PpirFormsTable().update(
+                                    data: {
+                                      'ppir_variety':
+                                          _model.ppirSeedVarCornDropdownValue,
+                                    },
+                                    matchingRows: (rows) => rows.eq(
+                                      'task_id',
+                                      widget.taskId,
+                                    ),
+                                  );
+                                }
+                              }
+
+                              context.pushNamed(
+                                'form_success',
+                                queryParameters: {
+                                  'taskId': serializeParam(
+                                    ppirPpirFormsRow?.taskId,
+                                    ParamType.String,
+                                  ),
+                                  'type': serializeParam(
+                                    'save',
+                                    ParamType.String,
+                                  ),
+                                }.withoutNulls,
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: const TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType: PageTransitionType.scale,
+                                    alignment: Alignment.bottomCenter,
+                                    duration: Duration(milliseconds: 200),
+                                  ),
+                                },
+                              );
+
+                              setState(() {});
+                            },
+                            text: FFLocalizations.of(context).getText(
+                              'kyab355w' /* Save */,
+                            ),
+                            icon: const Icon(
+                              Icons.save,
+                              size: 15.0,
+                            ),
+                            options: FFButtonOptions(
+                              height: 40.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 24.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).earthYellow,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .titleSmallFamily,
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .titleSmallFamily),
+                                  ),
+                              elevation: 3.0,
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                          ),
+                          FFButtonWidget(
+                            onPressed: () async {
+                              var confirmDialogResponse =
+                                  await showDialog<bool>(
+                                        context: context,
+                                        builder: (alertDialogContext) {
+                                          return AlertDialog(
+                                            title: const Text('Info'),
+                                            content: const Text(
                                                 'Are you sure to that the above data is correct?'),
                                             actions: [
                                               TextButton(
@@ -2755,6 +2906,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                     ppirPpirFormsRow?.taskId,
                                     ParamType.String,
                                   ),
+                                  'type': serializeParam(
+                                    'submit',
+                                    ParamType.String,
+                                  ),
                                 }.withoutNulls,
                                 extra: <String, dynamic>{
                                   kTransitionInfoKey: const TransitionInfo(
@@ -2769,7 +2924,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                               setState(() {});
                             },
                             text: FFLocalizations.of(context).getText(
-                              'kyab355w' /* Submit */,
+                              '7i7p5yr3' /* Submit */,
                             ),
                             icon: const Icon(
                               Icons.check_sharp,

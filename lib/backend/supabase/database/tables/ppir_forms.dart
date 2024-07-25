@@ -21,6 +21,9 @@ class PpirFormsRow extends SupabaseDataRow {
   set ppirAssignmentid(String value) =>
       setField<String>('ppir_assignmentid', value);
 
+  String? get gpx => getField<String>('gpx');
+  set gpx(String? value) => setField<String>('gpx', value);
+
   String? get ppirInsuranceid => getField<String>('ppir_insuranceid');
   set ppirInsuranceid(String? value) =>
       setField<String>('ppir_insuranceid', value);

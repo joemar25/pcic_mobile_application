@@ -555,8 +555,6 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            _model.isGeotagStart = false;
-                            setState(() {});
                             await PpirFormsTable().update(
                               data: {
                                 'track_last_coord':
@@ -573,6 +571,8 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget> {
                                 geotaggingPpirFormsRow?.taskId,
                               ),
                             );
+                            _model.isGeotagStart = false;
+                            setState(() {});
 
                             context.pushNamed(
                               'ppir',

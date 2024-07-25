@@ -1,5 +1,5 @@
-import '/components/connectivity_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/utils/components/connectivity/connectivity_widget.dart';
 import 'chats_widget.dart' show ChatsWidget;
 import 'package:flutter/material.dart';
 
