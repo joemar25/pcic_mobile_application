@@ -160,8 +160,8 @@ class PpirFormsRow extends SupabaseDataRow {
   set lastSyncedAt(DateTime? value) =>
       setField<DateTime>('last_synced_at', value);
 
-  int get localId => getField<int>('local_id')!;
-  set localId(int value) => setField<int>('local_id', value);
+  String? get localId => getField<String>('local_id');
+  set localId(String? value) => setField<String>('local_id', value);
 
   bool? get isDirty => getField<bool>('is_dirty');
   set isDirty(bool? value) => setField<bool>('is_dirty', value);

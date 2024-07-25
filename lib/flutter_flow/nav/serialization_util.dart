@@ -254,18 +254,22 @@ dynamic deserializeParam<T>(
       case ParamType.SqliteRow:
         final data = json.decode(param) as Map<String, dynamic>;
         switch (T) {
-          case SelectAllTasksRow:
-            return SelectAllTasksRow(data);
-          case SelectAllUsersRow:
-            return SelectAllUsersRow(data);
-          case SelectAllSeedsRow:
-            return SelectAllSeedsRow(data);
-          case SelectAllPpirFormsRow:
-            return SelectAllPpirFormsRow(data);
-          case SelectAllMessagesRow:
-            return SelectAllMessagesRow(data);
-          case SelectAllSyncLogRow:
-            return SelectAllSyncLogRow(data);
+          case SelectTasksRow:
+            return SelectTasksRow(data);
+          case SelectUsersRow:
+            return SelectUsersRow(data);
+          case SelectSeedsRow:
+            return SelectSeedsRow(data);
+          case SelectPpirFormsRow:
+            return SelectPpirFormsRow(data);
+          case SelectMessagesRow:
+            return SelectMessagesRow(data);
+          case SelectSyncLogsRow:
+            return SelectSyncLogsRow(data);
+          case SelectAttemptsRow:
+            return SelectAttemptsRow(data);
+          case SELECTPROFILEzRow:
+            return SELECTPROFILEzRow(data);
           default:
             return null;
         }

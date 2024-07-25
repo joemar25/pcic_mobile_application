@@ -28,31 +28,40 @@ class SQLiteManager {
 
   /// START READ QUERY CALLS
 
-  Future<List<SelectAllTasksRow>> selectAllTasks() => performSelectAllTasks(
+  Future<List<SelectTasksRow>> selectTasks() => performSelectTasks(
         _database,
       );
 
-  Future<List<SelectAllUsersRow>> selectAllUsers() => performSelectAllUsers(
+  Future<List<SelectUsersRow>> selectUsers() => performSelectUsers(
         _database,
       );
 
-  Future<List<SelectAllSeedsRow>> selectAllSeeds() => performSelectAllSeeds(
+  Future<List<SelectSeedsRow>> selectSeeds() => performSelectSeeds(
         _database,
       );
 
-  Future<List<SelectAllPpirFormsRow>> selectAllPpirForms() =>
-      performSelectAllPpirForms(
+  Future<List<SelectPpirFormsRow>> selectPpirForms() => performSelectPpirForms(
         _database,
       );
 
-  Future<List<SelectAllMessagesRow>> selectAllMessages() =>
-      performSelectAllMessages(
+  Future<List<SelectMessagesRow>> selectMessages() => performSelectMessages(
         _database,
       );
 
-  Future<List<SelectAllSyncLogRow>> selectAllSyncLog() =>
-      performSelectAllSyncLog(
+  Future<List<SelectSyncLogsRow>> selectSyncLogs() => performSelectSyncLogs(
         _database,
+      );
+
+  Future<List<SelectAttemptsRow>> selectAttempts() => performSelectAttempts(
+        _database,
+      );
+
+  Future<List<SELECTPROFILEzRow>> sELECTPROFILEz({
+    String? email,
+  }) =>
+      performSELECTPROFILEz(
+        _database,
+        email: email,
       );
 
   /// END READ QUERY CALLS
