@@ -7,14 +7,14 @@ class SignatureModel extends FlutterFlowModel<SignatureWidget> {
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();
-  // State field(s) for Signature widget.
-  SignatureController? signatureController;
+  // State field(s) for signature_data widget.
+  SignatureController? signatureDataController;
 
   @override
   void initState(BuildContext context) {}
 
   @override
   void dispose() {
-    signatureController?.dispose();
+    signatureDataController?.dispose();
   }
 }

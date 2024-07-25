@@ -52,35 +52,6 @@ class FFAppState extends ChangeNotifier {
   void deleteAUTHID() {
     secureStorage.delete(key: 'ff_AUTHID');
   }
-
-  List<String> _LIUDTY = ['id', 'auth_id'];
-  List<String> get LIUDTY => _LIUDTY;
-  set LIUDTY(List<String> value) {
-    _LIUDTY = value;
-  }
-
-  void addToLIUDTY(String value) {
-    LIUDTY.add(value);
-  }
-
-  void removeFromLIUDTY(String value) {
-    LIUDTY.remove(value);
-  }
-
-  void removeAtIndexFromLIUDTY(int index) {
-    LIUDTY.removeAt(index);
-  }
-
-  void updateLIUDTYAtIndex(
-    int index,
-    String Function(String) updateFn,
-  ) {
-    LIUDTY[index] = updateFn(_LIUDTY[index]);
-  }
-
-  void insertAtIndexInLIUDTY(int index, String value) {
-    LIUDTY.insert(index, value);
-  }
 }
 
 void _safeInit(Function() initializeField) {

@@ -2245,9 +2245,11 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Text(
-                                                    ppirPpirFormsRow
-                                                                ?.ppirSigInsured ==
-                                                            ''
+                                                    ppirPpirFormsRow?.ppirSigInsured ==
+                                                                null ||
+                                                            ppirPpirFormsRow
+                                                                    ?.ppirSigInsured ==
+                                                                ''
                                                         ? 'Tap to signature'
                                                         : 'Tap to update signature',
                                                     style: FlutterFlowTheme.of(
@@ -2302,7 +2304,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                                   .viewInsetsOf(
                                                                       context),
                                                               child:
-                                                                  const SignatureWidget(),
+                                                                  SignatureWidget(
+                                                                ppir:
+                                                                    ppirPpirFormsRow!,
+                                                              ),
                                                             ),
                                                           );
                                                         },
@@ -2487,9 +2492,11 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Text(
-                                                    ppirPpirFormsRow
-                                                                ?.ppirSigIuia ==
-                                                            ''
+                                                    ppirPpirFormsRow?.ppirSigIuia ==
+                                                                null ||
+                                                            ppirPpirFormsRow
+                                                                    ?.ppirSigIuia ==
+                                                                ''
                                                         ? 'Tap to signature'
                                                         : 'Tap to update signature',
                                                     style: FlutterFlowTheme.of(
@@ -2544,7 +2551,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                                   .viewInsetsOf(
                                                                       context),
                                                               child:
-                                                                  const SignatureWidget(),
+                                                                  SignatureWidget(
+                                                                ppir:
+                                                                    ppirPpirFormsRow!,
+                                                              ),
                                                             ),
                                                           );
                                                         },

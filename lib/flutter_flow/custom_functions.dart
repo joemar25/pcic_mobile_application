@@ -42,3 +42,12 @@ String? sentenceCaseWords(String? text) {
   });
   return capitalizedWords.join(' ');
 }
+
+String? blobToFile(String? blob) {
+  // transform input blob string to a file mostly image
+  if (blob == null) {
+    return null;
+  }
+  final bytes = base64.decode(blob);
+  return Uint8List.fromList(bytes).toString();
+}

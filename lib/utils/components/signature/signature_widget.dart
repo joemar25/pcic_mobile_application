@@ -1,3 +1,4 @@
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -12,7 +13,12 @@ import 'signature_model.dart';
 export 'signature_model.dart';
 
 class SignatureWidget extends StatefulWidget {
-  const SignatureWidget({super.key});
+  const SignatureWidget({
+    super.key,
+    required this.ppir,
+  });
+
+  final PpirFormsRow? ppir;
 
   @override
   State<SignatureWidget> createState() => _SignatureWidgetState();
@@ -182,7 +188,8 @@ class _SignatureWidgetState extends State<SignatureWidget>
                                                     Colors.transparent,
                                                 onTap: () async {
                                                   setState(() {
-                                                    _model.signatureController
+                                                    _model
+                                                        .signatureDataController
                                                         ?.clear();
                                                   });
                                                 },
@@ -237,48 +244,83 @@ class _SignatureWidgetState extends State<SignatureWidget>
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 16.0),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .alternate,
-                                            borderRadius:
-                                                BorderRadius.circular(16.0),
-                                            border: Border.all(
+                                    if (!FFAppConstants.DEBUG)
+                                      Expanded(
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 16.0),
+                                          child: Container(
+                                            decoration: BoxDecoration(
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                            ),
-                                          ),
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    5.0, 5.0, 5.0, 5.0),
-                                            child: ClipRect(
-                                              child: Signature(
-                                                controller: _model
-                                                        .signatureController ??=
-                                                    SignatureController(
-                                                  penStrokeWidth: 2.0,
-                                                  penColor: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                  exportBackgroundColor:
-                                                      Colors.white,
-                                                ),
-                                                backgroundColor:
+                                                      .alternate,
+                                              borderRadius:
+                                                  BorderRadius.circular(16.0),
+                                              border: Border.all(
+                                                color:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
+                                                        .secondaryText,
+                                              ),
+                                            ),
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                              child: Image.network(
+                                                'https://images.unsplash.com/photo-1653136952516-f1362d7df156?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwxN3x8c2lnbmF0dXJlfGVufDB8fHx8MTcyMTkyNDk3NXww&ixlib=rb-4.0.3&q=80&w=1080',
                                                 height: 300.0,
+                                                fit: BoxFit.cover,
                                               ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                    ),
+                                    if (FFAppConstants.DEBUG)
+                                      Expanded(
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 16.0),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .alternate,
+                                              borderRadius:
+                                                  BorderRadius.circular(16.0),
+                                              border: Border.all(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                              ),
+                                            ),
+                                            child: Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(5.0, 5.0, 5.0, 5.0),
+                                              child: ClipRect(
+                                                child: Signature(
+                                                  controller: _model
+                                                          .signatureDataController ??=
+                                                      SignatureController(
+                                                    penStrokeWidth: 2.0,
+                                                    penColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .primaryText,
+                                                    exportBackgroundColor:
+                                                        Colors.white,
+                                                  ),
+                                                  backgroundColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondaryBackground,
+                                                  height: 300.0,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
                                   ],
                                 ),
                                 Padding(
@@ -293,7 +335,10 @@ class _SignatureWidgetState extends State<SignatureWidget>
                                             0.0, 0.0, 4.0, 0.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
-                                            context.safePop();
+                                            setState(() {
+                                              _model.signatureDataController
+                                                  ?.clear();
+                                            });
                                           },
                                           text: FFLocalizations.of(context)
                                               .getText(
@@ -343,8 +388,8 @@ class _SignatureWidgetState extends State<SignatureWidget>
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 4.0, 0.0),
                                         child: FFButtonWidget(
-                                          onPressed: () {
-                                            print('cancelButton pressed ...');
+                                          onPressed: () async {
+                                            context.safePop();
                                           },
                                           text: FFLocalizations.of(context)
                                               .getText(
