@@ -14,7 +14,7 @@ export '/utils/extra/form_success/form_success_widget.dart'
     show FormSuccessWidget;
 export '/utils/extra/fail/fail_widget.dart' show FailWidget;
 export '/dashboard/dashboard/dashboard_widget.dart' show DashboardWidget;
-export '/dashboard/map_testing/map_testing_widget.dart' show MapTestingWidget;
+export '/utils/test/map_testing/map_testing_widget.dart' show MapTestingWidget;
 export '/utils/extra/success_profile/success_profile_widget.dart'
     show SuccessProfileWidget;
 export '/utils/test/mar_api_test/mar_api_test_widget.dart'
@@ -22,3 +22,5 @@ export '/utils/test/mar_api_test/mar_api_test_widget.dart'
 export '/auth/forgot_password/forgot_password_widget.dart'
     show ForgotPasswordWidget;
 export '/dashboard/geotagging/geotagging_widget.dart' show GeotaggingWidget;
+export '/dashboard/forms/other_form/other_form_widget.dart'
+    show OtherFormWidget;

@@ -418,7 +418,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                       },
                                       child: Text(
                                         FFLocalizations.of(context).getText(
-                                          'vte71nhh' /* Task Overview (mar-link) */,
+                                          'vte71nhh' /* Task Overview */,
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .headlineSmall
@@ -428,7 +428,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                       .headlineSmallFamily,
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .error,
+                                                      .primaryText,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.bold,
                                               useGoogleFonts: GoogleFonts
