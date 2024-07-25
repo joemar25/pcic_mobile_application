@@ -10,6 +10,7 @@ import 'place.dart';
 import 'uploaded_file.dart';
 import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
+import '/backend/sqlite/sqlite_manager.dart';
 import '/auth/supabase_auth/auth_util.dart';
 
 double? getLat(LatLng? latlng) {

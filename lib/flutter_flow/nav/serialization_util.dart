@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import '/backend/schema/structs/index.dart';
 
 import '/backend/supabase/supabase.dart';
-
+import '/backend/sqlite/queries/sqlite_row.dart';
+import '/backend/sqlite/queries/read.dart';
 import '../../flutter_flow/place.dart';
 import '../../flutter_flow/uploaded_file.dart';
 
@@ -77,6 +78,9 @@ String? serializeParam(
 
       case ParamType.SupabaseRow:
         return json.encode((param as SupabaseDataRow).data);
+
+      case ParamType.SqliteRow:
+        return json.encode((param as SqliteRow).data);
 
       default:
         data = null;
@@ -156,6 +160,7 @@ enum ParamType {
 
   DataStruct,
   SupabaseRow,
+  SqliteRow,
 }
 
 dynamic deserializeParam<T>(
@@ -222,6 +227,8 @@ dynamic deserializeParam<T>(
             return FileReadRow(data);
           case AttemptsRow:
             return AttemptsRow(data);
+          case SyncLogRow:
+            return SyncLogRow(data);
           case ChatsRow:
             return ChatsRow(data);
           case UserLogsRow:
@@ -243,6 +250,25 @@ dynamic deserializeParam<T>(
       case ParamType.DataStruct:
         final data = json.decode(param) as Map<String, dynamic>? ?? {};
         return structBuilder != null ? structBuilder(data) : null;
+
+      case ParamType.SqliteRow:
+        final data = json.decode(param) as Map<String, dynamic>;
+        switch (T) {
+          case SelectAllTasksRow:
+            return SelectAllTasksRow(data);
+          case SelectAllUsersRow:
+            return SelectAllUsersRow(data);
+          case SelectAllSeedsRow:
+            return SelectAllSeedsRow(data);
+          case SelectAllPpirFormsRow:
+            return SelectAllPpirFormsRow(data);
+          case SelectAllMessagesRow:
+            return SelectAllMessagesRow(data);
+          case SelectAllSyncLogRow:
+            return SelectAllSyncLogRow(data);
+          default:
+            return null;
+        }
 
       default:
         return null;

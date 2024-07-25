@@ -28,4 +28,17 @@ class ChatsRow extends SupabaseDataRow {
 
   DateTime? get updatedAt => getField<DateTime>('updated_at');
   set updatedAt(DateTime? value) => setField<DateTime>('updated_at', value);
+
+  String? get syncStatus => getField<String>('sync_status');
+  set syncStatus(String? value) => setField<String>('sync_status', value);
+
+  DateTime? get lastSyncedAt => getField<DateTime>('last_synced_at');
+  set lastSyncedAt(DateTime? value) =>
+      setField<DateTime>('last_synced_at', value);
+
+  int get localId => getField<int>('local_id')!;
+  set localId(int value) => setField<int>('local_id', value);
+
+  bool? get isDirty => getField<bool>('is_dirty');
+  set isDirty(bool? value) => setField<bool>('is_dirty', value);
 }

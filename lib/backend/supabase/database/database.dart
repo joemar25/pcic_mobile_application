@@ -8,6 +8,7 @@ export 'table.dart';
 export 'tables/seeds.dart';
 export 'tables/file_read.dart';
 export 'tables/attempts.dart';
+export 'tables/sync_log.dart';
 export 'tables/chats.dart';
 export 'tables/user_logs.dart';
 export 'tables/tasks.dart';
