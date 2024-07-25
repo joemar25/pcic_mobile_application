@@ -1,3 +1,4 @@
+import '/components/connectivity_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'edit_password_widget.dart' show EditPasswordWidget;
 import 'package:flutter/material.dart';
@@ -6,6 +7,8 @@ class EditPasswordModel extends FlutterFlowModel<EditPasswordWidget> {
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
+  // Model for connectivity component.
+  late ConnectivityModel connectivityModel;
   // State field(s) for old_password widget.
   FocusNode? oldPasswordFocusNode;
   TextEditingController? oldPasswordTextController;
@@ -25,6 +28,7 @@ class EditPasswordModel extends FlutterFlowModel<EditPasswordWidget> {
 
   @override
   void initState(BuildContext context) {
+    connectivityModel = createModel(context, () => ConnectivityModel());
     oldPasswordVisibility = false;
     newPasswordVisibility = false;
     confirmNewPasswordVisibility = false;
@@ -32,6 +36,7 @@ class EditPasswordModel extends FlutterFlowModel<EditPasswordWidget> {
 
   @override
   void dispose() {
+    connectivityModel.dispose();
     oldPasswordFocusNode?.dispose();
     oldPasswordTextController?.dispose();
 

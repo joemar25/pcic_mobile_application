@@ -1,3 +1,4 @@
+import '/components/connectivity_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/tasks/tasks_widget.dart';
 import 'dashboard_widget.dart' show DashboardWidget;
@@ -11,6 +12,8 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Model for connectivity component.
+  late ConnectivityModel connectivityModel;
   // State field(s) for TextField widget.
   final textFieldKey = GlobalKey();
   FocusNode? textFieldFocusNode;
@@ -31,6 +34,7 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
 
   @override
   void initState(BuildContext context) {
+    connectivityModel = createModel(context, () => ConnectivityModel());
     tasksModels1 = FlutterFlowDynamicModels(() => TasksModel());
     tasksModels2 = FlutterFlowDynamicModels(() => TasksModel());
     tasksModels3 = FlutterFlowDynamicModels(() => TasksModel());
@@ -39,6 +43,7 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   @override
   void dispose() {
     unfocusNode.dispose();
+    connectivityModel.dispose();
     textFieldFocusNode?.dispose();
 
     tabBarController?.dispose();

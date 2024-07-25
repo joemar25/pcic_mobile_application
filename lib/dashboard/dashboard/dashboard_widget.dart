@@ -1,5 +1,6 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
+import '/components/connectivity_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_autocomplete_options_list.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -57,19 +58,6 @@ class _DashboardWidgetState extends State<DashboardWidget>
       'containerOnPageLoadAnimation1': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
-          ShakeEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 1000.0.ms,
-            hz: 10,
-            offset: const Offset(0.0, 0.0),
-            rotation: 0.087,
-          ),
-        ],
-      ),
-      'containerOnPageLoadAnimation2': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
           FadeEffect(
             curve: Curves.easeInOut,
             delay: 0.0.ms,
@@ -79,7 +67,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
           ),
         ],
       ),
-      'containerOnPageLoadAnimation3': AnimationInfo(
+      'containerOnPageLoadAnimation2': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
           MoveEffect(
@@ -91,7 +79,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
           ),
         ],
       ),
-      'containerOnPageLoadAnimation5': AnimationInfo(
+      'containerOnPageLoadAnimation4': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
           MoveEffect(
@@ -452,49 +440,11 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                               ),
                                         ),
                                       ),
-                                      AnimatedContainer(
-                                        duration: const Duration(milliseconds: 100),
-                                        curve: Curves.easeInOutQuint,
-                                        width: 30.0,
-                                        height: 30.0,
-                                        decoration: BoxDecoration(
-                                          color: FFAppState().ONLINE
-                                              ? FlutterFlowTheme.of(context)
-                                                  .primary
-                                              : FlutterFlowTheme.of(context)
-                                                  .warning,
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: Stack(
-                                          children: [
-                                            if (FFAppState().ONLINE)
-                                              Align(
-                                                alignment: const AlignmentDirectional(
-                                                    0.0, 0.0),
-                                                child: Icon(
-                                                  Icons.wifi,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
-                                                  size: 24.0,
-                                                ),
-                                              ),
-                                            if (!FFAppState().ONLINE)
-                                              Align(
-                                                alignment: const AlignmentDirectional(
-                                                    0.0, 0.0),
-                                                child: Icon(
-                                                  Icons.wifi_off,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .error,
-                                                  size: 24.0,
-                                                ),
-                                              ),
-                                          ],
-                                        ),
-                                      ).animateOnPageLoad(animationsMap[
-                                          'containerOnPageLoadAnimation1']!),
+                                      wrapWithModel(
+                                        model: _model.connectivityModel,
+                                        updateCallback: () => setState(() {}),
+                                        child: const ConnectivityWidget(),
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -672,7 +622,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                     ),
                                                   ),
                                                 ).animateOnPageLoad(animationsMap[
-                                                    'containerOnPageLoadAnimation3']!);
+                                                    'containerOnPageLoadAnimation2']!);
                                               },
                                             ),
                                           ),
@@ -988,7 +938,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                     ),
                                                   ),
                                                 ).animateOnPageLoad(animationsMap[
-                                                    'containerOnPageLoadAnimation5']!);
+                                                    'containerOnPageLoadAnimation4']!);
                                               },
                                             ),
                                           ),
@@ -1002,7 +952,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                         ))),
                                       ),
                                     ).animateOnPageLoad(animationsMap[
-                                        'containerOnPageLoadAnimation2']!),
+                                        'containerOnPageLoadAnimation1']!),
                                   ),
                                 ),
                                 Padding(
