@@ -22,7 +22,6 @@ void main() async {
 
   // Start initial custom actions code
   await actions.connected();
-  await actions.authStateHandler();
   // End initial custom actions code
 
   await SupaFlow.initialize();
