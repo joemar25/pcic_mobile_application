@@ -784,6 +784,16 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                             children: [
                                               FFButtonWidget(
                                                 onPressed: () async {
+                                                  await UsersTable().update(
+                                                    data: {
+                                                      'is_online': false,
+                                                    },
+                                                    matchingRows: (rows) =>
+                                                        rows.eq(
+                                                      'auth_user_id',
+                                                      currentUserUid,
+                                                    ),
+                                                  );
                                                   GoRouter.of(context)
                                                       .prepareAuthEvent();
                                                   await authManager.signOut();

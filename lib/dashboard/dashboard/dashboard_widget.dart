@@ -1180,10 +1180,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                               ),
                               Container(
                                 width: double.infinity,
-                                height: MediaQuery.sizeOf(context).width >=
-                                        834.0
-                                    ? (MediaQuery.sizeOf(context).height * 0.58)
-                                    : (MediaQuery.sizeOf(context).height * 0.4),
+                                height: MediaQuery.sizeOf(context).height * 0.8,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(0.0),
                                 ),
