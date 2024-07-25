@@ -34,14 +34,14 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
   FocusNode? trackFarmlocFocusNode;
   TextEditingController? trackFarmlocTextController;
   String? Function(BuildContext, String?)? trackFarmlocTextControllerValidator;
-  // State field(s) for seed_variety_selection widget.
-  FormFieldController<String>? seedVarietySelectionValueController;
-  // State field(s) for rice_dropdown widget.
-  String? riceDropdownValue;
-  FormFieldController<String>? riceDropdownValueController;
-  // State field(s) for corn_dropdown widget.
-  String? cornDropdownValue;
-  FormFieldController<String>? cornDropdownValueController;
+  // State field(s) for svp_act_selection widget.
+  FormFieldController<String>? svpActSelectionValueController;
+  // State field(s) for seed_var_rice_dropdown widget.
+  String? seedVarRiceDropdownValue;
+  FormFieldController<String>? seedVarRiceDropdownValueController;
+  // State field(s) for seed_var_corn_dropdown widget.
+  String? seedVarCornDropdownValue;
+  FormFieldController<String>? seedVarCornDropdownValueController;
   // State field(s) for area_planted_field widget.
   FocusNode? areaPlantedFieldFocusNode;
   TextEditingController? areaPlantedFieldTextController;
@@ -116,6 +116,5 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
   }
 
   /// Additional helper methods.
-  String? get seedVarietySelectionValue =>
-      seedVarietySelectionValueController?.value;
+  String? get svpActSelectionValue => svpActSelectionValueController?.value;
 }

@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/empty_lists/empty_lists_widget.dart';
 import '/utils/components/tasks/tasks_widget.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/permissions_util.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -263,8 +264,12 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                         0.0, 4.0, 0.0, 0.0),
                                                 child: Text(
                                                   valueOrDefault<String>(
-                                                    dashboardUsersRow
-                                                        ?.inspectorName,
+                                                    functions.sentenceCaseWords(
+                                                        valueOrDefault<String>(
+                                                      dashboardUsersRow
+                                                          ?.inspectorName,
+                                                      'Agent',
+                                                    )),
                                                     'Agent',
                                                   ),
                                                   style: FlutterFlowTheme.of(

@@ -1027,7 +1027,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                             ].toList(),
                                             onChanged: (val) => setState(() {}),
                                             controller: _model
-                                                    .seedVarietySelectionValueController ??=
+                                                    .svpActSelectionValueController ??=
                                                 FormFieldController<String>(
                                                     ppirPpirFormsRow!
                                                         .ppirSvpAct),
@@ -1114,7 +1114,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                       ),
                                                 ),
                                                 Text(
-                                                  _model.seedVarietySelectionValue ==
+                                                  _model.svpActSelectionValue ==
                                                           'rice'
                                                       ? '(enabled)'
                                                       : '(disabled)',
@@ -1128,7 +1128,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                                         context)
                                                                     .labelSmallFamily,
                                                             color: _model
-                                                                        .seedVarietySelectionValue ==
+                                                                        .svpActSelectionValue ==
                                                                     'rice'
                                                                 ? FlutterFlowTheme.of(
                                                                         context)
@@ -1175,36 +1175,36 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                   );
                                                 }
                                                 List<SeedsRow>
-                                                    riceDropdownSeedsRowList =
+                                                    seedVarRiceDropdownSeedsRowList =
                                                     snapshot.data!;
 
                                                 return FlutterFlowDropDown<
                                                     String>(
                                                   controller: _model
-                                                          .riceDropdownValueController ??=
+                                                          .seedVarRiceDropdownValueController ??=
                                                       FormFieldController<
                                                           String>(
-                                                    _model.riceDropdownValue ??=
-                                                        _model.seedVarietySelectionValue ==
+                                                    _model.seedVarRiceDropdownValue ??=
+                                                        _model.svpActSelectionValue ==
                                                                 'rice'
                                                             ? ppirPpirFormsRow
                                                                 ?.ppirVariety
                                                             : ' ',
                                                   ),
                                                   options:
-                                                      riceDropdownSeedsRowList
+                                                      seedVarRiceDropdownSeedsRowList
                                                           .map((e) => e.seed)
                                                           .toList(),
                                                   onChanged: (val) async {
                                                     setState(() => _model
-                                                            .riceDropdownValue =
+                                                            .seedVarRiceDropdownValue =
                                                         val);
                                                     _model.riceSelectedValue =
-                                                        riceDropdownSeedsRowList
+                                                        seedVarRiceDropdownSeedsRowList
                                                             .where((e) =>
                                                                 e.seed ==
                                                                 _model
-                                                                    .riceDropdownValue)
+                                                                    .seedVarRiceDropdownValue)
                                                             .toList()
                                                             .first
                                                             .seed;
@@ -1256,7 +1256,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                                         context)
                                                                     .bodyMediumFamily,
                                                             color: _model
-                                                                        .seedVarietySelectionValue ==
+                                                                        .svpActSelectionValue ==
                                                                     'corn'
                                                                 ? FlutterFlowTheme.of(
                                                                         context)
@@ -1307,7 +1307,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                           16.0, 4.0, 16.0, 4.0),
                                                   hidesUnderline: true,
                                                   disabled: _model
-                                                          .seedVarietySelectionValue ==
+                                                          .svpActSelectionValue ==
                                                       'corn',
                                                   isOverButton: true,
                                                   isSearchable: true,
@@ -1344,7 +1344,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                       ),
                                                 ),
                                                 Text(
-                                                  _model.seedVarietySelectionValue ==
+                                                  _model.svpActSelectionValue ==
                                                           'corn'
                                                       ? '(enabled)'
                                                       : '(disabled)',
@@ -1358,7 +1358,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                                         context)
                                                                     .labelSmallFamily,
                                                             color: _model
-                                                                        .seedVarietySelectionValue ==
+                                                                        .svpActSelectionValue ==
                                                                     'corn'
                                                                 ? FlutterFlowTheme.of(
                                                                         context)
@@ -1405,36 +1405,36 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                   );
                                                 }
                                                 List<SeedsRow>
-                                                    cornDropdownSeedsRowList =
+                                                    seedVarCornDropdownSeedsRowList =
                                                     snapshot.data!;
 
                                                 return FlutterFlowDropDown<
                                                     String>(
                                                   controller: _model
-                                                          .cornDropdownValueController ??=
+                                                          .seedVarCornDropdownValueController ??=
                                                       FormFieldController<
                                                           String>(
-                                                    _model.cornDropdownValue ??=
-                                                        _model.seedVarietySelectionValue ==
+                                                    _model.seedVarCornDropdownValue ??=
+                                                        _model.svpActSelectionValue ==
                                                                 'corn'
                                                             ? ppirPpirFormsRow
                                                                 ?.ppirVariety
                                                             : ' ',
                                                   ),
                                                   options:
-                                                      cornDropdownSeedsRowList
+                                                      seedVarCornDropdownSeedsRowList
                                                           .map((e) => e.seed)
                                                           .toList(),
                                                   onChanged: (val) async {
                                                     setState(() => _model
-                                                            .cornDropdownValue =
+                                                            .seedVarCornDropdownValue =
                                                         val);
                                                     _model.cornSelectedValue =
-                                                        cornDropdownSeedsRowList
+                                                        seedVarCornDropdownSeedsRowList
                                                             .where((e) =>
                                                                 e.seed ==
                                                                 _model
-                                                                    .cornDropdownValue)
+                                                                    .seedVarCornDropdownValue)
                                                             .toList()
                                                             .first
                                                             .seed;
@@ -1486,7 +1486,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                                         context)
                                                                     .bodyMediumFamily,
                                                             color: _model
-                                                                        .seedVarietySelectionValue ==
+                                                                        .svpActSelectionValue ==
                                                                     'rice'
                                                                 ? FlutterFlowTheme.of(
                                                                         context)
@@ -1537,7 +1537,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                           16.0, 4.0, 16.0, 4.0),
                                                   hidesUnderline: true,
                                                   disabled: _model
-                                                          .seedVarietySelectionValue ==
+                                                          .svpActSelectionValue ==
                                                       'rice',
                                                   isOverButton: true,
                                                   isSearchable: true,
@@ -2547,10 +2547,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                               }
                             },
                             text: FFLocalizations.of(context).getText(
-                              '6si6e5tk' /* Cancel */,
+                              'vxop43vj' /* Cancel */,
                             ),
                             icon: const Icon(
-                              Icons.backspace_rounded,
+                              Icons.cancel_presentation_sharp,
                               size: 15.0,
                             ),
                             options: FFButtonOptions(
@@ -2613,8 +2613,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                     'track_date_time': '11',
                                     'track_total_area': '11',
                                     'track_total_distance': 'distance',
-                                    'ppir_svp_act':
-                                        _model.seedVarietySelectionValue,
+                                    'ppir_svp_act': _model.svpActSelectionValue,
                                     'ppir_dopds_act': _model
                                         .areaDopDsFieldTextController.text,
                                     'ppir_doptp_aci': _model
@@ -2634,11 +2633,11 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                     widget.taskId,
                                   ),
                                 );
-                                if (_model.seedVarietySelectionValue ==
-                                    'rice') {
+                                if (_model.svpActSelectionValue == 'rice') {
                                   await PpirFormsTable().update(
                                     data: {
-                                      'ppir_variety': _model.riceDropdownValue,
+                                      'ppir_variety':
+                                          _model.seedVarRiceDropdownValue,
                                     },
                                     matchingRows: (rows) => rows.eq(
                                       'task_id',
@@ -2648,7 +2647,8 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                 } else {
                                   await PpirFormsTable().update(
                                     data: {
-                                      'ppir_variety': _model.cornDropdownValue,
+                                      'ppir_variety':
+                                          _model.seedVarCornDropdownValue,
                                     },
                                     matchingRows: (rows) => rows.eq(
                                       'task_id',
@@ -2689,7 +2689,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                               setState(() {});
                             },
                             text: FFLocalizations.of(context).getText(
-                              'vxop43vj' /* Submit */,
+                              'kyab355w' /* Submit */,
                             ),
                             icon: const Icon(
                               Icons.check_sharp,

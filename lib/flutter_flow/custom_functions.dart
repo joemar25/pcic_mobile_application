@@ -19,3 +19,25 @@ double? getLat(LatLng? latlng) {
 double? getLng(LatLng? latlng) {
   return latlng?.longitude;
 }
+
+String? removePpirOnString(String? text) {
+  // remove the PPIR on the string
+  return text?.replaceAll('PPIR', '');
+}
+
+String? sentenceCaseWords(String? text) {
+  // sentence case each what is in the text
+  if (text == null || text.isEmpty) {
+    return text;
+  }
+  final words = text.split(' ');
+  final capitalizedWords = words.map((word) {
+    if (word.isEmpty) {
+      return word;
+    }
+    final firstLetter = word[0].toUpperCase();
+    final restOfWord = word.substring(1).toLowerCase();
+    return '$firstLetter$restOfWord';
+  });
+  return capitalizedWords.join(' ');
+}

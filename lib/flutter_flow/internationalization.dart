@@ -346,16 +346,16 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Region',
       'tl': '',
     },
-    'buylf9ux': {
-      'en': 'MAR - Region',
+    'b12iqcln': {
+      'en': 'CIC Number',
       'tl': '',
     },
     'p1282pce': {
       'en': 'Farm Location',
       'tl': '',
     },
-    'b12iqcln': {
-      'en': 'CIC Number',
+    'zm252mzp': {
+      'en': '',
       'tl': '',
     },
     'hvb7985g': {
@@ -609,11 +609,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Signature',
       'tl': '',
     },
-    '6si6e5tk': {
+    'vxop43vj': {
       'en': 'Cancel',
       'tl': '',
     },
-    'vxop43vj': {
+    'kyab355w': {
       'en': 'Submit',
       'tl': '',
     },
@@ -857,17 +857,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'hh1zsrbx': {
       'en': 'It seems that you don\'t have any recent activity.',
-      'tl': '',
-    },
-  },
-  // toast
-  {
-    'gkhial38': {
-      'en': 'Notification Title',
-      'tl': '',
-    },
-    '7xn0va3a': {
-      'en': 'Some body copy that is present in this small notification.',
       'tl': '',
     },
   },
