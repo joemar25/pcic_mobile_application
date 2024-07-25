@@ -1,10 +1,12 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -23,10 +25,13 @@ class MessagesWidget extends StatefulWidget {
   State<MessagesWidget> createState() => _MessagesWidgetState();
 }
 
-class _MessagesWidgetState extends State<MessagesWidget> {
+class _MessagesWidgetState extends State<MessagesWidget>
+    with TickerProviderStateMixin {
   late MessagesModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
@@ -43,6 +48,22 @@ class _MessagesWidgetState extends State<MessagesWidget> {
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
+
+    animationsMap.addAll({
+      'containerOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          ShakeEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 1000.0.ms,
+            hz: 10,
+            offset: const Offset(0.0, 0.0),
+            rotation: 0.087,
+          ),
+        ],
+      ),
+    });
   }
 
   @override
@@ -135,15 +156,41 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                         ),
                   ),
                 ),
-                if (FFAppState().ONLINE)
-                  Align(
-                    alignment: const AlignmentDirectional(0.0, 0.0),
-                    child: Icon(
-                      Icons.wifi,
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      size: 24.0,
-                    ),
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 100),
+                  curve: Curves.easeInOutQuint,
+                  width: 30.0,
+                  height: 30.0,
+                  decoration: BoxDecoration(
+                    color: FFAppState().ONLINE
+                        ? FlutterFlowTheme.of(context).primary
+                        : FlutterFlowTheme.of(context).warning,
+                    shape: BoxShape.circle,
                   ),
+                  child: Stack(
+                    children: [
+                      if (FFAppState().ONLINE)
+                        Align(
+                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          child: Icon(
+                            Icons.wifi,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 24.0,
+                          ),
+                        ),
+                      if (!FFAppState().ONLINE)
+                        Align(
+                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          child: Icon(
+                            Icons.wifi_off,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 24.0,
+                          ),
+                        ),
+                    ],
+                  ),
+                ).animateOnPageLoad(
+                    animationsMap['containerOnPageLoadAnimation']!),
               ],
             ),
             actions: const [],

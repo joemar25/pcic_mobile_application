@@ -1,5 +1,6 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -7,6 +8,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/change_photo/change_photo_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,10 +23,13 @@ class EditProfileWidget extends StatefulWidget {
   State<EditProfileWidget> createState() => _EditProfileWidgetState();
 }
 
-class _EditProfileWidgetState extends State<EditProfileWidget> {
+class _EditProfileWidgetState extends State<EditProfileWidget>
+    with TickerProviderStateMixin {
   late EditProfileModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
@@ -32,6 +37,22 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
     _model = createModel(context, () => EditProfileModel());
 
     _model.displayNameFocusNode ??= FocusNode();
+
+    animationsMap.addAll({
+      'containerOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          ShakeEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 1000.0.ms,
+            hz: 10,
+            offset: const Offset(0.0, 0.0),
+            rotation: 0.087,
+          ),
+        ],
+      ),
+    });
   }
 
   @override
@@ -114,15 +135,41 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                         ),
                   ),
                 ),
-                if (FFAppState().ONLINE)
-                  Align(
-                    alignment: const AlignmentDirectional(0.0, 0.0),
-                    child: Icon(
-                      Icons.wifi,
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      size: 24.0,
-                    ),
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 100),
+                  curve: Curves.easeInOutQuint,
+                  width: 30.0,
+                  height: 30.0,
+                  decoration: BoxDecoration(
+                    color: FFAppState().ONLINE
+                        ? FlutterFlowTheme.of(context).primary
+                        : FlutterFlowTheme.of(context).warning,
+                    shape: BoxShape.circle,
                   ),
+                  child: Stack(
+                    children: [
+                      if (FFAppState().ONLINE)
+                        Align(
+                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          child: Icon(
+                            Icons.wifi,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 24.0,
+                          ),
+                        ),
+                      if (!FFAppState().ONLINE)
+                        Align(
+                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          child: Icon(
+                            Icons.wifi_off,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 24.0,
+                          ),
+                        ),
+                    ],
+                  ),
+                ).animateOnPageLoad(
+                    animationsMap['containerOnPageLoadAnimation']!),
               ],
             ),
             actions: const [],
@@ -133,6 +180,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
             top: true,
             child: Column(
               mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Align(
                   alignment: const AlignmentDirectional(0.0, 0.0),
@@ -150,6 +198,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                       ),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Align(
                             alignment: const AlignmentDirectional(0.0, 0.0),

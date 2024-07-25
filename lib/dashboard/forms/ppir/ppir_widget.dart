@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'ppir_model.dart';
 export 'ppir_model.dart';
 
@@ -66,6 +67,19 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
     _model.ppirConfirmedByNameFieldFocusNode ??= FocusNode();
 
     animationsMap.addAll({
+      'containerOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          ShakeEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 1000.0.ms,
+            hz: 10,
+            offset: const Offset(0.0, 0.0),
+            rotation: 0.087,
+          ),
+        ],
+      ),
       'dropDownOnActionTriggerAnimation': AnimationInfo(
         trigger: AnimationTrigger.onActionTrigger,
         applyInitialState: true,
@@ -109,6 +123,8 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return FutureBuilder<List<PpirFormsRow>>(
       future: PpirFormsTable().querySingleRow(
         queryFn: (q) => q.eq(
@@ -193,17 +209,58 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                     }
                   },
                 ),
-                title: Text(
-                  FFLocalizations.of(context).getText(
-                    'erm3i53g' /* PPIR Form */,
-                  ),
-                  style: FlutterFlowTheme.of(context).titleLarge.override(
-                        fontFamily:
-                            FlutterFlowTheme.of(context).titleLargeFamily,
-                        letterSpacing: 0.0,
-                        useGoogleFonts: GoogleFonts.asMap().containsKey(
-                            FlutterFlowTheme.of(context).titleLargeFamily),
+                title: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      FFLocalizations.of(context).getText(
+                        'erm3i53g' /* PPIR Form */,
                       ),
+                      style: FlutterFlowTheme.of(context).titleLarge.override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).titleLargeFamily,
+                            letterSpacing: 0.0,
+                            useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                FlutterFlowTheme.of(context).titleLargeFamily),
+                          ),
+                    ),
+                    AnimatedContainer(
+                      duration: const Duration(milliseconds: 100),
+                      curve: Curves.easeInOutQuint,
+                      width: 30.0,
+                      height: 30.0,
+                      decoration: BoxDecoration(
+                        color: FFAppState().ONLINE
+                            ? FlutterFlowTheme.of(context).primary
+                            : FlutterFlowTheme.of(context).warning,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Stack(
+                        children: [
+                          if (FFAppState().ONLINE)
+                            Align(
+                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              child: Icon(
+                                Icons.wifi,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 24.0,
+                              ),
+                            ),
+                          if (!FFAppState().ONLINE)
+                            Align(
+                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              child: Icon(
+                                Icons.wifi_off,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 24.0,
+                              ),
+                            ),
+                        ],
+                      ),
+                    ).animateOnPageLoad(
+                        animationsMap['containerOnPageLoadAnimation']!),
+                  ],
                 ),
                 actions: const [],
                 centerTitle: false,
