@@ -662,15 +662,15 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // dashboard
   {
-    'k0kesbjh': {
+    'ek6mnpyv': {
       'en': 'Welcome',
       'tl': '',
     },
-    'u6gemicl': {
+    'kqdeja9y': {
       'en': 'Good morning ',
       'tl': '',
     },
-    'umzkjxbm': {
+    'c9cu64hs': {
       'en': '!',
       'tl': '',
     },

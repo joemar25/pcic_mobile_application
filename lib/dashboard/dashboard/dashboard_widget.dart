@@ -118,6 +118,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return FutureBuilder<List<UsersRow>>(
       future: UsersTable().querySingleRow(
         queryFn: (q) => q.eq(
@@ -196,7 +198,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                               AutoSizeText(
                                                 FFLocalizations.of(context)
                                                     .getText(
-                                                  'k0kesbjh' /* Welcome */,
+                                                  'ek6mnpyv' /* Welcome */,
                                                 ),
                                                 style: FlutterFlowTheme.of(
                                                         context)
@@ -241,7 +243,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                 child: AutoSizeText(
                                                   FFLocalizations.of(context)
                                                       .getText(
-                                                    'u6gemicl' /* Good morning  */,
+                                                    'kqdeja9y' /* Good morning  */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -304,7 +306,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                 child: AutoSizeText(
                                                   FFLocalizations.of(context)
                                                       .getText(
-                                                    'umzkjxbm' /* ! */,
+                                                    'c9cu64hs' /* ! */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -352,30 +354,35 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                           );
                                         },
                                         child: Container(
-                                          decoration: BoxDecoration(),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 10.0, 0.0),
-                                            child: Container(
-                                              width: 50.0,
-                                              height: 50.0,
-                                              clipBehavior: Clip.antiAlias,
-                                              decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
+                                          width: 50.0,
+                                          height: 50.0,
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            border: Border.all(
+                                              color: FFAppState().ONLINE
+                                                  ? FlutterFlowTheme.of(context)
+                                                      .primary
+                                                  : FlutterFlowTheme.of(context)
+                                                      .warning,
+                                            ),
+                                          ),
+                                          child: Container(
+                                            width: 50.0,
+                                            height: 50.0,
+                                            clipBehavior: Clip.antiAlias,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: CachedNetworkImage(
+                                              fadeInDuration:
+                                                  Duration(milliseconds: 500),
+                                              fadeOutDuration:
+                                                  Duration(milliseconds: 500),
+                                              imageUrl: valueOrDefault<String>(
+                                                dashboardUsersRow?.photoUrl,
+                                                'https://newsko.com.ph/wp-content/uploads/2024/06/Mikha.jpg',
                                               ),
-                                              child: CachedNetworkImage(
-                                                fadeInDuration:
-                                                    Duration(milliseconds: 500),
-                                                fadeOutDuration:
-                                                    Duration(milliseconds: 500),
-                                                imageUrl:
-                                                    valueOrDefault<String>(
-                                                  dashboardUsersRow?.photoUrl,
-                                                  'https://newsko.com.ph/wp-content/uploads/2024/06/Mikha.jpg',
-                                                ),
-                                                fit: BoxFit.cover,
-                                              ),
+                                              fit: BoxFit.cover,
                                             ),
                                           ),
                                         ),

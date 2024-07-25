@@ -36,4 +36,10 @@ class FFAppState extends ChangeNotifier {
   set DEBUG(bool value) {
     _DEBUG = value;
   }
+
+  bool _ONLINE = false;
+  bool get ONLINE => _ONLINE;
+  set ONLINE(bool value) {
+    _ONLINE = value;
+  }
 }
