@@ -54,11 +54,11 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
   TextEditingController? ppirAreaDopDsFieldTextController;
   String? Function(BuildContext, String?)?
       ppirAreaDopDsFieldTextControllerValidator;
-  // State field(s) for ppir_area_dop_ts_field widget.
-  FocusNode? ppirAreaDopTsFieldFocusNode;
-  TextEditingController? ppirAreaDopTsFieldTextController;
+  // State field(s) for ppir_area_dop_tp_field widget.
+  FocusNode? ppirAreaDopTpFieldFocusNode;
+  TextEditingController? ppirAreaDopTpFieldTextController;
   String? Function(BuildContext, String?)?
-      ppirAreaDopTsFieldTextControllerValidator;
+      ppirAreaDopTpFieldTextControllerValidator;
   // State field(s) for ppir_remarks_field widget.
   FocusNode? ppirRemarksFieldFocusNode;
   TextEditingController? ppirRemarksFieldTextController;
@@ -105,8 +105,8 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
     ppirAreaDopDsFieldFocusNode?.dispose();
     ppirAreaDopDsFieldTextController?.dispose();
 
-    ppirAreaDopTsFieldFocusNode?.dispose();
-    ppirAreaDopTsFieldTextController?.dispose();
+    ppirAreaDopTpFieldFocusNode?.dispose();
+    ppirAreaDopTpFieldTextController?.dispose();
 
     ppirRemarksFieldFocusNode?.dispose();
     ppirRemarksFieldTextController?.dispose();

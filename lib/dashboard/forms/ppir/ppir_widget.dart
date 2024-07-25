@@ -48,22 +48,16 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
 
     _model.ppirTrackFarmlocFocusNode ??= FocusNode();
 
-    _model.ppirAreaActFieldTextController ??= TextEditingController();
     _model.ppirAreaActFieldFocusNode ??= FocusNode();
 
-    _model.ppirAreaDopDsFieldTextController ??= TextEditingController();
     _model.ppirAreaDopDsFieldFocusNode ??= FocusNode();
 
-    _model.ppirAreaDopTsFieldTextController ??= TextEditingController();
-    _model.ppirAreaDopTsFieldFocusNode ??= FocusNode();
+    _model.ppirAreaDopTpFieldFocusNode ??= FocusNode();
 
-    _model.ppirRemarksFieldTextController ??= TextEditingController();
     _model.ppirRemarksFieldFocusNode ??= FocusNode();
 
-    _model.ppirPreparedByNameFieldTextController ??= TextEditingController();
     _model.ppirPreparedByNameFieldFocusNode ??= FocusNode();
 
-    _model.ppirConfirmedByNameFieldTextController ??= TextEditingController();
     _model.ppirConfirmedByNameFieldFocusNode ??= FocusNode();
 
     animationsMap.addAll({
@@ -1622,7 +1616,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                             0.0, 10.0, 0.0, 10.0),
                                         child: TextFormField(
                                           controller: _model
-                                              .ppirAreaActFieldTextController,
+                                                  .ppirAreaActFieldTextController ??=
+                                              TextEditingController(
+                                            text: ppirPpirFormsRow?.ppirAreaAct,
+                                          ),
                                           focusNode:
                                               _model.ppirAreaActFieldFocusNode,
                                           autofocus: false,
@@ -1725,6 +1722,8 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                                 context)
                                                             .bodyMediumFamily),
                                               ),
+                                          keyboardType: const TextInputType
+                                              .numberWithOptions(decimal: true),
                                           cursorColor:
                                               FlutterFlowTheme.of(context)
                                                   .primary,
@@ -1738,7 +1737,11 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                             0.0, 10.0, 0.0, 10.0),
                                         child: TextFormField(
                                           controller: _model
-                                              .ppirAreaDopDsFieldTextController,
+                                                  .ppirAreaDopDsFieldTextController ??=
+                                              TextEditingController(
+                                            text:
+                                                ppirPpirFormsRow?.ppirDopdsAct,
+                                          ),
                                           focusNode: _model
                                               .ppirAreaDopDsFieldFocusNode,
                                           autofocus: false,
@@ -1854,9 +1857,13 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                             0.0, 10.0, 0.0, 10.0),
                                         child: TextFormField(
                                           controller: _model
-                                              .ppirAreaDopTsFieldTextController,
+                                                  .ppirAreaDopTpFieldTextController ??=
+                                              TextEditingController(
+                                            text:
+                                                ppirPpirFormsRow?.ppirDoptpAct,
+                                          ),
                                           focusNode: _model
-                                              .ppirAreaDopTsFieldFocusNode,
+                                              .ppirAreaDopTpFieldFocusNode,
                                           autofocus: false,
                                           textInputAction: TextInputAction.next,
                                           obscureText: false,
@@ -1864,7 +1871,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                             labelText:
                                                 FFLocalizations.of(context)
                                                     .getText(
-                                              'msrak9du' /* Actual Date of Planting (TS) */,
+                                              'msrak9du' /* Actual Date of Planting (TP) */,
                                             ),
                                             labelStyle:
                                                 FlutterFlowTheme.of(context)
@@ -1961,7 +1968,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               FlutterFlowTheme.of(context)
                                                   .primary,
                                           validator: _model
-                                              .ppirAreaDopTsFieldTextControllerValidator
+                                              .ppirAreaDopTpFieldTextControllerValidator
                                               .asValidator(context),
                                         ),
                                       ),
@@ -1976,7 +1983,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                       ),
                                       TextFormField(
                                         controller: _model
-                                            .ppirRemarksFieldTextController,
+                                                .ppirRemarksFieldTextController ??=
+                                            TextEditingController(
+                                          text: ppirPpirFormsRow?.ppirRemarks,
+                                        ),
                                         focusNode:
                                             _model.ppirRemarksFieldFocusNode,
                                         autofocus: false,
@@ -2090,7 +2100,11 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                             0.0, 10.0, 0.0, 10.0),
                                         child: TextFormField(
                                           controller: _model
-                                              .ppirPreparedByNameFieldTextController,
+                                                  .ppirPreparedByNameFieldTextController ??=
+                                              TextEditingController(
+                                            text: ppirPpirFormsRow
+                                                ?.ppirNameInsured,
+                                          ),
                                           focusNode: _model
                                               .ppirPreparedByNameFieldFocusNode,
                                           autofocus: false,
@@ -2316,7 +2330,11 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                             0.0, 10.0, 0.0, 10.0),
                                         child: TextFormField(
                                           controller: _model
-                                              .ppirConfirmedByNameFieldTextController,
+                                                  .ppirConfirmedByNameFieldTextController ??=
+                                              TextEditingController(
+                                            text:
+                                                ppirPpirFormsRow?.ppirNameIuia,
+                                          ),
                                           focusNode: _model
                                               .ppirConfirmedByNameFieldFocusNode,
                                           autofocus: false,
@@ -2676,7 +2694,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                     'ppir_dopds_act': _model
                                         .ppirAreaDopDsFieldTextController.text,
                                     'ppir_doptp_act': _model
-                                        .ppirAreaDopTsFieldTextController.text,
+                                        .ppirAreaDopTpFieldTextController.text,
                                     'ppir_remarks': _model
                                         .ppirRemarksFieldTextController.text,
                                     'ppir_name_insured': _model
