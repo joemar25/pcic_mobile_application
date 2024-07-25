@@ -717,8 +717,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // mapTesting
   {
-    '08dw4jhj': {
-      'en': 'Page Title',
+    'p5a4ilu5': {
+      'en': 'Testing Map',
       'tl': '',
     },
     'hdh6xlcb': {
@@ -822,7 +822,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // otherForm
   {
     'fa31tvpx': {
-      'en': 'Page Title',
+      'en': 'Area 69',
+      'tl': '',
+    },
+    '9ctwde8e': {
+      'en': 'Mar said, This is under maintenance!',
       'tl': '',
     },
     '0o8w3vlv': {
@@ -914,53 +918,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '6si6e5tk': {
       'en': 'Save',
-      'tl': '',
-    },
-  },
-  // sliderContainer
-  {
-    '4dvpzqez': {
-      'en': 'Geotagging',
-      'tl': '',
-    },
-    '0dhjdczh': {
-      'en': 'Start',
-      'tl': '',
-    },
-    'z7iocca5': {
-      'en': 'Pin drop',
-      'tl': '',
-    },
-    'bryj461x': {
-      'en': 'Stop',
-      'tl': '',
-    },
-    'u9apm1jr': {
-      'en': 'Location',
-      'tl': '',
-    },
-    '2ugch3dd': {
-      'en': 'Coordinates',
-      'tl': '',
-    },
-    '2g99ky91': {
-      'en': 'Hello World',
-      'tl': '',
-    },
-    'qdfww9v5': {
-      'en': 'Hello World',
-      'tl': '',
-    },
-    'e8w0ri0f': {
-      'en': 'Address',
-      'tl': '',
-    },
-    '507lgqrm': {
-      'en': 'Hello World',
-      'tl': '',
-    },
-    'dcziw3kd': {
-      'en': 'Hello World',
       'tl': '',
     },
   },

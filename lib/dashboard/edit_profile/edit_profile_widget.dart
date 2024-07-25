@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'edit_profile_model.dart';
 export 'edit_profile_model.dart';
 
@@ -42,6 +43,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return FutureBuilder<List<UsersRow>>(
       future: UsersTable().querySingleRow(
         queryFn: (q) => q.eq(
@@ -91,21 +94,36 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                 context.safePop();
               },
             ),
-            title: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
-              child: Text(
-                FFLocalizations.of(context).getText(
-                  '5fv645iv' /* Edit Profile */,
-                ),
-                style: FlutterFlowTheme.of(context).displaySmall.override(
-                      fontFamily:
-                          FlutterFlowTheme.of(context).displaySmallFamily,
-                      fontSize: 16.0,
-                      letterSpacing: 0.0,
-                      useGoogleFonts: GoogleFonts.asMap().containsKey(
-                          FlutterFlowTheme.of(context).displaySmallFamily),
+            title: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+                  child: Text(
+                    FFLocalizations.of(context).getText(
+                      '5fv645iv' /* Edit Profile */,
                     ),
-              ),
+                    style: FlutterFlowTheme.of(context).displaySmall.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).displaySmallFamily,
+                          fontSize: 16.0,
+                          letterSpacing: 0.0,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(
+                              FlutterFlowTheme.of(context).displaySmallFamily),
+                        ),
+                  ),
+                ),
+                if (FFAppState().ONLINE)
+                  Align(
+                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    child: Icon(
+                      Icons.wifi,
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      size: 24.0,
+                    ),
+                  ),
+              ],
             ),
             actions: const [],
             centerTitle: false,

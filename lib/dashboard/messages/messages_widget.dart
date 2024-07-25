@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'messages_model.dart';
 export 'messages_model.dart';
 
@@ -53,6 +54,8 @@ class _MessagesWidgetState extends State<MessagesWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return FutureBuilder<List<MessagesRow>>(
       future: MessagesTable().querySingleRow(
         queryFn: (q) => q.eq(
@@ -113,6 +116,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
             ),
             title: Row(
               mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
@@ -131,6 +135,15 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                         ),
                   ),
                 ),
+                if (FFAppState().ONLINE)
+                  Align(
+                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    child: Icon(
+                      Icons.wifi,
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      size: 24.0,
+                    ),
+                  ),
               ],
             ),
             actions: const [],

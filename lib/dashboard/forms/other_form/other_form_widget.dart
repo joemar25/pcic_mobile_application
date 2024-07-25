@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'other_form_model.dart';
 export 'other_form_model.dart';
 
@@ -34,6 +35,8 @@ class _OtherFormWidgetState extends State<OtherFormWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -58,28 +61,70 @@ class _OtherFormWidgetState extends State<OtherFormWidget> {
               context.pop();
             },
           ),
-          title: Text(
-            FFLocalizations.of(context).getText(
-              'fa31tvpx' /* Page Title */,
-            ),
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: FlutterFlowTheme.of(context).headlineMediumFamily,
-                  color: Colors.white,
-                  fontSize: 20.0,
-                  letterSpacing: 0.0,
-                  useGoogleFonts: GoogleFonts.asMap().containsKey(
-                      FlutterFlowTheme.of(context).headlineMediumFamily),
+          title: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                FFLocalizations.of(context).getText(
+                  'fa31tvpx' /* Area 69 */,
                 ),
+                textAlign: TextAlign.center,
+                style: FlutterFlowTheme.of(context).headlineMedium.override(
+                      fontFamily:
+                          FlutterFlowTheme.of(context).headlineMediumFamily,
+                      color: Colors.white,
+                      fontSize: 20.0,
+                      letterSpacing: 0.0,
+                      useGoogleFonts: GoogleFonts.asMap().containsKey(
+                          FlutterFlowTheme.of(context).headlineMediumFamily),
+                    ),
+              ),
+              if (FFAppState().ONLINE)
+                Align(
+                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  child: Icon(
+                    Icons.wifi,
+                    color: FlutterFlowTheme.of(context).primaryText,
+                    size: 24.0,
+                  ),
+                ),
+            ],
           ),
           actions: const [],
-          centerTitle: true,
+          centerTitle: false,
           elevation: 2.0,
         ),
-        body: const SafeArea(
+        body: SafeArea(
           top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
-            children: [],
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Align(
+                alignment: const AlignmentDirectional(0.0, 0.0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.asset(
+                    'assets/images/cong-tv-prank.gif',
+                    width: 300.0,
+                    height: 222.0,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              Text(
+                FFLocalizations.of(context).getText(
+                  '9ctwde8e' /* Mar said, This is under mainte... */,
+                ),
+                style: FlutterFlowTheme.of(context).bodyLarge.override(
+                      fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
+                      letterSpacing: 0.0,
+                      useGoogleFonts: GoogleFonts.asMap().containsKey(
+                          FlutterFlowTheme.of(context).bodyLargeFamily),
+                    ),
+              ),
+            ],
           ),
         ),
       ),

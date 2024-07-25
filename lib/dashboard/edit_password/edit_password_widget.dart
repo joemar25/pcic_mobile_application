@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'edit_password_model.dart';
 export 'edit_password_model.dart';
 
@@ -50,6 +51,8 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -70,20 +73,36 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
             context.safePop();
           },
         ),
-        title: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
-          child: Text(
-            FFLocalizations.of(context).getText(
-              'igo0j7mh' /* Change Password */,
-            ),
-            style: FlutterFlowTheme.of(context).displaySmall.override(
-                  fontFamily: FlutterFlowTheme.of(context).displaySmallFamily,
-                  fontSize: 16.0,
-                  letterSpacing: 0.0,
-                  useGoogleFonts: GoogleFonts.asMap().containsKey(
-                      FlutterFlowTheme.of(context).displaySmallFamily),
+        title: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+              child: Text(
+                FFLocalizations.of(context).getText(
+                  'igo0j7mh' /* Change Password */,
                 ),
-          ),
+                style: FlutterFlowTheme.of(context).displaySmall.override(
+                      fontFamily:
+                          FlutterFlowTheme.of(context).displaySmallFamily,
+                      fontSize: 16.0,
+                      letterSpacing: 0.0,
+                      useGoogleFonts: GoogleFonts.asMap().containsKey(
+                          FlutterFlowTheme.of(context).displaySmallFamily),
+                    ),
+              ),
+            ),
+            if (FFAppState().ONLINE)
+              Align(
+                alignment: const AlignmentDirectional(0.0, 0.0),
+                child: Icon(
+                  Icons.wifi,
+                  color: FlutterFlowTheme.of(context).primaryText,
+                  size: 24.0,
+                ),
+              ),
+          ],
         ),
         actions: const [],
         centerTitle: false,

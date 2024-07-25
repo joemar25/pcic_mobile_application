@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'chats_model.dart';
 export 'chats_model.dart';
 
@@ -44,6 +45,8 @@ class _ChatsWidgetState extends State<ChatsWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -59,6 +62,15 @@ class _ChatsWidgetState extends State<ChatsWidget> {
             title: Row(
               mainAxisSize: MainAxisSize.max,
               children: [
+                if (FFAppState().ONLINE)
+                  Align(
+                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    child: Icon(
+                      Icons.wifi,
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      size: 24.0,
+                    ),
+                  ),
                 Expanded(
                   child: Text(
                     FFLocalizations.of(context).getText(
