@@ -3,12 +3,12 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/utils/components/connectivity/connectivity_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'profile_model.dart';
 export 'profile_model.dart';
 
@@ -47,8 +47,6 @@ class _ProfileWidgetState extends State<ProfileWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return FutureBuilder<List<UsersRow>>(
       future: UsersTable().querySingleRow(
         queryFn: (q) => q.eq(
@@ -305,17 +303,11 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                               ),
                                         ),
                                       ),
-                                      if (FFAppState().ONLINE)
-                                        Align(
-                                          alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
-                                          child: Icon(
-                                            Icons.wifi,
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            size: 24.0,
-                                          ),
-                                        ),
+                                      wrapWithModel(
+                                        model: _model.connectivityModel,
+                                        updateCallback: () => setState(() {}),
+                                        child: const ConnectivityWidget(),
+                                      ),
                                     ],
                                   ),
                                 ),
