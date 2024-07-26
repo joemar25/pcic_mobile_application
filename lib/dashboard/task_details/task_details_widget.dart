@@ -3031,7 +3031,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                   ),
                                   Text(
                                     FFLocalizations.of(context).getText(
-                                      'g06chmkk' /* ContinueForm */,
+                                      'g06chmkk' /* Continue Form */,
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .titleSmall
@@ -3182,7 +3182,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                             ),
                           ),
                         ),
-                      if (!widget.isCompleted)
+                      if (!widget.isCompleted &&
+                          (taskDetailsPpirFormsRow?.gpx != null &&
+                              taskDetailsPpirFormsRow?.gpx != ''))
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 8.0, 16.0, 12.0),
