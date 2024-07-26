@@ -297,10 +297,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // task_details
   {
-    'x1jz4y0y': {
-      'en': 'Task Details',
-      'tl': 'Mga Detalye ng Gawain',
-    },
     'ihmcvc23': {
       'en': 'This task is completed',
       'tl': 'Nakumpleto ang gawaing ito',

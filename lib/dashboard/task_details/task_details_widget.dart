@@ -129,8 +129,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
                     child: Text(
-                      FFLocalizations.of(context).getText(
-                        'x1jz4y0y' /* Task Details */,
+                      valueOrDefault<String>(
+                        widget.taskStatus,
+                        'Task Stats',
                       ),
                       style: FlutterFlowTheme.of(context).displaySmall.override(
                             fontFamily:
@@ -3071,8 +3072,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                           ),
                         ),
                       if ((widget.taskStatus != 'completed') &&
-                          (taskDetailsPpirFormsRow?.gpx == null ||
-                              taskDetailsPpirFormsRow?.gpx == ''))
+                          (taskDetailsPpirFormsRow?.gpx == ''))
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 8.0, 16.0, 12.0),

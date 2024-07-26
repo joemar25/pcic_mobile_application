@@ -2588,15 +2588,6 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                           ),
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 16.0, 0.0, 16.0),
-                                        child: Divider(
-                                          thickness: 2.0,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                        ),
-                                      ),
                                     ],
                                   ),
                                 ),
