@@ -2982,14 +2982,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                 ).then((value) => safeSetState(() {}));
                               } else {
                                 context.pushNamed(
-                                  'geotagging',
+                                  'ppir',
                                   queryParameters: {
                                     'taskId': serializeParam(
                                       widget.taskId,
-                                      ParamType.String,
-                                    ),
-                                    'taskType': serializeParam(
-                                      parentColumnTasksRow?.taskType,
                                       ParamType.String,
                                     ),
                                   }.withoutNulls,
