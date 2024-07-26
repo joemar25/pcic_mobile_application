@@ -3072,7 +3072,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                           ),
                         ),
                       if ((widget.taskStatus != 'completed') &&
-                          (taskDetailsPpirFormsRow?.gpx == ''))
+                          (taskDetailsPpirFormsRow?.gpx == null ||
+                              taskDetailsPpirFormsRow?.gpx == ''))
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 8.0, 16.0, 12.0),

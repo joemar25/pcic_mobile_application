@@ -1279,7 +1279,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                             'status',
                                                             'for dispatch',
                                                           )
-                                                          .order('date_added'),
+                                                          .order('updated_at'),
                                                     ),
                                                     builder:
                                                         (context, snapshot) {
@@ -1372,7 +1372,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                             'status',
                                                             'ongoing',
                                                           )
-                                                          .order('date_added'),
+                                                          .order('updated_at'),
                                                     ),
                                                     builder:
                                                         (context, snapshot) {
@@ -1465,7 +1465,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                             'status',
                                                             'completed',
                                                           )
-                                                          .order('date_added'),
+                                                          .order('updated_at'),
                                                     ),
                                                     builder:
                                                         (context, snapshot) {
