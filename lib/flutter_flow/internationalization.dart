@@ -490,8 +490,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Mga aksyon',
     },
     'g06chmkk': {
-      'en': 'Geotag',
+      'en': 'ContinueForm',
       'tl': 'Geotag',
+    },
+    '63201k0m': {
+      'en': 'Geotag',
+      'tl': '',
     },
     'm6egon7b': {
       'en': 'Resubmit',

@@ -2757,6 +2757,16 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                     ),
                                   );
                                 }
+
+                                await PpirFormsTable().update(
+                                  data: {
+                                    'gpx': 'test',
+                                  },
+                                  matchingRows: (rows) => rows.eq(
+                                    'task_id',
+                                    widget.taskId,
+                                  ),
+                                );
                               }
 
                               context.pushNamed(
@@ -2904,6 +2914,15 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                   },
                                   matchingRows: (rows) => rows.eq(
                                     'id',
+                                    widget.taskId,
+                                  ),
+                                );
+                                await PpirFormsTable().update(
+                                  data: {
+                                    'gpx': 'test',
+                                  },
+                                  matchingRows: (rows) => rows.eq(
+                                    'task_id',
                                     widget.taskId,
                                   ),
                                 );
