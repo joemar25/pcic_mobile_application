@@ -71,6 +71,7 @@ dependencies:
   path_provider_android: 2.2.5
   path_provider_foundation: 2.4.0
   path_provider_platform_interface: 2.1.2
+  permission_handler: 11.3.0
   plugin_platform_interface: 2.1.8
   postgrest: 1.5.2
   provider: 6.1.2
