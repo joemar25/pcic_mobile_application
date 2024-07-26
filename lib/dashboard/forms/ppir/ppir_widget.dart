@@ -2768,6 +2768,15 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                     widget.taskId,
                                   ),
                                 );
+                                await TasksTable().update(
+                                  data: {
+                                    'status': 'ongoing',
+                                  },
+                                  matchingRows: (rows) => rows.eq(
+                                    'id',
+                                    widget.taskId,
+                                  ),
+                                );
                               }
 
                               context.pushNamed(
