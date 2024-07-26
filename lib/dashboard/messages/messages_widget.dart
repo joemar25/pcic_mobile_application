@@ -83,6 +83,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
         final messagesMessagesRow = messagesMessagesRowList.isNotEmpty
             ? messagesMessagesRowList.first
             : null;
+
         return Scaffold(
           key: scaffoldKey,
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,

@@ -189,6 +189,7 @@ class _ChangePhotoWidgetState extends State<ChangePhotoWidget> {
                                                 userImgeUsersRowList.isNotEmpty
                                                     ? userImgeUsersRowList.first
                                                     : null;
+
                                             return Container(
                                               width: 120.0,
                                               height: 120.0,

@@ -79,6 +79,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
         }
         final profileUsersRow =
             profileUsersRowList.isNotEmpty ? profileUsersRowList.first : null;
+
         return WillPopScope(
           onWillPop: () async => false,
           child: Scaffold(

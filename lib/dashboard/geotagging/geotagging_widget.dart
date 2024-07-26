@@ -18,10 +18,12 @@ class GeotaggingWidget extends StatefulWidget {
     super.key,
     required this.taskId,
     required this.taskType,
+    required this.taskStatus,
   });
 
   final String? taskId;
   final String? taskType;
+  final String? taskStatus;
 
   @override
   State<GeotaggingWidget> createState() => _GeotaggingWidgetState();
@@ -105,6 +107,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget> {
         final geotaggingPpirFormsRow = geotaggingPpirFormsRowList.isNotEmpty
             ? geotaggingPpirFormsRowList.first
             : null;
+
         return GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
               ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -175,10 +178,10 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget> {
                                                           ?.taskId,
                                                       ParamType.String,
                                                     ),
-                                                    'isCompleted':
+                                                    'taskStatus':
                                                         serializeParam(
-                                                      false,
-                                                      ParamType.bool,
+                                                      '',
+                                                      ParamType.String,
                                                     ),
                                                   }.withoutNulls,
                                                   extra: <String, dynamic>{

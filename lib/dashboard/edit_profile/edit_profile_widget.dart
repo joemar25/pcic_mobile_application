@@ -72,6 +72,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
         final editProfileUsersRow = editProfileUsersRowList.isNotEmpty
             ? editProfileUsersRowList.first
             : null;
+
         return Scaffold(
           key: scaffoldKey,
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,

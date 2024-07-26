@@ -552,6 +552,7 @@ class _FormSuccessWidgetState extends State<FormSuccessWidget>
                                             textTasksRowList.isNotEmpty
                                                 ? textTasksRowList.first
                                                 : null;
+
                                         return Text(
                                           widget.type == 'submit'
                                               ? 'You completed the ${textTasksRow?.taskNumber}.'
@@ -636,6 +637,7 @@ class _FormSuccessWidgetState extends State<FormSuccessWidget>
                                                       ? containerUsersRowList
                                                           .first
                                                       : null;
+
                                               return Container(
                                                 width: 48.0,
                                                 height: 48.0,

@@ -139,9 +139,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'taskId',
               ParamType.String,
             ),
-            isCompleted: params.getParam(
-              'isCompleted',
-              ParamType.bool,
+            taskStatus: params.getParam(
+              'taskStatus',
+              ParamType.String,
             ),
           ),
         ),
@@ -227,6 +227,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             taskType: params.getParam(
               'taskType',
+              ParamType.String,
+            ),
+            taskStatus: params.getParam(
+              'taskStatus',
               ParamType.String,
             ),
           ),

@@ -107,6 +107,7 @@ class _TasksWidgetState extends State<TasksWidget>
           final containerPpirFormsRow = containerPpirFormsRowList.isNotEmpty
               ? containerPpirFormsRowList.first
               : null;
+
           return InkWell(
             splashColor: Colors.transparent,
             focusColor: Colors.transparent,
@@ -120,9 +121,9 @@ class _TasksWidgetState extends State<TasksWidget>
                     widget.task,
                     ParamType.String,
                   ),
-                  'isCompleted': serializeParam(
-                    widget.status != 'completed',
-                    ParamType.bool,
+                  'taskStatus': serializeParam(
+                    widget.status,
+                    ParamType.String,
                   ),
                 }.withoutNulls,
                 extra: <String, dynamic>{
@@ -158,23 +159,44 @@ class _TasksWidgetState extends State<TasksWidget>
                       Padding(
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
-                        child: Text(
-                          valueOrDefault<String>(
-                            containerPpirFormsRow?.ppirFarmername,
-                            'Farmer Name',
-                          ),
-                          style: FlutterFlowTheme.of(context)
-                              .headlineSmall
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .headlineSmallFamily,
-                                fontSize: 22.0,
-                                letterSpacing: 0.0,
-                                fontWeight: FontWeight.w300,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .headlineSmallFamily),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              valueOrDefault<String>(
+                                containerPpirFormsRow?.ppirFarmername,
+                                'Farmer Name',
                               ),
+                              style: FlutterFlowTheme.of(context)
+                                  .headlineSmall
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .headlineSmallFamily,
+                                    fontSize: 22.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w300,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .headlineSmallFamily),
+                                  ),
+                            ),
+                            Text(
+                              widget.status,
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyMediumFamily),
+                                  ),
+                            ),
+                          ],
                         ),
                       ),
                       Row(
@@ -376,7 +398,7 @@ class _TasksWidgetState extends State<TasksWidget>
                         children: [
                           Text(
                             FFLocalizations.of(context).getText(
-                              'vfsgjz34' /* Assignment Id */,
+                              '83q8pggh' /* Assignment Id */,
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium

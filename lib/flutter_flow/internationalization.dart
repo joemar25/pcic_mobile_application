@@ -856,9 +856,9 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'East: ',
       'tl': 'Silangan:',
     },
-    'vfsgjz34': {
+    '83q8pggh': {
       'en': 'Assignment Id',
-      'tl': 'Assignment Id',
+      'tl': '',
     },
     '0869xbo0': {
       'en': 'Address',

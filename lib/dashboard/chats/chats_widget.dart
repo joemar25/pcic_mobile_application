@@ -255,6 +255,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                         ? containerMessagesRowList
                                                             .first
                                                         : null;
+
                                                 return InkWell(
                                                   splashColor:
                                                       Colors.transparent,

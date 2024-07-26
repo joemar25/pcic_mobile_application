@@ -92,7 +92,7 @@ class _LoginWidgetState extends State<LoginWidget>
                       Align(
                         alignment: const AlignmentDirectional(0.0, 0.0),
                         child: Padding(
-                          padding: const EdgeInsets.all(24.0),
+                          padding: const EdgeInsets.all(6.0),
                           child: SingleChildScrollView(
                             child: Column(
                               mainAxisSize: MainAxisSize.max,

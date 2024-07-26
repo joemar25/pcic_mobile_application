@@ -16,11 +16,11 @@ class TaskDetailsWidget extends StatefulWidget {
   const TaskDetailsWidget({
     super.key,
     required this.taskId,
-    bool? isCompleted,
-  }) : isCompleted = isCompleted ?? true;
+    required this.taskStatus,
+  });
 
   final String? taskId;
-  final bool isCompleted;
+  final String? taskStatus;
 
   @override
   State<TaskDetailsWidget> createState() => _TaskDetailsWidgetState();
@@ -88,6 +88,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
         final taskDetailsPpirFormsRow = taskDetailsPpirFormsRowList.isNotEmpty
             ? taskDetailsPpirFormsRowList.first
             : null;
+
         return GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
               ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -145,7 +146,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                   ),
                   Stack(
                     children: [
-                      if (widget.isCompleted && (_model.isEditing == false))
+                      if ((_model.isEditing == false) &&
+                          (widget.taskStatus != 'completed'))
                         InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
@@ -253,6 +255,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                       parentColumnTasksRowList.isNotEmpty
                           ? parentColumnTasksRowList.first
                           : null;
+
                   return Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -285,28 +288,39 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        if (!widget.isCompleted)
+                                        if (widget.taskStatus == 'completed')
                                           Align(
                                             alignment:
                                                 const AlignmentDirectional(0.0, 0.0),
-                                            child: Padding(
-                                              padding: const EdgeInsets.all(18.0),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                0.0, 12.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Expanded(
+                                                  child: Container(
+                                                    width: double.infinity,
+                                                    height: 100.0,
+                                                    decoration: BoxDecoration(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .alternate,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              22.0),
+                                                    ),
+                                                    alignment:
+                                                        const AlignmentDirectional(
+                                                            0.0, 0.0),
                                                     child: Text(
                                                       FFLocalizations.of(
                                                               context)
                                                           .getText(
                                                         'ihmcvc23' /* This task is completed */,
                                                       ),
+                                                      textAlign:
+                                                          TextAlign.center,
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -317,7 +331,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     .bodyLargeFamily,
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .primary,
+                                                                    .primaryText,
                                                                 letterSpacing:
                                                                     0.0,
                                                                 useGoogleFonts: GoogleFonts
@@ -328,8 +342,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               ),
                                                     ),
                                                   ),
-                                                ],
-                                              ),
+                                                ),
+                                              ],
                                             ),
                                           ),
                                         Padding(
@@ -1712,10 +1726,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                 .alternate,
                                           ),
                                         ),
-                                        if (!valueOrDefault<bool>(
-                                          widget.isCompleted,
-                                          false,
-                                        ))
+                                        if (widget.taskStatus == 'completed')
                                           Container(
                                             width: double.infinity,
                                             height: 800.0,
@@ -2934,9 +2945,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                           ),
                         ),
                       ),
-                      if (widget.isCompleted &&
-                          (taskDetailsPpirFormsRow?.gpx != null &&
-                              taskDetailsPpirFormsRow?.gpx != ''))
+                      if ((taskDetailsPpirFormsRow?.gpx != null &&
+                              taskDetailsPpirFormsRow?.gpx != '') &&
+                          (widget.taskStatus == 'ongoing'))
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 8.0, 16.0, 12.0),
@@ -3059,7 +3070,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                             ),
                           ),
                         ),
-                      if (widget.isCompleted &&
+                      if ((widget.taskStatus != 'completed') &&
                           (taskDetailsPpirFormsRow?.gpx == null ||
                               taskDetailsPpirFormsRow?.gpx == ''))
                         Padding(
@@ -3115,6 +3126,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                     ),
                                     'taskType': serializeParam(
                                       parentColumnTasksRow?.taskType,
+                                      ParamType.String,
+                                    ),
+                                    'taskStatus': serializeParam(
+                                      widget.taskStatus,
                                       ParamType.String,
                                     ),
                                   }.withoutNulls,
@@ -3188,9 +3203,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                             ),
                           ),
                         ),
-                      if (!widget.isCompleted &&
-                          (taskDetailsPpirFormsRow?.gpx != null &&
-                              taskDetailsPpirFormsRow?.gpx != ''))
+                      if (widget.taskStatus == 'completed')
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 8.0, 16.0, 12.0),
@@ -3216,6 +3229,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                   ),
                                   'taskType': serializeParam(
                                     parentColumnTasksRow?.taskType,
+                                    ParamType.String,
+                                  ),
+                                  'taskStatus': serializeParam(
+                                    '',
                                     ParamType.String,
                                   ),
                                 }.withoutNulls,

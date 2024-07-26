@@ -151,6 +151,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
         }
         final ppirPpirFormsRow =
             ppirPpirFormsRowList.isNotEmpty ? ppirPpirFormsRowList.first : null;
+
         return GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
               ? FocusScope.of(context).requestFocus(_model.unfocusNode)

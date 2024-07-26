@@ -134,6 +134,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
         final dashboardUsersRow = dashboardUsersRowList.isNotEmpty
             ? dashboardUsersRowList.first
             : null;
+
         return GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
               ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -1312,6 +1313,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                           ),
                                                         );
                                                       }
+
                                                       return ListView.builder(
                                                         padding:
                                                             EdgeInsets.zero,
@@ -1404,6 +1406,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                           ),
                                                         );
                                                       }
+
                                                       return ListView.builder(
                                                         padding:
                                                             EdgeInsets.zero,
@@ -1496,6 +1499,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                           ),
                                                         );
                                                       }
+
                                                       return ListView.builder(
                                                         padding:
                                                             EdgeInsets.zero,
