@@ -109,15 +109,15 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'hsmsoal9': {
       'en': 'Login',
-      'tl': '',
+      'tl': 'Mag log in',
     },
     'onarar2h': {
       'en': 'Please sign in to continue',
-      'tl': '',
+      'tl': 'Mangyaring mag-sign in upang magpatuloy',
     },
     'js4zrnhp': {
       'en': 'Enter your email address',
-      'tl': '',
+      'tl': 'ilagay ang iyong email address',
     },
     '5i1rsq7x': {
       'en': '',
@@ -125,238 +125,241 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'tei5629d': {
       'en': 'Enter your password',
-      'tl': '',
+      'tl': 'Ipasok ang iyong password',
     },
     'bws7du9e': {
       'en': 'Login',
-      'tl': '',
+      'tl': 'Mag log in',
     },
     'qpfpmvtl': {
       'en': 'Forgot Password?',
-      'tl': '',
+      'tl': 'Nakalimutan ang password?',
     },
     'w45297gi': {
       'en': 'Field is required',
-      'tl': '',
+      'tl': 'Kinakailangan ang field',
     },
     'yc7u2stc': {
       'en': 'Please choose an option from the dropdown',
-      'tl': '',
+      'tl': 'Mangyaring pumili ng opsyon mula sa dropdown',
     },
     'g6x5ocx1': {
       'en': 'Field is required',
-      'tl': '',
+      'tl': 'Kinakailangan ang field',
     },
     'mpoif9dk': {
       'en': 'Password must be atleast 8 characters',
-      'tl': '',
+      'tl': 'Hindi dapat bababa sa 8 character ang password',
     },
     '97dgo696': {
       'en': 'Please choose an option from the dropdown',
-      'tl': '',
+      'tl': 'Mangyaring pumili ng opsyon mula sa dropdown',
     },
     'wg8l5x4u': {
       'en': 'Home',
-      'tl': '',
+      'tl': 'Bahay',
     },
   },
   // profile
   {
     'wqj3hsrh': {
       'en': 'Profile',
-      'tl': '',
+      'tl': 'Profile',
     },
     '8cppvoty': {
       'en': 'Account Settings',
-      'tl': '',
+      'tl': 'Mga Setting ng Account',
     },
     '11dsrxu6': {
       'en': 'Switch to Dark Mode',
-      'tl': '',
+      'tl': 'Lumipat sa Dark Mode',
     },
     '3uy0o9hw': {
       'en': 'Switch to Light Mode',
-      'tl': '',
+      'tl': 'Lumipat sa Light Mode',
     },
     '4ibmae0j': {
       'en': 'Edit Profile',
-      'tl': '',
+      'tl': 'Ibahin ang profile',
     },
     'zqsohbrx': {
       'en': 'Change Password',
-      'tl': '',
+      'tl': 'Palitan ANG password',
     },
     'buokrewg': {
       'en': 'Log Out',
-      'tl': '',
+      'tl': 'Log Out',
     },
     'kcupitz3': {
       'en': '__',
-      'tl': '',
+      'tl': '__',
     },
   },
   // chats
   {
     'yq8kfovp': {
       'en': 'Messages',
-      'tl': '',
+      'tl': 'Mga mensahe',
     },
     '8hlwocb6': {
       'en': 'Below are messages with your friends.',
-      'tl': '',
+      'tl': 'Nasa ibaba ang mga mensahe sa iyong mga kaibigan.',
     },
     'gcfnxasp': {
       'en': 'Below are messages with your friends.',
-      'tl': '',
+      'tl': 'Nasa ibaba ang mga mensahe sa iyong mga kaibigan.',
     },
     'qjs4iqx3': {
       'en': '__',
-      'tl': '',
+      'tl': '__',
     },
   },
   // edit_password
   {
     'igo0j7mh': {
       'en': 'Change Password',
-      'tl': '',
+      'tl': 'Palitan ANG password',
     },
     'rqho0nbl': {
       'en':
           'We will reset your password. Please enter the password and confirmation password below, and then confirm.',
-      'tl': '',
+      'tl':
+          'Ire-reset namin ang iyong password. Mangyaring ipasok ang password at password sa pagkumpirma sa ibaba, at pagkatapos ay kumpirmahin.',
     },
     'jsat8wzg': {
       'en': 'Old Password',
-      'tl': '',
+      'tl': 'Lumang password',
     },
     '9qdzutxx': {
       'en': 'Enter Old Password...',
-      'tl': '',
+      'tl': 'Ilagay ang Lumang Password...',
     },
     '6i3l397c': {
       'en': 'New Password',
-      'tl': '',
+      'tl': 'Bagong Password',
     },
     'h4q8epxo': {
       'en': 'Enter New Password...',
-      'tl': '',
+      'tl': 'Maglagay ng Bagong Password...',
     },
     'gfj61loc': {
       'en': 'Confirm Password',
-      'tl': '',
+      'tl': 'Kumpirmahin ang Password',
     },
     'h1tl8jic': {
       'en': 'Confirm New Password...',
-      'tl': '',
+      'tl': 'Kumpirmahin ang bagong password...',
     },
     'mjwnfucf': {
       'en': 'Confirm Changes',
-      'tl': '',
+      'tl': 'Kumpirmahin ang Mga Pagbabago',
     },
     'i10lphec': {
       'en': 'Home',
-      'tl': '',
+      'tl': 'Bahay',
     },
   },
   // edit_profile
   {
     '5fv645iv': {
       'en': 'Edit Profile',
-      'tl': '',
+      'tl': 'Ibahin ang profile',
     },
     'r9vm5mt1': {
       'en': 'Your Name',
-      'tl': '',
+      'tl': 'Ang pangalan mo',
     },
     'ntj2ozhk': {
       'en': 'Save Changes',
-      'tl': '',
+      'tl': 'I-save ang mga pagbabago',
     },
   },
   // messages
   {
     'emndaizi': {
       'en': 'Type here to respond...',
-      'tl': '',
+      'tl': 'Mag-type dito para tumugon...',
     },
     'rbq8h8d1': {
       'en': 'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',
-      'tl': '',
+      'tl':
+          'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',
     },
     'yav59de8': {
       'en': 'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',
-      'tl': '',
+      'tl':
+          'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',
     },
     'zxojetjq': {
       'en': 'Home',
-      'tl': '',
+      'tl': 'Bahay',
     },
   },
   // task_details
   {
     'x1jz4y0y': {
       'en': 'Task Details',
-      'tl': '',
+      'tl': 'Mga Detalye ng Gawain',
     },
     'ihmcvc23': {
       'en': 'This task is completed',
-      'tl': '',
+      'tl': 'Nakumpleto ang gawaing ito',
     },
     'j9rxgs8h': {
       'en': 'Form Details',
-      'tl': '',
+      'tl': 'Mga Detalye ng Form',
     },
     'zvbf8lkk': {
       'en': 'Assignment Id',
-      'tl': '',
+      'tl': 'Assignment Id',
     },
     'x8d6g468': {
       'en': 'Farmer Name',
-      'tl': '',
+      'tl': 'Pangalan ng Magsasaka',
     },
     'webbx3lh': {
       'en': 'Address',
-      'tl': '',
+      'tl': 'Address',
     },
     'qfage2ic': {
       'en': 'Insurance Id',
-      'tl': '',
+      'tl': 'Insurance Id',
     },
     'ezx6meo9': {
       'en': 'Mobile Number',
-      'tl': '',
+      'tl': 'Numero ng Mobile',
     },
     'gvdbo0h6': {
       'en': 'Farmer Type',
-      'tl': '',
+      'tl': 'Uri ng Magsasaka',
     },
     '0blfogwv': {
       'en': 'Group Name',
-      'tl': '',
+      'tl': 'Pangalan ng grupo',
     },
     'lst6ktx6': {
       'en': 'Group Address',
-      'tl': '',
+      'tl': 'Address ng Grupo',
     },
     'zv71woqo': {
       'en': 'Lender Name',
-      'tl': '',
+      'tl': 'Pangalan ng nagpapahiram',
     },
     'jl733wsk': {
       'en': 'Lender Address',
-      'tl': '',
+      'tl': 'Address ng nagpapahiram',
     },
     'zop5kb93': {
       'en': 'Region',
-      'tl': '',
+      'tl': 'Rehiyon',
     },
     'b12iqcln': {
       'en': 'CIC Number',
-      'tl': '',
+      'tl': 'Numero ng CIC',
     },
     'p1282pce': {
       'en': 'Farm Location',
-      'tl': '',
+      'tl': 'Lokasyon ng Bukid',
     },
     'zm252mzp': {
       'en': '',
@@ -364,565 +367,567 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'hvb7985g': {
       'en': 'Location Sketch Plan',
-      'tl': '',
+      'tl': 'Plano ng Sketch ng Lokasyon',
     },
     'cat2uvtb': {
       'en': 'North',
-      'tl': '',
+      'tl': 'Hilaga',
     },
     'hytwamsl': {
       'en': 'East',
-      'tl': '',
+      'tl': 'Silangan',
     },
     'qtzirwg5': {
       'en': 'South',
-      'tl': '',
+      'tl': 'Timog',
     },
     'gmqdadav': {
       'en': 'West',
-      'tl': '',
+      'tl': 'Kanluran',
     },
     'tsu0lxo2': {
       'en': 'Location Sketch Plan',
-      'tl': '',
+      'tl': 'Plano ng Sketch ng Lokasyon',
     },
     '792xrz3k': {
       'en': 'Area Planted',
-      'tl': '',
+      'tl': 'Lugar na Nakatanim',
     },
     'zxmreuh1': {
       'en': 'Date of Planting (DS)',
-      'tl': '',
+      'tl': 'Petsa ng Pagtanim (DS)',
     },
     'ncrtgoe1': {
       'en': 'Datee of Planting (TP)',
-      'tl': '',
+      'tl': 'Petsa ng Pagtatanim (TP)',
     },
     'nzua63mv': {
       'en': 'Seed Variety Planted',
-      'tl': '',
+      'tl': 'Iba\'t-ibang Binhi na Nakatanim',
     },
     'dgbzqn0h': {
       'en': 'Completed Task  Details',
-      'tl': '',
+      'tl': 'Mga Detalye ng Nakumpletong Gawain',
     },
     'nd1fqdu9': {
       'en': 'Tracking Details',
-      'tl': '',
+      'tl': 'Mga Detalye sa Pagsubaybay',
     },
     'uxt6f9xl': {
       'en': 'Last Coordinates',
-      'tl': '',
+      'tl': 'Mga Huling Coordinate',
     },
     'or3srkkk': {
       'en': 'Track Date',
-      'tl': '',
+      'tl': 'Petsa ng Pagsubaybay',
     },
     '01tvwwxt': {
       'en': 'Total Area (ha)',
-      'tl': '',
+      'tl': 'Kabuuang Lugar (ha)',
     },
     'vp2u9vxf': {
       'en': 'Total Distance',
-      'tl': '',
+      'tl': 'Kabuuang distansya',
     },
     'v9d4i47l': {
       'en': 'Seed Details',
-      'tl': '',
+      'tl': 'Mga Detalye ng Binhi',
     },
     '762mtpey': {
       'en': 'Type',
-      'tl': '',
+      'tl': 'Uri',
     },
     'veh8acpl': {
       'en': 'Variety',
-      'tl': '',
+      'tl': 'Iba\'t-ibang',
     },
     'anco0w5m': {
       'en': 'Date Details',
-      'tl': '',
+      'tl': 'Mga Detalye ng Petsa',
     },
     '27rka9jx': {
       'en': 'Date of Planting (DS)',
-      'tl': '',
+      'tl': 'Petsa ng Pagtatanim (DS)',
     },
     '3zj0x11r': {
       'en': 'Date of Planting (TP)',
-      'tl': '',
+      'tl': 'Petsa ng Pagtatanim (TP)',
     },
     'lnj6pjl7': {
       'en': 'Agent Confirmation',
-      'tl': '',
+      'tl': 'Kumpirmasyon ng Ahente',
     },
     '966yfol9': {
       'en': 'Remarks',
-      'tl': '',
+      'tl': 'Remarks',
     },
     '7ftdujb6': {
       'en': 'Confirmed By',
-      'tl': '',
+      'tl': 'Kinumpirma ni',
     },
     'tjm5ey7c': {
       'en': 'Signature',
-      'tl': '',
+      'tl': 'Lagda',
     },
     '8bdkh9n1': {
       'en': 'Prepared By',
-      'tl': '',
+      'tl': 'Inihanda ni',
     },
     'aq1euelx': {
       'en': 'Signature',
-      'tl': '',
+      'tl': 'Lagda',
     },
     'ahzx9d2y': {
       'en': 'Geotag',
-      'tl': '',
+      'tl': 'Geotag',
     },
     '096k25yu': {
       'en': 'Recorded',
-      'tl': '',
+      'tl': 'Naitala',
     },
     'e0abx8jq': {
       'en': 'Actions',
-      'tl': '',
+      'tl': 'Mga aksyon',
     },
     'g06chmkk': {
       'en': 'Geotag',
-      'tl': '',
+      'tl': 'Geotag',
     },
     'm6egon7b': {
       'en': 'Resubmit',
-      'tl': '',
+      'tl': 'Muling isumite',
     },
     '4jnx5njc': {
       'en': 'Home',
-      'tl': '',
+      'tl': 'Bahay',
     },
   },
   // ppir
   {
     'erm3i53g': {
       'en': 'PPIR Form',
-      'tl': '',
+      'tl': 'Form ng PPIR',
     },
     '3s84cgqw': {
       'en': 'Geotag Information',
-      'tl': '',
+      'tl': 'Impormasyon ng Geotag',
     },
     '4o9qvz6v': {
       'en': 'Last Coordinates',
-      'tl': '',
+      'tl': 'Mga Huling Coordinate',
     },
     'oflb4doq': {
       'en': 'Date Time',
-      'tl': '',
+      'tl': 'Petsa Oras',
     },
     'li1l6k0w': {
       'en': 'Total Hectares',
-      'tl': '',
+      'tl': 'Kabuuang Ektarya',
     },
     'irvio488': {
       'en': 'Farm Location',
-      'tl': '',
+      'tl': 'Lokasyon ng Bukid',
     },
     'oi19exk2': {
       'en': 'Geotag Control',
-      'tl': '',
+      'tl': 'Geotag Control',
     },
     'bi2tyefd': {
       'en': 'Repeat Again',
-      'tl': '',
+      'tl': 'Ulitin Muli',
     },
     'w3oxp9o9': {
       'en': 'View Geotag',
-      'tl': '',
+      'tl': 'Tingnan ang Geotag',
     },
     'quqb1avc': {
       'en': 'Seed Variety',
-      'tl': '',
+      'tl': 'Iba\'t-ibang Binhi',
     },
     'wt2nxkv8': {
       'en': 'rice',
-      'tl': '',
+      'tl': 'kanin',
     },
     '3zzenggt': {
       'en': 'corn',
-      'tl': '',
+      'tl': 'mais',
     },
     'e3nzk0t1': {
       'en': 'Select the Type of Rice ',
-      'tl': '',
+      'tl': 'Piliin ang Uri ng Bigas',
     },
     'a7yszlux': {
       'en': 'this is the rice',
-      'tl': '',
+      'tl': 'ito ang bigas',
     },
     'hgkqza7h': {
       'en': 'Please select...',
-      'tl': '',
+      'tl': 'Pakipili...',
     },
     'za7pn038': {
       'en': 'Search for an item...',
-      'tl': '',
+      'tl': 'Maghanap ng item...',
     },
     'uj8vq3kw': {
       'en': 'Select the Type of Corn ',
-      'tl': '',
+      'tl': 'Piliin ang Uri ng Mais',
     },
     'kd2ri9yq': {
       'en': 'this is the rice',
-      'tl': '',
+      'tl': 'ito ang bigas',
     },
     'f7j9hfpn': {
       'en': 'Please select...',
-      'tl': '',
+      'tl': 'Pakipili...',
     },
     'rxggzdj9': {
       'en': 'Search for an item...',
-      'tl': '',
+      'tl': 'Maghanap ng item...',
     },
     '4x78xwmh': {
       'en': 'Actual Area Planted',
-      'tl': '',
+      'tl': 'Aktwal na Lugar na Nakatanim',
     },
     'dbhyempf': {
       'en': 'Actual Date of Planting (DS)',
-      'tl': '',
+      'tl': 'Aktwal na Petsa ng Pagtatanim (DS)',
     },
     'msrak9du': {
       'en': 'Actual Date of Planting (TP)',
-      'tl': '',
+      'tl': 'Aktwal na Petsa ng Pagtatanim (TP)',
     },
     '762st5cb': {
       'en': 'Remarks',
-      'tl': '',
+      'tl': 'Remarks',
     },
     '99efrqt6': {
       'en': 'Prepared by',
-      'tl': '',
+      'tl': 'Inihanda ni',
     },
     '8zawh1wx': {
       'en': 'Confirm by',
-      'tl': '',
+      'tl': 'Kumpirmahin ni',
     },
     'vxop43vj': {
       'en': 'Cancel',
-      'tl': '',
+      'tl': 'Kanselahin',
     },
     'kyab355w': {
       'en': 'Save',
-      'tl': '',
+      'tl': 'I-save',
     },
     '7i7p5yr3': {
       'en': 'Submit',
-      'tl': '',
+      'tl': 'Ipasa',
     },
     '4ho4omqk': {
       'en': 'Home',
-      'tl': '',
+      'tl': 'Bahay',
     },
   },
   // form_success
   {
     '0g4vu9er': {
       'en': 'Congrats!',
-      'tl': '',
+      'tl': 'Congrats!',
     },
     '4pa6ldza': {
       'en': 'Tasks ',
-      'tl': '',
+      'tl': 'Mga gawain',
     },
     'fa57m321': {
       'en': 'Well Done!',
-      'tl': '',
+      'tl': 'Magaling!',
     },
     'z6rup7cd': {
       'en': 'Go Home',
-      'tl': '',
+      'tl': 'Umuwi kana',
     },
     'tg07lnkp': {
       'en': 'Home',
-      'tl': '',
+      'tl': 'Bahay',
     },
   },
   // fail
   {
     'v6ssh8ir': {
       'en': 'Fail!',
-      'tl': '',
+      'tl': 'Nabigo!',
     },
     'qki1g985': {
       'en': 'Home',
-      'tl': '',
+      'tl': 'Bahay',
     },
   },
   // dashboard
   {
     'ek6mnpyv': {
       'en': 'Welcome',
-      'tl': '',
+      'tl': 'Maligayang pagdating',
     },
     'kqdeja9y': {
       'en': 'Good morning ',
-      'tl': '',
+      'tl': 'Magandang umaga',
     },
     'c9cu64hs': {
       'en': '!',
-      'tl': '',
+      'tl': '!',
     },
     'vte71nhh': {
       'en': 'Task Overview',
-      'tl': '',
+      'tl': 'Pangkalahatang-ideya ng Gawain',
     },
     'm10j35jr': {
       'en': 'For Dispatch',
-      'tl': '',
+      'tl': 'Para sa Dispatch',
     },
     'x0uyqjdj': {
       'en': 'Ongoing',
-      'tl': '',
+      'tl': 'Patuloy',
     },
     'v1rudbl9': {
       'en': 'Completed',
-      'tl': '',
+      'tl': 'Nakumpleto',
     },
     'ofobycr1': {
       'en': 'Find your task...',
-      'tl': '',
+      'tl': 'Hanapin ang iyong gawain...',
     },
     'msy3t5xu': {
       'en': 'Option 1',
-      'tl': '',
+      'tl': 'Opsyon 1',
     },
     '40z3ewor': {
       'en': 'For Dispatch',
-      'tl': '',
+      'tl': 'Para sa Dispatch',
     },
     'eqlfjogs': {
       'en': 'Ongoing',
-      'tl': '',
+      'tl': 'Patuloy',
     },
     'i9ibpnoq': {
       'en': 'Completed',
-      'tl': '',
+      'tl': 'Nakumpleto',
     },
     '67jgj8w9': {
       'en': 'Home',
-      'tl': '',
+      'tl': 'Bahay',
     },
   },
   // mapTesting
   {
     'p5a4ilu5': {
       'en': 'Testing Map',
-      'tl': '',
+      'tl': 'Mapa ng Pagsubok',
     },
     'hdh6xlcb': {
       'en': 'Home',
-      'tl': '',
+      'tl': 'Bahay',
     },
   },
   // success_profile
   {
     'e2bluypq': {
       'en': 'Success!',
-      'tl': '',
+      'tl': 'Tagumpay!',
     },
     'ioe9pmrx': {
       'en': 'Home',
-      'tl': '',
+      'tl': 'Bahay',
     },
   },
   // marApiTest
   {
     '0ov0kosw': {
       'en': 'API Tester',
-      'tl': '',
+      'tl': 'API Tester',
     },
     'lgzgz3y8': {
       'en': 'Test API Calls',
-      'tl': '',
+      'tl': 'Subukan ang Mga Tawag sa API',
     },
     'u0bh28ib': {
       'en': 'Test GET',
-      'tl': '',
+      'tl': 'Subukan ang GET',
     },
     'y9wod308': {
       'en': 'Test POST',
-      'tl': '',
+      'tl': 'Subukan ang POST',
     },
     'lh091m1k': {
       'en': 'Test PUT',
-      'tl': '',
+      'tl': 'Subukan ang PUT',
     },
     '05jb6auu': {
       'en': 'Test DELETE',
-      'tl': '',
+      'tl': 'Subukan ang DELETE',
     },
   },
   // forgotPassword
   {
     'ajwqbdpu': {
       'en': 'Forgot Password',
-      'tl': '',
+      'tl': 'Nakalimutan ang password',
     },
     'owzqo8qh': {
       'en':
           'We will send you an email with a link to reset your password, please enter the email associated with your account below.',
-      'tl': '',
+      'tl':
+          'Padadalhan ka namin ng email na may link para i-reset ang iyong password, mangyaring ilagay ang email na nauugnay sa iyong account sa ibaba.',
     },
     '7xh7q3rt': {
       'en': 'Your email address...',
-      'tl': '',
+      'tl': 'Ang iyong email address...',
     },
     'a29ygr1c': {
       'en': 'Enter your email...',
-      'tl': '',
+      'tl': 'Ilagay ang iyong email...',
     },
     'x3d82sua': {
       'en': 'Send Link',
-      'tl': '',
+      'tl': 'Magpasa ng link',
     },
     '2stfj7a7': {
       'en': 'Home',
-      'tl': '',
+      'tl': 'Bahay',
     },
   },
   // geotagging
   {
     'wkawnowa': {
       'en': 'Lat',
-      'tl': '',
+      'tl': 'Lat',
     },
     'lvzg53kl': {
       'en': 'Lng',
-      'tl': '',
+      'tl': 'Lng',
     },
     'qx4ly86s': {
       'en': 'Address',
-      'tl': '',
+      'tl': 'Address',
     },
     '5rckehtu': {
       'en': 'Assignment Id',
-      'tl': '',
+      'tl': 'Assignment Id',
     },
     'brrixmb6': {
       'en': 'Finish',
-      'tl': '',
+      'tl': 'Tapusin',
     },
     '0o8w3vlv': {
       'en': 'Home',
-      'tl': '',
+      'tl': 'Bahay',
     },
   },
   // otherForm
   {
     'fa31tvpx': {
       'en': 'Area 69',
-      'tl': '',
+      'tl': 'Lugar 69',
     },
     '9ctwde8e': {
       'en': 'Mar said, This is under maintenance!',
-      'tl': '',
+      'tl': 'Sabi ni Mar, Under maintenance ito!',
     },
     '0o8w3vlv': {
       'en': 'Home',
-      'tl': '',
+      'tl': 'Bahay',
     },
   },
   // tasks
   {
     'j0q6t8qb': {
       'en': 'North: ',
-      'tl': '',
+      'tl': 'Hilaga:',
     },
     'kdar2g2n': {
       'en': 'West: ',
-      'tl': '',
+      'tl': 'Kanluran:',
     },
     'b2p4m05y': {
       'en': 'South: ',
-      'tl': '',
+      'tl': 'Timog:',
     },
     '8zz0rgpr': {
       'en': 'East: ',
-      'tl': '',
+      'tl': 'Silangan:',
     },
     'vfsgjz34': {
       'en': 'Assignment Id',
-      'tl': '',
+      'tl': 'Assignment Id',
     },
     '0869xbo0': {
       'en': 'Address',
-      'tl': '',
+      'tl': 'Address',
     },
   },
   // chat
   {
     'fti6qnj7': {
       'en': 'Type here to respond...',
-      'tl': '',
+      'tl': 'Mag-type dito para tumugon...',
     },
   },
   // empty_lists
   {
     'qc74sp6j': {
       'en': 'No ',
-      'tl': '',
+      'tl': 'Hindi',
     },
     'hh1zsrbx': {
       'en': 'It seems that you don\'t have any recent activity.',
-      'tl': '',
+      'tl': 'Mukhang wala kang anumang kamakailang aktibidad.',
     },
   },
   // userCard
   {
     'q2srxkm7': {
       'en': 'UserName',
-      'tl': '',
+      'tl': 'UserName',
     },
     'e7kvimdo': {
       'en': 'Subtitle',
-      'tl': '',
+      'tl': 'Subtitle',
     },
   },
   // changePhoto
   {
     'n5sjoaqa': {
       'en': 'Change Photo',
-      'tl': '',
+      'tl': 'Baguhin ang Larawan',
     },
     'yjbcio9o': {
       'en':
           'Upload a new photo below in order to change your avatar seen by others.',
-      'tl': '',
+      'tl':
+          'Mag-upload ng bagong larawan sa ibaba upang mapalitan ang iyong avatar na nakita ng iba.',
     },
     'wr32c2ky': {
       'en': 'Upload Image',
-      'tl': '',
+      'tl': 'Mag-upload ng Larawan',
     },
   },
   // signature
   {
     'nsefvndz': {
       'en': 'Signature',
-      'tl': '',
+      'tl': 'Lagda',
     },
     's03qmvgh': {
       'en': 'Retry signature',
-      'tl': '',
+      'tl': 'Subukang muli ang lagda',
     },
     'fts37cq3': {
       'en': 'Clear',
-      'tl': '',
+      'tl': 'Maaliwalas',
     },
     '6si6e5tk': {
       'en': 'Cancel',
-      'tl': '',
+      'tl': 'Kanselahin',
     },
     'a0f7s2dm': {
       'en': 'Save',
-      'tl': '',
+      'tl': 'I-save',
     },
   },
   // Miscellaneous
@@ -930,30 +935,36 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '0ftylq1b': {
       'en':
           'PCIC Mobile Application needs access to your camera to enable Geotagging. This will help us accurately tag photos with your current location for better service delivery and documentation. Please grant camera access to continue.',
-      'tl': '',
+      'tl':
+          'Ang PCIC Mobile Application ay nangangailangan ng access sa iyong camera upang paganahin ang Geotagging. Makakatulong ito sa amin na tumpak na i-tag ang mga larawan sa iyong kasalukuyang lokasyon para sa mas mahusay na paghahatid ng serbisyo at dokumentasyon. Mangyaring bigyan ng access sa camera upang magpatuloy.',
     },
     '2kgfkeu0': {
       'en':
           'PCIC Mobile Application needs access to your photo library to enable Geotagging. This will help us select and tag photos with your current location for better service delivery and documentation. Please grant photo library access to continue.',
-      'tl': '',
+      'tl':
+          'Ang PCIC Mobile Application ay nangangailangan ng access sa iyong photo library upang paganahin ang Geotagging. Makakatulong ito sa amin na pumili at mag-tag ng mga larawan sa iyong kasalukuyang lokasyon para sa mas mahusay na paghahatid ng serbisyo at dokumentasyon. Mangyaring bigyan ng access sa photo library upang magpatuloy.',
     },
     '9xlvkb3u': {
       'en':
           'PCIC Mobile Application needs access to your location to enable Geotagging. This will help us accurately get gpx data with your current location for better service. Please grant Location access to continue.',
-      'tl': '',
+      'tl':
+          'Ang PCIC Mobile Application ay nangangailangan ng access sa iyong lokasyon upang paganahin ang Geotagging. Makakatulong ito sa amin na tumpak na makakuha ng data ng gpx sa iyong kasalukuyang lokasyon para sa mas mahusay na serbisyo. Mangyaring bigyan ng access sa Lokasyon upang magpatuloy.',
     },
     'klzb3gt7': {
       'en': '',
-      'tl': '',
+      'tl':
+          'Ang PCIC Mobile Application ay nangangailangan ng access sa iyong photo library upang paganahin ang Geotagging. Makakatulong ito sa amin na pumili at mag-tag ng mga larawan sa iyong kasalukuyang lokasyon para sa mas mahusay na paghahatid ng serbisyo at dokumentasyon. Mangyaring bigyan ng access sa photo library upang magpatuloy.',
     },
     'wibvpqn3': {
       'en': '',
-      'tl': '',
+      'tl':
+          'Ang PCIC Mobile Application ay nangangailangan ng access sa iyong camera upang paganahin ang Geotagging. Makakatulong ito sa amin na tumpak na i-tag ang mga larawan sa iyong kasalukuyang lokasyon para sa mas mahusay na paghahatid ng serbisyo at dokumentasyon. Mangyaring magbigay ng access sa camera upang magpatuloy.',
     },
     'hs555eff': {
       'en':
           'PCIC Mobile Application needs access to your location to enable Geotagging. This will help us accurately tag photos with your current location for better service delivery and documentation. Please grant location access to continue.',
-      'tl': '',
+      'tl':
+          'Ang PCIC Mobile Application ay nangangailangan ng access sa iyong lokasyon upang paganahin ang Geotagging. Makakatulong ito sa amin na tumpak na i-tag ang mga larawan sa iyong kasalukuyang lokasyon para sa mas mahusay na paghahatid ng serbisyo at dokumentasyon. Mangyaring bigyan ng access sa lokasyon upang magpatuloy.',
     },
     'bzztgqlw': {
       'en': '',
