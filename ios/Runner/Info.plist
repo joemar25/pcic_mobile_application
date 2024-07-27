@@ -48,11 +48,11 @@
 	<true/>
 
 	<key>NSLocationWhenInUseUsageDescription</key>
-    <string>PCIC Mobile Application needs access to your location to enable Geotagging. This will help us accurately get gpx data with your current location for better service. Please grant Location access to continue.</string>
+    <string>&quot;PCIC Mobile Application requires access to your location to enable geotagging. This will allow us to accurately obtain GPX data with your current location, improving our service. Please grant location access to continue.&quot;</string>
 	<key>NSCameraUsageDescription</key>
-    <string>PCIC Mobile Application needs access to your camera to enable Geotagging. This will help us accurately tag photos with your current location for better service delivery and documentation. Please grant camera access to continue.</string>
+    <string>&quot;PCIC Mobile Application requires access to your camera to enable geotagging. This feature will allow us to accurately tag photos with your current location, improving service delivery and documentation. Please grant camera access to continue.&quot;</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-    <string>PCIC Mobile Application needs access to your photo library to enable Geotagging. This will help us select and tag photos with your current location for better service delivery and documentation. Please grant photo library access to continue.</string>
+    <string>&quot;PCIC Mobile Application requires access to your photo library to enable geotagging. This will help us select and tag photos with your current location, improving service delivery and documentation. Please grant photo library access to continue.&quot;</string>
 
 
 

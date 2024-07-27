@@ -103,7 +103,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               params.isEmpty ? const NavBarPage(initialPage: 'chats') : const ChatsWidget(),
         ),
         FFRoute(
-          name: 'edit_password',
+          name: 'editPassword',
           path: '/edit_password',
           requireAuth: true,
           builder: (context, params) => EditPasswordWidget(
@@ -114,7 +114,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'edit_profile',
+          name: 'editProfile',
           path: '/edit_profile',
           requireAuth: true,
           builder: (context, params) => const EditProfileWidget(),
@@ -131,7 +131,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'task_details',
+          name: 'taskDetails',
           path: '/task_details',
           requireAuth: true,
           builder: (context, params) => TaskDetailsWidget(
@@ -157,7 +157,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'form_success',
+          name: 'formSuccess',
           path: '/formSuccess',
           requireAuth: true,
           builder: (context, params) => FormSuccessWidget(
@@ -196,7 +196,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const MapTestingWidget(),
         ),
         FFRoute(
-          name: 'success_profile',
+          name: 'successProfile',
           path: '/successProfile',
           requireAuth: true,
           builder: (context, params) => SuccessProfileWidget(

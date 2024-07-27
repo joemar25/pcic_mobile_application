@@ -214,7 +214,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '__',
     },
   },
-  // edit_password
+  // editPassword
   {
     'igo0j7mh': {
       'en': 'Change Password',
@@ -259,7 +259,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Bahay',
     },
   },
-  // edit_profile
+  // editProfile
   {
     '5fv645iv': {
       'en': 'Edit Profile',
@@ -295,8 +295,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Bahay',
     },
   },
-  // task_details
+  // taskDetails
   {
+    'x1jz4y0y': {
+      'en': 'Task Details',
+      'tl': 'Mga Detalye ng Gawain',
+    },
     'ihmcvc23': {
       'en': 'This task is completed',
       'tl': 'Nakumpleto ang gawaing ito',
@@ -443,7 +447,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '27rka9jx': {
       'en': 'Date of Planting (DS)',
-      'tl': 'Petsa ng Pagtatanim (DS)',
+      'tl': 'Petsa ng Pagtanim (DS)',
     },
     '3zj0x11r': {
       'en': 'Date of Planting (TP)',
@@ -487,11 +491,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'g06chmkk': {
       'en': 'Continue Form',
-      'tl': 'Geotag',
+      'tl': 'Ipagpatuloy ang Form',
     },
     '63201k0m': {
       'en': 'Geotag',
-      'tl': '',
+      'tl': 'Geotag',
     },
     'm6egon7b': {
       'en': 'Resubmit',
@@ -510,7 +514,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '3s84cgqw': {
       'en': 'Geotag Information',
-      'tl': 'Impormasyon ng Geotag',
+      'tl': 'Impormasyon sa Geotag',
     },
     '4o9qvz6v': {
       'en': 'Last Coordinates',
@@ -625,7 +629,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Bahay',
     },
   },
-  // form_success
+  // formSuccess
   {
     '0g4vu9er': {
       'en': 'Congrats!',
@@ -689,13 +693,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Completed',
       'tl': 'Nakumpleto',
     },
-    'ofobycr1': {
+    'ngstgmic': {
       'en': 'Find your task...',
-      'tl': 'Hanapin ang iyong gawain...',
+      'tl': '',
     },
-    'msy3t5xu': {
+    'u6l06te5': {
       'en': 'Option 1',
-      'tl': 'Opsyon 1',
+      'tl': '',
     },
     '40z3ewor': {
       'en': 'For Dispatch',
@@ -725,7 +729,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Bahay',
     },
   },
-  // success_profile
+  // successProfile
   {
     'e2bluypq': {
       'en': 'Success!',
@@ -795,8 +799,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // geotagging
   {
     'wkawnowa': {
-      'en': 'Lat',
+      'en': 'Loc',
       'tl': 'Lat',
+    },
+    'yp5wp81q': {
+      'en': 'Lat',
+      'tl': '',
     },
     'lvzg53kl': {
       'en': 'Lng',
@@ -811,6 +819,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Assignment Id',
     },
     'brrixmb6': {
+      'en': 'Start',
+      'tl': 'Tapusin',
+    },
+    'pstdbhmc': {
       'en': 'Finish',
       'tl': 'Tapusin',
     },
@@ -829,7 +841,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Mar said, This is under maintenance!',
       'tl': 'Sabi ni Mar, Under maintenance ito!',
     },
-    '0o8w3vlv': {
+    'p5v52glk': {
       'en': 'Home',
       'tl': 'Bahay',
     },
@@ -854,7 +866,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '83q8pggh': {
       'en': 'Assignment Id',
-      'tl': '',
+      'tl': 'Assignment Id',
     },
     '0869xbo0': {
       'en': 'Address',
@@ -868,7 +880,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Mag-type dito para tumugon...',
     },
   },
-  // empty_lists
+  // emptyLists
   {
     'qc74sp6j': {
       'en': 'No ',
@@ -934,37 +946,37 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '0ftylq1b': {
       'en':
-          'PCIC Mobile Application needs access to your camera to enable Geotagging. This will help us accurately tag photos with your current location for better service delivery and documentation. Please grant camera access to continue.',
+          '\"PCIC Mobile Application requires access to your camera to enable geotagging. This feature will allow us to accurately tag photos with your current location, improving service delivery and documentation. Please grant camera access to continue.\"',
       'tl':
-          'Ang PCIC Mobile Application ay nangangailangan ng access sa iyong camera upang paganahin ang Geotagging. Makakatulong ito sa amin na tumpak na i-tag ang mga larawan sa iyong kasalukuyang lokasyon para sa mas mahusay na paghahatid ng serbisyo at dokumentasyon. Mangyaring bigyan ng access sa camera upang magpatuloy.',
+          '\"Ang PCI Mobile Application ay nangangailangan ng access sa iyong camera upang paganahin ang geotagging. Ang tampok na ito ay magbibigay-daan sa amin upang tumpak na i-tag ang mga larawan sa iyong kasalukuyang lokasyon, pagpapabuti ng paghahatid ng serbisyo at dokumentasyon. Mangyaring bigyan ang camera ng access upang magpatuloy.\"',
     },
     '2kgfkeu0': {
       'en':
-          'PCIC Mobile Application needs access to your photo library to enable Geotagging. This will help us select and tag photos with your current location for better service delivery and documentation. Please grant photo library access to continue.',
+          '\"PCIC Mobile Application requires access to your photo library to enable geotagging. This will help us select and tag photos with your current location, improving service delivery and documentation. Please grant photo library access to continue.\"',
       'tl':
-          'Ang PCIC Mobile Application ay nangangailangan ng access sa iyong photo library upang paganahin ang Geotagging. Makakatulong ito sa amin na pumili at mag-tag ng mga larawan sa iyong kasalukuyang lokasyon para sa mas mahusay na paghahatid ng serbisyo at dokumentasyon. Mangyaring bigyan ng access sa photo library upang magpatuloy.',
+          '\"Ang PCI Mobile Application ay nangangailangan ng access sa iyong library ng larawan upang paganahin ang geotagging. Makakatulong ito sa amin na piliin at i-tag ang mga larawan sa iyong kasalukuyang lokasyon, pagpapabuti ng paghahatid ng serbisyo at dokumentasyon. Mangyaring bigyan ng access sa library ng larawan upang magpatuloy.\"',
     },
     '9xlvkb3u': {
       'en':
-          'PCIC Mobile Application needs access to your location to enable Geotagging. This will help us accurately get gpx data with your current location for better service. Please grant Location access to continue.',
+          '\"PCIC Mobile Application requires access to your location to enable geotagging. This will allow us to accurately obtain GPX data with your current location, improving our service. Please grant location access to continue.\"',
       'tl':
-          'Ang PCIC Mobile Application ay nangangailangan ng access sa iyong lokasyon upang paganahin ang Geotagging. Makakatulong ito sa amin na tumpak na makakuha ng data ng gpx sa iyong kasalukuyang lokasyon para sa mas mahusay na serbisyo. Mangyaring bigyan ng access sa Lokasyon upang magpatuloy.',
+          '\"Ang PCI Mobile Application ay nangangailangan ng access sa iyong lokasyon upang paganahin ang geotagging. Ito ay magbibigay-daan sa amin na tumpak na makakuha ng data ng GPX sa iyong kasalukuyang lokasyon, pagpapabuti ng aming serbisyo. Mangyaring bigyan ng access sa lokasyon upang magpatuloy.\"',
     },
     'klzb3gt7': {
       'en': '',
       'tl':
-          'Ang PCIC Mobile Application ay nangangailangan ng access sa iyong photo library upang paganahin ang Geotagging. Makakatulong ito sa amin na pumili at mag-tag ng mga larawan sa iyong kasalukuyang lokasyon para sa mas mahusay na paghahatid ng serbisyo at dokumentasyon. Mangyaring bigyan ng access sa photo library upang magpatuloy.',
+          '\"Ang PCI Mobile Application ay nangangailangan ng access sa iyong library ng larawan upang paganahin ang geotagging. Makakatulong ito sa amin na piliin at i-tag ang mga larawan sa iyong kasalukuyang lokasyon, pagpapabuti ng paghahatid ng serbisyo at dokumentasyon. Mangyaring bigyan ng access sa library ng larawan upang magpatuloy.\"',
     },
     'wibvpqn3': {
       'en': '',
       'tl':
-          'Ang PCIC Mobile Application ay nangangailangan ng access sa iyong camera upang paganahin ang Geotagging. Makakatulong ito sa amin na tumpak na i-tag ang mga larawan sa iyong kasalukuyang lokasyon para sa mas mahusay na paghahatid ng serbisyo at dokumentasyon. Mangyaring magbigay ng access sa camera upang magpatuloy.',
+          '\"Ang PCI Mobile Application ay nangangailangan ng access sa iyong camera upang paganahin ang geotagging. Ang tampok na ito ay magbibigay-daan sa amin upang tumpak na i-tag ang mga larawan sa iyong kasalukuyang lokasyon, pagpapabuti ng paghahatid ng serbisyo at dokumentasyon. Mangyaring bigyan ang camera ng access upang magpatuloy.\"',
     },
     'hs555eff': {
       'en':
           'PCIC Mobile Application needs access to your location to enable Geotagging. This will help us accurately tag photos with your current location for better service delivery and documentation. Please grant location access to continue.',
       'tl':
-          'Ang PCIC Mobile Application ay nangangailangan ng access sa iyong lokasyon upang paganahin ang Geotagging. Makakatulong ito sa amin na tumpak na i-tag ang mga larawan sa iyong kasalukuyang lokasyon para sa mas mahusay na paghahatid ng serbisyo at dokumentasyon. Mangyaring bigyan ng access sa lokasyon upang magpatuloy.',
+          '\"Ang PCI Mobile Application ay nangangailangan ng access sa iyong camera upang paganahin ang geotagging. Ang tampok na ito ay magbibigay-daan sa amin upang tumpak na i-tag ang mga larawan sa iyong kasalukuyang lokasyon, pagpapabuti ng paghahatid ng serbisyo at dokumentasyon. Mangyaring bigyan ang camera ng access upang magpatuloy.\"',
     },
     'bzztgqlw': {
       'en': '',

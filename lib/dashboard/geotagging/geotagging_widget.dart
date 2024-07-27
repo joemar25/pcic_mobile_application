@@ -171,7 +171,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget> {
                                               ),
                                               onPressed: () async {
                                                 context.pushNamed(
-                                                  'task_details',
+                                                  'taskDetails',
                                                   queryParameters: {
                                                     'taskId': serializeParam(
                                                       geotaggingPpirFormsRow
@@ -301,7 +301,56 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget> {
                                   24.0, 5.0, 0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  'wkawnowa' /* Lat */,
+                                  'wkawnowa' /* Loc */,
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .labelSmall
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .labelSmallFamily,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .labelSmallFamily),
+                                    ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 5.0, 0.0, 0.0),
+                              child: Text(
+                                valueOrDefault<String>(
+                                  currentUserLocationValue?.toString(),
+                                  'location',
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .labelSmall
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .labelSmallFamily,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .labelSmallFamily),
+                                    ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 5.0, 0.0, 0.0),
+                              child: Text(
+                                FFLocalizations.of(context).getText(
+                                  'yp5wp81q' /* Lat */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .labelSmall
@@ -580,6 +629,24 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget> {
                             );
                             _model.isGeotagStart = false;
                             setState(() {});
+                            await TasksTable().update(
+                              data: {
+                                'status': 'ongoing',
+                              },
+                              matchingRows: (rows) => rows.eq(
+                                'id',
+                                widget.taskId,
+                              ),
+                            );
+                            await PpirFormsTable().update(
+                              data: {
+                                'gpx': 'test',
+                              },
+                              matchingRows: (rows) => rows.eq(
+                                'task_id',
+                                widget.taskId,
+                              ),
+                            );
 
                             context.pushNamed(
                               'ppir',
@@ -615,7 +682,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget> {
                               ),
                               Text(
                                 FFLocalizations.of(context).getText(
-                                  'brrixmb6' /* Finish */,
+                                  'pstdbhmc' /* Finish */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge

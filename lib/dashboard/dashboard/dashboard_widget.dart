@@ -10,6 +10,7 @@ import '/utils/components/empty_lists/empty_lists_widget.dart';
 import '/utils/components/tasks/tasks_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/flutter_flow/permissions_util.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +45,75 @@ class _DashboardWidgetState extends State<DashboardWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      Function() navigate = () {};
       await action_blocks.updateUserStatusIfOnline(context);
+      await requestPermission(locationPermission);
+      if (await getPermissionStatus(locationPermission)) {
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Location not permitted',
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+        GoRouter.of(context).prepareAuthEvent();
+        await authManager.signOut();
+        GoRouter.of(context).clearRedirectLocation();
+
+        navigate = () => context.goNamedAuth('login', context.mounted);
+      }
+
+      await requestPermission(cameraPermission);
+      if (await getPermissionStatus(cameraPermission)) {
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Camera not permitted',
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+        GoRouter.of(context).prepareAuthEvent();
+        await authManager.signOut();
+        GoRouter.of(context).clearRedirectLocation();
+
+        navigate = () => context.goNamedAuth('login', context.mounted);
+      }
+
+      await requestPermission(photoLibraryPermission);
+      if (await getPermissionStatus(locationPermission)) {
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Photo Library not permitted',
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+        GoRouter.of(context).prepareAuthEvent();
+        await authManager.signOut();
+        GoRouter.of(context).clearRedirectLocation();
+
+        navigate = () => context.goNamedAuth('login', context.mounted);
+      }
+
+      navigate();
     });
 
     _model.textController ??= TextEditingController();
@@ -333,7 +402,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             context.pushNamed(
-                                              'edit_profile',
+                                              'editProfile',
                                               extra: <String, dynamic>{
                                                 kTransitionInfoKey:
                                                     const TransitionInfo(
@@ -1007,7 +1076,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                   return [
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      'msy3t5xu' /* Option 1 */,
+                                                      'u6l06te5' /* Option 1 */,
                                                     )
                                                   ].where((option) {
                                                     final lowercaseOption =
@@ -1089,7 +1158,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                           FFLocalizations.of(
                                                                   context)
                                                               .getText(
-                                                        'ofobycr1' /* Find your task... */,
+                                                        'ngstgmic' /* Find your task... */,
                                                       ),
                                                       labelStyle:
                                                           FlutterFlowTheme.of(

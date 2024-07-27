@@ -158,7 +158,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             context.pushNamed(
-                                              'edit_profile',
+                                              'editProfile',
                                               extra: <String, dynamic>{
                                                 kTransitionInfoKey:
                                                     const TransitionInfo(
@@ -589,7 +589,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
                                               context.pushNamed(
-                                                'edit_profile',
+                                                'editProfile',
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
                                                       const TransitionInfo(
@@ -693,7 +693,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
                                               context.pushNamed(
-                                                'edit_password',
+                                                'editPassword',
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
                                                       const TransitionInfo(

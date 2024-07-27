@@ -349,7 +349,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                   });
 
                                   context.pushNamed(
-                                    'success_profile',
+                                    'successProfile',
                                     queryParameters: {
                                       'message': serializeParam(
                                         'Profile is now updated.',

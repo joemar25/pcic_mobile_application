@@ -323,8 +323,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                           controller: _model
                                                   .ppirTrackCoordinatesTextController ??=
                                               TextEditingController(
-                                            text: ppirPpirFormsRow
-                                                ?.trackLastCoord,
+                                            text: valueOrDefault<String>(
+                                              ppirPpirFormsRow?.trackLastCoord,
+                                              'Last Coordinates',
+                                            ),
                                           ),
                                           focusNode: _model
                                               .ppirTrackCoordinatesFocusNode,
@@ -453,8 +455,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                           controller: _model
                                                   .ppirTrackDateTimeTextController ??=
                                               TextEditingController(
-                                            text:
-                                                ppirPpirFormsRow?.trackDateTime,
+                                            text: valueOrDefault<String>(
+                                              ppirPpirFormsRow?.trackDateTime,
+                                              'Date Time',
+                                            ),
                                           ),
                                           focusNode:
                                               _model.ppirTrackDateTimeFocusNode,
@@ -573,8 +577,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                           controller: _model
                                                   .ppirTrackTotalAreaTextController ??=
                                               TextEditingController(
-                                            text: ppirPpirFormsRow
-                                                ?.trackTotalArea,
+                                            text: valueOrDefault<String>(
+                                              ppirPpirFormsRow?.trackTotalArea,
+                                              'Total Area',
+                                            ),
                                           ),
                                           focusNode: _model
                                               .ppirTrackTotalAreaFocusNode,
@@ -693,7 +699,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                           controller: _model
                                                   .ppirTrackFarmlocTextController ??=
                                               TextEditingController(
-                                            text: ppirPpirFormsRow?.ppirFarmloc,
+                                            text: valueOrDefault<String>(
+                                              ppirPpirFormsRow?.ppirFarmloc,
+                                              'Farm Location',
+                                            ),
                                           ),
                                           focusNode:
                                               _model.ppirTrackFarmlocFocusNode,
@@ -869,63 +878,146 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                         const EdgeInsetsDirectional
                                                             .fromSTEB(16.0, 8.0,
                                                                 16.0, 12.0),
-                                                    child: Container(
-                                                      width: 40.0,
-                                                      height: 40.0,
-                                                      decoration: BoxDecoration(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .error,
-                                                        boxShadow: const [
-                                                          BoxShadow(
-                                                            blurRadius: 4.0,
-                                                            color: Color(
-                                                                0x33000000),
-                                                            offset: Offset(
-                                                              0.0,
-                                                              2.0,
+                                                    child: InkWell(
+                                                      splashColor:
+                                                          Colors.transparent,
+                                                      focusColor:
+                                                          Colors.transparent,
+                                                      hoverColor:
+                                                          Colors.transparent,
+                                                      highlightColor:
+                                                          Colors.transparent,
+                                                      onTap: () async {
+                                                        var confirmDialogResponse =
+                                                            await showDialog<
+                                                                    bool>(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (alertDialogContext) {
+                                                                    return AlertDialog(
+                                                                      title: const Text(
+                                                                          'Info'),
+                                                                      content: const Text(
+                                                                          'The current gpx file will be deleted. Are you sure?'),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () => Navigator.pop(
+                                                                              alertDialogContext,
+                                                                              false),
+                                                                          child:
+                                                                              const Text('Cancel'),
+                                                                        ),
+                                                                        TextButton(
+                                                                          onPressed: () => Navigator.pop(
+                                                                              alertDialogContext,
+                                                                              true),
+                                                                          child:
+                                                                              const Text('Confirm'),
+                                                                        ),
+                                                                      ],
+                                                                    );
+                                                                  },
+                                                                ) ??
+                                                                false;
+                                                        if (confirmDialogResponse) {
+                                                          await PpirFormsTable()
+                                                              .update(
+                                                            data: {
+                                                              'gpx':
+                                                                  'resubmitted',
+                                                            },
+                                                            matchingRows:
+                                                                (rows) =>
+                                                                    rows.eq(
+                                                              'task_id',
+                                                              widget.taskId,
                                                             ),
-                                                          )
-                                                        ],
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                        border: Border.all(
+                                                          );
+
+                                                          context.pushNamed(
+                                                            'geotagging',
+                                                            queryParameters: {
+                                                              'taskId':
+                                                                  serializeParam(
+                                                                widget.taskId,
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                              'taskType':
+                                                                  serializeParam(
+                                                                'ppir',
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                              'taskStatus':
+                                                                  serializeParam(
+                                                                'ongoing',
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                            }.withoutNulls,
+                                                          );
+                                                        }
+                                                      },
+                                                      child: Container(
+                                                        width: 40.0,
+                                                        height: 40.0,
+                                                        decoration:
+                                                            BoxDecoration(
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .accent1,
-                                                          width: 2.0,
+                                                              .error,
+                                                          boxShadow: const [
+                                                            BoxShadow(
+                                                              blurRadius: 4.0,
+                                                              color: Color(
+                                                                  0x33000000),
+                                                              offset: Offset(
+                                                                0.0,
+                                                                2.0,
+                                                              ),
+                                                            )
+                                                          ],
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      12.0),
+                                                          border: Border.all(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .accent1,
+                                                            width: 2.0,
+                                                          ),
                                                         ),
-                                                      ),
-                                                      alignment:
-                                                          const AlignmentDirectional(
-                                                              0.0, 0.0),
-                                                      child: Text(
-                                                        FFLocalizations.of(
-                                                                context)
-                                                            .getText(
-                                                          'bi2tyefd' /* Repeat Again */,
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: Text(
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                            'bi2tyefd' /* Repeat Again */,
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .titleSmall
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmallFamily,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryBtnText,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .titleSmallFamily),
+                                                              ),
                                                         ),
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmallFamily,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryBtnText,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .titleSmallFamily),
-                                                                ),
                                                       ),
                                                     ),
                                                   ),
@@ -1081,8 +1173,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                             controller: _model
                                                     .ppirSvpActSelectionValueController ??=
                                                 FormFieldController<String>(
-                                                    ppirPpirFormsRow!
-                                                        .ppirSvpAct),
+                                                    valueOrDefault<String>(
+                                              ppirPpirFormsRow?.ppirSvpAct,
+                                              'rice',
+                                            )),
                                             optionHeight: 32.0,
                                             textStyle:
                                                 FlutterFlowTheme.of(context)
@@ -1619,7 +1713,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                           controller: _model
                                                   .ppirAreaActFieldTextController ??=
                                               TextEditingController(
-                                            text: ppirPpirFormsRow?.ppirAreaAct,
+                                            text: valueOrDefault<String>(
+                                              ppirPpirFormsRow?.ppirAreaAct,
+                                              '1.5',
+                                            ),
                                           ),
                                           focusNode:
                                               _model.ppirAreaActFieldFocusNode,
@@ -2750,15 +2847,6 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                   );
                                 }
 
-                                await PpirFormsTable().update(
-                                  data: {
-                                    'gpx': 'test',
-                                  },
-                                  matchingRows: (rows) => rows.eq(
-                                    'task_id',
-                                    widget.taskId,
-                                  ),
-                                );
                                 await TasksTable().update(
                                   data: {
                                     'status': 'ongoing',
@@ -2771,7 +2859,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                               }
 
                               context.pushNamed(
-                                'form_success',
+                                'formSuccess',
                                 queryParameters: {
                                   'taskId': serializeParam(
                                     ppirPpirFormsRow?.taskId,
@@ -2918,19 +3006,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                     widget.taskId,
                                   ),
                                 );
-                                await PpirFormsTable().update(
-                                  data: {
-                                    'gpx': 'test',
-                                  },
-                                  matchingRows: (rows) => rows.eq(
-                                    'task_id',
-                                    widget.taskId,
-                                  ),
-                                );
                               }
 
                               context.pushNamed(
-                                'form_success',
+                                'formSuccess',
                                 queryParameters: {
                                   'taskId': serializeParam(
                                     ppirPpirFormsRow?.taskId,

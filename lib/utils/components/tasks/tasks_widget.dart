@@ -115,7 +115,7 @@ class _TasksWidgetState extends State<TasksWidget>
             highlightColor: Colors.transparent,
             onTap: () async {
               context.pushNamed(
-                'task_details',
+                'taskDetails',
                 queryParameters: {
                   'taskId': serializeParam(
                     widget.task,

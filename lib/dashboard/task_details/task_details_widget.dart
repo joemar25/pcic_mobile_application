@@ -129,9 +129,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
                     child: Text(
-                      valueOrDefault<String>(
-                        widget.taskStatus,
-                        'Task Stats',
+                      FFLocalizations.of(context).getText(
+                        'x1jz4y0y' /* Task Details */,
                       ),
                       style: FlutterFlowTheme.of(context).displaySmall.override(
                             fontFamily:
@@ -3086,6 +3085,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                               currentUserLocationValue =
                                   await getCurrentUserLocation(
                                       defaultLocation: const LatLng(0.0, 0.0));
+                              await AttemptsTable().insert({
+                                'task_id': widget.taskId,
+                              });
                               if (_model.isEditing!) {
                                 await showModalBottomSheet(
                                   isScrollControlled: true,
@@ -3217,6 +3219,15 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                               currentUserLocationValue =
                                   await getCurrentUserLocation(
                                       defaultLocation: const LatLng(0.0, 0.0));
+                              await TasksTable().update(
+                                data: {
+                                  'status': 'ongoing',
+                                },
+                                matchingRows: (rows) => rows.eq(
+                                  'id',
+                                  widget.taskId,
+                                ),
+                              );
                               await AttemptsTable().insert({
                                 'task_id': widget.taskId,
                               });
@@ -3233,7 +3244,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                     ParamType.String,
                                   ),
                                   'taskStatus': serializeParam(
-                                    '',
+                                    parentColumnTasksRow?.status,
                                     ParamType.String,
                                   ),
                                 }.withoutNulls,
