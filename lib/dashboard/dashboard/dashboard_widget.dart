@@ -92,7 +92,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
       }
 
       await requestPermission(photoLibraryPermission);
-      if (await getPermissionStatus(locationPermission)) {
+      if (await getPermissionStatus(photoLibraryPermission)) {
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(

@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+// NOT WORKING YET!
+
 Future<void> authStateHandler() async {
   // Create a program for handling the authentication state and updating the is_online status.
 
