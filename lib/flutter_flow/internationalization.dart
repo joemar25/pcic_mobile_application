@@ -713,6 +713,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Completed',
       'tl': 'Nakumpleto',
     },
+    'xfnacy2o': {
+      'en': 'geotag',
+      'tl': '',
+    },
     '67jgj8w9': {
       'en': 'Home',
       'tl': 'Bahay',
@@ -841,9 +845,20 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Mar said, This is under maintenance!',
       'tl': 'Sabi ni Mar, Under maintenance ito!',
     },
-    'p5v52glk': {
+    'z8fvrgds': {
       'en': 'Home',
       'tl': 'Bahay',
+    },
+  },
+  // sss
+  {
+    'yigfujp5': {
+      'en': 'Page Title',
+      'tl': '',
+    },
+    'p5v52glk': {
+      'en': 'Home',
+      'tl': '',
     },
   },
   // tasks

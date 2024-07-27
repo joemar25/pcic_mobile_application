@@ -390,7 +390,7 @@ class _TasksWidgetState extends State<TasksWidget>
                       Divider(
                         height: 24.0,
                         thickness: 1.0,
-                        color: FlutterFlowTheme.of(context).alternate,
+                        color: FlutterFlowTheme.of(context).boarderForm,
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,

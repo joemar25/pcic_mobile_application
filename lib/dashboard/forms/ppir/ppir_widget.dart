@@ -381,7 +381,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               borderSide: BorderSide(
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .alternate,
+                                                        .boarderForm,
                                                 width: 2.0,
                                               ),
                                               borderRadius:
@@ -432,6 +432,9 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                 fontFamily:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMediumFamily,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
                                                 letterSpacing: 0.0,
                                                 useGoogleFonts: GoogleFonts
                                                         .asMap()
@@ -507,7 +510,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               borderSide: BorderSide(
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .alternate,
+                                                        .boarderForm,
                                                 width: 2.0,
                                               ),
                                               borderRadius:
@@ -554,6 +557,9 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                 fontFamily:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMediumFamily,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
                                                 letterSpacing: 0.0,
                                                 useGoogleFonts: GoogleFonts
                                                         .asMap()
@@ -629,7 +635,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               borderSide: BorderSide(
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .alternate,
+                                                        .boarderForm,
                                                 width: 2.0,
                                               ),
                                               borderRadius:
@@ -676,6 +682,9 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                 fontFamily:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMediumFamily,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
                                                 letterSpacing: 0.0,
                                                 useGoogleFonts: GoogleFonts
                                                         .asMap()
@@ -758,7 +767,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               borderSide: BorderSide(
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .alternate,
+                                                        .boarderForm,
                                                 width: 2.0,
                                               ),
                                               borderRadius:
@@ -1445,7 +1454,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                   borderColor:
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .alternate,
+                                                          .boarderForm,
                                                   borderWidth: 2.0,
                                                   borderRadius: 8.0,
                                                   margin: const EdgeInsetsDirectional
@@ -1675,7 +1684,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                   borderColor:
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .alternate,
+                                                          .boarderForm,
                                                   borderWidth: 2.0,
                                                   borderRadius: 8.0,
                                                   margin: const EdgeInsetsDirectional
@@ -1765,7 +1774,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               borderSide: BorderSide(
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .alternate,
+                                                        .boarderForm,
                                                 width: 2.0,
                                               ),
                                               borderRadius:
@@ -1887,7 +1896,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               borderSide: BorderSide(
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .alternate,
+                                                        .boarderForm,
                                                 width: 2.0,
                                               ),
                                               borderRadius:
@@ -2007,7 +2016,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               borderSide: BorderSide(
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .alternate,
+                                                        .boarderForm,
                                                 width: 2.0,
                                               ),
                                               borderRadius:
@@ -2129,7 +2138,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                             borderSide: BorderSide(
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .alternate,
+                                                      .boarderForm,
                                               width: 2.0,
                                             ),
                                             borderRadius:
@@ -2250,7 +2259,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               borderSide: BorderSide(
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .alternate,
+                                                        .boarderForm,
                                                 width: 2.0,
                                               ),
                                               borderRadius:
@@ -2333,7 +2342,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               border: Border.all(
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .alternate,
+                                                        .boarderForm,
                                               ),
                                             ),
                                             child: Align(
@@ -2497,7 +2506,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               borderSide: BorderSide(
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .alternate,
+                                                        .boarderForm,
                                                 width: 2.0,
                                               ),
                                               borderRadius:
@@ -2580,7 +2589,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               border: Border.all(
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .alternate,
+                                                        .boarderForm,
                                               ),
                                             ),
                                             child: Align(

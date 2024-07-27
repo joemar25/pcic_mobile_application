@@ -305,7 +305,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .alternate,
+                                                              .boarderForm,
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               22.0),
@@ -1183,7 +1183,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           child: Divider(
                                             thickness: 2.0,
                                             color: FlutterFlowTheme.of(context)
-                                                .alternate,
+                                                .boarderForm,
                                           ),
                                         ),
                                         Padding(
@@ -1452,7 +1452,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           child: Divider(
                                             thickness: 2.0,
                                             color: FlutterFlowTheme.of(context)
-                                                .alternate,
+                                                .boarderForm,
                                           ),
                                         ),
                                         Padding(
@@ -1723,7 +1723,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           child: Divider(
                                             thickness: 2.0,
                                             color: FlutterFlowTheme.of(context)
-                                                .alternate,
+                                                .boarderForm,
                                           ),
                                         ),
                                         if (widget.taskStatus == 'completed')
@@ -2076,7 +2076,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     thickness: 2.0,
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .alternate,
+                                                        .boarderForm,
                                                   ),
                                                 ),
                                                 Padding(
@@ -2253,7 +2253,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     thickness: 2.0,
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .alternate,
+                                                        .boarderForm,
                                                   ),
                                                 ),
                                                 Padding(
@@ -2430,7 +2430,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     thickness: 2.0,
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .alternate,
+                                                        .boarderForm,
                                                   ),
                                                 ),
                                                 Padding(
@@ -2796,7 +2796,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     thickness: 2.0,
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .alternate,
+                                                        .boarderForm,
                                                   ),
                                                 ),
                                                 Padding(
@@ -2910,7 +2910,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     thickness: 2.0,
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .alternate,
+                                                        .boarderForm,
                                                   ),
                                                 ),
                                               ],

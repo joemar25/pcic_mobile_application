@@ -239,6 +239,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'otherForm',
           path: '/otherForm',
           builder: (context, params) => const OtherFormWidget(),
+        ),
+        FFRoute(
+          name: 'sss',
+          path: '/sss',
+          builder: (context, params) => const SssWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

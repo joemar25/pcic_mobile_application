@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_autocomplete_options_list.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/empty_lists/empty_lists_widget.dart';
 import '/utils/components/tasks/tasks_widget.dart';
@@ -445,7 +446,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                 imageUrl:
                                                     valueOrDefault<String>(
                                                   dashboardUsersRow?.photoUrl,
-                                                  'https://newsko.com.ph/wp-content/uploads/2024/06/Mikha.jpg',
+                                                  'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png',
                                                 ),
                                                 fit: BoxFit.cover,
                                               ),
@@ -1057,7 +1058,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                               border: Border.all(
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .alternate,
+                                                        .boarderForm,
                                               ),
                                             ),
                                             child: Align(
@@ -1232,7 +1233,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                       FlutterFlowIconButton(
                                         borderColor:
                                             FlutterFlowTheme.of(context)
-                                                .alternate,
+                                                .boarderForm,
                                         borderRadius: 12.0,
                                         borderWidth: 1.0,
                                         buttonSize: 60.0,
@@ -1620,6 +1621,41 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                         ],
                                       ),
                                     ),
+                                  ),
+                                ),
+                                FFButtonWidget(
+                                  onPressed: () async {
+                                    context.pushNamed('sss');
+                                  },
+                                  text: FFLocalizations.of(context).getText(
+                                    'xfnacy2o' /* geotag */,
+                                  ),
+                                  options: FFButtonOptions(
+                                    height: 40.0,
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        24.0, 0.0, 24.0, 0.0),
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmallFamily,
+                                          color: Colors.white,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmallFamily),
+                                        ),
+                                    elevation: 3.0,
+                                    borderSide: const BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
                                 ),
                               ],

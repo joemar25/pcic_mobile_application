@@ -24,3 +24,4 @@ export '/auth/forgot_password/forgot_password_widget.dart'
 export '/dashboard/geotagging/geotagging_widget.dart' show GeotaggingWidget;
 export '/dashboard/forms/other_form/other_form_widget.dart'
     show OtherFormWidget;
+export '/utils/test/sss/sss_widget.dart' show SssWidget;

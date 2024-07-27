@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/upload_data.dart';
 import '/utils/components/change_photo/change_photo_widget.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -199,7 +200,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                 imageUrl:
                                                     valueOrDefault<String>(
                                                   editProfileUsersRow?.photoUrl,
-                                                  'https://newsko.com.ph/wp-content/uploads/2024/06/Mikha.jpg',
+                                                  'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png',
                                                 ),
                                                 fit: BoxFit.cover,
                                               ),
@@ -220,9 +221,88 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                   color: Color(0xFFF1F4F8),
                                                   size: 20.0,
                                                 ),
-                                                onPressed: () {
-                                                  print(
-                                                      'IconButton pressed ...');
+                                                onPressed: () async {
+                                                  await UsersTable().update(
+                                                    data: {
+                                                      'photo_url':
+                                                          editProfileUsersRow
+                                                              ?.photoUrl,
+                                                    },
+                                                    matchingRows: (rows) =>
+                                                        rows,
+                                                  );
+                                                  final selectedMedia =
+                                                      await selectMedia(
+                                                    storageFolderPath: 'pic',
+                                                    mediaSource: MediaSource
+                                                        .photoGallery,
+                                                    multiImage: false,
+                                                  );
+                                                  if (selectedMedia != null &&
+                                                      selectedMedia.every((m) =>
+                                                          validateFileFormat(
+                                                              m.storagePath,
+                                                              context))) {
+                                                    setState(() =>
+                                                        _model.isDataUploading =
+                                                            true);
+                                                    var selectedUploadedFiles =
+                                                        <FFUploadedFile>[];
+
+                                                    var downloadUrls =
+                                                        <String>[];
+                                                    try {
+                                                      selectedUploadedFiles =
+                                                          selectedMedia
+                                                              .map((m) =>
+                                                                  FFUploadedFile(
+                                                                    name: m
+                                                                        .storagePath
+                                                                        .split(
+                                                                            '/')
+                                                                        .last,
+                                                                    bytes:
+                                                                        m.bytes,
+                                                                    height: m
+                                                                        .dimensions
+                                                                        ?.height,
+                                                                    width: m
+                                                                        .dimensions
+                                                                        ?.width,
+                                                                    blurHash: m
+                                                                        .blurHash,
+                                                                  ))
+                                                              .toList();
+
+                                                      downloadUrls =
+                                                          await uploadSupabaseStorageFiles(
+                                                        bucketName: 'photo_url',
+                                                        selectedFiles:
+                                                            selectedMedia,
+                                                      );
+                                                    } finally {
+                                                      _model.isDataUploading =
+                                                          false;
+                                                    }
+                                                    if (selectedUploadedFiles
+                                                                .length ==
+                                                            selectedMedia
+                                                                .length &&
+                                                        downloadUrls.length ==
+                                                            selectedMedia
+                                                                .length) {
+                                                      setState(() {
+                                                        _model.uploadedLocalFile =
+                                                            selectedUploadedFiles
+                                                                .first;
+                                                        _model.uploadedFileUrl =
+                                                            downloadUrls.first;
+                                                      });
+                                                    } else {
+                                                      setState(() {});
+                                                      return;
+                                                    }
+                                                  }
                                                 },
                                               ),
                                             ),
@@ -278,8 +358,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                     ),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
+                                    color: FlutterFlowTheme.of(context)
+                                        .boarderForm,
                                     width: 2.0,
                                   ),
                                   borderRadius: BorderRadius.circular(8.0),
@@ -336,10 +416,10 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                 onPressed: () async {
                                   await UsersTable().update(
                                     data: {
-                                      'photo_url':
-                                          editProfileUsersRow?.photoUrl,
                                       'inspector_name':
                                           _model.displayNameTextController.text,
+                                      'photo_url':
+                                          editProfileUsersRow?.photoUrl,
                                     },
                                     matchingRows: (rows) => rows,
                                   );
