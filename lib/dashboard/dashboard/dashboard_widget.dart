@@ -83,16 +83,14 @@ class _DashboardWidgetState extends State<DashboardWidget>
       length: 3,
       initialIndex: min(
           valueOrDefault<int>(
-            () {
-              if ((_model.fdc! >= _model.onc!) || (_model.fdc! >= _model.cc!)) {
-                return 0;
-              } else if (_model.onc! >= _model.cc!) {
-                return 1;
-              } else {
-                return 2;
-              }
-            }(),
-            0,
+            (int fdc, int onc, int cc) {
+              return (cc > fdc && cc > onc)
+                  ? 2
+                  : (onc > fdc)
+                      ? 1
+                      : 0;
+            }(_model.fdc!, _model.onc!, _model.cc!),
+            1,
           ),
           2),
     )..addListener(() => setState(() {}));
