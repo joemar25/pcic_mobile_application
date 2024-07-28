@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'tl8ihim7': {
+    'ycduy1ny': {
       'en': '',
       'tl': '',
     },
@@ -211,7 +211,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Log Out',
     },
     'kcupitz3': {
-      'en': '__',
+      'en': 'Account',
       'tl': '__',
     },
   },
@@ -230,7 +230,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Nasa ibaba ang mga mensahe sa iyong mga kaibigan.',
     },
     'qjs4iqx3': {
-      'en': '__',
+      'en': 'Messages',
       'tl': '__',
     },
   },
@@ -1005,22 +1005,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // tasks
   {
-    'j0q6t8qb': {
-      'en': 'North: ',
-      'tl': 'Hilaga:',
-    },
-    'kdar2g2n': {
-      'en': 'West: ',
-      'tl': 'Kanluran:',
-    },
-    'b2p4m05y': {
-      'en': 'South: ',
-      'tl': 'Timog:',
-    },
-    '8zz0rgpr': {
-      'en': 'East: ',
-      'tl': 'Silangan:',
-    },
     '83q8pggh': {
       'en': 'Assignment Id',
       'tl': 'Assignment Id',
@@ -1097,6 +1081,33 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'a0f7s2dm': {
       'en': 'Save',
       'tl': 'I-save',
+    },
+  },
+  // backupTasks
+  {
+    'd4vy1q7s': {
+      'en': 'North: ',
+      'tl': '',
+    },
+    'c3uh2jd8': {
+      'en': 'West: ',
+      'tl': '',
+    },
+    'fav0lit3': {
+      'en': 'South: ',
+      'tl': '',
+    },
+    'c46yhefm': {
+      'en': 'East: ',
+      'tl': '',
+    },
+    '6ov3yzwq': {
+      'en': 'Assignment Id',
+      'tl': '',
+    },
+    'ftz1qs3j': {
+      'en': 'Address',
+      'tl': '',
     },
   },
   // Miscellaneous

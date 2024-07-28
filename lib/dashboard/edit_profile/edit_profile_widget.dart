@@ -199,10 +199,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                 fadeOutDuration:
                                                     const Duration(milliseconds: 500),
                                                 imageUrl:
-                                                    valueOrDefault<String>(
-                                                  _model.uploadedFileUrl,
-                                                  'photo_url',
-                                                ),
+                                                    _model.uploadedFileUrl,
                                                 fit: BoxFit.cover,
                                               ),
                                             ),

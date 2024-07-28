@@ -1,5 +1,6 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_autocomplete_options_list.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -14,6 +15,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
@@ -33,6 +35,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
   late DashboardModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
@@ -114,6 +118,21 @@ class _DashboardWidgetState extends State<DashboardWidget>
       length: 3,
       initialIndex: 0,
     )..addListener(() => setState(() {}));
+    animationsMap.addAll({
+      'containerOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: const Offset(0.0, 100.0),
+            end: const Offset(0.0, 0.0),
+          ),
+        ],
+      ),
+    });
+
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -419,8 +438,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                         width: double.infinity,
                         height: MediaQuery.sizeOf(context).height * 0.9,
                         decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
+                          color: FlutterFlowTheme.of(context).primaryBackground,
                           borderRadius: const BorderRadius.only(
                             bottomLeft: Radius.circular(0.0),
                             bottomRight: Radius.circular(0.0),
@@ -1109,342 +1127,386 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                     ),
                                   ),
                                 ),
-                                SizedBox(
-                                  height: 200.0,
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 15.0, 0.0, 18.0),
-                                    child: Column(
-                                      children: [
-                                        Align(
-                                          alignment: const Alignment(0.0, 0),
-                                          child: TabBar(
-                                            labelColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primary,
-                                            unselectedLabelColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primaryText,
-                                            labelStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMediumFamily,
-                                                      fontSize: 12.0,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.normal,
-                                                      useGoogleFonts: GoogleFonts
-                                                              .asMap()
-                                                          .containsKey(
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 160.0),
+                                  child: Container(
+                                    height:
+                                        MediaQuery.sizeOf(context).height * 0.7,
+                                    decoration: const BoxDecoration(),
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 15.0, 0.0, 18.0),
+                                      child: Column(
+                                        children: [
+                                          Align(
+                                            alignment: const Alignment(0.0, 0),
+                                            child: TabBar(
+                                              labelColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              unselectedLabelColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              labelStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
+                                              unselectedLabelStyle: const TextStyle(),
+                                              indicatorColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              indicatorWeight: 2.0,
+                                              tabs: [
+                                                Tab(
+                                                  text: FFLocalizations.of(
+                                                          context)
+                                                      .getText(
+                                                    'ba2q7w08' /* For Dispatch */,
+                                                  ),
+                                                  icon: const Icon(
+                                                    Icons.timer_rounded,
+                                                  ),
+                                                ),
+                                                Tab(
+                                                  text: FFLocalizations.of(
+                                                          context)
+                                                      .getText(
+                                                    'nxy1vlhk' /* Ongoing */,
+                                                  ),
+                                                  icon: const Icon(
+                                                    Icons
+                                                        .incomplete_circle_rounded,
+                                                  ),
+                                                ),
+                                                Tab(
+                                                  text: FFLocalizations.of(
+                                                          context)
+                                                      .getText(
+                                                    'c0a56ui1' /* Completed */,
+                                                  ),
+                                                  icon: const Icon(
+                                                    Icons.check_circle_rounded,
+                                                  ),
+                                                ),
+                                              ],
+                                              controller:
+                                                  _model.tabBarController,
+                                              onTap: (i) async {
+                                                [
+                                                  () async {},
+                                                  () async {},
+                                                  () async {}
+                                                ][i]();
+                                              },
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: TabBarView(
+                                              controller:
+                                                  _model.tabBarController,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(16.0, 12.0,
+                                                          16.0, 12.0),
+                                                  child: FutureBuilder<
+                                                      List<TasksRow>>(
+                                                    future:
+                                                        TasksTable().queryRows(
+                                                      queryFn: (q) => q
+                                                          .eq(
+                                                            'status',
+                                                            'for dispatch',
+                                                          )
+                                                          .order('updated_at'),
                                                     ),
-                                            unselectedLabelStyle: const TextStyle(),
-                                            indicatorColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primary,
-                                            indicatorWeight: 2.0,
-                                            tabs: [
-                                              Tab(
-                                                text:
-                                                    FFLocalizations.of(context)
-                                                        .getText(
-                                                  'ba2q7w08' /* For Dispatch */,
+                                                    builder:
+                                                        (context, snapshot) {
+                                                      // Customize what your widget looks like when it's loading.
+                                                      if (!snapshot.hasData) {
+                                                        return Center(
+                                                          child: SizedBox(
+                                                            width: 100.0,
+                                                            height: 100.0,
+                                                            child:
+                                                                SpinKitRipple(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primary,
+                                                              size: 100.0,
+                                                            ),
+                                                          ),
+                                                        );
+                                                      }
+                                                      List<TasksRow>
+                                                          listViewTasksRowList =
+                                                          snapshot.data!;
+
+                                                      if (listViewTasksRowList
+                                                          .isEmpty) {
+                                                        return const Center(
+                                                          child:
+                                                              EmptyListsWidget(
+                                                            type:
+                                                                'Ongoing Tasks',
+                                                          ),
+                                                        );
+                                                      }
+
+                                                      return ListView.separated(
+                                                        padding:
+                                                            EdgeInsets.zero,
+                                                        primary: false,
+                                                        shrinkWrap: true,
+                                                        scrollDirection:
+                                                            Axis.vertical,
+                                                        itemCount:
+                                                            listViewTasksRowList
+                                                                .length,
+                                                        separatorBuilder:
+                                                            (_, __) => const SizedBox(
+                                                                height: 15.0),
+                                                        itemBuilder: (context,
+                                                            listViewIndex) {
+                                                          final listViewTasksRow =
+                                                              listViewTasksRowList[
+                                                                  listViewIndex];
+                                                          return wrapWithModel(
+                                                            model: _model
+                                                                .tasksModels1
+                                                                .getModel(
+                                                              listViewTasksRow
+                                                                  .id,
+                                                              listViewIndex,
+                                                            ),
+                                                            updateCallback:
+                                                                () => setState(
+                                                                    () {}),
+                                                            child: TasksWidget(
+                                                              key: Key(
+                                                                'Keyjrg_${listViewTasksRow.id}',
+                                                              ),
+                                                              task:
+                                                                  listViewTasksRow
+                                                                      .id,
+                                                              status:
+                                                                  listViewTasksRow
+                                                                      .status,
+                                                            ),
+                                                          );
+                                                        },
+                                                      );
+                                                    },
+                                                  ),
                                                 ),
-                                              ),
-                                              Tab(
-                                                text:
-                                                    FFLocalizations.of(context)
-                                                        .getText(
-                                                  'nxy1vlhk' /* Ongoing */,
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(16.0, 12.0,
+                                                          16.0, 12.0),
+                                                  child: FutureBuilder<
+                                                      List<TasksRow>>(
+                                                    future:
+                                                        TasksTable().queryRows(
+                                                      queryFn: (q) => q
+                                                          .eq(
+                                                            'status',
+                                                            'ongoing',
+                                                          )
+                                                          .order('updated_at'),
+                                                    ),
+                                                    builder:
+                                                        (context, snapshot) {
+                                                      // Customize what your widget looks like when it's loading.
+                                                      if (!snapshot.hasData) {
+                                                        return Center(
+                                                          child: SizedBox(
+                                                            width: 100.0,
+                                                            height: 100.0,
+                                                            child:
+                                                                SpinKitRipple(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primary,
+                                                              size: 100.0,
+                                                            ),
+                                                          ),
+                                                        );
+                                                      }
+                                                      List<TasksRow>
+                                                          listViewTasksRowList =
+                                                          snapshot.data!;
+
+                                                      if (listViewTasksRowList
+                                                          .isEmpty) {
+                                                        return const Center(
+                                                          child:
+                                                              EmptyListsWidget(
+                                                            type:
+                                                                'Ongoing Tasks',
+                                                          ),
+                                                        );
+                                                      }
+
+                                                      return ListView.separated(
+                                                        padding:
+                                                            EdgeInsets.zero,
+                                                        primary: false,
+                                                        shrinkWrap: true,
+                                                        scrollDirection:
+                                                            Axis.vertical,
+                                                        itemCount:
+                                                            listViewTasksRowList
+                                                                .length,
+                                                        separatorBuilder:
+                                                            (_, __) => const SizedBox(
+                                                                height: 15.0),
+                                                        itemBuilder: (context,
+                                                            listViewIndex) {
+                                                          final listViewTasksRow =
+                                                              listViewTasksRowList[
+                                                                  listViewIndex];
+                                                          return wrapWithModel(
+                                                            model: _model
+                                                                .tasksModels2
+                                                                .getModel(
+                                                              listViewTasksRow
+                                                                  .id,
+                                                              listViewIndex,
+                                                            ),
+                                                            updateCallback:
+                                                                () => setState(
+                                                                    () {}),
+                                                            child: TasksWidget(
+                                                              key: Key(
+                                                                'Keyu4c_${listViewTasksRow.id}',
+                                                              ),
+                                                              task:
+                                                                  listViewTasksRow
+                                                                      .id,
+                                                              status:
+                                                                  listViewTasksRow
+                                                                      .status,
+                                                            ),
+                                                          );
+                                                        },
+                                                      );
+                                                    },
+                                                  ),
                                                 ),
-                                              ),
-                                              Tab(
-                                                text:
-                                                    FFLocalizations.of(context)
-                                                        .getText(
-                                                  'c0a56ui1' /* Completed */,
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(16.0, 12.0,
+                                                          16.0, 12.0),
+                                                  child: FutureBuilder<
+                                                      List<TasksRow>>(
+                                                    future:
+                                                        TasksTable().queryRows(
+                                                      queryFn: (q) => q
+                                                          .eq(
+                                                            'status',
+                                                            'completed',
+                                                          )
+                                                          .order('updated_at'),
+                                                    ),
+                                                    builder:
+                                                        (context, snapshot) {
+                                                      // Customize what your widget looks like when it's loading.
+                                                      if (!snapshot.hasData) {
+                                                        return Center(
+                                                          child: SizedBox(
+                                                            width: 100.0,
+                                                            height: 100.0,
+                                                            child:
+                                                                SpinKitRipple(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primary,
+                                                              size: 100.0,
+                                                            ),
+                                                          ),
+                                                        );
+                                                      }
+                                                      List<TasksRow>
+                                                          listViewTasksRowList =
+                                                          snapshot.data!;
+
+                                                      if (listViewTasksRowList
+                                                          .isEmpty) {
+                                                        return const Center(
+                                                          child:
+                                                              EmptyListsWidget(
+                                                            type:
+                                                                'Ongoing Tasks',
+                                                          ),
+                                                        );
+                                                      }
+
+                                                      return ListView.separated(
+                                                        padding:
+                                                            EdgeInsets.zero,
+                                                        primary: false,
+                                                        shrinkWrap: true,
+                                                        scrollDirection:
+                                                            Axis.vertical,
+                                                        itemCount:
+                                                            listViewTasksRowList
+                                                                .length,
+                                                        separatorBuilder:
+                                                            (_, __) => const SizedBox(
+                                                                height: 15.0),
+                                                        itemBuilder: (context,
+                                                            listViewIndex) {
+                                                          final listViewTasksRow =
+                                                              listViewTasksRowList[
+                                                                  listViewIndex];
+                                                          return wrapWithModel(
+                                                            model: _model
+                                                                .tasksModels3
+                                                                .getModel(
+                                                              listViewTasksRow
+                                                                  .id,
+                                                              listViewIndex,
+                                                            ),
+                                                            updateCallback:
+                                                                () => setState(
+                                                                    () {}),
+                                                            updateOnChange:
+                                                                true,
+                                                            child: TasksWidget(
+                                                              key: Key(
+                                                                'Keynuv_${listViewTasksRow.id}',
+                                                              ),
+                                                              task:
+                                                                  listViewTasksRow
+                                                                      .id,
+                                                              status:
+                                                                  listViewTasksRow
+                                                                      .status,
+                                                            ),
+                                                          );
+                                                        },
+                                                      );
+                                                    },
+                                                  ),
                                                 ),
-                                              ),
-                                            ],
-                                            controller: _model.tabBarController,
-                                            onTap: (i) async {
-                                              [
-                                                () async {},
-                                                () async {},
-                                                () async {}
-                                              ][i]();
-                                            },
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                        Expanded(
-                                          child: TabBarView(
-                                            controller: _model.tabBarController,
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        16.0, 12.0, 16.0, 12.0),
-                                                child: FutureBuilder<
-                                                    List<TasksRow>>(
-                                                  future:
-                                                      TasksTable().queryRows(
-                                                    queryFn: (q) => q
-                                                        .eq(
-                                                          'status',
-                                                          'for dispatch',
-                                                        )
-                                                        .order('updated_at'),
-                                                  ),
-                                                  builder: (context, snapshot) {
-                                                    // Customize what your widget looks like when it's loading.
-                                                    if (!snapshot.hasData) {
-                                                      return Center(
-                                                        child: SizedBox(
-                                                          width: 100.0,
-                                                          height: 100.0,
-                                                          child: SpinKitRipple(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primary,
-                                                            size: 100.0,
-                                                          ),
-                                                        ),
-                                                      );
-                                                    }
-                                                    List<TasksRow>
-                                                        listViewTasksRowList =
-                                                        snapshot.data!;
-
-                                                    if (listViewTasksRowList
-                                                        .isEmpty) {
-                                                      return const Center(
-                                                        child: EmptyListsWidget(
-                                                          type: 'Ongoing Tasks',
-                                                        ),
-                                                      );
-                                                    }
-
-                                                    return ListView.builder(
-                                                      padding: EdgeInsets.zero,
-                                                      primary: false,
-                                                      shrinkWrap: true,
-                                                      scrollDirection:
-                                                          Axis.vertical,
-                                                      itemCount:
-                                                          listViewTasksRowList
-                                                              .length,
-                                                      itemBuilder: (context,
-                                                          listViewIndex) {
-                                                        final listViewTasksRow =
-                                                            listViewTasksRowList[
-                                                                listViewIndex];
-                                                        return wrapWithModel(
-                                                          model: _model
-                                                              .tasksModels1
-                                                              .getModel(
-                                                            listViewTasksRow.id,
-                                                            listViewIndex,
-                                                          ),
-                                                          updateCallback: () =>
-                                                              setState(() {}),
-                                                          updateOnChange: true,
-                                                          child: TasksWidget(
-                                                            key: Key(
-                                                              'Keyhrb_${listViewTasksRow.id}',
-                                                            ),
-                                                            task:
-                                                                listViewTasksRow
-                                                                    .id,
-                                                            status:
-                                                                listViewTasksRow
-                                                                    .status,
-                                                          ),
-                                                        );
-                                                      },
-                                                    );
-                                                  },
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        16.0, 12.0, 16.0, 12.0),
-                                                child: FutureBuilder<
-                                                    List<TasksRow>>(
-                                                  future:
-                                                      TasksTable().queryRows(
-                                                    queryFn: (q) => q
-                                                        .eq(
-                                                          'status',
-                                                          'ongoing',
-                                                        )
-                                                        .order('updated_at'),
-                                                  ),
-                                                  builder: (context, snapshot) {
-                                                    // Customize what your widget looks like when it's loading.
-                                                    if (!snapshot.hasData) {
-                                                      return Center(
-                                                        child: SizedBox(
-                                                          width: 100.0,
-                                                          height: 100.0,
-                                                          child: SpinKitRipple(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primary,
-                                                            size: 100.0,
-                                                          ),
-                                                        ),
-                                                      );
-                                                    }
-                                                    List<TasksRow>
-                                                        listViewTasksRowList =
-                                                        snapshot.data!;
-
-                                                    if (listViewTasksRowList
-                                                        .isEmpty) {
-                                                      return const Center(
-                                                        child: EmptyListsWidget(
-                                                          type: 'Ongoing Tasks',
-                                                        ),
-                                                      );
-                                                    }
-
-                                                    return ListView.builder(
-                                                      padding: EdgeInsets.zero,
-                                                      primary: false,
-                                                      shrinkWrap: true,
-                                                      scrollDirection:
-                                                          Axis.vertical,
-                                                      itemCount:
-                                                          listViewTasksRowList
-                                                              .length,
-                                                      itemBuilder: (context,
-                                                          listViewIndex) {
-                                                        final listViewTasksRow =
-                                                            listViewTasksRowList[
-                                                                listViewIndex];
-                                                        return wrapWithModel(
-                                                          model: _model
-                                                              .tasksModels2
-                                                              .getModel(
-                                                            listViewTasksRow.id,
-                                                            listViewIndex,
-                                                          ),
-                                                          updateCallback: () =>
-                                                              setState(() {}),
-                                                          updateOnChange: true,
-                                                          child: TasksWidget(
-                                                            key: Key(
-                                                              'Keypiq_${listViewTasksRow.id}',
-                                                            ),
-                                                            task:
-                                                                listViewTasksRow
-                                                                    .id,
-                                                            status:
-                                                                listViewTasksRow
-                                                                    .status,
-                                                          ),
-                                                        );
-                                                      },
-                                                    );
-                                                  },
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        16.0, 12.0, 16.0, 12.0),
-                                                child: FutureBuilder<
-                                                    List<TasksRow>>(
-                                                  future:
-                                                      TasksTable().queryRows(
-                                                    queryFn: (q) => q
-                                                        .eq(
-                                                          'status',
-                                                          'completed',
-                                                        )
-                                                        .order('updated_at'),
-                                                  ),
-                                                  builder: (context, snapshot) {
-                                                    // Customize what your widget looks like when it's loading.
-                                                    if (!snapshot.hasData) {
-                                                      return Center(
-                                                        child: SizedBox(
-                                                          width: 100.0,
-                                                          height: 100.0,
-                                                          child: SpinKitRipple(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primary,
-                                                            size: 100.0,
-                                                          ),
-                                                        ),
-                                                      );
-                                                    }
-                                                    List<TasksRow>
-                                                        listViewTasksRowList =
-                                                        snapshot.data!;
-
-                                                    if (listViewTasksRowList
-                                                        .isEmpty) {
-                                                      return const Center(
-                                                        child: EmptyListsWidget(
-                                                          type: 'Ongoing Tasks',
-                                                        ),
-                                                      );
-                                                    }
-
-                                                    return ListView.builder(
-                                                      padding: EdgeInsets.zero,
-                                                      primary: false,
-                                                      shrinkWrap: true,
-                                                      scrollDirection:
-                                                          Axis.vertical,
-                                                      itemCount:
-                                                          listViewTasksRowList
-                                                              .length,
-                                                      itemBuilder: (context,
-                                                          listViewIndex) {
-                                                        final listViewTasksRow =
-                                                            listViewTasksRowList[
-                                                                listViewIndex];
-                                                        return wrapWithModel(
-                                                          model: _model
-                                                              .tasksModels3
-                                                              .getModel(
-                                                            listViewTasksRow.id,
-                                                            listViewIndex,
-                                                          ),
-                                                          updateCallback: () =>
-                                                              setState(() {}),
-                                                          updateOnChange: true,
-                                                          child: TasksWidget(
-                                                            key: Key(
-                                                              'Keynuv_${listViewTasksRow.id}',
-                                                            ),
-                                                            task:
-                                                                listViewTasksRow
-                                                                    .id,
-                                                            status:
-                                                                listViewTasksRow
-                                                                    .status,
-                                                          ),
-                                                        );
-                                                      },
-                                                    );
-                                                  },
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -1452,7 +1514,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
                             ),
                           ),
                         ),
-                      ),
+                      ).animateOnPageLoad(
+                          animationsMap['containerOnPageLoadAnimation']!),
                     ),
                   ],
                 ),

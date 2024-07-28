@@ -142,9 +142,9 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
+      'dashboard': const DashboardWidget(),
       'chats': const ChatsWidget(),
       'profile': const ProfileWidget(),
-      'dashboard': const DashboardWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -159,10 +159,24 @@ class _NavBarPageState extends State<NavBarPage> {
         backgroundColor: FlutterFlowTheme.of(context).primary,
         selectedItemColor: FlutterFlowTheme.of(context).primaryBackground,
         unselectedItemColor: FlutterFlowTheme.of(context).primaryText,
-        showSelectedLabels: false,
+        showSelectedLabels: true,
         showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: const Icon(
+              Icons.home_outlined,
+              size: 24.0,
+            ),
+            activeIcon: const Icon(
+              Icons.home,
+              size: 24.0,
+            ),
+            label: FFLocalizations.of(context).getText(
+              '67jgj8w9' /* Home */,
+            ),
+            tooltip: '',
+          ),
           BottomNavigationBarItem(
             icon: const Icon(
               Icons.chat_outlined,
@@ -173,7 +187,7 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24.0,
             ),
             label: FFLocalizations.of(context).getText(
-              'qjs4iqx3' /* __ */,
+              'qjs4iqx3' /* Messages */,
             ),
             tooltip: '',
           ),
@@ -187,21 +201,7 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24.0,
             ),
             label: FFLocalizations.of(context).getText(
-              'kcupitz3' /* __ */,
-            ),
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(
-              Icons.home_outlined,
-              size: 24.0,
-            ),
-            activeIcon: const Icon(
-              Icons.home,
-              size: 24.0,
-            ),
-            label: FFLocalizations.of(context).getText(
-              '67jgj8w9' /* Home */,
+              'kcupitz3' /* Account */,
             ),
             tooltip: '',
           )

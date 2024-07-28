@@ -131,17 +131,6 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget> {
                           child: Stack(
                             alignment: const AlignmentDirectional(0.0, 0.0),
                             children: [
-                              SizedBox(
-                                width: MediaQuery.sizeOf(context).width * 1.0,
-                                height: MediaQuery.sizeOf(context).height * 1.0,
-                                child: custom_widgets.MapBox(
-                                  width: MediaQuery.sizeOf(context).width * 1.0,
-                                  height:
-                                      MediaQuery.sizeOf(context).height * 1.0,
-                                  accessToken:
-                                      'pk.eyJ1IjoicXVhbmJ5c29sdXRpb25zIiwiYSI6ImNsdWhrejRwdDJyYnAya3A2NHFqbXlsbHEifQ.WJ5Ng-AO-dTrlkUHD_ebMw',
-                                ),
-                              ),
                               Column(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment:
@@ -232,6 +221,16 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget> {
                                     ),
                                   ),
                                 ],
+                              ),
+                              const SizedBox(
+                                width: double.infinity,
+                                height: double.infinity,
+                                child: custom_widgets.MapangMakabayan(
+                                  width: double.infinity,
+                                  height: double.infinity,
+                                  accessToken:
+                                      'pk.eyJ1IjoicXVhbmJ5c29sdXRpb25zIiwiYSI6ImNsdWhrejRwdDJyYnAya3A2NHFqbXlsbHEifQ.WJ5Ng-AO-dTrlkUHD_ebMw',
+                                ),
                               ),
                             ],
                           ),

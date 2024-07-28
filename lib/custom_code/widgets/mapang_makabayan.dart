@@ -36,15 +36,23 @@ class MapangMakabayan extends StatefulWidget {
 class _MapangMakabayanState extends State<MapangMakabayan> {
   ll.LatLng? currentLocation;
   bool locationLoaded = false;
+  List<ll.LatLng> routePoints = [];
+  StreamSubscription<Position>? positionStreamSubscription;
 
   @override
   void initState() {
     super.initState();
     checkPermissions().then((hasPermission) {
       if (hasPermission) {
-        getCurrentLocation();
+        startTracking();
       }
     });
+  }
+
+  @override
+  void dispose() {
+    positionStreamSubscription?.cancel();
+    super.dispose();
   }
 
   Future<bool> checkPermissions() async {
@@ -71,19 +79,20 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     return true;
   }
 
-  void getCurrentLocation() async {
-    try {
-      Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.bestForNavigation,
-      );
-
+  void startTracking() {
+    positionStreamSubscription = Geolocator.getPositionStream(
+      locationSettings: LocationSettings(
+        accuracy: LocationAccuracy.bestForNavigation,
+        distanceFilter: 10,
+      ),
+    ).listen((Position position) {
+      ll.LatLng newPosition = ll.LatLng(position.latitude, position.longitude);
       setState(() {
-        currentLocation = ll.LatLng(position.latitude, position.longitude);
+        currentLocation = newPosition;
+        routePoints.add(newPosition);
         locationLoaded = true;
       });
-    } catch (e) {
-      print('Error getting location: $e');
-    }
+    });
   }
 
   @override
@@ -106,12 +115,22 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
         children: [
           TileLayer(
             urlTemplate:
-                'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token={accessToken}',
+                'https://api.mapbox.com/styles/v1/quanbysolutions/cluhoxol502q801oi8od2cmvz/tiles/{z}/{x}/{y}?access_token={accessToken}',
             additionalOptions: {
               'accessToken':
                   widget.accessToken ?? 'your_default_mapbox_access_token_here',
             },
           ),
+          if (routePoints.isNotEmpty)
+            PolylineLayer(
+              polylines: [
+                Polyline(
+                  points: routePoints,
+                  strokeWidth: 4.0,
+                  color: Colors.blue,
+                ),
+              ],
+            ),
           MarkerLayer(
             markers: [
               Marker(
