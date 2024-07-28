@@ -12,14 +12,10 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'dart:math' as math;
 import 'dart:async';
-
-import 'package:sensors_plus/sensors_plus.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart' as ll;
 import 'package:geolocator/geolocator.dart';
-import 'package:vector_math/vector_math.dart' show radians;
 
 class MapangMakabayan extends StatefulWidget {
   final double? width;
@@ -37,11 +33,10 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   ll.LatLng? currentLocation;
   bool locationLoaded = false;
   List<ll.LatLng> route = [];
-  double _heading = 0;
   final MapController _mapController = MapController();
-  StreamSubscription<GyroscopeEvent>? _gyroscopeSubscription;
   StreamSubscription<Position>? _positionSubscription;
-  final double _minDistanceFilter = 2.0; // Set to 2 meters
+  final double _minDistanceFilter =
+      1.0; // Set to 1 meter for more frequent updates
   ll.LatLng? _lastValidLocation;
   double _currentZoom = 19.0;
 
@@ -52,7 +47,6 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
       if (hasPermission) {
         getCurrentLocation();
         trackMovement();
-        listenToGyroscope();
       }
     });
   }
@@ -84,7 +78,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   Future<void> getCurrentLocation() async {
     try {
       Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.best,
+        desiredAccuracy: LocationAccuracy.bestForNavigation,
       );
 
       setState(() {
@@ -104,8 +98,8 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   void trackMovement() {
     _positionSubscription = Geolocator.getPositionStream(
       locationSettings: const LocationSettings(
-        accuracy: LocationAccuracy.best,
-        distanceFilter: 1,
+        accuracy: LocationAccuracy.bestForNavigation,
+        distanceFilter: 0, // Update as frequently as possible
       ),
     ).listen((Position position) {
       _updateLocation(position);
@@ -147,19 +141,8 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     }
   }
 
-  void listenToGyroscope() {
-    _gyroscopeSubscription =
-        gyroscopeEventStream().listen((GyroscopeEvent event) {
-      setState(() {
-        _heading += event.z * 180 / math.pi;
-        _heading = _heading % 360;
-      });
-    });
-  }
-
   @override
   void dispose() {
-    _gyroscopeSubscription?.cancel();
     _positionSubscription?.cancel();
     super.dispose();
   }

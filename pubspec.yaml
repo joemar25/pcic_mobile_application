@@ -79,7 +79,6 @@ dependencies:
   provider: 6.1.2
   realtime_client: 1.4.0
   rxdart: 0.27.7
-  sensors_plus: ^4.0.1
   shared_preferences: 2.2.2
   shared_preferences_android: 2.2.1
   shared_preferences_foundation: 2.3.4

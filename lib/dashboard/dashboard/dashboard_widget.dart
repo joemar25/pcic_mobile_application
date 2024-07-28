@@ -90,7 +90,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                       ? 1
                       : 0;
             }(_model.fdc!, _model.onc!, _model.cc!),
-            1,
+            2,
           ),
           2),
     )..addListener(() => setState(() {}));
