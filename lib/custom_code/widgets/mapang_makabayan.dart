@@ -13,6 +13,8 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 import 'dart:math' as math;
+import 'dart:async';
+
 import 'package:sensors_plus/sensors_plus.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart' as ll;
@@ -38,6 +40,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   final MapController _mapController = MapController();
   final List<double> _gyroReadings = List.filled(10, 0);
   int _gyroIndex = 0;
+  StreamSubscription<GyroscopeEvent>? _gyroscopeSubscription;
 
   @override
   void initState() {
@@ -105,13 +108,25 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   }
 
   void listenToGyroscope() {
-    gyroscopeEvents.listen((GyroscopeEvent event) {
+    _gyroscopeSubscription =
+        gyroscopeEventStream().listen((GyroscopeEvent event) {
       setState(() {
         _gyroReadings[_gyroIndex] = event.z;
         _gyroIndex = (_gyroIndex + 1) % _gyroReadings.length;
-        _heading = _gyroReadings.reduce((a, b) => a + b) / _gyroReadings.length;
+        _heading = _calculateSmoothedHeading();
       });
     });
+  }
+
+  double _calculateSmoothedHeading() {
+    double sum = _gyroReadings.reduce((a, b) => a + b);
+    return sum / _gyroReadings.length;
+  }
+
+  @override
+  void dispose() {
+    _gyroscopeSubscription?.cancel();
+    super.dispose();
   }
 
   @override

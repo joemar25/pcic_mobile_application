@@ -54,12 +54,12 @@ class _ToastWidgetState extends State<ToastWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: const AlignmentDirectional(0.0, -1.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
         padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
         child: Container(
           width: 400.0,
-          height: 100.0,
+          height: MediaQuery.sizeOf(context).height * 1.0,
           decoration: BoxDecoration(
             color: valueOrDefault<Color>(
               widget.notificationTitle == 'Success'
@@ -69,7 +69,7 @@ class _ToastWidgetState extends State<ToastWidget> {
             ),
             boxShadow: const [
               BoxShadow(
-                blurRadius: 4.0,
+                blurRadius: 5.0,
                 color: Color(0x33000000),
                 offset: Offset(
                   0.0,

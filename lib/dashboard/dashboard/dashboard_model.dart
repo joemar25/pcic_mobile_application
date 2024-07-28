@@ -1,3 +1,4 @@
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/tasks/tasks_widget.dart';
@@ -8,6 +9,10 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   ///  Local state fields for this page.
 
   int? forDispatchCount = 0;
+
+  int? ongoingCount = 0;
+
+  int? completedCount = 0;
 
   ///  State fields for stateful widgets in this page.
 
@@ -20,6 +25,8 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   TextEditingController? textController;
   String? textFieldSelectedOption;
   String? Function(BuildContext, String?)? textControllerValidator;
+  // Stores action output result for [Backend Call - Query Rows] action in Row widget.
+  List<TasksRow>? forDispatchData;
   // State field(s) for TabBar widget.
   TabController? tabBarController;
   int get tabBarCurrentIndex =>
