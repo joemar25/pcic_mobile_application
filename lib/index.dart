@@ -29,3 +29,5 @@ export '/auth/initial_design/backup_login/backup_login_widget.dart'
     show BackupLoginWidget;
 export '/auth/initial_design/backup_forgot_password/backup_forgot_password_widget.dart'
     show BackupForgotPasswordWidget;
+export '/dashboard/initial_design/backup_dashboard/backup_dashboard_widget.dart'
+    show BackupDashboardWidget;

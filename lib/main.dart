@@ -142,9 +142,9 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'dashboard': const DashboardWidget(),
       'chats': const ChatsWidget(),
       'profile': const ProfileWidget(),
+      'dashboard': const DashboardWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -163,20 +163,6 @@ class _NavBarPageState extends State<NavBarPage> {
         showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: const Icon(
-              Icons.home_outlined,
-              size: 24.0,
-            ),
-            activeIcon: const Icon(
-              Icons.home,
-              size: 24.0,
-            ),
-            label: FFLocalizations.of(context).getText(
-              '67jgj8w9' /* Home */,
-            ),
-            tooltip: '',
-          ),
           BottomNavigationBarItem(
             icon: const Icon(
               Icons.chat_outlined,
@@ -202,6 +188,20 @@ class _NavBarPageState extends State<NavBarPage> {
             ),
             label: FFLocalizations.of(context).getText(
               'kcupitz3' /* __ */,
+            ),
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(
+              Icons.home_outlined,
+              size: 24.0,
+            ),
+            activeIcon: const Icon(
+              Icons.home,
+              size: 24.0,
+            ),
+            label: FFLocalizations.of(context).getText(
+              '67jgj8w9' /* Home */,
             ),
             tooltip: '',
           )

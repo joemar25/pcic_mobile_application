@@ -139,7 +139,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'z43jebse': {
+    '3bi9tywr': {
       'en': '',
       'tl': '',
     },
@@ -661,56 +661,20 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // dashboard
   {
-    'ek6mnpyv': {
-      'en': 'Welcome',
-      'tl': 'Maligayang pagdating',
-    },
-    'kqdeja9y': {
-      'en': 'Good morning ',
-      'tl': 'Magandang umaga',
-    },
-    'c9cu64hs': {
-      'en': '!',
-      'tl': '!',
-    },
-    'vte71nhh': {
+    '5q4it2k3': {
       'en': 'Task Overview',
-      'tl': 'Pangkalahatang-ideya ng Gawain',
-    },
-    'm10j35jr': {
-      'en': 'For Dispatch',
-      'tl': 'Para sa Dispatch',
-    },
-    'x0uyqjdj': {
-      'en': 'Ongoing',
-      'tl': 'Patuloy',
-    },
-    'v1rudbl9': {
-      'en': 'Completed',
-      'tl': 'Nakumpleto',
-    },
-    'ngstgmic': {
-      'en': 'Find your task...',
       'tl': '',
     },
-    'u6l06te5': {
-      'en': 'Option 1',
+    'b756yymk': {
+      'en': 'Welcome',
       'tl': '',
     },
-    '40z3ewor': {
-      'en': 'For Dispatch',
-      'tl': 'Para sa Dispatch',
+    'xfwf34si': {
+      'en': 'Good morning ',
+      'tl': '',
     },
-    'eqlfjogs': {
-      'en': 'Ongoing',
-      'tl': 'Patuloy',
-    },
-    'i9ibpnoq': {
-      'en': 'Completed',
-      'tl': 'Nakumpleto',
-    },
-    'utgyj58c': {
-      'en': 'Button',
+    'lx95ug5f': {
+      'en': '!',
       'tl': '',
     },
     '67jgj8w9': {
@@ -936,6 +900,65 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     '0ll79bjc': {
+      'en': 'Home',
+      'tl': '',
+    },
+  },
+  // backupDashboard
+  {
+    'ytoxb7xh': {
+      'en': 'Welcome',
+      'tl': '',
+    },
+    'i65iq3wl': {
+      'en': 'Good morning ',
+      'tl': '',
+    },
+    'zqfomu4b': {
+      'en': '!',
+      'tl': '',
+    },
+    'auwndh4y': {
+      'en': 'Task Overview',
+      'tl': '',
+    },
+    'jmswm8xh': {
+      'en': 'For Dispatch',
+      'tl': '',
+    },
+    'gt3oe93z': {
+      'en': 'Ongoing',
+      'tl': '',
+    },
+    'oqyndspo': {
+      'en': 'Completed',
+      'tl': '',
+    },
+    '1o3tx9ww': {
+      'en': 'Find your task...',
+      'tl': '',
+    },
+    'u0ilplab': {
+      'en': 'Option 1',
+      'tl': '',
+    },
+    'qf1opmxm': {
+      'en': 'For Dispatch',
+      'tl': '',
+    },
+    '6384v6yp': {
+      'en': 'Ongoing',
+      'tl': '',
+    },
+    'uvmezpht': {
+      'en': 'Completed',
+      'tl': '',
+    },
+    'fh3buetp': {
+      'en': 'Button',
+      'tl': '',
+    },
+    'd5ntmcmy': {
       'en': 'Home',
       'tl': '',
     },
