@@ -45,8 +45,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await _model.queryTasksByStatus(context);
       await action_blocks.updateUserStatusIfOnline(context);
+      await _model.queryTasksByStatus(context);
       await requestPermission(locationPermission);
       if (await getPermissionStatus(locationPermission)) {
       } else {
@@ -735,8 +735,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                 children: [
                                                   Text(
                                                     valueOrDefault<String>(
-                                                      taskCounterMobileFDRecord
-                                                          .length,
+                                                      _model.forDispatchCount
+                                                          ?.toString(),
                                                       '0',
                                                     ),
                                                     style: FlutterFlowTheme.of(
@@ -877,9 +877,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                     children: [
                                                       Text(
                                                         valueOrDefault<String>(
-                                                          taskCounterMobileOTasksRowList
-                                                              .length
-                                                              .toString(),
+                                                          _model.ongoingCount
+                                                              ?.toString(),
                                                           '0',
                                                         ),
                                                         style:
@@ -1029,9 +1028,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                     children: [
                                                       Text(
                                                         valueOrDefault<String>(
-                                                          taskCounterMobileCTasksRowList
-                                                              .length
-                                                              .toString(),
+                                                          _model.completedCount
+                                                              ?.toString(),
                                                           '0',
                                                         ),
                                                         style:
