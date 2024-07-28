@@ -1,3 +1,4 @@
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/tasks/tasks_widget.dart';
@@ -7,15 +8,17 @@ import 'package:flutter/material.dart';
 class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   ///  Local state fields for this page.
 
-  int? forDispatchCount = 0;
+  TasksRow? forDispatchData;
 
-  int? ongoingCount = 0;
+  TasksRow? ongoingData;
 
-  int? completedCount = 0;
+  TasksRow? completedData;
 
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Custom Action - getTasksData] action in dashboard widget.
+  List<TasksRow>? onGGG;
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
   // State field(s) for TextField widget.

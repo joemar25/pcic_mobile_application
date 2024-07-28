@@ -39,14 +39,14 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   List<ll.LatLng> route = [];
   double _heading = 0;
   final MapController _mapController = MapController();
-  final List<double> _gyroReadings = List.filled(20, 0);
-  int _gyroIndex = 0;
   StreamSubscription<GyroscopeEvent>? _gyroscopeSubscription;
   StreamSubscription<Position>? _positionSubscription;
-  final double _minDistanceFilter = 2.0; // meters
+  final double _minDistanceFilter = 1.0; // meters
   final double _headingFilter = 5.0; // degrees
   ll.LatLng? _lastValidLocation;
   double _currentZoom = 19.0;
+  final List<Position> _recentPositions = [];
+  final int _positionsToAverage = 5;
 
   @override
   void initState() {
@@ -114,57 +114,82 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   }
 
   void _updateLocation(Position position) {
-    final newLocation = ll.LatLng(position.latitude, position.longitude);
+    _recentPositions.add(position);
+    if (_recentPositions.length > _positionsToAverage) {
+      _recentPositions.removeAt(0);
+    }
 
-    if (_lastValidLocation != null) {
-      final distance = Geolocator.distanceBetween(
-        _lastValidLocation!.latitude,
-        _lastValidLocation!.longitude,
-        newLocation.latitude,
-        newLocation.longitude,
-      );
+    if (_recentPositions.length == _positionsToAverage) {
+      final averagePosition = _calculateAveragePosition(_recentPositions);
+      final newLocation =
+          ll.LatLng(averagePosition.latitude, averagePosition.longitude);
 
-      final bearing = Geolocator.bearingBetween(
-        _lastValidLocation!.latitude,
-        _lastValidLocation!.longitude,
-        newLocation.latitude,
-        newLocation.longitude,
-      );
+      if (_lastValidLocation != null) {
+        final distance = Geolocator.distanceBetween(
+          _lastValidLocation!.latitude,
+          _lastValidLocation!.longitude,
+          newLocation.latitude,
+          newLocation.longitude,
+        );
 
-      if (distance >= _minDistanceFilter ||
-          (bearing - _heading).abs() >= _headingFilter) {
+        final bearing = Geolocator.bearingBetween(
+          _lastValidLocation!.latitude,
+          _lastValidLocation!.longitude,
+          newLocation.latitude,
+          newLocation.longitude,
+        );
+
+        if (distance >= _minDistanceFilter ||
+            (bearing - _heading).abs() >= _headingFilter) {
+          setState(() {
+            currentLocation = newLocation;
+            _lastValidLocation = newLocation;
+            route.add(newLocation);
+            _mapController.move(newLocation, _currentZoom);
+            _heading = bearing;
+          });
+        }
+      } else {
         setState(() {
           currentLocation = newLocation;
           _lastValidLocation = newLocation;
           route.add(newLocation);
           _mapController.move(newLocation, _currentZoom);
-          _heading = bearing;
         });
       }
-    } else {
-      setState(() {
-        currentLocation = newLocation;
-        _lastValidLocation = newLocation;
-        route.add(newLocation);
-        _mapController.move(newLocation, _currentZoom);
-      });
     }
+  }
+
+  Position _calculateAveragePosition(List<Position> positions) {
+    double latSum = 0, lonSum = 0, altSum = 0;
+    for (var position in positions) {
+      latSum += position.latitude;
+      lonSum += position.longitude;
+      altSum += position.altitude;
+    }
+    return Position.fromMap({
+      'latitude': latSum / positions.length,
+      'longitude': lonSum / positions.length,
+      'altitude': altSum / positions.length,
+      'accuracy': positions.last.accuracy,
+      'heading': positions.last.heading,
+      'speed': positions.last.speed,
+      'speedAccuracy': positions.last.speedAccuracy,
+      'timestamp': positions.last.timestamp,
+      'altitudeAccuracy': positions.last.altitudeAccuracy,
+      'headingAccuracy': positions.last.headingAccuracy,
+    });
   }
 
   void listenToGyroscope() {
     _gyroscopeSubscription =
         gyroscopeEventStream().listen((GyroscopeEvent event) {
       setState(() {
-        _gyroReadings[_gyroIndex] = event.z;
-        _gyroIndex = (_gyroIndex + 1) % _gyroReadings.length;
-        _heading = _calculateSmoothedHeading();
+        // Adjust heading based on gyroscope data
+        _heading += event.z * 180 / math.pi; // Convert radians to degrees
+        _heading = _heading % 360; // Normalize to 0-360 range
       });
     });
-  }
-
-  double _calculateSmoothedHeading() {
-    double sum = _gyroReadings.reduce((a, b) => a + b);
-    return sum / _gyroReadings.length;
   }
 
   @override

@@ -31,7 +31,7 @@ Future updateLogs(BuildContext context) async {}
 
 Future updatePpirSigIuia(BuildContext context) async {}
 
-Future queryTasksByStatus(BuildContext context) async {
+Future getTasksByStatus(BuildContext context) async {
   List<TasksRow>? forDispatchTasksData;
   List<TasksRow>? ongoingTasksData;
   List<TasksRow>? completedTasksData;
