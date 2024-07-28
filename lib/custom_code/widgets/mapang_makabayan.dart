@@ -92,6 +92,8 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
         routePoints.add(newPosition);
         locationLoaded = true;
       });
+      print(
+          'Current Location: Lat: ${position.latitude}, Lng: ${position.longitude}');
     });
   }
 
