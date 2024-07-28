@@ -198,7 +198,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(20.0, 80.0, 20.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -207,23 +207,36 @@ class _DashboardWidgetState extends State<DashboardWidget>
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Expanded(
-                                child: Text(
-                                  FFLocalizations.of(context).getText(
-                                    '5q4it2k3' /* Task Overview */,
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .headlineMedium
-                                      .override(
-                                        fontFamily: FlutterFlowTheme.of(context)
-                                            .headlineMediumFamily,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                        letterSpacing: 0.0,
-                                        useGoogleFonts: GoogleFonts.asMap()
-                                            .containsKey(
-                                                FlutterFlowTheme.of(context)
-                                                    .headlineMediumFamily),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.home_rounded,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      size: 30.0,
+                                    ),
+                                    Text(
+                                      FFLocalizations.of(context).getText(
+                                        '5q4it2k3' /* Task Overview */,
                                       ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .headlineMedium
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .headlineMediumFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBackground,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .headlineMediumFamily),
+                                          ),
+                                    ),
+                                  ].divide(const SizedBox(width: 10.0)),
                                 ),
                               ),
                               wrapWithModel(
@@ -1220,8 +1233,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                               children: [
                                                 Padding(
                                                   padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(16.0, 12.0,
-                                                          16.0, 12.0),
+                                                      .fromSTEB(
+                                                          0.0, 12.0, 0.0, 12.0),
                                                   child: FutureBuilder<
                                                       List<TasksRow>>(
                                                     future:

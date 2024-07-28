@@ -128,49 +128,125 @@ class _TasksWidgetState extends State<TasksWidget> {
                   color: const Color(0x00384E58),
                 ),
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Text(
-                              valueOrDefault<String>(
-                                containerPpirFormsRow?.ppirFarmername,
-                                'Farmer Name',
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .titleLarge
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .titleLargeFamily,
-                                    letterSpacing: 0.0,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .titleLargeFamily),
-                                  ),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            valueOrDefault<String>(
+                              containerPpirFormsRow?.ppirFarmername,
+                              'Farmer Name',
                             ),
+                            style: FlutterFlowTheme.of(context)
+                                .titleLarge
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .titleLargeFamily,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .titleLargeFamily),
+                                ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    Row(
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: 150.0,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  FaIcon(
+                                    FontAwesomeIcons.arrowCircleUp,
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    size: 24.0,
+                                  ),
+                                  Text(
+                                    '${containerPpirFormsRow?.ppirNorth} North',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily),
+                                        ),
+                                  ),
+                                ].divide(const SizedBox(width: 10.0)),
+                              ),
+                            ),
+                            Container(
+                              width: 150.0,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  FaIcon(
+                                    FontAwesomeIcons.arrowCircleLeft,
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    size: 24.0,
+                                  ),
+                                  Text(
+                                    '${containerPpirFormsRow?.ppirWest} West',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily),
+                                        ),
+                                  ),
+                                ].divide(const SizedBox(width: 10.0)),
+                              ),
+                            ),
+                          ].divide(const SizedBox(width: 10.0)),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                    child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Expanded(
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Container(
                                 width: 150.0,
@@ -182,13 +258,13 @@ class _TasksWidgetState extends State<TasksWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     FaIcon(
-                                      FontAwesomeIcons.arrowCircleUp,
+                                      FontAwesomeIcons.arrowCircleDown,
                                       color:
                                           FlutterFlowTheme.of(context).primary,
                                       size: 24.0,
                                     ),
                                     Text(
-                                      '${containerPpirFormsRow?.ppirNorth} North',
+                                      '${containerPpirFormsRow?.ppirSouth} South',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -215,13 +291,13 @@ class _TasksWidgetState extends State<TasksWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     FaIcon(
-                                      FontAwesomeIcons.arrowCircleLeft,
+                                      FontAwesomeIcons.arrowCircleRight,
                                       color:
                                           FlutterFlowTheme.of(context).primary,
                                       size: 24.0,
                                     ),
                                     Text(
-                                      '${containerPpirFormsRow?.ppirWest} West',
+                                      '${containerPpirFormsRow?.ppirEast} East',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -243,190 +319,97 @@ class _TasksWidgetState extends State<TasksWidget> {
                         ),
                       ],
                     ),
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Expanded(
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Container(
-                                  width: 150.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      FaIcon(
-                                        FontAwesomeIcons.arrowCircleDown,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        size: 24.0,
-                                      ),
-                                      Text(
-                                        '${containerPpirFormsRow?.ppirSouth} South',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMediumFamily,
-                                              letterSpacing: 0.0,
-                                              useGoogleFonts: GoogleFonts
-                                                      .asMap()
-                                                  .containsKey(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMediumFamily),
-                                            ),
-                                      ),
-                                    ].divide(const SizedBox(width: 10.0)),
-                                  ),
-                                ),
-                                Container(
-                                  width: 150.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      FaIcon(
-                                        FontAwesomeIcons.arrowCircleRight,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        size: 24.0,
-                                      ),
-                                      Text(
-                                        '${containerPpirFormsRow?.ppirEast} East',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMediumFamily,
-                                              letterSpacing: 0.0,
-                                              useGoogleFonts: GoogleFonts
-                                                      .asMap()
-                                                  .containsKey(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMediumFamily),
-                                            ),
-                                      ),
-                                    ].divide(const SizedBox(width: 10.0)),
-                                  ),
-                                ),
-                              ].divide(const SizedBox(width: 10.0)),
+                  ),
+                  Divider(
+                    height: 24.0,
+                    thickness: 1.0,
+                    color: FlutterFlowTheme.of(context).boarderForm,
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        FFLocalizations.of(context).getText(
+                          '83q8pggh' /* Assignment Id */,
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
+                              letterSpacing: 0.0,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily),
                             ),
-                          ),
-                        ],
                       ),
-                    ),
-                    Divider(
-                      height: 24.0,
-                      thickness: 1.0,
-                      color: FlutterFlowTheme.of(context).boarderForm,
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          FFLocalizations.of(context).getText(
-                            '83q8pggh' /* Assignment Id */,
-                          ),
-                          style: FlutterFlowTheme.of(context)
-                              .bodyMedium
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyMediumFamily,
-                                letterSpacing: 0.0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily),
-                              ),
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                8.0, 0.0, 0.0, 0.0),
-                            child: Text(
-                              valueOrDefault<String>(
-                                containerPpirFormsRow?.ppirAssignmentid,
-                                'Assignment Id',
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily,
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    letterSpacing: 0.0,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .bodyMediumFamily),
-                                  ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              8.0, 0.0, 0.0, 0.0),
+                          child: Text(
+                            valueOrDefault<String>(
+                              containerPpirFormsRow?.ppirAssignmentid,
+                              'Assignment Id',
                             ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily,
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily),
+                                ),
                           ),
                         ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          FFLocalizations.of(context).getText(
-                            '0869xbo0' /* Address */,
-                          ),
-                          style: FlutterFlowTheme.of(context)
-                              .bodyMedium
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyMediumFamily,
-                                letterSpacing: 0.0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily),
-                              ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        FFLocalizations.of(context).getText(
+                          '0869xbo0' /* Address */,
                         ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                8.0, 0.0, 0.0, 0.0),
-                            child: Text(
-                              valueOrDefault<String>(
-                                containerPpirFormsRow?.ppirAddress,
-                                'Address',
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily,
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    letterSpacing: 0.0,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .bodyMediumFamily),
-                                  ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
+                              letterSpacing: 0.0,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily),
                             ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              8.0, 0.0, 0.0, 0.0),
+                          child: Text(
+                            valueOrDefault<String>(
+                              containerPpirFormsRow?.ppirAddress,
+                              'Address',
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily,
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily),
+                                ),
                           ),
                         ),
-                      ],
-                    ),
-                  ],
-                ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ),

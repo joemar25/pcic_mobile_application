@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    '8h4zw7yj': {
+    'spmeh75k': {
       'en': '',
       'tl': '',
     },
@@ -182,33 +182,9 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // profile
   {
-    'wqj3hsrh': {
-      'en': 'Profile',
-      'tl': 'Profile',
-    },
-    '8cppvoty': {
-      'en': 'Account Settings',
-      'tl': 'Mga Setting ng Account',
-    },
-    '11dsrxu6': {
-      'en': 'Switch to Dark Mode',
-      'tl': 'Lumipat sa Dark Mode',
-    },
-    '3uy0o9hw': {
-      'en': 'Switch to Light Mode',
-      'tl': 'Lumipat sa Light Mode',
-    },
-    '4ibmae0j': {
-      'en': 'Edit Profile',
-      'tl': 'Ibahin ang profile',
-    },
-    'zqsohbrx': {
-      'en': 'Change Password',
-      'tl': 'Palitan ANG password',
-    },
-    'buokrewg': {
-      'en': 'Log Out',
-      'tl': 'Log Out',
+    '7xbq1sje': {
+      'en': 'Account',
+      'tl': '',
     },
     'kcupitz3': {
       'en': 'Account',
@@ -795,7 +771,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your email...',
       'tl': 'Ilagay ang iyong email...',
     },
-    '4kpqkrxa': {
+    '74t5ldbb': {
       'en': '',
       'tl': '',
     },

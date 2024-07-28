@@ -113,23 +113,34 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
-                            child: Text(
-                              FFLocalizations.of(context).getText(
-                                'pue7zwxs' /* Messages */,
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .headlineMedium
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .headlineMediumFamily,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                    letterSpacing: 0.0,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .headlineMediumFamily),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Icon(
+                                  Icons.message_rounded,
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                  size: 30.0,
+                                ),
+                                Text(
+                                  FFLocalizations.of(context).getText(
+                                    'pue7zwxs' /* Messages */,
                                   ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .headlineMedium
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .headlineMediumFamily,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
+                                        letterSpacing: 0.0,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .headlineMediumFamily),
+                                      ),
+                                ),
+                              ].divide(const SizedBox(width: 10.0)),
                             ),
                           ),
                           wrapWithModel(
