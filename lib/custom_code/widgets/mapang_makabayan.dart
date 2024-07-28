@@ -16,6 +16,7 @@ import 'dart:async';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart' as ll;
 import 'package:geolocator/geolocator.dart';
+import 'dart:math' show cos, sqrt, asin, pi;
 
 class MapangMakabayan extends StatefulWidget {
   final double? width;
@@ -35,10 +36,10 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   List<ll.LatLng> route = [];
   final MapController _mapController = MapController();
   StreamSubscription<Position>? _positionSubscription;
-  final double _minDistanceFilter =
-      1.0; // Set to 1 meter for more frequent updates
+  final double _minDistanceFilter = 3.0; // 3 meters
+  final double _minTurnAngle = 20.0; // Minimum angle to consider as a turn
   ll.LatLng? _lastValidLocation;
-  double _currentZoom = 19.0;
+  double _currentZoom = 18.0;
 
   @override
   void initState() {
@@ -99,7 +100,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     _positionSubscription = Geolocator.getPositionStream(
       locationSettings: const LocationSettings(
         accuracy: LocationAccuracy.bestForNavigation,
-        distanceFilter: 0, // Update as frequently as possible
+        distanceFilter: 1,
       ),
     ).listen((Position position) {
       _updateLocation(position);
@@ -110,23 +111,39 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     final newLocation = ll.LatLng(position.latitude, position.longitude);
 
     if (_lastValidLocation != null) {
-      final distance = Geolocator.distanceBetween(
-        _lastValidLocation!.latitude,
-        _lastValidLocation!.longitude,
-        newLocation.latitude,
-        newLocation.longitude,
-      );
-
+      final distance = calculateDistance(_lastValidLocation!, newLocation);
       print("Distance moved: $distance meters");
 
       if (distance >= _minDistanceFilter) {
+        bool shouldAddPoint = true;
+
+        if (route.length >= 2) {
+          final lastPoint = route[route.length - 1];
+          final secondLastPoint = route[route.length - 2];
+
+          final angle = calculateAngle(secondLastPoint, lastPoint, newLocation);
+          print("Turn angle: $angle degrees");
+
+          if (angle < _minTurnAngle) {
+            // If the turn is not significant, update the last point instead of adding a new one
+            shouldAddPoint = false;
+            route[route.length - 1] = newLocation;
+          }
+        }
+
+        if (shouldAddPoint) {
+          setState(() {
+            route.add(newLocation);
+          });
+          print("New point added. Total points: ${route.length}");
+        }
+
         setState(() {
           currentLocation = newLocation;
-          route.add(newLocation);
           _lastValidLocation = newLocation;
           _mapController.move(newLocation, _currentZoom);
         });
-        print("New point added. Total points: ${route.length}");
+
         print(
             "New location: ${newLocation.latitude}, ${newLocation.longitude}");
       }
@@ -135,10 +152,40 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
         currentLocation = newLocation;
         _lastValidLocation = newLocation;
         route.add(newLocation);
+
         _mapController.move(newLocation, _currentZoom);
       });
       print("First point added. Total points: ${route.length}");
     }
+  }
+
+  double calculateDistance(ll.LatLng start, ll.LatLng end) {
+    var p = 0.017453292519943295;
+    var c = cos;
+    var a = 0.5 -
+        c((end.latitude - start.latitude) * p) / 2 +
+        c(start.latitude * p) *
+            c(end.latitude * p) *
+            (1 - c((end.longitude - start.longitude) * p)) /
+            2;
+    return 12742 * asin(sqrt(a)) * 1000; // 2 * R; R = 6371 km
+  }
+
+  double calculateAngle(ll.LatLng p1, ll.LatLng p2, ll.LatLng p3) {
+    final vector1 =
+        ll.LatLng(p2.latitude - p1.latitude, p2.longitude - p1.longitude);
+    final vector2 =
+        ll.LatLng(p3.latitude - p2.latitude, p3.longitude - p2.longitude);
+
+    final dot = vector1.latitude * vector2.latitude +
+        vector1.longitude * vector2.longitude;
+    final mag1 = sqrt(vector1.latitude * vector1.latitude +
+        vector1.longitude * vector1.longitude);
+    final mag2 = sqrt(vector2.latitude * vector2.latitude +
+        vector2.longitude * vector2.longitude);
+
+    final cosAngle = dot / (mag1 * mag2);
+    return asin(cosAngle) * (180 / pi); // Convert to degrees
   }
 
   @override
