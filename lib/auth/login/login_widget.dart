@@ -92,7 +92,7 @@ class _LoginWidgetState extends State<LoginWidget>
                       ),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Flexible(
                             child: Row(
@@ -176,7 +176,7 @@ Geotagging  */
                   ),
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(40.0, 40.0, 40.0, 60.0),
+                        const EdgeInsetsDirectional.fromSTEB(40.0, 40.0, 40.0, 40.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -224,37 +224,14 @@ Geotagging  */
                             width: double.infinity,
                             child: Form(
                               key: _model.formKey,
-                              autovalidateMode: AutovalidateMode.always,
+                              autovalidateMode: AutovalidateMode.disabled,
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
                                   SizedBox(
-                                    width: valueOrDefault<double>(
-                                      () {
-                                        if (MediaQuery.sizeOf(context).width <
-                                            kBreakpointSmall) {
-                                          return MediaQuery.sizeOf(context)
-                                              .width;
-                                        } else if (MediaQuery.sizeOf(context)
-                                                .width <
-                                            kBreakpointMedium) {
-                                          return (MediaQuery.sizeOf(context)
-                                                  .width *
-                                              0.5);
-                                        } else if (MediaQuery.sizeOf(context)
-                                                .width <
-                                            kBreakpointLarge) {
-                                          return (MediaQuery.sizeOf(context)
-                                                  .width *
-                                              0.5);
-                                        } else {
-                                          return 4.0;
-                                        }
-                                      }(),
-                                      4.0,
-                                    ),
+                                    width: double.infinity,
                                     child: TextFormField(
                                       controller:
                                           _model.emailFieldTextController,
@@ -264,7 +241,7 @@ Geotagging  */
                                       decoration: InputDecoration(
                                         labelText:
                                             FFLocalizations.of(context).getText(
-                                          '71199j9k' /* Enter your email address */,
+                                          '71199j9k' /* Email Address */,
                                         ),
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .labelMedium
@@ -280,6 +257,10 @@ Geotagging  */
                                                               context)
                                                           .labelMediumFamily),
                                             ),
+                                        hintText:
+                                            FFLocalizations.of(context).getText(
+                                          'vy1wtl5k' /* Enter your email address... */,
+                                        ),
                                         hintStyle: FlutterFlowTheme.of(context)
                                             .labelMedium
                                             .override(
@@ -352,26 +333,7 @@ Geotagging  */
                                     ),
                                   ),
                                   SizedBox(
-                                    width: () {
-                                      if (MediaQuery.sizeOf(context).width <
-                                          kBreakpointSmall) {
-                                        return MediaQuery.sizeOf(context).width;
-                                      } else if (MediaQuery.sizeOf(context)
-                                              .width <
-                                          kBreakpointMedium) {
-                                        return (MediaQuery.sizeOf(context)
-                                                .width *
-                                            0.5);
-                                      } else if (MediaQuery.sizeOf(context)
-                                              .width <
-                                          kBreakpointLarge) {
-                                        return (MediaQuery.sizeOf(context)
-                                                .width *
-                                            0.5);
-                                      } else {
-                                        return 4.0;
-                                      }
-                                    }(),
+                                    width: double.infinity,
                                     child: TextFormField(
                                       controller:
                                           _model.passwordFieldTextController,
@@ -382,7 +344,7 @@ Geotagging  */
                                       decoration: InputDecoration(
                                         labelText:
                                             FFLocalizations.of(context).getText(
-                                          's11m4d5b' /* Enter your password */,
+                                          's11m4d5b' /* Password */,
                                         ),
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .labelMedium
@@ -398,6 +360,10 @@ Geotagging  */
                                                               context)
                                                           .labelMediumFamily),
                                             ),
+                                        hintText:
+                                            FFLocalizations.of(context).getText(
+                                          'ilhzvmb0' /* Enter your password... */,
+                                        ),
                                         hintStyle: FlutterFlowTheme.of(context)
                                             .labelMedium
                                             .override(
@@ -461,6 +427,8 @@ Geotagging  */
                                             _model.passwordFieldVisibility
                                                 ? Icons.visibility_outlined
                                                 : Icons.visibility_off_outlined,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
                                             size: 24.0,
                                           ),
                                         ),

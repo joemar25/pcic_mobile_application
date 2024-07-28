@@ -10,6 +10,7 @@ import 'backup_login_model.dart';
 export 'backup_login_model.dart';
 
 class BackupLoginWidget extends StatefulWidget {
+  /// This can be deleted once UI and other functionality is done.
   const BackupLoginWidget({super.key});
 
   @override

@@ -28,7 +28,7 @@ class MapBox extends StatefulWidget {
   final double? width;
   final double? height;
   final String? accessToken;
-  final LatLng? currentUserLocation;
+  final ll.LatLng? currentUserLocation;
 
   @override
   State<MapBox> createState() => _MapBoxState();
@@ -56,8 +56,8 @@ class _MapBoxState extends State<MapBox> {
       child: FlutterMap(
         mapController: _mapController,
         options: MapOptions(
-          center: mapCenter,
-          zoom: 13.0,
+          initialCenter: mapCenter,
+          initialZoom: 13.0,
         ),
         children: [
           TileLayer(
@@ -72,11 +72,11 @@ class _MapBoxState extends State<MapBox> {
             MarkerLayer(
               markers: [
                 Marker(
-                  width: 80.0,
-                  height: 80.0,
                   point:
                       ll.LatLng(userLocation.latitude, userLocation.longitude),
-                  child: Icon(
+                  width: 80.0,
+                  height: 80.0,
+                  child: const Icon(
                     Icons.location_on,
                     color: Colors.red,
                     size: 40.0,

@@ -13,24 +13,23 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 import 'dart:async';
-
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart' as ll;
 import 'package:geolocator/geolocator.dart';
 
 class MapangMakabayan extends StatefulWidget {
   const MapangMakabayan({
-    super.key,
+    Key? key,
     this.width,
     this.height,
     this.accessToken,
     this.userCurrentLocation,
-  });
+  }) : super(key: key);
 
   final double? width;
   final double? height;
   final String? accessToken;
-  final LatLng? userCurrentLocation;
+  final ll.LatLng? userCurrentLocation;
 
   @override
   State<MapangMakabayan> createState() => _MapangMakabayanState();
@@ -39,59 +38,64 @@ class MapangMakabayan extends StatefulWidget {
 class _MapangMakabayanState extends State<MapangMakabayan> {
   ll.LatLng? currentLocation;
   final List<ll.LatLng> route = [];
-  bool clearRoute = false;
   final MapController _mapController = MapController();
   Timer? timer;
+  bool routeStarted = false;
 
   Future<bool> checkPermissions() async {
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      throw Exception('Location is not enabled.');
+      throw Exception('Location services are disabled.');
     }
+
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        throw Exception('Location is not enabled.');
+        throw Exception('Location permissions are denied.');
       }
     }
+
     if (permission == LocationPermission.deniedForever) {
-      throw Exception('Location is not enabled.');
+      throw Exception('Location permissions are permanently denied.');
     }
+
     return true;
   }
 
   void getCurrentLocation() async {
-    Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
-    setState(() {
-      currentLocation = ll.LatLng(position.latitude, position.longitude);
-    });
-    _mapController.move(currentLocation!, 15);
+    try {
+      Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high,
+      );
 
-    Geolocator.getPositionStream(
-            locationSettings: LocationSettings(
-                accuracy: LocationAccuracy.best, distanceFilter: 3))
-        .listen((Position position) {
-      ll.LatLng newPosition = ll.LatLng(position.latitude, position.longitude);
-      if (mounted) {
-        setState(() {
-          currentLocation = newPosition;
-          if (FFAppState().routeStarted) {
-            if (clearRoute) {
-              route.clear();
-              clearRoute = false;
+      setState(() {
+        currentLocation = ll.LatLng(position.latitude, position.longitude);
+      });
+
+      _mapController.move(currentLocation!, 15.0);
+
+      Geolocator.getPositionStream(
+        locationSettings: const LocationSettings(
+          accuracy: LocationAccuracy.best,
+          distanceFilter: 3,
+        ),
+      ).listen((Position position) {
+        ll.LatLng newPosition =
+            ll.LatLng(position.latitude, position.longitude);
+        if (mounted) {
+          setState(() {
+            currentLocation = newPosition;
+            if (routeStarted) {
+              route.add(newPosition);
             }
-            route.add(newPosition);
-          } else {
-            if (!clearRoute) {
-              clearRoute = true;
-            }
-          }
-        });
-        _mapController.move(newPosition, _mapController.zoom);
-      }
-    });
+          });
+          _mapController.move(newPosition, 15.0);
+        }
+      });
+    } catch (e) {
+      print('Error getting location: $e');
+    }
   }
 
   @override
@@ -99,8 +103,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     super.initState();
     checkPermissions().then((permissionAccepted) {
       if (permissionAccepted) {
-        timer = Timer.periodic(Duration(seconds: 2), (Timer t) {});
-
+        timer = Timer.periodic(const Duration(seconds: 2), (Timer t) {});
         getCurrentLocation();
       }
     });
@@ -115,23 +118,23 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   @override
   Widget build(BuildContext context) {
     if (currentLocation == null) {
-      return Container(
+      return SizedBox(
         width: widget.width ?? MediaQuery.of(context).size.width,
         height: widget.height ?? MediaQuery.of(context).size.height,
-        child: Center(child: CircularProgressIndicator()),
+        child: const Center(child: CircularProgressIndicator()),
       );
     }
 
     return Stack(
       children: [
-        Container(
+        SizedBox(
           width: widget.width ?? MediaQuery.of(context).size.width,
           height: widget.height ?? MediaQuery.of(context).size.height,
           child: FlutterMap(
             mapController: _mapController,
             options: MapOptions(
-              center: currentLocation!,
-              zoom: 15.0,
+              initialCenter: currentLocation!,
+              initialZoom: 15.0,
             ),
             children: [
               TileLayer(
@@ -144,10 +147,10 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
               MarkerLayer(
                 markers: [
                   Marker(
+                    point: currentLocation!,
                     width: 80.0,
                     height: 80.0,
-                    point: currentLocation!,
-                    child: Icon(
+                    child: const Icon(
                       Icons.location_on,
                       color: Colors.red,
                       size: 40.0,
@@ -161,7 +164,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
                     Polyline(
                       points: route,
                       strokeWidth: 4.0,
-                      color: Colors.blue,
+                      color: Colors.red,
                     ),
                   ],
                 ),
@@ -172,11 +175,11 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
           child: Align(
             alignment: Alignment.center,
             child: Container(
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               color: Colors.white.withOpacity(0.8),
               child: Text(
                 'Lat: ${currentLocation!.latitude.toStringAsFixed(6)}\nLng: ${currentLocation!.longitude.toStringAsFixed(6)}',
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.red,
                   fontWeight: FontWeight.bold,
                   fontSize: 16,

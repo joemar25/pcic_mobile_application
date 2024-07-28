@@ -120,11 +120,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     '71199j9k': {
-      'en': 'Enter your email address',
+      'en': 'Email Address',
       'tl': '',
     },
     'vy1wtl5k': {
-      'en': '',
+      'en': 'Enter your email address...',
       'tl': '',
     },
     'f0cvuzcg': {
@@ -132,11 +132,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     's11m4d5b': {
-      'en': 'Enter your password',
+      'en': 'Password',
       'tl': '',
     },
-    '2ylyurvi': {
-      'en': '',
+    'ilhzvmb0': {
+      'en': 'Enter your password...',
       'tl': '',
     },
     '32i6nk7l': {
