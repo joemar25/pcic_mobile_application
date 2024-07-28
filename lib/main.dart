@@ -145,6 +145,7 @@ class _NavBarPageState extends State<NavBarPage> {
       'dashboard': const DashboardWidget(),
       'chats': const ChatsWidget(),
       'profile': const ProfileWidget(),
+      'backupChats': const BackupChatsWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -202,6 +203,20 @@ class _NavBarPageState extends State<NavBarPage> {
             ),
             label: FFLocalizations.of(context).getText(
               'kcupitz3' /* Account */,
+            ),
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(
+              Icons.chat_outlined,
+              size: 24.0,
+            ),
+            activeIcon: const Icon(
+              Icons.chat_rounded,
+              size: 24.0,
+            ),
+            label: FFLocalizations.of(context).getText(
+              '2ji9qsfy' /* Messages */,
             ),
             tooltip: '',
           )

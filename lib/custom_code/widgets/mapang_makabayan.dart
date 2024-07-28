@@ -36,23 +36,17 @@ class MapangMakabayan extends StatefulWidget {
 class _MapangMakabayanState extends State<MapangMakabayan> {
   ll.LatLng? currentLocation;
   bool locationLoaded = false;
-  List<ll.LatLng> routePoints = [];
-  StreamSubscription<Position>? positionStreamSubscription;
+  List<ll.LatLng> route = [];
 
   @override
   void initState() {
     super.initState();
     checkPermissions().then((hasPermission) {
       if (hasPermission) {
-        startTracking();
+        getCurrentLocation();
+        trackMovement();
       }
     });
-  }
-
-  @override
-  void dispose() {
-    positionStreamSubscription?.cancel();
-    super.dispose();
   }
 
   Future<bool> checkPermissions() async {
@@ -79,21 +73,34 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     return true;
   }
 
-  void startTracking() {
-    positionStreamSubscription = Geolocator.getPositionStream(
-      locationSettings: LocationSettings(
-        accuracy: LocationAccuracy.bestForNavigation,
-        distanceFilter: 10,
-      ),
-    ).listen((Position position) {
-      ll.LatLng newPosition = ll.LatLng(position.latitude, position.longitude);
+  Future<void> getCurrentLocation() async {
+    try {
+      Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.bestForNavigation,
+      );
+
       setState(() {
-        currentLocation = newPosition;
-        routePoints.add(newPosition);
+        currentLocation = ll.LatLng(position.latitude, position.longitude);
         locationLoaded = true;
       });
-      print(
-          'Current Location: Lat: ${position.latitude}, Lng: ${position.longitude}');
+    } catch (e) {
+      print('Error getting location: $e');
+    }
+  }
+
+  void trackMovement() {
+    Geolocator.getPositionStream(
+      locationSettings: LocationSettings(
+        accuracy: LocationAccuracy.bestForNavigation,
+        distanceFilter: 3,
+      ),
+    ).listen((Position position) {
+      setState(() {
+        currentLocation = ll.LatLng(position.latitude, position.longitude);
+        route.add(currentLocation!);
+        print(
+            'New Position: ${currentLocation!.latitude}, ${currentLocation!.longitude}');
+      });
     });
   }
 
@@ -123,16 +130,15 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
                   widget.accessToken ?? 'your_default_mapbox_access_token_here',
             },
           ),
-          if (routePoints.isNotEmpty)
-            PolylineLayer(
-              polylines: [
-                Polyline(
-                  points: routePoints,
-                  strokeWidth: 4.0,
-                  color: Colors.blue,
-                ),
-              ],
-            ),
+          PolylineLayer(
+            polylines: [
+              Polyline(
+                points: route,
+                strokeWidth: 4.0,
+                color: Colors.blue,
+              ),
+            ],
+          ),
           MarkerLayer(
             markers: [
               Marker(

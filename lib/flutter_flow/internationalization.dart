@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'rsmxjno9': {
+    '5yf7aezx': {
       'en': '',
       'tl': '',
     },
@@ -1000,6 +1000,25 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'd5ntmcmy': {
       'en': 'Home',
+      'tl': '',
+    },
+  },
+  // backupChats
+  {
+    'g0gx6khv': {
+      'en': 'Messages',
+      'tl': '',
+    },
+    'f4m503tg': {
+      'en': 'Below are messages with your friends.',
+      'tl': '',
+    },
+    'izdfmaub': {
+      'en': 'Below are messages with your friends.',
+      'tl': '',
+    },
+    '2ji9qsfy': {
+      'en': 'Messages',
       'tl': '',
     },
   },

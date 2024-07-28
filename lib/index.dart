@@ -31,3 +31,5 @@ export '/auth/initial_design/backup_forgot_password/backup_forgot_password_widge
     show BackupForgotPasswordWidget;
 export '/dashboard/initial_design/backup_dashboard/backup_dashboard_widget.dart'
     show BackupDashboardWidget;
+export '/dashboard/initial_design/backup_chats/backup_chats_widget.dart'
+    show BackupChatsWidget;
