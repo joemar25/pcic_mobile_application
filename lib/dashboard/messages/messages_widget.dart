@@ -86,10 +86,10 @@ class _MessagesWidgetState extends State<MessagesWidget> {
           body: SafeArea(
             top: true,
             child: Container(
-              width: 100.0,
-              height: 100.0,
+              width: double.infinity,
+              height: double.infinity,
               decoration: BoxDecoration(
-                color: FlutterFlowTheme.of(context).secondaryBackground,
+                color: FlutterFlowTheme.of(context).primaryBackground,
               ),
             ),
           ),

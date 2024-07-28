@@ -68,7 +68,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
               children: [
                 Icon(
                   Icons.add,
-                  color: FlutterFlowTheme.of(context).info,
+                  color: FlutterFlowTheme.of(context).primaryBackground,
                   size: 24.0,
                 ),
                 Row(

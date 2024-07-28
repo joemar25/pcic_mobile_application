@@ -298,7 +298,8 @@ Geotagging  */
                                       controller:
                                           _model.emailFieldTextController,
                                       focusNode: _model.emailFieldFocusNode,
-                                      autofocus: true,
+                                      autofocus: false,
+                                      textInputAction: TextInputAction.next,
                                       obscureText: false,
                                       decoration: InputDecoration(
                                         labelText:
@@ -392,6 +393,7 @@ Geotagging  */
                                                         .bodyMediumFamily),
                                             lineHeight: 2.5,
                                           ),
+                                      keyboardType: TextInputType.emailAddress,
                                       validator: _model
                                           .emailFieldTextControllerValidator
                                           .asValidator(context),
@@ -403,7 +405,8 @@ Geotagging  */
                                       controller:
                                           _model.passwordFieldTextController,
                                       focusNode: _model.passwordFieldFocusNode,
-                                      autofocus: true,
+                                      autofocus: false,
+                                      textInputAction: TextInputAction.go,
                                       obscureText:
                                           !_model.passwordFieldVisibility,
                                       decoration: InputDecoration(
@@ -515,6 +518,8 @@ Geotagging  */
                                                         .bodyMediumFamily),
                                             lineHeight: 2.5,
                                           ),
+                                      keyboardType:
+                                          TextInputType.visiblePassword,
                                       validator: _model
                                           .passwordFieldTextControllerValidator
                                           .asValidator(context),

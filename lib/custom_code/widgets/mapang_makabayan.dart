@@ -92,7 +92,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     Geolocator.getPositionStream(
       locationSettings: LocationSettings(
         accuracy: LocationAccuracy.bestForNavigation,
-        distanceFilter: 2,
+        distanceFilter: 3,
       ),
     ).listen((Position position) {
       setState(() {
