@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'lmeliphc': {
+    '7pzxwinr': {
       'en': '',
       'tl': '',
     },
@@ -669,6 +669,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Task Overview',
       'tl': '',
     },
+    '6h2ly5jn': {
+      'en': '',
+      'tl': '',
+    },
+    '8h7692fq': {
+      'en': 'Find your task...',
+      'tl': '',
+    },
+    'bcsla8bm': {
+      'en': 'Option 1',
+      'tl': '',
+    },
     'b756yymk': {
       'en': 'Welcome',
       'tl': '',
@@ -681,15 +693,27 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '!',
       'tl': '',
     },
-    'g26qp86u': {
+    'zldjmb1n': {
       'en': 'For Dispatch',
       'tl': '',
     },
-    'l5h2zf7y': {
+    'z1tii8os': {
       'en': 'Ongoing',
       'tl': '',
     },
-    'adjcyg03': {
+    '7r2z2p7i': {
+      'en': 'Completed',
+      'tl': '',
+    },
+    'ba2q7w08': {
+      'en': 'For Dispatch',
+      'tl': '',
+    },
+    'nxy1vlhk': {
+      'en': 'Ongoing',
+      'tl': '',
+    },
+    'c0a56ui1': {
       'en': 'Completed',
       'tl': '',
     },

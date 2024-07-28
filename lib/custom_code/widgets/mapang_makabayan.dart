@@ -12,54 +12,96 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'dart:async';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart' as ll;
 import 'package:geolocator/geolocator.dart';
 
 class MapangMakabayan extends StatefulWidget {
   const MapangMakabayan({
-    super.key,
+    Key? key,
     this.width,
     this.height,
     this.accessToken,
-    this.userCurrentLocation,
-  });
+  }) : super(key: key);
 
   final double? width;
   final double? height;
   final String? accessToken;
-  final LatLng? userCurrentLocation;
 
   @override
-  State<MapangMakabayan> createState() => _MapangMakabayanState();
+  _MapangMakabayanState createState() => _MapangMakabayanState();
 }
 
 class _MapangMakabayanState extends State<MapangMakabayan> {
   ll.LatLng? currentLocation;
-  final MapController _mapController = MapController();
+  bool locationLoaded = false;
 
   @override
   void initState() {
     super.initState();
-    if (widget.userCurrentLocation != null) {
-      currentLocation = ll.LatLng(widget.userCurrentLocation!.latitude,
-          widget.userCurrentLocation!.longitude);
+    checkPermissions().then((hasPermission) {
+      if (hasPermission) {
+        getCurrentLocation();
+      }
+    });
+  }
+
+  Future<bool> checkPermissions() async {
+    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      print('Location services are disabled.');
+      return false;
+    }
+
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        print('Location permissions are denied.');
+        return false;
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      print('Location permissions are permanently denied.');
+      return false;
+    }
+
+    return true;
+  }
+
+  void getCurrentLocation() async {
+    try {
+      Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.bestForNavigation,
+      );
+
+      setState(() {
+        currentLocation = ll.LatLng(position.latitude, position.longitude);
+        locationLoaded = true;
+      });
+    } catch (e) {
+      print('Error getting location: $e');
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    if (!locationLoaded) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+
+    return SizedBox(
       width: widget.width ?? MediaQuery.of(context).size.width,
       height: widget.height ?? MediaQuery.of(context).size.height,
       child: FlutterMap(
-        mapController: _mapController,
         options: MapOptions(
-          initialCenter: currentLocation ??
-              ll.LatLng(0, 0), // Default to (0,0) if no location provided
-          initialZoom: 17.0, // Closer zoom level
-          maxZoom: 19.0, // Set a maximum zoom level
-          minZoom: 2.0, // Set a minimum zoom level if needed
+          initialCenter: currentLocation!,
+          initialZoom: 18.0,
+          maxZoom: 19.0,
         ),
         children: [
           TileLayer(
@@ -70,21 +112,20 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
                   widget.accessToken ?? 'your_default_mapbox_access_token_here',
             },
           ),
-          if (currentLocation != null)
-            MarkerLayer(
-              markers: [
-                Marker(
-                  point: currentLocation!,
-                  width: 80.0,
-                  height: 80.0,
-                  child: const Icon(
-                    Icons.location_on,
-                    color: Colors.red,
-                    size: 40.0,
-                  ),
+          MarkerLayer(
+            markers: [
+              Marker(
+                point: currentLocation!,
+                width: 80.0,
+                height: 80.0,
+                child: Icon(
+                  Icons.location_on,
+                  color: Colors.red,
+                  size: 40.0,
                 ),
-              ],
-            ),
+              ),
+            ],
+          ),
         ],
       ),
     );
