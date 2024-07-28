@@ -266,6 +266,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/backupChats',
           requireAuth: true,
           builder: (context, params) => const BackupChatsWidget(),
+        ),
+        FFRoute(
+          name: 'backupMessages',
+          path: '/backupMessages',
+          requireAuth: true,
+          builder: (context, params) => BackupMessagesWidget(
+            chatId: params.getParam(
+              'chatId',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

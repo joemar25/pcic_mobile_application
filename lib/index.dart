@@ -33,3 +33,5 @@ export '/dashboard/initial_design/backup_dashboard/backup_dashboard_widget.dart'
     show BackupDashboardWidget;
 export '/dashboard/initial_design/backup_chats/backup_chats_widget.dart'
     show BackupChatsWidget;
+export '/dashboard/initial_design/backup_messages/backup_messages_widget.dart'
+    show BackupMessagesWidget;

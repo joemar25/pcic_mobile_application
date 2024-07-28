@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'cmbospsm': {
+    '273pplvw': {
       'en': '',
       'tl': '',
     },
@@ -296,20 +296,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // messages
   {
-    'emndaizi': {
-      'en': 'Type here to respond...',
-      'tl': 'Mag-type dito para tumugon...',
-    },
-    'rbq8h8d1': {
-      'en': 'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',
-      'tl':
-          'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',
-    },
-    'yav59de8': {
-      'en': 'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',
-      'tl':
-          'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',
-    },
     'zxojetjq': {
       'en': 'Home',
       'tl': 'Bahay',
@@ -791,6 +777,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your email...',
       'tl': 'Ilagay ang iyong email...',
     },
+    'n3y3hm1h': {
+      'en': '',
+      'tl': '',
+    },
     'x3d82sua': {
       'en': 'Send Link',
       'tl': 'Magpasa ng link',
@@ -1019,6 +1009,25 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '2ji9qsfy': {
       'en': 'Messages',
+      'tl': '',
+    },
+  },
+  // backupMessages
+  {
+    'sb8stsca': {
+      'en': 'Type here to respond...',
+      'tl': '',
+    },
+    'iydwmdqh': {
+      'en': 'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',
+      'tl': '',
+    },
+    'uyssa78w': {
+      'en': 'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',
+      'tl': '',
+    },
+    '6ftjw0qe': {
+      'en': 'Home',
       'tl': '',
     },
   },

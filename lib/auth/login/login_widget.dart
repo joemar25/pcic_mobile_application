@@ -376,7 +376,7 @@ Geotagging  */
                                         ),
                                         contentPadding:
                                             const EdgeInsetsDirectional.fromSTEB(
-                                                15.0, 0.0, 15.0, 0.0),
+                                                15.0, 12.0, 15.0, 12.0),
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -482,7 +482,7 @@ Geotagging  */
                                         ),
                                         contentPadding:
                                             const EdgeInsetsDirectional.fromSTEB(
-                                                15.0, 0.0, 15.0, 0.0),
+                                                15.0, 12.0, 15.0, 12.0),
                                         suffixIcon: InkWell(
                                           onTap: () => setState(
                                             () => _model

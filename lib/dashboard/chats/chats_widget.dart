@@ -148,7 +148,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                     width: double.infinity,
                     height: MediaQuery.sizeOf(context).height * 0.9,
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      color: FlutterFlowTheme.of(context).primaryBackground,
                       borderRadius: BorderRadius.circular(24.0),
                     ),
                     child: Padding(

@@ -92,19 +92,11 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     Geolocator.getPositionStream(
       locationSettings: LocationSettings(
         accuracy: LocationAccuracy.bestForNavigation,
-        distanceFilter: 3,
+        distanceFilter: 2,
       ),
     ).listen((Position position) {
       setState(() {
-        // Apply Kalman Filter to smooth the data
-        LatLng filteredLocation = kalmanFilterAlgo(
-          position.latitude,
-          position.longitude,
-        );
-
-        // Update the current location and route
-        currentLocation =
-            ll.LatLng(filteredLocation.latitude, filteredLocation.longitude);
+        currentLocation = ll.LatLng(position.latitude, position.longitude);
         route.add(currentLocation!);
 
         print(
