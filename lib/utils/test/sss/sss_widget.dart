@@ -47,7 +47,7 @@ class _SssWidgetState extends State<SssWidget> {
           automaticallyImplyLeading: false,
           title: Text(
             FFLocalizations.of(context).getText(
-              'yigfujp5' /* its chane */,
+              'yigfujp5' /* MAP */,
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: FlutterFlowTheme.of(context).headlineMediumFamily,
@@ -70,10 +70,10 @@ class _SssWidgetState extends State<SssWidget> {
               Expanded(
                 child: SizedBox(
                   width: double.infinity,
-                  height: 500.0,
+                  height: 770.0,
                   child: custom_widgets.MapangMakabayan(
                     width: double.infinity,
-                    height: 500.0,
+                    height: 770.0,
                     accessToken:
                         'pk.eyJ1IjoicXVhbmJ5c29sdXRpb25zIiwiYSI6ImNsdWhrejRwdDJyYnAya3A2NHFqbXlsbHEifQ.WJ5Ng-AO-dTrlkUHD_ebMw',
                   ),

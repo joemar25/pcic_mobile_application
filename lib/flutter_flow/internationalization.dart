@@ -111,6 +111,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'PCIC\nGeotagging ',
       'tl': '',
     },
+    '7n7i2ifo': {
+      'en': 'DONT DELETE SOMEONE IS TESTING HERE ',
+      'tl': '',
+    },
     'm6ts5v8u': {
       'en': 'Welcome Back',
       'tl': '',
@@ -139,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    '3bi9tywr': {
+    'lmeliphc': {
       'en': '',
       'tl': '',
     },
@@ -677,6 +681,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '!',
       'tl': '',
     },
+    'g26qp86u': {
+      'en': 'For Dispatch',
+      'tl': '',
+    },
+    'l5h2zf7y': {
+      'en': 'Ongoing',
+      'tl': '',
+    },
+    'adjcyg03': {
+      'en': 'Completed',
+      'tl': '',
+    },
     '67jgj8w9': {
       'en': 'Home',
       'tl': 'Bahay',
@@ -809,7 +825,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // sss
   {
     'yigfujp5': {
-      'en': 'its chane',
+      'en': 'MAP',
       'tl': '',
     },
     'p5v52glk': {
