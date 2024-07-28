@@ -199,7 +199,10 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                 fadeOutDuration:
                                                     const Duration(milliseconds: 500),
                                                 imageUrl:
-                                                    _model.uploadedFileUrl,
+                                                    valueOrDefault<String>(
+                                                  _model.uploadedFileUrl,
+                                                  'https://newsko.com.ph/wp-content/uploads/2024/06/Mikha.jpg',
+                                                ),
                                                 fit: BoxFit.cover,
                                               ),
                                             ),
