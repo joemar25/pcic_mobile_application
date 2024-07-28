@@ -720,7 +720,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget> {
                               ),
                               Text(
                                 FFLocalizations.of(context).getText(
-                                  'pstdbhmc' /* Finish */,
+                                  'u0seqb72' /* Finish */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge

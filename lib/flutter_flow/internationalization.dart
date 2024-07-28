@@ -139,11 +139,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Password',
       'tl': '',
     },
-    'ilhzvmb0': {
+    '6pn3zhxj': {
       'en': 'Enter your password...',
       'tl': '',
     },
-    'i3jssx7n': {
+    'oruqmosv': {
       'en': '',
       'tl': '',
     },
@@ -302,7 +302,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    '2ylyurvi': {
+    '8kwpczkh': {
       'en': '',
       'tl': '',
     },
@@ -787,7 +787,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your email...',
       'tl': 'Ilagay ang iyong email...',
     },
-    'hr6nz9cv': {
+    '58ghxdkn': {
       'en': '',
       'tl': '',
     },
@@ -822,7 +822,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Assignment Id',
       'tl': 'Assignment Id',
     },
-    'pstdbhmc': {
+    'u0seqb72': {
       'en': 'Finish',
       'tl': 'Tapusin',
     },
@@ -841,9 +841,9 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Mar said, This is under maintenance!',
       'tl': 'Sabi ni Mar, Under maintenance ito!',
     },
-    'z8fvrgds': {
+    '8n2rvzxw': {
       'en': 'Home',
-      'tl': '',
+      'tl': 'Bahay',
     },
   },
   // sss
@@ -911,7 +911,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Please choose an option from the dropdown',
       'tl': '',
     },
-    'vd37iph9': {
+    'z8fvrgds': {
       'en': 'Home',
       'tl': '',
     },

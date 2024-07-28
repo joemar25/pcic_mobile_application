@@ -19,6 +19,7 @@ import 'package:sensors_plus/sensors_plus.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart' as ll;
 import 'package:geolocator/geolocator.dart';
+import 'package:vector_math/vector_math.dart' show radians;
 
 class MapangMakabayan extends StatefulWidget {
   final double? width;
@@ -38,9 +39,14 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   List<ll.LatLng> route = [];
   double _heading = 0;
   final MapController _mapController = MapController();
-  final List<double> _gyroReadings = List.filled(10, 0);
+  final List<double> _gyroReadings = List.filled(20, 0);
   int _gyroIndex = 0;
   StreamSubscription<GyroscopeEvent>? _gyroscopeSubscription;
+  StreamSubscription<Position>? _positionSubscription;
+  final double _minDistanceFilter = 2.0; // meters
+  final double _headingFilter = 5.0; // degrees
+  ll.LatLng? _lastValidLocation;
+  double _currentZoom = 19.0;
 
   @override
   void initState() {
@@ -86,25 +92,63 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
 
       setState(() {
         currentLocation = ll.LatLng(position.latitude, position.longitude);
+        _lastValidLocation = currentLocation;
         locationLoaded = true;
+        route.add(currentLocation!);
       });
+      _mapController.move(currentLocation!, _currentZoom);
     } catch (e) {
       print('Error getting location: $e');
     }
   }
 
   void trackMovement() {
-    Geolocator.getPositionStream(
+    _positionSubscription = Geolocator.getPositionStream(
       locationSettings: const LocationSettings(
-        accuracy: LocationAccuracy.high,
-        distanceFilter: 3,
+        accuracy: LocationAccuracy.bestForNavigation,
+        distanceFilter: 1,
       ),
     ).listen((Position position) {
-      setState(() {
-        currentLocation = ll.LatLng(position.latitude, position.longitude);
-        route.add(currentLocation!);
-      });
+      _updateLocation(position);
     });
+  }
+
+  void _updateLocation(Position position) {
+    final newLocation = ll.LatLng(position.latitude, position.longitude);
+
+    if (_lastValidLocation != null) {
+      final distance = Geolocator.distanceBetween(
+        _lastValidLocation!.latitude,
+        _lastValidLocation!.longitude,
+        newLocation.latitude,
+        newLocation.longitude,
+      );
+
+      final bearing = Geolocator.bearingBetween(
+        _lastValidLocation!.latitude,
+        _lastValidLocation!.longitude,
+        newLocation.latitude,
+        newLocation.longitude,
+      );
+
+      if (distance >= _minDistanceFilter ||
+          (bearing - _heading).abs() >= _headingFilter) {
+        setState(() {
+          currentLocation = newLocation;
+          _lastValidLocation = newLocation;
+          route.add(newLocation);
+          _mapController.move(newLocation, _currentZoom);
+          _heading = bearing;
+        });
+      }
+    } else {
+      setState(() {
+        currentLocation = newLocation;
+        _lastValidLocation = newLocation;
+        route.add(newLocation);
+        _mapController.move(newLocation, _currentZoom);
+      });
+    }
   }
 
   void listenToGyroscope() {
@@ -126,6 +170,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   @override
   void dispose() {
     _gyroscopeSubscription?.cancel();
+    _positionSubscription?.cancel();
     super.dispose();
   }
 
@@ -141,9 +186,16 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
       child: FlutterMap(
         mapController: _mapController,
         options: MapOptions(
-          initialCenter: currentLocation ?? ll.LatLng(0, 0),
-          initialZoom: 19.0,
+          initialCenter: currentLocation!,
+          initialZoom: _currentZoom,
           maxZoom: 23.0,
+          onMapEvent: (MapEvent event) {
+            if (event is MapEventMoveEnd) {
+              setState(() {
+                _currentZoom = _mapController.camera.zoom;
+              });
+            }
+          },
         ),
         children: [
           TileLayer(
@@ -160,13 +212,15 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
                 points: route,
                 strokeWidth: 4.0,
                 color: Colors.blue,
+                strokeCap: StrokeCap.round,
+                strokeJoin: StrokeJoin.round,
               ),
             ],
           ),
           MarkerLayer(
             markers: [
               Marker(
-                point: currentLocation ?? ll.LatLng(0, 0),
+                point: currentLocation!,
                 width: 80.0,
                 height: 80.0,
                 child: FlashlightMarker(heading: _heading),
@@ -187,7 +241,7 @@ class FlashlightMarker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Transform.rotate(
-      angle: -heading,
+      angle: -radians(heading),
       child: Stack(
         alignment: Alignment.center,
         children: [
