@@ -277,6 +277,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'backupProfile',
+          path: '/backupProfile',
+          requireAuth: true,
+          builder: (context, params) => const BackupProfileWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

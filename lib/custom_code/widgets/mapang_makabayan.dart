@@ -12,11 +12,12 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'dart:math' as math;
 import 'dart:async';
+import 'dart:math' as math;
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart' as ll;
 import 'package:geolocator/geolocator.dart';
+import 'package:sensors_plus/sensors_plus.dart';
 
 class MapangMakabayan extends StatefulWidget {
   const MapangMakabayan({
@@ -34,11 +35,11 @@ class MapangMakabayan extends StatefulWidget {
   _MapangMakabayanState createState() => _MapangMakabayanState();
 }
 
-class _MapangMakabayanState extends State<MapangMakabayan>
-    with SingleTickerProviderStateMixin {
+class _MapangMakabayanState extends State<MapangMakabayan> {
   ll.LatLng? currentLocation;
   bool locationLoaded = false;
   List<ll.LatLng> route = [];
+  double heading = 0.0;
 
   @override
   void initState() {
@@ -49,11 +50,7 @@ class _MapangMakabayanState extends State<MapangMakabayan>
         trackMovement();
       }
     });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
+    listenToHeading();
   }
 
   Future<bool> checkPermissions() async {
@@ -111,6 +108,14 @@ class _MapangMakabayanState extends State<MapangMakabayan>
     });
   }
 
+  void listenToHeading() {
+    gyroscopeEventStream().listen((GyroscopeEvent event) {
+      setState(() {
+        heading = event.z * (180 / math.pi);
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     if (!locationLoaded) {
@@ -150,9 +155,12 @@ class _MapangMakabayanState extends State<MapangMakabayan>
             markers: [
               Marker(
                 point: currentLocation!,
-                width: 80.0,
-                height: 80.0,
-                child: FlashlightMarker(),
+                width: 40.0,
+                height: 40.0,
+                child: Transform.rotate(
+                  angle: heading * (math.pi / 180),
+                  child: FlashlightMarker(),
+                ),
               ),
             ],
           ),
@@ -169,7 +177,7 @@ class FlashlightMarker extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         CustomPaint(
-          size: Size(80, 80),
+          size: Size(40, 40),
           painter: FlashlightBeamPainter(),
         ),
         Container(
@@ -194,8 +202,8 @@ class FlashlightBeamPainter extends CustomPainter {
 
     final Path path = Path()
       ..moveTo(size.width / 2, size.height / 2)
-      ..lineTo(size.width / 2 - 30, size.height / 2 + 30)
-      ..lineTo(size.width / 2 + 30, size.height / 2 + 30)
+      ..lineTo(size.width / 2 - 20, size.height)
+      ..lineTo(size.width / 2 + 20, size.height)
       ..close();
 
     canvas.drawPath(path, paint);

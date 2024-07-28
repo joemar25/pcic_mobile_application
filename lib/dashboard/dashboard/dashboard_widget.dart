@@ -198,7 +198,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 80.0, 20.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -1129,7 +1129,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                 ),
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 160.0),
+                                      0.0, 0.0, 0.0, 20.0),
                                   child: Container(
                                     height:
                                         MediaQuery.sizeOf(context).height * 0.7,

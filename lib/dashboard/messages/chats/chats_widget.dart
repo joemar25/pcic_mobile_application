@@ -67,7 +67,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Icon(
-                  Icons.add,
+                  Icons.edit_rounded,
                   color: FlutterFlowTheme.of(context).primaryBackground,
                   size: 24.0,
                 ),
@@ -76,7 +76,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                   children: [
                     Text(
                       FFLocalizations.of(context).getText(
-                        'ks6c14gr' /* New Message */,
+                        'ks6c14gr' /* Compose */,
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily:
