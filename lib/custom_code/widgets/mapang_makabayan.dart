@@ -36,11 +36,14 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   List<ll.LatLng> route = [];
   final MapController _mapController = MapController();
   StreamSubscription<Position>? _positionSubscription;
-  final double _minDistanceFilter = 0.5; // 0.5 meters for higher precision
+  final double _minDistanceFilter =
+      1.0; // 1 meter for balance between accuracy and smoothness
   ll.LatLng? _lastValidLocation;
-  double _currentZoom = 20.0; // Increased zoom for more detail
+  double _currentZoom = 19.0; // Slightly reduced zoom for better context
   bool _isTracking = false;
   List<ll.LatLng> pinDrops = [];
+  List<Position> _recentPositions = [];
+  final int _smoothingFactor = 5; // Number of recent positions to average
 
   @override
   void initState() {
@@ -98,11 +101,12 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
       _isTracking = true;
       route.clear();
       pinDrops.clear();
+      _recentPositions.clear();
     });
     _positionSubscription = Geolocator.getPositionStream(
       locationSettings: const LocationSettings(
         accuracy: LocationAccuracy.bestForNavigation,
-        distanceFilter: 0, // Get all updates
+        distanceFilter: 0, // Get all updates for smooth tracking
       ),
     ).listen((Position position) {
       _updateLocation(position);
@@ -117,26 +121,57 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   }
 
   void _updateLocation(Position position) {
-    final newLocation = ll.LatLng(position.latitude, position.longitude);
+    _recentPositions.add(position);
+    if (_recentPositions.length > _smoothingFactor) {
+      _recentPositions.removeAt(0);
+    }
 
-    if (_lastValidLocation != null && _isTracking) {
-      final distance = calculateDistance(_lastValidLocation!, newLocation);
+    if (_recentPositions.length == _smoothingFactor) {
+      Position averagePosition = _calculateAveragePosition(_recentPositions);
+      final newLocation =
+          ll.LatLng(averagePosition.latitude, averagePosition.longitude);
 
-      if (distance >= _minDistanceFilter) {
+      if (_lastValidLocation != null && _isTracking) {
+        final distance = calculateDistance(_lastValidLocation!, newLocation);
+
+        if (distance >= _minDistanceFilter) {
+          setState(() {
+            route.add(newLocation);
+            _lastValidLocation = newLocation;
+            currentLocation = newLocation;
+            _mapController.move(newLocation, _currentZoom);
+          });
+        }
+      } else {
         setState(() {
-          route.add(newLocation);
           _lastValidLocation = newLocation;
           currentLocation = newLocation;
           _mapController.move(newLocation, _currentZoom);
         });
       }
-    } else {
-      setState(() {
-        _lastValidLocation = newLocation;
-        currentLocation = newLocation;
-        _mapController.move(newLocation, _currentZoom);
-      });
     }
+  }
+
+  Position _calculateAveragePosition(List<Position> positions) {
+    double latSum = 0, lonSum = 0, altSum = 0, accSum = 0;
+    for (var position in positions) {
+      latSum += position.latitude;
+      lonSum += position.longitude;
+      altSum += position.altitude;
+      accSum += position.accuracy;
+    }
+    return Position(
+      latitude: latSum / positions.length,
+      longitude: lonSum / positions.length,
+      altitude: altSum / positions.length,
+      accuracy: accSum / positions.length,
+      speed: 0,
+      speedAccuracy: 0,
+      heading: 0,
+      timestamp: DateTime.now(),
+      altitudeAccuracy: 0,
+      headingAccuracy: 0,
+    );
   }
 
   void dropPin() {
@@ -197,7 +232,8 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
             options: MapOptions(
               initialCenter: currentLocation!,
               initialZoom: _currentZoom,
-              maxZoom: 23.0,
+              maxZoom: 22.0,
+              minZoom: 15.0,
             ),
             children: [
               TileLayer(
