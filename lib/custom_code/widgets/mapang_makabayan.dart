@@ -148,7 +148,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
         children: [
           TileLayer(
             urlTemplate:
-                'https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token={accessToken}',
+                'https://api.mapbox.com/styles/v1/quanbysolutions/cluhoxol502q801oi8od2cmvz/tiles/{z}/{x}/{y}?access_token={accessToken}',
             additionalOptions: {
               'accessToken':
                   widget.accessToken ?? 'your_default_mapbox_access_token_here',

@@ -25,8 +25,6 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   TextEditingController? textController;
   String? textFieldSelectedOption;
   String? Function(BuildContext, String?)? textControllerValidator;
-  // Stores action output result for [Backend Call - Query Rows] action in Row widget.
-  List<TasksRow>? forDispatchData;
   // State field(s) for TabBar widget.
   TabController? tabBarController;
   int get tabBarCurrentIndex =>
@@ -57,5 +55,49 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
     tasksModels1.dispose();
     tasksModels2.dispose();
     tasksModels3.dispose();
+  }
+
+  /// Action blocks.
+  Future queryTasksByStatus(BuildContext context) async {
+    List<TasksRow>? forDispatchTasksData;
+    List<TasksRow>? ongoingTasksData;
+    List<TasksRow>? completedTasksData;
+
+    forDispatchTasksData = await TasksTable().queryRows(
+      queryFn: (q) => q
+          .eq(
+            'task_type',
+            'for dispatch',
+          )
+          .order('updated_at'),
+    );
+    ongoingTasksData = await TasksTable().queryRows(
+      queryFn: (q) => q
+          .eq(
+            'task_type',
+            'ongoing',
+          )
+          .order('updated_at'),
+    );
+    completedTasksData = await TasksTable().queryRows(
+      queryFn: (q) => q
+          .eq(
+            'task_type',
+            'completed',
+          )
+          .order('updated_at'),
+    );
+    forDispatchCount = valueOrDefault<int>(
+      forDispatchTasksData.length,
+      0,
+    );
+    ongoingCount = valueOrDefault<int>(
+      ongoingTasksData.length,
+      0,
+    );
+    completedCount = valueOrDefault<int>(
+      completedTasksData.length,
+      0,
+    );
   }
 }
