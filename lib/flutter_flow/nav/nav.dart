@@ -283,6 +283,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/backupProfile',
           requireAuth: true,
           builder: (context, params) => const BackupProfileWidget(),
+        ),
+        FFRoute(
+          name: 'dashboardCopyT',
+          path: '/dashboardT',
+          requireAuth: true,
+          builder: (context, params) => const DashboardCopyTWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

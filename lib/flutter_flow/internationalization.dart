@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'spmeh75k': {
+    '2wiwh7r0': {
       'en': '',
       'tl': '',
     },
@@ -184,6 +184,22 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '7xbq1sje': {
       'en': 'Account',
+      'tl': '',
+    },
+    'j5gz4150': {
+      'en': 'Dark Mode',
+      'tl': '',
+    },
+    'fr9mgbfc': {
+      'en': 'Edit Account Information',
+      'tl': '',
+    },
+    'bl5bsc0f': {
+      'en': 'Change Password',
+      'tl': '',
+    },
+    'qi3464p6': {
+      'en': 'Sign Out',
       'tl': '',
     },
     'kcupitz3': {
@@ -673,15 +689,15 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '!',
       'tl': '',
     },
-    'zldjmb1n': {
+    'j8akb40n': {
       'en': 'For Dispatch',
       'tl': '',
     },
-    'z1tii8os': {
+    'qvw65nm7': {
       'en': 'Ongoing',
       'tl': '',
     },
-    '7r2z2p7i': {
+    'gtnjyr06': {
       'en': 'Completed',
       'tl': '',
     },
@@ -771,7 +787,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your email...',
       'tl': 'Ilagay ang iyong email...',
     },
-    '74t5ldbb': {
+    'zythkgh3': {
       'en': '',
       'tl': '',
     },
@@ -1057,6 +1073,65 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'w3okt7py': {
       'en': 'Account',
+      'tl': '',
+    },
+  },
+  // dashboardCopyT
+  {
+    'y8ived0u': {
+      'en': 'Task Overview',
+      'tl': '',
+    },
+    'tx5k0qwh': {
+      'en': '',
+      'tl': '',
+    },
+    'j69ns5gm': {
+      'en': 'Find your task...',
+      'tl': '',
+    },
+    'loiqqfvp': {
+      'en': 'Option 1',
+      'tl': '',
+    },
+    'gasjz8kd': {
+      'en': 'Welcome',
+      'tl': '',
+    },
+    'xwsiz6p1': {
+      'en': 'Good morning ',
+      'tl': '',
+    },
+    'rhhe0cj8': {
+      'en': '!',
+      'tl': '',
+    },
+    'aw33rrrd': {
+      'en': 'For Dispatch',
+      'tl': '',
+    },
+    'ia7u6z04': {
+      'en': 'Ongoing',
+      'tl': '',
+    },
+    '1qestrgx': {
+      'en': 'Completed',
+      'tl': '',
+    },
+    '5vjxpdtf': {
+      'en': 'For Dispatch',
+      'tl': '',
+    },
+    'mf6r61ay': {
+      'en': 'Ongoing',
+      'tl': '',
+    },
+    'd6hfm13n': {
+      'en': 'Completed',
+      'tl': '',
+    },
+    'wlc4fsfy': {
+      'en': 'Home',
       'tl': '',
     },
   },

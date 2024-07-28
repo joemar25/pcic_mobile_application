@@ -166,7 +166,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                             children: [
                               Row(
                                 mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   Container(
                                     width: 50.0,

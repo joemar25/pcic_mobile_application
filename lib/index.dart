@@ -38,3 +38,5 @@ export '/dashboard/initial_design/backup_messages/backup_messages_widget.dart'
     show BackupMessagesWidget;
 export '/dashboard/initial_design/backup_profile/backup_profile_widget.dart'
     show BackupProfileWidget;
+export '/dashboard/initial_design/dashboard_copy_t/dashboard_copy_t_widget.dart'
+    show DashboardCopyTWidget;
