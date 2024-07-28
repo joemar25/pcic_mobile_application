@@ -9,7 +9,6 @@ import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/empty_lists/empty_lists_widget.dart';
 import '/utils/components/tasks/tasks_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import '/flutter_flow/permissions_util.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -62,69 +61,19 @@ class _DashboardWidgetState extends State<DashboardWidget>
           'completed',
         ),
       );
-      _model.fdCount = valueOrDefault<int>(
+      _model.fdc = valueOrDefault<int>(
         _model.forDispatchTasksData?.length,
         0,
       );
-      _model.oCount = valueOrDefault<int>(
+      _model.onc = valueOrDefault<int>(
         _model.ongoingTasksData?.length,
         0,
       );
-      _model.cCount = valueOrDefault<int>(
+      _model.cc = valueOrDefault<int>(
         _model.completedTasksData?.length,
         0,
       );
       setState(() {});
-      await requestPermission(locationPermission);
-      if (await getPermissionStatus(locationPermission)) {
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              'Location not permitted',
-              style: TextStyle(
-                color: FlutterFlowTheme.of(context).primaryText,
-              ),
-            ),
-            duration: const Duration(milliseconds: 4000),
-            backgroundColor: FlutterFlowTheme.of(context).error,
-          ),
-        );
-      }
-
-      await requestPermission(cameraPermission);
-      if (await getPermissionStatus(cameraPermission)) {
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              'Camera not permitted',
-              style: TextStyle(
-                color: FlutterFlowTheme.of(context).primaryText,
-              ),
-            ),
-            duration: const Duration(milliseconds: 4000),
-            backgroundColor: FlutterFlowTheme.of(context).error,
-          ),
-        );
-      }
-
-      await requestPermission(photoLibraryPermission);
-      if (await getPermissionStatus(photoLibraryPermission)) {
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              'Photo Library not permitted',
-              style: TextStyle(
-                color: FlutterFlowTheme.of(context).primaryText,
-              ),
-            ),
-            duration: const Duration(milliseconds: 4000),
-            backgroundColor: FlutterFlowTheme.of(context).error,
-          ),
-        );
-      }
     });
 
     _model.textController ??= TextEditingController();
@@ -132,7 +81,20 @@ class _DashboardWidgetState extends State<DashboardWidget>
     _model.tabBarController = TabController(
       vsync: this,
       length: 3,
-      initialIndex: 0,
+      initialIndex: min(
+          valueOrDefault<int>(
+            () {
+              if (_model.fdc! >= _model.onc!) {
+                return 1;
+              } else if (_model.onc! >= _model.cc!) {
+                return 2;
+              } else {
+                return 3;
+              }
+            }(),
+            0,
+          ),
+          2),
     )..addListener(() => setState(() {}));
     animationsMap.addAll({
       'containerOnPageLoadAnimation1': AnimationInfo(
@@ -793,7 +755,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                         Text(
                                                           valueOrDefault<
                                                               String>(
-                                                            _model.fdCount
+                                                            _model.fdc
                                                                 ?.toString(),
                                                             '0',
                                                           ),
@@ -915,7 +877,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                         Text(
                                                           valueOrDefault<
                                                               String>(
-                                                            _model.oCount
+                                                            _model.onc
                                                                 ?.toString(),
                                                             '0',
                                                           ),
@@ -1040,7 +1002,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                         Text(
                                                           valueOrDefault<
                                                               String>(
-                                                            _model.cCount
+                                                            _model.cc
                                                                 ?.toString(),
                                                             '0',
                                                           ),

@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'nody1ecu': {
+    '5sxlpblk': {
       'en': '',
       'tl': '',
     },
@@ -787,7 +787,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your email...',
       'tl': 'Ilagay ang iyong email...',
     },
-    'w4luodpd': {
+    'cwt7rmjp': {
       'en': '',
       'tl': '',
     },
@@ -1073,65 +1073,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'w3okt7py': {
       'en': 'Account',
-      'tl': '',
-    },
-  },
-  // dashboardCopyT
-  {
-    'y8ived0u': {
-      'en': 'Task Overview',
-      'tl': '',
-    },
-    'tx5k0qwh': {
-      'en': '',
-      'tl': '',
-    },
-    'j69ns5gm': {
-      'en': 'Find your task...',
-      'tl': '',
-    },
-    'loiqqfvp': {
-      'en': 'Option 1',
-      'tl': '',
-    },
-    'gasjz8kd': {
-      'en': 'Welcome',
-      'tl': '',
-    },
-    'xwsiz6p1': {
-      'en': 'Good morning ',
-      'tl': '',
-    },
-    'rhhe0cj8': {
-      'en': '!',
-      'tl': '',
-    },
-    'aw33rrrd': {
-      'en': 'For Dispatch',
-      'tl': '',
-    },
-    'ia7u6z04': {
-      'en': 'Ongoing',
-      'tl': '',
-    },
-    '1qestrgx': {
-      'en': 'Completed',
-      'tl': '',
-    },
-    '5vjxpdtf': {
-      'en': 'For Dispatch',
-      'tl': '',
-    },
-    'mf6r61ay': {
-      'en': 'Ongoing',
-      'tl': '',
-    },
-    'd6hfm13n': {
-      'en': 'Completed',
-      'tl': '',
-    },
-    'wlc4fsfy': {
-      'en': 'Home',
       'tl': '',
     },
   },

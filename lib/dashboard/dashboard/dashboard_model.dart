@@ -8,11 +8,11 @@ import 'package:flutter/material.dart';
 class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   ///  Local state fields for this page.
 
-  int? fdCount = 0;
+  int? fdc = 0;
 
-  int? oCount = 0;
+  int? onc = 0;
 
-  int? cCount = 0;
+  int? cc = 0;
 
   ///  State fields for stateful widgets in this page.
 

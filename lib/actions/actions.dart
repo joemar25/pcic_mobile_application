@@ -30,34 +30,3 @@ Future updateUserStatusIfOnline(BuildContext context) async {
 Future updateLogs(BuildContext context) async {}
 
 Future updatePpirSigIuia(BuildContext context) async {}
-
-Future getTasksByStatus(BuildContext context) async {
-  List<TasksRow>? forDispatchTasksData;
-  List<TasksRow>? ongoingTasksData;
-  List<TasksRow>? completedTasksData;
-
-  forDispatchTasksData = await TasksTable().queryRows(
-    queryFn: (q) => q
-        .eq(
-          'status',
-          'for dispatch',
-        )
-        .order('updated_at'),
-  );
-  ongoingTasksData = await TasksTable().queryRows(
-    queryFn: (q) => q
-        .eq(
-          'status',
-          'ongoing',
-        )
-        .order('updated_at'),
-  );
-  completedTasksData = await TasksTable().queryRows(
-    queryFn: (q) => q
-        .eq(
-          'status',
-          'completed',
-        )
-        .order('updated_at'),
-  );
-}

@@ -48,10 +48,8 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   final List<Position> _recentPositions = [];
   final int _positionsToAverage = 5;
 
-  // Low-pass filter variables
   double _filteredHeading = 0;
-  final double _alpha =
-      0.1; // Adjust this value to change filter strength (0-1)
+  final double _alpha = 0.3;
 
   @override
   void initState() {
@@ -152,7 +150,6 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
             route.add(newLocation);
             _mapController.move(newLocation, _currentZoom);
 
-            // Update heading if we've moved enough
             if (distance >= _minDistanceFilter) {
               _heading = bearing;
               _filteredHeading = _heading;
@@ -194,10 +191,9 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   void listenToGyroscope() {
     _gyroscopeSubscription =
         gyroscopeEventStream().listen((GyroscopeEvent event) {
-      // Apply low-pass filter to smooth out gyroscope data
       _filteredHeading = _filteredHeading +
-          _alpha * ((_heading + event.z * 180 / math.pi) - _filteredHeading);
-      _filteredHeading = _filteredHeading % 360; // Normalize to 0-360 range
+          _alpha * ((_heading - event.z * 180 / math.pi) - _filteredHeading);
+      _filteredHeading = _filteredHeading % 360;
 
       setState(() {
         _heading = _filteredHeading;
@@ -250,8 +246,6 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
                 points: route,
                 strokeWidth: 4.0,
                 color: Colors.blue,
-                strokeCap: StrokeCap.round,
-                strokeJoin: StrokeJoin.round,
               ),
             ],
           ),
@@ -279,7 +273,7 @@ class FlashlightMarker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Transform.rotate(
-      angle: -radians(heading),
+      angle: radians(heading),
       child: Stack(
         alignment: Alignment.center,
         children: [
