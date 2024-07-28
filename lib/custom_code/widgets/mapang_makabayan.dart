@@ -49,7 +49,8 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   final int _positionsToAverage = 5;
 
   double _filteredHeading = 0;
-  final double _alpha = 0.3;
+  final double _alpha = 0.5; // Increased for even faster response
+  bool _isMoving = false;
 
   @override
   void initState() {
@@ -153,6 +154,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
             if (distance >= _minDistanceFilter) {
               _heading = bearing;
               _filteredHeading = _heading;
+              _isMoving = true;
             }
           });
         }
@@ -191,13 +193,15 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   void listenToGyroscope() {
     _gyroscopeSubscription =
         gyroscopeEventStream().listen((GyroscopeEvent event) {
-      _filteredHeading = _filteredHeading +
-          _alpha * ((_heading - event.z * 180 / math.pi) - _filteredHeading);
-      _filteredHeading = _filteredHeading % 360;
+      if (_isMoving) {
+        _filteredHeading = _filteredHeading +
+            _alpha * ((_heading + event.z * 180 / math.pi) - _filteredHeading);
+        _filteredHeading = _filteredHeading % 360;
 
-      setState(() {
-        _heading = _filteredHeading;
-      });
+        setState(() {
+          _heading = _filteredHeading;
+        });
+      }
     });
   }
 
@@ -240,23 +244,29 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
                   widget.accessToken ?? 'your_default_mapbox_access_token_here',
             },
           ),
-          PolylineLayer(
-            polylines: [
-              Polyline(
-                points: route,
-                strokeWidth: 4.0,
-                color: Colors.blue,
-              ),
-            ],
+          StreamBuilder<List<ll.LatLng>>(
+            stream: Stream.periodic(Duration(milliseconds: 100), (_) => route),
+            builder: (context, snapshot) {
+              return PolylineLayer(
+                polylines: [
+                  Polyline(
+                    points: snapshot.data ?? [],
+                    strokeWidth: 4.0,
+                    color: Colors.blue,
+                  ),
+                ],
+              );
+            },
           ),
           MarkerLayer(
             markers: [
-              Marker(
-                point: currentLocation!,
-                width: 80.0,
-                height: 80.0,
-                child: FlashlightMarker(heading: _heading),
-              ),
+              if (_isMoving && currentLocation != null)
+                Marker(
+                  point: currentLocation!,
+                  width: 80.0,
+                  height: 80.0,
+                  child: FlashlightMarker(heading: _heading),
+                ),
             ],
           ),
         ],

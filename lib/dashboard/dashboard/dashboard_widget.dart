@@ -84,12 +84,12 @@ class _DashboardWidgetState extends State<DashboardWidget>
       initialIndex: min(
           valueOrDefault<int>(
             () {
-              if (_model.fdc! >= _model.onc!) {
-                return 1;
+              if ((_model.fdc! >= _model.onc!) || (_model.fdc! >= _model.cc!)) {
+                return 0;
               } else if (_model.onc! >= _model.cc!) {
-                return 2;
+                return 1;
               } else {
-                return 3;
+                return 2;
               }
             }(),
             0,
