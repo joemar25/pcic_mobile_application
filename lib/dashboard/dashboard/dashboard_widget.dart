@@ -8,7 +8,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/empty_lists/empty_lists_widget.dart';
 import '/utils/components/tasks/tasks_widget.dart';
-import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/permissions_util.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -45,21 +44,37 @@ class _DashboardWidgetState extends State<DashboardWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.onGGG = await actions.getTasksData(
-        'ongoing',
-      );
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            'AAAA',
-            style: TextStyle(
-              color: FlutterFlowTheme.of(context).primaryText,
-            ),
-          ),
-          duration: const Duration(milliseconds: 4000),
-          backgroundColor: FlutterFlowTheme.of(context).secondary,
+      _model.forDispatchTasksData = await TasksTable().queryRows(
+        queryFn: (q) => q.eq(
+          'status',
+          'for dispatch',
         ),
       );
+      _model.ongoingTasksData = await TasksTable().queryRows(
+        queryFn: (q) => q.eq(
+          'status',
+          'ongoing',
+        ),
+      );
+      _model.completedTasksData = await TasksTable().queryRows(
+        queryFn: (q) => q.eq(
+          'status',
+          'completed',
+        ),
+      );
+      _model.fdCount = valueOrDefault<int>(
+        _model.forDispatchTasksData?.length,
+        0,
+      );
+      _model.oCount = valueOrDefault<int>(
+        _model.ongoingTasksData?.length,
+        0,
+      );
+      _model.cCount = valueOrDefault<int>(
+        _model.completedTasksData?.length,
+        0,
+      );
+      setState(() {});
       await requestPermission(locationPermission);
       if (await getPermissionStatus(locationPermission)) {
       } else {
@@ -778,8 +793,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                         Text(
                                                           valueOrDefault<
                                                               String>(
-                                                            _model.onGGG?.length
-                                                                .toString(),
+                                                            _model.fdCount
+                                                                ?.toString(),
                                                             '0',
                                                           ),
                                                           style: FlutterFlowTheme
@@ -856,313 +871,254 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                   'containerOnPageLoadAnimation2']!),
                                             ),
                                             Expanded(
-                                              child:
-                                                  FutureBuilder<List<TasksRow>>(
-                                                future: TasksTable().queryRows(
-                                                  queryFn: (q) => q.eq(
-                                                    'status',
-                                                    'ongoing',
-                                                  ),
+                                              child: Material(
+                                                color: Colors.transparent,
+                                                elevation: 10.0,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
                                                 ),
-                                                builder: (context, snapshot) {
-                                                  // Customize what your widget looks like when it's loading.
-                                                  if (!snapshot.hasData) {
-                                                    return Center(
-                                                      child: SizedBox(
-                                                        width: 100.0,
-                                                        height: 100.0,
-                                                        child: SpinKitRipple(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          size: 100.0,
-                                                        ),
-                                                      ),
-                                                    );
-                                                  }
-                                                  List<TasksRow>
-                                                      taskCounterMobileOTasksRowList =
-                                                      snapshot.data!;
-
-                                                  return Material(
-                                                    color: Colors.transparent,
-                                                    elevation: 10.0,
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                    ),
-                                                    child: Container(
-                                                      width: MediaQuery.sizeOf(
-                                                                  context)
+                                                child: Container(
+                                                  width:
+                                                      MediaQuery.sizeOf(context)
                                                               .width *
                                                           0.3,
-                                                      decoration: BoxDecoration(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .inProgress,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                        border: Border.all(
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .inProgress,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                    border: Border.all(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .inProgress,
+                                                      width: 2.0,
+                                                    ),
+                                                  ),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(12.0),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Text(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            _model.oCount
+                                                                ?.toString(),
+                                                            '0',
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .displaySmall
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .displaySmallFamily,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
+                                                                fontSize: 30.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .displaySmallFamily),
+                                                              ),
+                                                        ),
+                                                        Icon(
+                                                          Icons
+                                                              .incomplete_circle,
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .inProgress,
-                                                          width: 2.0,
+                                                              .inProgressIcon,
+                                                          size: 15.0,
                                                         ),
-                                                      ),
-                                                      child: Padding(
-                                                        padding: const EdgeInsets.all(
-                                                            12.0),
-                                                        child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            Text(
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .getText(
-                                                                'slw70dq6' /* - */,
-                                                              ),
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .displaySmall
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .displaySmallFamily,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryText,
-                                                                    fontSize:
-                                                                        30.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                    useGoogleFonts: GoogleFonts
-                                                                            .asMap()
-                                                                        .containsKey(
-                                                                            FlutterFlowTheme.of(context).displaySmallFamily),
-                                                                  ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      4.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .getText(
+                                                              'qvw65nm7' /* Ongoing */,
                                                             ),
-                                                            Icon(
-                                                              Icons
-                                                                  .incomplete_circle,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .inProgressIcon,
-                                                              size: 15.0,
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          4.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              child: Text(
-                                                                FFLocalizations.of(
-                                                                        context)
-                                                                    .getText(
-                                                                  'qvw65nm7' /* Ongoing */,
-                                                                ),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMedium
-                                                                    .override(
-                                                                      fontFamily:
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                  fontSize:
+                                                                      10.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
                                                                           FlutterFlowTheme.of(context)
-                                                                              .labelMediumFamily,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryText,
-                                                                      fontSize:
-                                                                          10.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w600,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).labelMediumFamily),
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                          ],
+                                                                              .labelMediumFamily),
+                                                                ),
+                                                          ),
                                                         ),
-                                                      ),
+                                                      ],
                                                     ),
-                                                  );
-                                                },
+                                                  ),
+                                                ),
                                               ),
                                             ),
                                             Expanded(
-                                              child:
-                                                  FutureBuilder<List<TasksRow>>(
-                                                future: TasksTable().queryRows(
-                                                  queryFn: (q) => q.eq(
-                                                    'status',
-                                                    'completed',
-                                                  ),
+                                              child: Material(
+                                                color: Colors.transparent,
+                                                elevation: 10.0,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
                                                 ),
-                                                builder: (context, snapshot) {
-                                                  // Customize what your widget looks like when it's loading.
-                                                  if (!snapshot.hasData) {
-                                                    return Center(
-                                                      child: SizedBox(
-                                                        width: 100.0,
-                                                        height: 100.0,
-                                                        child: SpinKitRipple(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          size: 100.0,
-                                                        ),
-                                                      ),
-                                                    );
-                                                  }
-                                                  List<TasksRow>
-                                                      taskCounterMobileCTasksRowList =
-                                                      snapshot.data!;
-
-                                                  return Material(
-                                                    color: Colors.transparent,
-                                                    elevation: 10.0,
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                    ),
-                                                    child: Container(
-                                                      width: MediaQuery.sizeOf(
-                                                                  context)
+                                                child: Container(
+                                                  width:
+                                                      MediaQuery.sizeOf(context)
                                                               .width *
                                                           0.3,
-                                                      decoration: BoxDecoration(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .completeColor,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                        border: Border.all(
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .completeColor,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                    border: Border.all(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .completeColor,
+                                                      width: 2.0,
+                                                    ),
+                                                  ),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(12.0),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Text(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            _model.cCount
+                                                                ?.toString(),
+                                                            '0',
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .displaySmall
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .displaySmallFamily,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
+                                                                fontSize: 30.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .displaySmallFamily),
+                                                              ),
+                                                        ),
+                                                        Icon(
+                                                          Icons.check_circle,
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .completeColor,
-                                                          width: 2.0,
+                                                              .completeIcon,
+                                                          size: 15.0,
                                                         ),
-                                                      ),
-                                                      child: Padding(
-                                                        padding: const EdgeInsets.all(
-                                                            12.0),
-                                                        child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            Text(
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .getText(
-                                                                'gee8lc0p' /* - */,
-                                                              ),
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .displaySmall
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .displaySmallFamily,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryText,
-                                                                    fontSize:
-                                                                        30.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                    useGoogleFonts: GoogleFonts
-                                                                            .asMap()
-                                                                        .containsKey(
-                                                                            FlutterFlowTheme.of(context).displaySmallFamily),
-                                                                  ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      4.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .getText(
+                                                              'gtnjyr06' /* Completed */,
                                                             ),
-                                                            Icon(
-                                                              Icons
-                                                                  .check_circle,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .completeIcon,
-                                                              size: 15.0,
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          4.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              child: Text(
-                                                                FFLocalizations.of(
-                                                                        context)
-                                                                    .getText(
-                                                                  'gtnjyr06' /* Completed */,
-                                                                ),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMedium
-                                                                    .override(
-                                                                      fontFamily:
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                  fontSize:
+                                                                      10.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
                                                                           FlutterFlowTheme.of(context)
-                                                                              .labelMediumFamily,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryText,
-                                                                      fontSize:
-                                                                          10.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w600,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).labelMediumFamily),
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                          ],
+                                                                              .labelMediumFamily),
+                                                                ),
+                                                          ),
                                                         ),
-                                                      ),
+                                                      ],
                                                     ),
-                                                  ).animateOnPageLoad(animationsMap[
-                                                      'containerOnPageLoadAnimation4']!);
-                                                },
-                                              ),
+                                                  ),
+                                                ),
+                                              ).animateOnPageLoad(animationsMap[
+                                                  'containerOnPageLoadAnimation4']!),
                                             ),
                                           ].divide(SizedBox(
                                               width: valueOrDefault<double>(
@@ -1286,42 +1242,13 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                   12.0,
                                                                   0.0,
                                                                   12.0),
-                                                      child: FutureBuilder<
-                                                          List<TasksRow>>(
-                                                        future: TasksTable()
-                                                            .queryRows(
-                                                          queryFn: (q) => q
-                                                              .eq(
-                                                                'status',
-                                                                'for dispatch',
-                                                              )
-                                                              .order(
-                                                                  'updated_at'),
-                                                        ),
-                                                        builder: (context,
-                                                            snapshot) {
-                                                          // Customize what your widget looks like when it's loading.
-                                                          if (!snapshot
-                                                              .hasData) {
-                                                            return Center(
-                                                              child: SizedBox(
-                                                                width: 100.0,
-                                                                height: 100.0,
-                                                                child:
-                                                                    SpinKitRipple(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                                  size: 100.0,
-                                                                ),
-                                                              ),
-                                                            );
-                                                          }
-                                                          List<TasksRow>
-                                                              listViewTasksRowList =
-                                                              snapshot.data!;
-
-                                                          if (listViewTasksRowList
+                                                      child: Builder(
+                                                        builder: (context) {
+                                                          final forDispatchTasksList =
+                                                              _model.forDispatchTasksData
+                                                                      ?.toList() ??
+                                                                  [];
+                                                          if (forDispatchTasksList
                                                               .isEmpty) {
                                                             return const Center(
                                                               child:
@@ -1341,7 +1268,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                             scrollDirection:
                                                                 Axis.vertical,
                                                             itemCount:
-                                                                listViewTasksRowList
+                                                                forDispatchTasksList
                                                                     .length,
                                                             separatorBuilder: (_,
                                                                     __) =>
@@ -1349,17 +1276,17 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                     height:
                                                                         15.0),
                                                             itemBuilder: (context,
-                                                                listViewIndex) {
-                                                              final listViewTasksRow =
-                                                                  listViewTasksRowList[
-                                                                      listViewIndex];
+                                                                forDispatchTasksListIndex) {
+                                                              final forDispatchTasksListItem =
+                                                                  forDispatchTasksList[
+                                                                      forDispatchTasksListIndex];
                                                               return wrapWithModel(
                                                                 model: _model
                                                                     .tasksModels1
                                                                     .getModel(
-                                                                  listViewTasksRow
+                                                                  forDispatchTasksListItem
                                                                       .id,
-                                                                  listViewIndex,
+                                                                  forDispatchTasksListIndex,
                                                                 ),
                                                                 updateCallback:
                                                                     () => setState(
@@ -1367,13 +1294,13 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                 child:
                                                                     TasksWidget(
                                                                   key: Key(
-                                                                    'Keyjrg_${listViewTasksRow.id}',
+                                                                    'Keyjrg_${forDispatchTasksListItem.id}',
                                                                   ),
                                                                   task:
-                                                                      listViewTasksRow
+                                                                      forDispatchTasksListItem
                                                                           .id,
                                                                   status:
-                                                                      listViewTasksRow
+                                                                      forDispatchTasksListItem
                                                                           .status,
                                                                 ),
                                                               );
@@ -1390,42 +1317,13 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                   12.0,
                                                                   16.0,
                                                                   12.0),
-                                                      child: FutureBuilder<
-                                                          List<TasksRow>>(
-                                                        future: TasksTable()
-                                                            .queryRows(
-                                                          queryFn: (q) => q
-                                                              .eq(
-                                                                'status',
-                                                                'ongoing',
-                                                              )
-                                                              .order(
-                                                                  'updated_at'),
-                                                        ),
-                                                        builder: (context,
-                                                            snapshot) {
-                                                          // Customize what your widget looks like when it's loading.
-                                                          if (!snapshot
-                                                              .hasData) {
-                                                            return Center(
-                                                              child: SizedBox(
-                                                                width: 100.0,
-                                                                height: 100.0,
-                                                                child:
-                                                                    SpinKitRipple(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                                  size: 100.0,
-                                                                ),
-                                                              ),
-                                                            );
-                                                          }
-                                                          List<TasksRow>
-                                                              listViewTasksRowList =
-                                                              snapshot.data!;
-
-                                                          if (listViewTasksRowList
+                                                      child: Builder(
+                                                        builder: (context) {
+                                                          final ongoingTasksList =
+                                                              _model.ongoingTasksData
+                                                                      ?.toList() ??
+                                                                  [];
+                                                          if (ongoingTasksList
                                                               .isEmpty) {
                                                             return const Center(
                                                               child:
@@ -1445,7 +1343,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                             scrollDirection:
                                                                 Axis.vertical,
                                                             itemCount:
-                                                                listViewTasksRowList
+                                                                ongoingTasksList
                                                                     .length,
                                                             separatorBuilder: (_,
                                                                     __) =>
@@ -1453,17 +1351,17 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                     height:
                                                                         15.0),
                                                             itemBuilder: (context,
-                                                                listViewIndex) {
-                                                              final listViewTasksRow =
-                                                                  listViewTasksRowList[
-                                                                      listViewIndex];
+                                                                ongoingTasksListIndex) {
+                                                              final ongoingTasksListItem =
+                                                                  ongoingTasksList[
+                                                                      ongoingTasksListIndex];
                                                               return wrapWithModel(
                                                                 model: _model
                                                                     .tasksModels2
                                                                     .getModel(
-                                                                  listViewTasksRow
+                                                                  ongoingTasksListItem
                                                                       .id,
-                                                                  listViewIndex,
+                                                                  ongoingTasksListIndex,
                                                                 ),
                                                                 updateCallback:
                                                                     () => setState(
@@ -1471,13 +1369,13 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                 child:
                                                                     TasksWidget(
                                                                   key: Key(
-                                                                    'Keyu4c_${listViewTasksRow.id}',
+                                                                    'Keyu4c_${ongoingTasksListItem.id}',
                                                                   ),
                                                                   task:
-                                                                      listViewTasksRow
+                                                                      ongoingTasksListItem
                                                                           .id,
                                                                   status:
-                                                                      listViewTasksRow
+                                                                      ongoingTasksListItem
                                                                           .status,
                                                                 ),
                                                               );
@@ -1494,42 +1392,13 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                   12.0,
                                                                   16.0,
                                                                   12.0),
-                                                      child: FutureBuilder<
-                                                          List<TasksRow>>(
-                                                        future: TasksTable()
-                                                            .queryRows(
-                                                          queryFn: (q) => q
-                                                              .eq(
-                                                                'status',
-                                                                'completed',
-                                                              )
-                                                              .order(
-                                                                  'updated_at'),
-                                                        ),
-                                                        builder: (context,
-                                                            snapshot) {
-                                                          // Customize what your widget looks like when it's loading.
-                                                          if (!snapshot
-                                                              .hasData) {
-                                                            return Center(
-                                                              child: SizedBox(
-                                                                width: 100.0,
-                                                                height: 100.0,
-                                                                child:
-                                                                    SpinKitRipple(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                                  size: 100.0,
-                                                                ),
-                                                              ),
-                                                            );
-                                                          }
-                                                          List<TasksRow>
-                                                              listViewTasksRowList =
-                                                              snapshot.data!;
-
-                                                          if (listViewTasksRowList
+                                                      child: Builder(
+                                                        builder: (context) {
+                                                          final completedTasksList =
+                                                              _model.completedTasksData
+                                                                      ?.toList() ??
+                                                                  [];
+                                                          if (completedTasksList
                                                               .isEmpty) {
                                                             return const Center(
                                                               child:
@@ -1549,7 +1418,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                             scrollDirection:
                                                                 Axis.vertical,
                                                             itemCount:
-                                                                listViewTasksRowList
+                                                                completedTasksList
                                                                     .length,
                                                             separatorBuilder: (_,
                                                                     __) =>
@@ -1557,17 +1426,17 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                     height:
                                                                         15.0),
                                                             itemBuilder: (context,
-                                                                listViewIndex) {
-                                                              final listViewTasksRow =
-                                                                  listViewTasksRowList[
-                                                                      listViewIndex];
+                                                                completedTasksListIndex) {
+                                                              final completedTasksListItem =
+                                                                  completedTasksList[
+                                                                      completedTasksListIndex];
                                                               return wrapWithModel(
                                                                 model: _model
                                                                     .tasksModels3
                                                                     .getModel(
-                                                                  listViewTasksRow
+                                                                  completedTasksListItem
                                                                       .id,
-                                                                  listViewIndex,
+                                                                  completedTasksListIndex,
                                                                 ),
                                                                 updateCallback:
                                                                     () => setState(
@@ -1577,13 +1446,13 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                 child:
                                                                     TasksWidget(
                                                                   key: Key(
-                                                                    'Keynuv_${listViewTasksRow.id}',
+                                                                    'Keynuv_${completedTasksListItem.id}',
                                                                   ),
                                                                   task:
-                                                                      listViewTasksRow
+                                                                      completedTasksListItem
                                                                           .id,
                                                                   status:
-                                                                      listViewTasksRow
+                                                                      completedTasksListItem
                                                                           .status,
                                                                 ),
                                                               );

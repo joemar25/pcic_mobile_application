@@ -329,68 +329,19 @@ class _BackupChatsWidgetState extends State<BackupChatsWidget> {
                                                               padding:
                                                                   const EdgeInsets
                                                                       .all(2.0),
-                                                              child: FutureBuilder<
-                                                                  List<
-                                                                      UsersRow>>(
-                                                                future: UsersTable()
-                                                                    .querySingleRow(
-                                                                  queryFn:
-                                                                      (q) =>
-                                                                          q.eq(
-                                                                    'photo_url',
-                                                                    containerMessagesRow
-                                                                        ?.receiverName,
-                                                                  ),
-                                                                ),
-                                                                builder: (context,
-                                                                    snapshot) {
-                                                                  // Customize what your widget looks like when it's loading.
-                                                                  if (!snapshot
-                                                                      .hasData) {
-                                                                    return Center(
-                                                                      child:
-                                                                          SizedBox(
-                                                                        width:
-                                                                            100.0,
-                                                                        height:
-                                                                            100.0,
-                                                                        child:
-                                                                            SpinKitRipple(
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primary,
-                                                                          size:
-                                                                              100.0,
-                                                                        ),
-                                                                      ),
-                                                                    );
-                                                                  }
-                                                                  List<UsersRow>
-                                                                      imageUsersRowList =
-                                                                      snapshot
-                                                                          .data!;
-
-                                                                  final imageUsersRow = imageUsersRowList
-                                                                          .isNotEmpty
-                                                                      ? imageUsersRowList
-                                                                          .first
-                                                                      : null;
-
-                                                                  return ClipRRect(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
+                                                              child: ClipRRect(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
                                                                             40.0),
-                                                                    child: Image
-                                                                        .network(
-                                                                      'https://static.vecteezy.com/system/resources/previews/027/312/306/non_2x/portrait-of-a-dj-with-headphone-isolated-essential-workers-avatar-icons-characters-for-social-media-and-networking-user-profile-website-and-app-3d-render-illustration-png.png',
-                                                                      width:
-                                                                          44.0,
-                                                                      height:
-                                                                          44.0,
-                                                                      fit: BoxFit
-                                                                          .cover,
-                                                                    ),
-                                                                  );
-                                                                },
+                                                                child: Image
+                                                                    .network(
+                                                                  'https://static.vecteezy.com/system/resources/previews/027/312/306/non_2x/portrait-of-a-dj-with-headphone-isolated-essential-workers-avatar-icons-characters-for-social-media-and-networking-user-profile-website-and-app-3d-render-illustration-png.png',
+                                                                  width: 44.0,
+                                                                  height: 44.0,
+                                                                  fit: BoxFit
+                                                                      .cover,
+                                                                ),
                                                               ),
                                                             ),
                                                           ),

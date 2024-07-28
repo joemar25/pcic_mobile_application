@@ -8,17 +8,21 @@ import 'package:flutter/material.dart';
 class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   ///  Local state fields for this page.
 
-  TasksRow? forDispatchData;
+  int? fdCount = 0;
 
-  TasksRow? ongoingData;
+  int? oCount = 0;
 
-  TasksRow? completedData;
+  int? cCount = 0;
 
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Custom Action - getTasksData] action in dashboard widget.
-  List<TasksRow>? onGGG;
+  // Stores action output result for [Backend Call - Query Rows] action in dashboard widget.
+  List<TasksRow>? forDispatchTasksData;
+  // Stores action output result for [Backend Call - Query Rows] action in dashboard widget.
+  List<TasksRow>? ongoingTasksData;
+  // Stores action output result for [Backend Call - Query Rows] action in dashboard widget.
+  List<TasksRow>? completedTasksData;
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
   // State field(s) for TextField widget.

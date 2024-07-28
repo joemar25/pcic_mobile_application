@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'epfm6cg9': {
+    'nody1ecu': {
       'en': '',
       'tl': '',
     },
@@ -693,16 +693,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'For Dispatch',
       'tl': '',
     },
-    'slw70dq6': {
-      'en': '-',
-      'tl': '',
-    },
     'qvw65nm7': {
       'en': 'Ongoing',
-      'tl': '',
-    },
-    'gee8lc0p': {
-      'en': '-',
       'tl': '',
     },
     'gtnjyr06': {
@@ -795,7 +787,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your email...',
       'tl': 'Ilagay ang iyong email...',
     },
-    'elf4caan': {
+    'w4luodpd': {
       'en': '',
       'tl': '',
     },

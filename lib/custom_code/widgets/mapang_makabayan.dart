@@ -48,6 +48,11 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   final List<Position> _recentPositions = [];
   final int _positionsToAverage = 5;
 
+  // Low-pass filter variables
+  double _filteredHeading = 0;
+  final double _alpha =
+      0.1; // Adjust this value to change filter strength (0-1)
+
   @override
   void initState() {
     super.initState();
@@ -146,7 +151,12 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
             _lastValidLocation = newLocation;
             route.add(newLocation);
             _mapController.move(newLocation, _currentZoom);
-            _heading = bearing;
+
+            // Update heading if we've moved enough
+            if (distance >= _minDistanceFilter) {
+              _heading = bearing;
+              _filteredHeading = _heading;
+            }
           });
         }
       } else {
@@ -184,10 +194,13 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   void listenToGyroscope() {
     _gyroscopeSubscription =
         gyroscopeEventStream().listen((GyroscopeEvent event) {
+      // Apply low-pass filter to smooth out gyroscope data
+      _filteredHeading = _filteredHeading +
+          _alpha * ((_heading + event.z * 180 / math.pi) - _filteredHeading);
+      _filteredHeading = _filteredHeading % 360; // Normalize to 0-360 range
+
       setState(() {
-        // Adjust heading based on gyroscope data
-        _heading += event.z * 180 / math.pi; // Convert radians to degrees
-        _heading = _heading % 360; // Normalize to 0-360 range
+        _heading = _filteredHeading;
       });
     });
   }
