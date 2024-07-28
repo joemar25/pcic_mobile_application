@@ -100,13 +100,13 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
       child: FlutterMap(
         options: MapOptions(
           initialCenter: currentLocation!,
-          initialZoom: 18.0,
-          maxZoom: 19.0,
+          initialZoom: 19.0,
+          maxZoom: 23.0,
         ),
         children: [
           TileLayer(
             urlTemplate:
-                'https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token={accessToken}',
+                'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token={accessToken}',
             additionalOptions: {
               'accessToken':
                   widget.accessToken ?? 'your_default_mapbox_access_token_here',

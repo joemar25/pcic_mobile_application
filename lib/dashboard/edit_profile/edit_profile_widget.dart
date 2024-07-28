@@ -166,70 +166,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                         focusColor: Colors.transparent,
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          final selectedMedia =
-                                              await selectMedia(
-                                            storageFolderPath: currentUserUid,
-                                            mediaSource:
-                                                MediaSource.photoGallery,
-                                            multiImage: false,
-                                          );
-                                          if (selectedMedia != null &&
-                                              selectedMedia.every((m) =>
-                                                  validateFileFormat(
-                                                      m.storagePath,
-                                                      context))) {
-                                            setState(() =>
-                                                _model.isDataUploading1 = true);
-                                            var selectedUploadedFiles =
-                                                <FFUploadedFile>[];
-
-                                            var downloadUrls = <String>[];
-                                            try {
-                                              selectedUploadedFiles =
-                                                  selectedMedia
-                                                      .map(
-                                                          (m) => FFUploadedFile(
-                                                                name: m
-                                                                    .storagePath
-                                                                    .split('/')
-                                                                    .last,
-                                                                bytes: m.bytes,
-                                                                height: m
-                                                                    .dimensions
-                                                                    ?.height,
-                                                                width: m
-                                                                    .dimensions
-                                                                    ?.width,
-                                                                blurHash:
-                                                                    m.blurHash,
-                                                              ))
-                                                      .toList();
-
-                                              downloadUrls =
-                                                  await uploadSupabaseStorageFiles(
-                                                bucketName: 'user_profile',
-                                                selectedFiles: selectedMedia,
-                                              );
-                                            } finally {
-                                              _model.isDataUploading1 = false;
-                                            }
-                                            if (selectedUploadedFiles.length ==
-                                                    selectedMedia.length &&
-                                                downloadUrls.length ==
-                                                    selectedMedia.length) {
-                                              setState(() {
-                                                _model.uploadedLocalFile1 =
-                                                    selectedUploadedFiles.first;
-                                                _model.uploadedFileUrl1 =
-                                                    downloadUrls.first;
-                                              });
-                                            } else {
-                                              setState(() {});
-                                              return;
-                                            }
-                                          }
-                                        },
+                                        onTap: () async {},
                                         child: Stack(
                                           children: [
                                             Container(
@@ -262,7 +199,10 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                 fadeOutDuration:
                                                     const Duration(milliseconds: 500),
                                                 imageUrl:
-                                                    _model.uploadedFileUrl2,
+                                                    valueOrDefault<String>(
+                                                  _model.uploadedFileUrl,
+                                                  'photo_url',
+                                                ),
                                                 fit: BoxFit.cover,
                                               ),
                                             ),
@@ -296,9 +236,9 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                           validateFileFormat(
                                                               m.storagePath,
                                                               context))) {
-                                                    setState(() => _model
-                                                            .isDataUploading2 =
-                                                        true);
+                                                    setState(() =>
+                                                        _model.isDataUploading =
+                                                            true);
                                                     var selectedUploadedFiles =
                                                         <FFUploadedFile>[];
 
@@ -335,7 +275,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                             selectedMedia,
                                                       );
                                                     } finally {
-                                                      _model.isDataUploading2 =
+                                                      _model.isDataUploading =
                                                           false;
                                                     }
                                                     if (selectedUploadedFiles
@@ -346,10 +286,10 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                             selectedMedia
                                                                 .length) {
                                                       setState(() {
-                                                        _model.uploadedLocalFile2 =
+                                                        _model.uploadedLocalFile =
                                                             selectedUploadedFiles
                                                                 .first;
-                                                        _model.uploadedFileUrl2 =
+                                                        _model.uploadedFileUrl =
                                                             downloadUrls.first;
                                                       });
                                                     } else {
@@ -472,7 +412,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                     data: {
                                       'inspector_name':
                                           _model.displayNameTextController.text,
-                                      'photo_url': _model.uploadedFileUrl2,
+                                      'photo_url': _model.uploadedFileUrl,
                                     },
                                     matchingRows: (rows) => rows.eq(
                                       'id',

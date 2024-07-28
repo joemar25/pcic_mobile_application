@@ -1113,7 +1113,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                   height: 200.0,
                                   child: Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 10.0, 0.0, 18.0),
+                                        0.0, 15.0, 0.0, 18.0),
                                     child: Column(
                                       children: [
                                         Align(
@@ -1124,7 +1124,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                     .primary,
                                             unselectedLabelColor:
                                                 FlutterFlowTheme.of(context)
-                                                    .secondaryText,
+                                                    .primaryText,
                                             labelStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMedium
@@ -1133,7 +1133,10 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .bodyMediumFamily,
+                                                      fontSize: 12.0,
                                                       letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FontWeight.normal,
                                                       useGoogleFonts: GoogleFonts
                                                               .asMap()
                                                           .containsKey(
