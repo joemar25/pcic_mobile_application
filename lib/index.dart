@@ -25,3 +25,4 @@ export '/dashboard/geotagging/geotagging_widget.dart' show GeotaggingWidget;
 export '/dashboard/forms/other_form/other_form_widget.dart'
     show OtherFormWidget;
 export '/utils/test/sss/sss_widget.dart' show SssWidget;
+export '/auth/backup_login/backup_login_widget.dart' show BackupLoginWidget;

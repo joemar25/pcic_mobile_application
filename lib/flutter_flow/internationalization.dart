@@ -107,53 +107,65 @@ Locale createLocale(String language) => language.contains('_')
 final kTranslationsMap = <Map<String, Map<String, String>>>[
   // login
   {
-    'hsmsoal9': {
-      'en': 'Login',
-      'tl': 'Mag log in',
+    'py6ovdt7': {
+      'en': 'PCIC\nGeotagging ',
+      'tl': '',
     },
-    'onarar2h': {
+    'm6ts5v8u': {
+      'en': 'Welcome Back',
+      'tl': '',
+    },
+    'vtpwtki1': {
       'en': 'Please sign in to continue',
-      'tl': 'Mangyaring mag-sign in upang magpatuloy',
+      'tl': '',
     },
-    'js4zrnhp': {
+    '71199j9k': {
       'en': 'Enter your email address',
-      'tl': 'ilagay ang iyong email address',
+      'tl': '',
     },
-    '5i1rsq7x': {
+    'vy1wtl5k': {
       'en': '',
       'tl': '',
     },
-    'tei5629d': {
+    'f0cvuzcg': {
+      'en': '',
+      'tl': '',
+    },
+    's11m4d5b': {
       'en': 'Enter your password',
-      'tl': 'Ipasok ang iyong password',
+      'tl': '',
     },
-    'bws7du9e': {
-      'en': 'Login',
-      'tl': 'Mag log in',
+    '2ylyurvi': {
+      'en': '',
+      'tl': '',
     },
-    'qpfpmvtl': {
-      'en': 'Forgot Password?',
-      'tl': 'Nakalimutan ang password?',
+    '32i6nk7l': {
+      'en': 'Sign in',
+      'tl': '',
     },
-    'w45297gi': {
+    '3ztauu8v': {
+      'en': 'Forgot Password ?',
+      'tl': '',
+    },
+    'kyyyy0az': {
       'en': 'Field is required',
-      'tl': 'Kinakailangan ang field',
+      'tl': '',
     },
-    'yc7u2stc': {
+    'm0y1kdcw': {
       'en': 'Please choose an option from the dropdown',
-      'tl': 'Mangyaring pumili ng opsyon mula sa dropdown',
+      'tl': '',
     },
-    'g6x5ocx1': {
+    'xv20uueg': {
       'en': 'Field is required',
-      'tl': 'Kinakailangan ang field',
+      'tl': '',
     },
-    'mpoif9dk': {
+    'jte1qgob': {
       'en': 'Password must be atleast 8 characters',
-      'tl': 'Hindi dapat bababa sa 8 character ang password',
+      'tl': '',
     },
-    '97dgo696': {
+    'xbwo0ppz': {
       'en': 'Please choose an option from the dropdown',
-      'tl': 'Mangyaring pumili ng opsyon mula sa dropdown',
+      'tl': '',
     },
     'wg8l5x4u': {
       'en': 'Home',
@@ -823,7 +835,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'z8fvrgds': {
       'en': 'Home',
-      'tl': 'Bahay',
+      'tl': '',
     },
   },
   // sss
@@ -837,6 +849,65 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     'p5v52glk': {
+      'en': 'Home',
+      'tl': '',
+    },
+  },
+  // backupLogin
+  {
+    'ifbrpsmb': {
+      'en': 'Page Title',
+      'tl': '',
+    },
+    't7x9izgt': {
+      'en': 'Welcome Back',
+      'tl': '',
+    },
+    'atiwkpq2': {
+      'en': 'Please sign in to continue',
+      'tl': '',
+    },
+    '0owe4y3y': {
+      'en': 'Enter your email address',
+      'tl': '',
+    },
+    '1zxmy7cy': {
+      'en': '',
+      'tl': '',
+    },
+    'nbep94m3': {
+      'en': 'Enter your password',
+      'tl': '',
+    },
+    'klnfli61': {
+      'en': 'Login',
+      'tl': '',
+    },
+    'hd3ab2uq': {
+      'en': 'Forgot Password?',
+      'tl': '',
+    },
+    'uwanhobd': {
+      'en': 'Field is required',
+      'tl': '',
+    },
+    'zbb9mps1': {
+      'en': 'Please choose an option from the dropdown',
+      'tl': '',
+    },
+    'rdldhj65': {
+      'en': 'Field is required',
+      'tl': '',
+    },
+    'jymqj7c4': {
+      'en': 'Password must be atleast 8 characters',
+      'tl': '',
+    },
+    'c7gb21gr': {
+      'en': 'Please choose an option from the dropdown',
+      'tl': '',
+    },
+    'vd37iph9': {
       'en': 'Home',
       'tl': '',
     },
@@ -939,6 +1010,14 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // Miscellaneous
   {
+    '6afd8gwy': {
+      'en': 'Label here...',
+      'tl': '',
+    },
+    'x8lsse0f': {
+      'en': 'Hint text here ...',
+      'tl': '',
+    },
     '0ftylq1b': {
       'en':
           '\"PCIC Mobile Application requires access to your camera to enable geotagging. This feature will allow us to accurately tag photos with your current location, improving service delivery and documentation. Please grant camera access to continue.\"',

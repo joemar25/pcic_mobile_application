@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'login_widget.dart' show LoginWidget;
+import 'backup_login_widget.dart' show BackupLoginWidget;
 import 'package:flutter/material.dart';
 
-class LoginModel extends FlutterFlowModel<LoginWidget> {
+class BackupLoginModel extends FlutterFlowModel<BackupLoginWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -15,7 +15,7 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
       BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
-        'kyyyy0az' /* Field is required */,
+        'uwanhobd' /* Field is required */,
       );
     }
 
@@ -34,13 +34,13 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
       BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
-        'xv20uueg' /* Field is required */,
+        'rdldhj65' /* Field is required */,
       );
     }
 
     if (val.length < 8) {
       return FFLocalizations.of(context).getText(
-        'jte1qgob' /* Password must be atleast 8 cha... */,
+        'jymqj7c4' /* Password must be atleast 8 cha... */,
       );
     }
 

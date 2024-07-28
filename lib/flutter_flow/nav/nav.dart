@@ -244,6 +244,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'sss',
           path: '/sss',
           builder: (context, params) => const SssWidget(),
+        ),
+        FFRoute(
+          name: 'backupLogin',
+          path: '/backupLogin',
+          builder: (context, params) => const BackupLoginWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
