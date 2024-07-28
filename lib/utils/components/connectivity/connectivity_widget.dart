@@ -67,7 +67,7 @@ class _ConnectivityWidgetState extends State<ConnectivityWidget>
       width: 30.0,
       height: 30.0,
       decoration: BoxDecoration(
-        color: FlutterFlowTheme.of(context).primaryText,
+        color: const Color(0x00242731),
         shape: BoxShape.circle,
         border: Border.all(
           color: FFAppState().ONLINE

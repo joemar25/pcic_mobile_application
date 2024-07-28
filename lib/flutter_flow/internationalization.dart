@@ -139,6 +139,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
+    'z43jebse': {
+      'en': '',
+      'tl': '',
+    },
     '32i6nk7l': {
       'en': 'Sign in',
       'tl': '',
@@ -776,7 +780,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'Padadalhan ka namin ng email na may link para i-reset ang iyong password, mangyaring ilagay ang email na nauugnay sa iyong account sa ibaba.',
     },
     '7xh7q3rt': {
-      'en': 'Your email address...',
+      'en': 'Email Address',
       'tl': 'Ang iyong email address...',
     },
     'a29ygr1c': {
@@ -844,10 +848,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'its chane',
       'tl': '',
     },
-    '6xi2h1o3': {
-      'en': 'Hello World',
-      'tl': '',
-    },
     'p5v52glk': {
       'en': 'Home',
       'tl': '',
@@ -908,6 +908,34 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     'vd37iph9': {
+      'en': 'Home',
+      'tl': '',
+    },
+  },
+  // backupForgotPassword
+  {
+    'w9dcjeuf': {
+      'en': 'Forgot Password',
+      'tl': '',
+    },
+    'c8nlfozw': {
+      'en':
+          'We will send you an email with a link to reset your password, please enter the email associated with your account below.',
+      'tl': '',
+    },
+    '15hoxiqu': {
+      'en': 'Your email address...',
+      'tl': '',
+    },
+    '8y92mn30': {
+      'en': 'Enter your email...',
+      'tl': '',
+    },
+    '9395kqfh': {
+      'en': 'Send Link',
+      'tl': '',
+    },
+    '0ll79bjc': {
       'en': 'Home',
       'tl': '',
     },
@@ -1016,6 +1044,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'x8lsse0f': {
       'en': 'Hint text here ...',
+      'tl': '',
+    },
+    '3gp3iqd8': {
+      'en': 'Button',
       'tl': '',
     },
     '0ftylq1b': {

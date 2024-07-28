@@ -36,7 +36,7 @@ class FFAppState extends ChangeNotifier {
     _ONLINE = value;
   }
 
-  bool _routeStarted = false;
+  bool _routeStarted = true;
   bool get routeStarted => _routeStarted;
   set routeStarted(bool value) {
     _routeStarted = value;

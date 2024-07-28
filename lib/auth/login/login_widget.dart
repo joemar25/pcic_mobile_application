@@ -36,7 +36,7 @@ class _LoginWidgetState extends State<LoginWidget>
     _model.passwordFieldFocusNode ??= FocusNode();
 
     animationsMap.addAll({
-      'imageOnPageLoadAnimation': AnimationInfo(
+      'containerOnPageLoadAnimation1': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
           FadeEffect(
@@ -45,6 +45,18 @@ class _LoginWidgetState extends State<LoginWidget>
             duration: 600.0.ms,
             begin: 0.0,
             end: 1.0,
+          ),
+        ],
+      ),
+      'containerOnPageLoadAnimation2': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: const Offset(0.0, 100.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -84,7 +96,7 @@ class _LoginWidgetState extends State<LoginWidget>
                 Expanded(
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(20.0, 80.0, 20.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(40.0, 80.0, 40.0, 0.0),
                     child: Container(
                       width: double.infinity,
                       decoration: const BoxDecoration(
@@ -92,7 +104,7 @@ class _LoginWidgetState extends State<LoginWidget>
                       ),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Flexible(
                             child: Row(
@@ -128,18 +140,18 @@ Geotagging  */
                               ],
                             ),
                           ),
-                          Expanded(
+                          Flexible(
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 20.0, 0.0, 0.0),
+                                  0.0, 30.0, 0.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Container(
-                                    width: 150.0,
-                                    height: 150.0,
+                                    width: 200.0,
+                                    height: 200.0,
                                     decoration: const BoxDecoration(),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(10.0),
@@ -151,8 +163,7 @@ Geotagging  */
                                         width: double.infinity,
                                         fit: BoxFit.contain,
                                       ),
-                                    ).animateOnPageLoad(animationsMap[
-                                        'imageOnPageLoadAnimation']!),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -160,7 +171,8 @@ Geotagging  */
                           ),
                         ],
                       ),
-                    ),
+                    ).animateOnPageLoad(
+                        animationsMap['containerOnPageLoadAnimation1']!),
                   ),
                 ),
                 Container(
@@ -179,43 +191,59 @@ Geotagging  */
                         const EdgeInsetsDirectional.fromSTEB(40.0, 40.0, 40.0, 40.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          FFLocalizations.of(context).getText(
-                            'm6ts5v8u' /* Welcome Back */,
-                          ),
-                          style: FlutterFlowTheme.of(context)
-                              .headlineMedium
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .headlineMediumFamily,
-                                fontSize: 28.0,
-                                letterSpacing: 0.0,
-                                fontWeight: FontWeight.bold,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .headlineMediumFamily),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                FFLocalizations.of(context).getText(
+                                  'm6ts5v8u' /* Welcome Back */,
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .headlineMedium
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .headlineMediumFamily,
+                                      fontSize: 28.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.bold,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .headlineMediumFamily),
+                                    ),
                               ),
+                            ),
+                          ],
                         ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 5.0, 0.0, 10.0),
-                          child: Text(
-                            FFLocalizations.of(context).getText(
-                              'vtpwtki1' /* Please sign in to continue */,
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily),
+                              0.0, 5.0, 0.0, 40.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  FFLocalizations.of(context).getText(
+                                    'vtpwtki1' /* Please sign in to continue */,
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .bodyMediumFamily,
+                                        letterSpacing: 0.0,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily),
+                                      ),
                                 ),
+                              ),
+                            ],
                           ),
                         ),
                         Align(
@@ -312,6 +340,9 @@ Geotagging  */
                                           borderRadius:
                                               BorderRadius.circular(12.0),
                                         ),
+                                        contentPadding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                15.0, 0.0, 15.0, 0.0),
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -415,6 +446,9 @@ Geotagging  */
                                           borderRadius:
                                               BorderRadius.circular(12.0),
                                         ),
+                                        contentPadding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                15.0, 0.0, 15.0, 0.0),
                                         suffixIcon: InkWell(
                                           onTap: () => setState(
                                             () => _model
@@ -491,9 +525,7 @@ Geotagging  */
                                               fontFamily:
                                                   FlutterFlowTheme.of(context)
                                                       .titleSmallFamily,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryBackground,
+                                              color: Colors.white,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.w500,
                                               useGoogleFonts: GoogleFonts
@@ -503,7 +535,7 @@ Geotagging  */
                                                               context)
                                                           .titleSmallFamily),
                                             ),
-                                        elevation: 3.0,
+                                        elevation: 0.0,
                                         borderSide: const BorderSide(
                                           color: Colors.transparent,
                                           width: 1.0,
@@ -536,7 +568,7 @@ Geotagging  */
                                                       PageTransitionType
                                                           .topToBottom,
                                                   duration: Duration(
-                                                      milliseconds: 200),
+                                                      milliseconds: 300),
                                                 ),
                                               },
                                             );
@@ -569,9 +601,7 @@ Geotagging  */
                                       ),
                                     ],
                                   ),
-                                ]
-                                    .divide(const SizedBox(height: 20.0))
-                                    .around(const SizedBox(height: 20.0)),
+                                ].divide(const SizedBox(height: 20.0)),
                               ),
                             ),
                           ),
@@ -579,7 +609,8 @@ Geotagging  */
                       ],
                     ),
                   ),
-                ),
+                ).animateOnPageLoad(
+                    animationsMap['containerOnPageLoadAnimation2']!),
               ],
             ),
           ),

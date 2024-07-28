@@ -249,6 +249,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'backupLogin',
           path: '/backupLogin',
           builder: (context, params) => const BackupLoginWidget(),
+        ),
+        FFRoute(
+          name: 'backupForgotPassword',
+          path: '/backupForgotPassword',
+          builder: (context, params) => const BackupForgotPasswordWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

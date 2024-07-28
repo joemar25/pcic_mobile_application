@@ -32,7 +32,7 @@ class MapangMakabayan extends StatefulWidget {
   final ll.LatLng? userCurrentLocation;
 
   @override
-  State<MapangMakabayan> createState() => _MapangMakabayanState();
+  _MapangMakabayanState createState() => _MapangMakabayanState();
 }
 
 class _MapangMakabayanState extends State<MapangMakabayan> {
@@ -40,9 +40,19 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   final List<ll.LatLng> route = [];
   final MapController _mapController = MapController();
   Timer? timer;
-  bool routeStarted = false;
 
-  Future<bool> checkPermissions() async {
+  @override
+  void initState() {
+    super.initState();
+    checkPermissions().then((_) {
+      getCurrentLocation();
+      timer = Timer.periodic(const Duration(seconds: 2), (Timer t) {
+        getCurrentLocation();
+      });
+    });
+  }
+
+  Future<void> checkPermissions() async {
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
       throw Exception('Location services are disabled.');
@@ -59,26 +69,26 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     if (permission == LocationPermission.deniedForever) {
       throw Exception('Location permissions are permanently denied.');
     }
-
-    return true;
   }
 
   void getCurrentLocation() async {
     try {
       Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high,
+        desiredAccuracy: LocationAccuracy.bestForNavigation,
       );
 
       setState(() {
         currentLocation = ll.LatLng(position.latitude, position.longitude);
       });
 
-      _mapController.move(currentLocation!, 15.0);
+      if (currentLocation != null) {
+        _mapController.move(currentLocation!, 15.0);
+      }
 
       Geolocator.getPositionStream(
-        locationSettings: const LocationSettings(
-          accuracy: LocationAccuracy.best,
-          distanceFilter: 3,
+        locationSettings: LocationSettings(
+          accuracy: LocationAccuracy.bestForNavigation,
+          distanceFilter: 1,
         ),
       ).listen((Position position) {
         ll.LatLng newPosition =
@@ -86,7 +96,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
         if (mounted) {
           setState(() {
             currentLocation = newPosition;
-            if (routeStarted) {
+            if (FFAppState().routeStarted) {
               route.add(newPosition);
             }
           });
@@ -96,17 +106,6 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     } catch (e) {
       print('Error getting location: $e');
     }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    checkPermissions().then((permissionAccepted) {
-      if (permissionAccepted) {
-        timer = Timer.periodic(const Duration(seconds: 2), (Timer t) {});
-        getCurrentLocation();
-      }
-    });
   }
 
   @override
@@ -125,71 +124,49 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
       );
     }
 
-    return Stack(
-      children: [
-        SizedBox(
-          width: widget.width ?? MediaQuery.of(context).size.width,
-          height: widget.height ?? MediaQuery.of(context).size.height,
-          child: FlutterMap(
-            mapController: _mapController,
-            options: MapOptions(
-              initialCenter: currentLocation!,
-              initialZoom: 15.0,
-            ),
-            children: [
-              TileLayer(
-                urlTemplate:
-                    'https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token={accessToken}',
-                additionalOptions: {
-                  'accessToken': widget.accessToken ?? '',
-                },
-              ),
-              MarkerLayer(
-                markers: [
-                  Marker(
-                    point: currentLocation!,
-                    width: 80.0,
-                    height: 80.0,
-                    child: const Icon(
-                      Icons.location_on,
-                      color: Colors.red,
-                      size: 40.0,
-                    ),
-                  ),
-                ],
-              ),
-              if (route.isNotEmpty)
-                PolylineLayer(
-                  polylines: [
-                    Polyline(
-                      points: route,
-                      strokeWidth: 4.0,
-                      color: Colors.red,
-                    ),
-                  ],
+    return SizedBox(
+      width: widget.width ?? MediaQuery.of(context).size.width,
+      height: widget.height ?? MediaQuery.of(context).size.height,
+      child: FlutterMap(
+        mapController: _mapController,
+        options: MapOptions(
+          initialCenter: currentLocation!,
+          initialZoom: 15.0,
+        ),
+        children: [
+          TileLayer(
+            urlTemplate:
+                'https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token={accessToken}',
+            additionalOptions: {
+              'accessToken': widget.accessToken ?? '',
+            },
+          ),
+          MarkerLayer(
+            markers: [
+              Marker(
+                point: currentLocation!,
+                width: 80.0,
+                height: 80.0,
+                child: Icon(
+                  Icons.location_on,
+                  color: Colors.red,
+                  size: 40.0,
                 ),
+              ),
             ],
           ),
-        ),
-        Positioned.fill(
-          child: Align(
-            alignment: Alignment.center,
-            child: Container(
-              padding: const EdgeInsets.all(8),
-              color: Colors.white.withOpacity(0.8),
-              child: Text(
-                'Lat: ${currentLocation!.latitude.toStringAsFixed(6)}\nLng: ${currentLocation!.longitude.toStringAsFixed(6)}',
-                style: const TextStyle(
+          if (route.isNotEmpty)
+            PolylineLayer(
+              polylines: [
+                Polyline(
+                  points: route,
+                  strokeWidth: 4.0,
                   color: Colors.red,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
                 ),
-                textAlign: TextAlign.center,
-              ),
+              ],
             ),
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
