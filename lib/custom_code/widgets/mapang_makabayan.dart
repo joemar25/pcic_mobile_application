@@ -96,8 +96,17 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
       ),
     ).listen((Position position) {
       setState(() {
-        currentLocation = ll.LatLng(position.latitude, position.longitude);
+        // Apply Kalman Filter to smooth the data
+        LatLng filteredLocation = kalmanFilterAlgo(
+          position.latitude,
+          position.longitude,
+        );
+
+        // Update the current location and route
+        currentLocation =
+            ll.LatLng(filteredLocation.latitude, filteredLocation.longitude);
         route.add(currentLocation!);
+
         print(
             'New Position: ${currentLocation!.latitude}, ${currentLocation!.longitude}');
       });

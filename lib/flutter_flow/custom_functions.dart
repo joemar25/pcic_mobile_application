@@ -42,3 +42,31 @@ String? sentenceCaseWords(String? text) {
   });
   return capitalizedWords.join(' ');
 }
+
+LatLng kalmanFilterAlgo(
+  double latitude,
+  double longitude,
+) {
+  double q = 0.0001; // Process noise covariance
+  double r = 0.01; // Measurement noise covariance
+  double p = 1.0; // Estimation error covariance
+  double k = 0.0; // Kalman gain
+
+  double xLat = latitude; // Initial state for latitude
+  double xLng = longitude; // Initial state for longitude
+
+  /// Kalman filter calculation for latitude
+  p = p + q;
+  k = p / (p + r);
+  xLat = xLat + k * (latitude - xLat);
+  p = (1 - k) * p;
+
+  /// Kalman filter calculation for longitude
+  p = p + q;
+  k = p / (p + r);
+  xLng = xLng + k * (longitude - xLng);
+  p = (1 - k) * p;
+
+  /// Return the filtered LatLng coordinates
+  return LatLng(xLat, xLng);
+}

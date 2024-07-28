@@ -522,60 +522,69 @@ Geotagging  */
                                   ),
                                   Align(
                                     alignment: const AlignmentDirectional(0.0, 0.0),
-                                    child: FFButtonWidget(
-                                      onPressed: () async {
-                                        GoRouter.of(context).prepareAuthEvent();
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 40.0, 0.0, 0.0),
+                                      child: FFButtonWidget(
+                                        onPressed: () async {
+                                          GoRouter.of(context)
+                                              .prepareAuthEvent();
 
-                                        final user =
-                                            await authManager.signInWithEmail(
-                                          context,
-                                          _model.emailFieldTextController.text,
-                                          _model
-                                              .passwordFieldTextController.text,
-                                        );
-                                        if (user == null) {
-                                          return;
-                                        }
+                                          final user =
+                                              await authManager.signInWithEmail(
+                                            context,
+                                            _model
+                                                .emailFieldTextController.text,
+                                            _model.passwordFieldTextController
+                                                .text,
+                                          );
+                                          if (user == null) {
+                                            return;
+                                          }
 
-                                        context.goNamedAuth(
-                                            'dashboard', context.mounted);
-                                      },
-                                      text: FFLocalizations.of(context).getText(
-                                        '32i6nk7l' /* Sign in */,
-                                      ),
-                                      options: FFButtonOptions(
-                                        width: double.infinity,
-                                        height: 50.0,
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            24.0, 0.0, 24.0, 0.0),
-                                        iconPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
-                                                0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmallFamily,
-                                              color: Colors.white,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w500,
-                                              useGoogleFonts: GoogleFonts
-                                                      .asMap()
-                                                  .containsKey(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmallFamily),
-                                            ),
-                                        elevation: 0.0,
-                                        borderSide: const BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1.0,
+                                          context.goNamedAuth(
+                                              'dashboard', context.mounted);
+                                        },
+                                        text:
+                                            FFLocalizations.of(context).getText(
+                                          '32i6nk7l' /* Sign in */,
                                         ),
-                                        borderRadius:
-                                            BorderRadius.circular(12.0),
+                                        options: FFButtonOptions(
+                                          width: double.infinity,
+                                          height: 50.0,
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  24.0, 0.0, 24.0, 0.0),
+                                          iconPadding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          textStyle: FlutterFlowTheme.of(
+                                                  context)
+                                              .titleSmall
+                                              .override(
+                                                fontFamily:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmallFamily,
+                                                color: Colors.white,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .titleSmallFamily),
+                                              ),
+                                          elevation: 0.0,
+                                          borderSide: const BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(12.0),
+                                        ),
                                       ),
                                     ),
                                   ),

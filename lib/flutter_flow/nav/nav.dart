@@ -265,9 +265,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'backupChats',
           path: '/backupChats',
           requireAuth: true,
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'backupChats')
-              : const BackupChatsWidget(),
+          builder: (context, params) => const BackupChatsWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

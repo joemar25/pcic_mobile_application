@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    '5yf7aezx': {
+    'cmbospsm': {
       'en': '',
       'tl': '',
     },
@@ -217,17 +217,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // chats
   {
-    'yq8kfovp': {
+    'pue7zwxs': {
       'en': 'Messages',
-      'tl': 'Mga mensahe',
+      'tl': '',
     },
-    '8hlwocb6': {
-      'en': 'Below are messages with your friends.',
-      'tl': 'Nasa ibaba ang mga mensahe sa iyong mga kaibigan.',
+    '0ovitz68': {
+      'en': 'Conversations',
+      'tl': '',
     },
-    'gcfnxasp': {
-      'en': 'Below are messages with your friends.',
-      'tl': 'Nasa ibaba ang mga mensahe sa iyong mga kaibigan.',
+    'ks6c14gr': {
+      'en': 'New Message',
+      'tl': '',
     },
     'qjs4iqx3': {
       'en': 'Messages',
