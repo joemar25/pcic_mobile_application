@@ -13,6 +13,8 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 import 'dart:async';
+import 'dart:math' as math;
+
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart' as ll;
 import 'package:geolocator/geolocator.dart';
@@ -76,7 +78,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   Future<void> getCurrentLocation() async {
     try {
       Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.bestForNavigation,
+        desiredAccuracy: LocationAccuracy.high, // Using high accuracy
       );
 
       setState(() {
@@ -91,18 +93,35 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   void trackMovement() {
     Geolocator.getPositionStream(
       locationSettings: LocationSettings(
-        accuracy: LocationAccuracy.bestForNavigation,
-        distanceFilter: 3,
+        accuracy: LocationAccuracy.high, // High accuracy for precise tracking
+        distanceFilter: 3, // Filter out small movements
       ),
     ).listen((Position position) {
-      setState(() {
-        currentLocation = ll.LatLng(position.latitude, position.longitude);
-        route.add(currentLocation!);
+      ll.LatLng newLocation = ll.LatLng(position.latitude, position.longitude);
+      if (currentLocation == null ||
+          _calculateDistance(currentLocation!, newLocation) > 1.0) {
+        setState(() {
+          currentLocation = newLocation;
+          route.add(currentLocation!);
 
-        print(
-            'New Position: ${currentLocation!.latitude}, ${currentLocation!.longitude}');
-      });
+          print(
+              'New Position: ${currentLocation!.latitude}, ${currentLocation!.longitude}');
+        });
+      }
     });
+  }
+
+  double _calculateDistance(ll.LatLng start, ll.LatLng end) {
+    const double earthRadius = 6371e3; // in meters
+    double dLat = (end.latitude - start.latitude) * math.pi / 180;
+    double dLng = (end.longitude - start.longitude) * math.pi / 180;
+    double a = math.sin(dLat / 2) * math.sin(dLat / 2) +
+        math.cos(start.latitude * math.pi / 180) *
+            math.cos(end.latitude * math.pi / 180) *
+            math.sin(dLng / 2) *
+            math.sin(dLng / 2);
+    double c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a));
+    return earthRadius * c;
   }
 
   @override
@@ -144,12 +163,27 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
             markers: [
               Marker(
                 point: currentLocation!,
-                width: 80.0,
-                height: 80.0,
-                child: Icon(
-                  Icons.location_on,
-                  color: Colors.red,
-                  size: 40.0,
+                width: 60.0,
+                height: 60.0,
+                child: Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.blue.withOpacity(0.7),
+                    border: Border.all(
+                      color: Colors.white,
+                      width: 2,
+                    ),
+                  ),
+                  child: Center(
+                    child: Container(
+                      width: 20,
+                      height: 20,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ],
