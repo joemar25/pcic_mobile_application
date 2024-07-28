@@ -153,6 +153,8 @@ class _FailWidgetState extends State<FailWidget> with TickerProviderStateMixin {
         ],
       ),
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

@@ -45,12 +45,14 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget> {
       await requestPermission(locationPermission);
       if (await getPermissionStatus(locationPermission)) {
         _model.isGeotagStart = false;
+        _model.isFinished = false;
         setState(() {});
       }
     });
 
     getCurrentUserLocation(defaultLocation: const LatLng(0.0, 0.0), cached: true)
         .then((loc) => setState(() => currentUserLocationValue = loc));
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -130,12 +132,14 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget> {
                             alignment: const AlignmentDirectional(0.0, 0.0),
                             children: [
                               SizedBox(
-                                width: double.infinity,
+                                width: MediaQuery.sizeOf(context).width * 1.0,
                                 height: MediaQuery.sizeOf(context).height * 1.0,
-                                child: custom_widgets.GeotagMap(
-                                  width: double.infinity,
+                                child: custom_widgets.MapBox(
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
                                   height:
                                       MediaQuery.sizeOf(context).height * 1.0,
+                                  accessToken:
+                                      'pk.eyJ1IjoicXVhbmJ5c29sdXRpb25zIiwiYSI6ImNsdWhrejRwdDJyYnAya3A2NHFqbXlsbHEifQ.WJ5Ng-AO-dTrlkUHD_ebMw',
                                 ),
                               ),
                               Column(
@@ -270,9 +274,11 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget> {
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         12.0, 0.0, 12.0, 0.0),
                                     child: Text(
-                                      _model.isGeotagStart == false
-                                          ? 'Initializing'
-                                          : 'Geotagging',
+                                      _model.isGeotagStart != true
+                                          ? (_model.isFinished
+                                              ? 'Saving'
+                                              : 'Geotagging')
+                                          : 'Initializing',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -568,27 +574,59 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            _model.isGeotagStart = true;
-                            setState(() {});
+                            if (_model.isFinished) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Saving is in progress.',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor:
+                                      FlutterFlowTheme.of(context).secondary,
+                                ),
+                              );
+                            } else {
+                              _model.isGeotagStart = true;
+                              _model.isFinished = false;
+                              setState(() {});
+                            }
                           },
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 5.0, 0.0),
-                                child: FaIcon(
-                                  FontAwesomeIcons.play,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  size: 20.0,
-                                ),
+                              Stack(
+                                children: [
+                                  if (_model.isFinished == true)
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 5.0, 0.0),
+                                      child: Icon(
+                                        Icons.downloading_sharp,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 20.0,
+                                      ),
+                                    ),
+                                  if (_model.isFinished == false)
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 5.0, 0.0),
+                                      child: FaIcon(
+                                        FontAwesomeIcons.play,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 20.0,
+                                      ),
+                                    ),
+                                ],
                               ),
                               Text(
-                                FFLocalizations.of(context).getText(
-                                  'brrixmb6' /* Start */,
-                                ),
+                                _model.isFinished ? 'Saving' : 'Start',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge
                                     .override(
@@ -611,6 +649,9 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
+                            _model.isGeotagStart = false;
+                            _model.isFinished = true;
+                            setState(() {});
                             await PpirFormsTable().update(
                               data: {
                                 'track_last_coord':
@@ -627,8 +668,6 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget> {
                                 geotaggingPpirFormsRow?.taskId,
                               ),
                             );
-                            _model.isGeotagStart = false;
-                            setState(() {});
                             await TasksTable().update(
                               data: {
                                 'status': 'ongoing',

@@ -33,6 +33,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
     _model = createModel(context, () => EditProfileModel());
 
     _model.displayNameFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -194,14 +196,28 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                               ),
                                               child: CachedNetworkImage(
                                                 fadeInDuration:
-                                                    const Duration(milliseconds: 300),
+                                                    const Duration(milliseconds: 500),
                                                 fadeOutDuration:
-                                                    const Duration(milliseconds: 300),
+                                                    const Duration(milliseconds: 500),
+                                                imageUrl: editProfileUsersRow!
+                                                    .photoUrl!,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                            Container(
+                                              width: 90.0,
+                                              height: 90.0,
+                                              clipBehavior: Clip.antiAlias,
+                                              decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: CachedNetworkImage(
+                                                fadeInDuration:
+                                                    const Duration(milliseconds: 500),
+                                                fadeOutDuration:
+                                                    const Duration(milliseconds: 500),
                                                 imageUrl:
-                                                    valueOrDefault<String>(
-                                                  editProfileUsersRow?.photoUrl,
-                                                  'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png',
-                                                ),
+                                                    _model.uploadedFileUrl,
                                                 fit: BoxFit.cover,
                                               ),
                                             ),
@@ -222,18 +238,10 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                   size: 20.0,
                                                 ),
                                                 onPressed: () async {
-                                                  await UsersTable().update(
-                                                    data: {
-                                                      'photo_url':
-                                                          editProfileUsersRow
-                                                              ?.photoUrl,
-                                                    },
-                                                    matchingRows: (rows) =>
-                                                        rows,
-                                                  );
                                                   final selectedMedia =
                                                       await selectMedia(
-                                                    storageFolderPath: 'pic',
+                                                    storageFolderPath:
+                                                        currentUserUid,
                                                     mediaSource: MediaSource
                                                         .photoGallery,
                                                     multiImage: false,
@@ -276,7 +284,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
 
                                                       downloadUrls =
                                                           await uploadSupabaseStorageFiles(
-                                                        bucketName: 'photo_url',
+                                                        bucketName:
+                                                            'user_profiles',
                                                         selectedFiles:
                                                             selectedMedia,
                                                       );
@@ -322,7 +331,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                               controller: _model.displayNameTextController ??=
                                   TextEditingController(
                                 text: valueOrDefault<String>(
-                                  editProfileUsersRow?.inspectorName,
+                                  editProfileUsersRow.inspectorName,
                                   'Agent',
                                 ),
                               ),
@@ -418,10 +427,12 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                     data: {
                                       'inspector_name':
                                           _model.displayNameTextController.text,
-                                      'photo_url':
-                                          editProfileUsersRow?.photoUrl,
+                                      'photo_url': _model.uploadedFileUrl,
                                     },
-                                    matchingRows: (rows) => rows,
+                                    matchingRows: (rows) => rows.eq(
+                                      'id',
+                                      currentUserUid,
+                                    ),
                                   );
                                   await UserLogsTable().insert({
                                     'user_id': currentUserUid,

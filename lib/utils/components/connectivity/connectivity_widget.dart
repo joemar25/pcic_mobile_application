@@ -46,6 +46,8 @@ class _ConnectivityWidgetState extends State<ConnectivityWidget>
         ],
       ),
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

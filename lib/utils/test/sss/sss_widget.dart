@@ -22,6 +22,8 @@ class _SssWidgetState extends State<SssWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => SssModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -45,7 +47,7 @@ class _SssWidgetState extends State<SssWidget> {
           automaticallyImplyLeading: false,
           title: Text(
             FFLocalizations.of(context).getText(
-              'yigfujp5' /* Page Title */,
+              'yigfujp5' /* its chane */,
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: FlutterFlowTheme.of(context).headlineMediumFamily,
@@ -60,20 +62,33 @@ class _SssWidgetState extends State<SssWidget> {
           centerTitle: false,
           elevation: 2.0,
         ),
-        body: const SafeArea(
+        body: SafeArea(
           top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Expanded(
+              const Expanded(
                 child: SizedBox(
                   width: double.infinity,
-                  height: 2.0,
+                  height: 350.0,
                   child: custom_widgets.MapangMakabayan(
                     width: double.infinity,
-                    height: 2.0,
+                    height: 350.0,
+                    accessToken:
+                        'pk.eyJ1IjoicXVhbmJ5c29sdXRpb25zIiwiYSI6ImNsdWhrejRwdDJyYnAya3A2NHFqbXlsbHEifQ.WJ5Ng-AO-dTrlkUHD_ebMw',
                   ),
                 ),
+              ),
+              Text(
+                FFLocalizations.of(context).getText(
+                  '6xi2h1o3' /* Hello World */,
+                ),
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                      letterSpacing: 0.0,
+                      useGoogleFonts: GoogleFonts.asMap().containsKey(
+                          FlutterFlowTheme.of(context).bodyMediumFamily),
+                    ),
               ),
             ],
           ),

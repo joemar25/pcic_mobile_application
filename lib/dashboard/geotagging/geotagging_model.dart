@@ -7,6 +7,8 @@ class GeotaggingModel extends FlutterFlowModel<GeotaggingWidget> {
 
   bool isGeotagStart = true;
 
+  bool isFinished = true;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

@@ -7,7 +7,11 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/signature/signature_widget.dart';
+import 'package:easy_debounce/easy_debounce.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -61,19 +65,6 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
     _model.ppirConfirmedByNameFieldFocusNode ??= FocusNode();
 
     animationsMap.addAll({
-      'containerOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          ShakeEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 1000.0.ms,
-            hz: 10,
-            offset: const Offset(0.0, 0.0),
-            rotation: 0.087,
-          ),
-        ],
-      ),
       'dropDownOnActionTriggerAnimation': AnimationInfo(
         trigger: AnimationTrigger.onActionTrigger,
         applyInitialState: true,
@@ -106,6 +97,8 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
           !anim.applyInitialState),
       this,
     );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -162,8 +155,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
               key: scaffoldKey,
               backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
               appBar: AppBar(
-                backgroundColor:
-                    FlutterFlowTheme.of(context).secondaryBackground,
+                backgroundColor: FlutterFlowTheme.of(context).primary,
                 automaticallyImplyLeading: false,
                 leading: FlutterFlowIconButton(
                   borderColor: Colors.transparent,
@@ -209,52 +201,23 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      FFLocalizations.of(context).getText(
-                        'erm3i53g' /* PPIR Form */,
-                      ),
-                      style: FlutterFlowTheme.of(context).titleLarge.override(
+                      '${valueOrDefault<String>(
+                        ppirPpirFormsRow?.ppirAssignmentid,
+                        'Assignment ID',
+                      )} Form',
+                      style: FlutterFlowTheme.of(context).titleSmall.override(
                             fontFamily:
-                                FlutterFlowTheme.of(context).titleLargeFamily,
+                                FlutterFlowTheme.of(context).titleSmallFamily,
                             letterSpacing: 0.0,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).titleLargeFamily),
+                                FlutterFlowTheme.of(context).titleSmallFamily),
                           ),
                     ),
-                    AnimatedContainer(
-                      duration: const Duration(milliseconds: 100),
-                      curve: Curves.easeInOutQuint,
-                      width: 30.0,
-                      height: 30.0,
-                      decoration: BoxDecoration(
-                        color: FFAppState().ONLINE
-                            ? FlutterFlowTheme.of(context).primary
-                            : FlutterFlowTheme.of(context).warning,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Stack(
-                        children: [
-                          if (FFAppState().ONLINE)
-                            Align(
-                              alignment: const AlignmentDirectional(0.0, 0.0),
-                              child: Icon(
-                                Icons.wifi,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                size: 24.0,
-                              ),
-                            ),
-                          if (!FFAppState().ONLINE)
-                            Align(
-                              alignment: const AlignmentDirectional(0.0, 0.0),
-                              child: Icon(
-                                Icons.wifi_off,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                size: 24.0,
-                              ),
-                            ),
-                        ],
-                      ),
-                    ).animateOnPageLoad(
-                        animationsMap['containerOnPageLoadAnimation']!),
+                    wrapWithModel(
+                      model: _model.connectivityModel,
+                      updateCallback: () => setState(() {}),
+                      child: const ConnectivityWidget(),
+                    ),
                   ],
                 ),
                 actions: const [],
@@ -1851,8 +1814,102 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                           ),
                                           focusNode: _model
                                               .ppirAreaDopDsFieldFocusNode,
+                                          onChanged: (_) =>
+                                              EasyDebounce.debounce(
+                                            '_model.ppirAreaDopDsFieldTextController',
+                                            const Duration(milliseconds: 2000),
+                                            () async {
+                                              await showModalBottomSheet<bool>(
+                                                  context: context,
+                                                  builder: (context) {
+                                                    final datePicked1CupertinoTheme =
+                                                        CupertinoTheme.of(
+                                                            context);
+                                                    return ScrollConfiguration(
+                                                      behavior:
+                                                          const MaterialScrollBehavior()
+                                                              .copyWith(
+                                                        dragDevices: {
+                                                          PointerDeviceKind
+                                                              .mouse,
+                                                          PointerDeviceKind
+                                                              .touch,
+                                                          PointerDeviceKind
+                                                              .stylus,
+                                                          PointerDeviceKind
+                                                              .unknown
+                                                        },
+                                                      ),
+                                                      child: Container(
+                                                        height: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .height /
+                                                            3,
+                                                        width: MediaQuery.of(
+                                                                context)
+                                                            .size
+                                                            .width,
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                        child: CupertinoTheme(
+                                                          data:
+                                                              datePicked1CupertinoTheme
+                                                                  .copyWith(
+                                                            textTheme:
+                                                                datePicked1CupertinoTheme
+                                                                    .textTheme
+                                                                    .copyWith(
+                                                              dateTimePickerTextStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .headlineMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            FlutterFlowTheme.of(context).headlineMediumFamily,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).headlineMediumFamily),
+                                                                      ),
+                                                            ),
+                                                          ),
+                                                          child:
+                                                              CupertinoDatePicker(
+                                                            mode:
+                                                                CupertinoDatePickerMode
+                                                                    .date,
+                                                            minimumDate:
+                                                                DateTime(1900),
+                                                            initialDateTime:
+                                                                getCurrentTimestamp,
+                                                            maximumDate:
+                                                                DateTime(2050),
+                                                            backgroundColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryBackground,
+                                                            use24hFormat: false,
+                                                            onDateTimeChanged:
+                                                                (newDateTime) =>
+                                                                    safeSetState(
+                                                                        () {
+                                                              _model.datePicked1 =
+                                                                  newDateTime;
+                                                            }),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  });
+                                            },
+                                          ),
                                           autofocus: false,
                                           textInputAction: TextInputAction.next,
+                                          readOnly: true,
                                           obscureText: false,
                                           decoration: InputDecoration(
                                             labelText:
@@ -1951,6 +2008,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                                 context)
                                                             .bodyMediumFamily),
                                               ),
+                                          keyboardType: TextInputType.datetime,
                                           cursorColor:
                                               FlutterFlowTheme.of(context)
                                                   .primary,
@@ -1971,8 +2029,102 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                           ),
                                           focusNode: _model
                                               .ppirAreaDopTpFieldFocusNode,
+                                          onChanged: (_) =>
+                                              EasyDebounce.debounce(
+                                            '_model.ppirAreaDopTpFieldTextController',
+                                            const Duration(milliseconds: 2000),
+                                            () async {
+                                              await showModalBottomSheet<bool>(
+                                                  context: context,
+                                                  builder: (context) {
+                                                    final datePicked2CupertinoTheme =
+                                                        CupertinoTheme.of(
+                                                            context);
+                                                    return ScrollConfiguration(
+                                                      behavior:
+                                                          const MaterialScrollBehavior()
+                                                              .copyWith(
+                                                        dragDevices: {
+                                                          PointerDeviceKind
+                                                              .mouse,
+                                                          PointerDeviceKind
+                                                              .touch,
+                                                          PointerDeviceKind
+                                                              .stylus,
+                                                          PointerDeviceKind
+                                                              .unknown
+                                                        },
+                                                      ),
+                                                      child: Container(
+                                                        height: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .height /
+                                                            3,
+                                                        width: MediaQuery.of(
+                                                                context)
+                                                            .size
+                                                            .width,
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                        child: CupertinoTheme(
+                                                          data:
+                                                              datePicked2CupertinoTheme
+                                                                  .copyWith(
+                                                            textTheme:
+                                                                datePicked2CupertinoTheme
+                                                                    .textTheme
+                                                                    .copyWith(
+                                                              dateTimePickerTextStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .headlineMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            FlutterFlowTheme.of(context).headlineMediumFamily,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).headlineMediumFamily),
+                                                                      ),
+                                                            ),
+                                                          ),
+                                                          child:
+                                                              CupertinoDatePicker(
+                                                            mode:
+                                                                CupertinoDatePickerMode
+                                                                    .date,
+                                                            minimumDate:
+                                                                DateTime(1900),
+                                                            initialDateTime:
+                                                                getCurrentTimestamp,
+                                                            maximumDate:
+                                                                DateTime(2050),
+                                                            backgroundColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryBackground,
+                                                            use24hFormat: false,
+                                                            onDateTimeChanged:
+                                                                (newDateTime) =>
+                                                                    safeSetState(
+                                                                        () {
+                                                              _model.datePicked2 =
+                                                                  newDateTime;
+                                                            }),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  });
+                                            },
+                                          ),
                                           autofocus: false,
                                           textInputAction: TextInputAction.next,
+                                          readOnly: true,
                                           obscureText: false,
                                           decoration: InputDecoration(
                                             labelText:
@@ -2071,6 +2223,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                                 context)
                                                             .bodyMediumFamily),
                                               ),
+                                          keyboardType: TextInputType.datetime,
                                           cursorColor:
                                               FlutterFlowTheme.of(context)
                                                   .primary,
@@ -2926,121 +3079,135 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                             ),
                           ),
                           FFButtonWidget(
-                            onPressed: () async {
-                              var confirmDialogResponse =
-                                  await showDialog<bool>(
-                                        context: context,
-                                        builder: (alertDialogContext) {
-                                          return AlertDialog(
-                                            title: const Text('Info'),
-                                            content: const Text(
-                                                'Are you sure to that the above data is correct?'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext, false),
-                                                child: const Text('Cancel'),
-                                              ),
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext, true),
-                                                child: const Text('Confirm'),
-                                              ),
-                                            ],
-                                          );
+                            onPressed: !FFAppState().ONLINE
+                                ? null
+                                : () async {
+                                    var confirmDialogResponse =
+                                        await showDialog<bool>(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: const Text('Info'),
+                                                  content: const Text(
+                                                      'Are you sure to that the above data is correct?'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext,
+                                                              false),
+                                                      child: const Text('Cancel'),
+                                                    ),
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext,
+                                                              true),
+                                                      child: const Text('Confirm'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            ) ??
+                                            false;
+                                    if (confirmDialogResponse) {
+                                      await PpirFormsTable().update(
+                                        data: {
+                                          'track_last_coord': '11',
+                                          'track_date_time': '11',
+                                          'track_total_area': '11',
+                                          'track_total_distance': 'distance',
+                                          'ppir_svp_act':
+                                              _model.ppirSvpActSelectionValue,
+                                          'ppir_dopds_act': _model
+                                              .ppirAreaDopDsFieldTextController
+                                              .text,
+                                          'ppir_doptp_act': _model
+                                              .ppirAreaDopTpFieldTextController
+                                              .text,
+                                          'ppir_remarks': _model
+                                              .ppirRemarksFieldTextController
+                                              .text,
+                                          'ppir_name_insured': _model
+                                              .ppirConfirmedByNameFieldTextController
+                                              .text,
+                                          'ppir_name_iuia': _model
+                                              .ppirPreparedByNameFieldTextController
+                                              .text,
+                                          'ppir_farmloc': _model
+                                              .ppirTrackFarmlocTextController
+                                              .text,
+                                          'ppir_area_act': _model
+                                              .ppirAreaActFieldTextController
+                                              .text,
                                         },
-                                      ) ??
-                                      false;
-                              if (confirmDialogResponse) {
-                                await PpirFormsTable().update(
-                                  data: {
-                                    'track_last_coord': '11',
-                                    'track_date_time': '11',
-                                    'track_total_area': '11',
-                                    'track_total_distance': 'distance',
-                                    'ppir_svp_act':
-                                        _model.ppirSvpActSelectionValue,
-                                    'ppir_dopds_act': _model
-                                        .ppirAreaDopDsFieldTextController.text,
-                                    'ppir_doptp_act': _model
-                                        .ppirAreaDopTpFieldTextController.text,
-                                    'ppir_remarks': _model
-                                        .ppirRemarksFieldTextController.text,
-                                    'ppir_name_insured': _model
-                                        .ppirConfirmedByNameFieldTextController
-                                        .text,
-                                    'ppir_name_iuia': _model
-                                        .ppirPreparedByNameFieldTextController
-                                        .text,
-                                    'ppir_farmloc': _model
-                                        .ppirTrackFarmlocTextController.text,
-                                    'ppir_area_act': _model
-                                        .ppirAreaActFieldTextController.text,
+                                        matchingRows: (rows) => rows.eq(
+                                          'task_id',
+                                          widget.taskId,
+                                        ),
+                                      );
+                                      if (_model.ppirSvpActSelectionValue ==
+                                          'rice') {
+                                        await PpirFormsTable().update(
+                                          data: {
+                                            'ppir_variety': _model
+                                                .ppirSeedVarRiceDropdownValue,
+                                          },
+                                          matchingRows: (rows) => rows.eq(
+                                            'task_id',
+                                            widget.taskId,
+                                          ),
+                                        );
+                                      } else {
+                                        await PpirFormsTable().update(
+                                          data: {
+                                            'ppir_variety': _model
+                                                .ppirSeedVarCornDropdownValue,
+                                          },
+                                          matchingRows: (rows) => rows.eq(
+                                            'task_id',
+                                            widget.taskId,
+                                          ),
+                                        );
+                                      }
+
+                                      await TasksTable().update(
+                                        data: {
+                                          'status': 'completed',
+                                        },
+                                        matchingRows: (rows) => rows.eq(
+                                          'id',
+                                          widget.taskId,
+                                        ),
+                                      );
+                                    } else {
+                                      context.safePop();
+                                    }
+
+                                    context.pushNamed(
+                                      'formSuccess',
+                                      queryParameters: {
+                                        'taskId': serializeParam(
+                                          ppirPpirFormsRow?.taskId,
+                                          ParamType.String,
+                                        ),
+                                        'type': serializeParam(
+                                          'submit',
+                                          ParamType.String,
+                                        ),
+                                      }.withoutNulls,
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: const TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 200),
+                                        ),
+                                      },
+                                    );
+
+                                    setState(() {});
                                   },
-                                  matchingRows: (rows) => rows.eq(
-                                    'task_id',
-                                    widget.taskId,
-                                  ),
-                                );
-                                if (_model.ppirSvpActSelectionValue == 'rice') {
-                                  await PpirFormsTable().update(
-                                    data: {
-                                      'ppir_variety':
-                                          _model.ppirSeedVarRiceDropdownValue,
-                                    },
-                                    matchingRows: (rows) => rows.eq(
-                                      'task_id',
-                                      widget.taskId,
-                                    ),
-                                  );
-                                } else {
-                                  await PpirFormsTable().update(
-                                    data: {
-                                      'ppir_variety':
-                                          _model.ppirSeedVarCornDropdownValue,
-                                    },
-                                    matchingRows: (rows) => rows.eq(
-                                      'task_id',
-                                      widget.taskId,
-                                    ),
-                                  );
-                                }
-
-                                await TasksTable().update(
-                                  data: {
-                                    'status': 'completed',
-                                  },
-                                  matchingRows: (rows) => rows.eq(
-                                    'id',
-                                    widget.taskId,
-                                  ),
-                                );
-                              }
-
-                              context.pushNamed(
-                                'formSuccess',
-                                queryParameters: {
-                                  'taskId': serializeParam(
-                                    ppirPpirFormsRow?.taskId,
-                                    ParamType.String,
-                                  ),
-                                  'type': serializeParam(
-                                    'submit',
-                                    ParamType.String,
-                                  ),
-                                }.withoutNulls,
-                                extra: <String, dynamic>{
-                                  kTransitionInfoKey: const TransitionInfo(
-                                    hasTransition: true,
-                                    transitionType: PageTransitionType.scale,
-                                    alignment: Alignment.bottomCenter,
-                                    duration: Duration(milliseconds: 200),
-                                  ),
-                                },
-                              );
-
-                              setState(() {});
-                            },
                             text: FFLocalizations.of(context).getText(
                               '7i7p5yr3' /* Submit */,
                             ),

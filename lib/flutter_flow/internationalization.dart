@@ -297,14 +297,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // taskDetails
   {
-    'x1jz4y0y': {
-      'en': 'Task Details',
-      'tl': 'Mga Detalye ng Gawain',
-    },
-    'ihmcvc23': {
-      'en': 'This task is completed',
-      'tl': 'Nakumpleto ang gawaing ito',
-    },
     'j9rxgs8h': {
       'en': 'Form Details',
       'tl': 'Mga Detalye ng Form',
@@ -481,14 +473,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Geotag',
       'tl': 'Geotag',
     },
-    '096k25yu': {
-      'en': 'Recorded',
-      'tl': 'Naitala',
-    },
-    'e0abx8jq': {
-      'en': 'Actions',
-      'tl': 'Mga aksyon',
-    },
     'g06chmkk': {
       'en': 'Continue Form',
       'tl': 'Ipagpatuloy ang Form',
@@ -508,10 +492,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // ppir
   {
-    'erm3i53g': {
-      'en': 'PPIR Form',
-      'tl': 'Form ng PPIR',
-    },
     '3s84cgqw': {
       'en': 'Geotag Information',
       'tl': 'Impormasyon sa Geotag',
@@ -713,8 +693,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Completed',
       'tl': 'Nakumpleto',
     },
-    'xfnacy2o': {
-      'en': 'geotag',
+    'utgyj58c': {
+      'en': 'Button',
       'tl': '',
     },
     '67jgj8w9': {
@@ -822,10 +802,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Assignment Id',
       'tl': 'Assignment Id',
     },
-    'brrixmb6': {
-      'en': 'Start',
-      'tl': 'Tapusin',
-    },
     'pstdbhmc': {
       'en': 'Finish',
       'tl': 'Tapusin',
@@ -853,7 +829,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // sss
   {
     'yigfujp5': {
-      'en': 'Page Title',
+      'en': 'its chane',
+      'tl': '',
+    },
+    '6xi2h1o3': {
+      'en': 'Hello World',
       'tl': '',
     },
     'p5v52glk': {

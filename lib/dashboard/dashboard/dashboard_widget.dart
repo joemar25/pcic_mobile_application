@@ -107,11 +107,6 @@ class _DashboardWidgetState extends State<DashboardWidget>
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
-        GoRouter.of(context).prepareAuthEvent();
-        await authManager.signOut();
-        GoRouter.of(context).clearRedirectLocation();
-
-        navigate = () => context.goNamedAuth('login', context.mounted);
       }
 
       navigate();
@@ -162,6 +157,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
         ],
       ),
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -443,11 +440,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                     const Duration(milliseconds: 500),
                                                 fadeOutDuration:
                                                     const Duration(milliseconds: 500),
-                                                imageUrl:
-                                                    valueOrDefault<String>(
-                                                  dashboardUsersRow?.photoUrl,
-                                                  'https://www.pngitem.com/pimgs/m/22-223968_default-profile-picture-circle-hd-png-download.png',
-                                                ),
+                                                imageUrl: dashboardUsersRow!
+                                                    .photoUrl!,
                                                 fit: BoxFit.cover,
                                               ),
                                             ),
@@ -1628,7 +1622,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                     context.pushNamed('sss');
                                   },
                                   text: FFLocalizations.of(context).getText(
-                                    'xfnacy2o' /* geotag */,
+                                    'utgyj58c' /* Button */,
                                   ),
                                   options: FFButtonOptions(
                                     height: 40.0,

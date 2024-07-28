@@ -31,6 +31,8 @@ class _ChangePhotoWidgetState extends State<ChangePhotoWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ChangePhotoModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -212,8 +214,7 @@ class _ChangePhotoWidgetState extends State<ChangePhotoWidget> {
                                           },
                                         ),
                                       ),
-                                      if (currentUserEmail ==
-                                          'joemar@yahoo.com')
+                                      if (currentUserEmail == currentUserEmail)
                                         Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: Container(
@@ -223,15 +224,8 @@ class _ChangePhotoWidgetState extends State<ChangePhotoWidget> {
                                             decoration: const BoxDecoration(
                                               shape: BoxShape.circle,
                                             ),
-                                            child: CachedNetworkImage(
-                                              fadeInDuration:
-                                                  const Duration(milliseconds: 500),
-                                              fadeOutDuration:
-                                                  const Duration(milliseconds: 500),
-                                              imageUrl: valueOrDefault<String>(
-                                                _model.uploadedFileUrl,
-                                                'https://newsko.com.ph/wp-content/uploads/2024/06/Mikha.jpg',
-                                              ),
+                                            child: Image.asset(
+                                              'assets/images/default-avatar.jpg',
                                               fit: BoxFit.cover,
                                             ),
                                           ),
@@ -251,11 +245,10 @@ class _ChangePhotoWidgetState extends State<ChangePhotoWidget> {
                               children: [
                                 FFButtonWidget(
                                   onPressed: () async {
-                                    final selectedMedia =
-                                        await selectMediaWithSourceBottomSheet(
-                                      context: context,
-                                      storageFolderPath: currentUserEmail,
-                                      allowPhoto: true,
+                                    final selectedMedia = await selectMedia(
+                                      storageFolderPath: currentUserUid,
+                                      mediaSource: MediaSource.photoGallery,
+                                      multiImage: false,
                                     );
                                     if (selectedMedia != null &&
                                         selectedMedia.every((m) =>

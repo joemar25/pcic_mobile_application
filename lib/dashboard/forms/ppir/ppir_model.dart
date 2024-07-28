@@ -1,7 +1,9 @@
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/utils/components/connectivity/connectivity_widget.dart';
 import 'ppir_widget.dart' show PpirWidget;
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PpirModel extends FlutterFlowModel<PpirWidget> {
@@ -16,6 +18,8 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Model for connectivity component.
+  late ConnectivityModel connectivityModel;
   // State field(s) for ppir_track_coordinates widget.
   FocusNode? ppirTrackCoordinatesFocusNode;
   TextEditingController? ppirTrackCoordinatesTextController;
@@ -54,11 +58,13 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
   TextEditingController? ppirAreaDopDsFieldTextController;
   String? Function(BuildContext, String?)?
       ppirAreaDopDsFieldTextControllerValidator;
+  DateTime? datePicked1;
   // State field(s) for ppir_area_dop_tp_field widget.
   FocusNode? ppirAreaDopTpFieldFocusNode;
   TextEditingController? ppirAreaDopTpFieldTextController;
   String? Function(BuildContext, String?)?
       ppirAreaDopTpFieldTextControllerValidator;
+  DateTime? datePicked2;
   // State field(s) for ppir_remarks_field widget.
   FocusNode? ppirRemarksFieldFocusNode;
   TextEditingController? ppirRemarksFieldTextController;
@@ -90,11 +96,14 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
   List<PpirFormsRow>? cornVariety;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    connectivityModel = createModel(context, () => ConnectivityModel());
+  }
 
   @override
   void dispose() {
     unfocusNode.dispose();
+    connectivityModel.dispose();
     ppirTrackCoordinatesFocusNode?.dispose();
     ppirTrackCoordinatesTextController?.dispose();
 

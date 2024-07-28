@@ -68,6 +68,8 @@ class _TasksWidgetState extends State<TasksWidget>
           !anim.applyInitialState),
       this,
     );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -180,20 +182,6 @@ class _TasksWidgetState extends State<TasksWidget>
                                         .containsKey(
                                             FlutterFlowTheme.of(context)
                                                 .headlineSmallFamily),
-                                  ),
-                            ),
-                            Text(
-                              widget.status,
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily,
-                                    letterSpacing: 0.0,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .bodyMediumFamily),
                                   ),
                             ),
                           ],
