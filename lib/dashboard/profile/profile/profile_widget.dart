@@ -319,7 +319,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                           Icon(
                                             Icons.nights_stay_rounded,
                                             color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
+                                                .primaryText,
                                             size: 30.0,
                                           ),
                                           Text(
@@ -363,7 +363,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                 .alternate,
                                         inactiveThumbColor:
                                             FlutterFlowTheme.of(context)
-                                                .secondaryText,
+                                                .primaryText,
                                       ),
                                     ],
                                   ),
@@ -382,7 +382,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                               Icons.person,
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .secondaryText,
+                                                      .primaryText,
                                               size: 30.0,
                                             ),
                                             Text(
@@ -436,7 +436,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                               Icons.key_rounded,
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .secondaryText,
+                                                      .primaryText,
                                               size: 30.0,
                                             ),
                                             Text(
@@ -491,15 +491,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                   focusColor: Colors.transparent,
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    GoRouter.of(context).prepareAuthEvent();
-                                    await authManager.signOut();
-                                    GoRouter.of(context)
-                                        .clearRedirectLocation();
-
-                                    context.goNamedAuth(
-                                        'login', context.mounted);
-                                  },
+                                  onTap: () async {},
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [

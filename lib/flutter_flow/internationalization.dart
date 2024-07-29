@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'p1jo789z': {
+    'aplys0fi': {
       'en': '',
       'tl': '',
     },
@@ -787,7 +787,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your email...',
       'tl': 'Ilagay ang iyong email...',
     },
-    'uz6p82oz': {
+    'yvgvrkk7': {
       'en': '',
       'tl': '',
     },
@@ -1176,6 +1176,25 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'ftz1qs3j': {
       'en': 'Address',
+      'tl': '',
+    },
+  },
+  // signoutDialog
+  {
+    'yovt82s2': {
+      'en': 'Confrim Sign Out',
+      'tl': '',
+    },
+    'jzto1w3u': {
+      'en': 'Are you sure you want to sign out?',
+      'tl': '',
+    },
+    'l878cyp1': {
+      'en': 'CANCEL',
+      'tl': '',
+    },
+    '6fku8v4x': {
+      'en': 'SIGN OUT',
       'tl': '',
     },
   },
