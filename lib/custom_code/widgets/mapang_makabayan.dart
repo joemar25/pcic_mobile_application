@@ -42,9 +42,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   late final StreamController<LocationMarkerPosition> _positionStreamController;
   late final Stream<LocationMarkerPosition> _positionStream;
 
-  final int _minSatellitesForAccuracy = 4;
-  final double _minAccuracyThreshold =
-      10.0; // in meters, increased for stability
+  final double _minAccuracyThreshold = 10.0; // in meters
 
   @override
   void initState() {
@@ -94,8 +92,8 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
 
       setState(() {
         _isTracking = true;
-        route.clear();
-        route.add(_currentLocation!);
+        route = [_currentLocation!];
+        print('Started tracking. Initial point: $_currentLocation');
       });
 
       _updateLocationMarker(_currentLocation!, position.accuracy);
@@ -108,10 +106,9 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     _positionSubscription = Geolocator.getPositionStream(
       locationSettings: AndroidSettings(
         accuracy: LocationAccuracy.best,
-        distanceFilter: 5, // Only update if moved more than 5 meters
-        forceLocationManager:
-            true, // Use Android's LocationManager for more stability
-        intervalDuration: const Duration(seconds: 5), // Reduce update frequency
+        distanceFilter: 1, // Update every 1 meter
+        forceLocationManager: false,
+        intervalDuration: const Duration(seconds: 1),
       ),
     ).listen((Position position) {
       _updateLocation(position);
@@ -125,6 +122,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
       _isTracking = false;
     });
     _positionSubscription?.cancel();
+    print('Stopped tracking. Total points in route: ${route.length}');
   }
 
   void _updateLocation(Position position) {
@@ -135,23 +133,21 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
 
     ll.LatLng newLocation = ll.LatLng(position.latitude, position.longitude);
 
-    setState(() {
-      _currentLocation = newLocation;
-      if (_isTracking) {
-        if (route.isEmpty ||
-            _calculateDistance(route.last, newLocation) >= _minDistanceFilter) {
+    if (_isTracking) {
+      double distance = _calculateDistance(route.last, newLocation);
+      if (distance >= _minDistanceFilter) {
+        setState(() {
           route.add(newLocation);
-          print('Added point to route. Total points: ${route.length}');
-        }
+          print(
+              'Added point to route. Total points: ${route.length}. Distance from last point: $distance meters');
+        });
       }
-    });
+    }
 
+    _currentLocation = newLocation;
     _updateLocationMarker(newLocation, position.accuracy);
 
-    // Only move the map if tracking and the new location is significantly different
-    if (_isTracking &&
-        _calculateDistance(_currentLocation!, newLocation) >=
-            _minDistanceFilter) {
+    if (_isTracking) {
       _mapController.move(newLocation, _currentZoom);
     }
   }
@@ -242,9 +238,17 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
               Positioned(
                 bottom: 16,
                 left: 16,
-                child: ElevatedButton(
-                  onPressed: _isTracking ? stopTracking : startTracking,
-                  child: Text(_isTracking ? 'Stop' : 'Start'),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ElevatedButton(
+                      onPressed: _isTracking ? stopTracking : startTracking,
+                      child: Text(_isTracking ? 'Stop' : 'Start'),
+                    ),
+                    SizedBox(height: 8),
+                    Text('Points: ${route.length}',
+                        style: TextStyle(backgroundColor: Colors.white)),
+                  ],
                 ),
               ),
             ],
