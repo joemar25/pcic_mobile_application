@@ -75,9 +75,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
       Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.best,
       ).timeout(Duration(seconds: 10));
-      ll.LatLng location = ll.LatLng(position.latitude, position.longitude);
-      _updateLocationMarker(location, position.accuracy);
-      return location;
+      return ll.LatLng(position.latitude, position.longitude);
     } catch (e) {
       print("Error getting initial location: $e");
       throw Exception('Failed to get location: $e');
@@ -85,20 +83,25 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   }
 
   void startTracking() async {
-    setState(() {
-      _isTracking = true;
-      route.clear();
-      _lastRecordedPoint = null;
-    });
-
     // Get current location before starting the stream
     try {
       Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.best,
       );
-      _updateLocation(position);
+      ll.LatLng newLocation = ll.LatLng(position.latitude, position.longitude);
+
+      setState(() {
+        _isTracking = true;
+        route.clear();
+        _lastRecordedPoint = newLocation;
+        route.add(newLocation);
+      });
+
+      _updateLocationMarker(newLocation, position.accuracy);
+      _mapController.move(newLocation, _currentZoom);
     } catch (e) {
       print("Error getting current location: $e");
+      return;
     }
 
     _positionSubscription = Geolocator.getPositionStream(
