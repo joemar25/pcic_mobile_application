@@ -142,7 +142,12 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
       final newLocation =
           ll.LatLng(averagePosition.latitude, averagePosition.longitude);
 
-      if (_lastValidLocation != null && _isTracking) {
+      setState(() {
+        currentLocation = newLocation;
+        _mapController.move(newLocation, _currentZoom);
+      });
+
+      if (_isTracking && _lastValidLocation != null) {
         final distance = calculateDistance(_lastValidLocation!, newLocation);
 
         if (distance >= _minDistanceFilter) {
@@ -150,34 +155,23 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
             if (_startingPoint != null &&
                 calculateDistance(_startingPoint!, newLocation) <=
                     _closingThreshold) {
-              // Check if the area is significant before snapping
               double currentArea = calculateArea([...route, newLocation]);
               if (currentArea >= _minAreaThreshold) {
                 route.add(_startingPoint!);
                 _lastValidLocation = _startingPoint;
-                currentLocation = _startingPoint;
-                _mapController.move(_startingPoint!, _currentZoom);
-                stopTracking(); // Automatically stop tracking when snapped
+                stopTracking();
               } else {
                 route.add(newLocation);
                 _lastValidLocation = newLocation;
-                currentLocation = newLocation;
-                _mapController.move(newLocation, _currentZoom);
               }
             } else {
               route.add(newLocation);
               _lastValidLocation = newLocation;
-              currentLocation = newLocation;
-              _mapController.move(newLocation, _currentZoom);
             }
           });
         }
       } else {
-        setState(() {
-          _lastValidLocation = newLocation;
-          currentLocation = newLocation;
-          _mapController.move(newLocation, _currentZoom);
-        });
+        _lastValidLocation = newLocation;
       }
     }
   }
@@ -313,11 +307,11 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
                 markers: [
                   Marker(
                     point: currentLocation!,
-                    width: 20.0,
-                    height: 20.0,
+                    width: 16.0,
+                    height: 16.0,
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Colors.blue,
+                        color: Colors.green,
                         shape: BoxShape.circle,
                         border: Border.all(color: Colors.white, width: 2),
                       ),
