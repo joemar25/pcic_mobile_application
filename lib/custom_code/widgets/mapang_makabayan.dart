@@ -43,7 +43,8 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   late final Stream<LocationMarkerPosition> _positionStream;
 
   final int _minSatellitesForAccuracy = 4;
-  final double _minAccuracyThreshold = 3.0; // in meters
+  final double _minAccuracyThreshold =
+      10.0; // in meters, increased for stability
 
   @override
   void initState() {
@@ -107,9 +108,10 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     _positionSubscription = Geolocator.getPositionStream(
       locationSettings: AndroidSettings(
         accuracy: LocationAccuracy.best,
-        distanceFilter: 0,
-        forceLocationManager: false,
-        intervalDuration: const Duration(seconds: 1),
+        distanceFilter: 5, // Only update if moved more than 5 meters
+        forceLocationManager:
+            true, // Use Android's LocationManager for more stability
+        intervalDuration: const Duration(seconds: 5), // Reduce update frequency
       ),
     ).listen((Position position) {
       _updateLocation(position);
@@ -126,20 +128,9 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   }
 
   void _updateLocation(Position position) {
-    if (position is AndroidPosition) {
-      print('Accuracy: ${position.accuracy} meters');
-      if (position.satellitesUsedInFix < _minSatellitesForAccuracy ||
-          position.accuracy > _minAccuracyThreshold) {
-        print('Low accuracy data, skipping update');
-        return;
-      }
-
-      if (position.isMocked) {
-        print('Warning: Location may be mocked');
-        return;
-      }
-
-      print('Satellites in use: ${position.satellitesUsedInFix}');
+    if (position.accuracy > _minAccuracyThreshold) {
+      print('Low accuracy data (${position.accuracy} meters), skipping update');
+      return;
     }
 
     ll.LatLng newLocation = ll.LatLng(position.latitude, position.longitude);
@@ -150,12 +141,19 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
         if (route.isEmpty ||
             _calculateDistance(route.last, newLocation) >= _minDistanceFilter) {
           route.add(newLocation);
+          print('Added point to route. Total points: ${route.length}');
         }
       }
     });
 
     _updateLocationMarker(newLocation, position.accuracy);
-    _mapController.move(newLocation, _currentZoom);
+
+    // Only move the map if tracking and the new location is significantly different
+    if (_isTracking &&
+        _calculateDistance(_currentLocation!, newLocation) >=
+            _minDistanceFilter) {
+      _mapController.move(newLocation, _currentZoom);
+    }
   }
 
   void _updateLocationMarker(ll.LatLng location, double accuracy) {
