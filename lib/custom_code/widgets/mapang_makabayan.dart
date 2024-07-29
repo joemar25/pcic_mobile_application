@@ -16,7 +16,7 @@ import 'dart:async';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart' as ll;
 import 'package:geolocator/geolocator.dart';
-import 'dart:math' show cos, sqrt, asin;
+import 'dart:math' show cos, sqrt, asin, pi;
 
 class MapangMakabayan extends StatefulWidget {
   final double? width;
@@ -34,45 +34,29 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   ll.LatLng? currentLocation;
   bool locationLoaded = false;
   List<ll.LatLng> route = [];
-  MapController _mapController = MapController();
+  final MapController _mapController = MapController();
   StreamSubscription<Position>? _positionSubscription;
-  final double _minDistanceFilter = 1.0;
+  final double _minDistanceFilter =
+      1.0; // 1 meter for balance between accuracy and smoothness
   ll.LatLng? _lastValidLocation;
   double _currentZoom = 19.0;
   bool _isTracking = false;
   List<ll.LatLng> pinDrops = [];
   List<Position> _recentPositions = [];
-  final int _smoothingFactor = 3;
+  final int _smoothingFactor = 5;
   ll.LatLng? _startingPoint;
-  final double _closingThreshold = 1.0;
-  final double _minAreaThreshold = 10.0;
+  final double _closingThreshold = 1.0; // 1 meter to snap to starting point
+  final double _minAreaThreshold =
+      10.0; // Minimum area in square meters to consider for snapping
 
   @override
   void initState() {
     super.initState();
-    _initializeLocation();
-  }
-
-  Future<void> _initializeLocation() async {
-    bool hasPermission = await checkPermissions();
-    if (hasPermission) {
-      try {
-        Position position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.best,
-        );
-        setState(() {
-          currentLocation = ll.LatLng(position.latitude, position.longitude);
-          locationLoaded = true;
-        });
-        startLocationUpdates();
-      } catch (e) {
-        print("Error getting initial location: $e");
-        // Handle error (e.g., show an error message to the user)
+    checkPermissions().then((hasPermission) {
+      if (hasPermission) {
+        getCurrentLocation();
       }
-    } else {
-      // Handle case where permissions are not granted
-      print("Location permissions not granted");
-    }
+    });
   }
 
   Future<bool> checkPermissions() async {
@@ -99,70 +83,23 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     return true;
   }
 
-  void startLocationUpdates() {
-    _positionSubscription = Geolocator.getPositionStream(
-      locationSettings: const LocationSettings(
-        accuracy: LocationAccuracy.best,
-        distanceFilter: 1,
-      ),
-    ).listen((Position position) {
-      _updateRecentPositions(position);
-      Position smoothedPosition = _calculateAveragePosition(_recentPositions);
-
-      setState(() {
-        currentLocation =
-            ll.LatLng(smoothedPosition.latitude, smoothedPosition.longitude);
-        // Directly move the map controller without checking 'ready'
-        _mapController.move(currentLocation!, _currentZoom);
-      });
-
-      if (_isTracking) {
-        _updateRoute(smoothedPosition);
-      }
-    });
-  }
-
-  void _updateRecentPositions(Position position) {
-    _recentPositions.add(position);
-    if (_recentPositions.length > _smoothingFactor) {
-      _recentPositions.removeAt(0);
-    }
-  }
-
-  Position _calculateAveragePosition(List<Position> positions) {
-    if (positions.isEmpty)
-      return Position(
-        latitude: 0,
-        longitude: 0,
-        timestamp: DateTime.now(),
-        accuracy: 0,
-        altitude: 0,
-        heading: 0,
-        speed: 0,
-        speedAccuracy: 0,
-        altitudeAccuracy: 0,
-        headingAccuracy: 0,
+  Future<void> getCurrentLocation() async {
+    try {
+      Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.bestForNavigation,
       );
 
-    double latSum = 0, lonSum = 0, altSum = 0, accSum = 0;
-    for (var position in positions) {
-      latSum += position.latitude;
-      lonSum += position.longitude;
-      altSum += position.altitude;
-      accSum += position.accuracy;
+      setState(() {
+        currentLocation = ll.LatLng(position.latitude, position.longitude);
+        _lastValidLocation = currentLocation;
+        locationLoaded = true;
+      });
+
+      // Remove the check for _mapController.ready
+      _mapController.move(currentLocation!, _currentZoom);
+    } catch (e) {
+      print('Error getting location: $e');
     }
-    return Position(
-      latitude: latSum / positions.length,
-      longitude: lonSum / positions.length,
-      altitude: altSum / positions.length,
-      accuracy: accSum / positions.length,
-      timestamp: positions.last.timestamp,
-      speed: positions.last.speed,
-      speedAccuracy: positions.last.speedAccuracy,
-      heading: positions.last.heading,
-      altitudeAccuracy: positions.last.altitudeAccuracy,
-      headingAccuracy: positions.last.headingAccuracy,
-    );
   }
 
   void startTracking() {
@@ -170,11 +107,19 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
       _isTracking = true;
       route.clear();
       pinDrops.clear();
+      _recentPositions.clear();
       _startingPoint = currentLocation;
       if (_startingPoint != null) {
         route.add(_startingPoint!);
       }
-      _lastValidLocation = _startingPoint;
+    });
+    _positionSubscription = Geolocator.getPositionStream(
+      locationSettings: const LocationSettings(
+        accuracy: LocationAccuracy.bestForNavigation,
+        distanceFilter: 0,
+      ),
+    ).listen((Position position) {
+      _updateLocation(position);
     });
   }
 
@@ -182,53 +127,92 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     setState(() {
       _isTracking = false;
     });
+    _positionSubscription?.cancel();
     _processRouteData();
   }
 
-  void _updateRoute(Position position) {
-    final newLocation = ll.LatLng(position.latitude, position.longitude);
+  void _updateLocation(Position position) {
+    _recentPositions.add(position);
+    if (_recentPositions.length > _smoothingFactor) {
+      _recentPositions.removeAt(0);
+    }
 
-    if (_lastValidLocation != null) {
-      final distance = calculateDistance(_lastValidLocation!, newLocation);
+    if (_recentPositions.length == _smoothingFactor) {
+      Position averagePosition = _calculateAveragePosition(_recentPositions);
+      final newLocation =
+          ll.LatLng(averagePosition.latitude, averagePosition.longitude);
 
-      if (distance >= _minDistanceFilter) {
-        setState(() {
-          if (_startingPoint != null &&
-              calculateDistance(_startingPoint!, newLocation) <=
-                  _closingThreshold) {
-            double currentArea = calculateArea([...route, newLocation]);
-            if (currentArea >= _minAreaThreshold) {
-              route.add(_startingPoint!);
-              _lastValidLocation = _startingPoint;
-              stopTracking();
+      if (_lastValidLocation != null && _isTracking) {
+        final distance = calculateDistance(_lastValidLocation!, newLocation);
+
+        if (distance >= _minDistanceFilter) {
+          setState(() {
+            if (_startingPoint != null &&
+                calculateDistance(_startingPoint!, newLocation) <=
+                    _closingThreshold) {
+              // Check if the area is significant before snapping
+              double currentArea = calculateArea([...route, newLocation]);
+              if (currentArea >= _minAreaThreshold) {
+                route.add(_startingPoint!);
+                _lastValidLocation = _startingPoint;
+                currentLocation = _startingPoint;
+                _mapController.move(_startingPoint!, _currentZoom);
+                stopTracking(); // Automatically stop tracking when snapped
+              } else {
+                route.add(newLocation);
+                _lastValidLocation = newLocation;
+                currentLocation = newLocation;
+                _mapController.move(newLocation, _currentZoom);
+              }
             } else {
               route.add(newLocation);
               _lastValidLocation = newLocation;
+              currentLocation = newLocation;
+              _mapController.move(newLocation, _currentZoom);
             }
-          } else {
-            route.add(newLocation);
-            _lastValidLocation = newLocation;
-          }
+          });
+        }
+      } else {
+        setState(() {
+          _lastValidLocation = newLocation;
+          currentLocation = newLocation;
+          _mapController.move(newLocation, _currentZoom);
         });
       }
     }
   }
 
   void _processRouteData() {
+    // Process the route data after stopping
     double finalArea = calculateArea(route);
     print('Final Area: $finalArea sq meters');
     // Add any other post-processing here
   }
 
-  double calculateArea(List<ll.LatLng> points) {
-    if (points.length < 3) return 0;
-    double area = 0;
-    for (int i = 0; i < points.length; i++) {
-      int j = (i + 1) % points.length;
-      area += (points[i].longitude * points[j].latitude -
-          points[j].longitude * points[i].latitude);
+  Position _calculateAveragePosition(List<Position> positions) {
+    // Giving more weight to recent positions
+    double latSum = 0, lonSum = 0, altSum = 0, accSum = 0;
+    double totalWeight = 0;
+    for (int i = 0; i < positions.length; i++) {
+      double weight = (i + 1) / positions.length;
+      latSum += positions[i].latitude * weight;
+      lonSum += positions[i].longitude * weight;
+      altSum += positions[i].altitude * weight;
+      accSum += positions[i].accuracy * weight;
+      totalWeight += weight;
     }
-    return (area.abs() / 2) * 111319.9 * 111319.9;
+    return Position.fromMap({
+      'latitude': latSum / totalWeight,
+      'longitude': lonSum / totalWeight,
+      'altitude': altSum / totalWeight,
+      'accuracy': accSum / totalWeight,
+      'speed': 0,
+      'speedAccuracy': 0,
+      'heading': 0,
+      'timestamp': DateTime.now().millisecondsSinceEpoch,
+      'altitudeAccuracy': 0,
+      'headingAccuracy': 0,
+    });
   }
 
   double calculateDistance(ll.LatLng start, ll.LatLng end) {
@@ -240,7 +224,20 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
             c(end.latitude * p) *
             (1 - c((end.longitude - start.longitude) * p)) /
             2;
-    return 12742 * asin(sqrt(a)) * 1000;
+    return 12742 * asin(sqrt(a)) * 1000; // 2 * R; R = 6371 km
+  }
+
+  double calculateArea(List<ll.LatLng> points) {
+    if (points.length < 3) return 0;
+    double area = 0;
+    for (int i = 0; i < points.length; i++) {
+      int j = (i + 1) % points.length;
+      area += (points[i].longitude * points[j].latitude -
+          points[j].longitude * points[i].latitude);
+    }
+    return (area.abs() / 2) *
+        111319.9 *
+        111319.9; // Rough conversion to square meters
   }
 
   void dropPin() {
@@ -274,81 +271,103 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
       );
     }
 
-    return Scaffold(
-      body: Stack(
+    double area = calculateArea(route);
+
+    return SizedBox(
+      width: widget.width ?? MediaQuery.of(context).size.width,
+      height: widget.height ?? MediaQuery.of(context).size.height,
+      child: Stack(
         children: [
-          SizedBox(
-            width: widget.width ?? MediaQuery.of(context).size.width,
-            height: widget.height ?? MediaQuery.of(context).size.height,
-            child: FlutterMap(
-              mapController: _mapController,
-              options: MapOptions(
-                initialCenter: currentLocation!,
-                initialZoom: _currentZoom,
-                maxZoom: 22.0,
-                minZoom: 15.0,
+          FlutterMap(
+            mapController: _mapController,
+            options: MapOptions(
+              initialCenter: currentLocation!,
+              initialZoom: _currentZoom,
+              maxZoom: 22.0,
+              minZoom: 15.0,
+              onMapReady: () {
+                if (currentLocation != null) {
+                  _mapController.move(currentLocation!, _currentZoom);
+                }
+              },
+            ),
+            children: [
+              TileLayer(
+                urlTemplate:
+                    'https://api.mapbox.com/styles/v1/quanbysolutions/cluhoxol502q801oi8od2cmvz/tiles/{z}/{x}/{y}?access_token={accessToken}',
+                additionalOptions: {
+                  'accessToken': widget.accessToken ??
+                      'your_default_mapbox_access_token_here',
+                },
               ),
-              children: [
-                TileLayer(
-                  urlTemplate:
-                      'https://api.mapbox.com/styles/v1/mapbox/streets-v12/tiles/{z}/{x}/{y}?access_token={accessToken}',
-                  additionalOptions: {
-                    'accessToken': widget.accessToken ??
-                        'your_default_mapbox_access_token_here',
-                  },
-                ),
-                if (_isTracking)
-                  PolylineLayer(
-                    polylines: [
-                      Polyline(
-                        points: route,
-                        strokeWidth: 4.0,
+              PolylineLayer(
+                polylines: [
+                  Polyline(
+                    points: route,
+                    strokeWidth: 4.0,
+                    color: Colors.blue,
+                  ),
+                ],
+              ),
+              MarkerLayer(
+                markers: [
+                  Marker(
+                    point: currentLocation!,
+                    width: 20.0,
+                    height: 20.0,
+                    child: Container(
+                      decoration: BoxDecoration(
                         color: Colors.blue,
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.white, width: 2),
+                      ),
+                    ),
+                  ),
+                  ...pinDrops.map(
+                    (point) => Marker(
+                      point: point,
+                      width: 20.0,
+                      height: 20.0,
+                      child: Icon(Icons.location_pin, color: Colors.red),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          Positioned(
+            bottom: 10,
+            left: 10,
+            child: Container(
+              color: Colors.white.withOpacity(0.7),
+              padding: EdgeInsets.all(8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Points: ${route.length}\n'
+                    'Current: ${currentLocation?.latitude.toStringAsFixed(6)}, ${currentLocation?.longitude.toStringAsFixed(6)}',
+                    style: TextStyle(fontSize: 12),
+                  ),
+                  Text(
+                    'Area: ${area.toStringAsFixed(2)} sq meters',
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                  ),
+                  Row(
+                    children: [
+                      ElevatedButton(
+                        onPressed: _isTracking ? stopTracking : startTracking,
+                        child: Text(_isTracking ? 'Stop' : 'Start'),
+                      ),
+                      SizedBox(width: 10),
+                      ElevatedButton(
+                        onPressed: _isTracking ? dropPin : null,
+                        child: Text('Drop Pin'),
                       ),
                     ],
                   ),
-                MarkerLayer(
-                  markers: [
-                    Marker(
-                      point: currentLocation!,
-                      width: 20.0,
-                      height: 20.0,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.blue,
-                          shape: BoxShape.circle,
-                          border: Border.all(color: Colors.white, width: 2),
-                        ),
-                      ),
-                    ),
-                    ...pinDrops.map(
-                      (point) => Marker(
-                        point: point,
-                        width: 20.0,
-                        height: 20.0,
-                        child: Icon(Icons.location_pin, color: Colors.red),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          Positioned(
-            top: 20,
-            right: 20,
-            child: Column(
-              children: [
-                FloatingActionButton(
-                  onPressed: _isTracking ? stopTracking : startTracking,
-                  child: Icon(_isTracking ? Icons.stop : Icons.play_arrow),
-                ),
-                SizedBox(height: 10),
-                FloatingActionButton(
-                  onPressed: dropPin,
-                  child: Icon(Icons.pin_drop),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],
