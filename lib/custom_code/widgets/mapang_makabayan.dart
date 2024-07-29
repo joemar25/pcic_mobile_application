@@ -54,7 +54,9 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     super.initState();
     checkPermissions().then((hasPermission) {
       if (hasPermission) {
-        getCurrentLocation();
+        getCurrentLocation().then((_) {
+          startContinuousLocationUpdates();
+        });
       }
     });
   }
@@ -86,7 +88,8 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   Future<void> getCurrentLocation() async {
     try {
       Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.bestForNavigation,
+        desiredAccuracy: LocationAccuracy.high,
+        timeLimit: Duration(seconds: 30),
       );
 
       setState(() {
@@ -95,7 +98,6 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
         locationLoaded = true;
       });
 
-      // Remove the check for _mapController.ready
       _mapController.move(currentLocation!, _currentZoom);
     } catch (e) {
       print('Error getting location: $e');
@@ -115,8 +117,9 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     });
     _positionSubscription = Geolocator.getPositionStream(
       locationSettings: const LocationSettings(
-        accuracy: LocationAccuracy.bestForNavigation,
-        distanceFilter: 0,
+        accuracy: LocationAccuracy.high,
+        distanceFilter: 1, // Update every 1 meter
+        timeLimit: Duration(seconds: 10),
       ),
     ).listen((Position position) {
       _updateLocation(position);
@@ -132,46 +135,49 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   }
 
   void _updateLocation(Position position) {
-    _recentPositions.add(position);
-    if (_recentPositions.length > _smoothingFactor) {
-      _recentPositions.removeAt(0);
-    }
+    if (position.accuracy <= 15) {
+      // Only use positions with accuracy better than 15 meters
+      _recentPositions.add(position);
+      if (_recentPositions.length > _smoothingFactor) {
+        _recentPositions.removeAt(0);
+      }
 
-    if (_recentPositions.length == _smoothingFactor) {
-      Position averagePosition = _calculateAveragePosition(_recentPositions);
-      final newLocation =
-          ll.LatLng(averagePosition.latitude, averagePosition.longitude);
+      if (_recentPositions.length == _smoothingFactor) {
+        Position averagePosition = _calculateAveragePosition(_recentPositions);
+        final newLocation =
+            ll.LatLng(averagePosition.latitude, averagePosition.longitude);
 
-      setState(() {
-        currentLocation = newLocation;
-        _mapController.move(newLocation, _currentZoom);
-      });
+        setState(() {
+          currentLocation = newLocation;
+          _mapController.move(newLocation, _currentZoom);
+        });
 
-      if (_isTracking && _lastValidLocation != null) {
-        final distance = calculateDistance(_lastValidLocation!, newLocation);
+        if (_isTracking && _lastValidLocation != null) {
+          final distance = calculateDistance(_lastValidLocation!, newLocation);
 
-        if (distance >= _minDistanceFilter) {
-          setState(() {
-            if (_startingPoint != null &&
-                calculateDistance(_startingPoint!, newLocation) <=
-                    _closingThreshold) {
-              double currentArea = calculateArea([...route, newLocation]);
-              if (currentArea >= _minAreaThreshold) {
-                route.add(_startingPoint!);
-                _lastValidLocation = _startingPoint;
-                stopTracking();
+          if (distance >= _minDistanceFilter) {
+            setState(() {
+              if (_startingPoint != null &&
+                  calculateDistance(_startingPoint!, newLocation) <=
+                      _closingThreshold) {
+                double currentArea = calculateArea([...route, newLocation]);
+                if (currentArea >= _minAreaThreshold) {
+                  route.add(_startingPoint!);
+                  _lastValidLocation = _startingPoint;
+                  stopTracking();
+                } else {
+                  route.add(newLocation);
+                  _lastValidLocation = newLocation;
+                }
               } else {
                 route.add(newLocation);
                 _lastValidLocation = newLocation;
               }
-            } else {
-              route.add(newLocation);
-              _lastValidLocation = newLocation;
-            }
-          });
+            });
+          }
+        } else {
+          _lastValidLocation = newLocation;
         }
-      } else {
-        _lastValidLocation = newLocation;
       }
     }
   }
@@ -240,6 +246,18 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
         pinDrops.add(currentLocation!);
       });
     }
+  }
+
+  void startContinuousLocationUpdates() {
+    _positionSubscription = Geolocator.getPositionStream(
+      locationSettings: const LocationSettings(
+        accuracy: LocationAccuracy.high,
+        distanceFilter: 1, // Update every 1 meter
+        timeLimit: Duration(seconds: 10),
+      ),
+    ).listen((Position position) {
+      _updateLocation(position);
+    });
   }
 
   @override
