@@ -74,6 +74,14 @@ class _DashboardWidgetState extends State<DashboardWidget>
         _model.completedTasksData?.length,
         0,
       );
+      _model.profileUrl = valueOrDefault<String>(
+        _model.currentUserProfile?.photoUrl,
+        'https://newsko.com.ph/wp-content/uploads/2024/06/Mikha.jpg',
+      );
+      _model.inspectorName = valueOrDefault<String>(
+        _model.currentUserProfile?.inspectorName,
+        'Inspector Name',
+      );
       setState(() {});
     });
 

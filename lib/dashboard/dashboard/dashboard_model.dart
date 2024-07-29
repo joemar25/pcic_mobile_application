@@ -14,6 +14,11 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
 
   int? cc = 0;
 
+  String profileUrl =
+      'https://newsko.com.ph/wp-content/uploads/2024/06/Mikha.jpg';
+
+  String inspectorName = 'inspectorName';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
