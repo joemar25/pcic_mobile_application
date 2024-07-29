@@ -212,7 +212,7 @@ Geotagging  */
                 Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    color: FlutterFlowTheme.of(context).primaryBackground,
                     borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(0.0),
                       bottomRight: Radius.circular(0.0),
@@ -375,9 +375,12 @@ Geotagging  */
                                           borderRadius:
                                               BorderRadius.circular(12.0),
                                         ),
+                                        filled: true,
+                                        fillColor: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
                                         contentPadding:
                                             const EdgeInsetsDirectional.fromSTEB(
-                                                15.0, 12.0, 15.0, 12.0),
+                                                15.0, 16.0, 15.0, 16.0),
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -483,9 +486,12 @@ Geotagging  */
                                           borderRadius:
                                               BorderRadius.circular(12.0),
                                         ),
+                                        filled: true,
+                                        fillColor: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
                                         contentPadding:
                                             const EdgeInsetsDirectional.fromSTEB(
-                                                15.0, 12.0, 15.0, 12.0),
+                                                15.0, 16.0, 15.0, 16.0),
                                         suffixIcon: InkWell(
                                           onTap: () => setState(
                                             () => _model
@@ -498,8 +504,7 @@ Geotagging  */
                                             _model.passwordFieldVisibility
                                                 ? Icons.visibility_outlined
                                                 : Icons.visibility_off_outlined,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
+                                            color: const Color(0xFF757575),
                                             size: 24.0,
                                           ),
                                         ),

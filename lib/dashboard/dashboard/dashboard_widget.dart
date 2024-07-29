@@ -466,7 +466,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                              CrossAxisAlignment.center,
                                           children: [
                                             Align(
                                               alignment: const AlignmentDirectional(

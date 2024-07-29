@@ -44,6 +44,8 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   List<ll.LatLng> pinDrops = [];
   List<Position> _recentPositions = [];
   final int _smoothingFactor = 5; // Number of recent positions to average
+  ll.LatLng? _startingPoint;
+  final double _closingThreshold = 5.0; // 5 meters to snap to starting point
 
   @override
   void initState() {
@@ -102,11 +104,15 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
       route.clear();
       pinDrops.clear();
       _recentPositions.clear();
+      _startingPoint = currentLocation;
+      if (_startingPoint != null) {
+        route.add(_startingPoint!);
+      }
     });
     _positionSubscription = Geolocator.getPositionStream(
       locationSettings: const LocationSettings(
         accuracy: LocationAccuracy.bestForNavigation,
-        distanceFilter: 0, // Get all updates for smooth tracking
+        distanceFilter: 0,
       ),
     ).listen((Position position) {
       _updateLocation(position);
@@ -136,10 +142,20 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
 
         if (distance >= _minDistanceFilter) {
           setState(() {
-            route.add(newLocation);
-            _lastValidLocation = newLocation;
-            currentLocation = newLocation;
-            _mapController.move(newLocation, _currentZoom);
+            if (_startingPoint != null &&
+                calculateDistance(_startingPoint!, newLocation) <=
+                    _closingThreshold) {
+              // If close to starting point, snap to it
+              route.add(_startingPoint!);
+              _lastValidLocation = _startingPoint;
+              currentLocation = _startingPoint;
+              _mapController.move(_startingPoint!, _currentZoom);
+            } else {
+              route.add(newLocation);
+              _lastValidLocation = newLocation;
+              currentLocation = newLocation;
+              _mapController.move(newLocation, _currentZoom);
+            }
           });
         }
       } else {
@@ -153,18 +169,22 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   }
 
   Position _calculateAveragePosition(List<Position> positions) {
+    // Giving more weight to recent positions
     double latSum = 0, lonSum = 0, altSum = 0, accSum = 0;
-    for (var position in positions) {
-      latSum += position.latitude;
-      lonSum += position.longitude;
-      altSum += position.altitude;
-      accSum += position.accuracy;
+    double totalWeight = 0;
+    for (int i = 0; i < positions.length; i++) {
+      double weight = (i + 1) / positions.length;
+      latSum += positions[i].latitude * weight;
+      lonSum += positions[i].longitude * weight;
+      altSum += positions[i].altitude * weight;
+      accSum += positions[i].accuracy * weight;
+      totalWeight += weight;
     }
     return Position(
-      latitude: latSum / positions.length,
-      longitude: lonSum / positions.length,
-      altitude: altSum / positions.length,
-      accuracy: accSum / positions.length,
+      latitude: latSum / totalWeight,
+      longitude: lonSum / totalWeight,
+      altitude: altSum / totalWeight,
+      accuracy: accSum / totalWeight,
       speed: 0,
       speedAccuracy: 0,
       heading: 0,
@@ -172,14 +192,6 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
       altitudeAccuracy: 0,
       headingAccuracy: 0,
     );
-  }
-
-  void dropPin() {
-    if (currentLocation != null) {
-      setState(() {
-        pinDrops.add(currentLocation!);
-      });
-    }
   }
 
   double calculateDistance(ll.LatLng start, ll.LatLng end) {

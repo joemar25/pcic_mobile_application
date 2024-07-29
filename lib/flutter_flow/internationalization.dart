@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'aplys0fi': {
+    'zhdhyt6f': {
       'en': '',
       'tl': '',
     },
@@ -191,7 +191,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     'fr9mgbfc': {
-      'en': 'Edit Account Information',
+      'en': 'Edit Profile',
       'tl': '',
     },
     'bl5bsc0f': {
@@ -228,15 +228,14 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // editPassword
   {
-    'igo0j7mh': {
+    'gvf2mmiy': {
       'en': 'Change Password',
-      'tl': 'Palitan ANG password',
+      'tl': '',
     },
-    'rqho0nbl': {
+    'zo0cddz7': {
       'en':
           'We will reset your password. Please enter the password and confirmation password below, and then confirm.',
-      'tl':
-          'Ire-reset namin ang iyong password. Mangyaring ipasok ang password at password sa pagkumpirma sa ibaba, at pagkatapos ay kumpirmahin.',
+      'tl': '',
     },
     'jsat8wzg': {
       'en': 'Old Password',
@@ -273,17 +272,29 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // editProfile
   {
-    '5fv645iv': {
+    '23dohx91': {
       'en': 'Edit Profile',
-      'tl': 'Ibahin ang profile',
+      'tl': '',
     },
     'r9vm5mt1': {
-      'en': 'Your Name',
+      'en': 'Name',
       'tl': 'Ang pangalan mo',
+    },
+    '8kwpczkh': {
+      'en': '',
+      'tl': '',
     },
     'ntj2ozhk': {
       'en': 'Save Changes',
       'tl': 'I-save ang mga pagbabago',
+    },
+    'gg4hbnhb': {
+      'en': 'Field is required',
+      'tl': '',
+    },
+    'k90ss0sh': {
+      'en': 'Please choose an option from the dropdown',
+      'tl': '',
     },
   },
   // messages
@@ -302,7 +313,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    '8kwpczkh': {
+    '3unptwpc': {
+      'en': '',
+      'tl': '',
+    },
+    'dkp7dupj': {
       'en': '',
       'tl': '',
     },
@@ -787,13 +802,21 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your email...',
       'tl': 'Ilagay ang iyong email...',
     },
-    'yvgvrkk7': {
+    'l0mxal5w': {
       'en': '',
       'tl': '',
     },
     'x3d82sua': {
       'en': 'Send Link',
       'tl': 'Magpasa ng link',
+    },
+    'c2yh7kit': {
+      'en': 'Field is required',
+      'tl': '',
+    },
+    'jldhk7m2': {
+      'en': 'Please choose an option from the dropdown',
+      'tl': '',
     },
     '2stfj7a7': {
       'en': 'Home',
@@ -1076,6 +1099,65 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
+  // backupEditProfile
+  {
+    'gpwo6064': {
+      'en': 'Edit Profile',
+      'tl': '',
+    },
+    '76dnuh7r': {
+      'en': 'Your Name',
+      'tl': '',
+    },
+    'vk8xqirp': {
+      'en': 'Save Changes',
+      'tl': '',
+    },
+  },
+  // backupEditPassword
+  {
+    'gog0ic06': {
+      'en': 'Change Password',
+      'tl': '',
+    },
+    'hcqi0du5': {
+      'en':
+          'We will reset your password. Please enter the password and confirmation password below, and then confirm.',
+      'tl': '',
+    },
+    'xmbya7l4': {
+      'en': 'Old Password',
+      'tl': '',
+    },
+    '9nhjpdxo': {
+      'en': 'Enter Old Password...',
+      'tl': '',
+    },
+    'nt87phvt': {
+      'en': 'New Password',
+      'tl': '',
+    },
+    's5374frr': {
+      'en': 'Enter New Password...',
+      'tl': '',
+    },
+    '829dk1v0': {
+      'en': 'Confirm Password',
+      'tl': '',
+    },
+    'hvtbd07l': {
+      'en': 'Confirm New Password...',
+      'tl': '',
+    },
+    'jt3rji1z': {
+      'en': 'Confirm Changes',
+      'tl': '',
+    },
+    'fpwl7oma': {
+      'en': 'Home',
+      'tl': '',
+    },
+  },
   // tasks
   {
     '83q8pggh': {
@@ -1182,7 +1264,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // signoutDialog
   {
     'yovt82s2': {
-      'en': 'Confrim Sign Out',
+      'en': 'Confirm Sign Out',
       'tl': '',
     },
     'jzto1w3u': {

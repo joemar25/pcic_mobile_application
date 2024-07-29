@@ -1,3 +1,4 @@
+import '/auth/supabase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -43,6 +44,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
       height: double.infinity,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
+        borderRadius: BorderRadius.circular(24.0),
       ),
       child: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -61,7 +63,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                         Expanded(
                           child: Text(
                             FFLocalizations.of(context).getText(
-                              'yovt82s2' /* Confrim Sign Out */,
+                              'yovt82s2' /* Confirm Sign Out */,
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .titleLarge
@@ -77,9 +79,9 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                         ),
                       ],
                     ),
-                    const Divider(
+                    Divider(
                       thickness: 2.0,
-                      color: Color(0x40242731),
+                      color: FlutterFlowTheme.of(context).secondaryText,
                     ),
                   ],
                 ),
@@ -103,7 +105,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                     ),
                   ],
                 ),
-              ],
+              ].divide(const SizedBox(height: 15.0)),
             ),
             Row(
               mainAxisSize: MainAxisSize.max,
@@ -112,37 +114,62 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Text(
-                      FFLocalizations.of(context).getText(
-                        'l878cyp1' /* CANCEL */,
+                    InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        FFLocalizations.of(context).getText(
+                          'l878cyp1' /* CANCEL */,
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
+                              fontSize: 18.0,
+                              letterSpacing: 0.0,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily),
+                            ),
                       ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).bodyMediumFamily,
-                            fontSize: 18.0,
-                            letterSpacing: 0.0,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyMediumFamily),
-                          ),
                     ),
-                    Text(
-                      FFLocalizations.of(context).getText(
-                        '6fku8v4x' /* SIGN OUT */,
+                    InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        GoRouter.of(context).prepareAuthEvent();
+                        await authManager.signOut();
+                        GoRouter.of(context).clearRedirectLocation();
+
+                        context.goNamedAuth('login', context.mounted);
+                      },
+                      child: Text(
+                        FFLocalizations.of(context).getText(
+                          '6fku8v4x' /* SIGN OUT */,
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
+                              color: FlutterFlowTheme.of(context).error,
+                              fontSize: 18.0,
+                              letterSpacing: 0.0,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily),
+                            ),
                       ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).bodyMediumFamily,
-                            fontSize: 18.0,
-                            letterSpacing: 0.0,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyMediumFamily),
-                          ),
                     ),
                   ].divide(const SizedBox(width: 20.0)),
                 ),
               ],
             ),
-          ],
+          ].divide(const SizedBox(height: 30.0)),
         ),
       ),
     );

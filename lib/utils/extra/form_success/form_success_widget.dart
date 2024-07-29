@@ -790,17 +790,18 @@ class _FormSuccessWidgetState extends State<FormSuccessWidget>
                                           .titleSmallFamily,
                                       color: Colors.white,
                                       letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
                                       useGoogleFonts: GoogleFonts.asMap()
                                           .containsKey(
                                               FlutterFlowTheme.of(context)
                                                   .titleSmallFamily),
                                     ),
-                                elevation: 3.0,
+                                elevation: 0.0,
                                 borderSide: const BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(8.0),
+                                borderRadius: BorderRadius.circular(12.0),
                               ),
                             ).animateOnPageLoad(
                                 animationsMap['buttonOnPageLoadAnimation']!),

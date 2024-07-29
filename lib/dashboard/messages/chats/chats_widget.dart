@@ -102,6 +102,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
             ),
             child: Column(
               mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
                   padding:
@@ -154,133 +155,142 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
-                  child: Container(
-                    width: double.infinity,
-                    height: MediaQuery.sizeOf(context).height * 0.9,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).primaryBackground,
-                      borderRadius: BorderRadius.circular(24.0),
-                    ),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 40.0, 20.0, 0.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Flexible(
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    FFLocalizations.of(context).getText(
-                                      '0ovitz68' /* Conversations */,
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMediumFamily,
-                                          fontSize: 18.0,
-                                          letterSpacing: 0.0,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMediumFamily),
-                                        ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 10.0, 0.0, 0.0),
-                            child: SingleChildScrollView(
-                              child: Column(
+                Expanded(
+                  child: Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                    child: Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).primaryBackground,
+                        borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(0.0),
+                          bottomRight: Radius.circular(0.0),
+                          topLeft: Radius.circular(24.0),
+                          topRight: Radius.circular(24.0),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            20.0, 40.0, 20.0, 0.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Flexible(
+                              child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
-                                  FutureBuilder<List<ChatsRow>>(
-                                    future: ChatsTable().queryRows(
-                                      queryFn: (q) => q.order('updated_at'),
+                                  Expanded(
+                                    child: Text(
+                                      FFLocalizations.of(context).getText(
+                                        '0ovitz68' /* Conversations */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily,
+                                            fontSize: 18.0,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMediumFamily),
+                                          ),
                                     ),
-                                    builder: (context, snapshot) {
-                                      // Customize what your widget looks like when it's loading.
-                                      if (!snapshot.hasData) {
-                                        return Center(
-                                          child: SizedBox(
-                                            width: 100.0,
-                                            height: 100.0,
-                                            child: SpinKitRipple(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              size: 100.0,
-                                            ),
-                                          ),
-                                        );
-                                      }
-                                      List<ChatsRow> listViewChatsRowList =
-                                          snapshot.data!;
-
-                                      if (listViewChatsRowList.isEmpty) {
-                                        return Center(
-                                          child: SizedBox(
-                                            height: MediaQuery.sizeOf(context)
-                                                    .height *
-                                                0.6,
-                                            child: const EmptyListsWidget(
-                                              type: 'Messages',
-                                            ),
-                                          ),
-                                        );
-                                      }
-
-                                      return ListView.separated(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 20.0),
-                                        shrinkWrap: true,
-                                        scrollDirection: Axis.vertical,
-                                        itemCount: listViewChatsRowList.length,
-                                        separatorBuilder: (_, __) =>
-                                            const SizedBox(height: 20.0),
-                                        itemBuilder: (context, listViewIndex) {
-                                          final listViewChatsRow =
-                                              listViewChatsRowList[
-                                                  listViewIndex];
-                                          return wrapWithModel(
-                                            model: _model
-                                                .chatListContainerModels
-                                                .getModel(
-                                              listViewChatsRow.id,
-                                              listViewIndex,
-                                            ),
-                                            updateCallback: () =>
-                                                setState(() {}),
-                                            child: ChatListContainerWidget(
-                                              key: Key(
-                                                'Keyo46_${listViewChatsRow.id}',
-                                              ),
-                                              chatId: listViewChatsRow.id,
-                                              receiverId: listViewChatsRow
-                                                          .user1Id ==
-                                                      currentUserUid
-                                                  ? listViewChatsRow.user2Id!
-                                                  : listViewChatsRow.user1Id!,
-                                            ),
-                                          );
-                                        },
-                                      );
-                                    },
                                   ),
                                 ],
                               ),
                             ),
-                          ),
-                        ],
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 10.0, 0.0, 0.0),
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    FutureBuilder<List<ChatsRow>>(
+                                      future: ChatsTable().queryRows(
+                                        queryFn: (q) => q.order('updated_at'),
+                                      ),
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 100.0,
+                                              height: 100.0,
+                                              child: SpinKitRipple(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                size: 100.0,
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                        List<ChatsRow> listViewChatsRowList =
+                                            snapshot.data!;
+
+                                        if (listViewChatsRowList.isEmpty) {
+                                          return Center(
+                                            child: SizedBox(
+                                              height: MediaQuery.sizeOf(context)
+                                                      .height *
+                                                  0.6,
+                                              child: const EmptyListsWidget(
+                                                type: 'Messages',
+                                              ),
+                                            ),
+                                          );
+                                        }
+
+                                        return ListView.separated(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 20.0),
+                                          shrinkWrap: true,
+                                          scrollDirection: Axis.vertical,
+                                          itemCount:
+                                              listViewChatsRowList.length,
+                                          separatorBuilder: (_, __) =>
+                                              const SizedBox(height: 20.0),
+                                          itemBuilder:
+                                              (context, listViewIndex) {
+                                            final listViewChatsRow =
+                                                listViewChatsRowList[
+                                                    listViewIndex];
+                                            return wrapWithModel(
+                                              model: _model
+                                                  .chatListContainerModels
+                                                  .getModel(
+                                                listViewChatsRow.id,
+                                                listViewIndex,
+                                              ),
+                                              updateCallback: () =>
+                                                  setState(() {}),
+                                              child: ChatListContainerWidget(
+                                                key: Key(
+                                                  'Keyo46_${listViewChatsRow.id}',
+                                                ),
+                                                chatId: listViewChatsRow.id,
+                                                receiverId: listViewChatsRow
+                                                            .user1Id ==
+                                                        currentUserUid
+                                                    ? listViewChatsRow.user2Id!
+                                                    : listViewChatsRow.user1Id!,
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

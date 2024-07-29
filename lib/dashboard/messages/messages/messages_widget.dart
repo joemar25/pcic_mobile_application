@@ -98,7 +98,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
               borderWidth: 1.0,
               buttonSize: 60.0,
               icon: Icon(
-                Icons.arrow_back_rounded,
+                Icons.chevron_left,
                 color: FlutterFlowTheme.of(context).primaryText,
                 size: 30.0,
               ),
@@ -426,7 +426,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                               filled: true,
                               fillColor: FlutterFlowTheme.of(context).accent1,
                               contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  15.0, 12.0, 15.0, 12.0),
+                                  15.0, 16.0, 15.0, 16.0),
                               prefixIcon: Icon(
                                 Icons.text_fields,
                                 color: FlutterFlowTheme.of(context).primaryText,

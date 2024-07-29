@@ -283,6 +283,23 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/backupProfile',
           requireAuth: true,
           builder: (context, params) => const BackupProfileWidget(),
+        ),
+        FFRoute(
+          name: 'backupEditProfile',
+          path: '/backupEditProfile',
+          requireAuth: true,
+          builder: (context, params) => const BackupEditProfileWidget(),
+        ),
+        FFRoute(
+          name: 'backupEditPassword',
+          path: '/backupEditPassword',
+          requireAuth: true,
+          builder: (context, params) => BackupEditPasswordWidget(
+            formFieldName: params.getParam(
+              'formFieldName',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
