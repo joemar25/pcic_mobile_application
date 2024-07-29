@@ -43,6 +43,10 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   late final Stream<LocationMarkerPosition> _positionStream;
 
   final double _minAccuracyThreshold = 10.0; // in meters
+  final int _locationUpdateInterval = 1; // in seconds
+  final int _locationAveragingSamples = 5; // number of samples to average
+
+  List<Position> _recentPositions = [];
 
   @override
   void initState() {
@@ -71,9 +75,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     }
 
     try {
-      Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.best,
-      ).timeout(Duration(seconds: 10));
+      Position position = await _getAveragedPosition();
       _currentLocation = ll.LatLng(position.latitude, position.longitude);
       _updateLocationMarker(_currentLocation!, position.accuracy);
       return _currentLocation!;
@@ -83,11 +85,55 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     }
   }
 
+  Future<Position> _getAveragedPosition() async {
+    List<Position> positions = [];
+    for (int i = 0; i < _locationAveragingSamples; i++) {
+      positions.add(await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.best,
+      ));
+      await Future.delayed(Duration(seconds: 1));
+    }
+
+    double latSum = 0,
+        lonSum = 0,
+        altSum = 0,
+        accSum = 0,
+        altAccSum = 0,
+        headingSum = 0,
+        headingAccSum = 0,
+        speedSum = 0,
+        speedAccSum = 0;
+    for (var pos in positions) {
+      latSum += pos.latitude;
+      lonSum += pos.longitude;
+      altSum += pos.altitude;
+      accSum += pos.accuracy;
+      altAccSum += pos.altitudeAccuracy ?? 0;
+      headingSum += pos.heading;
+      headingAccSum += pos.headingAccuracy ?? 0;
+      speedSum += pos.speed;
+      speedAccSum += pos.speedAccuracy;
+    }
+
+    return Position(
+      latitude: latSum / _locationAveragingSamples,
+      longitude: lonSum / _locationAveragingSamples,
+      altitude: altSum / _locationAveragingSamples,
+      accuracy: accSum / _locationAveragingSamples,
+      altitudeAccuracy: altAccSum / _locationAveragingSamples,
+      heading: headingSum / _locationAveragingSamples,
+      headingAccuracy: headingAccSum / _locationAveragingSamples,
+      speed: speedSum / _locationAveragingSamples,
+      speedAccuracy: speedAccSum / _locationAveragingSamples,
+      timestamp: DateTime.now(),
+      floor: null,
+      isMocked: false,
+    );
+  }
+
   void startTracking() async {
     try {
-      Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.best,
-      );
+      Position position = await _getAveragedPosition();
       _currentLocation = ll.LatLng(position.latitude, position.longitude);
 
       setState(() {
@@ -108,7 +154,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
         accuracy: LocationAccuracy.best,
         distanceFilter: 1, // Update every 1 meter
         forceLocationManager: false,
-        intervalDuration: const Duration(seconds: 1),
+        intervalDuration: Duration(seconds: _locationUpdateInterval),
       ),
     ).listen((Position position) {
       _updateLocation(position);
@@ -126,12 +172,21 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   }
 
   void _updateLocation(Position position) {
-    if (position.accuracy > _minAccuracyThreshold) {
-      print('Low accuracy data (${position.accuracy} meters), skipping update');
+    _recentPositions.add(position);
+    if (_recentPositions.length > _locationAveragingSamples) {
+      _recentPositions.removeAt(0);
+    }
+
+    Position averagedPosition = _averagePositions(_recentPositions);
+
+    if (averagedPosition.accuracy > _minAccuracyThreshold) {
+      print(
+          'Low accuracy data (${averagedPosition.accuracy} meters), skipping update');
       return;
     }
 
-    ll.LatLng newLocation = ll.LatLng(position.latitude, position.longitude);
+    ll.LatLng newLocation =
+        ll.LatLng(averagedPosition.latitude, averagedPosition.longitude);
 
     if (_isTracking) {
       double distance = _calculateDistance(route.last, newLocation);
@@ -145,11 +200,49 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     }
 
     _currentLocation = newLocation;
-    _updateLocationMarker(newLocation, position.accuracy);
+    _updateLocationMarker(newLocation, averagedPosition.accuracy);
 
     if (_isTracking) {
       _mapController.move(newLocation, _currentZoom);
     }
+  }
+
+  Position _averagePositions(List<Position> positions) {
+    double latSum = 0,
+        lonSum = 0,
+        altSum = 0,
+        accSum = 0,
+        altAccSum = 0,
+        headingSum = 0,
+        headingAccSum = 0,
+        speedSum = 0,
+        speedAccSum = 0;
+    for (var pos in positions) {
+      latSum += pos.latitude;
+      lonSum += pos.longitude;
+      altSum += pos.altitude;
+      accSum += pos.accuracy;
+      altAccSum += pos.altitudeAccuracy ?? 0;
+      headingSum += pos.heading;
+      headingAccSum += pos.headingAccuracy ?? 0;
+      speedSum += pos.speed;
+      speedAccSum += pos.speedAccuracy;
+    }
+    int count = positions.length;
+    return Position(
+      latitude: latSum / count,
+      longitude: lonSum / count,
+      altitude: altSum / count,
+      accuracy: accSum / count,
+      altitudeAccuracy: altAccSum / count,
+      heading: headingSum / count,
+      headingAccuracy: headingAccSum / count,
+      speed: speedSum / count,
+      speedAccuracy: speedAccSum / count,
+      timestamp: DateTime.now(),
+      floor: null,
+      isMocked: false,
+    );
   }
 
   void _updateLocationMarker(ll.LatLng location, double accuracy) {
