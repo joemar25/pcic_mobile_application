@@ -22,8 +22,6 @@ class _MarApiTestWidgetState extends State<MarApiTestWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => MarApiTestModel());
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

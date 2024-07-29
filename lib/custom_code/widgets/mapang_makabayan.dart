@@ -223,6 +223,11 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
       }
     });
 
+    _positionStreamController.add(LocationMarkerPosition(
+      latitude: currentLocation!.latitude,
+      longitude: currentLocation!.longitude,
+      accuracy: position.accuracy,
+    ));
     _mapController.move(currentLocation!, _currentZoom);
   }
 
@@ -373,22 +378,20 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
                     ),
                   ],
                 ),
-              MarkerLayer(
-                markers: [
-                  if (currentLocation != null)
-                    Marker(
-                      point: currentLocation!,
-                      width: 12.0,
-                      height: 12.0,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.green,
-                          shape: BoxShape.circle,
-                          border: Border.all(color: Colors.white, width: 1),
-                        ),
-                      ),
+              CurrentLocationLayer(
+                positionStream: _positionStream,
+                style: LocationMarkerStyle(
+                  marker: DefaultLocationMarker(
+                    child: Icon(
+                      Icons.navigation,
+                      color: Colors.white,
                     ),
-                ],
+                  ),
+                  markerSize: Size(20, 20),
+                  accuracyCircleColor: Colors.green.withOpacity(0.1),
+                  headingSectorColor: Colors.green.withOpacity(0.8),
+                  headingSectorRadius: 60,
+                ),
               ),
             ],
           ),

@@ -40,8 +40,6 @@ class _ToastWidgetState extends State<ToastWidget> {
       await Future.delayed(const Duration(milliseconds: 3000));
       context.safePop();
     });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

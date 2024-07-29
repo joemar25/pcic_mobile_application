@@ -17,6 +17,8 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Action Block - queryCurrentUserProfile] action in dashboard widget.
+  UsersRow? currentUserProfile;
   // Stores action output result for [Backend Call - Query Rows] action in dashboard widget.
   List<TasksRow>? forDispatchTasksData;
   // Stores action output result for [Backend Call - Query Rows] action in dashboard widget.

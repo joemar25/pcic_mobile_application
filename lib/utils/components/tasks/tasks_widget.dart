@@ -56,8 +56,6 @@ class _TasksWidgetState extends State<TasksWidget>
         ],
       ),
     });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

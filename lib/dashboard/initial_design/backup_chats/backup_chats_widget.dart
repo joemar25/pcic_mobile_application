@@ -34,8 +34,6 @@ class _BackupChatsWidgetState extends State<BackupChatsWidget> {
         'user_id': currentUserUid,
       });
     });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

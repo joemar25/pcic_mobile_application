@@ -50,8 +50,6 @@ class _BackupLoginWidgetState extends State<BackupLoginWidget>
         ],
       ),
     });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

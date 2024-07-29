@@ -68,8 +68,6 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
           !anim.applyInitialState),
       this,
     );
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

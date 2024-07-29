@@ -41,8 +41,6 @@ class _BackupEditPasswordWidgetState extends State<BackupEditPasswordWidget> {
 
     _model.confirmNewPasswordTextController ??= TextEditingController();
     _model.confirmNewPasswordFocusNode ??= FocusNode();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

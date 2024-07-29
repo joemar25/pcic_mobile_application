@@ -157,8 +157,6 @@ class _BackupDashboardWidgetState extends State<BackupDashboardWidget>
         ],
       ),
     });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

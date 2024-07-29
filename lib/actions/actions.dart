@@ -29,4 +29,15 @@ Future updateUserStatusIfOnline(BuildContext context) async {
 
 Future updateLogs(BuildContext context) async {}
 
-Future updatePpirSigIuia(BuildContext context) async {}
+Future<UsersRow?> queryCurrentUserProfile(BuildContext context) async {
+  List<UsersRow>? currentUserProfile;
+
+  currentUserProfile = await UsersTable().queryRows(
+    queryFn: (q) => q.eq(
+      'email',
+      currentUserEmail,
+    ),
+  );
+
+  return null;
+}

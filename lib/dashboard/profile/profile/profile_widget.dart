@@ -38,7 +38,6 @@ class _ProfileWidgetState extends State<ProfileWidget> {
     });
 
     _model.switchValue = false;
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

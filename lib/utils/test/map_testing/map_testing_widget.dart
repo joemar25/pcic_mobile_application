@@ -25,8 +25,6 @@ class _MapTestingWidgetState extends State<MapTestingWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => MapTestingModel());
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

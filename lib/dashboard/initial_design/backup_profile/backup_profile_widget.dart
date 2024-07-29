@@ -36,8 +36,6 @@ class _BackupProfileWidgetState extends State<BackupProfileWidget> {
         'user_id': currentUserUid,
       });
     });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

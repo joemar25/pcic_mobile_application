@@ -30,8 +30,6 @@ class _ChatWidgetState extends State<ChatWidget> {
 
     _model.fullNameTextController ??= TextEditingController();
     _model.fullNameFocusNode ??= FocusNode();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

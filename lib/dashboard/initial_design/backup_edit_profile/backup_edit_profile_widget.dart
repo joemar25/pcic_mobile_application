@@ -32,8 +32,6 @@ class _BackupEditProfileWidgetState extends State<BackupEditProfileWidget> {
     _model = createModel(context, () => BackupEditProfileModel());
 
     _model.displayNameFocusNode ??= FocusNode();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

@@ -22,8 +22,6 @@ class _SssWidgetState extends State<SssWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => SssModel());
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
