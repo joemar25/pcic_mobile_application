@@ -46,6 +46,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   final int _smoothingFactor = 5; // Number of recent positions to average
   ll.LatLng? _startingPoint;
   final double _closingThreshold = 5.0; // 5 meters to snap to starting point
+  bool _isMapReady = false;
 
   @override
   void initState() {
@@ -92,7 +93,10 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
         _lastValidLocation = currentLocation;
         locationLoaded = true;
       });
-      _mapController.move(currentLocation!, _currentZoom);
+
+      if (_isMapReady) {
+        _mapController.move(currentLocation!, _currentZoom);
+      }
     } catch (e) {
       print('Error getting location: $e');
     }
@@ -236,8 +240,19 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
 
   @override
   Widget build(BuildContext context) {
-    if (!locationLoaded) {
-      return const Center(child: CircularProgressIndicator());
+    if (!locationLoaded || !_isMapReady) {
+      return Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircularProgressIndicator(),
+              SizedBox(height: 20),
+              Text('Loading map...', style: TextStyle(fontSize: 16)),
+            ],
+          ),
+        ),
+      );
     }
 
     double area = calculateArea();
@@ -254,6 +269,11 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
               initialZoom: _currentZoom,
               maxZoom: 22.0,
               minZoom: 15.0,
+              onMapReady: () {
+                setState(() {
+                  _isMapReady = true;
+                });
+              },
             ),
             children: [
               TileLayer(
