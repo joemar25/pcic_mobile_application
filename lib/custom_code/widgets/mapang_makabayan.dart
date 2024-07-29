@@ -43,6 +43,10 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   late final StreamController<LocationMarkerPosition> _positionStreamController;
   late final Stream<LocationMarkerPosition> _positionStream;
 
+  // New parameters for improved accuracy
+  final int _minSatellitesForAccuracy = 4;
+  final double _minAccuracyThreshold = 3.0; // in meters
+
   @override
   void initState() {
     super.initState();
@@ -80,11 +84,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
       Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.best,
       );
-      setState(() {
-        currentLocation = ll.LatLng(position.latitude, position.longitude);
-        locationLoaded = true;
-      });
-      _mapController.move(currentLocation!, _currentZoom);
+      _updateLocation(position);
     } catch (e) {
       print("Error getting initial location: $e");
       // Show error dialog
@@ -99,9 +99,11 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     });
 
     _positionSubscription = Geolocator.getPositionStream(
-      locationSettings: const LocationSettings(
+      locationSettings: AndroidSettings(
         accuracy: LocationAccuracy.best,
         distanceFilter: 0,
+        forceLocationManager: false, // Use Google's Fused Location Provider,
+        intervalDuration: const Duration(seconds: 1),
       ),
     ).listen((Position position) {
       _updateLocation(position);
@@ -118,6 +120,24 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   }
 
   void _updateLocation(Position position) {
+    if (position is AndroidPosition) {
+      // Use Android-specific properties for improved accuracy
+      print('Accuracy: ${position.accuracy} meters');
+      if (position.satellitesUsedInFix < _minSatellitesForAccuracy ||
+          position.accuracy > _minAccuracyThreshold) {
+        print('Low accuracy data, skipping update');
+        return;
+      }
+
+      if (position.isMocked) {
+        print('Warning: Location may be mocked');
+        return;
+      }
+
+      print('Satellites in use: ${position.satellitesUsedInFix}');
+      print('Accuracy: ${position.accuracy} meters');
+    }
+
     ll.LatLng newLocation = ll.LatLng(position.latitude, position.longitude);
 
     setState(() {
@@ -138,7 +158,14 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
       longitude: currentLocation!.longitude,
       accuracy: position.accuracy,
     ));
-    _mapController.move(currentLocation!, _currentZoom);
+
+    if (locationLoaded) {
+      _mapController.move(currentLocation!, _currentZoom);
+    } else {
+      setState(() {
+        locationLoaded = true;
+      });
+    }
   }
 
   double _calculateDistance(ll.LatLng start, ll.LatLng end) {
@@ -194,17 +221,14 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
               ),
               CurrentLocationLayer(
                 positionStream: _positionStream,
-                style: const LocationMarkerStyle(
+                style: LocationMarkerStyle(
                   marker: DefaultLocationMarker(
-                    child: Icon(
-                      Icons.navigation,
-                      color: Colors.white,
-                    ),
+                    color: Colors.green,
                   ),
                   markerSize: Size(20, 20),
-                  accuracyCircleColor: Colors.green,
-                  headingSectorColor: Colors.green,
-                  headingSectorRadius: 60,
+                  accuracyCircleColor: Colors.green.withOpacity(0.1),
+                  headingSectorColor: Colors.green.withOpacity(0.1),
+                  headingSectorRadius: 40,
                 ),
               ),
             ],
