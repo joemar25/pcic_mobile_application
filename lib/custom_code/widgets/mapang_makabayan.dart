@@ -58,7 +58,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     if (hasPermission) {
       try {
         Position position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high,
+          desiredAccuracy: LocationAccuracy.best,
         );
         setState(() {
           currentLocation = ll.LatLng(position.latitude, position.longitude);
@@ -102,7 +102,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   void startLocationUpdates() {
     _positionSubscription = Geolocator.getPositionStream(
       locationSettings: const LocationSettings(
-        accuracy: LocationAccuracy.high,
+        accuracy: LocationAccuracy.best,
         distanceFilter: 1,
       ),
     ).listen((Position position) {
@@ -274,59 +274,82 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
       );
     }
 
-    return SizedBox(
-      width: widget.width ?? MediaQuery.of(context).size.width,
-      height: widget.height ?? MediaQuery.of(context).size.height,
-      child: FlutterMap(
-        mapController: _mapController,
-        options: MapOptions(
-          initialCenter: currentLocation!,
-          initialZoom: _currentZoom,
-          maxZoom: 22.0,
-          minZoom: 15.0,
-        ),
+    return Scaffold(
+      body: Stack(
         children: [
-          TileLayer(
-            urlTemplate:
-                'https://api.mapbox.com/styles/v1/quanbysolutions/cluhoxol502q801oi8od2cmvz/tiles/{z}/{x}/{y}?access_token={accessToken}',
-            additionalOptions: {
-              'accessToken':
-                  widget.accessToken ?? 'your_default_mapbox_access_token_here',
-            },
-          ),
-          if (_isTracking)
-            PolylineLayer(
-              polylines: [
-                Polyline(
-                  points: route,
-                  strokeWidth: 4.0,
-                  color: Colors.blue,
+          SizedBox(
+            width: widget.width ?? MediaQuery.of(context).size.width,
+            height: widget.height ?? MediaQuery.of(context).size.height,
+            child: FlutterMap(
+              mapController: _mapController,
+              options: MapOptions(
+                initialCenter: currentLocation!,
+                initialZoom: _currentZoom,
+                maxZoom: 22.0,
+                minZoom: 15.0,
+              ),
+              children: [
+                TileLayer(
+                  urlTemplate:
+                      'https://api.mapbox.com/styles/v1/mapbox/streets-v12/tiles/{z}/{x}/{y}?access_token={accessToken}',
+                  additionalOptions: {
+                    'accessToken': widget.accessToken ??
+                        'your_default_mapbox_access_token_here',
+                  },
+                ),
+                if (_isTracking)
+                  PolylineLayer(
+                    polylines: [
+                      Polyline(
+                        points: route,
+                        strokeWidth: 4.0,
+                        color: Colors.blue,
+                      ),
+                    ],
+                  ),
+                MarkerLayer(
+                  markers: [
+                    Marker(
+                      point: currentLocation!,
+                      width: 20.0,
+                      height: 20.0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.blue,
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.white, width: 2),
+                        ),
+                      ),
+                    ),
+                    ...pinDrops.map(
+                      (point) => Marker(
+                        point: point,
+                        width: 20.0,
+                        height: 20.0,
+                        child: Icon(Icons.location_pin, color: Colors.red),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-          MarkerLayer(
-            markers: [
-              Marker(
-                point: currentLocation!,
-                width: 20.0,
-                height: 20.0,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.blue,
-                    shape: BoxShape.circle,
-                    border: Border.all(color: Colors.white, width: 2),
-                  ),
+          ),
+          Positioned(
+            top: 20,
+            right: 20,
+            child: Column(
+              children: [
+                FloatingActionButton(
+                  onPressed: _isTracking ? stopTracking : startTracking,
+                  child: Icon(_isTracking ? Icons.stop : Icons.play_arrow),
                 ),
-              ),
-              ...pinDrops.map(
-                (point) => Marker(
-                  point: point,
-                  width: 20.0,
-                  height: 20.0,
-                  child: Icon(Icons.location_pin, color: Colors.red),
+                SizedBox(height: 10),
+                FloatingActionButton(
+                  onPressed: dropPin,
+                  child: Icon(Icons.pin_drop),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),
