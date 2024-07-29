@@ -16,7 +16,7 @@ import 'dart:async';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart' as ll;
 import 'package:geolocator/geolocator.dart';
-import 'dart:math' show cos, sqrt, asin, pi;
+import 'dart:math' show cos, sqrt, asin;
 
 class MapangMakabayan extends StatefulWidget {
   final double? width;
@@ -34,7 +34,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   ll.LatLng? currentLocation;
   bool locationLoaded = false;
   List<ll.LatLng> route = [];
-  final MapController _mapController = MapController();
+  MapController _mapController = MapController();
   StreamSubscription<Position>? _positionSubscription;
   final double _minDistanceFilter = 1.0;
   ll.LatLng? _lastValidLocation;
@@ -50,11 +50,29 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   @override
   void initState() {
     super.initState();
-    checkPermissions().then((hasPermission) {
-      if (hasPermission) {
+    _initializeLocation();
+  }
+
+  Future<void> _initializeLocation() async {
+    bool hasPermission = await checkPermissions();
+    if (hasPermission) {
+      try {
+        Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high,
+        );
+        setState(() {
+          currentLocation = ll.LatLng(position.latitude, position.longitude);
+          locationLoaded = true;
+        });
         startLocationUpdates();
+      } catch (e) {
+        print("Error getting initial location: $e");
+        // Handle error (e.g., show an error message to the user)
       }
-    });
+    } else {
+      // Handle case where permissions are not granted
+      print("Location permissions not granted");
+    }
   }
 
   Future<bool> checkPermissions() async {
@@ -84,7 +102,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   void startLocationUpdates() {
     _positionSubscription = Geolocator.getPositionStream(
       locationSettings: const LocationSettings(
-        accuracy: LocationAccuracy.bestForNavigation,
+        accuracy: LocationAccuracy.high,
         distanceFilter: 1,
       ),
     ).listen((Position position) {
@@ -94,12 +112,8 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
       setState(() {
         currentLocation =
             ll.LatLng(smoothedPosition.latitude, smoothedPosition.longitude);
-        if (!locationLoaded) {
-          locationLoaded = true;
-          _mapController.move(currentLocation!, _currentZoom);
-        } else if (!_isTracking) {
-          _mapController.move(currentLocation!, _currentZoom);
-        }
+        // Directly move the map controller without checking 'ready'
+        _mapController.move(currentLocation!, _currentZoom);
       });
 
       if (_isTracking) {
@@ -260,102 +274,59 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
       );
     }
 
-    double area = _isTracking ? calculateArea(route) : 0;
-
     return SizedBox(
       width: widget.width ?? MediaQuery.of(context).size.width,
       height: widget.height ?? MediaQuery.of(context).size.height,
-      child: Stack(
+      child: FlutterMap(
+        mapController: _mapController,
+        options: MapOptions(
+          initialCenter: currentLocation!,
+          initialZoom: _currentZoom,
+          maxZoom: 22.0,
+          minZoom: 15.0,
+        ),
         children: [
-          FlutterMap(
-            mapController: _mapController,
-            options: MapOptions(
-              initialCenter: currentLocation!,
-              initialZoom: _currentZoom,
-              maxZoom: 22.0,
-              minZoom: 15.0,
-            ),
-            children: [
-              TileLayer(
-                urlTemplate:
-                    'https://api.mapbox.com/styles/v1/quanbysolutions/cluhoxol502q801oi8od2cmvz/tiles/{z}/{x}/{y}?access_token={accessToken}',
-                additionalOptions: {
-                  'accessToken': widget.accessToken ??
-                      'your_default_mapbox_access_token_here',
-                },
-              ),
-              if (_isTracking)
-                PolylineLayer(
-                  polylines: [
-                    Polyline(
-                      points: route,
-                      strokeWidth: 4.0,
-                      color: Colors.blue,
-                    ),
-                  ],
+          TileLayer(
+            urlTemplate:
+                'https://api.mapbox.com/styles/v1/quanbysolutions/cluhoxol502q801oi8od2cmvz/tiles/{z}/{x}/{y}?access_token={accessToken}',
+            additionalOptions: {
+              'accessToken':
+                  widget.accessToken ?? 'your_default_mapbox_access_token_here',
+            },
+          ),
+          if (_isTracking)
+            PolylineLayer(
+              polylines: [
+                Polyline(
+                  points: route,
+                  strokeWidth: 4.0,
+                  color: Colors.blue,
                 ),
-              MarkerLayer(
-                markers: [
-                  Marker(
-                    point: currentLocation!,
-                    width: 20.0,
-                    height: 20.0,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.blue,
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.white, width: 2),
-                      ),
-                    ),
+              ],
+            ),
+          MarkerLayer(
+            markers: [
+              Marker(
+                point: currentLocation!,
+                width: 20.0,
+                height: 20.0,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.white, width: 2),
                   ),
-                  ...pinDrops.map(
-                    (point) => Marker(
-                      point: point,
-                      width: 20.0,
-                      height: 20.0,
-                      child: Icon(Icons.location_pin, color: Colors.red),
-                    ),
-                  ),
-                ],
+                ),
+              ),
+              ...pinDrops.map(
+                (point) => Marker(
+                  point: point,
+                  width: 20.0,
+                  height: 20.0,
+                  child: Icon(Icons.location_pin, color: Colors.red),
+                ),
               ),
             ],
-          ),
-          Positioned(
-            bottom: 10,
-            left: 10,
-            child: Container(
-              color: Colors.white.withOpacity(0.7),
-              padding: EdgeInsets.all(8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Points: ${route.length}\n'
-                    'Current: ${currentLocation?.latitude.toStringAsFixed(6)}, ${currentLocation?.longitude.toStringAsFixed(6)}',
-                    style: TextStyle(fontSize: 12),
-                  ),
-                  if (_isTracking)
-                    Text(
-                      'Area: ${area.toStringAsFixed(2)} sq meters',
-                      style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                    ),
-                  Row(
-                    children: [
-                      ElevatedButton(
-                        onPressed: _isTracking ? stopTracking : startTracking,
-                        child: Text(_isTracking ? 'Stop' : 'Start'),
-                      ),
-                      SizedBox(width: 10),
-                      ElevatedButton(
-                        onPressed: _isTracking ? dropPin : null,
-                        child: Text('Drop Pin'),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
           ),
         ],
       ),
