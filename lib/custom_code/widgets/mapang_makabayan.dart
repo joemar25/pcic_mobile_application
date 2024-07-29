@@ -46,7 +46,6 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   final int _smoothingFactor = 5; // Number of recent positions to average
   ll.LatLng? _startingPoint;
   final double _closingThreshold = 5.0; // 5 meters to snap to starting point
-  bool _isMapReady = false;
 
   @override
   void initState() {
@@ -94,9 +93,8 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
         locationLoaded = true;
       });
 
-      if (_isMapReady) {
-        _mapController.move(currentLocation!, _currentZoom);
-      }
+      // Remove the check for _mapController.ready
+      _mapController.move(currentLocation!, _currentZoom);
     } catch (e) {
       print('Error getting location: $e');
     }
@@ -184,18 +182,18 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
       accSum += positions[i].accuracy * weight;
       totalWeight += weight;
     }
-    return Position(
-      latitude: latSum / totalWeight,
-      longitude: lonSum / totalWeight,
-      altitude: altSum / totalWeight,
-      accuracy: accSum / totalWeight,
-      speed: 0,
-      speedAccuracy: 0,
-      heading: 0,
-      timestamp: DateTime.now(),
-      altitudeAccuracy: 0,
-      headingAccuracy: 0,
-    );
+    return Position.fromMap({
+      'latitude': latSum / totalWeight,
+      'longitude': lonSum / totalWeight,
+      'altitude': altSum / totalWeight,
+      'accuracy': accSum / totalWeight,
+      'speed': 0,
+      'speedAccuracy': 0,
+      'heading': 0,
+      'timestamp': DateTime.now().millisecondsSinceEpoch,
+      'altitudeAccuracy': 0,
+      'headingAccuracy': 0,
+    });
   }
 
   double calculateDistance(ll.LatLng start, ll.LatLng end) {
@@ -240,7 +238,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
 
   @override
   Widget build(BuildContext context) {
-    if (!locationLoaded || !_isMapReady) {
+    if (!locationLoaded) {
       return Scaffold(
         body: Center(
           child: Column(
@@ -248,7 +246,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
             children: [
               CircularProgressIndicator(),
               SizedBox(height: 20),
-              Text('Loading map...', style: TextStyle(fontSize: 16)),
+              Text('Initializing map...', style: TextStyle(fontSize: 16)),
             ],
           ),
         ),
@@ -270,9 +268,9 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
               maxZoom: 22.0,
               minZoom: 15.0,
               onMapReady: () {
-                setState(() {
-                  _isMapReady = true;
-                });
+                if (currentLocation != null) {
+                  _mapController.move(currentLocation!, _currentZoom);
+                }
               },
             ),
             children: [
