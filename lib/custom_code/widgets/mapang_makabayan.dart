@@ -36,25 +36,23 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   List<ll.LatLng> route = [];
   final MapController _mapController = MapController();
   StreamSubscription<Position>? _positionSubscription;
-  final double _minDistanceFilter =
-      1.0; // 1 meter for balance between accuracy and smoothness
+  final double _minDistanceFilter = 1.0;
   ll.LatLng? _lastValidLocation;
   double _currentZoom = 19.0;
   bool _isTracking = false;
   List<ll.LatLng> pinDrops = [];
   List<Position> _recentPositions = [];
-  final int _smoothingFactor = 5;
+  final int _smoothingFactor = 3;
   ll.LatLng? _startingPoint;
-  final double _closingThreshold = 1.0; // 1 meter to snap to starting point
-  final double _minAreaThreshold =
-      10.0; // Minimum area in square meters to consider for snapping
+  final double _closingThreshold = 1.0;
+  final double _minAreaThreshold = 10.0;
 
   @override
   void initState() {
     super.initState();
     checkPermissions().then((hasPermission) {
       if (hasPermission) {
-        getCurrentLocation();
+        startLocationUpdates();
       }
     });
   }
@@ -83,23 +81,74 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     return true;
   }
 
-  Future<void> getCurrentLocation() async {
-    try {
-      Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.bestForNavigation,
-      );
+  void startLocationUpdates() {
+    _positionSubscription = Geolocator.getPositionStream(
+      locationSettings: const LocationSettings(
+        accuracy: LocationAccuracy.bestForNavigation,
+        distanceFilter: 1,
+      ),
+    ).listen((Position position) {
+      _updateRecentPositions(position);
+      Position smoothedPosition = _calculateAveragePosition(_recentPositions);
 
       setState(() {
-        currentLocation = ll.LatLng(position.latitude, position.longitude);
-        _lastValidLocation = currentLocation;
-        locationLoaded = true;
+        currentLocation =
+            ll.LatLng(smoothedPosition.latitude, smoothedPosition.longitude);
+        if (!locationLoaded) {
+          locationLoaded = true;
+          _mapController.move(currentLocation!, _currentZoom);
+        } else if (!_isTracking) {
+          _mapController.move(currentLocation!, _currentZoom);
+        }
       });
 
-      // Remove the check for _mapController.ready
-      _mapController.move(currentLocation!, _currentZoom);
-    } catch (e) {
-      print('Error getting location: $e');
+      if (_isTracking) {
+        _updateRoute(smoothedPosition);
+      }
+    });
+  }
+
+  void _updateRecentPositions(Position position) {
+    _recentPositions.add(position);
+    if (_recentPositions.length > _smoothingFactor) {
+      _recentPositions.removeAt(0);
     }
+  }
+
+  Position _calculateAveragePosition(List<Position> positions) {
+    if (positions.isEmpty)
+      return Position(
+        latitude: 0,
+        longitude: 0,
+        timestamp: DateTime.now(),
+        accuracy: 0,
+        altitude: 0,
+        heading: 0,
+        speed: 0,
+        speedAccuracy: 0,
+        altitudeAccuracy: 0,
+        headingAccuracy: 0,
+      );
+
+    double latSum = 0, lonSum = 0, altSum = 0, accSum = 0;
+    for (var position in positions) {
+      latSum += position.latitude;
+      lonSum += position.longitude;
+      altSum += position.altitude;
+      accSum += position.accuracy;
+    }
+    return Position(
+      latitude: latSum / positions.length,
+      longitude: lonSum / positions.length,
+      altitude: altSum / positions.length,
+      accuracy: accSum / positions.length,
+      timestamp: positions.last.timestamp,
+      speed: positions.last.speed,
+      speedAccuracy: positions.last.speedAccuracy,
+      heading: positions.last.heading,
+      altitudeAccuracy: positions.last.altitudeAccuracy,
+      headingAccuracy: positions.last.headingAccuracy,
+    );
   }
 
   void startTracking() {
@@ -107,19 +156,11 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
       _isTracking = true;
       route.clear();
       pinDrops.clear();
-      _recentPositions.clear();
       _startingPoint = currentLocation;
       if (_startingPoint != null) {
         route.add(_startingPoint!);
       }
-    });
-    _positionSubscription = Geolocator.getPositionStream(
-      locationSettings: const LocationSettings(
-        accuracy: LocationAccuracy.bestForNavigation,
-        distanceFilter: 0,
-      ),
-    ).listen((Position position) {
-      _updateLocation(position);
+      _lastValidLocation = _startingPoint;
     });
   }
 
@@ -127,92 +168,53 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     setState(() {
       _isTracking = false;
     });
-    _positionSubscription?.cancel();
     _processRouteData();
   }
 
-  void _updateLocation(Position position) {
-    _recentPositions.add(position);
-    if (_recentPositions.length > _smoothingFactor) {
-      _recentPositions.removeAt(0);
-    }
+  void _updateRoute(Position position) {
+    final newLocation = ll.LatLng(position.latitude, position.longitude);
 
-    if (_recentPositions.length == _smoothingFactor) {
-      Position averagePosition = _calculateAveragePosition(_recentPositions);
-      final newLocation =
-          ll.LatLng(averagePosition.latitude, averagePosition.longitude);
+    if (_lastValidLocation != null) {
+      final distance = calculateDistance(_lastValidLocation!, newLocation);
 
-      if (_lastValidLocation != null && _isTracking) {
-        final distance = calculateDistance(_lastValidLocation!, newLocation);
-
-        if (distance >= _minDistanceFilter) {
-          setState(() {
-            if (_startingPoint != null &&
-                calculateDistance(_startingPoint!, newLocation) <=
-                    _closingThreshold) {
-              // Check if the area is significant before snapping
-              double currentArea = calculateArea([...route, newLocation]);
-              if (currentArea >= _minAreaThreshold) {
-                route.add(_startingPoint!);
-                _lastValidLocation = _startingPoint;
-                currentLocation = _startingPoint;
-                _mapController.move(_startingPoint!, _currentZoom);
-                stopTracking(); // Automatically stop tracking when snapped
-              } else {
-                route.add(newLocation);
-                _lastValidLocation = newLocation;
-                currentLocation = newLocation;
-                _mapController.move(newLocation, _currentZoom);
-              }
+      if (distance >= _minDistanceFilter) {
+        setState(() {
+          if (_startingPoint != null &&
+              calculateDistance(_startingPoint!, newLocation) <=
+                  _closingThreshold) {
+            double currentArea = calculateArea([...route, newLocation]);
+            if (currentArea >= _minAreaThreshold) {
+              route.add(_startingPoint!);
+              _lastValidLocation = _startingPoint;
+              stopTracking();
             } else {
               route.add(newLocation);
               _lastValidLocation = newLocation;
-              currentLocation = newLocation;
-              _mapController.move(newLocation, _currentZoom);
             }
-          });
-        }
-      } else {
-        setState(() {
-          _lastValidLocation = newLocation;
-          currentLocation = newLocation;
-          _mapController.move(newLocation, _currentZoom);
+          } else {
+            route.add(newLocation);
+            _lastValidLocation = newLocation;
+          }
         });
       }
     }
   }
 
   void _processRouteData() {
-    // Process the route data after stopping
     double finalArea = calculateArea(route);
     print('Final Area: $finalArea sq meters');
     // Add any other post-processing here
   }
 
-  Position _calculateAveragePosition(List<Position> positions) {
-    // Giving more weight to recent positions
-    double latSum = 0, lonSum = 0, altSum = 0, accSum = 0;
-    double totalWeight = 0;
-    for (int i = 0; i < positions.length; i++) {
-      double weight = (i + 1) / positions.length;
-      latSum += positions[i].latitude * weight;
-      lonSum += positions[i].longitude * weight;
-      altSum += positions[i].altitude * weight;
-      accSum += positions[i].accuracy * weight;
-      totalWeight += weight;
+  double calculateArea(List<ll.LatLng> points) {
+    if (points.length < 3) return 0;
+    double area = 0;
+    for (int i = 0; i < points.length; i++) {
+      int j = (i + 1) % points.length;
+      area += (points[i].longitude * points[j].latitude -
+          points[j].longitude * points[i].latitude);
     }
-    return Position.fromMap({
-      'latitude': latSum / totalWeight,
-      'longitude': lonSum / totalWeight,
-      'altitude': altSum / totalWeight,
-      'accuracy': accSum / totalWeight,
-      'speed': 0,
-      'speedAccuracy': 0,
-      'heading': 0,
-      'timestamp': DateTime.now().millisecondsSinceEpoch,
-      'altitudeAccuracy': 0,
-      'headingAccuracy': 0,
-    });
+    return (area.abs() / 2) * 111319.9 * 111319.9;
   }
 
   double calculateDistance(ll.LatLng start, ll.LatLng end) {
@@ -224,20 +226,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
             c(end.latitude * p) *
             (1 - c((end.longitude - start.longitude) * p)) /
             2;
-    return 12742 * asin(sqrt(a)) * 1000; // 2 * R; R = 6371 km
-  }
-
-  double calculateArea(List<ll.LatLng> points) {
-    if (points.length < 3) return 0;
-    double area = 0;
-    for (int i = 0; i < points.length; i++) {
-      int j = (i + 1) % points.length;
-      area += (points[i].longitude * points[j].latitude -
-          points[j].longitude * points[i].latitude);
-    }
-    return (area.abs() / 2) *
-        111319.9 *
-        111319.9; // Rough conversion to square meters
+    return 12742 * asin(sqrt(a)) * 1000;
   }
 
   void dropPin() {
@@ -271,7 +260,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
       );
     }
 
-    double area = calculateArea(route);
+    double area = _isTracking ? calculateArea(route) : 0;
 
     return SizedBox(
       width: widget.width ?? MediaQuery.of(context).size.width,
@@ -285,11 +274,6 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
               initialZoom: _currentZoom,
               maxZoom: 22.0,
               minZoom: 15.0,
-              onMapReady: () {
-                if (currentLocation != null) {
-                  _mapController.move(currentLocation!, _currentZoom);
-                }
-              },
             ),
             children: [
               TileLayer(
@@ -300,15 +284,16 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
                       'your_default_mapbox_access_token_here',
                 },
               ),
-              PolylineLayer(
-                polylines: [
-                  Polyline(
-                    points: route,
-                    strokeWidth: 4.0,
-                    color: Colors.blue,
-                  ),
-                ],
-              ),
+              if (_isTracking)
+                PolylineLayer(
+                  polylines: [
+                    Polyline(
+                      points: route,
+                      strokeWidth: 4.0,
+                      color: Colors.blue,
+                    ),
+                  ],
+                ),
               MarkerLayer(
                 markers: [
                   Marker(
@@ -349,10 +334,12 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
                     'Current: ${currentLocation?.latitude.toStringAsFixed(6)}, ${currentLocation?.longitude.toStringAsFixed(6)}',
                     style: TextStyle(fontSize: 12),
                   ),
-                  Text(
-                    'Area: ${area.toStringAsFixed(2)} sq meters',
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                  ),
+                  if (_isTracking)
+                    Text(
+                      'Area: ${area.toStringAsFixed(2)} sq meters',
+                      style:
+                          TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                    ),
                   Row(
                     children: [
                       ElevatedButton(
