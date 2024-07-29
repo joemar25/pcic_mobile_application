@@ -220,6 +220,14 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     return area;
   }
 
+  void dropPin() {
+    if (currentLocation != null) {
+      setState(() {
+        pinDrops.add(currentLocation!);
+      });
+    }
+  }
+
   @override
   void dispose() {
     _positionSubscription?.cancel();
