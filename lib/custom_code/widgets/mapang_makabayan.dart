@@ -36,27 +36,20 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   List<ll.LatLng> route = [];
   final MapController _mapController = MapController();
   StreamSubscription<Position>? _positionSubscription;
-  final double _minDistanceFilter =
-      1.0; // 1 meter for balance between accuracy and smoothness
+  final double _minDistanceFilter = 1.0; // 1 meter
   ll.LatLng? _lastValidLocation;
   double _currentZoom = 19.0;
   bool _isTracking = false;
-  List<ll.LatLng> pinDrops = [];
-  List<Position> _recentPositions = [];
-  final int _smoothingFactor = 10;
-  ll.LatLng? _startingPoint;
-  final double _closingThreshold = 1.0; // 1 meter to snap to starting point
-  final double _minAreaThreshold =
-      10.0; // Minimum area in square meters to consider for snapping
+  double _calculatedArea = 0.0;
 
   @override
   void initState() {
     super.initState();
     checkPermissions().then((hasPermission) {
       if (hasPermission) {
-        getCurrentLocation().then((_) {
-          startContinuousLocationUpdates();
-        });
+        startLiveLocationUpdates();
+      } else {
+        showPermissionDeniedDialog();
       }
     });
   }
@@ -64,7 +57,6 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   Future<bool> checkPermissions() async {
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      print('Location services are disabled.');
       return false;
     }
 
@@ -72,35 +64,68 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        print('Location permissions are denied.');
         return false;
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      print('Location permissions are permanently denied.');
       return false;
     }
 
     return true;
   }
 
-  Future<void> getCurrentLocation() async {
-    try {
-      Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high,
-        timeLimit: Duration(seconds: 30),
-      );
+  void showPermissionDeniedDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Location Permission Required'),
+          content:
+              Text('This app needs location permissions to function properly.'),
+          actions: <Widget>[
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
-      setState(() {
-        currentLocation = ll.LatLng(position.latitude, position.longitude);
-        _lastValidLocation = currentLocation;
-        locationLoaded = true;
-      });
+  void startLiveLocationUpdates() {
+    _positionSubscription = Geolocator.getPositionStream(
+      locationSettings: const LocationSettings(
+        accuracy: LocationAccuracy.high,
+        distanceFilter: 0,
+      ),
+    ).listen((Position position) {
+      _updateLocation(position);
+    }, onError: (error) {
+      print("Error getting location: $error");
+    });
+  }
 
+  void _updateLocation(Position position) {
+    setState(() {
+      currentLocation = ll.LatLng(position.latitude, position.longitude);
+      locationLoaded = true;
+
+      if (_isTracking) {
+        if (_lastValidLocation == null ||
+            calculateDistance(_lastValidLocation!, currentLocation!) >=
+                _minDistanceFilter) {
+          route.add(currentLocation!);
+          _lastValidLocation = currentLocation;
+        }
+      }
+    });
+
+    if (_mapController.camera.center != currentLocation) {
       _mapController.move(currentLocation!, _currentZoom);
-    } catch (e) {
-      print('Error getting location: $e');
     }
   }
 
@@ -108,110 +133,23 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     setState(() {
       _isTracking = true;
       route.clear();
-      pinDrops.clear();
-      _recentPositions.clear();
-      _startingPoint = currentLocation;
-      if (_startingPoint != null) {
-        route.add(_startingPoint!);
+      _calculatedArea = 0.0;
+      _lastValidLocation = null;
+      if (currentLocation != null) {
+        route.add(currentLocation!);
+        _lastValidLocation = currentLocation;
       }
-    });
-    _positionSubscription = Geolocator.getPositionStream(
-      locationSettings: const LocationSettings(
-        accuracy: LocationAccuracy.high,
-        distanceFilter: 1, // Update every 1 meter
-        timeLimit: Duration(seconds: 10),
-      ),
-    ).listen((Position position) {
-      _updateLocation(position);
     });
   }
 
   void stopTracking() {
     setState(() {
       _isTracking = false;
-    });
-    _positionSubscription?.cancel();
-    _processRouteData();
-  }
-
-  void _updateLocation(Position position) {
-    if (position.accuracy <= 10) {
-      // Only use positions with accuracy better than 15 meters
-      _recentPositions.add(position);
-      if (_recentPositions.length > _smoothingFactor) {
-        _recentPositions.removeAt(0);
+      if (route.length > 2) {
+        _calculatedArea = calculateArea(route);
+      } else {
+        _calculatedArea = 0.0;
       }
-
-      if (_recentPositions.length == _smoothingFactor) {
-        Position averagePosition = _calculateAveragePosition(_recentPositions);
-        final newLocation =
-            ll.LatLng(averagePosition.latitude, averagePosition.longitude);
-
-        setState(() {
-          currentLocation = newLocation;
-          _mapController.move(newLocation, _currentZoom);
-        });
-
-        if (_isTracking && _lastValidLocation != null) {
-          final distance = calculateDistance(_lastValidLocation!, newLocation);
-
-          if (distance >= _minDistanceFilter) {
-            setState(() {
-              if (_startingPoint != null &&
-                  calculateDistance(_startingPoint!, newLocation) <=
-                      _closingThreshold) {
-                double currentArea = calculateArea([...route, newLocation]);
-                if (currentArea >= _minAreaThreshold) {
-                  route.add(_startingPoint!);
-                  _lastValidLocation = _startingPoint;
-                  stopTracking();
-                } else {
-                  route.add(newLocation);
-                  _lastValidLocation = newLocation;
-                }
-              } else {
-                route.add(newLocation);
-                _lastValidLocation = newLocation;
-              }
-            });
-          }
-        } else {
-          _lastValidLocation = newLocation;
-        }
-      }
-    }
-  }
-
-  void _processRouteData() {
-    // Process the route data after stopping
-    double finalArea = calculateArea(route);
-    print('Final Area: $finalArea sq meters');
-    // Add any other post-processing here
-  }
-
-  Position _calculateAveragePosition(List<Position> positions) {
-    double latSum = 0, lonSum = 0, altSum = 0;
-    double totalWeight = 0;
-    for (Position position in positions) {
-      double weight =
-          1 / (position.accuracy + 1); // More weight to more accurate positions
-      latSum += position.latitude * weight;
-      lonSum += position.longitude * weight;
-      altSum += position.altitude * weight;
-      totalWeight += weight;
-    }
-    return Position.fromMap({
-      'latitude': latSum / totalWeight,
-      'longitude': lonSum / totalWeight,
-      'altitude': altSum / totalWeight,
-      'accuracy':
-          positions.map((p) => p.accuracy).reduce((a, b) => a < b ? a : b),
-      'speed': 0,
-      'speedAccuracy': 0,
-      'heading': 0,
-      'timestamp': DateTime.now().millisecondsSinceEpoch,
-      'altitudeAccuracy': 0,
-      'headingAccuracy': 0,
     });
   }
 
@@ -238,26 +176,6 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     return (area.abs() / 2) *
         111319.9 *
         111319.9; // Rough conversion to square meters
-  }
-
-  void dropPin() {
-    if (currentLocation != null) {
-      setState(() {
-        pinDrops.add(currentLocation!);
-      });
-    }
-  }
-
-  void startContinuousLocationUpdates() {
-    _positionSubscription = Geolocator.getPositionStream(
-      locationSettings: const LocationSettings(
-        accuracy: LocationAccuracy.bestForNavigation,
-        distanceFilter: 0, // Update as frequently as possible
-        timeLimit: Duration(seconds: 5),
-      ),
-    ).listen((Position position) {
-      _updateLocation(position);
-    });
   }
 
   void recenterMap() {
@@ -289,8 +207,6 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
       );
     }
 
-    double area = calculateArea(route);
-
     return SizedBox(
       width: widget.width ?? MediaQuery.of(context).size.width,
       height: widget.height ?? MediaQuery.of(context).size.height,
@@ -303,11 +219,6 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
               initialZoom: _currentZoom,
               maxZoom: 22.0,
               minZoom: 15.0,
-              onMapReady: () {
-                if (currentLocation != null) {
-                  _mapController.move(currentLocation!, _currentZoom);
-                }
-              },
             ),
             children: [
               TileLayer(
@@ -318,37 +229,31 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
                       'your_default_mapbox_access_token_here',
                 },
               ),
-              PolylineLayer(
-                polylines: [
-                  Polyline(
-                    points: route,
-                    strokeWidth: 4.0,
-                    color: Colors.blue,
-                  ),
-                ],
-              ),
+              if (_isTracking || route.isNotEmpty)
+                PolylineLayer(
+                  polylines: [
+                    Polyline(
+                      points: route,
+                      strokeWidth: 4.0,
+                      color: Colors.blue,
+                    ),
+                  ],
+                ),
               MarkerLayer(
                 markers: [
-                  Marker(
-                    point: currentLocation!,
-                    width: 20.0,
-                    height: 20.0,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.green,
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.white, width: 2),
-                      ),
-                    ),
-                  ),
-                  ...pinDrops.map(
-                    (point) => Marker(
-                      point: point,
+                  if (currentLocation != null)
+                    Marker(
+                      point: currentLocation!,
                       width: 20.0,
                       height: 20.0,
-                      child: Icon(Icons.location_pin, color: Colors.red),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.blue,
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.white, width: 2),
+                        ),
+                      ),
                     ),
-                  ),
                 ],
               ),
             ],
@@ -363,33 +268,26 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Points: ${route.length}\n'
-                    'Current: ${currentLocation?.latitude.toStringAsFixed(6)}, ${currentLocation?.longitude.toStringAsFixed(6)}',
+                    'Current: ${currentLocation?.latitude.toStringAsFixed(6)}, '
+                    '${currentLocation?.longitude.toStringAsFixed(6)}',
                     style: TextStyle(fontSize: 12),
                   ),
-                  Text(
-                    'Area: ${area.toStringAsFixed(2)} sq meters',
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                  ),
-                  Row(
-                    children: [
-                      ElevatedButton(
-                        onPressed: _isTracking ? stopTracking : startTracking,
-                        child: Text(_isTracking ? 'Stop' : 'Start'),
-                      ),
-                      SizedBox(width: 10),
-                      ElevatedButton(
-                        onPressed: _isTracking ? dropPin : null,
-                        child: Text('Drop Pin'),
-                      ),
-                    ],
+                  if (_calculatedArea > 0)
+                    Text(
+                      'Area: ${_calculatedArea.toStringAsFixed(2)} sq meters',
+                      style:
+                          TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                    ),
+                  ElevatedButton(
+                    onPressed: _isTracking ? stopTracking : startTracking,
+                    child: Text(_isTracking ? 'Stop' : 'Start'),
                   ),
                 ],
               ),
             ),
           ),
           Positioned(
-            bottom: 70, // Adjust as needed
+            bottom: 70,
             right: 10,
             child: FloatingActionButton(
               onPressed: recenterMap,
