@@ -31,8 +31,7 @@ class MapangMakabayan extends StatefulWidget {
 }
 
 class _MapangMakabayanState extends State<MapangMakabayan> {
-  ll.LatLng? currentLocation;
-  bool locationLoaded = false;
+  late Future<ll.LatLng> _initialLocationFuture;
   List<ll.LatLng> route = [];
   final MapController _mapController = MapController();
   StreamSubscription<Position>? _positionSubscription;
@@ -43,7 +42,6 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   late final StreamController<LocationMarkerPosition> _positionStreamController;
   late final Stream<LocationMarkerPosition> _positionStream;
 
-  // New parameters for improved accuracy
   final int _minSatellitesForAccuracy = 4;
   final double _minAccuracyThreshold = 3.0; // in meters
 
@@ -52,42 +50,35 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     super.initState();
     _positionStreamController = StreamController<LocationMarkerPosition>();
     _positionStream = _positionStreamController.stream.asBroadcastStream();
-    _checkLocationServicesAndPermissions();
+    _initialLocationFuture = _getInitialLocation();
   }
 
-  Future<void> _checkLocationServicesAndPermissions() async {
+  Future<ll.LatLng> _getInitialLocation() async {
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      // Show dialog to enable location services
-      return;
+      throw Exception('Location services are disabled.');
     }
 
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        // Show dialog that permissions are denied
-        return;
+        throw Exception('Location permissions are denied.');
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      // Show dialog that permissions are permanently denied
-      return;
+      throw Exception('Location permissions are permanently denied.');
     }
 
-    getInitialLocation();
-  }
-
-  Future<void> getInitialLocation() async {
     try {
       Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.best,
-      );
-      _updateLocation(position);
+      ).timeout(Duration(seconds: 10));
+      return ll.LatLng(position.latitude, position.longitude);
     } catch (e) {
       print("Error getting initial location: $e");
-      // Show error dialog
+      throw Exception('Failed to get location: $e');
     }
   }
 
@@ -102,7 +93,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
       locationSettings: AndroidSettings(
         accuracy: LocationAccuracy.best,
         distanceFilter: 0,
-        forceLocationManager: false, // Use Google's Fused Location Provider,
+        forceLocationManager: false,
         intervalDuration: const Duration(seconds: 1),
       ),
     ).listen((Position position) {
@@ -121,7 +112,6 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
 
   void _updateLocation(Position position) {
     if (position is AndroidPosition) {
-      // Use Android-specific properties for improved accuracy
       print('Accuracy: ${position.accuracy} meters');
       if (position.satellitesUsedInFix < _minSatellitesForAccuracy ||
           position.accuracy > _minAccuracyThreshold) {
@@ -135,14 +125,11 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
       }
 
       print('Satellites in use: ${position.satellitesUsedInFix}');
-      print('Accuracy: ${position.accuracy} meters');
     }
 
     ll.LatLng newLocation = ll.LatLng(position.latitude, position.longitude);
 
     setState(() {
-      currentLocation = newLocation;
-
       if (_isTracking) {
         if (_lastRecordedPoint == null ||
             _calculateDistance(_lastRecordedPoint!, newLocation) >=
@@ -154,18 +141,12 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     });
 
     _positionStreamController.add(LocationMarkerPosition(
-      latitude: currentLocation!.latitude,
-      longitude: currentLocation!.longitude,
+      latitude: newLocation.latitude,
+      longitude: newLocation.longitude,
       accuracy: position.accuracy,
     ));
 
-    if (locationLoaded) {
-      _mapController.move(currentLocation!, _currentZoom);
-    } else {
-      setState(() {
-        locationLoaded = true;
-      });
-    }
+    _mapController.move(newLocation, _currentZoom);
   }
 
   double _calculateDistance(ll.LatLng start, ll.LatLng end) {
@@ -181,68 +162,80 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   void dispose() {
     _positionSubscription?.cancel();
     _positionStreamController.close();
+    _mapController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    if (!locationLoaded) {
-      return const Center(child: CircularProgressIndicator());
-    }
+    return FutureBuilder<ll.LatLng>(
+      future: _initialLocationFuture,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (!snapshot.hasData) {
+          return Center(child: Text('No location data'));
+        }
 
-    return SizedBox(
-      width: widget.width ?? MediaQuery.of(context).size.width,
-      height: widget.height ?? MediaQuery.of(context).size.height,
-      child: Stack(
-        children: [
-          FlutterMap(
-            mapController: _mapController,
-            options: MapOptions(
-              initialCenter: currentLocation!,
-              initialZoom: _currentZoom,
-            ),
+        ll.LatLng initialLocation = snapshot.data!;
+
+        return SizedBox(
+          width: widget.width ?? MediaQuery.of(context).size.width,
+          height: widget.height ?? MediaQuery.of(context).size.height,
+          child: Stack(
             children: [
-              TileLayer(
-                urlTemplate:
-                    'https://api.mapbox.com/styles/v1/mapbox/streets-v12/tiles/{z}/{x}/{y}?access_token={accessToken}',
-                additionalOptions: {
-                  'accessToken': widget.accessToken ??
-                      'your_default_mapbox_access_token_here',
-                },
-              ),
-              PolylineLayer(
-                polylines: [
-                  Polyline(
-                    points: route,
-                    strokeWidth: 4.0,
-                    color: Colors.blue,
+              FlutterMap(
+                mapController: _mapController,
+                options: MapOptions(
+                  initialCenter: initialLocation,
+                  initialZoom: _currentZoom,
+                ),
+                children: [
+                  TileLayer(
+                    urlTemplate:
+                        'https://api.mapbox.com/styles/v1/mapbox/streets-v12/tiles/{z}/{x}/{y}?access_token={accessToken}',
+                    additionalOptions: {
+                      'accessToken': widget.accessToken ??
+                          'your_default_mapbox_access_token_here',
+                    },
+                  ),
+                  PolylineLayer(
+                    polylines: [
+                      Polyline(
+                        points: route,
+                        strokeWidth: 4.0,
+                        color: Colors.blue,
+                      ),
+                    ],
+                  ),
+                  CurrentLocationLayer(
+                    positionStream: _positionStream,
+                    style: LocationMarkerStyle(
+                      marker: DefaultLocationMarker(
+                        color: Colors.green,
+                      ),
+                      markerSize: Size(20, 20),
+                      accuracyCircleColor: Colors.green.withOpacity(0.1),
+                      headingSectorColor: Colors.green.withOpacity(0.1),
+                      headingSectorRadius: 40,
+                    ),
                   ),
                 ],
               ),
-              CurrentLocationLayer(
-                positionStream: _positionStream,
-                style: LocationMarkerStyle(
-                  marker: DefaultLocationMarker(
-                    color: Colors.green,
-                  ),
-                  markerSize: Size(20, 20),
-                  accuracyCircleColor: Colors.green.withOpacity(0.1),
-                  headingSectorColor: Colors.green.withOpacity(0.1),
-                  headingSectorRadius: 40,
+              Positioned(
+                bottom: 16,
+                left: 16,
+                child: ElevatedButton(
+                  onPressed: _isTracking ? stopTracking : startTracking,
+                  child: Text(_isTracking ? 'Stop' : 'Start'),
                 ),
               ),
             ],
           ),
-          Positioned(
-            bottom: 16,
-            left: 16,
-            child: ElevatedButton(
-              onPressed: _isTracking ? stopTracking : startTracking,
-              child: Text(_isTracking ? 'Stop' : 'Start'),
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
