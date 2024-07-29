@@ -41,13 +41,18 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   double _currentZoom = 19.0;
   bool _isTracking = false;
   double _calculatedArea = 0.0;
+  final double _minMovementThreshold = 2.0; // in meters
+  final int _bufferSize = 5;
+  List<ll.LatLng> _recentLocations = [];
 
   @override
   void initState() {
     super.initState();
     checkPermissions().then((hasPermission) {
       if (hasPermission) {
-        startLiveLocationUpdates();
+        getAccurateInitialLocation().then((_) {
+          startLiveLocationUpdates();
+        });
       } else {
         showPermissionDeniedDialog();
       }
@@ -96,11 +101,62 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     );
   }
 
+  Future<void> getAccurateInitialLocation() async {
+    bool hasLocation = false;
+    int attempts = 0;
+    const int maxAttempts = 10;
+    const Duration delay = Duration(seconds: 1);
+
+    while (!hasLocation && attempts < maxAttempts) {
+      try {
+        Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.bestForNavigation,
+          timeLimit: Duration(seconds: 5),
+        );
+
+        if (position.accuracy <= 20) {
+          // Only accept locations with accuracy better than 20 meters
+          setState(() {
+            currentLocation = ll.LatLng(position.latitude, position.longitude);
+            locationLoaded = true;
+          });
+          hasLocation = true;
+        } else {
+          await Future.delayed(delay);
+          attempts++;
+        }
+      } catch (e) {
+        print("Error getting initial location: $e");
+        await Future.delayed(delay);
+        attempts++;
+      }
+    }
+
+    if (!hasLocation) {
+      print(
+          "Failed to get accurate initial location after $maxAttempts attempts");
+      // Fallback to last known position if available
+      Position? lastKnownPosition = await Geolocator.getLastKnownPosition();
+      if (lastKnownPosition != null) {
+        setState(() {
+          currentLocation = ll.LatLng(
+              lastKnownPosition.latitude, lastKnownPosition.longitude);
+          locationLoaded = true;
+        });
+      }
+    }
+
+    if (currentLocation != null) {
+      _mapController.move(currentLocation!, _currentZoom);
+    }
+  }
+
   void startLiveLocationUpdates() {
     _positionSubscription = Geolocator.getPositionStream(
-      locationSettings: const LocationSettings(
+      locationSettings: AndroidSettings(
         accuracy: LocationAccuracy.high,
         distanceFilter: 0,
+        forceLocationManager: true,
       ),
     ).listen((Position position) {
       _updateLocation(position);
@@ -110,8 +166,24 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   }
 
   void _updateLocation(Position position) {
+    ll.LatLng newLocation = ll.LatLng(position.latitude, position.longitude);
+
+    _recentLocations.add(newLocation);
+    if (_recentLocations.length > _bufferSize) {
+      _recentLocations.removeAt(0);
+    }
+
+    ll.LatLng averageLocation = _calculateAverageLocation(_recentLocations);
+
+    if (currentLocation != null) {
+      double distance = calculateDistance(currentLocation!, averageLocation);
+      if (distance < _minMovementThreshold) {
+        return;
+      }
+    }
+
     setState(() {
-      currentLocation = ll.LatLng(position.latitude, position.longitude);
+      currentLocation = averageLocation;
       locationLoaded = true;
 
       if (_isTracking) {
@@ -127,6 +199,16 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     if (_mapController.camera.center != currentLocation) {
       _mapController.move(currentLocation!, _currentZoom);
     }
+  }
+
+  ll.LatLng _calculateAverageLocation(List<ll.LatLng> locations) {
+    double latitude = 0;
+    double longitude = 0;
+    for (var location in locations) {
+      latitude += location.latitude;
+      longitude += location.longitude;
+    }
+    return ll.LatLng(latitude / locations.length, longitude / locations.length);
   }
 
   void startTracking() {
@@ -244,13 +326,13 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
                   if (currentLocation != null)
                     Marker(
                       point: currentLocation!,
-                      width: 20.0,
-                      height: 20.0,
+                      width: 12.0,
+                      height: 12.0,
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Colors.blue,
+                          color: Colors.green,
                           shape: BoxShape.circle,
-                          border: Border.all(color: Colors.white, width: 2),
+                          border: Border.all(color: Colors.white, width: 1),
                         ),
                       ),
                     ),
