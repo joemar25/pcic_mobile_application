@@ -75,19 +75,31 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
       Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.best,
       ).timeout(Duration(seconds: 10));
-      return ll.LatLng(position.latitude, position.longitude);
+      ll.LatLng location = ll.LatLng(position.latitude, position.longitude);
+      _updateLocationMarker(location, position.accuracy);
+      return location;
     } catch (e) {
       print("Error getting initial location: $e");
       throw Exception('Failed to get location: $e');
     }
   }
 
-  void startTracking() {
+  void startTracking() async {
     setState(() {
       _isTracking = true;
       route.clear();
       _lastRecordedPoint = null;
     });
+
+    // Get current location before starting the stream
+    try {
+      Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.best,
+      );
+      _updateLocation(position);
+    } catch (e) {
+      print("Error getting current location: $e");
+    }
 
     _positionSubscription = Geolocator.getPositionStream(
       locationSettings: AndroidSettings(
@@ -140,13 +152,16 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
       }
     });
 
-    _positionStreamController.add(LocationMarkerPosition(
-      latitude: newLocation.latitude,
-      longitude: newLocation.longitude,
-      accuracy: position.accuracy,
-    ));
-
+    _updateLocationMarker(newLocation, position.accuracy);
     _mapController.move(newLocation, _currentZoom);
+  }
+
+  void _updateLocationMarker(ll.LatLng location, double accuracy) {
+    _positionStreamController.add(LocationMarkerPosition(
+      latitude: location.latitude,
+      longitude: location.longitude,
+      accuracy: accuracy,
+    ));
   }
 
   double _calculateDistance(ll.LatLng start, ll.LatLng end) {
@@ -218,7 +233,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
                       ),
                       markerSize: Size(20, 20),
                       accuracyCircleColor: Colors.green.withOpacity(0.1),
-                      headingSectorColor: Colors.green.withOpacity(0.1),
+                      headingSectorColor: Colors.green.withOpacity(0.8),
                       headingSectorRadius: 40,
                     ),
                   ),
