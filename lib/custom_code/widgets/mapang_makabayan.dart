@@ -43,7 +43,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   bool _isTracking = false;
   List<ll.LatLng> pinDrops = [];
   List<Position> _recentPositions = [];
-  final int _smoothingFactor = 5;
+  final int _smoothingFactor = 10;
   ll.LatLng? _startingPoint;
   final double _closingThreshold = 1.0; // 1 meter to snap to starting point
   final double _minAreaThreshold =
@@ -135,7 +135,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   }
 
   void _updateLocation(Position position) {
-    if (position.accuracy <= 15) {
+    if (position.accuracy <= 10) {
       // Only use positions with accuracy better than 15 meters
       _recentPositions.add(position);
       if (_recentPositions.length > _smoothingFactor) {
@@ -190,22 +190,22 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   }
 
   Position _calculateAveragePosition(List<Position> positions) {
-    // Giving more weight to recent positions
-    double latSum = 0, lonSum = 0, altSum = 0, accSum = 0;
+    double latSum = 0, lonSum = 0, altSum = 0;
     double totalWeight = 0;
-    for (int i = 0; i < positions.length; i++) {
-      double weight = (i + 1) / positions.length;
-      latSum += positions[i].latitude * weight;
-      lonSum += positions[i].longitude * weight;
-      altSum += positions[i].altitude * weight;
-      accSum += positions[i].accuracy * weight;
+    for (Position position in positions) {
+      double weight =
+          1 / (position.accuracy + 1); // More weight to more accurate positions
+      latSum += position.latitude * weight;
+      lonSum += position.longitude * weight;
+      altSum += position.altitude * weight;
       totalWeight += weight;
     }
     return Position.fromMap({
       'latitude': latSum / totalWeight,
       'longitude': lonSum / totalWeight,
       'altitude': altSum / totalWeight,
-      'accuracy': accSum / totalWeight,
+      'accuracy':
+          positions.map((p) => p.accuracy).reduce((a, b) => a < b ? a : b),
       'speed': 0,
       'speedAccuracy': 0,
       'heading': 0,
@@ -251,13 +251,19 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   void startContinuousLocationUpdates() {
     _positionSubscription = Geolocator.getPositionStream(
       locationSettings: const LocationSettings(
-        accuracy: LocationAccuracy.high,
-        distanceFilter: 1, // Update every 1 meter
-        timeLimit: Duration(seconds: 10),
+        accuracy: LocationAccuracy.bestForNavigation,
+        distanceFilter: 0, // Update as frequently as possible
+        timeLimit: Duration(seconds: 5),
       ),
     ).listen((Position position) {
       _updateLocation(position);
     });
+  }
+
+  void recenterMap() {
+    if (currentLocation != null) {
+      _mapController.move(currentLocation!, _currentZoom);
+    }
   }
 
   @override
@@ -325,8 +331,8 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
                 markers: [
                   Marker(
                     point: currentLocation!,
-                    width: 16.0,
-                    height: 16.0,
+                    width: 20.0,
+                    height: 20.0,
                     child: Container(
                       decoration: BoxDecoration(
                         color: Colors.green,
@@ -380,6 +386,14 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
                   ),
                 ],
               ),
+            ),
+          ),
+          Positioned(
+            bottom: 70, // Adjust as needed
+            right: 10,
+            child: FloatingActionButton(
+              onPressed: recenterMap,
+              child: Icon(Icons.my_location),
             ),
           ),
         ],
