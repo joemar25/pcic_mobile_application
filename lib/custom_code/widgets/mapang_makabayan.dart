@@ -37,7 +37,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   StreamSubscription<Position>? _positionSubscription;
   bool _isTracking = false;
   final double _minDistanceFilter = 3.0; // 3 meters between points
-  ll.LatLng? _lastRecordedPoint;
+  ll.LatLng? _currentLocation;
   final double _currentZoom = 19.0;
   late final StreamController<LocationMarkerPosition> _positionStreamController;
   late final Stream<LocationMarkerPosition> _positionStream;
@@ -75,7 +75,9 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
       Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.best,
       ).timeout(Duration(seconds: 10));
-      return ll.LatLng(position.latitude, position.longitude);
+      _currentLocation = ll.LatLng(position.latitude, position.longitude);
+      _updateLocationMarker(_currentLocation!, position.accuracy);
+      return _currentLocation!;
     } catch (e) {
       print("Error getting initial location: $e");
       throw Exception('Failed to get location: $e');
@@ -83,22 +85,20 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   }
 
   void startTracking() async {
-    // Get current location before starting the stream
     try {
       Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.best,
       );
-      ll.LatLng newLocation = ll.LatLng(position.latitude, position.longitude);
+      _currentLocation = ll.LatLng(position.latitude, position.longitude);
 
       setState(() {
         _isTracking = true;
         route.clear();
-        _lastRecordedPoint = newLocation;
-        route.add(newLocation);
+        route.add(_currentLocation!);
       });
 
-      _updateLocationMarker(newLocation, position.accuracy);
-      _mapController.move(newLocation, _currentZoom);
+      _updateLocationMarker(_currentLocation!, position.accuracy);
+      _mapController.move(_currentLocation!, _currentZoom);
     } catch (e) {
       print("Error getting current location: $e");
       return;
@@ -145,12 +145,11 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     ll.LatLng newLocation = ll.LatLng(position.latitude, position.longitude);
 
     setState(() {
+      _currentLocation = newLocation;
       if (_isTracking) {
-        if (_lastRecordedPoint == null ||
-            _calculateDistance(_lastRecordedPoint!, newLocation) >=
-                _minDistanceFilter) {
+        if (route.isEmpty ||
+            _calculateDistance(route.last, newLocation) >= _minDistanceFilter) {
           route.add(newLocation);
-          _lastRecordedPoint = newLocation;
         }
       }
     });
