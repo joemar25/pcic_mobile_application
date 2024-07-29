@@ -39,13 +39,15 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   final double _minDistanceFilter =
       1.0; // 1 meter for balance between accuracy and smoothness
   ll.LatLng? _lastValidLocation;
-  double _currentZoom = 19.0; // Slightly reduced zoom for better context
+  double _currentZoom = 19.0;
   bool _isTracking = false;
   List<ll.LatLng> pinDrops = [];
   List<Position> _recentPositions = [];
-  final int _smoothingFactor = 5; // Number of recent positions to average
+  final int _smoothingFactor = 5;
   ll.LatLng? _startingPoint;
-  final double _closingThreshold = 5.0; // 5 meters to snap to starting point
+  final double _closingThreshold = 1.0; // 1 meter to snap to starting point
+  final double _minAreaThreshold =
+      10.0; // Minimum area in square meters to consider for snapping
 
   @override
   void initState() {
@@ -126,6 +128,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
       _isTracking = false;
     });
     _positionSubscription?.cancel();
+    _processRouteData();
   }
 
   void _updateLocation(Position position) {
@@ -147,11 +150,20 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
             if (_startingPoint != null &&
                 calculateDistance(_startingPoint!, newLocation) <=
                     _closingThreshold) {
-              // If close to starting point, snap to it
-              route.add(_startingPoint!);
-              _lastValidLocation = _startingPoint;
-              currentLocation = _startingPoint;
-              _mapController.move(_startingPoint!, _currentZoom);
+              // Check if the area is significant before snapping
+              double currentArea = calculateArea([...route, newLocation]);
+              if (currentArea >= _minAreaThreshold) {
+                route.add(_startingPoint!);
+                _lastValidLocation = _startingPoint;
+                currentLocation = _startingPoint;
+                _mapController.move(_startingPoint!, _currentZoom);
+                stopTracking(); // Automatically stop tracking when snapped
+              } else {
+                route.add(newLocation);
+                _lastValidLocation = newLocation;
+                currentLocation = newLocation;
+                _mapController.move(newLocation, _currentZoom);
+              }
             } else {
               route.add(newLocation);
               _lastValidLocation = newLocation;
@@ -168,6 +180,13 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
         });
       }
     }
+  }
+
+  void _processRouteData() {
+    // Process the route data after stopping
+    double finalArea = calculateArea(route);
+    print('Final Area: $finalArea sq meters');
+    // Add any other post-processing here
   }
 
   Position _calculateAveragePosition(List<Position> positions) {
@@ -208,18 +227,17 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     return 12742 * asin(sqrt(a)) * 1000; // 2 * R; R = 6371 km
   }
 
-  double calculateArea() {
-    if (route.length < 3) return 0;
+  double calculateArea(List<ll.LatLng> points) {
+    if (points.length < 3) return 0;
     double area = 0;
-    for (int i = 0; i < route.length; i++) {
-      int j = (i + 1) % route.length;
-      area += (route[i].longitude * route[j].latitude -
-          route[j].longitude * route[i].latitude);
+    for (int i = 0; i < points.length; i++) {
+      int j = (i + 1) % points.length;
+      area += (points[i].longitude * points[j].latitude -
+          points[j].longitude * points[i].latitude);
     }
-    area = (area.abs() / 2) *
+    return (area.abs() / 2) *
         111319.9 *
         111319.9; // Rough conversion to square meters
-    return area;
   }
 
   void dropPin() {
@@ -253,7 +271,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
       );
     }
 
-    double area = calculateArea();
+    double area = calculateArea(route);
 
     return SizedBox(
       width: widget.width ?? MediaQuery.of(context).size.width,
