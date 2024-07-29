@@ -17,6 +17,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart' as ll;
 import 'package:geolocator/geolocator.dart';
 import 'dart:math' show cos, sqrt, asin, pi;
+import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
 
 class MapangMakabayan extends StatefulWidget {
   final double? width;
@@ -46,10 +47,14 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   final int _bufferSize = 3; // Reduced for more responsive tracking
   List<Position> _recentPositions = [];
   final double _maxAccuracy = 5.0; // Maximum accepted GPS accuracy in meters
+  late final StreamController<LocationMarkerPosition> _positionStreamController;
+  late final Stream<LocationMarkerPosition> _positionStream;
 
   @override
   void initState() {
     super.initState();
+    _positionStreamController = StreamController<LocationMarkerPosition>();
+    _positionStream = _positionStreamController.stream.asBroadcastStream();
     _checkLocationServicesAndPermissions();
   }
 

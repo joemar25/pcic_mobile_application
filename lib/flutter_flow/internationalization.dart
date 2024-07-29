@@ -108,7 +108,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // login
   {
     'py6ovdt7': {
-      'en': 'PCIC\nGeotagging ',
+      'en': 'PCIC Geotagging ',
       'tl': '',
     },
     '7n7i2ifo': {
@@ -139,11 +139,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Password',
       'tl': '',
     },
-    '6pn3zhxj': {
+    '617sxtmo': {
       'en': 'Enter your password...',
       'tl': '',
     },
-    'v9yewrwx': {
+    'jx6nbbu8': {
       'en': '',
       'tl': '',
     },
@@ -313,11 +313,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    '3unptwpc': {
+    'rhyzcisu': {
       'en': '',
       'tl': '',
     },
-    'dz1faih8': {
+    '3p4cg7eb': {
       'en': '',
       'tl': '',
     },
@@ -845,7 +845,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Assignment Id',
       'tl': 'Assignment Id',
     },
-    'u0seqb72': {
+    'f8wojxym': {
       'en': 'Finish',
       'tl': 'Tapusin',
     },
@@ -864,7 +864,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Mar said, This is under maintenance!',
       'tl': 'Sabi ni Mar, Under maintenance ito!',
     },
-    '8n2rvzxw': {
+    '9s1xr77j': {
       'en': 'Home',
       'tl': 'Bahay',
     },

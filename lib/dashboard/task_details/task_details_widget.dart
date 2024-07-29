@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/toast/toast_widget.dart';
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -2783,19 +2784,28 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                 ),
                                                 Container(
                                                   decoration: const BoxDecoration(),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(12.0),
-                                                    child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                      child: Image.network(
-                                                        'https://images.unsplash.com/photo-1451988336904-b1a6e8846746?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwyMXx8bWFwfGVufDB8fHx8MTcyMjA2ODY1OXww&ixlib=rb-4.0.3&q=80&w=1080',
-                                                        width: 300.0,
-                                                        height: 200.0,
-                                                        fit: BoxFit.cover,
-                                                      ),
+                                                  child: SizedBox(
+                                                    width: MediaQuery.sizeOf(
+                                                                context)
+                                                            .width *
+                                                        1.0,
+                                                    height: MediaQuery.sizeOf(
+                                                                context)
+                                                            .height *
+                                                        0.2,
+                                                    child:
+                                                        custom_widgets.Antonkz(
+                                                      width: MediaQuery.sizeOf(
+                                                                  context)
+                                                              .width *
+                                                          1.0,
+                                                      height: MediaQuery.sizeOf(
+                                                                  context)
+                                                              .height *
+                                                          0.2,
+                                                      blob:
+                                                          taskDetailsPpirFormsRow
+                                                              ?.gpx,
                                                     ),
                                                   ),
                                                 ),

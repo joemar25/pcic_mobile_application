@@ -104,42 +104,8 @@ class _LoginWidgetState extends State<LoginWidget>
                       ),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Flexible(
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    FFLocalizations.of(context).getText(
-                                      'py6ovdt7' /* PCIC
-Geotagging  */
-                                      ,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                    style: FlutterFlowTheme.of(context)
-                                        .displayMedium
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .displayMediumFamily,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryBackground,
-                                          fontSize: 40.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .displayMediumFamily),
-                                        ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
                           Flexible(
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
@@ -167,6 +133,35 @@ Geotagging  */
                                   ),
                                 ],
                               ),
+                            ),
+                          ),
+                          Flexible(
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  FFLocalizations.of(context).getText(
+                                    'py6ovdt7' /* PCIC Geotagging  */,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                  style: FlutterFlowTheme.of(context)
+                                      .headlineMedium
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .headlineMediumFamily,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
+                                        fontSize: 24.0,
+                                        letterSpacing: 0.0,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .headlineMediumFamily),
+                                      ),
+                                ),
+                              ],
                             ),
                           ),
                           FFButtonWidget(
@@ -433,7 +428,7 @@ Geotagging  */
                                             ),
                                         hintText:
                                             FFLocalizations.of(context).getText(
-                                          '6pn3zhxj' /* Enter your password... */,
+                                          '617sxtmo' /* Enter your password... */,
                                         ),
                                         hintStyle: FlutterFlowTheme.of(context)
                                             .labelMedium
