@@ -50,9 +50,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     super.initState();
     checkPermissions().then((hasPermission) {
       if (hasPermission) {
-        getAccurateInitialLocation().then((_) {
-          startLiveLocationUpdates();
-        });
+        getInitialLocation();
       } else {
         showPermissionDeniedDialog();
       }
@@ -101,53 +99,18 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     );
   }
 
-  Future<void> getAccurateInitialLocation() async {
-    bool hasLocation = false;
-    int attempts = 0;
-    const int maxAttempts = 10;
-    const Duration delay = Duration(seconds: 1);
-
-    while (!hasLocation && attempts < maxAttempts) {
-      try {
-        Position position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.bestForNavigation,
-          timeLimit: Duration(seconds: 5),
-        );
-
-        if (position.accuracy <= 20) {
-          // Only accept locations with accuracy better than 20 meters
-          setState(() {
-            currentLocation = ll.LatLng(position.latitude, position.longitude);
-            locationLoaded = true;
-          });
-          hasLocation = true;
-        } else {
-          await Future.delayed(delay);
-          attempts++;
-        }
-      } catch (e) {
-        print("Error getting initial location: $e");
-        await Future.delayed(delay);
-        attempts++;
-      }
-    }
-
-    if (!hasLocation) {
-      print(
-          "Failed to get accurate initial location after $maxAttempts attempts");
-      // Fallback to last known position if available
-      Position? lastKnownPosition = await Geolocator.getLastKnownPosition();
-      if (lastKnownPosition != null) {
-        setState(() {
-          currentLocation = ll.LatLng(
-              lastKnownPosition.latitude, lastKnownPosition.longitude);
-          locationLoaded = true;
-        });
-      }
-    }
-
-    if (currentLocation != null) {
+  Future<void> getInitialLocation() async {
+    try {
+      Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high,
+      );
+      setState(() {
+        currentLocation = ll.LatLng(position.latitude, position.longitude);
+        locationLoaded = true;
+      });
       _mapController.move(currentLocation!, _currentZoom);
+    } catch (e) {
+      print("Error getting initial location: $e");
     }
   }
 
@@ -184,7 +147,6 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
 
     setState(() {
       currentLocation = averageLocation;
-      locationLoaded = true;
 
       if (_isTracking) {
         if (_lastValidLocation == null ||
@@ -196,9 +158,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
       }
     });
 
-    if (_mapController.camera.center != currentLocation) {
-      _mapController.move(currentLocation!, _currentZoom);
-    }
+    _mapController.move(currentLocation!, _currentZoom);
   }
 
   ll.LatLng _calculateAverageLocation(List<ll.LatLng> locations) {
@@ -211,17 +171,24 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     return ll.LatLng(latitude / locations.length, longitude / locations.length);
   }
 
-  void startTracking() {
+  void startTracking() async {
+    // Get the current location again
+    await getInitialLocation();
+
     setState(() {
       _isTracking = true;
       route.clear();
       _calculatedArea = 0.0;
       _lastValidLocation = null;
+      _recentLocations.clear();
       if (currentLocation != null) {
         route.add(currentLocation!);
         _lastValidLocation = currentLocation;
       }
     });
+
+    // Start live updates after getting initial location
+    startLiveLocationUpdates();
   }
 
   void stopTracking() {
@@ -233,6 +200,7 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
         _calculatedArea = 0.0;
       }
     });
+    _positionSubscription?.cancel();
   }
 
   double calculateDistance(ll.LatLng start, ll.LatLng end) {
