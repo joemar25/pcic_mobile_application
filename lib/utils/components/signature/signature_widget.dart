@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -388,8 +389,11 @@ class _SignatureWidgetState extends State<SignatureWidget>
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 4.0, 0.0),
                                         child: FFButtonWidget(
-                                          onPressed: () {
-                                            print('saveButton pressed ...');
+                                          onPressed: () async {
+                                            _model.si = await actions
+                                                .uploadSignatureToSupabase();
+
+                                            setState(() {});
                                           },
                                           text: FFLocalizations.of(context)
                                               .getText(

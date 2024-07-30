@@ -149,8 +149,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                       .override(
                                         fontFamily: FlutterFlowTheme.of(context)
                                             .headlineMediumFamily,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
+                                        color: Colors.white,
                                         fontSize: 24.0,
                                         letterSpacing: 0.0,
                                         useGoogleFonts: GoogleFonts.asMap()
@@ -335,7 +334,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: FlutterFlowTheme.of(context)
-                                                .alternate,
+                                                .boarderForm,
                                             width: 2.0,
                                           ),
                                           borderRadius:
@@ -446,7 +445,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: FlutterFlowTheme.of(context)
-                                                .alternate,
+                                                .boarderForm,
                                             width: 2.0,
                                           ),
                                           borderRadius:

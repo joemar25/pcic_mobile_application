@@ -87,6 +87,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
               padding: const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Flexible(
@@ -218,7 +219,8 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                                   ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).alternate,
+                                  color:
+                                      FlutterFlowTheme.of(context).boarderForm,
                                   width: 2.0,
                                 ),
                                 borderRadius: BorderRadius.circular(12.0),

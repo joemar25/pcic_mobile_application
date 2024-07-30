@@ -796,7 +796,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                         child: Divider(
                                           thickness: 2.0,
                                           color: FlutterFlowTheme.of(context)
-                                              .primaryText,
+                                              .boarderForm,
                                         ),
                                       ),
                                       Container(
@@ -1098,7 +1098,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                         child: Divider(
                                           thickness: 2.0,
                                           color: FlutterFlowTheme.of(context)
-                                              .primaryText,
+                                              .boarderForm,
                                         ),
                                       ),
                                       Padding(
@@ -1672,7 +1672,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                         child: Divider(
                                           thickness: 2.0,
                                           color: FlutterFlowTheme.of(context)
-                                              .primaryText,
+                                              .boarderForm,
                                         ),
                                       ),
                                       Padding(

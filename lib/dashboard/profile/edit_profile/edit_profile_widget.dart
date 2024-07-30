@@ -311,7 +311,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                 ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).alternate,
+                                color: FlutterFlowTheme.of(context).boarderForm,
                                 width: 2.0,
                               ),
                               borderRadius: BorderRadius.circular(12.0),
@@ -432,7 +432,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                       ],
                     ),
                   ),
-                ],
+                ].addToStart(const SizedBox(height: 100.0)),
               ),
             ),
           ),

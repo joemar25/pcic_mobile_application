@@ -46,27 +46,27 @@ String? sentenceCaseWords(String? text) {
 LatLng kalmanFilterAlgo(
   double latitude,
   double longitude,
+  double previousLatitude,
+  double previousLongitude,
+  double previousErrorCovarianceLat,
+  double previousErrorCovarianceLng,
 ) {
   double q = 0.0001; // Process noise covariance
   double r = 0.01; // Measurement noise covariance
-  double p = 1.0; // Estimation error covariance
-  double k = 0.0; // Kalman gain
 
-  double xLat = latitude; // Initial state for latitude
-  double xLng = longitude; // Initial state for longitude
+  // Kalman filter calculation for latitude
+  double pLat = previousErrorCovarianceLat + q;
+  double kLat = pLat / (pLat + r);
+  double filteredLat = previousLatitude + kLat * (latitude - previousLatitude);
+  double updatedErrorCovarianceLat = (1 - kLat) * pLat;
 
-  /// Kalman filter calculation for latitude
-  p = p + q;
-  k = p / (p + r);
-  xLat = xLat + k * (latitude - xLat);
-  p = (1 - k) * p;
+  // Kalman filter calculation for longitude
+  double pLng = previousErrorCovarianceLng + q;
+  double kLng = pLng / (pLng + r);
+  double filteredLng =
+      previousLongitude + kLng * (longitude - previousLongitude);
+  double updatedErrorCovarianceLng = (1 - kLng) * pLng;
 
-  /// Kalman filter calculation for longitude
-  p = p + q;
-  k = p / (p + r);
-  xLng = xLng + k * (longitude - xLng);
-  p = (1 - k) * p;
-
-  /// Return the filtered LatLng coordinates
-  return LatLng(xLat, xLng);
+  // Return the filtered LatLng coordinates
+  return LatLng(filteredLat, filteredLng);
 }

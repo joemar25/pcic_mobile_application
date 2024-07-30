@@ -54,7 +54,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      backgroundColor: FlutterFlowTheme.of(context).boarderForm,
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         automaticallyImplyLeading: false,
@@ -217,7 +217,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                               ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).alternate,
+                              color: FlutterFlowTheme.of(context).boarderForm,
                               width: 2.0,
                             ),
                             borderRadius: BorderRadius.circular(12.0),

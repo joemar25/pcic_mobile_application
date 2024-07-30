@@ -511,7 +511,7 @@ class _FormSuccessWidgetState extends State<FormSuccessWidget>
                             Divider(
                               height: 44.0,
                               thickness: 2.0,
-                              color: FlutterFlowTheme.of(context).alternate,
+                              color: FlutterFlowTheme.of(context).boarderForm,
                             ).animateOnPageLoad(
                                 animationsMap['dividerOnPageLoadAnimation']!),
                             Expanded(
