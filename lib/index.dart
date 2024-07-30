@@ -9,7 +9,7 @@ export '/dashboard/profile/edit_profile/edit_profile_widget.dart'
 export '/dashboard/messages/messages_widget.dart' show MessagesWidget;
 export '/dashboard/task_details/task_details_widget.dart'
     show TaskDetailsWidget;
-export '/dashboard/ppir/ppir_widget.dart' show PpirWidget;
+export '/dashboard/forms/ppir/ppir_widget.dart' show PpirWidget;
 export '/utils/extra/form_success/form_success_widget.dart'
     show FormSuccessWidget;
 export '/utils/extra/fail/fail_widget.dart' show FailWidget;

@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'mb1l7pmv': {
+    'chxaxvp6': {
       'en': '',
       'tl': '',
     },
@@ -317,7 +317,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    'ynjdobbb': {
+    '8k254x4r': {
       'en': '',
       'tl': '',
     },
@@ -488,17 +488,9 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirmed By',
       'tl': 'Kinumpirma ni',
     },
-    'tjm5ey7c': {
-      'en': 'Signature',
-      'tl': 'Lagda',
-    },
     '8bdkh9n1': {
       'en': 'Prepared By',
       'tl': 'Inihanda ni',
-    },
-    'aq1euelx': {
-      'en': 'Signature',
-      'tl': 'Lagda',
     },
     'ahzx9d2y': {
       'en': 'Geotag',
