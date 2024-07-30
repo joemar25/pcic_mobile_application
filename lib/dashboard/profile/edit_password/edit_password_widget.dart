@@ -162,6 +162,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                               fontFamily:
                                   FlutterFlowTheme.of(context).bodyMediumFamily,
                               letterSpacing: 0.0,
+                              fontWeight: FontWeight.normal,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
                                   FlutterFlowTheme.of(context)
                                       .bodyMediumFamily),

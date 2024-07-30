@@ -161,6 +161,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                                     fontFamily: FlutterFlowTheme.of(context)
                                         .bodyMediumFamily,
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)

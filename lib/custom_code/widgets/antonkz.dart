@@ -12,6 +12,11 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart' as latlong;
+import 'package:xml/xml.dart';
+import 'dart:convert';
+
 class Antonkz extends StatefulWidget {
   const Antonkz({
     super.key,
@@ -29,8 +34,70 @@ class Antonkz extends StatefulWidget {
 }
 
 class _AntonkzState extends State<Antonkz> {
+  List<latlong.LatLng> _coordinates = []; // Use type aliasing
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.blob != null) {
+      _parseGPX(widget.blob!);
+    }
+  }
+
+  void _parseGPX(String base64Data) {
+    try {
+      // Decode the base64 string to get the GPX data
+      final decodedBytes = base64Decode(base64Data);
+      final gpxString = utf8.decode(decodedBytes);
+
+      // Parse the GPX data using the xml package
+      final document = XmlDocument.parse(gpxString);
+      final trkpts = document.findAllElements('trkpt');
+
+      List<latlong.LatLng> coordinates = [];
+
+      for (var trkpt in trkpts) {
+        final lat = double.parse(trkpt.getAttribute('lat')!);
+        final lon = double.parse(trkpt.getAttribute('lon')!);
+        coordinates.add(latlong.LatLng(lat, lon));
+      }
+
+      setState(() {
+        _coordinates = coordinates;
+      });
+    } catch (e) {
+      print('Error parsing GPX data: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      width: widget.width,
+      height: widget.height,
+      child: FlutterMap(
+        options: MapOptions(
+          initialCenter: _coordinates.isNotEmpty
+              ? _coordinates.first
+              : latlong.LatLng(0, 0),
+          initialZoom: 13.0,
+        ),
+        children: [
+          TileLayer(
+            urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            subdomains: ['a', 'b', 'c'],
+          ),
+          PolylineLayer(
+            polylines: [
+              Polyline(
+                points: _coordinates,
+                strokeWidth: 4.0,
+                color: Colors.blue,
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }
