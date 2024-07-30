@@ -1,3 +1,4 @@
+import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_autocomplete_options_list.dart';
@@ -82,6 +83,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
         _model.currentUserProfile?.inspectorName,
         'Inspector Name',
       );
+      setState(() {});
+      FFAppState().AUTHID = currentUserUid;
       setState(() {});
     });
 

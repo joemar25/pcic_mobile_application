@@ -9,8 +9,6 @@ class SignatureModel extends FlutterFlowModel<SignatureWidget> {
   final formKey = GlobalKey<FormState>();
   // State field(s) for signature_data widget.
   SignatureController? signatureDataController;
-  // Stores action output result for [Custom Action - uploadSignatureToSupabase] action in saveButton widget.
-  String? si;
 
   @override
   void initState(BuildContext context) {}
