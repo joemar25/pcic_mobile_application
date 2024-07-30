@@ -171,6 +171,7 @@ last_synced_at = ?
 local_id = ?
 is_dirty = ?
 is_updating = ?
+WHERE id = ?
 ''';
   return database.rawQuery(query);
 }
