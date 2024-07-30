@@ -12,10 +12,11 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'dart:convert';
+import 'dart:typed_data';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart' as latlong;
 import 'package:xml/xml.dart';
-import 'dart:convert';
 
 class Antonkz extends StatefulWidget {
   const Antonkz({
@@ -34,13 +35,38 @@ class Antonkz extends StatefulWidget {
 }
 
 class _AntonkzState extends State<Antonkz> {
-  List<latlong.LatLng> _coordinates = []; // Use type aliasing
+  List<latlong.LatLng> _coordinates = [];
 
   @override
   void initState() {
     super.initState();
     if (widget.blob != null) {
-      _parseGPX(widget.blob!);
+      final base64Data = _convertByteArrayToBase64(widget.blob!);
+      _parseGPX(base64Data);
+    }
+  }
+
+  String _convertByteArrayToBase64(String jsonString) {
+    try {
+      // Parse the JSON string to a Map
+      Map<String, dynamic> jsonData = json.decode(jsonString);
+
+      // Extract the data array
+      List<dynamic> data = jsonData['data'];
+
+      // Convert the dynamic list to a List<int>
+      List<int> byteData = List<int>.from(data);
+
+      // Convert the List<int> to Uint8List
+      Uint8List uint8List = Uint8List.fromList(byteData);
+
+      // Encode the Uint8List to a base64 string
+      String base64String = base64Encode(uint8List);
+
+      return base64String;
+    } catch (e) {
+      print('Error converting byte array to base64: $e');
+      return '';
     }
   }
 
