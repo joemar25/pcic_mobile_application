@@ -161,5 +161,49 @@ class SQLiteManager {
         taskid: taskid,
       );
 
+  Future updateTask({
+    String? id,
+    String? tasknumber,
+    String? servicegroup,
+    String? servicetypes,
+    String? priority,
+    String? assignee,
+    String? fileid,
+    DateTime? dateadded,
+    DateTime? dateaccess,
+    bool? status,
+    String? tasktype,
+    int? attemptcount,
+    DateTime? updatedat,
+    bool? isdeleted,
+    bool? syncstatus,
+    DateTime? lastsyncedat,
+    String? localid,
+    bool? isdirty,
+    bool? isupdating,
+  }) =>
+      performUpdateTask(
+        _database,
+        id: id,
+        tasknumber: tasknumber,
+        servicegroup: servicegroup,
+        servicetypes: servicetypes,
+        priority: priority,
+        assignee: assignee,
+        fileid: fileid,
+        dateadded: dateadded,
+        dateaccess: dateaccess,
+        status: status,
+        tasktype: tasktype,
+        attemptcount: attemptcount,
+        updatedat: updatedat,
+        isdeleted: isdeleted,
+        syncstatus: syncstatus,
+        lastsyncedat: lastsyncedat,
+        localid: localid,
+        isdirty: isdirty,
+        isupdating: isupdating,
+      );
+
   /// END UPDATE QUERY CALLS
 }

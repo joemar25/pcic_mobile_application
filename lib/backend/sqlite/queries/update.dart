@@ -125,3 +125,54 @@ WHERE task_id = ?
 }
 
 /// END UPDATEPPIRCROPINFO
+
+/// BEGIN UPDATETASK
+Future performUpdateTask(
+  Database database, {
+  String? id,
+  String? tasknumber,
+  String? servicegroup,
+  String? servicetypes,
+  String? priority,
+  String? assignee,
+  String? fileid,
+  DateTime? dateadded,
+  DateTime? dateaccess,
+  bool? status,
+  String? tasktype,
+  int? attemptcount,
+  DateTime? updatedat,
+  bool? isdeleted,
+  bool? syncstatus,
+  DateTime? lastsyncedat,
+  String? localid,
+  bool? isdirty,
+  bool? isupdating,
+}) {
+  const query = '''
+Update tasks
+set status = ?
+id = ?
+task_number = ?
+service_group = ?
+service_types = ?
+priority = ?
+assignee = ?
+file_id = ? 
+date_added = ?
+date_access = ?
+status = ?
+task_type = ?
+attempt_count = ?
+updated_at = ?
+is_deleted = ?
+sync_status = ?
+last_synced_at = ?
+local_id = ?
+is_dirty = ?
+is_updating = ?
+''';
+  return database.rawQuery(query);
+}
+
+/// END UPDATETASK
