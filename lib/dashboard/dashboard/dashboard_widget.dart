@@ -8,7 +8,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/empty_lists/empty_lists_widget.dart';
 import '/utils/components/tasks/tasks_widget.dart';
-import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -43,8 +42,12 @@ class _DashboardWidgetState extends State<DashboardWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.currentUserProfile =
-          await action_blocks.queryCurrentUserProfile(context);
+      _model.currentUserProfile = await UsersTable().queryRows(
+        queryFn: (q) => q.eq(
+          'email',
+          currentUserEmail,
+        ),
+      );
       _model.forDispatchTasksData = await TasksTable().queryRows(
         queryFn: (q) => q.eq(
           'status',
@@ -74,14 +77,6 @@ class _DashboardWidgetState extends State<DashboardWidget>
       _model.cc = valueOrDefault<int>(
         _model.completedTasksData?.length,
         0,
-      );
-      _model.profileUrl = valueOrDefault<String>(
-        _model.currentUserProfile?.photoUrl,
-        'https://newsko.com.ph/wp-content/uploads/2024/06/Mikha.jpg',
-      );
-      _model.inspectorName = valueOrDefault<String>(
-        _model.currentUserProfile?.inspectorName,
-        'Inspector Name',
       );
       setState(() {});
       FFAppState().AUTHID = currentUserUid;
@@ -465,7 +460,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                 imageUrl:
                                                     valueOrDefault<String>(
                                                   _model.currentUserProfile
-                                                      ?.photoUrl,
+                                                      ?.first.photoUrl,
                                                   'https://newsko.com.ph/wp-content/uploads/2024/06/Mikha.jpg',
                                                 ),
                                                 fit: BoxFit.cover,
@@ -579,8 +574,9 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                       String>(
                                                                 _model
                                                                     .currentUserProfile
-                                                                    ?.inspectorName,
-                                                                'Inspector Name',
+                                                                    ?.first
+                                                                    .inspectorName,
+                                                                'Agent',
                                                               )),
                                                               'Agent',
                                                             ),

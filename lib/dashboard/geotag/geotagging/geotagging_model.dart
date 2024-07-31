@@ -12,6 +12,8 @@ class GeotaggingModel extends FlutterFlowModel<GeotaggingWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Custom Action - fetchAddressFromCoordinates] action in geotagging widget.
+  dynamic getCurrentLocationAddress;
 
   @override
   void initState(BuildContext context) {}

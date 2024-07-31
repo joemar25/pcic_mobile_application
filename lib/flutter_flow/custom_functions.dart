@@ -70,3 +70,38 @@ LatLng kalmanFilterAlgo(
   // Return the filtered LatLng coordinates
   return LatLng(filteredLat, filteredLng);
 }
+
+String? getAddress(dynamic data) {
+  if (data == null || data is! Map<String, dynamic>) {
+    return null;
+  }
+
+  List<String> addressParts = [];
+
+  if (data['unitLotNo']?.isNotEmpty == true) {
+    addressParts.add(data['unitLotNo']);
+  }
+  if (data['buildingName']?.isNotEmpty == true) {
+    addressParts.add(data['buildingName']);
+  }
+  if (data['street']?.isNotEmpty == true) {
+    addressParts.add(data['street']);
+  }
+  if (data['barangayVillage']?.isNotEmpty == true) {
+    addressParts.add(data['barangayVillage']);
+  }
+  if (data['city']?.isNotEmpty == true) {
+    addressParts.add(data['city']);
+  }
+  if (data['province']?.isNotEmpty == true) {
+    addressParts.add(data['province']);
+  }
+  if (data['zipCode']?.isNotEmpty == true) {
+    addressParts.add(data['zipCode']);
+  }
+  if (data['country']?.isNotEmpty == true) {
+    addressParts.add(data['country']);
+  }
+
+  return addressParts.join(', ');
+}

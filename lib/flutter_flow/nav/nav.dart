@@ -190,12 +190,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               : const DashboardWidget(),
         ),
         FFRoute(
-          name: 'mapTesting',
-          path: '/mapTesting',
-          requireAuth: true,
-          builder: (context, params) => const MapTestingWidget(),
-        ),
-        FFRoute(
           name: 'successProfile',
           path: '/successProfile',
           requireAuth: true,
@@ -205,11 +199,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
             ),
           ),
-        ),
-        FFRoute(
-          name: 'marApiTest',
-          path: '/marApiTest',
-          builder: (context, params) => const MarApiTestWidget(),
         ),
         FFRoute(
           name: 'forgotPassword',

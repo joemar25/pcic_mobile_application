@@ -14,9 +14,9 @@ import 'package:flutter/material.dart';
 
 import 'dart:async';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
 import 'package:latlong2/latlong.dart' as ll;
 import 'package:geolocator/geolocator.dart';
+import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
 
 class MapangMakabayan extends StatefulWidget {
   final double? width;
@@ -33,15 +33,29 @@ class MapangMakabayan extends StatefulWidget {
 class _MapangMakabayanState extends State<MapangMakabayan> {
   final MapController _mapController = MapController();
   ll.LatLng? _currentLocation;
-  double _previousLatEstimate = 0.0;
-  double _previousLngEstimate = 0.0;
-  double _errorCovarianceLat = 1.0;
-  double _errorCovarianceLng = 1.0;
-
-  static const double _currentZoom = 19.0;
-
-  String? _errorMessage;
+  List<ll.LatLng> _routeCoordinates = [];
+  StreamSubscription<Position>? _positionStreamSubscription;
+  List<Marker> _cornerMarkers = [];
+  bool _isTracking = false;
+  bool _isPaused = false;
   bool _isInitialized = false;
+  String? _errorMessage;
+  bool _isMapReady = false;
+  ll.LatLng? _startingPosition;
+
+  static const double _currentZoom = 18.0;
+  static const double _movementThreshold = 3.0; // meters
+  static const Duration _minTimeBetweenUpdates = Duration(seconds: 1);
+  final ll.Distance _distance = ll.Distance();
+  static const int _movingAverageWindow = 5;
+  static const double _minAccuracy = 10.0; // meters
+  static const Duration _settlingTime = Duration(seconds: 10);
+  static const int _maxRetries = 3;
+
+  Position? _lastPosition;
+  DateTime? _lastUpdateTime;
+  List<ll.LatLng> _recentLocations = [];
+  DateTime? _trackingStartTime;
 
   @override
   void initState() {
@@ -52,15 +66,19 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
   Future<void> _initializeLocation() async {
     try {
       await _checkLocationPermission();
-      final position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high);
-      _updatePosition(position);
+      await _checkLocationAccuracy();
+
+      Position initialPosition = await _getCurrentPositionWithRetry();
       setState(() {
+        _currentLocation =
+            ll.LatLng(initialPosition.latitude, initialPosition.longitude);
         _isInitialized = true;
       });
+
+      _startLocationStream();
     } catch (e) {
       setState(() {
-        _errorMessage = e.toString();
+        _errorMessage = "Initialization error: $e";
       });
     }
   }
@@ -81,111 +99,452 @@ class _MapangMakabayanState extends State<MapangMakabayan> {
     }
   }
 
-  void _updatePosition(Position position) {
-    final filteredLatLng = kalmanFilterAlgo(
-      position.latitude,
-      position.longitude,
-      _previousLatEstimate,
-      _previousLngEstimate,
-      _errorCovarianceLat,
-      _errorCovarianceLng,
+  Future<void> _checkLocationAccuracy() async {
+    try {
+      LocationAccuracyStatus accuracy = await Geolocator.getLocationAccuracy();
+      if (accuracy == LocationAccuracyStatus.reduced) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Please enable precise location for better accuracy'),
+            action: SnackBarAction(
+              label: 'Settings',
+              onPressed: () {
+                Geolocator.openAppSettings();
+              },
+            ),
+          ),
+        );
+      }
+    } catch (e) {
+      print('Error checking location accuracy: $e');
+    }
+  }
+
+  Future<Position> _getCurrentPositionWithRetry({int retries = 0}) async {
+    try {
+      return await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.best,
+        timeLimit: Duration(seconds: 10),
+      );
+    } catch (e) {
+      if (retries < _maxRetries) {
+        await Future.delayed(Duration(seconds: 2));
+        return _getCurrentPositionWithRetry(retries: retries + 1);
+      } else {
+        throw Exception(
+            'Failed to get current position after $_maxRetries attempts');
+      }
+    }
+  }
+
+  void _startLocationStream() {
+    LocationSettings locationSettings = AndroidSettings(
+      accuracy: LocationAccuracy.best,
+      distanceFilter: 0,
+      intervalDuration: const Duration(seconds: 1),
+      forceLocationManager: true,
+      foregroundNotificationConfig: const ForegroundNotificationConfig(
+        notificationText: "MapangMakabayan is tracking your location",
+        notificationTitle: "Location Tracking Active",
+        enableWakeLock: true,
+      ),
     );
 
+    _positionStreamSubscription = Geolocator.getPositionStream(
+      locationSettings: locationSettings,
+    ).listen(
+      (Position position) {
+        _processNewPosition(position);
+      },
+      onError: (error) {
+        print("Location stream error: $error");
+        _restartLocationStream();
+      },
+    );
+  }
+
+  void _restartLocationStream() {
+    _positionStreamSubscription?.cancel();
+    _startLocationStream();
+  }
+
+  void _processNewPosition(Position position) {
+    if (_isPaused) return;
+    print('Position accuracy: ${position.accuracy} meters');
+    if (position.accuracy <= _minAccuracy) {
+      ll.LatLng newLocation = ll.LatLng(position.latitude, position.longitude);
+      _recentLocations.add(newLocation);
+      if (_recentLocations.length > _movingAverageWindow) {
+        _recentLocations.removeAt(0);
+      }
+      ll.LatLng averageLocation = _calculateAverageLocation();
+
+      if (_startingPosition != null) {
+        double distanceFromStart = _distance.as(
+            ll.LengthUnit.Meter, _startingPosition!, averageLocation);
+
+        if (distanceFromStart >= _movementThreshold ||
+            _routeCoordinates.length > 1) {
+          _updatePosition(averageLocation);
+        } else {
+          print('Not updating position: Too close to starting point');
+        }
+      } else {
+        _updatePosition(averageLocation);
+      }
+    } else {
+      print('Skipping low accuracy position');
+    }
+  }
+
+  void _updatePosition(ll.LatLng location) {
     setState(() {
-      _currentLocation =
-          ll.LatLng(filteredLatLng.latitude, filteredLatLng.longitude);
-      _previousLatEstimate = filteredLatLng.latitude;
-      _previousLngEstimate = filteredLatLng.longitude;
+      _currentLocation = location;
+      if (_isTracking && _routeCoordinates.isNotEmpty) {
+        _routeCoordinates.add(_currentLocation!);
+      }
+      if (_isMapReady) {
+        _mapController.move(_currentLocation!, _currentZoom);
+      }
     });
   }
 
-  ll.LatLng kalmanFilterAlgo(
-    double latitude,
-    double longitude,
-    double previousLatitude,
-    double previousLongitude,
-    double previousErrorCovarianceLat,
-    double previousErrorCovarianceLng,
-  ) {
-    double q = 0.0001; // Process noise covariance
-    double r = 0.01; // Measurement noise covariance
+  ll.LatLng _calculateAverageLocation() {
+    double latSum = 0, lonSum = 0;
+    for (var loc in _recentLocations) {
+      latSum += loc.latitude;
+      lonSum += loc.longitude;
+    }
+    return ll.LatLng(
+        latSum / _recentLocations.length, lonSum / _recentLocations.length);
+  }
 
-    // Kalman filter calculation for latitude
-    double pLat = previousErrorCovarianceLat + q;
-    double kLat = pLat / (pLat + r);
-    double filteredLat =
-        previousLatitude + kLat * (latitude - previousLatitude);
-    double updatedErrorCovarianceLat = (1 - kLat) * pLat;
+  bool _isSignificantMovement(Position newPosition) {
+    if (_lastPosition == null || _lastUpdateTime == null) return true;
 
-    // Kalman filter calculation for longitude
-    double pLng = previousErrorCovarianceLng + q;
-    double kLng = pLng / (pLng + r);
-    double filteredLng =
-        previousLongitude + kLng * (longitude - previousLongitude);
-    double updatedErrorCovarianceLng = (1 - kLng) * pLng;
+    if (DateTime.now().difference(_lastUpdateTime!) < _minTimeBetweenUpdates) {
+      return false;
+    }
 
-    // Update error covariances
-    _errorCovarianceLat = updatedErrorCovarianceLat;
-    _errorCovarianceLng = updatedErrorCovarianceLng;
+    double distance = Geolocator.distanceBetween(_lastPosition!.latitude,
+        _lastPosition!.longitude, newPosition.latitude, newPosition.longitude);
 
-    // Return the filtered LatLng coordinates
-    return ll.LatLng(filteredLat, filteredLng);
+    return distance > _movementThreshold;
+  }
+
+  Future<void> _refreshLocation() async {
+    if (!_isTracking) {
+      try {
+        Position newPosition = await _getCurrentPositionWithRetry();
+        _updatePosition(ll.LatLng(newPosition.latitude, newPosition.longitude));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Location refreshed'),
+          duration: Duration(seconds: 2),
+        ));
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Failed to refresh location: $e'),
+          duration: Duration(seconds: 3),
+        ));
+      }
+    }
+  }
+
+  Future<bool> _isGpsEnabled() async {
+    return await Geolocator.isLocationServiceEnabled();
+  }
+
+  void _startTracking() async {
+    if (_isInitialized && !_isTracking) {
+      bool gpsEnabled = await _isGpsEnabled();
+      if (!gpsEnabled) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content:
+              Text('GPS is not enabled. Please turn on GPS to start tracking.'),
+        ));
+        return;
+      }
+
+      try {
+        setState(() {
+          _isTracking = true;
+          _routeCoordinates.clear();
+          _cornerMarkers.clear();
+          _startingPosition = _currentLocation;
+        });
+
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Initializing GPS'),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  CircularProgressIndicator(),
+                  SizedBox(height: 20),
+                  Text('Please wait for 10 seconds while GPS stabilizes...'),
+                ],
+              ),
+            );
+          },
+        );
+
+        await Future.delayed(Duration(seconds: 10));
+
+        Position startPosition = await _getCurrentPositionWithRetry();
+
+        setState(() {
+          _startingPosition =
+              ll.LatLng(startPosition.latitude, startPosition.longitude);
+          _routeCoordinates.add(_startingPosition!);
+          _cornerMarkers.add(
+            Marker(
+              point: _startingPosition!,
+              child: Icon(Icons.star, color: Colors.red),
+            ),
+          );
+        });
+
+        Navigator.of(context).pop();
+      } catch (e) {
+        setState(() {
+          _isTracking = false;
+          _errorMessage = "Failed to start tracking: $e";
+        });
+      }
+    }
+  }
+
+  void _addCornerMarker() {
+    if (_currentLocation != null && _isTracking) {
+      setState(() {
+        _cornerMarkers.add(
+          Marker(
+            point: _currentLocation!,
+            child: Icon(Icons.location_on, color: Colors.red),
+          ),
+        );
+      });
+    }
+  }
+
+  void _togglePauseResume() {
+    if (_isTracking) {
+      setState(() {
+        _isPaused = !_isPaused;
+      });
+      if (_isPaused) {
+        _positionStreamSubscription?.pause();
+      } else {
+        _positionStreamSubscription?.resume();
+      }
+    }
+  }
+
+  double _calculateArea() {
+    if (_routeCoordinates.length < 3) return 0;
+    double area = 0;
+    for (int i = 0; i < _routeCoordinates.length; i++) {
+      int j = (i + 1) % _routeCoordinates.length;
+      area += (_routeCoordinates[i].longitude * _routeCoordinates[j].latitude) -
+          (_routeCoordinates[j].longitude * _routeCoordinates[i].latitude);
+    }
+    return (area.abs() * 0.5) * 111319.9;
+  }
+
+  void _completeTracking() {
+    if (_isTracking) {
+      _positionStreamSubscription?.cancel();
+      setState(() {
+        _isTracking = false;
+        if (_routeCoordinates.isNotEmpty &&
+            _routeCoordinates.first != _routeCoordinates.last) {
+          _routeCoordinates.add(_routeCoordinates.first);
+        }
+      });
+      double area = _calculateArea();
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Tracking Complete'),
+            content: Text(
+                'Total area tracked: ${area.toStringAsFixed(2)} sq meters'),
+            actions: <Widget>[
+              TextButton(
+                child: Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              TextButton(
+                child: Text('Reset'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  _resetTracking();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
+
+  void _resetTracking() {
+    setState(() {
+      _isTracking = false;
+      _isPaused = false;
+      _routeCoordinates.clear();
+      _cornerMarkers.clear();
+      _recentLocations.clear();
+      _trackingStartTime = null;
+    });
   }
 
   @override
   void dispose() {
     _mapController.dispose();
+    _positionStreamSubscription?.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     if (_errorMessage != null) {
-      return Center(child: Text('Error: $_errorMessage'));
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Error: $_errorMessage'),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  _errorMessage = null;
+                  _isInitialized = false;
+                });
+                _initializeLocation();
+              },
+              child: Text('Retry'),
+            ),
+          ],
+        ),
+      );
     }
 
     if (!_isInitialized || _currentLocation == null) {
       return const Center(child: CircularProgressIndicator());
     }
 
-    return SizedBox(
-      width: widget.width ?? MediaQuery.of(context).size.width,
-      height: widget.height ?? MediaQuery.of(context).size.height,
-      child: FlutterMap(
-        mapController: _mapController,
-        options: MapOptions(
-          initialCenter: _currentLocation!,
-          initialZoom: _currentZoom,
-          minZoom: 0,
-          maxZoom: 19,
-        ),
-        children: [
-          TileLayer(
-            urlTemplate:
-                'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token={accessToken}',
-            additionalOptions: {
-              'accessToken':
-                  widget.accessToken ?? 'your_default_mapbox_access_token_here',
-            },
-          ),
-          CurrentLocationLayer(
-            style: LocationMarkerStyle(
-              marker: DefaultLocationMarker(
-                color: Colors.green,
-                child: Icon(
-                  Icons.person_pin_circle,
-                  color: Colors.white,
-                  size: 15,
-                ),
-              ),
-              markerSize: const Size(15, 15),
-              accuracyCircleColor: Colors.green.withOpacity(0.1),
-              headingSectorColor: Colors.green.withOpacity(0.8),
-              headingSectorRadius: 120,
+    return Stack(
+      children: [
+        SizedBox(
+          width: widget.width ?? MediaQuery.of(context).size.width,
+          height: widget.height ?? MediaQuery.of(context).size.height,
+          child: FlutterMap(
+            mapController: _mapController,
+            options: MapOptions(
+              initialCenter: _currentLocation!,
+              initialZoom: _currentZoom,
+              minZoom: 0,
+              maxZoom: 22,
+              onMapReady: () {
+                setState(() {
+                  _isMapReady = true;
+                });
+              },
             ),
+            children: [
+              TileLayer(
+                urlTemplate:
+                    'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token={accessToken}',
+                additionalOptions: {
+                  'accessToken': widget.accessToken ??
+                      'your_default_mapbox_access_token_here',
+                },
+              ),
+              CurrentLocationLayer(
+                alignPositionOnUpdate: AlignOnUpdate.always,
+                alignDirectionStream:
+                    null, // Use null or provide a specific stream
+                style: LocationMarkerStyle(
+                  marker: const DefaultLocationMarker(
+                    color: Colors.green,
+                  ),
+                  markerSize: const Size(15, 15),
+                  markerDirection: MarkerDirection.heading,
+                  accuracyCircleColor: Colors.green.withOpacity(0.2),
+                  headingSectorColor: Colors.green.withOpacity(0.8),
+                ),
+                alignDirectionAnimationDuration: Duration(milliseconds: 100),
+              ),
+              if (_isTracking)
+                PolylineLayer(
+                  polylines: [
+                    Polyline(
+                      points: _routeCoordinates,
+                      strokeWidth: 4.0,
+                      color: Colors.blue,
+                    ),
+                  ],
+                ),
+              if (!_isTracking && _routeCoordinates.isNotEmpty)
+                PolygonLayer(
+                  polygons: [
+                    Polygon(
+                      points: _routeCoordinates,
+                      color: Colors.blue.withOpacity(0.2),
+                      borderColor: Colors.blue,
+                      borderStrokeWidth: 3,
+                    ),
+                  ],
+                ),
+              MarkerLayer(markers: _cornerMarkers),
+            ],
           ),
-        ],
-      ),
+        ),
+        Positioned(
+          bottom: 16,
+          left: 16,
+          child: Column(
+            children: [
+              if (!_isTracking) ...[
+                FloatingActionButton(
+                  heroTag: "refreshLocation",
+                  onPressed: _refreshLocation,
+                  child: Icon(Icons.refresh),
+                ),
+                SizedBox(height: 8),
+                FloatingActionButton(
+                  heroTag: "startTracking",
+                  onPressed: _startTracking,
+                  child: Icon(Icons.play_arrow),
+                ),
+              ] else ...[
+                FloatingActionButton(
+                  heroTag: "addCorner",
+                  onPressed: _addCornerMarker,
+                  child: Icon(Icons.add_location),
+                ),
+                SizedBox(height: 8),
+                FloatingActionButton(
+                  heroTag: "pauseResume",
+                  onPressed: _togglePauseResume,
+                  child: Icon(_isPaused ? Icons.play_arrow : Icons.pause),
+                ),
+                SizedBox(height: 8),
+                FloatingActionButton(
+                  heroTag: "complete",
+                  onPressed: _completeTracking,
+                  child: Icon(Icons.check),
+                ),
+              ],
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'ac270j3p': {
+    'gs20ft0p': {
       'en': '',
       'tl': '',
     },
@@ -317,7 +317,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    'hha9ntv6': {
+    'az4v2wgx': {
       'en': '',
       'tl': '',
     },
@@ -725,17 +725,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Bahay',
     },
   },
-  // mapTesting
-  {
-    'p5a4ilu5': {
-      'en': 'Testing Map',
-      'tl': 'Mapa ng Pagsubok',
-    },
-    'hdh6xlcb': {
-      'en': 'Home',
-      'tl': 'Bahay',
-    },
-  },
   // successProfile
   {
     'e2bluypq': {
@@ -745,33 +734,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ioe9pmrx': {
       'en': 'Home',
       'tl': 'Bahay',
-    },
-  },
-  // marApiTest
-  {
-    '0ov0kosw': {
-      'en': 'API Tester',
-      'tl': 'API Tester',
-    },
-    'lgzgz3y8': {
-      'en': 'Test API Calls',
-      'tl': 'Subukan ang Mga Tawag sa API',
-    },
-    'u0bh28ib': {
-      'en': 'Test GET',
-      'tl': 'Subukan ang GET',
-    },
-    'y9wod308': {
-      'en': 'Test POST',
-      'tl': 'Subukan ang POST',
-    },
-    'lh091m1k': {
-      'en': 'Test PUT',
-      'tl': 'Subukan ang PUT',
-    },
-    '05jb6auu': {
-      'en': 'Test DELETE',
-      'tl': 'Subukan ang DELETE',
     },
   },
   // forgotPassword
@@ -817,25 +779,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // geotagging
   {
-    'wkawnowa': {
-      'en': 'Loc',
-      'tl': 'Lat',
-    },
-    'yp5wp81q': {
-      'en': 'Lat',
-      'tl': '',
-    },
-    'lvzg53kl': {
-      'en': 'Lng',
-      'tl': 'Lng',
-    },
     'qx4ly86s': {
-      'en': 'Address',
+      'en': 'Address: ',
       'tl': 'Address',
     },
-    '5rckehtu': {
-      'en': 'Assignment Id',
-      'tl': 'Assignment Id',
+    'lvzg53kl': {
+      'en': 'Lng: ',
+      'tl': 'Lng',
+    },
+    'zuoev2f9': {
+      'en': 'Lat: ',
+      'tl': '',
     },
     'f8wojxym': {
       'en': 'Finish',
