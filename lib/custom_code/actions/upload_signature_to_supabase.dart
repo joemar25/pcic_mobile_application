@@ -12,26 +12,27 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 Future<String?> uploadSignatureToSupabase(String? base64Signature) async {
-  if (base64Signature == null) return null;
+  // if (base64Signature == null) return null;
 
   // Convert base64 string to byte data
-  final bytes = base64.decode(base64Signature);
+  // final bytes = base64.decode(base64Signature);
 
   // Define the bucket and file path where the signature will be stored
-  const bucketName = 'signature';
-  const fileName = 'signature-${DateTime.now().millisecondsSinceEpoch}.png';
+  // const bucketName = 'signature';
+  // const fileName = 'signature-${DateTime.now().millisecondsSinceEpoch}.png';
 
   // Use the existing Supabase client from your imports
-  final response = await Supabase.instance.client.storage
-      .from(bucketName)
-      .uploadBinary(fileName, bytes);
+  // final response = await Supabase.instance.client.storage
+  // .from(bucketName)
+  // .uploadBinary(fileName, bytes);
 
   // Check if the upload was successful
-  if (response.error != null) {
-    print('Failed to upload signature: ${response.error!.message}');
-    return null;
-  }
+  // if (response.error != null) {
+  // print('Failed to upload signature: ${response.error!.message}');
+  // return null;
+  //  }
 
   // Return the file path of the uploaded file, or you can construct a URL to return instead
-  return fileName;
+  // return fileName;
+  return '';
 }
