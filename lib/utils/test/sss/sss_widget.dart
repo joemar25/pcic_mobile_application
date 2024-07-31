@@ -68,10 +68,10 @@ class _SssWidgetState extends State<SssWidget> {
               Expanded(
                 child: SizedBox(
                   width: double.infinity,
-                  height: 500.0,
-                  child: custom_widgets.MapDownloadWidget(
+                  height: 700.0,
+                  child: custom_widgets.MapBox(
                     width: double.infinity,
-                    height: 500.0,
+                    height: 700.0,
                     accessToken:
                         'pk.eyJ1IjoicXVhbmJ5c29sdXRpb25zIiwiYSI6ImNsdWhrejRwdDJyYnAya3A2NHFqbXlsbHEifQ.WJ5Ng-AO-dTrlkUHD_ebMw',
                   ),

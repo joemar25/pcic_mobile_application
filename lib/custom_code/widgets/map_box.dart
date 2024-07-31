@@ -12,8 +12,6 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'package:p_c_i_c_mobile_app/custom_code/actions/start_download.dart';
-
 import 'dart:async';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart' as ll;
@@ -411,7 +409,7 @@ class _MapBoxState extends State<MapBox> {
 
     // Check if the FMTC store exists
     final store = FMTC.FMTCStore('mapStore');
-    if (store == null) {
+    if (store.manage.ready == false) {
       return MapDownloadWidget(accessToken: widget.accessToken ?? '');
     }
 
