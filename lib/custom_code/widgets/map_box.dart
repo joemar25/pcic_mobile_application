@@ -407,12 +407,6 @@ class _MapBoxState extends State<MapBox> {
       return const Center(child: CircularProgressIndicator());
     }
 
-    // Check if the FMTC store exists
-    final store = FMTC.FMTCStore('mapStore');
-    if (store.manage.ready == false) {
-      return MapDownloadWidget(accessToken: widget.accessToken ?? '');
-    }
-
     return SizedBox(
       width: widget.width ?? MediaQuery.of(context).size.width,
       height: widget.height ?? MediaQuery.of(context).size.height,
@@ -431,11 +425,9 @@ class _MapBoxState extends State<MapBox> {
         ),
         children: [
           TileLayer(
-            tileProvider:
-                _isOnline ? NetworkTileProvider() : store.getTileProvider(),
-            urlTemplate: _isOnline
-                ? 'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token={accessToken}'
-                : '',
+            tileProvider: FMTC.FMTCStore('mapStore').getTileProvider(),
+            urlTemplate:
+                'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token={accessToken}',
             additionalOptions: {
               'accessToken':
                   widget.accessToken ?? 'your_default_mapbox_access_token_here',
