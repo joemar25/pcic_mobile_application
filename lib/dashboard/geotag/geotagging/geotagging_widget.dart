@@ -481,201 +481,248 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget> {
                       ),
                     ),
                   ),
-                  Container(
-                    width: double.infinity,
-                    height: 80.0,
-                    decoration: BoxDecoration(
-                      color: _model.isGeotagStart == false
-                          ? FlutterFlowTheme.of(context).primary
-                          : FlutterFlowTheme.of(context).warning,
-                      boxShadow: const [
-                        BoxShadow(
-                          blurRadius: 5.0,
-                          color: Color(0x411D2429),
-                          offset: Offset(
-                            0.0,
-                            2.0,
+                  InkWell(
+                    splashColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () async {
+                      if (_model.isGeotagStart == false) {
+                        FFAppState().GEOTAGGING = false;
+                        setState(() {});
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'geotag is false',
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context).primaryText,
+                              ),
+                            ),
+                            duration: const Duration(milliseconds: 4000),
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).secondary,
                           ),
-                        )
-                      ],
-                      borderRadius: BorderRadius.circular(0.0),
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        if (_model.isGeotagStart == false)
-                          InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              if (_model.isFinished) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      'Saving is in progress.',
-                                      style: TextStyle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
+                        );
+                      } else {
+                        FFAppState().GEOTAGGING = true;
+                        setState(() {});
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'geotag is true',
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context).primaryText,
+                              ),
+                            ),
+                            duration: const Duration(milliseconds: 4000),
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).secondary,
+                          ),
+                        );
+                      }
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      height: 80.0,
+                      decoration: BoxDecoration(
+                        color: _model.isGeotagStart == false
+                            ? FlutterFlowTheme.of(context).primary
+                            : FlutterFlowTheme.of(context).warning,
+                        boxShadow: const [
+                          BoxShadow(
+                            blurRadius: 5.0,
+                            color: Color(0x411D2429),
+                            offset: Offset(
+                              0.0,
+                              2.0,
+                            ),
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(0.0),
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          if (_model.isGeotagStart == false)
+                            InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                if (_model.isFinished) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Saving is in progress.',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                        ),
                                       ),
+                                      duration: const Duration(milliseconds: 4000),
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context)
+                                              .secondary,
                                     ),
-                                    duration: const Duration(milliseconds: 4000),
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).secondary,
+                                  );
+                                } else {
+                                  _model.isGeotagStart = true;
+                                  _model.isFinished = false;
+                                  setState(() {});
+                                }
+                              },
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Stack(
+                                    children: [
+                                      if (_model.isFinished == true)
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 5.0, 0.0),
+                                          child: Icon(
+                                            Icons.downloading_sharp,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            size: 20.0,
+                                          ),
+                                        ),
+                                      if (_model.isFinished == false)
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 5.0, 0.0),
+                                          child: FaIcon(
+                                            FontAwesomeIcons.play,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            size: 20.0,
+                                          ),
+                                        ),
+                                    ],
+                                  ),
+                                  Text(
+                                    _model.isFinished ? 'Saving' : 'Start',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyLarge
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLargeFamily,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLargeFamily),
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          if (_model.isGeotagStart == true)
+                            InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                _model.isGeotagStart = false;
+                                _model.isFinished = true;
+                                setState(() {});
+                                await PpirFormsTable().update(
+                                  data: {
+                                    'track_last_coord':
+                                        geotaggingPpirFormsRow?.trackLastCoord,
+                                    'track_date_time':
+                                        geotaggingPpirFormsRow?.trackDateTime,
+                                    'track_total_area':
+                                        geotaggingPpirFormsRow?.trackTotalArea,
+                                    'track_total_distance':
+                                        geotaggingPpirFormsRow
+                                            ?.trackTotalDistance,
+                                  },
+                                  matchingRows: (rows) => rows.eq(
+                                    'task_id',
+                                    geotaggingPpirFormsRow?.taskId,
                                   ),
                                 );
-                              } else {
-                                _model.isGeotagStart = true;
-                                _model.isFinished = false;
-                                setState(() {});
-                              }
-                            },
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Stack(
-                                  children: [
-                                    if (_model.isFinished == true)
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 5.0, 0.0),
-                                        child: Icon(
-                                          Icons.downloading_sharp,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          size: 20.0,
-                                        ),
-                                      ),
-                                    if (_model.isFinished == false)
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 5.0, 0.0),
-                                        child: FaIcon(
-                                          FontAwesomeIcons.play,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          size: 20.0,
-                                        ),
-                                      ),
-                                  ],
-                                ),
-                                Text(
-                                  _model.isFinished ? 'Saving' : 'Start',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyLarge
-                                      .override(
-                                        fontFamily: FlutterFlowTheme.of(context)
-                                            .bodyLargeFamily,
-                                        letterSpacing: 0.0,
-                                        useGoogleFonts: GoogleFonts.asMap()
-                                            .containsKey(
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyLargeFamily),
-                                      ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        if (_model.isGeotagStart == true)
-                          InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              _model.isGeotagStart = false;
-                              _model.isFinished = true;
-                              setState(() {});
-                              await PpirFormsTable().update(
-                                data: {
-                                  'track_last_coord':
-                                      geotaggingPpirFormsRow?.trackLastCoord,
-                                  'track_date_time':
-                                      geotaggingPpirFormsRow?.trackDateTime,
-                                  'track_total_area':
-                                      geotaggingPpirFormsRow?.trackTotalArea,
-                                  'track_total_distance': geotaggingPpirFormsRow
-                                      ?.trackTotalDistance,
-                                },
-                                matchingRows: (rows) => rows.eq(
-                                  'task_id',
-                                  geotaggingPpirFormsRow?.taskId,
-                                ),
-                              );
-                              await TasksTable().update(
-                                data: {
-                                  'status': 'ongoing',
-                                },
-                                matchingRows: (rows) => rows.eq(
-                                  'id',
-                                  widget.taskId,
-                                ),
-                              );
-                              await PpirFormsTable().update(
-                                data: {
-                                  'gpx': 'test',
-                                },
-                                matchingRows: (rows) => rows.eq(
-                                  'task_id',
-                                  widget.taskId,
-                                ),
-                              );
+                                await TasksTable().update(
+                                  data: {
+                                    'status': 'ongoing',
+                                  },
+                                  matchingRows: (rows) => rows.eq(
+                                    'id',
+                                    widget.taskId,
+                                  ),
+                                );
+                                await PpirFormsTable().update(
+                                  data: {
+                                    'gpx': 'test',
+                                  },
+                                  matchingRows: (rows) => rows.eq(
+                                    'task_id',
+                                    widget.taskId,
+                                  ),
+                                );
 
-                              context.pushNamed(
-                                'ppir',
-                                queryParameters: {
-                                  'taskId': serializeParam(
-                                    geotaggingPpirFormsRow?.taskId,
-                                    ParamType.String,
+                                context.pushNamed(
+                                  'ppir',
+                                  queryParameters: {
+                                    'taskId': serializeParam(
+                                      geotaggingPpirFormsRow?.taskId,
+                                      ParamType.String,
+                                    ),
+                                  }.withoutNulls,
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: const TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType:
+                                          PageTransitionType.bottomToTop,
+                                      duration: Duration(milliseconds: 200),
+                                    ),
+                                  },
+                                );
+                              },
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 5.0, 0.0),
+                                    child: FaIcon(
+                                      FontAwesomeIcons.stop,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      size: 20.0,
+                                    ),
                                   ),
-                                }.withoutNulls,
-                                extra: <String, dynamic>{
-                                  kTransitionInfoKey: const TransitionInfo(
-                                    hasTransition: true,
-                                    transitionType:
-                                        PageTransitionType.bottomToTop,
-                                    duration: Duration(milliseconds: 200),
+                                  Text(
+                                    FFLocalizations.of(context).getText(
+                                      'f8wojxym' /* Finish */,
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyLarge
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLargeFamily,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLargeFamily),
+                                        ),
                                   ),
-                                },
-                              );
-                            },
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 5.0, 0.0),
-                                  child: FaIcon(
-                                    FontAwesomeIcons.stop,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    size: 20.0,
-                                  ),
-                                ),
-                                Text(
-                                  FFLocalizations.of(context).getText(
-                                    'f8wojxym' /* Finish */,
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyLarge
-                                      .override(
-                                        fontFamily: FlutterFlowTheme.of(context)
-                                            .bodyLargeFamily,
-                                        letterSpacing: 0.0,
-                                        useGoogleFonts: GoogleFonts.asMap()
-                                            .containsKey(
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyLargeFamily),
-                                      ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ],

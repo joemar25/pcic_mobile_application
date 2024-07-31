@@ -273,9 +273,9 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                 ),
                                                 chatId: listViewChatsRow.id,
                                                 receiverId: listViewChatsRow
-                                                            .user1Id ==
+                                                            .user2Id ==
                                                         currentUserUid
-                                                    ? listViewChatsRow.user2Id!
+                                                    ? listViewChatsRow.user1Id!
                                                     : listViewChatsRow.user1Id!,
                                               ),
                                             );

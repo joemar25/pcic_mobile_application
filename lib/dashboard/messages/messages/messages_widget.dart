@@ -58,7 +58,10 @@ class _MessagesWidgetState extends State<MessagesWidget> {
       future: MessagesTable().querySingleRow(
         queryFn: (q) => q.eq(
           'chat_id',
-          widget.chatId,
+          valueOrDefault<String>(
+            widget.chatId,
+            'chatID',
+          ),
         ),
       ),
       builder: (context, snapshot) {
