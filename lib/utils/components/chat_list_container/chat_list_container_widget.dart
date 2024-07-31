@@ -107,7 +107,7 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
               future: UsersTable().querySingleRow(
                 queryFn: (q) => q.eq(
                   'id',
-                  widget.receiverId,
+                  containerMessagesRow?.receiverName,
                 ),
               ),
               builder: (context, snapshot) {
