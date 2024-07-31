@@ -12,11 +12,15 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'package:p_c_i_c_mobile_app/custom_code/actions/start_download.dart';
+
 import 'dart:async';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart' as ll;
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
+import 'package:flutter_map_tile_caching/flutter_map_tile_caching.dart' as FMTC;
+import 'package:connectivity_plus/connectivity_plus.dart';
 
 class MapBox extends StatefulWidget {
   const MapBox({
@@ -44,6 +48,7 @@ class _MapBoxState extends State<MapBox> {
   bool _isInitialized = false;
   String? _errorMessage;
   bool _isMapReady = false;
+  bool _isOnline = true;
 
   ll.LatLng? _startingPosition;
 
@@ -60,6 +65,7 @@ class _MapBoxState extends State<MapBox> {
   @override
   void initState() {
     super.initState();
+    _checkConnectivity();
     _initializeLocation();
   }
 
@@ -81,6 +87,13 @@ class _MapBoxState extends State<MapBox> {
         _errorMessage = "Initialization error: $e";
       });
     }
+  }
+
+  Future<void> _checkConnectivity() async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    setState(() {
+      _isOnline = connectivityResult != ConnectivityResult.none;
+    });
   }
 
   Future<void> _checkLocationPermission() async {
@@ -396,6 +409,12 @@ class _MapBoxState extends State<MapBox> {
       return const Center(child: CircularProgressIndicator());
     }
 
+    // Check if the FMTC store exists
+    final store = FMTC.FMTCStore('mapStore');
+    if (store == null) {
+      return MapDownloadWidget(accessToken: widget.accessToken ?? '');
+    }
+
     return SizedBox(
       width: widget.width ?? MediaQuery.of(context).size.width,
       height: widget.height ?? MediaQuery.of(context).size.height,
@@ -414,8 +433,11 @@ class _MapBoxState extends State<MapBox> {
         ),
         children: [
           TileLayer(
-            urlTemplate:
-                'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token={accessToken}',
+            tileProvider:
+                _isOnline ? NetworkTileProvider() : store.getTileProvider(),
+            urlTemplate: _isOnline
+                ? 'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token={accessToken}'
+                : '',
             additionalOptions: {
               'accessToken':
                   widget.accessToken ?? 'your_default_mapbox_access_token_here',

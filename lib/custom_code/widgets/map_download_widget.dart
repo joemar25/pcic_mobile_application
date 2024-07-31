@@ -33,52 +33,11 @@ class MapDownloadWidget extends StatefulWidget {
 }
 
 class _MapDownloadWidgetState extends State<MapDownloadWidget> {
-  Future<void> startDownload() async {
-    final bounds = LatLngBounds(
-      ll.LatLng(4.6, 116.9),
-      ll.LatLng(21.2, 126.6),
-    );
-    final region = RectangleRegion(bounds);
-    final downloadableRegion = region.toDownloadable(
-      minZoom: 0,
-      maxZoom: 10,
-      options: TileLayer(
-        urlTemplate:
-            'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
-        additionalOptions: {
-          'accessToken': widget.accessToken,
-          'id': 'mapbox/satellite-v9',
-        },
-      ),
-    );
-
-    // Listen to the Stream to handle the result and remove the warning
-    await FMTCStore('mapStore')
-        .download
-        .startForeground(
-          region: downloadableRegion,
-          parallelThreads: 5,
-          maxBufferLength: 200,
-          skipExistingTiles: false,
-          skipSeaTiles: true,
-          maxReportInterval: Duration(seconds: 1),
-        )
-        .listen((progress) {
-      // Handle progress here if needed, or keep this to acknowledge the stream
-      print('Download progress: ${progress}%');
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Map Download Widget')),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: startDownload,
-          child: Text('Start Download'),
-        ),
-      ),
+    return ElevatedButton(
+      onPressed: () => startMapDownload(widget.accessToken),
+      child: Text('Download Map'),
     );
   }
 }

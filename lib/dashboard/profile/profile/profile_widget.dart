@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/signout_dialog/signout_dialog_widget.dart';
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -480,6 +481,16 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                             size: 24.0,
                                           ),
                                         ],
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: double.infinity,
+                                      height: 45.0,
+                                      child: custom_widgets.MapDownloadWidget(
+                                        width: double.infinity,
+                                        height: 45.0,
+                                        accessToken:
+                                            'pk.eyJ1IjoicXVhbmJ5c29sdXRpb25zIiwiYSI6ImNsdWhrejRwdDJyYnAya3A2NHFqbXlsbHEifQ.WJ5Ng-AO-dTrlkUHD_ebMw',
                                       ),
                                     ),
                                   ].divide(const SizedBox(height: 15.0)),

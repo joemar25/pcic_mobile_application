@@ -30,7 +30,7 @@ dependencies:
   auto_size_text: 3.0.0
   cached_network_image: 3.3.1
   collection: 1.18.0
-  connectivity_plus: ^6.0.3
+  connectivity_plus: ^6.0.4
   csv: 6.0.0
   dropdown_button2: 2.3.9
   easy_debounce: 2.0.1
