@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    '2fnm4fm5': {
+    '94rlex5b': {
       'en': '',
       'tl': '',
     },
@@ -317,7 +317,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    'pvgfydrt': {
+    'sln1nq15': {
       'en': '',
       'tl': '',
     },
@@ -779,26 +779,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // geotagging
   {
-    'nzoos3s8': {
-      'en': 'Map 2',
-      'tl': '',
-    },
-    '546ihjwf': {
-      'en': 'Map 1',
-      'tl': '',
-    },
-    'uuabl1ty': {
-      'en': 'Map 2',
-      'tl': '',
-    },
-    'dy879y6r': {
-      'en': 'Please select...',
-      'tl': '',
-    },
-    '70xvspw3': {
-      'en': 'Search for an item...',
-      'tl': '',
-    },
     'qx4ly86s': {
       'en': 'Address: ',
       'tl': 'Address',
