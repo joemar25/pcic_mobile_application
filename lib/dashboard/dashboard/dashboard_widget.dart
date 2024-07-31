@@ -93,6 +93,10 @@ class _DashboardWidgetState extends State<DashboardWidget>
             await SQLiteManager.instance.selectUsers();
         // Reads Dashboard
         await SQLiteManager.instance.dashboardReadQuery();
+        // Updates users
+        await SQLiteManager.instance.updateUsers();
+        // Updates Dashboard
+        await SQLiteManager.instance.updateDashboardQuery();
       }
     });
 
