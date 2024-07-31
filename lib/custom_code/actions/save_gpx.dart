@@ -35,17 +35,16 @@ Future saveGpx(
     await file.writeAsString(gpx);
 
     // Define the file path in the bucket
-    final filePath = 'gpx_files/$taskId.gpx';
+    final filePath = '$taskId.gpx';
 
     // Upload the GPX file to Supabase storage
-    final response = await SupaFlow.client.storage
-        .from('gpx_files') // Assuming 'gpx_files' is your bucket name
-        .upload(filePath, file);
+    final response =
+        await SupaFlow.client.storage.from('gpx_files').upload(filePath, file);
 
     // Check if the upload was successful
     if (response != null && response.isNotEmpty) {
       print('GPX file uploaded successfully');
-      // Mar: You can add additional logic here, such as updating the task record with the file URL
+      // You can add additional logic here, such as updating the task record with the file URL
     } else {
       print('Error uploading GPX file: Upload failed');
     }

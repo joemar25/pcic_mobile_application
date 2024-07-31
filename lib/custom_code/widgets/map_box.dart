@@ -305,6 +305,17 @@ class _MapBoxState extends State<MapBox> {
         }
       });
       _calculateAndDisplayArea();
+
+      // Convert ll.LatLng to FlutterFlow's LatLng
+      List<LatLng> convertedCoordinates = _routeCoordinates
+          .map((coord) => LatLng(coord.latitude, coord.longitude))
+          .toList();
+
+      debugPrint('Converted coordinates: $convertedCoordinates');
+      // debugPrint('Task ID: ${FFAppState().currentTaskId}');
+      debugPrint('Saving IDK');
+      saveGpx('idk', convertedCoordinates);
+      // saveGpx(FFAppState().currentTaskId ?? 'default_task_id', convertedCoordinates);
     }
   }
 
