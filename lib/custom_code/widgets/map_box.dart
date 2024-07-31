@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'index.dart'; // Imports other custom widgets
+
 import 'dart:async';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart' as ll;
@@ -40,9 +42,9 @@ class _MapBoxState extends State<MapBox> {
   List<ll.LatLng> _routeCoordinates = [];
   StreamSubscription<Position>? _positionStreamSubscription;
   List<Marker> _cornerMarkers = [];
-  bool _isTracking = false;
   bool _isPaused = false;
   bool _isInitialized = false;
+  bool _isTracking = false;
   String? _errorMessage;
   bool _isMapReady = false;
 
@@ -63,12 +65,35 @@ class _MapBoxState extends State<MapBox> {
   Position? _lastPosition;
   DateTime? _lastUpdateTime;
   List<ll.LatLng> _recentLocations = [];
-  DateTime? _trackingStartTime;
 
   @override
   void initState() {
     super.initState();
     _initializeLocation();
+    _checkRouteStarted();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Listening for changes in routeStarted state
+    FFAppState().addListener(_checkRouteStarted);
+  }
+
+  @override
+  void dispose() {
+    _positionStreamSubscription?.cancel();
+    _mapController.dispose();
+    FFAppState().removeListener(_checkRouteStarted);
+    super.dispose();
+  }
+
+  void _checkRouteStarted() {
+    if (FFAppState().GEOTAGGING && !_isTracking) {
+      _startTracking();
+    } else if (!FFAppState().GEOTAGGING && _isTracking) {
+      _completeTracking();
+    }
   }
 
   Future<void> _initializeLocation() async {
@@ -177,7 +202,7 @@ class _MapBoxState extends State<MapBox> {
   }
 
   void _processNewPosition(Position position) {
-    if (_isPaused) return;
+    if (_isPaused || !FFAppState().routeStarted) return;
     print('Position accuracy: ${position.accuracy} meters');
     if (position.accuracy <= _minAccuracy) {
       ll.LatLng newLocation = ll.LatLng(position.latitude, position.longitude);
@@ -208,7 +233,7 @@ class _MapBoxState extends State<MapBox> {
   void _updatePosition(ll.LatLng location) {
     setState(() {
       _currentLocation = location;
-      if (_isTracking && _routeCoordinates.isNotEmpty) {
+      if (_isTracking) {
         _routeCoordinates.add(_currentLocation!);
       }
       if (_isMapReady) {
@@ -225,19 +250,6 @@ class _MapBoxState extends State<MapBox> {
     }
     return ll.LatLng(
         latSum / _recentLocations.length, lonSum / _recentLocations.length);
-  }
-
-  bool _isSignificantMovement(Position newPosition) {
-    if (_lastPosition == null || _lastUpdateTime == null) return true;
-
-    if (DateTime.now().difference(_lastUpdateTime!) < _minTimeBetweenUpdates) {
-      return false;
-    }
-
-    double distance = Geolocator.distanceBetween(_lastPosition!.latitude,
-        _lastPosition!.longitude, newPosition.latitude, newPosition.longitude);
-
-    return distance > _movementThreshold;
   }
 
   Future<void> _refreshLocation() async {
@@ -263,13 +275,14 @@ class _MapBoxState extends State<MapBox> {
   }
 
   void _startTracking() async {
-    if (_isInitialized && !_isTracking) {
+    if (_isInitialized) {
       bool gpsEnabled = await _isGpsEnabled();
       if (!gpsEnabled) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content:
               Text('GPS is not enabled. Please turn on GPS to start tracking.'),
         ));
+        FFAppState().GEOTAGGING = false;
         return;
       }
 
@@ -281,23 +294,25 @@ class _MapBoxState extends State<MapBox> {
           _startingPosition = _currentLocation;
         });
 
-        showDialog(
-          context: context,
-          barrierDismissible: false,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text('Initializing GPS'),
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  CircularProgressIndicator(),
-                  SizedBox(height: 20),
-                  Text('Please wait for 10 seconds while GPS stabilizes...'),
-                ],
-              ),
-            );
-          },
-        );
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text('Initializing GPS'),
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    CircularProgressIndicator(),
+                    SizedBox(height: 20),
+                    Text('Please wait for 10 seconds while GPS stabilizes...'),
+                  ],
+                ),
+              );
+            },
+          );
+        });
 
         await Future.delayed(Duration(seconds: 10));
 
@@ -322,6 +337,47 @@ class _MapBoxState extends State<MapBox> {
           _errorMessage = "Failed to start tracking: $e";
         });
       }
+    }
+  }
+
+  void _completeTracking() {
+    if (_isTracking) {
+      _positionStreamSubscription?.cancel();
+      setState(() {
+        _isTracking = false;
+        if (_routeCoordinates.isNotEmpty &&
+            _routeCoordinates.first != _routeCoordinates.last) {
+          _routeCoordinates.add(_routeCoordinates.first);
+        }
+      });
+      double area = _calculateArea();
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Tracking Complete'),
+              content: Text(
+                  'Total area tracked: ${area.toStringAsFixed(2)} sq meters'),
+              actions: <Widget>[
+                TextButton(
+                  child: Text('OK'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+                TextButton(
+                  child: Text('Reset'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    _resetTracking();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      });
     }
   }
 
@@ -362,45 +418,6 @@ class _MapBoxState extends State<MapBox> {
     return (area.abs() * 0.5) * 111319.9;
   }
 
-  void _completeTracking() {
-    if (_isTracking) {
-      _positionStreamSubscription?.cancel();
-      setState(() {
-        _isTracking = false;
-        if (_routeCoordinates.isNotEmpty &&
-            _routeCoordinates.first != _routeCoordinates.last) {
-          _routeCoordinates.add(_routeCoordinates.first);
-        }
-      });
-      double area = _calculateArea();
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Tracking Complete'),
-            content: Text(
-                'Total area tracked: ${area.toStringAsFixed(2)} sq meters'),
-            actions: <Widget>[
-              TextButton(
-                child: Text('OK'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              TextButton(
-                child: Text('Reset'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  _resetTracking();
-                },
-              ),
-            ],
-          );
-        },
-      );
-    }
-  }
-
   void _resetTracking() {
     setState(() {
       _isTracking = false;
@@ -408,15 +425,7 @@ class _MapBoxState extends State<MapBox> {
       _routeCoordinates.clear();
       _cornerMarkers.clear();
       _recentLocations.clear();
-      _trackingStartTime = null;
     });
-  }
-
-  @override
-  void dispose() {
-    _mapController.dispose();
-    _positionStreamSubscription?.cancel();
-    super.dispose();
   }
 
   @override
@@ -523,12 +532,6 @@ class _MapBoxState extends State<MapBox> {
                   heroTag: "refreshLocation",
                   onPressed: _refreshLocation,
                   child: Icon(Icons.refresh),
-                ),
-                SizedBox(height: 8),
-                FloatingActionButton(
-                  heroTag: "startTracking",
-                  onPressed: _startTracking,
-                  child: Icon(Icons.play_arrow),
                 ),
               ] else ...[
                 FloatingActionButton(
