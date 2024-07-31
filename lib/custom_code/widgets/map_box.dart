@@ -41,7 +41,6 @@ class _MapBoxState extends State<MapBox> {
   StreamSubscription<Position>? _positionStreamSubscription;
   List<Marker> _cornerMarkers = [];
   bool _isTracking = false;
-  bool _isPaused = false;
   bool _isInitialized = false;
   String? _errorMessage;
   bool _isMapReady = false;
@@ -50,20 +49,13 @@ class _MapBoxState extends State<MapBox> {
 
   final ll.Distance _distance = ll.Distance();
 
-  static const Duration _minTimeBetweenUpdates = Duration(seconds: 1);
-  static const Duration _settlingTime = Duration(seconds: 10);
-
   static const double _currentZoom = 18.0;
   static const double _movementThreshold = 3.0; // meters
-
+  static const double _minAccuracy = 10.0; // meters
   static const int _movingAverageWindow = 5;
   static const int _maxRetries = 3;
-  static const double _minAccuracy = 10.0; // meters
 
-  Position? _lastPosition;
-  DateTime? _lastUpdateTime;
   List<ll.LatLng> _recentLocations = [];
-  DateTime? _trackingStartTime;
 
   @override
   void initState() {
@@ -177,7 +169,7 @@ class _MapBoxState extends State<MapBox> {
   }
 
   void _processNewPosition(Position position) {
-    if (_isPaused) return;
+    if (!_isTracking) return;
     print('Position accuracy: ${position.accuracy} meters');
     if (position.accuracy <= _minAccuracy) {
       ll.LatLng newLocation = ll.LatLng(position.latitude, position.longitude);
@@ -208,7 +200,7 @@ class _MapBoxState extends State<MapBox> {
   void _updatePosition(ll.LatLng location) {
     setState(() {
       _currentLocation = location;
-      if (_isTracking && _routeCoordinates.isNotEmpty) {
+      if (_isTracking) {
         _routeCoordinates.add(_currentLocation!);
       }
       if (_isMapReady) {
@@ -227,42 +219,11 @@ class _MapBoxState extends State<MapBox> {
         latSum / _recentLocations.length, lonSum / _recentLocations.length);
   }
 
-  bool _isSignificantMovement(Position newPosition) {
-    if (_lastPosition == null || _lastUpdateTime == null) return true;
-
-    if (DateTime.now().difference(_lastUpdateTime!) < _minTimeBetweenUpdates) {
-      return false;
-    }
-
-    double distance = Geolocator.distanceBetween(_lastPosition!.latitude,
-        _lastPosition!.longitude, newPosition.latitude, newPosition.longitude);
-
-    return distance > _movementThreshold;
-  }
-
-  Future<void> _refreshLocation() async {
-    if (!_isTracking) {
-      try {
-        Position newPosition = await _getCurrentPositionWithRetry();
-        _updatePosition(ll.LatLng(newPosition.latitude, newPosition.longitude));
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Location refreshed'),
-          duration: Duration(seconds: 2),
-        ));
-      } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Failed to refresh location: $e'),
-          duration: Duration(seconds: 3),
-        ));
-      }
-    }
-  }
-
   Future<bool> _isGpsEnabled() async {
     return await Geolocator.isLocationServiceEnabled();
   }
 
-  void _startTracking() async {
+  Future<void> _startTracking() async {
     if (_isInitialized && !_isTracking) {
       bool gpsEnabled = await _isGpsEnabled();
       if (!gpsEnabled) {
@@ -270,6 +231,7 @@ class _MapBoxState extends State<MapBox> {
           content:
               Text('GPS is not enabled. Please turn on GPS to start tracking.'),
         ));
+        FFAppState().routeStarted = false;
         return;
       }
 
@@ -281,23 +243,25 @@ class _MapBoxState extends State<MapBox> {
           _startingPosition = _currentLocation;
         });
 
-        showDialog(
-          context: context,
-          barrierDismissible: false,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text('Initializing GPS'),
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  CircularProgressIndicator(),
-                  SizedBox(height: 20),
-                  Text('Please wait for 10 seconds while GPS stabilizes...'),
-                ],
-              ),
-            );
-          },
-        );
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text('Initializing GPS'),
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    CircularProgressIndicator(),
+                    SizedBox(height: 20),
+                    Text('Please wait for 10 seconds while GPS stabilizes...'),
+                  ],
+                ),
+              );
+            },
+          );
+        });
 
         await Future.delayed(Duration(seconds: 10));
 
@@ -315,56 +279,24 @@ class _MapBoxState extends State<MapBox> {
           );
         });
 
-        Navigator.of(context).pop();
+        Navigator.of(context).pop(); // Dismiss the dialog
+
+        // Start updating positions
+        _startLocationStream();
+
+        FFAppState().routeStarted = true;
       } catch (e) {
         setState(() {
           _isTracking = false;
           _errorMessage = "Failed to start tracking: $e";
         });
+        FFAppState().routeStarted = false;
       }
     }
-  }
-
-  void _addCornerMarker() {
-    if (_currentLocation != null && _isTracking) {
-      setState(() {
-        _cornerMarkers.add(
-          Marker(
-            point: _currentLocation!,
-            child: Icon(Icons.location_on, color: Colors.red),
-          ),
-        );
-      });
-    }
-  }
-
-  void _togglePauseResume() {
-    if (_isTracking) {
-      setState(() {
-        _isPaused = !_isPaused;
-      });
-      if (_isPaused) {
-        _positionStreamSubscription?.pause();
-      } else {
-        _positionStreamSubscription?.resume();
-      }
-    }
-  }
-
-  double _calculateArea() {
-    if (_routeCoordinates.length < 3) return 0;
-    double area = 0;
-    for (int i = 0; i < _routeCoordinates.length; i++) {
-      int j = (i + 1) % _routeCoordinates.length;
-      area += (_routeCoordinates[i].longitude * _routeCoordinates[j].latitude) -
-          (_routeCoordinates[j].longitude * _routeCoordinates[i].latitude);
-    }
-    return (area.abs() * 0.5) * 111319.9;
   }
 
   void _completeTracking() {
     if (_isTracking) {
-      _positionStreamSubscription?.cancel();
       setState(() {
         _isTracking = false;
         if (_routeCoordinates.isNotEmpty &&
@@ -372,7 +304,13 @@ class _MapBoxState extends State<MapBox> {
           _routeCoordinates.add(_routeCoordinates.first);
         }
       });
-      double area = _calculateArea();
+      _calculateAndDisplayArea();
+    }
+  }
+
+  void _calculateAndDisplayArea() {
+    double area = _calculateArea();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -387,40 +325,41 @@ class _MapBoxState extends State<MapBox> {
                   Navigator.of(context).pop();
                 },
               ),
-              TextButton(
-                child: Text('Reset'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  _resetTracking();
-                },
-              ),
             ],
           );
         },
       );
-    }
+    });
   }
 
-  void _resetTracking() {
-    setState(() {
-      _isTracking = false;
-      _isPaused = false;
-      _routeCoordinates.clear();
-      _cornerMarkers.clear();
-      _recentLocations.clear();
-      _trackingStartTime = null;
-    });
+  double _calculateArea() {
+    if (_routeCoordinates.length < 3) return 0;
+    double area = 0;
+    for (int i = 0; i < _routeCoordinates.length; i++) {
+      int j = (i + 1) % _routeCoordinates.length;
+      area += (_routeCoordinates[i].longitude * _routeCoordinates[j].latitude) -
+          (_routeCoordinates[j].longitude * _routeCoordinates[i].latitude);
+    }
+    return (area.abs() * 0.5) * 111319.9;
   }
 
   @override
   void dispose() {
-    _mapController.dispose();
     _positionStreamSubscription?.cancel();
+    _mapController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final appState = FFAppState();
+
+    if (appState.routeStarted && !_isTracking) {
+      _startTracking();
+    } else if (!appState.routeStarted && _isTracking) {
+      _completeTracking();
+    }
+
     if (_errorMessage != null) {
       return Center(
         child: Column(
@@ -446,113 +385,67 @@ class _MapBoxState extends State<MapBox> {
       return const Center(child: CircularProgressIndicator());
     }
 
-    return Stack(
-      children: [
-        SizedBox(
-          width: widget.width ?? MediaQuery.of(context).size.width,
-          height: widget.height ?? MediaQuery.of(context).size.height,
-          child: FlutterMap(
-            mapController: _mapController,
-            options: MapOptions(
-              initialCenter: _currentLocation!,
-              initialZoom: _currentZoom,
-              minZoom: 0,
-              maxZoom: 22,
-              onMapReady: () {
-                setState(() {
-                  _isMapReady = true;
-                });
-              },
-            ),
-            children: [
-              TileLayer(
-                urlTemplate:
-                    'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token={accessToken}',
-                additionalOptions: {
-                  'accessToken': widget.accessToken ??
-                      'your_default_mapbox_access_token_here',
-                },
-              ),
-              CurrentLocationLayer(
-                alignPositionOnUpdate: AlignOnUpdate.always,
-                alignDirectionStream:
-                    null, // Use null or provide a specific stream
-                style: LocationMarkerStyle(
-                  marker: const DefaultLocationMarker(
-                    color: Colors.green,
-                  ),
-                  markerSize: const Size(15, 15),
-                  markerDirection: MarkerDirection.heading,
-                  accuracyCircleColor: Colors.green.withOpacity(0.2),
-                  headingSectorColor: Colors.green.withOpacity(0.8),
-                ),
-                alignDirectionAnimationDuration: Duration(milliseconds: 100),
-              ),
-              if (_isTracking)
-                PolylineLayer(
-                  polylines: [
-                    Polyline(
-                      points: _routeCoordinates,
-                      strokeWidth: 4.0,
-                      color: Colors.blue,
-                    ),
-                  ],
-                ),
-              if (!_isTracking && _routeCoordinates.isNotEmpty)
-                PolygonLayer(
-                  polygons: [
-                    Polygon(
-                      points: _routeCoordinates,
-                      color: Colors.blue.withOpacity(0.2),
-                      borderColor: Colors.blue,
-                      borderStrokeWidth: 3,
-                    ),
-                  ],
-                ),
-              MarkerLayer(markers: _cornerMarkers),
-            ],
-          ),
+    return SizedBox(
+      width: widget.width ?? MediaQuery.of(context).size.width,
+      height: widget.height ?? MediaQuery.of(context).size.height,
+      child: FlutterMap(
+        mapController: _mapController,
+        options: MapOptions(
+          initialCenter: _currentLocation!,
+          initialZoom: _currentZoom,
+          minZoom: 0,
+          maxZoom: 22,
+          onMapReady: () {
+            setState(() {
+              _isMapReady = true;
+            });
+          },
         ),
-        Positioned(
-          bottom: 16,
-          left: 16,
-          child: Column(
-            children: [
-              if (!_isTracking) ...[
-                FloatingActionButton(
-                  heroTag: "refreshLocation",
-                  onPressed: _refreshLocation,
-                  child: Icon(Icons.refresh),
-                ),
-                SizedBox(height: 8),
-                FloatingActionButton(
-                  heroTag: "startTracking",
-                  onPressed: _startTracking,
-                  child: Icon(Icons.play_arrow),
-                ),
-              ] else ...[
-                FloatingActionButton(
-                  heroTag: "addCorner",
-                  onPressed: _addCornerMarker,
-                  child: Icon(Icons.add_location),
-                ),
-                SizedBox(height: 8),
-                FloatingActionButton(
-                  heroTag: "pauseResume",
-                  onPressed: _togglePauseResume,
-                  child: Icon(_isPaused ? Icons.play_arrow : Icons.pause),
-                ),
-                SizedBox(height: 8),
-                FloatingActionButton(
-                  heroTag: "complete",
-                  onPressed: _completeTracking,
-                  child: Icon(Icons.check),
+        children: [
+          TileLayer(
+            urlTemplate:
+                'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token={accessToken}',
+            additionalOptions: {
+              'accessToken':
+                  widget.accessToken ?? 'your_default_mapbox_access_token_here',
+            },
+          ),
+          CurrentLocationLayer(
+            alignPositionOnUpdate: AlignOnUpdate.always,
+            alignDirectionStream: null,
+            style: LocationMarkerStyle(
+              marker: const DefaultLocationMarker(color: Colors.green),
+              markerSize: const Size(15, 15),
+              markerDirection: MarkerDirection.heading,
+              accuracyCircleColor: Colors.green.withOpacity(0.2),
+              headingSectorColor: Colors.green.withOpacity(0.8),
+            ),
+            alignDirectionAnimationDuration: Duration(milliseconds: 100),
+          ),
+          if (_isTracking)
+            PolylineLayer(
+              polylines: [
+                Polyline(
+                  points: _routeCoordinates,
+                  strokeWidth: 4.0,
+                  color: Colors.blue,
                 ),
               ],
-            ],
-          ),
-        ),
-      ],
+            ),
+          if (!_isTracking && _routeCoordinates.isNotEmpty)
+            PolygonLayer(
+              polygons: [
+                Polygon(
+                  points: _routeCoordinates,
+                  color: Colors.blue.withOpacity(0.2),
+                  borderColor: Colors.blue,
+                  borderStrokeWidth: 3,
+                ),
+              ],
+            ),
+          MarkerLayer(markers: _cornerMarkers),
+        ],
+      ),
     );
   }
 }
