@@ -1,4 +1,5 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/backend/sqlite/sqlite_manager.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_autocomplete_options_list.dart';
@@ -42,45 +43,53 @@ class _DashboardWidgetState extends State<DashboardWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.currentUserProfile = await UsersTable().queryRows(
-        queryFn: (q) => q.eq(
-          'email',
-          currentUserEmail,
-        ),
-      );
-      _model.forDispatchTasksData = await TasksTable().queryRows(
-        queryFn: (q) => q.eq(
-          'status',
-          'for dispatch',
-        ),
-      );
-      _model.ongoingTasksData = await TasksTable().queryRows(
-        queryFn: (q) => q.eq(
-          'status',
-          'ongoing',
-        ),
-      );
-      _model.completedTasksData = await TasksTable().queryRows(
-        queryFn: (q) => q.eq(
-          'status',
-          'completed',
-        ),
-      );
-      _model.fdc = valueOrDefault<int>(
-        _model.forDispatchTasksData?.length,
-        0,
-      );
-      _model.onc = valueOrDefault<int>(
-        _model.ongoingTasksData?.length,
-        0,
-      );
-      _model.cc = valueOrDefault<int>(
-        _model.completedTasksData?.length,
-        0,
-      );
-      setState(() {});
-      FFAppState().AUTHID = currentUserUid;
-      setState(() {});
+      if (FFAppState().ONLINE) {
+        // Online Query for Users
+        _model.currentUserProfile = await UsersTable().queryRows(
+          queryFn: (q) => q.eq(
+            'email',
+            currentUserEmail,
+          ),
+        );
+        // Getting For Dispatch Tasks Data
+        _model.forDispatchTasksData = await TasksTable().queryRows(
+          queryFn: (q) => q.eq(
+            'status',
+            'for dispatch',
+          ),
+        );
+        _model.ongoingTasksData = await TasksTable().queryRows(
+          queryFn: (q) => q.eq(
+            'status',
+            'ongoing',
+          ),
+        );
+        _model.completedTasksData = await TasksTable().queryRows(
+          queryFn: (q) => q.eq(
+            'status',
+            'completed',
+          ),
+        );
+        _model.fdc = valueOrDefault<int>(
+          _model.forDispatchTasksData?.length,
+          0,
+        );
+        _model.onc = valueOrDefault<int>(
+          _model.ongoingTasksData?.length,
+          0,
+        );
+        _model.cc = valueOrDefault<int>(
+          _model.completedTasksData?.length,
+          0,
+        );
+        setState(() {});
+        FFAppState().AUTHID = currentUserUid;
+        setState(() {});
+      } else {
+        // Offline Query for Users
+        _model.currentUserProfileOffline =
+            await SQLiteManager.instance.selectUsers();
+      }
     });
 
     _model.textController ??= TextEditingController();
@@ -555,16 +564,25 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                       TextSpan(
                                                         text: valueOrDefault<
                                                             String>(
-                                                          functions
-                                                              .sentenceCaseWords(
-                                                                  valueOrDefault<
+                                                          functions.sentenceCaseWords(
+                                                              FFAppState()
+                                                                      .ONLINE
+                                                                  ? valueOrDefault<
                                                                       String>(
-                                                            _model
-                                                                .currentUserProfile
-                                                                ?.first
-                                                                .inspectorName,
-                                                            'Agent',
-                                                          )),
+                                                                      _model
+                                                                          .currentUserProfile
+                                                                          ?.first
+                                                                          .inspectorName,
+                                                                      'Agent',
+                                                                    )
+                                                                  : valueOrDefault<
+                                                                      String>(
+                                                                      _model
+                                                                          .currentUserProfileOffline
+                                                                          ?.first
+                                                                          .inspectorName,
+                                                                      'Agent',
+                                                                    )),
                                                           'Agent',
                                                         ),
                                                         style: TextStyle(

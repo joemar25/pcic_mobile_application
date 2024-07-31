@@ -150,30 +150,101 @@ Future performUpdateTask(
   bool? isupdating,
 }) {
   const query = '''
-Update tasks
-set status = ?
-id = ?
-task_number = ?
-service_group = ?
-service_types = ?
-priority = ?
-assignee = ?
-file_id = ? 
-date_added = ?
-date_access = ?
-status = ?
-task_type = ?
-attempt_count = ?
-updated_at = ?
-is_deleted = ?
-sync_status = ?
-last_synced_at = ?
-local_id = ?
-is_dirty = ?
-is_updating = ?
+UPDATE tasks
+SET 
+  task_number = ?,
+  service_group = ?,
+  service_type = ?,
+  priority = ?,
+  assignee = ?,
+  file_id = ?,
+  date_added = ?,
+  date_access = ?,
+  status = ?,
+  task_type = ?,
+  attempt_count = ?,
+  created_at = ?,
+  updated_at = ?,
+  is_deleted = ?,
+  sync_status = ?,
+  last_synced_at = ?,
+  local_id = ?,
+  is_dirty = ?,
+  is_updating = ?
 WHERE id = ?
 ''';
   return database.rawQuery(query);
 }
 
 /// END UPDATETASK
+
+/// BEGIN UPDATEUSERS
+Future performUpdateUsers(
+  Database database, {
+  String? id,
+  String? role,
+  String? email,
+  String? photourl,
+  String? inspectorname,
+  String? mobilenumber,
+  bool? isonline,
+  String? authuserid,
+  String? createduserid,
+  String? createdat,
+  String? updatedat,
+  String? regionid,
+}) {
+  const query = '''
+UPDATE users
+SET 
+  role = ?,
+  email = ?,
+  photo_url = ?,
+  inspector_name = ?,
+  mobile_number = ?,
+  is_online = ?,
+  auth_user_id = ?,
+  created_user_id = ?,
+  created_at = ?,
+  updated_at = ?,
+  region_id = ?
+WHERE id = ?
+''';
+  return database.rawQuery(query);
+}
+
+/// END UPDATEUSERS
+
+/// BEGIN UPDATE DASHBOARD QUERY
+Future performUpdateDashboardQuery(
+  Database database, {
+  String? role,
+  String? email,
+  String? photourl,
+  String? inspectorname,
+  String? mobilenumber,
+  bool? isonline,
+  String? authuserid,
+  String? createduserid,
+  DateTime? updatedat,
+  String? regionid,
+}) {
+  const query = '''
+UPDATE users
+SET 
+  role = ?,
+  email = ?,
+  photo_url = ?,
+  inspector_name = ?,
+  mobile_number = ?,
+  is_online = ?,
+  auth_user_id = ?,
+  created_user_id = ?,
+  updated_at = ?,
+  region_id = ?
+WHERE id = ?
+''';
+  return database.rawQuery(query);
+}
+
+/// END UPDATE DASHBOARD QUERY

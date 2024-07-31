@@ -273,3 +273,31 @@ class SelectProfileRow extends SqliteRow {
 }
 
 /// END SELECT PROFILE
+
+/// BEGIN DASHBOARD READ QUERY
+Future<List<DashboardReadQueryRow>> performDashboardReadQuery(
+  Database database,
+) {
+  const query = '''
+SELECT * FROM users WHERE id = ?
+''';
+  return _readQuery(database, query, (d) => DashboardReadQueryRow(d));
+}
+
+class DashboardReadQueryRow extends SqliteRow {
+  DashboardReadQueryRow(super.data);
+
+  String? get role => data['role'] as String?;
+  String? get email => data['email'] as String?;
+  String? get photoUrl => data['photo_url'] as String?;
+  String? get inspectorName => data['inspector_name'] as String?;
+  String? get mobileNumber => data['mobile_number'] as String?;
+  bool? get isOnline => data['is_online'] as bool?;
+  String? get authUserId => data['auth_user_id'] as String?;
+  String? get createdUserId => data['created_user_id'] as String?;
+  DateTime? get createdAt => data['created_at'] as DateTime?;
+  DateTime? get deletedAt => data['deleted_at'] as DateTime?;
+  String? get regionId => data['region_id'] as String?;
+}
+
+/// END DASHBOARD READ QUERY

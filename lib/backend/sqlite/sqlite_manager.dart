@@ -65,6 +65,11 @@ class SQLiteManager {
         email: email,
       );
 
+  Future<List<DashboardReadQueryRow>> dashboardReadQuery() =>
+      performDashboardReadQuery(
+        _database,
+      );
+
   /// END READ QUERY CALLS
 
   /// START UPDATE QUERY CALLS
@@ -203,6 +208,62 @@ class SQLiteManager {
         localid: localid,
         isdirty: isdirty,
         isupdating: isupdating,
+      );
+
+  Future updateUsers({
+    String? id,
+    String? role,
+    String? email,
+    String? photourl,
+    String? inspectorname,
+    String? mobilenumber,
+    bool? isonline,
+    String? authuserid,
+    String? createduserid,
+    String? createdat,
+    String? updatedat,
+    String? regionid,
+  }) =>
+      performUpdateUsers(
+        _database,
+        id: id,
+        role: role,
+        email: email,
+        photourl: photourl,
+        inspectorname: inspectorname,
+        mobilenumber: mobilenumber,
+        isonline: isonline,
+        authuserid: authuserid,
+        createduserid: createduserid,
+        createdat: createdat,
+        updatedat: updatedat,
+        regionid: regionid,
+      );
+
+  Future updateDashboardQuery({
+    String? role,
+    String? email,
+    String? photourl,
+    String? inspectorname,
+    String? mobilenumber,
+    bool? isonline,
+    String? authuserid,
+    String? createduserid,
+    DateTime? updatedat,
+    String? regionid,
+  }) =>
+      performUpdateDashboardQuery(
+        _database,
+        role: role,
+        email: email,
+        photourl: photourl,
+        inspectorname: inspectorname,
+        mobilenumber: mobilenumber,
+        isonline: isonline,
+        authuserid: authuserid,
+        createduserid: createduserid,
+        updatedat: updatedat,
+        regionid: regionid,
       );
 
   /// END UPDATE QUERY CALLS

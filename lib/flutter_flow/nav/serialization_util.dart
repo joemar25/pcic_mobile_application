@@ -270,6 +270,8 @@ dynamic deserializeParam<T>(
             return SelectAttemptsRow(data);
           case SelectProfileRow:
             return SelectProfileRow(data);
+          case DashboardReadQueryRow:
+            return DashboardReadQueryRow(data);
           default:
             return null;
         }
