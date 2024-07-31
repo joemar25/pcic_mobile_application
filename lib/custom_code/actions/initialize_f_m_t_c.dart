@@ -11,13 +11,13 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'package:flutter_map_tile_caching/flutter_map_tile_caching.dart';
+import 'package:flutter_map_tile_caching/flutter_map_tile_caching.dart' as FMTC;
 
 Future initializeFMTC() async {
   // Add your function code here!
   try {
-    await FlutterMapTileCaching.initialise();
-    await FMTC.instance('mapStore').manage.createAsync();
+    await FMTC.FlutterMapTileCaching.initialise();
+    await FMTC.FMTC.instance('mapStore').manage.createAsync();
     print('FMTC initialized successfully');
   } catch (e, stack) {
     print('Error initializing FMTC: $e\n$stack');
