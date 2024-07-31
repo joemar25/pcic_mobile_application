@@ -130,7 +130,7 @@ class _TasksWidgetState extends State<TasksWidget>
               width: MediaQuery.sizeOf(context).width * 1.0,
               height: 220.0,
               decoration: BoxDecoration(
-                color: FlutterFlowTheme.of(context).primaryBackground,
+                color: FlutterFlowTheme.of(context).alternate,
                 boxShadow: const [
                   BoxShadow(
                     blurRadius: 4.0,

@@ -256,8 +256,6 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget> {
                                   24.0, 16.0, 24.0, 0.0),
                               child: Container(
                                 width: MediaQuery.sizeOf(context).width * 1.0,
-                                height:
-                                    MediaQuery.sizeOf(context).height * 0.05,
                                 decoration: const BoxDecoration(),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -337,7 +335,6 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget> {
                                   24.0, 0.0, 24.0, 0.0),
                               child: Container(
                                 width: MediaQuery.sizeOf(context).width * 1.0,
-                                height: MediaQuery.sizeOf(context).height * 0.1,
                                 decoration: const BoxDecoration(),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
