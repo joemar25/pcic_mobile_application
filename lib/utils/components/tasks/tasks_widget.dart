@@ -127,10 +127,10 @@ class _TasksWidgetState extends State<TasksWidget>
               borderRadius: BorderRadius.circular(12.0),
             ),
             child: Container(
-              width: double.infinity,
-              height: 250.0,
+              width: MediaQuery.sizeOf(context).width * 1.0,
+              height: 220.0,
               decoration: BoxDecoration(
-                color: FlutterFlowTheme.of(context).secondaryBackground,
+                color: FlutterFlowTheme.of(context).primaryBackground,
                 boxShadow: const [
                   BoxShadow(
                     blurRadius: 4.0,

@@ -1,7 +1,9 @@
 import '/backend/supabase/supabase.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/form_field_controller.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -246,6 +248,82 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget> {
                                       ),
                                     ),
                                   ],
+                                ),
+                                Align(
+                                  alignment: const AlignmentDirectional(1.0, 1.0),
+                                  child: Container(
+                                    width:
+                                        MediaQuery.sizeOf(context).width * 0.4,
+                                    height: MediaQuery.sizeOf(context).height *
+                                        0.05,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                    ),
+                                    child: FlutterFlowDropDown<String>(
+                                      controller:
+                                          _model.dropDownValueController ??=
+                                              FormFieldController<String>(
+                                        _model.dropDownValue ??=
+                                            FFLocalizations.of(context).getText(
+                                          'nzoos3s8' /* Map 2 */,
+                                        ),
+                                      ),
+                                      options: [
+                                        FFLocalizations.of(context).getText(
+                                          '546ihjwf' /* Map 1 */,
+                                        ),
+                                        FFLocalizations.of(context).getText(
+                                          'uuabl1ty' /* Map 2 */,
+                                        )
+                                      ],
+                                      onChanged: (val) => setState(
+                                          () => _model.dropDownValue = val),
+                                      width: MediaQuery.sizeOf(context).width *
+                                          1.0,
+                                      height:
+                                          MediaQuery.sizeOf(context).height *
+                                              1.0,
+                                      maxHeight:
+                                          MediaQuery.sizeOf(context).height *
+                                              1.0,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMediumFamily),
+                                          ),
+                                      hintText:
+                                          FFLocalizations.of(context).getText(
+                                        'dy879y6r' /* Please select... */,
+                                      ),
+                                      icon: Icon(
+                                        Icons.keyboard_arrow_down_rounded,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        size: 24.0,
+                                      ),
+                                      fillColor: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      elevation: 2.0,
+                                      borderColor: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                      borderWidth: 2.0,
+                                      borderRadius: 8.0,
+                                      margin: const EdgeInsetsDirectional.fromSTEB(
+                                          16.0, 0.0, 16.0, 0.0),
+                                      hidesUnderline: true,
+                                      isOverButton: true,
+                                      isSearchable: false,
+                                      isMultiSelect: false,
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
