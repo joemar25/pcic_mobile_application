@@ -92,6 +92,18 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "connectivity_plus",
+      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/connectivity_plus-6.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "connectivity_plus_platform_interface",
+      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/connectivity_plus_platform_interface-2.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
       "name": "cross_file",
       "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/cross_file-0.3.4+1",
       "packageUri": "lib/",
@@ -110,16 +122,46 @@
       "languageVersion": "2.19"
     },
     {
+      "name": "csv",
+      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/csv-6.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "cupertino_icons",
       "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/cupertino_icons-1.0.8",
       "packageUri": "lib/",
       "languageVersion": "3.1"
     },
     {
+      "name": "dart_earcut",
+      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/dart_earcut-1.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "dbus",
+      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/dbus-0.7.10",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "dropdown_button2",
       "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/dropdown_button2-2.3.9",
       "packageUri": "lib/",
       "languageVersion": "2.17"
+    },
+    {
+      "name": "easy_debounce",
+      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/easy_debounce-2.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "equatable",
+      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/equatable-2.0.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "fake_async",
@@ -165,9 +207,9 @@
     },
     {
       "name": "file_selector_windows",
-      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/file_selector_windows-0.9.3+1",
+      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/file_selector_windows-0.9.3+2",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "3.2"
     },
     {
       "name": "fixnum",
@@ -194,6 +236,18 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "flutter_compass",
+      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_compass-0.8.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_downloader",
+      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_downloader-1.11.8",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
       "name": "flutter_launcher_icons",
       "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_launcher_icons-0.13.1",
       "packageUri": "lib/",
@@ -213,7 +267,13 @@
     },
     {
       "name": "flutter_map",
-      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_map-6.2.1",
+      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_map-7.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "flutter_map_location_marker",
+      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_map_location_marker-9.0.0",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -228,6 +288,42 @@
       "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.20",
       "packageUri": "lib/",
       "languageVersion": "3.4"
+    },
+    {
+      "name": "flutter_secure_storage",
+      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_secure_storage-9.2.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_secure_storage_linux",
+      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_secure_storage_linux-1.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_secure_storage_macos",
+      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_secure_storage_macos-3.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_secure_storage_platform_interface",
+      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_secure_storage_platform_interface-1.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_secure_storage_web",
+      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_secure_storage_web-1.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_secure_storage_windows",
+      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_secure_storage_windows-3.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "flutter_shaders",
@@ -279,13 +375,13 @@
     },
     {
       "name": "geolocator",
-      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/geolocator-11.1.0",
+      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/geolocator-12.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.15"
     },
     {
       "name": "geolocator_android",
-      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/geolocator_android-4.6.0",
+      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/geolocator_android-4.6.1",
       "packageUri": "lib/",
       "languageVersion": "2.15"
     },
@@ -303,9 +399,9 @@
     },
     {
       "name": "geolocator_web",
-      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/geolocator_web-3.0.0",
+      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/geolocator_web-4.0.0",
       "packageUri": "lib/",
-      "languageVersion": "2.15"
+      "languageVersion": "3.3"
     },
     {
       "name": "geolocator_windows",
@@ -554,6 +650,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "nm",
+      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/nm-0.5.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "octo_image",
       "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/octo_image-2.0.0",
       "packageUri": "lib/",
@@ -633,7 +735,7 @@
     },
     {
       "name": "permission_handler_html",
-      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler_html-0.1.1",
+      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler_html-0.1.2",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -654,12 +756,6 @@
       "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/petitparser-6.0.2",
       "packageUri": "lib/",
       "languageVersion": "3.2"
-    },
-    {
-      "name": "photo_view",
-      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/photo_view-0.14.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
     },
     {
       "name": "platform",
@@ -861,9 +957,9 @@
     },
     {
       "name": "synchronized",
-      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/synchronized-3.1.0+1",
+      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/synchronized-3.1.0",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "2.18"
     },
     {
       "name": "term_glyph",
@@ -945,9 +1041,9 @@
     },
     {
       "name": "url_launcher_windows",
-      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_windows-3.1.1",
+      "rootUri": "file:///C:/Users/joema/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_windows-3.1.2",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.2"
     },
     {
       "name": "uuid",
@@ -1094,7 +1190,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2024-07-18T11:25:37.265789Z",
+  "generated": "2024-07-31T09:52:42.458401Z",
   "generator": "pub",
   "generatorVersion": "3.4.0",
   "flutterRoot": "file:///C:/flutter",
