@@ -58,12 +58,14 @@ class _DashboardWidgetState extends State<DashboardWidget>
             'for dispatch',
           ),
         );
+        // Getting ongoing Tasks Data
         _model.ongoingTasksData = await TasksTable().queryRows(
           queryFn: (q) => q.eq(
             'status',
             'ongoing',
           ),
         );
+        // Getting completed Tasks Data
         _model.completedTasksData = await TasksTable().queryRows(
           queryFn: (q) => q.eq(
             'status',
@@ -89,6 +91,12 @@ class _DashboardWidgetState extends State<DashboardWidget>
         // Offline Query for Users
         _model.currentUserProfileOffline =
             await SQLiteManager.instance.selectUsers();
+        // Reads Dashboard
+        await SQLiteManager.instance.dashboardReadQuery();
+        // Updates users
+        await SQLiteManager.instance.updateUsers();
+        // Updates Dashboard
+        await SQLiteManager.instance.updateDashboardQuery();
       }
     });
 
