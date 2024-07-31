@@ -22,7 +22,7 @@ void main() async {
 
   // Start initial custom actions code
   await actions.connected();
-  await actions.initializeFMTC();
+  await actions.initializeFMTCBackend();
   // End initial custom actions code
 
   await SupaFlow.initialize();
