@@ -11,7 +11,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'geotagging_model.dart';
 export 'geotagging_model.dart';
 
@@ -72,7 +71,6 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
     if (currentUserLocationValue == null) {
       return Container(
         color: FlutterFlowTheme.of(context).primaryBackground,
@@ -529,24 +527,10 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget> {
                                   ),
                                 );
                               } else {
-                                FFAppState().GEOTAGGING = true;
-                                setState(() {});
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      FFAppState().GEOTAGGING.toString(),
-                                      style: TextStyle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
-                                    ),
-                                    duration: const Duration(milliseconds: 4000),
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).secondary,
-                                  ),
-                                );
                                 _model.isGeotagStart = true;
                                 _model.isFinished = false;
+                                setState(() {});
+                                FFAppState().routeStarted = true;
                                 setState(() {});
                               }
                             },
@@ -604,7 +588,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              FFAppState().GEOTAGGING = false;
+                              FFAppState().routeStarted = false;
                               setState(() {});
                               _model.isGeotagStart = false;
                               _model.isFinished = true;

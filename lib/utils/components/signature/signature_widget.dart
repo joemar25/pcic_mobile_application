@@ -388,9 +388,7 @@ class _SignatureWidgetState extends State<SignatureWidget>
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 4.0, 0.0),
                                         child: FFButtonWidget(
-                                          onPressed: () {
-                                            print('saveButton pressed ...');
-                                          },
+                                          onPressed: () async {},
                                           text: FFLocalizations.of(context)
                                               .getText(
                                             'a0f7s2dm' /* Save */,

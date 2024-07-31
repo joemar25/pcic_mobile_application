@@ -143,7 +143,7 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
                         Text(
                           valueOrDefault<String>(
                             functions.sentenceCaseWords(
-                                containerMessagesRow?.receiverName),
+                                containerMessagesRow?.senderName),
                             'Inspector Name',
                           ),
                           textAlign: TextAlign.start,

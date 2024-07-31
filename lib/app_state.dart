@@ -36,6 +36,12 @@ class FFAppState extends ChangeNotifier {
     _ONLINE = value;
   }
 
+  bool _routeStarted = false;
+  bool get routeStarted => _routeStarted;
+  set routeStarted(bool value) {
+    _routeStarted = value;
+  }
+
   String _AUTHID = '';
   String get AUTHID => _AUTHID;
   set AUTHID(String value) {
@@ -45,12 +51,6 @@ class FFAppState extends ChangeNotifier {
 
   void deleteAUTHID() {
     secureStorage.delete(key: 'ff_AUTHID');
-  }
-
-  bool _GEOTAGGING = false;
-  bool get GEOTAGGING => _GEOTAGGING;
-  set GEOTAGGING(bool value) {
-    _GEOTAGGING = value;
   }
 }
 
