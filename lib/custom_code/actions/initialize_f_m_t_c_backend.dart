@@ -15,7 +15,6 @@ import 'package:flutter_map_tile_caching/flutter_map_tile_caching.dart' as FMTC;
 
 Future initializeFMTCBackend() async {
   // Add your function code here!
-
   try {
     await FMTC.FMTCObjectBoxBackend().initialise(); // Initialize the backend
     print('FMTC initialized successfully');

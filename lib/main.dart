@@ -21,8 +21,8 @@ void main() async {
   usePathUrlStrategy();
 
   // Start initial custom actions code
-  await actions.connected();
   await actions.initializeFMTCBackend();
+  await actions.connected();
   // End initial custom actions code
 
   await SupaFlow.initialize();
