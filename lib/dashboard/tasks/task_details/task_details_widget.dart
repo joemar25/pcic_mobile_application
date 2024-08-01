@@ -130,7 +130,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
                     child: Text(
-                      'Task Details: Status is ${widget.taskStatus}',
+                      'Task Details: Status is ${functions.capitalizeWords(widget.taskStatus)}',
                       style: FlutterFlowTheme.of(context).displaySmall.override(
                             fontFamily:
                                 FlutterFlowTheme.of(context).displaySmallFamily,

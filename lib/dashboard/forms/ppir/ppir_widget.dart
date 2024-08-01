@@ -120,7 +120,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
           return Scaffold(
-            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             body: Center(
               child: SizedBox(
                 width: 100.0,
@@ -150,7 +150,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
             onWillPop: () async => false,
             child: Scaffold(
               key: scaffoldKey,
-              backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+              backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
               appBar: AppBar(
                 backgroundColor: FlutterFlowTheme.of(context).primary,
                 automaticallyImplyLeading: false,
@@ -242,7 +242,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                 ),
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
+                                      .primaryBackground,
                                   borderRadius: BorderRadius.circular(12.0),
                                 ),
                                 child: Padding(
@@ -507,6 +507,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               borderRadius:
                                                   BorderRadius.circular(12.0),
                                             ),
+                                            filled: true,
+                                            fillColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryBackground,
                                             contentPadding:
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 12.0, 16.0, 12.0),
@@ -632,6 +636,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               borderRadius:
                                                   BorderRadius.circular(12.0),
                                             ),
+                                            filled: true,
+                                            fillColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryBackground,
                                             contentPadding:
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 12.0, 16.0, 12.0),
@@ -764,6 +772,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               borderRadius:
                                                   BorderRadius.circular(12.0),
                                             ),
+                                            filled: true,
+                                            fillColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryBackground,
                                             contentPadding:
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 12.0, 16.0, 12.0),
@@ -1695,6 +1707,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               borderRadius:
                                                   BorderRadius.circular(12.0),
                                             ),
+                                            filled: true,
+                                            fillColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryBackground,
                                             contentPadding:
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 12.0, 16.0, 12.0),
@@ -1899,6 +1915,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               borderRadius:
                                                   BorderRadius.circular(12.0),
                                             ),
+                                            filled: true,
+                                            fillColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryBackground,
                                             contentPadding:
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 12.0, 16.0, 12.0),
@@ -2102,6 +2122,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               borderRadius:
                                                   BorderRadius.circular(12.0),
                                             ),
+                                            filled: true,
+                                            fillColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryBackground,
                                             contentPadding:
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 12.0, 16.0, 12.0),
@@ -2231,6 +2255,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               borderRadius:
                                                   BorderRadius.circular(12.0),
                                             ),
+                                            filled: true,
+                                            fillColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryBackground,
                                             contentPadding:
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 24.0, 16.0, 12.0),
@@ -2353,6 +2381,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               borderRadius:
                                                   BorderRadius.circular(12.0),
                                             ),
+                                            filled: true,
+                                            fillColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryBackground,
                                             contentPadding:
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 12.0, 16.0, 12.0),
@@ -2600,6 +2632,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               borderRadius:
                                                   BorderRadius.circular(12.0),
                                             ),
+                                            filled: true,
+                                            fillColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryBackground,
                                             contentPadding:
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 12.0, 16.0, 12.0),
