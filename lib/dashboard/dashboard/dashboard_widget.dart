@@ -1099,7 +1099,9 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                   }
 
                                                   return ListView.separated(
-                                                    padding: EdgeInsets.zero,
+                                                    padding:
+                                                        const EdgeInsets.symmetric(
+                                                            vertical: 15.0),
                                                     primary: false,
                                                     shrinkWrap: true,
                                                     scrollDirection:

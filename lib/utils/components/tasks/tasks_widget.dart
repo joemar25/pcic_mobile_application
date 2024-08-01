@@ -121,20 +121,10 @@ class _TasksWidgetState extends State<TasksWidget>
           width: MediaQuery.sizeOf(context).width * 1.0,
           height: 240.0,
           decoration: BoxDecoration(
-            color: FlutterFlowTheme.of(context).boarderForm,
-            boxShadow: const [
-              BoxShadow(
-                blurRadius: 4.0,
-                color: Color(0x33000000),
-                offset: Offset(
-                  0.0,
-                  2.0,
-                ),
-              )
-            ],
+            color: FlutterFlowTheme.of(context).primaryBackground,
             borderRadius: BorderRadius.circular(12.0),
             border: Border.all(
-              color: const Color(0x00384E58),
+              color: FlutterFlowTheme.of(context).primaryBackground,
             ),
           ),
           child: Padding(
@@ -180,9 +170,7 @@ class _TasksWidgetState extends State<TasksWidget>
                 ),
                 Container(
                   width: 100.0,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).boarderForm,
-                  ),
+                  decoration: const BoxDecoration(),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -198,9 +186,7 @@ class _TasksWidgetState extends State<TasksWidget>
                             Expanded(
                               child: Container(
                                 width: 150.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context).alternate,
-                                ),
+                                decoration: const BoxDecoration(),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -252,7 +238,9 @@ class _TasksWidgetState extends State<TasksWidget>
                               child: Container(
                                 width: 150.0,
                                 decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context).alternate,
+                                  border: Border.all(
+                                    color: Colors.transparent,
+                                  ),
                                 ),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -322,10 +310,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                     Expanded(
                                       child: Container(
                                         width: 150.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .alternate,
-                                        ),
+                                        decoration: const BoxDecoration(),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:
@@ -387,10 +372,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                     Expanded(
                                       child: Container(
                                         width: 150.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .alternate,
-                                        ),
+                                        decoration: const BoxDecoration(),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:
@@ -459,18 +441,16 @@ class _TasksWidgetState extends State<TasksWidget>
                     ],
                   ),
                 ),
-                Divider(
+                const Divider(
                   height: 24.0,
                   thickness: 1.0,
-                  color: FlutterFlowTheme.of(context).boarderForm,
+                  color: Color(0x7F61818F),
                 ),
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                   child: Container(
                     width: 100.0,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).alternate,
-                    ),
+                    decoration: const BoxDecoration(),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [

@@ -11,11 +11,14 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'package:p_c_i_c_mobile_app/app_state.dart';
+
 import 'package:flutter_map_tile_caching/flutter_map_tile_caching.dart' as FMTC;
 import 'package:latlong2/latlong.dart' as ll;
 import 'package:flutter_map/flutter_map.dart';
 
 Future startMapDownload(String accessToken) async {
+  FFAppState().startMapDownload = true;
   // Add your function code here!
   final bounds = LatLngBounds(
     ll.LatLng(4.6, 116.9),
@@ -47,5 +50,6 @@ Future startMapDownload(String accessToken) async {
       )
       .listen((progress) {
     print('Download progress: ${progress.percentageProgress}%');
+    FFAppState().mapDownloadProgress = progress.percentageProgress.toDouble();
   });
 }

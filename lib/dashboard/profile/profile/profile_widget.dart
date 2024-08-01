@@ -2,14 +2,17 @@ import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/signout_dialog/signout_dialog_widget.dart';
-import '/custom_code/widgets/index.dart' as custom_widgets;
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:percent_indicator/percent_indicator.dart';
+import 'package:provider/provider.dart';
 import 'profile_model.dart';
 export 'profile_model.dart';
 
@@ -48,6 +51,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return FutureBuilder<List<UsersRow>>(
       future: UsersTable().querySingleRow(
         queryFn: (q) => q.eq(
@@ -766,43 +771,43 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                         ),
                                       ),
                                     ),
-                                    InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              '',
-                                              style: TextStyle(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                              ),
-                                            ),
-                                            duration:
-                                                const Duration(milliseconds: 4000),
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondary,
-                                          ),
-                                        );
-                                      },
-                                      child: const SizedBox(
-                                        width: double.infinity,
-                                        height: 45.0,
-                                        child: custom_widgets.MapDownloadWidget(
-                                          width: double.infinity,
-                                          height: 45.0,
-                                          accessToken:
-                                              'pk.eyJ1IjoicXVhbmJ5c29sdXRpb25zIiwiYSI6ImNsdWhrejRwdDJyYnAya3A2NHFqbXlsbHEifQ.WJ5Ng-AO-dTrlkUHD_ebMw',
-                                        ),
-                                      ),
-                                    ),
                                   ].divide(const SizedBox(height: 15.0)),
+                                ),
+                              ),
+                              FFButtonWidget(
+                                onPressed: () async {
+                                  await actions.startMapDownload(
+                                    'pk.eyJ1IjoicXVhbmJ5c29sdXRpb25zIiwiYSI6ImNsdWhrejRwdDJyYnAya3A2NHFqbXlsbHEifQ.WJ5Ng-AO-dTrlkUHD_ebMw',
+                                  );
+                                },
+                                text: FFLocalizations.of(context).getText(
+                                  'ujnyyxhr' /* Download Map */,
+                                ),
+                                options: FFButtonOptions(
+                                  height: 40.0,
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      24.0, 0.0, 24.0, 0.0),
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .titleSmallFamily,
+                                        color: Colors.white,
+                                        letterSpacing: 0.0,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmallFamily),
+                                      ),
+                                  elevation: 3.0,
+                                  borderSide: const BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
                                 ),
                               ),
                               Divider(
@@ -885,6 +890,38 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                   ),
                                 ].divide(const SizedBox(width: 10.0)),
                               ),
+                              if (FFAppState().startMapDownload)
+                                LinearPercentIndicator(
+                                  percent: FFAppState().mapDownloadProgress,
+                                  lineHeight: 50.0,
+                                  animation: true,
+                                  animateFromLastPercent: true,
+                                  progressColor:
+                                      FlutterFlowTheme.of(context).primary,
+                                  backgroundColor:
+                                      FlutterFlowTheme.of(context).accent4,
+                                  center: Text(
+                                    valueOrDefault<String>(
+                                      FFAppState()
+                                          .mapDownloadProgress
+                                          .toString(),
+                                      '0',
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .headlineSmall
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .headlineSmallFamily,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .headlineSmallFamily),
+                                        ),
+                                  ),
+                                  padding: EdgeInsets.zero,
+                                ),
                             ],
                           ),
                         ),

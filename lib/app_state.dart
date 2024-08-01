@@ -58,6 +58,12 @@ class FFAppState extends ChangeNotifier {
   set startMapDownload(bool value) {
     _startMapDownload = value;
   }
+
+  double _mapDownloadProgress = 0.0;
+  double get mapDownloadProgress => _mapDownloadProgress;
+  set mapDownloadProgress(double value) {
+    _mapDownloadProgress = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {
