@@ -3,9 +3,11 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'tasks_model.dart';
@@ -16,8 +18,8 @@ class TasksWidget extends StatefulWidget {
     super.key,
     String? task,
     String? status,
-  })  : task = task ?? '123',
-        status = status ?? 'for dispatch';
+  })  : this.task = task ?? '123',
+        this.status = status ?? 'for dispatch';
 
   final String task;
   final String status;
@@ -49,7 +51,7 @@ class _TasksWidgetState extends State<TasksWidget>
         _model.onlinePpirData = await PpirFormsTable().queryRows(
           queryFn: (q) => q.eq(
             'task_id',
-            widget.task,
+            widget!.task,
           ),
         );
       } else {
@@ -85,7 +87,7 @@ class _TasksWidgetState extends State<TasksWidget>
     context.watch<FFAppState>();
 
     return Padding(
-      padding: const EdgeInsets.all(3.0),
+      padding: EdgeInsets.all(3.0),
       child: InkWell(
         splashColor: Colors.transparent,
         focusColor: Colors.transparent,
@@ -96,16 +98,16 @@ class _TasksWidgetState extends State<TasksWidget>
             'taskDetails',
             queryParameters: {
               'taskId': serializeParam(
-                widget.task,
+                widget!.task,
                 ParamType.String,
               ),
               'taskStatus': serializeParam(
-                widget.status,
+                widget!.status,
                 ParamType.String,
               ),
             }.withoutNulls,
             extra: <String, dynamic>{
-              kTransitionInfoKey: const TransitionInfo(
+              kTransitionInfoKey: TransitionInfo(
                 hasTransition: true,
                 transitionType: PageTransitionType.scale,
                 alignment: Alignment.bottomCenter,
@@ -124,7 +126,7 @@ class _TasksWidgetState extends State<TasksWidget>
             width: MediaQuery.sizeOf(context).width * 1.0,
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).primaryBackground,
-              boxShadow: const [
+              boxShadow: [
                 BoxShadow(
                   blurRadius: 5.0,
                   color: Color(0x21000000),
@@ -141,7 +143,7 @@ class _TasksWidgetState extends State<TasksWidget>
               ),
             ),
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(10.0, 20.0, 10.0, 20.0),
+              padding: EdgeInsetsDirectional.fromSTEB(10.0, 20.0, 10.0, 20.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -149,22 +151,22 @@ class _TasksWidgetState extends State<TasksWidget>
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 20.0, 0.0),
                             child: Text(
                               valueOrDefault<String>(
                                 FFAppState().ONLINE
                                     ? _model
-                                        .onlinePpirData?.first.ppirFarmername
+                                        .onlinePpirData?.first?.ppirFarmername
                                     : _model
-                                        .offlinePpirData?.first.ppirFarmername,
+                                        .offlinePpirData?.first?.ppirFarmername,
                                 'Farmer Name',
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -186,13 +188,13 @@ class _TasksWidgetState extends State<TasksWidget>
                   ),
                   Container(
                     width: 100.0,
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 20.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -202,7 +204,7 @@ class _TasksWidgetState extends State<TasksWidget>
                               Expanded(
                                 child: Container(
                                   width: 150.0,
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     crossAxisAlignment:
@@ -232,9 +234,9 @@ class _TasksWidgetState extends State<TasksWidget>
                                         valueOrDefault<String>(
                                           FFAppState().ONLINE
                                               ? _model.onlinePpirData?.first
-                                                  .ppirNorth
+                                                  ?.ppirNorth
                                               : _model.offlinePpirData?.first
-                                                  .ppirNorth,
+                                                  ?.ppirNorth,
                                           'Farmer Name',
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -293,9 +295,9 @@ class _TasksWidgetState extends State<TasksWidget>
                                         valueOrDefault<String>(
                                           FFAppState().ONLINE
                                               ? _model.onlinePpirData?.first
-                                                  .ppirWest
+                                                  ?.ppirWest
                                               : _model.offlinePpirData?.first
-                                                  .ppirWest,
+                                                  ?.ppirWest,
                                           'Farmer Name',
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -317,18 +319,18 @@ class _TasksWidgetState extends State<TasksWidget>
                                   ),
                                 ),
                               ),
-                            ].divide(const SizedBox(width: 10.0)),
+                            ].divide(SizedBox(width: 10.0)),
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 5.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Expanded(
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       20.0, 0.0, 20.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -338,7 +340,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                       Expanded(
                                         child: Container(
                                           width: 150.0,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             crossAxisAlignment:
@@ -370,9 +372,9 @@ class _TasksWidgetState extends State<TasksWidget>
                                                 valueOrDefault<String>(
                                                   FFAppState().ONLINE
                                                       ? _model.onlinePpirData
-                                                          ?.first.ppirSouth
+                                                          ?.first?.ppirSouth
                                                       : _model.offlinePpirData
-                                                          ?.first.ppirSouth,
+                                                          ?.first?.ppirSouth,
                                                   'Farmer Name',
                                                 ),
                                                 style:
@@ -399,7 +401,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                       Expanded(
                                         child: Container(
                                           width: 150.0,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             crossAxisAlignment:
@@ -431,9 +433,9 @@ class _TasksWidgetState extends State<TasksWidget>
                                                 valueOrDefault<String>(
                                                   FFAppState().ONLINE
                                                       ? _model.onlinePpirData
-                                                          ?.first.ppirEast
+                                                          ?.first?.ppirEast
                                                       : _model.offlinePpirData
-                                                          ?.first.ppirEast,
+                                                          ?.first?.ppirEast,
                                                   'Farmer Name',
                                                 ),
                                                 style:
@@ -457,7 +459,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                           ),
                                         ),
                                       ),
-                                    ].divide(const SizedBox(width: 10.0)),
+                                    ].divide(SizedBox(width: 10.0)),
                                   ),
                                 ),
                               ),
@@ -467,17 +469,17 @@ class _TasksWidgetState extends State<TasksWidget>
                       ],
                     ),
                   ),
-                  const Divider(
+                  Divider(
                     height: 24.0,
                     thickness: 1.0,
                     color: Color(0x7F61818F),
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                     child: Container(
                       width: 100.0,
-                      decoration: const BoxDecoration(),
+                      decoration: BoxDecoration(),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -503,15 +505,15 @@ class _TasksWidgetState extends State<TasksWidget>
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 0.0, 0.0),
                                   child: Text(
                                     valueOrDefault<String>(
                                       FFAppState().ONLINE
                                           ? _model.onlinePpirData?.first
-                                              .ppirAssignmentid
+                                              ?.ppirAssignmentid
                                           : _model.offlinePpirData?.first
-                                              .ppirAssignmentid,
+                                              ?.ppirAssignmentid,
                                       'Farmer Name',
                                     ),
                                     style: FlutterFlowTheme.of(context)
@@ -555,15 +557,15 @@ class _TasksWidgetState extends State<TasksWidget>
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 0.0, 0.0),
                                   child: Text(
                                     valueOrDefault<String>(
                                       FFAppState().ONLINE
                                           ? _model.onlinePpirData?.first
-                                              .ppirAddress
+                                              ?.ppirAddress
                                           : _model.offlinePpirData?.first
-                                              .ppirAddress,
+                                              ?.ppirAddress,
                                       'Farmer Name',
                                     ),
                                     style: FlutterFlowTheme.of(context)

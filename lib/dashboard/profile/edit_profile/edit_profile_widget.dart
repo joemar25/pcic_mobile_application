@@ -10,6 +10,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'edit_profile_model.dart';
 export 'edit_profile_model.dart';
 
@@ -99,18 +100,18 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                 wrapWithModel(
                   model: _model.connectivityModel,
                   updateCallback: () => setState(() {}),
-                  child: const ConnectivityWidget(),
+                  child: ConnectivityWidget(),
                 ),
               ],
             ),
-            actions: const [],
+            actions: [],
             centerTitle: false,
             elevation: 0.0,
           ),
           body: SafeArea(
             top: true,
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -141,15 +142,15 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 40.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 40.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Align(
-                          alignment: const AlignmentDirectional(0.0, -0.13),
+                          alignment: AlignmentDirectional(0.0, -0.13),
                           child: Container(
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: InkWell(
                               splashColor: Colors.transparent,
                               focusColor: Colors.transparent,
@@ -167,19 +168,19 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                       shape: BoxShape.circle,
                                     ),
                                     child: Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
                                       child: Container(
                                         width: 110.0,
                                         height: 110.0,
                                         clipBehavior: Clip.antiAlias,
-                                        decoration: const BoxDecoration(
+                                        decoration: BoxDecoration(
                                           shape: BoxShape.circle,
                                         ),
                                         child: CachedNetworkImage(
                                           fadeInDuration:
-                                              const Duration(milliseconds: 500),
+                                              Duration(milliseconds: 500),
                                           fadeOutDuration:
-                                              const Duration(milliseconds: 500),
+                                              Duration(milliseconds: 500),
                                           imageUrl:
                                               editProfileUsersRow!.photoUrl!,
                                           fit: BoxFit.cover,
@@ -188,7 +189,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         80.0, 80.0, 0.0, 0.0),
                                     child: FlutterFlowIconButton(
                                       borderRadius: 20.0,
@@ -196,7 +197,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                       buttonSize: 40.0,
                                       fillColor:
                                           FlutterFlowTheme.of(context).primary,
-                                      icon: const Icon(
+                                      icon: Icon(
                                         Icons.edit_square,
                                         color: Color(0xFFF1F4F8),
                                         size: 20.0,
@@ -277,7 +278,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           controller: _model.displayNameTextController ??=
                               TextEditingController(
                             text: valueOrDefault<String>(
-                              editProfileUsersRow.inspectorName,
+                              editProfileUsersRow?.inspectorName,
                               'Agent',
                             ),
                           ),
@@ -340,7 +341,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                             filled: true,
                             fillColor: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
-                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                            contentPadding: EdgeInsetsDirectional.fromSTEB(
                                 15.0, 16.0, 15.0, 16.0),
                           ),
                           style: FlutterFlowTheme.of(context)
@@ -359,9 +360,9 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                               .asValidator(context),
                         ),
                         Align(
-                          alignment: const AlignmentDirectional(0.0, 0.05),
+                          alignment: AlignmentDirectional(0.0, 0.05),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 40.0, 0.0, 0.0),
                             child: FFButtonWidget(
                               onPressed: () async {
@@ -401,9 +402,9 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                               options: FFButtonOptions(
                                 width: double.infinity,
                                 height: 50.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
@@ -420,7 +421,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                   .titleSmallFamily),
                                     ),
                                 elevation: 0.0,
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),

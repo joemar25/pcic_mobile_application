@@ -9,7 +9,7 @@ class SeedsTable extends SupabaseTable<SeedsRow> {
 }
 
 class SeedsRow extends SupabaseDataRow {
-  SeedsRow(super.data);
+  SeedsRow(Map<String, dynamic> data) : super(data);
 
   @override
   SupabaseTable get table => SeedsTable();
