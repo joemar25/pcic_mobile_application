@@ -618,15 +618,6 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget> {
                             widget.taskId,
                           ),
                         );
-                        await PpirFormsTable().update(
-                          data: {
-                            'gpx': 'test',
-                          },
-                          matchingRows: (rows) => rows.eq(
-                            'task_id',
-                            widget.taskId,
-                          ),
-                        );
 
                         context.pushNamed(
                           'ppir',

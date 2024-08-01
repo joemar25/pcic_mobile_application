@@ -106,11 +106,11 @@ class _SignatureWidgetState extends State<SignatureWidget>
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                     boxShadow: const [
                       BoxShadow(
-                        blurRadius: 3.0,
+                        blurRadius: 4.0,
                         color: Color(0xFF17282E),
                         offset: Offset(
                           0.0,
-                          1.0,
+                          2.0,
                         ),
                       )
                     ],

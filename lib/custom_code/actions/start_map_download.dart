@@ -44,7 +44,7 @@ Future startMapDownload(String accessToken) async {
         region: downloadableRegion,
         parallelThreads: 5,
         maxBufferLength: 200,
-        skipExistingTiles: false,
+        skipExistingTiles: true,
         skipSeaTiles: true,
         maxReportInterval: Duration(seconds: 1),
       )

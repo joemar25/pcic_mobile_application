@@ -138,6 +138,17 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
             height: double.infinity,
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).secondaryBackground,
+              boxShadow: const [
+                BoxShadow(
+                  blurRadius: 2.0,
+                  color: Color(0x33000000),
+                  offset: Offset(
+                    2.0,
+                    2.0,
+                  ),
+                  spreadRadius: 2.0,
+                )
+              ],
               borderRadius: BorderRadius.circular(12.0),
               border: Border.all(
                 color: FlutterFlowTheme.of(context).secondaryBackground,

@@ -49,6 +49,17 @@ class _ChangePhotoWidgetState extends State<ChangePhotoWidget> {
         height: 350.0,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
+          boxShadow: const [
+            BoxShadow(
+              blurRadius: 4.0,
+              color: Color(0x33000000),
+              offset: Offset(
+                2.0,
+                2.0,
+              ),
+              spreadRadius: 2.0,
+            )
+          ],
           borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(0.0),
             bottomRight: Radius.circular(0.0),
