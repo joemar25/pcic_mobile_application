@@ -21,6 +21,11 @@ class FFAppState extends ChangeNotifier {
     await _safeInitAsync(() async {
       _AUTHID = await secureStorage.getString('ff_AUTHID') ?? _AUTHID;
     });
+    await _safeInitAsync(() async {
+      _mapDownloadProgress =
+          await secureStorage.getDouble('ff_mapDownloadProgress') ??
+              _mapDownloadProgress;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -63,6 +68,11 @@ class FFAppState extends ChangeNotifier {
   double get mapDownloadProgress => _mapDownloadProgress;
   set mapDownloadProgress(double value) {
     _mapDownloadProgress = value;
+    secureStorage.setDouble('ff_mapDownloadProgress', value);
+  }
+
+  void deleteMapDownloadProgress() {
+    secureStorage.delete(key: 'ff_mapDownloadProgress');
   }
 }
 

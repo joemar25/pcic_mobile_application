@@ -47,8 +47,8 @@ Future<void> startMapDownload(String accessToken) async {
   ll.LatLng currentLocation = ll.LatLng(position.latitude, position.longitude);
 
   // Create a bounding box around the user's location (approximately 5km in each direction)
-  double latDelta = 0.045; // Roughly 5km in latitude
-  double lonDelta = 0.045 /
+  double latDelta = 0.018; // Roughly 5km in latitude
+  double lonDelta = 0.018 /
       cos(currentLocation.latitude *
           pi /
           180); // Adjust for longitude based on latitude

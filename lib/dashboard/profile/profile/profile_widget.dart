@@ -11,8 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:percent_indicator/percent_indicator.dart';
-import 'package:provider/provider.dart';
 import 'profile_model.dart';
 export 'profile_model.dart';
 
@@ -51,8 +49,6 @@ class _ProfileWidgetState extends State<ProfileWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return FutureBuilder<List<UsersRow>>(
       future: UsersTable().querySingleRow(
         queryFn: (q) => q.eq(
@@ -913,35 +909,6 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                     ),
                                   ].divide(const SizedBox(width: 10.0)),
                                 ),
-                              ),
-                              LinearPercentIndicator(
-                                percent: FFAppState().mapDownloadProgress,
-                                width: 120.0,
-                                lineHeight: 40.0,
-                                animation: true,
-                                animateFromLastPercent: true,
-                                progressColor:
-                                    FlutterFlowTheme.of(context).primary,
-                                backgroundColor:
-                                    FlutterFlowTheme.of(context).accent4,
-                                center: Text(
-                                  formatNumber(
-                                    FFAppState().mapDownloadProgress,
-                                    formatType: FormatType.percent,
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .headlineSmall
-                                      .override(
-                                        fontFamily: FlutterFlowTheme.of(context)
-                                            .headlineSmallFamily,
-                                        letterSpacing: 0.0,
-                                        useGoogleFonts: GoogleFonts.asMap()
-                                            .containsKey(
-                                                FlutterFlowTheme.of(context)
-                                                    .headlineSmallFamily),
-                                      ),
-                                ),
-                                padding: EdgeInsets.zero,
                               ),
                             ],
                           ),
