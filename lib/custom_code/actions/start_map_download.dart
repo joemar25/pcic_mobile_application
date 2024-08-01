@@ -20,6 +20,7 @@ import 'dart:math';
 Future<void> startMapDownload(String accessToken) async {
   bool serviceEnabled;
   LocationPermission permission;
+  double lastReportedProgress = 0.0;
 
   serviceEnabled = await Geolocator.isLocationServiceEnabled();
   if (!serviceEnabled) {
@@ -84,9 +85,27 @@ Future<void> startMapDownload(String accessToken) async {
         maxReportInterval: Duration(seconds: 1),
       )
       .listen((progress) {
-    // FFAppState().mapDownloadProgress = double.parse(progress.percentageProgress.toStringAsFixed(2));
-    // print('Download progress: ${FFAppState().mapDownloadProgress}%');
+    double currentProgress =
+        double.parse(progress.percentageProgress.toStringAsFixed(2));
 
-    print(progress.percentageProgress);
+    // Only update if the progress has changed by at least 1%
+    if ((currentProgress - lastReportedProgress).abs() >= 1.0) {
+      FFAppState().mapDownloadProgress = currentProgress;
+      lastReportedProgress = currentProgress;
+
+      print('Download progress: ${FFAppState().mapDownloadProgress}%');
+      print(progress.percentageProgress);
+
+      // Update notification here if you're using one
+      // updateNotification(currentProgress);
+    }
+
+    if (progress.isComplete) {
+      print('Download is complete!');
+      FFAppState().mapDownloadProgress = 100.0;
+
+      // Show completion notification or update UI here
+      // showCompletionNotification();
+    }
   });
 }
