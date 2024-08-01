@@ -49,15 +49,14 @@ Future saveGpx(
 
     // Upload or update the GPX file in Supabase storage
     print('Uploading GPX to Supabase');
-    final response =
-        await SupaFlow.client.storage.from('gpx_files').uploadBinary(
-              filePath,
-              gpxBytes,
-              fileOptions: FileOptions(
-                contentType: 'application/gpx+xml',
-                upsert: true,
-              ),
-            );
+    final response = await SupaFlow.client.storage.from('for_ftp').uploadBinary(
+          filePath,
+          gpxBytes,
+          fileOptions: FileOptions(
+            contentType: 'application/gpx+xml',
+            upsert: true,
+          ),
+        );
 
     // Check if the upload was successful
     if (response != null) {

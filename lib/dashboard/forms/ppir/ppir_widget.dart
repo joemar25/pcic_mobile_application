@@ -13,6 +13,7 @@ import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -44,11 +45,36 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
     super.initState();
     _model = createModel(context, () => PpirModel());
 
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.ppirData = await PpirFormsTable().queryRows(
+        queryFn: (q) => q.eq(
+          'task_id',
+          widget.taskId,
+        ),
+      );
+      if (_model.ppirData?.first.ppirSvpAct != null &&
+          _model.ppirData?.first.ppirSvpAct != '') {
+        if (_model.ppirData?.first.ppirSvpAct == 'rice') {
+          _model.isRice = true;
+          setState(() {});
+        } else {
+          _model.isRice = false;
+          setState(() {});
+        }
+      } else {
+        _model.isRice = true;
+        setState(() {});
+      }
+    });
+
     _model.ppirTrackCoordinatesFocusNode ??= FocusNode();
 
-    _model.ppirTrackDateTimeFocusNode ??= FocusNode();
-
     _model.ppirTrackTotalAreaFocusNode ??= FocusNode();
+
+    _model.ppirTrackTotalDistanceFocusNode ??= FocusNode();
+
+    _model.ppirTrackDateTimeFocusNode ??= FocusNode();
 
     _model.ppirTrackFarmlocFocusNode ??= FocusNode();
 
@@ -136,10 +162,6 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
         }
         List<PpirFormsRow> ppirPpirFormsRowList = snapshot.data!;
 
-        // Return an empty Container when the item does not exist.
-        if (snapshot.data!.isEmpty) {
-          return Container();
-        }
         final ppirPpirFormsRow =
             ppirPpirFormsRowList.isNotEmpty ? ppirPpirFormsRowList.first : null;
 
@@ -199,10 +221,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '${valueOrDefault<String>(
-                        ppirPpirFormsRow?.ppirAssignmentid,
-                        'Assignment ID',
-                      )} Form',
+                      '${_model.ppirData?.first.ppirAssignmentid} Form',
                       style: FlutterFlowTheme.of(context).titleSmall.override(
                             fontFamily:
                                 FlutterFlowTheme.of(context).titleSmallFamily,
@@ -272,7 +291,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                   child: Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      'oi19exk2' /* Geotag */,
+                                                      'bh8xyfs2' /* Geotag */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -462,7 +481,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                               FFLocalizations.of(
                                                                       context)
                                                                   .getText(
-                                                                'bi2tyefd' /* Repeat Geotag */,
+                                                                '3xjwmjnr' /* Repeat Geotag */,
                                                               ),
                                                               style: FlutterFlowTheme
                                                                       .of(context)
@@ -511,7 +530,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                             0.0, 0.0, 0.0, 12.0),
                                         child: Text(
                                           FFLocalizations.of(context).getText(
-                                            '3s84cgqw' /* Geotag Information */,
+                                            'cukz630d' /* Geotag Information */,
                                           ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyLarge
@@ -551,7 +570,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                             labelText:
                                                 FFLocalizations.of(context)
                                                     .getText(
-                                              '4o9qvz6v' /* Last Coordinates */,
+                                              'enmad0hu' /* Last Coordinates */,
                                             ),
                                             labelStyle:
                                                 FlutterFlowTheme.of(context)
@@ -669,135 +688,6 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                             0.0, 10.0, 0.0, 10.0),
                                         child: TextFormField(
                                           controller: _model
-                                                  .ppirTrackDateTimeTextController ??=
-                                              TextEditingController(
-                                            text: valueOrDefault<String>(
-                                              ppirPpirFormsRow?.trackDateTime,
-                                              'Date Time',
-                                            ),
-                                          ),
-                                          focusNode:
-                                              _model.ppirTrackDateTimeFocusNode,
-                                          autofocus: false,
-                                          readOnly: true,
-                                          obscureText: false,
-                                          decoration: InputDecoration(
-                                            labelText:
-                                                FFLocalizations.of(context)
-                                                    .getText(
-                                              'oflb4doq' /* Date Time */,
-                                            ),
-                                            labelStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .override(
-                                                      fontFamily:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelMediumFamily,
-                                                      letterSpacing: 0.0,
-                                                      useGoogleFonts: GoogleFonts
-                                                              .asMap()
-                                                          .containsKey(
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelMediumFamily),
-                                                    ),
-                                            hintStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .override(
-                                                      fontFamily:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelMediumFamily,
-                                                      letterSpacing: 0.0,
-                                                      useGoogleFonts: GoogleFonts
-                                                              .asMap()
-                                                          .containsKey(
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelMediumFamily),
-                                                    ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .boarderForm,
-                                                width: 2.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(12.0),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                width: 2.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(12.0),
-                                            ),
-                                            errorBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .error,
-                                                width: 2.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(12.0),
-                                            ),
-                                            focusedErrorBorder:
-                                                OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .error,
-                                                width: 2.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(12.0),
-                                            ),
-                                            filled: true,
-                                            fillColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondaryBackground,
-                                            contentPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    16.0, 12.0, 16.0, 12.0),
-                                          ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMediumFamily,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                letterSpacing: 0.0,
-                                                useGoogleFonts: GoogleFonts
-                                                        .asMap()
-                                                    .containsKey(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMediumFamily),
-                                              ),
-                                          cursorColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .primary,
-                                          validator: _model
-                                              .ppirTrackDateTimeTextControllerValidator
-                                              .asValidator(context),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 10.0, 0.0, 10.0),
-                                        child: TextFormField(
-                                          controller: _model
                                                   .ppirTrackTotalAreaTextController ??=
                                               TextEditingController(
                                             text: valueOrDefault<String>(
@@ -814,7 +704,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                             labelText:
                                                 FFLocalizations.of(context)
                                                     .getText(
-                                              'li1l6k0w' /* Total Hectares */,
+                                              'xzhsp8an' /* Total Hectares */,
                                             ),
                                             labelStyle:
                                                 FlutterFlowTheme.of(context)
@@ -927,12 +817,268 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                             0.0, 10.0, 0.0, 10.0),
                                         child: TextFormField(
                                           controller: _model
-                                                  .ppirTrackFarmlocTextController ??=
+                                                  .ppirTrackTotalDistanceTextController ??=
                                               TextEditingController(
                                             text: valueOrDefault<String>(
-                                              ppirPpirFormsRow?.ppirFarmloc,
-                                              'Farm Location',
+                                              ppirPpirFormsRow
+                                                  ?.trackTotalDistance,
+                                              'Total Distance',
                                             ),
+                                          ),
+                                          focusNode: _model
+                                              .ppirTrackTotalDistanceFocusNode,
+                                          autofocus: false,
+                                          readOnly: true,
+                                          obscureText: false,
+                                          decoration: InputDecoration(
+                                            labelText:
+                                                FFLocalizations.of(context)
+                                                    .getText(
+                                              '2rkckerr' /* Total Distance */,
+                                            ),
+                                            labelStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .override(
+                                                      fontFamily:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMediumFamily,
+                                                      letterSpacing: 0.0,
+                                                      useGoogleFonts: GoogleFonts
+                                                              .asMap()
+                                                          .containsKey(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMediumFamily),
+                                                    ),
+                                            hintStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .override(
+                                                      fontFamily:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMediumFamily,
+                                                      letterSpacing: 0.0,
+                                                      useGoogleFonts: GoogleFonts
+                                                              .asMap()
+                                                          .containsKey(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMediumFamily),
+                                                    ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .boarderForm,
+                                                width: 2.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(12.0),
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                width: 2.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(12.0),
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 2.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(12.0),
+                                            ),
+                                            focusedErrorBorder:
+                                                OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 2.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(12.0),
+                                            ),
+                                            filled: true,
+                                            fillColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryBackground,
+                                            contentPadding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    16.0, 12.0, 16.0, 12.0),
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMediumFamily,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                                letterSpacing: 0.0,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMediumFamily),
+                                              ),
+                                          cursorColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                          validator: _model
+                                              .ppirTrackTotalDistanceTextControllerValidator
+                                              .asValidator(context),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 10.0, 0.0, 10.0),
+                                        child: TextFormField(
+                                          controller: _model
+                                                  .ppirTrackDateTimeTextController ??=
+                                              TextEditingController(
+                                            text: valueOrDefault<String>(
+                                              ppirPpirFormsRow?.trackDateTime,
+                                              'Date Time',
+                                            ),
+                                          ),
+                                          focusNode:
+                                              _model.ppirTrackDateTimeFocusNode,
+                                          autofocus: false,
+                                          readOnly: true,
+                                          obscureText: false,
+                                          decoration: InputDecoration(
+                                            labelText:
+                                                FFLocalizations.of(context)
+                                                    .getText(
+                                              '7ip5nb81' /* Date Time */,
+                                            ),
+                                            labelStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .override(
+                                                      fontFamily:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMediumFamily,
+                                                      letterSpacing: 0.0,
+                                                      useGoogleFonts: GoogleFonts
+                                                              .asMap()
+                                                          .containsKey(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMediumFamily),
+                                                    ),
+                                            hintStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .override(
+                                                      fontFamily:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMediumFamily,
+                                                      letterSpacing: 0.0,
+                                                      useGoogleFonts: GoogleFonts
+                                                              .asMap()
+                                                          .containsKey(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMediumFamily),
+                                                    ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .boarderForm,
+                                                width: 2.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(12.0),
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                width: 2.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(12.0),
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 2.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(12.0),
+                                            ),
+                                            focusedErrorBorder:
+                                                OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 2.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(12.0),
+                                            ),
+                                            filled: true,
+                                            fillColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryBackground,
+                                            contentPadding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    16.0, 12.0, 16.0, 12.0),
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMediumFamily,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                                letterSpacing: 0.0,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMediumFamily),
+                                              ),
+                                          cursorColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                          validator: _model
+                                              .ppirTrackDateTimeTextControllerValidator
+                                              .asValidator(context),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 10.0, 0.0, 10.0),
+                                        child: TextFormField(
+                                          controller: _model
+                                                  .ppirTrackFarmlocTextController ??=
+                                              TextEditingController(
+                                            text: ppirPpirFormsRow?.ppirFarmloc,
                                           ),
                                           focusNode:
                                               _model.ppirTrackFarmlocFocusNode,
@@ -942,7 +1088,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                             labelText:
                                                 FFLocalizations.of(context)
                                                     .getText(
-                                              'irvio488' /* Farm Location */,
+                                              'vhtgvod0' /* Farm Location */,
                                             ),
                                             labelStyle:
                                                 FlutterFlowTheme.of(context)
@@ -1069,7 +1215,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                             0.0, 0.0, 0.0, 12.0),
                                         child: Text(
                                           FFLocalizations.of(context).getText(
-                                            'quqb1avc' /* Seed Variety */,
+                                            'ljax9uis' /* Seed Variety */,
                                           ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyLarge
@@ -1094,11 +1240,11 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                             options: [
                                               FFLocalizations.of(context)
                                                   .getText(
-                                                'wt2nxkv8' /* rice */,
+                                                'u37f4h3j' /* rice */,
                                               ),
                                               FFLocalizations.of(context)
                                                   .getText(
-                                                '3zzenggt' /* corn */,
+                                                'ogfz5j9p' /* corn */,
                                               )
                                             ].toList(),
                                             onChanged: (val) => setState(() {}),
@@ -1172,7 +1318,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                 Text(
                                                   FFLocalizations.of(context)
                                                       .getText(
-                                                    'e3nzk0t1' /* Select the Type of Rice  */,
+                                                    'p3ii0z76' /* Select the Type of Rice  */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -1353,13 +1499,13 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                   hintText: FFLocalizations.of(
                                                           context)
                                                       .getText(
-                                                    'hgkqza7h' /* Please select... */,
+                                                    '61kzmveb' /* Please select... */,
                                                   ),
                                                   searchHintText:
                                                       FFLocalizations.of(
                                                               context)
                                                           .getText(
-                                                    'za7pn038' /* Search for an item... */,
+                                                    'sdwyphpk' /* Search for an item... */,
                                                   ),
                                                   icon: Icon(
                                                     Icons
@@ -1402,7 +1548,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                 Text(
                                                   FFLocalizations.of(context)
                                                       .getText(
-                                                    'uj8vq3kw' /* Select the Type of Corn  */,
+                                                    'vvmptmxo' /* Select the Type of Corn  */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -1583,13 +1729,13 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                   hintText: FFLocalizations.of(
                                                           context)
                                                       .getText(
-                                                    'f7j9hfpn' /* Please select... */,
+                                                    '9ajf4eky' /* Please select... */,
                                                   ),
                                                   searchHintText:
                                                       FFLocalizations.of(
                                                               context)
                                                           .getText(
-                                                    'rxggzdj9' /* Search for an item... */,
+                                                    'whzebdhk' /* Search for an item... */,
                                                   ),
                                                   icon: Icon(
                                                     Icons
@@ -1659,7 +1805,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                             labelText:
                                                 FFLocalizations.of(context)
                                                     .getText(
-                                              '4x78xwmh' /* Actual Area Planted */,
+                                              'n7uv9sob' /* Actual Area Planted */,
                                             ),
                                             labelStyle:
                                                 FlutterFlowTheme.of(context)
@@ -1867,7 +2013,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                             labelText:
                                                 FFLocalizations.of(context)
                                                     .getText(
-                                              'dbhyempf' /* Actual Date of Planting (DS) */,
+                                              '8miz47do' /* Actual Date of Planting (DS) */,
                                             ),
                                             labelStyle:
                                                 FlutterFlowTheme.of(context)
@@ -2074,7 +2220,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                             labelText:
                                                 FFLocalizations.of(context)
                                                     .getText(
-                                              'msrak9du' /* Actual Date of Planting (TP) */,
+                                              'cx1bbchw' /* Actual Date of Planting (TP) */,
                                             ),
                                             labelStyle:
                                                 FlutterFlowTheme.of(context)
@@ -2223,7 +2369,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                             hintText:
                                                 FFLocalizations.of(context)
                                                     .getText(
-                                              '762st5cb' /* Remarks */,
+                                              '4ps5nky6' /* Remarks */,
                                             ),
                                             hintStyle:
                                                 FlutterFlowTheme.of(context)
@@ -2333,7 +2479,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                             labelText:
                                                 FFLocalizations.of(context)
                                                     .getText(
-                                              '99efrqt6' /* Prepared by */,
+                                              'p62c06dn' /* Prepared by */,
                                             ),
                                             labelStyle:
                                                 FlutterFlowTheme.of(context)
@@ -2528,8 +2674,8 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                                       context),
                                                               child:
                                                                   SignatureWidget(
-                                                                ppir:
-                                                                    ppirPpirFormsRow!,
+                                                                taskId: widget
+                                                                    .taskId!,
                                                               ),
                                                             ),
                                                           );
@@ -2584,7 +2730,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                             labelText:
                                                 FFLocalizations.of(context)
                                                     .getText(
-                                              '8zawh1wx' /* Confirm by */,
+                                              'qs24en1c' /* Confirm by */,
                                             ),
                                             labelStyle:
                                                 FlutterFlowTheme.of(context)
@@ -2718,30 +2864,63 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
-                                                  Text(
-                                                    ppirPpirFormsRow?.ppirSigIuia ==
-                                                                null ||
-                                                            ppirPpirFormsRow
-                                                                    ?.ppirSigIuia ==
-                                                                ''
-                                                        ? 'Tap to signature'
-                                                        : 'Tap to update signature',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
+                                                  FutureBuilder<
+                                                      List<PpirFormsRow>>(
+                                                    future: PpirFormsTable()
+                                                        .queryRows(
+                                                      queryFn: (q) => q.eq(
+                                                        'task_id',
+                                                        widget.taskId,
+                                                      ),
+                                                    ),
+                                                    builder:
+                                                        (context, snapshot) {
+                                                      // Customize what your widget looks like when it's loading.
+                                                      if (!snapshot.hasData) {
+                                                        return Center(
+                                                          child: SizedBox(
+                                                            width: 100.0,
+                                                            height: 100.0,
+                                                            child:
+                                                                SpinKitRipple(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primary,
+                                                              size: 100.0,
+                                                            ),
+                                                          ),
+                                                        );
+                                                      }
+                                                      List<PpirFormsRow>
+                                                          textPpirFormsRowList =
+                                                          snapshot.data!;
+
+                                                      return Text(
+                                                        ppirPpirFormsRow?.ppirSigIuia ==
+                                                                    null ||
+                                                                ppirPpirFormsRow
+                                                                        ?.ppirSigIuia ==
+                                                                    ''
+                                                            ? 'Tap to signature'
+                                                            : 'Tap to update signature',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .bodyMediumFamily),
-                                                        ),
+                                                                      .bodyMediumFamily,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily),
+                                                                ),
+                                                      );
+                                                    },
                                                   ),
                                                   InkWell(
                                                     splashColor:
@@ -2779,8 +2958,8 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                                       context),
                                                               child:
                                                                   SignatureWidget(
-                                                                ppir:
-                                                                    ppirPpirFormsRow!,
+                                                                taskId: widget
+                                                                    .taskId!,
                                                               ),
                                                             ),
                                                           );
@@ -2862,7 +3041,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                               }
                             },
                             text: FFLocalizations.of(context).getText(
-                              'vxop43vj' /* Cancel */,
+                              'f094eu9p' /* Cancel */,
                             ),
                             icon: const Icon(
                               Icons.cancel_presentation_sharp,
@@ -2924,10 +3103,6 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                               if (confirmDialogResponse) {
                                 await PpirFormsTable().update(
                                   data: {
-                                    'track_last_coord': '11',
-                                    'track_date_time': '11',
-                                    'track_total_area': '11',
-                                    'track_total_distance': 'distance',
                                     'ppir_svp_act':
                                         _model.ppirSvpActSelectionValue,
                                     'ppir_dopds_act': _model
@@ -3012,7 +3187,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                               setState(() {});
                             },
                             text: FFLocalizations.of(context).getText(
-                              'kyab355w' /* Save */,
+                              'xiwnqruu' /* Save */,
                             ),
                             icon: const Icon(
                               Icons.save,
@@ -3080,10 +3255,6 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                     if (confirmDialogResponse) {
                                       await PpirFormsTable().update(
                                         data: {
-                                          'track_last_coord': '11',
-                                          'track_date_time': '11',
-                                          'track_total_area': '11',
-                                          'track_total_distance': 'distance',
                                           'ppir_svp_act':
                                               _model.ppirSvpActSelectionValue,
                                           'ppir_dopds_act': _model
@@ -3175,7 +3346,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                     setState(() {});
                                   },
                             text: FFLocalizations.of(context).getText(
-                              '7i7p5yr3' /* Submit */,
+                              'pb6zxmgd' /* Submit */,
                             ),
                             icon: const Icon(
                               Icons.check_sharp,

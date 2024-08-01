@@ -2563,7 +2563,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         .sizeOf(
                                                                             context)
                                                                     .width *
-                                                                1.0,
+                                                                0.8,
                                                             height: MediaQuery
                                                                         .sizeOf(
                                                                             context)
@@ -2575,7 +2575,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                           .sizeOf(
                                                                               context)
                                                                       .width *
-                                                                  1.0,
+                                                                  0.8,
                                                               height: MediaQuery
                                                                           .sizeOf(
                                                                               context)
@@ -2679,7 +2679,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         .sizeOf(
                                                                             context)
                                                                     .width *
-                                                                1.0,
+                                                                0.8,
                                                             height: MediaQuery
                                                                         .sizeOf(
                                                                             context)
@@ -2691,7 +2691,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                           .sizeOf(
                                                                               context)
                                                                       .width *
-                                                                  1.0,
+                                                                  0.8,
                                                               height: MediaQuery
                                                                           .sizeOf(
                                                                               context)

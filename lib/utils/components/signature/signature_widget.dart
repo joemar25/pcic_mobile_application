@@ -1,4 +1,3 @@
-import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -15,10 +14,10 @@ export 'signature_model.dart';
 class SignatureWidget extends StatefulWidget {
   const SignatureWidget({
     super.key,
-    required this.ppir,
+    required this.taskId,
   });
 
-  final PpirFormsRow? ppir;
+  final String? taskId;
 
   @override
   State<SignatureWidget> createState() => _SignatureWidgetState();

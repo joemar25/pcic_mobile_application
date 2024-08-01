@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'c8kme2f9': {
+    '07w27prd': {
       'en': '',
       'tl': '',
     },
@@ -325,7 +325,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    'l2o9todr': {
+    'qp1a638g': {
       'en': '',
       'tl': '',
     },
@@ -523,113 +523,117 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // ppir
   {
-    'oi19exk2': {
+    'bh8xyfs2': {
       'en': 'Geotag',
-      'tl': 'Geotag Control',
+      'tl': '',
     },
-    'bi2tyefd': {
+    '3xjwmjnr': {
       'en': 'Repeat Geotag',
-      'tl': 'Ulitin Muli',
+      'tl': '',
     },
-    '3s84cgqw': {
+    'cukz630d': {
       'en': 'Geotag Information',
-      'tl': 'Impormasyon sa Geotag',
+      'tl': '',
     },
-    '4o9qvz6v': {
+    'enmad0hu': {
       'en': 'Last Coordinates',
-      'tl': 'Mga Huling Coordinate',
+      'tl': '',
     },
-    'oflb4doq': {
-      'en': 'Date Time',
-      'tl': 'Petsa Oras',
-    },
-    'li1l6k0w': {
+    'xzhsp8an': {
       'en': 'Total Hectares',
-      'tl': 'Kabuuang Ektarya',
+      'tl': '',
     },
-    'irvio488': {
+    '2rkckerr': {
+      'en': 'Total Distance',
+      'tl': '',
+    },
+    '7ip5nb81': {
+      'en': 'Date Time',
+      'tl': '',
+    },
+    'vhtgvod0': {
       'en': 'Farm Location',
-      'tl': 'Lokasyon ng Bukid',
+      'tl': '',
     },
-    'quqb1avc': {
+    'ljax9uis': {
       'en': 'Seed Variety',
-      'tl': 'Iba\'t-ibang Binhi',
+      'tl': '',
     },
-    'wt2nxkv8': {
+    'u37f4h3j': {
       'en': 'rice',
-      'tl': 'kanin',
+      'tl': '',
     },
-    '3zzenggt': {
+    'ogfz5j9p': {
       'en': 'corn',
-      'tl': 'mais',
+      'tl': '',
     },
-    'e3nzk0t1': {
+    'p3ii0z76': {
       'en': 'Select the Type of Rice ',
-      'tl': 'Piliin ang Uri ng Bigas',
+      'tl': '',
     },
-    'a7yszlux': {
+    'fizngf3z': {
       'en': 'this is the rice',
-      'tl': 'ito ang bigas',
+      'tl': '',
     },
-    'hgkqza7h': {
+    '61kzmveb': {
       'en': 'Please select...',
-      'tl': 'Pakipili...',
+      'tl': '',
     },
-    'za7pn038': {
+    'sdwyphpk': {
       'en': 'Search for an item...',
-      'tl': 'Maghanap ng item...',
+      'tl': '',
     },
-    'uj8vq3kw': {
+    'vvmptmxo': {
       'en': 'Select the Type of Corn ',
-      'tl': 'Piliin ang Uri ng Mais',
+      'tl': '',
     },
-    'kd2ri9yq': {
+    'yu5jkbe8': {
       'en': 'this is the rice',
-      'tl': 'ito ang bigas',
+      'tl': '',
     },
-    'f7j9hfpn': {
+    '9ajf4eky': {
       'en': 'Please select...',
-      'tl': 'Pakipili...',
+      'tl': '',
     },
-    'rxggzdj9': {
+    'whzebdhk': {
       'en': 'Search for an item...',
-      'tl': 'Maghanap ng item...',
+      'tl': '',
     },
-    '4x78xwmh': {
+    'n7uv9sob': {
       'en': 'Actual Area Planted',
-      'tl': 'Aktwal na Lugar na Nakatanim',
+      'tl': '',
     },
-    'dbhyempf': {
+    '8miz47do': {
       'en': 'Actual Date of Planting (DS)',
-      'tl': 'Aktwal na Petsa ng Pagtatanim (DS)',
+      'tl': '',
     },
-    'msrak9du': {
+    'cx1bbchw': {
       'en': 'Actual Date of Planting (TP)',
-      'tl': 'Aktwal na Petsa ng Pagtatanim (TP)',
+      'tl': '',
     },
-    '762st5cb': {
+    '4ps5nky6': {
       'en': 'Remarks',
-      'tl': 'Remarks',
+      'tl': '',
     },
-    '99efrqt6': {
+    'p62c06dn': {
       'en': 'Prepared by',
-      'tl': 'Inihanda ni',
+      'tl': '',
     },
-    '8zawh1wx': {
+    'qs24en1c': {
       'en': 'Confirm by',
-      'tl': 'Kumpirmahin ni',
+      'tl': '',
     },
-    'vxop43vj': {
+    'f094eu9p': {
       'en': 'Cancel',
-      'tl': 'Kanselahin',
+      'tl': '',
     },
-    'kyab355w': {
+    'xiwnqruu': {
       'en': 'Save',
-      'tl': 'I-save',
+      'tl': '',
     },
-    '7i7p5yr3': {
+    'pb6zxmgd': {
       'en': 'Submit',
-      'tl': 'Ipasa',
+      'tl': '',
     },
     '4ho4omqk': {
       'en': 'Home',

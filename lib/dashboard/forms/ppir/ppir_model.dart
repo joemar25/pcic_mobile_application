@@ -18,6 +18,8 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Backend Call - Query Rows] action in ppir widget.
+  List<PpirFormsRow>? ppirData;
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
   // State field(s) for ppir_track_coordinates widget.
@@ -25,16 +27,21 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
   TextEditingController? ppirTrackCoordinatesTextController;
   String? Function(BuildContext, String?)?
       ppirTrackCoordinatesTextControllerValidator;
-  // State field(s) for ppir_track_date_time widget.
-  FocusNode? ppirTrackDateTimeFocusNode;
-  TextEditingController? ppirTrackDateTimeTextController;
-  String? Function(BuildContext, String?)?
-      ppirTrackDateTimeTextControllerValidator;
   // State field(s) for ppir_track_total_area widget.
   FocusNode? ppirTrackTotalAreaFocusNode;
   TextEditingController? ppirTrackTotalAreaTextController;
   String? Function(BuildContext, String?)?
       ppirTrackTotalAreaTextControllerValidator;
+  // State field(s) for ppir_track_total_distance widget.
+  FocusNode? ppirTrackTotalDistanceFocusNode;
+  TextEditingController? ppirTrackTotalDistanceTextController;
+  String? Function(BuildContext, String?)?
+      ppirTrackTotalDistanceTextControllerValidator;
+  // State field(s) for ppir_track_date_time widget.
+  FocusNode? ppirTrackDateTimeFocusNode;
+  TextEditingController? ppirTrackDateTimeTextController;
+  String? Function(BuildContext, String?)?
+      ppirTrackDateTimeTextControllerValidator;
   // State field(s) for ppir_track_farmloc widget.
   FocusNode? ppirTrackFarmlocFocusNode;
   TextEditingController? ppirTrackFarmlocTextController;
@@ -107,11 +114,14 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
     ppirTrackCoordinatesFocusNode?.dispose();
     ppirTrackCoordinatesTextController?.dispose();
 
-    ppirTrackDateTimeFocusNode?.dispose();
-    ppirTrackDateTimeTextController?.dispose();
-
     ppirTrackTotalAreaFocusNode?.dispose();
     ppirTrackTotalAreaTextController?.dispose();
+
+    ppirTrackTotalDistanceFocusNode?.dispose();
+    ppirTrackTotalDistanceTextController?.dispose();
+
+    ppirTrackDateTimeFocusNode?.dispose();
+    ppirTrackDateTimeTextController?.dispose();
 
     ppirTrackFarmlocFocusNode?.dispose();
     ppirTrackFarmlocTextController?.dispose();

@@ -81,9 +81,6 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
             child: Container(
               width: double.infinity,
               height: double.infinity,
-              constraints: const BoxConstraints(
-                maxWidth: 570.0,
-              ),
               decoration: const BoxDecoration(),
               child: Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
@@ -120,7 +117,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                         ],
                       ),
                     ),
-                    Flexible(
+                    Expanded(
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
