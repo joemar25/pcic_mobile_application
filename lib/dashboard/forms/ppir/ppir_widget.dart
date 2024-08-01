@@ -930,8 +930,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                           await PpirFormsTable()
                                                               .update(
                                                             data: {
-                                                              'gpx':
-                                                                  'resubmitted',
+                                                              'gpx': '',
                                                             },
                                                             matchingRows:
                                                                 (rows) =>
