@@ -67,7 +67,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
           return Scaffold(
-            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             body: Center(
               child: SizedBox(
                 width: 100.0,
@@ -96,7 +96,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
               : FocusScope.of(context).unfocus(),
           child: Scaffold(
             key: scaffoldKey,
-            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             appBar: AppBar(
               backgroundColor: FlutterFlowTheme.of(context).primary,
               automaticallyImplyLeading: false,
@@ -276,6 +276,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                     maxWidth: 570.0,
                                   ),
                                   decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
                                     borderRadius: BorderRadius.circular(12.0),
                                   ),
                                   child: Padding(

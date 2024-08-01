@@ -196,7 +196,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget> {
                                                       ),
                                                       'taskStatus':
                                                           serializeParam(
-                                                        '',
+                                                        widget.taskStatus,
                                                         ParamType.String,
                                                       ),
                                                     }.withoutNulls,

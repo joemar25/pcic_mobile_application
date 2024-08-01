@@ -905,7 +905,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                 true,
                               ))
                                 LinearPercentIndicator(
-                                  percent: FFAppState().mapDownloadProgress,
+                                  percent: FFAppState()
+                                      .mapDownloadProgress
+                                      .toDouble(),
                                   lineHeight: 50.0,
                                   animation: true,
                                   animateFromLastPercent: true,
@@ -914,7 +916,10 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                   backgroundColor:
                                       FlutterFlowTheme.of(context).accent4,
                                   center: Text(
-                                    FFAppState().mapDownloadProgress.toString(),
+                                    formatNumber(
+                                      FFAppState().mapDownloadProgress,
+                                      formatType: FormatType.percent,
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .headlineSmall
                                         .override(
