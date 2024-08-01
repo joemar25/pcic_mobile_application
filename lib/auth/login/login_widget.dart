@@ -256,6 +256,7 @@ class _LoginWidgetState extends State<LoginWidget>
                 ),
                 Container(
                   width: double.infinity,
+                  height: MediaQuery.sizeOf(context).height * 0.51,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).primaryBackground,
                     borderRadius: const BorderRadius.only(

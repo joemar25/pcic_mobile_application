@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'bdyunmm8': {
+    'qf37y0ag': {
       'en': '',
       'tl': '',
     },
@@ -329,7 +329,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    'bnqpp6ea': {
+    '46pp8zvg': {
       'en': '',
       'tl': '',
     },
@@ -548,7 +548,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Lokasyon ng Bukid',
     },
     'oi19exk2': {
-      'en': 'Geotag Control',
+      'en': 'Geotag',
       'tl': 'Geotag Control',
     },
     'bi2tyefd': {

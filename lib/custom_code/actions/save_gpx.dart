@@ -91,10 +91,10 @@ String _generateGpx(List<LatLng> routeCoordinates) {
   builder.processing('xml', 'version="1.0" encoding="UTF-8"');
   builder.element('gpx', nest: () {
     builder.attribute('version', '1.1');
-    builder.attribute('creator', 'MapangMakabayan');
+    builder.attribute('creator', 'PCIC-QUANBY');
     builder.attribute('xmlns', 'http://www.topografix.com/GPX/1/1');
     builder.element('trk', nest: () {
-      builder.element('name', nest: 'MapangMakabayan Track');
+      builder.element('name', nest: 'PCIC-QUANBY Track');
       builder.element('trkseg', nest: () {
         for (final coord in routeCoordinates) {
           builder.element('trkpt', nest: () {
