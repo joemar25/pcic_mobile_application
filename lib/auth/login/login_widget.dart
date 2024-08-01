@@ -107,7 +107,7 @@ class _LoginWidgetState extends State<LoginWidget>
                 Expanded(
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(40.0, 80.0, 40.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(40.0, 50.0, 40.0, 0.0),
                     child: Container(
                       width: double.infinity,
                       decoration: const BoxDecoration(
@@ -116,6 +116,7 @@ class _LoginWidgetState extends State<LoginWidget>
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Flexible(
                             child: Padding(
@@ -247,7 +248,7 @@ class _LoginWidgetState extends State<LoginWidget>
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                           ),
-                        ],
+                        ].addToEnd(const SizedBox(height: 20.0)),
                       ).animateOnPageLoad(
                           animationsMap['columnOnPageLoadAnimation']!),
                     ).animateOnPageLoad(
@@ -256,7 +257,6 @@ class _LoginWidgetState extends State<LoginWidget>
                 ),
                 Container(
                   width: double.infinity,
-                  height: MediaQuery.sizeOf(context).height * 0.51,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).primaryBackground,
                     borderRadius: const BorderRadius.only(

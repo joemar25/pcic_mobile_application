@@ -826,41 +826,6 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                   ),
                                 ),
                               ),
-                              FFButtonWidget(
-                                onPressed: () async {
-                                  await actions.resetMapStore();
-                                },
-                                text: FFLocalizations.of(context).getText(
-                                  'rm9fano9' /* Reset Map Tiless */,
-                                ),
-                                options: FFButtonOptions(
-                                  width: 200.0,
-                                  height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: FlutterFlowTheme.of(context)
-                                            .titleSmallFamily,
-                                        color: Colors.white,
-                                        letterSpacing: 0.0,
-                                        useGoogleFonts: GoogleFonts.asMap()
-                                            .containsKey(
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmallFamily),
-                                      ),
-                                  elevation: 3.0,
-                                  borderSide: const BorderSide(
-                                    color: Colors.transparent,
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                              ),
                               Divider(
                                 height: 40.0,
                                 thickness: 1.0,
@@ -949,36 +914,35 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                   ].divide(const SizedBox(width: 10.0)),
                                 ),
                               ),
-                              if (valueOrDefault<bool>(
-                                FFAppState().startMapDownload,
-                                true,
-                              ))
-                                LinearPercentIndicator(
-                                  percent: FFAppState().mapDownloadProgress,
-                                  lineHeight: 50.0,
-                                  animation: true,
-                                  animateFromLastPercent: true,
-                                  progressColor:
-                                      FlutterFlowTheme.of(context).primary,
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).accent4,
-                                  center: Text(
-                                    FFAppState().mapDownloadProgress.toString(),
-                                    style: FlutterFlowTheme.of(context)
-                                        .headlineSmall
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .headlineSmallFamily,
-                                          letterSpacing: 0.0,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .headlineSmallFamily),
-                                        ),
+                              LinearPercentIndicator(
+                                percent: FFAppState().mapDownloadProgress,
+                                width: 120.0,
+                                lineHeight: 40.0,
+                                animation: true,
+                                animateFromLastPercent: true,
+                                progressColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).accent4,
+                                center: Text(
+                                  formatNumber(
+                                    FFAppState().mapDownloadProgress,
+                                    formatType: FormatType.percent,
                                   ),
-                                  padding: EdgeInsets.zero,
+                                  style: FlutterFlowTheme.of(context)
+                                      .headlineSmall
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .headlineSmallFamily,
+                                        letterSpacing: 0.0,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .headlineSmallFamily),
+                                      ),
                                 ),
+                                padding: EdgeInsets.zero,
+                              ),
                             ],
                           ),
                         ),

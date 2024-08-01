@@ -593,22 +593,6 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget> {
                         _model.isGeotagStart = false;
                         _model.isFinished = true;
                         setState(() {});
-                        await PpirFormsTable().update(
-                          data: {
-                            'track_last_coord':
-                                geotaggingPpirFormsRow?.trackLastCoord,
-                            'track_date_time':
-                                geotaggingPpirFormsRow?.trackDateTime,
-                            'track_total_area':
-                                geotaggingPpirFormsRow?.trackTotalArea,
-                            'track_total_distance':
-                                geotaggingPpirFormsRow?.trackTotalDistance,
-                          },
-                          matchingRows: (rows) => rows.eq(
-                            'task_id',
-                            geotaggingPpirFormsRow?.taskId,
-                          ),
-                        );
                         await TasksTable().update(
                           data: {
                             'status': 'ongoing',
