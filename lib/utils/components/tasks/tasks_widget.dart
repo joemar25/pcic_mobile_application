@@ -122,7 +122,6 @@ class _TasksWidgetState extends State<TasksWidget>
           ),
           child: Container(
             width: MediaQuery.sizeOf(context).width * 1.0,
-            height: 240.0,
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).primaryBackground,
               boxShadow: const [

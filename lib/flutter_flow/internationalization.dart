@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    '34ritk5k': {
+    'u9o4wbtm': {
       'en': '',
       'tl': '',
     },
@@ -325,7 +325,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    'keew3ew4': {
+    '7smkd3qe': {
       'en': '',
       'tl': '',
     },
@@ -523,6 +523,14 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // ppir
   {
+    'oi19exk2': {
+      'en': 'Geotag',
+      'tl': 'Geotag Control',
+    },
+    'bi2tyefd': {
+      'en': 'Repeat Geotag',
+      'tl': 'Ulitin Muli',
+    },
     '3s84cgqw': {
       'en': 'Geotag Information',
       'tl': 'Impormasyon sa Geotag',
@@ -542,14 +550,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'irvio488': {
       'en': 'Farm Location',
       'tl': 'Lokasyon ng Bukid',
-    },
-    'oi19exk2': {
-      'en': 'Geotag',
-      'tl': 'Geotag Control',
-    },
-    'bi2tyefd': {
-      'en': 'Repeat Geotag',
-      'tl': 'Ulitin Muli',
     },
     'quqb1avc': {
       'en': 'Seed Variety',

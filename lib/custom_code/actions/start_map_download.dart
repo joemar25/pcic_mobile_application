@@ -85,27 +85,10 @@ Future<void> startMapDownload(String accessToken) async {
         maxReportInterval: Duration(seconds: 1),
       )
       .listen((progress) {
-    double currentProgress =
-        double.parse(progress.percentageProgress.toStringAsFixed(2));
-
-    // Only update if the progress has changed by at least 1%
-    if ((currentProgress - lastReportedProgress).abs() >= 1.0) {
-      FFAppState().mapDownloadProgress = currentProgress;
-      lastReportedProgress = currentProgress;
-
-      print('Download progress: ${FFAppState().mapDownloadProgress}%');
-      print(progress.percentageProgress);
-
-      // Update notification here if you're using one
-      // updateNotification(currentProgress);
-    }
-
-    if (progress.isComplete) {
-      print('Download is complete!');
-      FFAppState().mapDownloadProgress = 100.0;
-
-      // Show completion notification or update UI here
-      // showCompletionNotification();
-    }
+    FFAppState().update(() {
+      FFAppState().mapDownloadProgress =
+          double.parse(progress.percentageProgress.toStringAsFixed(2)) / 100;
+    });
+    print('Download progress: ${FFAppState().mapDownloadProgress}');
   });
 }
