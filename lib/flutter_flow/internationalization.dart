@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'awzme6zl': {
+    '056jpmo4': {
       'en': '',
       'tl': '',
     },
@@ -325,7 +325,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    'nd3wwx5s': {
+    '3hsnukmw': {
       'en': '',
       'tl': '',
     },
@@ -523,115 +523,115 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // ppir
   {
-    'bh8xyfs2': {
+    'k6qjt4aw': {
       'en': 'Geotag',
       'tl': '',
     },
-    '3xjwmjnr': {
+    'l58n6r1v': {
       'en': 'Repeat Geotag',
       'tl': '',
     },
-    'cukz630d': {
+    'ze2pl4ye': {
       'en': 'Geotag Information',
       'tl': '',
     },
-    'enmad0hu': {
+    'n95y5s6i': {
       'en': 'Last Coordinates',
       'tl': '',
     },
-    'xzhsp8an': {
-      'en': 'Total Hectares',
+    'hae09rgg': {
+      'en': 'Total Area',
       'tl': '',
     },
-    '2rkckerr': {
-      'en': 'Total Distance',
-      'tl': '',
-    },
-    '7ip5nb81': {
+    'tqztw6m9': {
       'en': 'Date Time',
       'tl': '',
     },
-    'vhtgvod0': {
+    'be7rp1bl': {
+      'en': 'Total Hectares',
+      'tl': '',
+    },
+    'y2s7hj5w': {
       'en': 'Farm Location',
       'tl': '',
     },
-    'ljax9uis': {
+    'gmc39std': {
       'en': 'Seed Variety',
       'tl': '',
     },
-    'u37f4h3j': {
+    'jn43drww': {
       'en': 'rice',
       'tl': '',
     },
-    'ogfz5j9p': {
+    'lbxujdxy': {
       'en': 'corn',
       'tl': '',
     },
-    'p3ii0z76': {
+    '9mikx6ak': {
       'en': 'Select the Type of Rice ',
       'tl': '',
     },
-    'fizngf3z': {
+    'o5fvkvth': {
       'en': 'this is the rice',
       'tl': '',
     },
-    '61kzmveb': {
+    'nd5lsz8y': {
       'en': 'Please select...',
       'tl': '',
     },
-    'sdwyphpk': {
+    'uorchiy2': {
       'en': 'Search for an item...',
       'tl': '',
     },
-    'vvmptmxo': {
+    'lyts6olw': {
       'en': 'Select the Type of Corn ',
       'tl': '',
     },
-    'yu5jkbe8': {
+    '9nnzotiz': {
       'en': 'this is the rice',
       'tl': '',
     },
-    '9ajf4eky': {
+    'muwach4e': {
       'en': 'Please select...',
       'tl': '',
     },
-    'whzebdhk': {
+    'pvvdbdwh': {
       'en': 'Search for an item...',
       'tl': '',
     },
-    'n7uv9sob': {
+    'hw506fw0': {
       'en': 'Actual Area Planted',
       'tl': '',
     },
-    '8miz47do': {
+    'ult8jtry': {
       'en': 'Actual Date of Planting (DS)',
       'tl': '',
     },
-    'cx1bbchw': {
+    '5xaja5pg': {
       'en': 'Actual Date of Planting (TP)',
       'tl': '',
     },
-    '4ps5nky6': {
+    '80o0gacf': {
       'en': 'Remarks',
       'tl': '',
     },
-    'p62c06dn': {
+    'lxsn39s5': {
       'en': 'Prepared by',
       'tl': '',
     },
-    'qs24en1c': {
+    'bf0l7x1o': {
       'en': 'Confirm by',
       'tl': '',
     },
-    'f094eu9p': {
+    'qhfraqcp': {
       'en': 'Cancel',
       'tl': '',
     },
-    'xiwnqruu': {
+    '85i1pnil': {
       'en': 'Save',
       'tl': '',
     },
-    'pb6zxmgd': {
+    'n9o7a192': {
       'en': 'Submit',
       'tl': '',
     },

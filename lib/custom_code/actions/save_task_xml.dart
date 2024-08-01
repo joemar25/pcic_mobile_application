@@ -11,86 +11,96 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'index.dart'; // Imports other custom actions
-
 import 'dart:convert';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'dart:typed_data';
-import 'package:intl/intl.dart';
 
-Future<String> saveTaskXml(String? generatedTaskXml) async {
+Future<String> saveTaskXml(String? generatedTaskXml, String? taskId) async {
   print('Starting saveTaskXml function');
-
-  if (generatedTaskXml == null || generatedTaskXml.isEmpty) {
-    print('Invalid input: generatedTaskXml is null or empty');
-    return 'Error: Invalid XML input';
+  if (generatedTaskXml == null || generatedTaskXml.isEmpty || taskId == null) {
+    return 'Error: Invalid input';
   }
 
   try {
-    // Get the current user's email
-    final currentUser = SupaFlow.client.auth.currentUser;
-    final String userEmail = currentUser?.email ?? '';
+    final taskResponse = await SupaFlow.client
+        .from('tasks')
+        .select('service_group, task_number, assignee')
+        .eq('id', taskId)
+        .single()
+        .execute();
+
+    if (taskResponse.status != 200 || taskResponse.data == null) {
+      throw Exception('Error querying tasks table: ${taskResponse.status}');
+    }
+
+    final taskData = taskResponse.data as Map<String, dynamic>;
+    final String serviceGroup = taskData['service_group'] ?? '';
+    final String taskNumber = taskData['task_number'] ?? '';
+    final String userEmail =
+        SupaFlow.client.auth.currentUser?.email ?? taskData['assignee'] ?? '';
 
     if (userEmail.isEmpty) {
       throw Exception('Unable to get user email');
     }
 
-    // Generate a unique filename using timestamp
-    final String timestamp =
-        DateFormat('yyyyMMddHHmmss').format(DateTime.now());
-    final String fileName = 'task_${timestamp}.xml';
+    final String fileName = 'Task.xml';
+    final String filePath = '$serviceGroup/$userEmail/$taskNumber/$fileName';
 
-    // Define the file path in the bucket
-    final filePath = '$userEmail/attachments/$fileName';
-    print('Supabase file path: $filePath');
+    // Delete existing XML file from Supabase storage
+    try {
+      await SupaFlow.client.storage.from('for_ftp').remove([filePath]);
+      print('Existing XML file deleted from Supabase storage');
+    } catch (e) {
+      print('No existing XML file in Supabase storage or error deleting: $e');
+    }
 
-    // Convert the XML string to Uint8List
-    print('Converting XML to Uint8List');
     final Uint8List xmlBytes =
         Uint8List.fromList(utf8.encode(generatedTaskXml));
-    print('XML converted to Uint8List successfully');
 
-    // Upload the XML file to Supabase storage
-    print('Uploading XML to Supabase');
+    // Upload the new XML file to Supabase storage
     final response = await SupaFlow.client.storage.from('for_ftp').uploadBinary(
           filePath,
           xmlBytes,
           fileOptions: FileOptions(
             contentType: 'application/xml',
-            upsert: true,
+            upsert:
+                false, // Changed to false as we're explicitly deleting first
           ),
         );
 
-    // Check if the upload was successful
-    if (response != null) {
-      print('XML file uploaded successfully to Supabase');
-
-      // Save XML locally
-      print('Saving XML locally');
-      await _saveXmlLocally(fileName, generatedTaskXml);
-      print('XML saved locally successfully');
-
-      return 'XML saved successfully both in Supabase and locally';
-    } else {
-      print('Error uploading XML file to Supabase: Operation failed');
-      return 'Error: Failed to upload XML to Supabase';
+    if (response == null) {
+      throw Exception('Error uploading XML file to Supabase');
     }
+
+    // Save XML locally (this will overwrite if it exists)
+    await _saveXmlLocally(
+        serviceGroup, userEmail, taskNumber, fileName, generatedTaskXml);
+
+    return 'XML saved successfully both in Supabase and locally';
   } catch (e) {
     print('Error in saveTaskXml function: $e');
     return 'Error: $e';
   }
 }
 
-Future<void> _saveXmlLocally(String fileName, String xmlContent) async {
-  print('Starting _saveXmlLocally function');
+Future<void> _saveXmlLocally(String serviceGroup, String userEmail,
+    String taskNumber, String fileName, String xmlContent) async {
   try {
     final directory = await getApplicationDocumentsDirectory();
-    final file = File('${directory.path}/$fileName');
-    print('Local file path: ${file.path}');
+    final folderPath = '${directory.path}/$serviceGroup/$userEmail/$taskNumber';
+    await Directory(folderPath).create(recursive: true);
+    final file = File('$folderPath/$fileName');
 
+    // Delete existing local XML file
+    if (await file.exists()) {
+      await file.delete();
+      print('Existing local XML file deleted');
+    }
+
+    // Write new XML content
     await file.writeAsString(xmlContent);
-    print('XML file saved locally');
+    print('New XML file saved locally');
   } catch (e) {
     print('Error saving XML locally: $e');
   }

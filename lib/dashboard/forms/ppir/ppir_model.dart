@@ -1,7 +1,6 @@
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/utils/components/connectivity/connectivity_widget.dart';
 import 'ppir_widget.dart' show PpirWidget;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,28 +19,26 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
   final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - Query Rows] action in ppir widget.
   List<PpirFormsRow>? ppirData;
-  // Model for connectivity component.
-  late ConnectivityModel connectivityModel;
   // State field(s) for ppir_track_coordinates widget.
   FocusNode? ppirTrackCoordinatesFocusNode;
   TextEditingController? ppirTrackCoordinatesTextController;
   String? Function(BuildContext, String?)?
       ppirTrackCoordinatesTextControllerValidator;
   // State field(s) for ppir_track_total_area widget.
-  FocusNode? ppirTrackTotalAreaFocusNode;
-  TextEditingController? ppirTrackTotalAreaTextController;
+  FocusNode? ppirTrackTotalAreaFocusNode1;
+  TextEditingController? ppirTrackTotalAreaTextController1;
   String? Function(BuildContext, String?)?
-      ppirTrackTotalAreaTextControllerValidator;
-  // State field(s) for ppir_track_total_distance widget.
-  FocusNode? ppirTrackTotalDistanceFocusNode;
-  TextEditingController? ppirTrackTotalDistanceTextController;
-  String? Function(BuildContext, String?)?
-      ppirTrackTotalDistanceTextControllerValidator;
+      ppirTrackTotalAreaTextController1Validator;
   // State field(s) for ppir_track_date_time widget.
   FocusNode? ppirTrackDateTimeFocusNode;
   TextEditingController? ppirTrackDateTimeTextController;
   String? Function(BuildContext, String?)?
       ppirTrackDateTimeTextControllerValidator;
+  // State field(s) for ppir_track_total_area widget.
+  FocusNode? ppirTrackTotalAreaFocusNode2;
+  TextEditingController? ppirTrackTotalAreaTextController2;
+  String? Function(BuildContext, String?)?
+      ppirTrackTotalAreaTextController2Validator;
   // State field(s) for ppir_track_farmloc widget.
   FocusNode? ppirTrackFarmlocFocusNode;
   TextEditingController? ppirTrackFarmlocTextController;
@@ -101,27 +98,26 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
   List<PpirFormsRow>? riceVariety;
   // Stores action output result for [Backend Call - Update Row(s)] action in submitButton widget.
   List<PpirFormsRow>? cornVariety;
+  // Stores action output result for [Custom Action - generateTaskXml] action in submitButton widget.
+  String? generatedTaskXmlFile;
 
   @override
-  void initState(BuildContext context) {
-    connectivityModel = createModel(context, () => ConnectivityModel());
-  }
+  void initState(BuildContext context) {}
 
   @override
   void dispose() {
     unfocusNode.dispose();
-    connectivityModel.dispose();
     ppirTrackCoordinatesFocusNode?.dispose();
     ppirTrackCoordinatesTextController?.dispose();
 
-    ppirTrackTotalAreaFocusNode?.dispose();
-    ppirTrackTotalAreaTextController?.dispose();
-
-    ppirTrackTotalDistanceFocusNode?.dispose();
-    ppirTrackTotalDistanceTextController?.dispose();
+    ppirTrackTotalAreaFocusNode1?.dispose();
+    ppirTrackTotalAreaTextController1?.dispose();
 
     ppirTrackDateTimeFocusNode?.dispose();
     ppirTrackDateTimeTextController?.dispose();
+
+    ppirTrackTotalAreaFocusNode2?.dispose();
+    ppirTrackTotalAreaTextController2?.dispose();
 
     ppirTrackFarmlocFocusNode?.dispose();
     ppirTrackFarmlocTextController?.dispose();
