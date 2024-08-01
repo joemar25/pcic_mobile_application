@@ -93,8 +93,8 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
               extra: <String, dynamic>{
                 kTransitionInfoKey: const TransitionInfo(
                   hasTransition: true,
-                  transitionType: PageTransitionType.bottomToTop,
-                  duration: Duration(milliseconds: 200),
+                  transitionType: PageTransitionType.rightToLeft,
+                  duration: Duration(milliseconds: 150),
                 ),
               },
             );

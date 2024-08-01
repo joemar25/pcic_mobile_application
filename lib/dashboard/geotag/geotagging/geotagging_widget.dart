@@ -151,6 +151,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget> {
                                         MediaQuery.sizeOf(context).height * 1.0,
                                     accessToken:
                                         'pk.eyJ1IjoicXVhbmJ5c29sdXRpb25zIiwiYSI6ImNsdWhrejRwdDJyYnAya3A2NHFqbXlsbHEifQ.WJ5Ng-AO-dTrlkUHD_ebMw',
+                                    taskId: widget.taskId,
                                   ),
                                 ),
                                 Column(

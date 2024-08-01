@@ -116,7 +116,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                     extra: <String, dynamic>{
                       kTransitionInfoKey: const TransitionInfo(
                         hasTransition: true,
-                        transitionType: PageTransitionType.topToBottom,
+                        transitionType: PageTransitionType.leftToRight,
                         duration: Duration(milliseconds: 200),
                       ),
                     },

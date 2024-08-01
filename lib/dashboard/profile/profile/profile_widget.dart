@@ -914,12 +914,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                   backgroundColor:
                                       FlutterFlowTheme.of(context).accent4,
                                   center: Text(
-                                    valueOrDefault<String>(
-                                      FFAppState()
-                                          .mapDownloadProgress
-                                          .toString(),
-                                      '0',
-                                    ),
+                                    FFAppState().mapDownloadProgress.toString(),
                                     style: FlutterFlowTheme.of(context)
                                         .headlineSmall
                                         .override(

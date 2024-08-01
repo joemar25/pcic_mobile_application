@@ -19,6 +19,7 @@ import 'package:flutter_map/flutter_map.dart';
 
 Future startMapDownload(String accessToken) async {
   // Add your function code here!
+
   final bounds = LatLngBounds(
     ll.LatLng(4.6, 116.9),
     ll.LatLng(21.2, 126.6),
@@ -48,7 +49,6 @@ Future startMapDownload(String accessToken) async {
         maxReportInterval: Duration(seconds: 1),
       )
       .listen((progress) {
-    print('Download progress: ${progress.percentageProgress}%');
-    FFAppState().mapDownloadProgress = progress.percentageProgress.toDouble();
+    FFAppState().mapDownloadProgress = progress.percentageProgress.round();
   });
 }

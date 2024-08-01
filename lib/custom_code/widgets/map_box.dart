@@ -26,11 +26,13 @@ class MapBox extends StatefulWidget {
     this.width,
     this.height,
     this.accessToken,
+    this.taskId,
   });
 
   final double? width;
   final double? height;
   final String? accessToken;
+  final String? taskId;
 
   @override
   State<MapBox> createState() => _MapBoxState();
@@ -325,8 +327,9 @@ class _MapBoxState extends State<MapBox> {
       debugPrint('Converted coordinates: $convertedCoordinates');
       // debugPrint('Task ID: ${FFAppState().currentTaskId}');
       debugPrint('Saving IDK');
-      saveGpx('idk', convertedCoordinates);
-      // saveGpx(FFAppState().currentTaskId ?? 'default_task_id', convertedCoordinates);
+
+      /// saveGpx('idk', convertedCoordinates);
+      saveGpx(widget.taskId ?? 'default_task_id', convertedCoordinates);
     }
   }
 

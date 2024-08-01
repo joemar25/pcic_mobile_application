@@ -120,24 +120,12 @@ class _DashboardWidgetState extends State<DashboardWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 100.0),
-            end: const Offset(0.0, 0.0),
-          ),
-        ],
-      ),
-      'containerOnPageLoadAnimation2': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
             begin: const Offset(0.0, 0.0),
             end: const Offset(0.0, 0.0),
           ),
         ],
       ),
-      'containerOnPageLoadAnimation4': AnimationInfo(
+      'containerOnPageLoadAnimation3': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
           MoveEffect(
@@ -150,6 +138,12 @@ class _DashboardWidgetState extends State<DashboardWidget>
         ],
       ),
     });
+    setupAnimations(
+      animationsMap.values.where((anim) =>
+          anim.trigger == AnimationTrigger.onActionTrigger ||
+          !anim.applyInitialState),
+      this,
+    );
   }
 
   @override
@@ -770,7 +764,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                           ),
                                         ),
                                       ).animateOnPageLoad(animationsMap[
-                                          'containerOnPageLoadAnimation2']!),
+                                          'containerOnPageLoadAnimation1']!),
                                     ),
                                     Expanded(
                                       child: Material(
@@ -987,7 +981,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                           ),
                                         ),
                                       ).animateOnPageLoad(animationsMap[
-                                          'containerOnPageLoadAnimation4']!),
+                                          'containerOnPageLoadAnimation3']!),
                                     ),
                                   ].divide(SizedBox(
                                       width: valueOrDefault<double>(
@@ -1278,8 +1272,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                           ],
                         ),
                       ),
-                    ).animateOnPageLoad(
-                        animationsMap['containerOnPageLoadAnimation1']!),
+                    ),
                   ),
                 ),
               ],
