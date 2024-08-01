@@ -18,7 +18,6 @@ import 'package:latlong2/latlong.dart' as ll;
 import 'package:flutter_map/flutter_map.dart';
 
 Future startMapDownload(String accessToken) async {
-  FFAppState().startMapDownload = true;
   // Add your function code here!
   final bounds = LatLngBounds(
     ll.LatLng(4.6, 116.9),

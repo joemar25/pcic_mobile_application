@@ -776,9 +776,19 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               ),
                               FFButtonWidget(
                                 onPressed: () async {
-                                  await actions.startMapDownload(
-                                    'pk.eyJ1IjoicXVhbmJ5c29sdXRpb25zIiwiYSI6ImNsdWhrejRwdDJyYnAya3A2NHFqbXlsbHEifQ.WJ5Ng-AO-dTrlkUHD_ebMw',
-                                  );
+                                  await Future.wait([
+                                    Future(() async {
+                                      await actions.startMapDownload(
+                                        'pk.eyJ1IjoicXVhbmJ5c29sdXRpb25zIiwiYSI6ImNsdWhrejRwdDJyYnAya3A2NHFqbXlsbHEifQ.WJ5Ng-AO-dTrlkUHD_ebMw',
+                                      );
+                                    }),
+                                    Future(() async {
+                                      FFAppState().startMapDownload =
+                                          !(FFAppState().startMapDownload ??
+                                              true);
+                                      setState(() {});
+                                    }),
+                                  ]);
                                 },
                                 text: FFLocalizations.of(context).getText(
                                   'ujnyyxhr' /* Download Map */,
@@ -890,7 +900,10 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                   ),
                                 ].divide(const SizedBox(width: 10.0)),
                               ),
-                              if (FFAppState().startMapDownload)
+                              if (valueOrDefault<bool>(
+                                FFAppState().startMapDownload,
+                                true,
+                              ))
                                 LinearPercentIndicator(
                                   percent: FFAppState().mapDownloadProgress,
                                   lineHeight: 50.0,
