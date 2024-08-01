@@ -432,7 +432,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                       ],
                     ),
                   ),
-                ].addToStart(const SizedBox(height: 100.0)),
+                ],
               ),
             ),
           ),

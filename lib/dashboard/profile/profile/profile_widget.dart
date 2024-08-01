@@ -170,6 +170,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               20.0, 40.0, 20.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Row(
                                 mainAxisSize: MainAxisSize.max,
