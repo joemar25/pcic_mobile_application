@@ -183,22 +183,22 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color error = const Color(0xFFE34234);
   late Color info = const Color(0xFFFFFFFF);
 
-  late Color primaryBtnText = Color(0xFFFFFFFF);
-  late Color lineColor = Color(0xFFE0E3E7);
-  late Color backgroundComponents = Color(0xFF1D2428);
-  late Color darkMossGreen = Color(0xFF606C38);
-  late Color pakistanGreen = Color(0xFF283618);
-  late Color cornsilk = Color(0xFFFEFAE0);
-  late Color earthYellow = Color(0xFFDDA15E);
-  late Color tigersEye = Color(0xFFBC6C25);
-  late Color forDispatchIcon = Color(0xFF2E5198);
-  late Color forDispatchColor = Color(0xFFEFF7FD);
-  late Color inProgress = Color(0xFFEFF7FD);
-  late Color completeColor = Color(0xFFEFF7FD);
-  late Color inProgressIcon = Color(0xFFE0A267);
-  late Color completeIcon = Color(0xFF15803E);
-  late Color boarderForm = Color(0xFFD0E1EF);
-  late Color wifiBars = Color(0xFF336A4A);
+  late Color primaryBtnText = const Color(0xFFFFFFFF);
+  late Color lineColor = const Color(0xFFE0E3E7);
+  late Color backgroundComponents = const Color(0xFF1D2428);
+  late Color darkMossGreen = const Color(0xFF606C38);
+  late Color pakistanGreen = const Color(0xFF283618);
+  late Color cornsilk = const Color(0xFFFEFAE0);
+  late Color earthYellow = const Color(0xFFDDA15E);
+  late Color tigersEye = const Color(0xFFBC6C25);
+  late Color forDispatchIcon = const Color(0xFF2E5198);
+  late Color forDispatchColor = const Color(0xFFEFF7FD);
+  late Color inProgress = const Color(0xFFEFF7FD);
+  late Color completeColor = const Color(0xFFEFF7FD);
+  late Color inProgressIcon = const Color(0xFFE0A267);
+  late Color completeIcon = const Color(0xFF15803E);
+  late Color boarderForm = const Color(0xFFD0E1EF);
+  late Color wifiBars = const Color(0xFF336A4A);
 }
 
 abstract class Typography {
@@ -595,22 +595,22 @@ class DarkModeTheme extends FlutterFlowTheme {
   late Color error = const Color(0xFFFC3636);
   late Color info = const Color(0xFFFFFFFF);
 
-  late Color primaryBtnText = Color(0xFFFFFFFF);
-  late Color lineColor = Color(0xFF22282F);
-  late Color backgroundComponents = Color(0xFF1D2428);
-  late Color darkMossGreen = Color(0xFF606C38);
-  late Color pakistanGreen = Color(0xFF283618);
-  late Color cornsilk = Color(0xFFFEFAE0);
-  late Color earthYellow = Color(0xFFDDA15E);
-  late Color tigersEye = Color(0xFFBC6C25);
-  late Color forDispatchIcon = Color(0xFFFFFFFF);
-  late Color forDispatchColor = Color(0xFF0F61EF);
-  late Color inProgress = Color(0xFFFF9933);
-  late Color completeColor = Color(0xFF228B22);
-  late Color inProgressIcon = Color(0xFFFFFFFF);
-  late Color completeIcon = Color(0xFFFFFFFF);
-  late Color boarderForm = Color(0x7F658593);
-  late Color wifiBars = Color(0xFF228B22);
+  late Color primaryBtnText = const Color(0xFFFFFFFF);
+  late Color lineColor = const Color(0xFF22282F);
+  late Color backgroundComponents = const Color(0xFF1D2428);
+  late Color darkMossGreen = const Color(0xFF606C38);
+  late Color pakistanGreen = const Color(0xFF283618);
+  late Color cornsilk = const Color(0xFFFEFAE0);
+  late Color earthYellow = const Color(0xFFDDA15E);
+  late Color tigersEye = const Color(0xFFBC6C25);
+  late Color forDispatchIcon = const Color(0xFFFFFFFF);
+  late Color forDispatchColor = const Color(0xFF0F61EF);
+  late Color inProgress = const Color(0xFFFF9933);
+  late Color completeColor = const Color(0xFF228B22);
+  late Color inProgressIcon = const Color(0xFFFFFFFF);
+  late Color completeIcon = const Color(0xFFFFFFFF);
+  late Color boarderForm = const Color(0x7F658593);
+  late Color wifiBars = const Color(0xFF228B22);
 }
 
 extension TextStyleHelper on TextStyle {

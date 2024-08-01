@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'ysrxkppz': {
+    'if2q2s0p': {
       'en': '',
       'tl': '',
     },
@@ -325,7 +325,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    'acch5cyg': {
+    '26er9rlc': {
       'en': '',
       'tl': '',
     },

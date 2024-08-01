@@ -8,7 +8,7 @@ Future performUpdateAttemptStatus(
   bool? syncstatus,
   bool? isdirty,
 }) {
-  final query = '''
+  const query = '''
 UPDATE attempts
 SET status = ?, 
     comments = ?, 
@@ -30,7 +30,7 @@ Future performUpdateSyncStatus(
   DateTime? lastsyncedat,
   DateTime? updatedat,
 }) {
-  final query = '''
+  const query = '''
 UPDATE attempts
 SET sync_status = ?,
     last_synced_at = ?,
@@ -55,7 +55,7 @@ Future performUpdatePPIRBasicInfo(
   DateTime? updatedat,
   String? taskid,
 }) {
-  final query = '''
+  const query = '''
 UPDATE ppir_forms
 SET ppir_farmername = ?,
     ppir_address = ?,
@@ -84,7 +84,7 @@ Future performUpdatePPIRLocation(
   bool? isdirty,
   String? taskid,
 }) {
-  final query = '''
+  const query = '''
 UPDATE ppir_forms
 SET ppir_north = ?,
     ppir_south = ?,
@@ -111,7 +111,7 @@ Future performUpdatePPIRCropInfo(
   DateTime? isdirty,
   String? taskid,
 }) {
-  final query = '''
+  const query = '''
 UPDATE ppir_forms
 SET ppir_variety = ?,
     ppir_stage_crop = ?,
@@ -149,7 +149,7 @@ Future performUpdateTask(
   bool? isdirty,
   bool? isupdating,
 }) {
-  final query = '''
+  const query = '''
 UPDATE tasks
 SET 
   task_number = ?,
@@ -194,7 +194,7 @@ Future performUpdateUsers(
   String? updatedat,
   String? regionid,
 }) {
-  final query = '''
+  const query = '''
 UPDATE users
 SET 
   role = ?,
@@ -229,7 +229,7 @@ Future performUpdateDashboardQuery(
   DateTime? updatedat,
   String? regionid,
 }) {
-  final query = '''
+  const query = '''
 UPDATE users
 SET 
   role = ?,

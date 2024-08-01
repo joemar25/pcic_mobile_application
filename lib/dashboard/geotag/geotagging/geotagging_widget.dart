@@ -3,8 +3,6 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -15,7 +13,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'geotagging_model.dart';
 export 'geotagging_model.dart';
 
@@ -52,7 +49,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       currentUserLocationValue =
-          await getCurrentUserLocation(defaultLocation: LatLng(0.0, 0.0));
+          await getCurrentUserLocation(defaultLocation: const LatLng(0.0, 0.0));
       await requestPermission(locationPermission);
       if (await getPermissionStatus(locationPermission)) {
         _model.getCurrentLocationAddress =
@@ -66,7 +63,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
       }
     });
 
-    getCurrentUserLocation(defaultLocation: LatLng(0.0, 0.0), cached: true)
+    getCurrentUserLocation(defaultLocation: const LatLng(0.0, 0.0), cached: true)
         .then((loc) => setState(() => currentUserLocationValue = loc));
     animationsMap.addAll({
       'iconOnPageLoadAnimation': AnimationInfo(
@@ -114,7 +111,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
       future: PpirFormsTable().querySingleRow(
         queryFn: (q) => q.eq(
           'task_id',
-          widget!.taskId,
+          widget.taskId,
         ),
       ),
       builder: (context, snapshot) {
@@ -158,12 +155,12 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
+                          SizedBox(
                             height: MediaQuery.sizeOf(context).height * 0.75,
                             child: Stack(
-                              alignment: AlignmentDirectional(0.0, 0.0),
+                              alignment: const AlignmentDirectional(0.0, 0.0),
                               children: [
-                                Container(
+                                SizedBox(
                                   width: MediaQuery.sizeOf(context).width * 1.0,
                                   height:
                                       MediaQuery.sizeOf(context).height * 1.0,
@@ -174,7 +171,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                         MediaQuery.sizeOf(context).height * 1.0,
                                     accessToken:
                                         'pk.eyJ1IjoicXVhbmJ5c29sdXRpb25zIiwiYSI6ImNsdWhrejRwdDJyYnAya3A2NHFqbXlsbHEifQ.WJ5Ng-AO-dTrlkUHD_ebMw',
-                                    taskId: widget!.taskId,
+                                    taskId: widget.taskId,
                                   ),
                                 ),
                                 Column(
@@ -183,7 +180,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           20.0, 0.0, 20.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -191,10 +188,10 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Align(
-                                            alignment: AlignmentDirectional(
+                                            alignment: const AlignmentDirectional(
                                                 0.85, -0.4),
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 50.0, 0.0, 0.0),
                                               child: FlutterFlowIconButton(
@@ -202,8 +199,8 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                                 borderRadius: 30.0,
                                                 borderWidth: 1.0,
                                                 buttonSize: 40.0,
-                                                fillColor: Color(0x7F0F1113),
-                                                icon: Icon(
+                                                fillColor: const Color(0x7F0F1113),
+                                                icon: const Icon(
                                                   Icons.chevron_left_rounded,
                                                   color: Colors.white,
                                                   size: 20.0,
@@ -219,13 +216,13 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                                       ),
                                                       'taskStatus':
                                                           serializeParam(
-                                                        widget!.taskStatus,
+                                                        widget.taskStatus,
                                                         ParamType.String,
                                                       ),
                                                     }.withoutNulls,
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
-                                                          TransitionInfo(
+                                                          const TransitionInfo(
                                                         hasTransition: true,
                                                         transitionType:
                                                             PageTransitionType
@@ -240,10 +237,10 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                             ),
                                           ),
                                           Align(
-                                            alignment: AlignmentDirectional(
+                                            alignment: const AlignmentDirectional(
                                                 0.85, -0.4),
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 50.0, 0.0, 0.0),
                                               child: FlutterFlowIconButton(
@@ -251,8 +248,8 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                                 borderRadius: 30.0,
                                                 borderWidth: 1.0,
                                                 buttonSize: 40.0,
-                                                fillColor: Color(0x7F0F1113),
-                                                icon: Icon(
+                                                fillColor: const Color(0x7F0F1113),
+                                                icon: const Icon(
                                                   Icons.location_pin,
                                                   color: Colors.white,
                                                   size: 20.0,
@@ -273,11 +270,11 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 16.0, 24.0, 0.0),
                             child: Container(
                               width: MediaQuery.sizeOf(context).width * 1.0,
-                              decoration: BoxDecoration(),
+                              decoration: const BoxDecoration(),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment:
@@ -311,9 +308,9 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
                                     child: Align(
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             12.0, 0.0, 12.0, 0.0),
                                         child: Text(
                                           _model.isGeotagStart != true
@@ -344,11 +341,11 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
                             child: Container(
                               width: MediaQuery.sizeOf(context).width * 1.0,
-                              decoration: BoxDecoration(),
+                              decoration: const BoxDecoration(),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment:
@@ -498,8 +495,8 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                     ],
                                   ),
                                 ]
-                                    .divide(SizedBox(height: 5.0))
-                                    .around(SizedBox(height: 5.0)),
+                                    .divide(const SizedBox(height: 5.0))
+                                    .around(const SizedBox(height: 5.0)),
                               ),
                             ),
                           ),
@@ -524,7 +521,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                       FlutterFlowTheme.of(context).primaryText,
                                 ),
                               ),
-                              duration: Duration(milliseconds: 4000),
+                              duration: const Duration(milliseconds: 4000),
                               backgroundColor:
                                   FlutterFlowTheme.of(context).secondary,
                             ),
@@ -544,7 +541,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                           color: _model.isGeotagStart == false
                               ? FlutterFlowTheme.of(context).primary
                               : FlutterFlowTheme.of(context).warning,
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               blurRadius: 5.0,
                               color: Color(0x411D2429),
@@ -564,7 +561,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                               children: [
                                 if (_model.isFinished == true)
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 5.0, 0.0),
                                     child: Icon(
                                       Icons.downloading_sharp,
@@ -576,7 +573,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                   ),
                                 if (_model.isFinished == false)
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 5.0, 0.0),
                                     child: FaIcon(
                                       FontAwesomeIcons.play,
@@ -623,7 +620,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                           },
                           matchingRows: (rows) => rows.eq(
                             'id',
-                            widget!.taskId,
+                            widget.taskId,
                           ),
                         );
                         await Future.delayed(
@@ -638,7 +635,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                             ),
                           }.withoutNulls,
                           extra: <String, dynamic>{
-                            kTransitionInfoKey: TransitionInfo(
+                            kTransitionInfoKey: const TransitionInfo(
                               hasTransition: true,
                               transitionType: PageTransitionType.bottomToTop,
                               duration: Duration(milliseconds: 200),
@@ -653,7 +650,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                           color: _model.isGeotagStart == false
                               ? FlutterFlowTheme.of(context).primary
                               : FlutterFlowTheme.of(context).warning,
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               blurRadius: 5.0,
                               color: Color(0x411D2429),
@@ -670,7 +667,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 5.0, 0.0),
                               child: FaIcon(
                                 FontAwesomeIcons.stop,

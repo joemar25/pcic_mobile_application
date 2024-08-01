@@ -2,13 +2,10 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'backup_tasks_model.dart';
 export 'backup_tasks_model.dart';
 
@@ -17,8 +14,8 @@ class BackupTasksWidget extends StatefulWidget {
     super.key,
     String? task,
     String? status,
-  })  : this.task = task ?? '123',
-        this.status = status ?? 'for dispatch';
+  })  : task = task ?? '123',
+        status = status ?? 'for dispatch';
 
   final String task;
   final String status;
@@ -59,8 +56,8 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 30.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 30.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -86,7 +83,7 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
       future: PpirFormsTable().querySingleRow(
         queryFn: (q) => q.eq(
           'task_id',
-          widget!.task,
+          widget.task,
         ),
       ),
       builder: (context, snapshot) {
@@ -119,16 +116,16 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
               'taskDetails',
               queryParameters: {
                 'taskId': serializeParam(
-                  widget!.task,
+                  widget.task,
                   ParamType.String,
                 ),
                 'taskStatus': serializeParam(
-                  widget!.status,
+                  widget.status,
                   ParamType.String,
                 ),
               }.withoutNulls,
               extra: <String, dynamic>{
-                kTransitionInfoKey: TransitionInfo(
+                kTransitionInfoKey: const TransitionInfo(
                   hasTransition: true,
                   transitionType: PageTransitionType.bottomToTop,
                   duration: Duration(milliseconds: 200),
@@ -141,7 +138,7 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
             height: double.infinity,
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).secondaryBackground,
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   blurRadius: 2.0,
                   color: Color(0x33000000),
@@ -158,14 +155,14 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
               ),
             ),
             child: Padding(
-              padding: EdgeInsets.all(12.0),
+              padding: const EdgeInsets.all(12.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -197,7 +194,7 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
                     children: [
                       Flexible(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               8.0, 0.0, 0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
@@ -238,7 +235,7 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
                       ),
                       Flexible(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               8.0, 0.0, 0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
@@ -285,7 +282,7 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
                     children: [
                       Flexible(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               8.0, 0.0, 0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
@@ -326,7 +323,7 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
                       ),
                       Flexible(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               8.0, 0.0, 0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
@@ -391,7 +388,7 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
                       ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               8.0, 0.0, 0.0, 0.0),
                           child: Text(
                             valueOrDefault<String>(
@@ -433,7 +430,7 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
                       ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               8.0, 0.0, 0.0, 0.0),
                           child: Text(
                             valueOrDefault<String>(

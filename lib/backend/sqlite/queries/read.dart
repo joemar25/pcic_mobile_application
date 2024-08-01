@@ -12,14 +12,14 @@ Future<List<T>> _readQuery<T>(
 Future<List<SelectTasksRow>> performSelectTasks(
   Database database,
 ) {
-  final query = '''
+  const query = '''
 SELECT * FROM tasks
 ''';
   return _readQuery(database, query, (d) => SelectTasksRow(d));
 }
 
 class SelectTasksRow extends SqliteRow {
-  SelectTasksRow(Map<String, dynamic> data) : super(data);
+  SelectTasksRow(super.data);
 
   String? get id => data['id'] as String?;
   String? get taskNumber => data['task_number'] as String?;
@@ -49,14 +49,14 @@ class SelectTasksRow extends SqliteRow {
 Future<List<SelectUsersRow>> performSelectUsers(
   Database database,
 ) {
-  final query = '''
+  const query = '''
 SELECT * FROM users
 ''';
   return _readQuery(database, query, (d) => SelectUsersRow(d));
 }
 
 class SelectUsersRow extends SqliteRow {
-  SelectUsersRow(Map<String, dynamic> data) : super(data);
+  SelectUsersRow(super.data);
 
   String? get id => data['id'] as String?;
   String? get role => data['role'] as String?;
@@ -78,14 +78,14 @@ class SelectUsersRow extends SqliteRow {
 Future<List<SelectSeedsRow>> performSelectSeeds(
   Database database,
 ) {
-  final query = '''
+  const query = '''
 SELECT * FROM seeds
 ''';
   return _readQuery(database, query, (d) => SelectSeedsRow(d));
 }
 
 class SelectSeedsRow extends SqliteRow {
-  SelectSeedsRow(Map<String, dynamic> data) : super(data);
+  SelectSeedsRow(super.data);
 
   String? get id => data['id'] as String?;
   String? get seed => data['seed'] as String?;
@@ -102,14 +102,14 @@ class SelectSeedsRow extends SqliteRow {
 Future<List<SelectPpirFormsRow>> performSelectPpirForms(
   Database database,
 ) {
-  final query = '''
+  const query = '''
 SELECT * FROM ppir_forms
 ''';
   return _readQuery(database, query, (d) => SelectPpirFormsRow(d));
 }
 
 class SelectPpirFormsRow extends SqliteRow {
-  SelectPpirFormsRow(Map<String, dynamic> data) : super(data);
+  SelectPpirFormsRow(super.data);
 
   String? get taskId => data['task_id'] as String?;
   String? get ppirAssignmentid => data['ppir_assignmentid'] as String?;
@@ -165,14 +165,14 @@ class SelectPpirFormsRow extends SqliteRow {
 Future<List<SelectMessagesRow>> performSelectMessages(
   Database database,
 ) {
-  final query = '''
+  const query = '''
 SELECT * FROM messages
 ''';
   return _readQuery(database, query, (d) => SelectMessagesRow(d));
 }
 
 class SelectMessagesRow extends SqliteRow {
-  SelectMessagesRow(Map<String, dynamic> data) : super(data);
+  SelectMessagesRow(super.data);
 
   String? get id => data['id'] as String?;
   String? get chatId => data['chat_id'] as String?;
@@ -194,14 +194,14 @@ class SelectMessagesRow extends SqliteRow {
 Future<List<SelectSyncLogsRow>> performSelectSyncLogs(
   Database database,
 ) {
-  final query = '''
+  const query = '''
 SELECT * FROM sync_log
 ''';
   return _readQuery(database, query, (d) => SelectSyncLogsRow(d));
 }
 
 class SelectSyncLogsRow extends SqliteRow {
-  SelectSyncLogsRow(Map<String, dynamic> data) : super(data);
+  SelectSyncLogsRow(super.data);
 
   String? get id => data['id'] as String?;
   DateTime? get syncStartTime => data['sync_start_time'] as DateTime?;
@@ -218,14 +218,14 @@ class SelectSyncLogsRow extends SqliteRow {
 Future<List<SelectAttemptsRow>> performSelectAttempts(
   Database database,
 ) {
-  final query = '''
+  const query = '''
 SELECT * FROM attempts
 ''';
   return _readQuery(database, query, (d) => SelectAttemptsRow(d));
 }
 
 class SelectAttemptsRow extends SqliteRow {
-  SelectAttemptsRow(Map<String, dynamic> data) : super(data);
+  SelectAttemptsRow(super.data);
 
   String? get id => data['id'] as String?;
   String? get taskId => data['task_id'] as String?;
@@ -250,13 +250,13 @@ Future<List<SelectProfileRow>> performSelectProfile(
   String? email,
 }) {
   final query = '''
-SELECT * FROM users WHERE email = '${email}'
+SELECT * FROM users WHERE email = '$email'
 ''';
   return _readQuery(database, query, (d) => SelectProfileRow(d));
 }
 
 class SelectProfileRow extends SqliteRow {
-  SelectProfileRow(Map<String, dynamic> data) : super(data);
+  SelectProfileRow(super.data);
 
   String? get id => data['id'] as String?;
   String? get role => data['role'] as String?;
@@ -278,14 +278,14 @@ class SelectProfileRow extends SqliteRow {
 Future<List<DashboardReadQueryRow>> performDashboardReadQuery(
   Database database,
 ) {
-  final query = '''
+  const query = '''
 SELECT * FROM users WHERE id = ?
 ''';
   return _readQuery(database, query, (d) => DashboardReadQueryRow(d));
 }
 
 class DashboardReadQueryRow extends SqliteRow {
-  DashboardReadQueryRow(Map<String, dynamic> data) : super(data);
+  DashboardReadQueryRow(super.data);
 
   String? get role => data['role'] as String?;
   String? get email => data['email'] as String?;

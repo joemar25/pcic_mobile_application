@@ -2,7 +2,6 @@ import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/chat_list_container/chat_list_container_widget.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/empty_lists/empty_lists_widget.dart';
@@ -10,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'chats_model.dart';
 export 'chats_model.dart';
 
@@ -91,7 +89,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                     ),
                   ],
                 ),
-              ].divide(SizedBox(width: 10.0)),
+              ].divide(const SizedBox(width: 10.0)),
             ),
           ),
           body: Container(
@@ -106,7 +104,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
               children: [
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(20.0, 80.0, 20.0, 0.0),
+                      const EdgeInsetsDirectional.fromSTEB(20.0, 80.0, 20.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -143,13 +141,13 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                     .headlineMediumFamily),
                                       ),
                                 ),
-                              ].divide(SizedBox(width: 10.0)),
+                              ].divide(const SizedBox(width: 10.0)),
                             ),
                           ),
                           wrapWithModel(
                             model: _model.connectivityModel,
                             updateCallback: () => setState(() {}),
-                            child: ConnectivityWidget(),
+                            child: const ConnectivityWidget(),
                           ),
                         ],
                       ),
@@ -159,12 +157,12 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                 Expanded(
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
                     child: Container(
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).primaryBackground,
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                           bottomLeft: Radius.circular(0.0),
                           bottomRight: Radius.circular(0.0),
                           topLeft: Radius.circular(24.0),
@@ -172,7 +170,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                         ),
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             20.0, 40.0, 20.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -205,7 +203,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
                               child: SingleChildScrollView(
                                 child: Column(
@@ -236,11 +234,11 @@ class _ChatsWidgetState extends State<ChatsWidget> {
 
                                         if (listViewChatsRowList.isEmpty) {
                                           return Center(
-                                            child: Container(
+                                            child: SizedBox(
                                               height: MediaQuery.sizeOf(context)
                                                       .height *
                                                   0.6,
-                                              child: EmptyListsWidget(
+                                              child: const EmptyListsWidget(
                                                 type: 'Messages',
                                               ),
                                             ),
@@ -248,14 +246,14 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                         }
 
                                         return ListView.separated(
-                                          padding: EdgeInsets.symmetric(
+                                          padding: const EdgeInsets.symmetric(
                                               vertical: 20.0),
                                           shrinkWrap: true,
                                           scrollDirection: Axis.vertical,
                                           itemCount:
                                               listViewChatsRowList.length,
                                           separatorBuilder: (_, __) =>
-                                              SizedBox(height: 20.0),
+                                              const SizedBox(height: 20.0),
                                           itemBuilder:
                                               (context, listViewIndex) {
                                             final listViewChatsRow =

@@ -11,7 +11,85 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'dart:convert';
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
+import 'dart:typed_data';
+import 'package:intl/intl.dart';
+
 Future<String> saveTaskXml(String? genratedTaskXml) async {
-  // save the generated task xml to the bucket in attachments
-  // also this can be saved locally before upload just like in save gpx
+  print('Starting saveTaskXml function');
+
+  if (generatedTaskXml == null || generatedTaskXml.isEmpty) {
+    print('Invalid input: generatedTaskXml is null or empty');
+    return 'Error: Invalid XML input';
+  }
+
+  try {
+    // Get the current user's email
+    final currentUser = SupaFlow.client.auth.currentUser;
+    final String userEmail = currentUser?.email ?? '';
+
+    if (userEmail.isEmpty) {
+      throw Exception('Unable to get user email');
+    }
+
+    // Generate a unique filename using timestamp
+    final String timestamp =
+        DateFormat('yyyyMMddHHmmss').format(DateTime.now());
+    final String fileName = 'task_${timestamp}.xml';
+
+    // Define the file path in the bucket
+    final filePath = '$userEmail/attachments/$fileName';
+    print('Supabase file path: $filePath');
+
+    // Convert the XML string to Uint8List
+    print('Converting XML to Uint8List');
+    final Uint8List xmlBytes =
+        Uint8List.fromList(utf8.encode(generatedTaskXml));
+    print('XML converted to Uint8List successfully');
+
+    // Upload the XML file to Supabase storage
+    print('Uploading XML to Supabase');
+    final response = await SupaFlow.client.storage.from('for_ftp').uploadBinary(
+          filePath,
+          xmlBytes,
+          fileOptions: FileOptions(
+            contentType: 'application/xml',
+            upsert: true,
+          ),
+        );
+
+    // Check if the upload was successful
+    if (response != null) {
+      print('XML file uploaded successfully to Supabase');
+
+      // Save XML locally
+      print('Saving XML locally');
+      await _saveXmlLocally(fileName, generatedTaskXml);
+      print('XML saved locally successfully');
+
+      return 'XML saved successfully both in Supabase and locally';
+    } else {
+      print('Error uploading XML file to Supabase: Operation failed');
+      return 'Error: Failed to upload XML to Supabase';
+    }
+  } catch (e) {
+    print('Error in saveTaskXml function: $e');
+    return 'Error: $e';
+  }
+}
+
+Future<void> _saveXmlLocally(String fileName, String xmlContent) async {
+  print('Starting _saveXmlLocally function');
+  try {
+    final directory = await getApplicationDocumentsDirectory();
+    final file = File('${directory.path}/$fileName');
+    print('Local file path: ${file.path}');
+
+    await file.writeAsString(xmlContent);
+    print('XML file saved locally');
+  } catch (e) {
+    print('Error saving XML locally: $e');
+  }
 }
