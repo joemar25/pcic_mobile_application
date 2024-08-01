@@ -11,17 +11,19 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'index.dart'; // Imports other custom actions
+
 import 'dart:convert';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'dart:typed_data';
 import 'package:intl/intl.dart';
 
-Future<String> saveTaskXml(String? genratedTaskXml) async {
+Future<String> saveTaskXml(String? generatedTaskXml) async {
   print('Starting saveTaskXml function');
 
-  if (genratedTaskXml == null || genratedTaskXml.isEmpty) {
-    print('Invalid input: genratedTaskXml is null or empty');
+  if (generatedTaskXml == null || generatedTaskXml.isEmpty) {
+    print('Invalid input: generatedTaskXml is null or empty');
     return 'Error: Invalid XML input';
   }
 
@@ -45,7 +47,8 @@ Future<String> saveTaskXml(String? genratedTaskXml) async {
 
     // Convert the XML string to Uint8List
     print('Converting XML to Uint8List');
-    final Uint8List xmlBytes = Uint8List.fromList(utf8.encode(genratedTaskXml));
+    final Uint8List xmlBytes =
+        Uint8List.fromList(utf8.encode(generatedTaskXml));
     print('XML converted to Uint8List successfully');
 
     // Upload the XML file to Supabase storage
@@ -65,7 +68,7 @@ Future<String> saveTaskXml(String? genratedTaskXml) async {
 
       // Save XML locally
       print('Saving XML locally');
-      await _saveXmlLocally(fileName, genratedTaskXml);
+      await _saveXmlLocally(fileName, generatedTaskXml);
       print('XML saved locally successfully');
 
       return 'XML saved successfully both in Supabase and locally';
