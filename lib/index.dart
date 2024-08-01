@@ -23,19 +23,3 @@ export '/dashboard/geotag/geotagging/geotagging_widget.dart'
 export '/dashboard/forms/other_form/other_form_widget.dart'
     show OtherFormWidget;
 export '/utils/test/sss/sss_widget.dart' show SssWidget;
-export '/auth/initial_design/backup_login/backup_login_widget.dart'
-    show BackupLoginWidget;
-export '/auth/initial_design/backup_forgot_password/backup_forgot_password_widget.dart'
-    show BackupForgotPasswordWidget;
-export '/dashboard/initial_design/backup_dashboard/backup_dashboard_widget.dart'
-    show BackupDashboardWidget;
-export '/dashboard/initial_design/backup_chats/backup_chats_widget.dart'
-    show BackupChatsWidget;
-export '/dashboard/initial_design/backup_messages/backup_messages_widget.dart'
-    show BackupMessagesWidget;
-export '/dashboard/initial_design/backup_profile/backup_profile_widget.dart'
-    show BackupProfileWidget;
-export '/dashboard/initial_design/backup_edit_profile/backup_edit_profile_widget.dart'
-    show BackupEditProfileWidget;
-export '/dashboard/initial_design/backup_edit_password/backup_edit_password_widget.dart'
-    show BackupEditPasswordWidget;

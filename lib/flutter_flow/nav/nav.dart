@@ -233,62 +233,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'sss',
           path: '/sss',
           builder: (context, params) => const SssWidget(),
-        ),
-        FFRoute(
-          name: 'backupLogin',
-          path: '/backupLogin',
-          builder: (context, params) => const BackupLoginWidget(),
-        ),
-        FFRoute(
-          name: 'backupForgotPassword',
-          path: '/backupForgotPassword',
-          builder: (context, params) => const BackupForgotPasswordWidget(),
-        ),
-        FFRoute(
-          name: 'backupDashboard',
-          path: '/backupDashboard',
-          requireAuth: true,
-          builder: (context, params) => const BackupDashboardWidget(),
-        ),
-        FFRoute(
-          name: 'backupChats',
-          path: '/backupChats',
-          requireAuth: true,
-          builder: (context, params) => const BackupChatsWidget(),
-        ),
-        FFRoute(
-          name: 'backupMessages',
-          path: '/backupMessages',
-          requireAuth: true,
-          builder: (context, params) => BackupMessagesWidget(
-            chatId: params.getParam(
-              'chatId',
-              ParamType.String,
-            ),
-          ),
-        ),
-        FFRoute(
-          name: 'backupProfile',
-          path: '/backupProfile',
-          requireAuth: true,
-          builder: (context, params) => const BackupProfileWidget(),
-        ),
-        FFRoute(
-          name: 'backupEditProfile',
-          path: '/backupEditProfile',
-          requireAuth: true,
-          builder: (context, params) => const BackupEditProfileWidget(),
-        ),
-        FFRoute(
-          name: 'backupEditPassword',
-          path: '/backupEditPassword',
-          requireAuth: true,
-          builder: (context, params) => BackupEditPasswordWidget(
-            formFieldName: params.getParam(
-              'formFieldName',
-              ParamType.String,
-            ),
-          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

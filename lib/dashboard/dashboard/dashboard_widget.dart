@@ -11,7 +11,6 @@ import '/utils/components/empty_lists/empty_lists_widget.dart';
 import '/utils/components/tasks/tasks_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -88,11 +87,10 @@ class _DashboardWidgetState extends State<DashboardWidget>
         FFAppState().AUTHID = currentUserUid;
         setState(() {});
       } else {
-        // Offline Query for Users
-        _model.currentUserProfileOffline =
-            await SQLiteManager.instance.selectUsers();
-        // Reads Dashboard
-        await SQLiteManager.instance.dashboardReadQuery();
+        // Get User Profile, online email = offline email
+        _model.offlineUserProfile = await SQLiteManager.instance.selectProfile(
+          email: currentUserEmail,
+        );
       }
     });
 
@@ -203,7 +201,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                   Icons.home_rounded,
                                   color: FlutterFlowTheme.of(context)
                                       .primaryBackground,
-                                  size: 30.0,
+                                  size: 34.0,
                                 ),
                                 Text(
                                   FFLocalizations.of(context).getText(
@@ -216,6 +214,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                             .headlineMediumFamily,
                                         color: FlutterFlowTheme.of(context)
                                             .primaryBackground,
+                                        fontSize: 28.0,
                                         letterSpacing: 0.0,
                                         useGoogleFonts: GoogleFonts.asMap()
                                             .containsKey(
@@ -381,6 +380,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
                                           letterSpacing: 0.0,
+                                          fontWeight: FontWeight.normal,
                                           useGoogleFonts: GoogleFonts.asMap()
                                               .containsKey(
                                                   FlutterFlowTheme.of(context)
@@ -456,16 +456,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                           decoration: const BoxDecoration(
                                             shape: BoxShape.circle,
                                           ),
-                                          child: CachedNetworkImage(
-                                            fadeInDuration:
-                                                const Duration(milliseconds: 500),
-                                            fadeOutDuration:
-                                                const Duration(milliseconds: 500),
-                                            imageUrl: valueOrDefault<String>(
-                                              _model.currentUserProfile?.first
-                                                  .photoUrl,
-                                              'https://newsko.com.ph/wp-content/uploads/2024/06/Mikha.jpg',
-                                            ),
+                                          child: Image.asset(
+                                            'assets/images/default_profile.png',
                                             fit: BoxFit.cover,
                                           ),
                                         ),
@@ -582,10 +574,10 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                   : valueOrDefault<
                                                                       String>(
                                                                       _model
-                                                                          .currentUserProfileOffline
+                                                                          .offlineUserProfile
                                                                           ?.first
                                                                           .inspectorName,
-                                                                      'Agent',
+                                                                      'Agent Offline',
                                                                     )),
                                                           'Agent',
                                                         ),
@@ -1008,264 +1000,276 @@ class _DashboardWidgetState extends State<DashboardWidget>
                               ),
                             ),
                             Expanded(
-                              child: Container(
-                                decoration: const BoxDecoration(),
-                                child: Column(
-                                  children: [
-                                    Align(
-                                      alignment: const Alignment(0.0, 0),
-                                      child: TabBar(
-                                        labelColor: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        unselectedLabelColor:
-                                            FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                        labelStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMediumFamily,
-                                              letterSpacing: 0.0,
-                                              useGoogleFonts: GoogleFonts
-                                                      .asMap()
-                                                  .containsKey(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMediumFamily),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 15.0, 0.0, 15.0),
+                                child: Container(
+                                  decoration: const BoxDecoration(),
+                                  child: Column(
+                                    children: [
+                                      Align(
+                                        alignment: const Alignment(0.0, 0),
+                                        child: TabBar(
+                                          labelColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                          unselectedLabelColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primaryText,
+                                          labelStyle: FlutterFlowTheme.of(
+                                                  context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMediumFamily,
+                                                letterSpacing: 0.0,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMediumFamily),
+                                              ),
+                                          unselectedLabelStyle: const TextStyle(),
+                                          indicatorColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                          indicatorWeight: 2.0,
+                                          tabs: [
+                                            Tab(
+                                              text: FFLocalizations.of(context)
+                                                  .getText(
+                                                'ba2q7w08' /* For Dispatch */,
+                                              ),
+                                              icon: const Icon(
+                                                Icons.timer_rounded,
+                                              ),
                                             ),
-                                        unselectedLabelStyle: const TextStyle(),
-                                        indicatorColor:
-                                            FlutterFlowTheme.of(context)
-                                                .primary,
-                                        indicatorWeight: 2.0,
-                                        tabs: [
-                                          Tab(
-                                            text: FFLocalizations.of(context)
-                                                .getText(
-                                              'ba2q7w08' /* For Dispatch */,
+                                            Tab(
+                                              text: FFLocalizations.of(context)
+                                                  .getText(
+                                                'nxy1vlhk' /* Ongoing */,
+                                              ),
+                                              icon: const Icon(
+                                                Icons.incomplete_circle_rounded,
+                                              ),
                                             ),
-                                            icon: const Icon(
-                                              Icons.timer_rounded,
+                                            Tab(
+                                              text: FFLocalizations.of(context)
+                                                  .getText(
+                                                'c0a56ui1' /* Completed */,
+                                              ),
+                                              icon: const Icon(
+                                                Icons.check_circle_rounded,
+                                              ),
                                             ),
-                                          ),
-                                          Tab(
-                                            text: FFLocalizations.of(context)
-                                                .getText(
-                                              'nxy1vlhk' /* Ongoing */,
-                                            ),
-                                            icon: const Icon(
-                                              Icons.incomplete_circle_rounded,
-                                            ),
-                                          ),
-                                          Tab(
-                                            text: FFLocalizations.of(context)
-                                                .getText(
-                                              'c0a56ui1' /* Completed */,
-                                            ),
-                                            icon: const Icon(
-                                              Icons.check_circle_rounded,
-                                            ),
-                                          ),
-                                        ],
-                                        controller: _model.tabBarController,
-                                        onTap: (i) async {
-                                          [
-                                            () async {},
-                                            () async {},
-                                            () async {}
-                                          ][i]();
-                                        },
+                                          ],
+                                          controller: _model.tabBarController,
+                                          onTap: (i) async {
+                                            [
+                                              () async {},
+                                              () async {},
+                                              () async {}
+                                            ][i]();
+                                          },
+                                        ),
                                       ),
-                                    ),
-                                    Expanded(
-                                      child: TabBarView(
-                                        controller: _model.tabBarController,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 12.0, 0.0, 12.0),
-                                            child: Builder(
-                                              builder: (context) {
-                                                final forDispatchTasksList =
-                                                    _model.forDispatchTasksData
-                                                            ?.toList() ??
-                                                        [];
-                                                if (forDispatchTasksList
-                                                    .isEmpty) {
-                                                  return const Center(
-                                                    child: EmptyListsWidget(
-                                                      type: 'Ongoing Tasks',
-                                                    ),
-                                                  );
-                                                }
-
-                                                return ListView.separated(
-                                                  padding: EdgeInsets.zero,
-                                                  primary: false,
-                                                  shrinkWrap: true,
-                                                  scrollDirection:
-                                                      Axis.vertical,
-                                                  itemCount:
-                                                      forDispatchTasksList
-                                                          .length,
-                                                  separatorBuilder: (_, __) =>
-                                                      const SizedBox(height: 15.0),
-                                                  itemBuilder: (context,
-                                                      forDispatchTasksListIndex) {
-                                                    final forDispatchTasksListItem =
-                                                        forDispatchTasksList[
-                                                            forDispatchTasksListIndex];
-                                                    return wrapWithModel(
-                                                      model: _model.tasksModels1
-                                                          .getModel(
-                                                        forDispatchTasksListItem
-                                                            .id,
-                                                        forDispatchTasksListIndex,
-                                                      ),
-                                                      updateCallback: () =>
-                                                          setState(() {}),
-                                                      child: TasksWidget(
-                                                        key: Key(
-                                                          'Keyjrg_${forDispatchTasksListItem.id}',
-                                                        ),
-                                                        task:
-                                                            forDispatchTasksListItem
-                                                                .id,
-                                                        status:
-                                                            forDispatchTasksListItem
-                                                                .status,
+                                      Expanded(
+                                        child: TabBarView(
+                                          controller: _model.tabBarController,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 12.0, 0.0, 12.0),
+                                              child: Builder(
+                                                builder: (context) {
+                                                  final forDispatchTasksList =
+                                                      _model.forDispatchTasksData
+                                                              ?.toList() ??
+                                                          [];
+                                                  if (forDispatchTasksList
+                                                      .isEmpty) {
+                                                    return const Center(
+                                                      child: EmptyListsWidget(
+                                                        type: 'Ongoing Tasks',
                                                       ),
                                                     );
-                                                  },
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 12.0, 0.0, 12.0),
-                                            child: Builder(
-                                              builder: (context) {
-                                                final ongoingTasksList = _model
-                                                        .ongoingTasksData
-                                                        ?.toList() ??
-                                                    [];
-                                                if (ongoingTasksList.isEmpty) {
-                                                  return const Center(
-                                                    child: EmptyListsWidget(
-                                                      type: 'Ongoing Tasks',
-                                                    ),
-                                                  );
-                                                }
+                                                  }
 
-                                                return ListView.separated(
-                                                  padding: EdgeInsets.zero,
-                                                  primary: false,
-                                                  shrinkWrap: true,
-                                                  scrollDirection:
-                                                      Axis.vertical,
-                                                  itemCount:
-                                                      ongoingTasksList.length,
-                                                  separatorBuilder: (_, __) =>
-                                                      const SizedBox(height: 15.0),
-                                                  itemBuilder: (context,
-                                                      ongoingTasksListIndex) {
-                                                    final ongoingTasksListItem =
-                                                        ongoingTasksList[
-                                                            ongoingTasksListIndex];
-                                                    return wrapWithModel(
-                                                      model: _model.tasksModels2
-                                                          .getModel(
-                                                        ongoingTasksListItem.id,
-                                                        ongoingTasksListIndex,
-                                                      ),
-                                                      updateCallback: () =>
-                                                          setState(() {}),
-                                                      child: TasksWidget(
-                                                        key: Key(
-                                                          'Keyu4c_${ongoingTasksListItem.id}',
+                                                  return ListView.separated(
+                                                    padding: EdgeInsets.zero,
+                                                    primary: false,
+                                                    shrinkWrap: true,
+                                                    scrollDirection:
+                                                        Axis.vertical,
+                                                    itemCount:
+                                                        forDispatchTasksList
+                                                            .length,
+                                                    separatorBuilder: (_, __) =>
+                                                        const SizedBox(height: 15.0),
+                                                    itemBuilder: (context,
+                                                        forDispatchTasksListIndex) {
+                                                      final forDispatchTasksListItem =
+                                                          forDispatchTasksList[
+                                                              forDispatchTasksListIndex];
+                                                      return wrapWithModel(
+                                                        model: _model
+                                                            .tasksModels1
+                                                            .getModel(
+                                                          forDispatchTasksListItem
+                                                              .id,
+                                                          forDispatchTasksListIndex,
                                                         ),
-                                                        task:
-                                                            ongoingTasksListItem
-                                                                .id,
-                                                        status:
-                                                            ongoingTasksListItem
-                                                                .status,
+                                                        updateCallback: () =>
+                                                            setState(() {}),
+                                                        child: TasksWidget(
+                                                          key: Key(
+                                                            'Keyjrg_${forDispatchTasksListItem.id}',
+                                                          ),
+                                                          task:
+                                                              forDispatchTasksListItem
+                                                                  .id,
+                                                          status:
+                                                              forDispatchTasksListItem
+                                                                  .status,
+                                                        ),
+                                                      );
+                                                    },
+                                                  );
+                                                },
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 12.0, 0.0, 12.0),
+                                              child: Builder(
+                                                builder: (context) {
+                                                  final ongoingTasksList =
+                                                      _model.ongoingTasksData
+                                                              ?.toList() ??
+                                                          [];
+                                                  if (ongoingTasksList
+                                                      .isEmpty) {
+                                                    return const Center(
+                                                      child: EmptyListsWidget(
+                                                        type: 'Ongoing Tasks',
                                                       ),
                                                     );
-                                                  },
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 12.0, 0.0, 12.0),
-                                            child: Builder(
-                                              builder: (context) {
-                                                final completedTasksList =
-                                                    _model.completedTasksData
-                                                            ?.toList() ??
-                                                        [];
-                                                if (completedTasksList
-                                                    .isEmpty) {
-                                                  return const Center(
-                                                    child: EmptyListsWidget(
-                                                      type: 'Ongoing Tasks',
-                                                    ),
-                                                  );
-                                                }
+                                                  }
 
-                                                return ListView.separated(
-                                                  padding: EdgeInsets.zero,
-                                                  primary: false,
-                                                  shrinkWrap: true,
-                                                  scrollDirection:
-                                                      Axis.vertical,
-                                                  itemCount:
-                                                      completedTasksList.length,
-                                                  separatorBuilder: (_, __) =>
-                                                      const SizedBox(height: 15.0),
-                                                  itemBuilder: (context,
-                                                      completedTasksListIndex) {
-                                                    final completedTasksListItem =
-                                                        completedTasksList[
-                                                            completedTasksListIndex];
-                                                    return wrapWithModel(
-                                                      model: _model.tasksModels3
-                                                          .getModel(
-                                                        completedTasksListItem
-                                                            .id,
-                                                        completedTasksListIndex,
-                                                      ),
-                                                      updateCallback: () =>
-                                                          setState(() {}),
-                                                      updateOnChange: true,
-                                                      child: TasksWidget(
-                                                        key: Key(
-                                                          'Keynuv_${completedTasksListItem.id}',
+                                                  return ListView.separated(
+                                                    padding: EdgeInsets.zero,
+                                                    primary: false,
+                                                    shrinkWrap: true,
+                                                    scrollDirection:
+                                                        Axis.vertical,
+                                                    itemCount:
+                                                        ongoingTasksList.length,
+                                                    separatorBuilder: (_, __) =>
+                                                        const SizedBox(height: 15.0),
+                                                    itemBuilder: (context,
+                                                        ongoingTasksListIndex) {
+                                                      final ongoingTasksListItem =
+                                                          ongoingTasksList[
+                                                              ongoingTasksListIndex];
+                                                      return wrapWithModel(
+                                                        model: _model
+                                                            .tasksModels2
+                                                            .getModel(
+                                                          ongoingTasksListItem
+                                                              .id,
+                                                          ongoingTasksListIndex,
                                                         ),
-                                                        task:
-                                                            completedTasksListItem
-                                                                .id,
-                                                        status:
-                                                            completedTasksListItem
-                                                                .status,
+                                                        updateCallback: () =>
+                                                            setState(() {}),
+                                                        child: TasksWidget(
+                                                          key: Key(
+                                                            'Keyu4c_${ongoingTasksListItem.id}',
+                                                          ),
+                                                          task:
+                                                              ongoingTasksListItem
+                                                                  .id,
+                                                          status:
+                                                              ongoingTasksListItem
+                                                                  .status,
+                                                        ),
+                                                      );
+                                                    },
+                                                  );
+                                                },
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 12.0, 0.0, 12.0),
+                                              child: Builder(
+                                                builder: (context) {
+                                                  final completedTasksList =
+                                                      _model.completedTasksData
+                                                              ?.toList() ??
+                                                          [];
+                                                  if (completedTasksList
+                                                      .isEmpty) {
+                                                    return const Center(
+                                                      child: EmptyListsWidget(
+                                                        type: 'Ongoing Tasks',
                                                       ),
                                                     );
-                                                  },
-                                                );
-                                              },
+                                                  }
+
+                                                  return ListView.separated(
+                                                    padding: EdgeInsets.zero,
+                                                    primary: false,
+                                                    shrinkWrap: true,
+                                                    scrollDirection:
+                                                        Axis.vertical,
+                                                    itemCount:
+                                                        completedTasksList
+                                                            .length,
+                                                    separatorBuilder: (_, __) =>
+                                                        const SizedBox(height: 15.0),
+                                                    itemBuilder: (context,
+                                                        completedTasksListIndex) {
+                                                      final completedTasksListItem =
+                                                          completedTasksList[
+                                                              completedTasksListIndex];
+                                                      return wrapWithModel(
+                                                        model: _model
+                                                            .tasksModels3
+                                                            .getModel(
+                                                          completedTasksListItem
+                                                              .id,
+                                                          completedTasksListIndex,
+                                                        ),
+                                                        updateCallback: () =>
+                                                            setState(() {}),
+                                                        updateOnChange: true,
+                                                        child: TasksWidget(
+                                                          key: Key(
+                                                            'Keynuv_${completedTasksListItem.id}',
+                                                          ),
+                                                          task:
+                                                              completedTasksListItem
+                                                                  .id,
+                                                          status:
+                                                              completedTasksListItem
+                                                                  .status,
+                                                        ),
+                                                      );
+                                                    },
+                                                  );
+                                                },
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),

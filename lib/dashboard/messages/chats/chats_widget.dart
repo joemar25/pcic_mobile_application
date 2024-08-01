@@ -133,6 +133,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                             .headlineMediumFamily,
                                         color: FlutterFlowTheme.of(context)
                                             .primaryBackground,
+                                        fontSize: 28.0,
                                         letterSpacing: 0.0,
                                         useGoogleFonts: GoogleFonts.asMap()
                                             .containsKey(

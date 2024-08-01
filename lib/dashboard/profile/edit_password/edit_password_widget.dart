@@ -316,7 +316,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                               ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).alternate,
+                              color: FlutterFlowTheme.of(context).boarderForm,
                               width: 2.0,
                             ),
                             borderRadius: BorderRadius.circular(12.0),
@@ -415,7 +415,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                               ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).alternate,
+                              color: FlutterFlowTheme.of(context).boarderForm,
                               width: 2.0,
                             ),
                             borderRadius: BorderRadius.circular(12.0),

@@ -16,6 +16,8 @@ import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:xml/xml.dart' as xml;
 
+import 'dart:typed_data';
+
 Future saveGpx(
   String? taskId,
   List<LatLng>? routeCoordinates,
@@ -29,28 +31,30 @@ Future saveGpx(
     // Generate GPX content
     final gpx = _generateGpx(routeCoordinates);
 
-    // Create a temporary file
-    final directory = await getTemporaryDirectory();
-    final file = File('${directory.path}/temp_gpx_$taskId.gpx');
-    await file.writeAsString(gpx);
+    // Convert the GPX string to Uint8List
+    final Uint8List gpxBytes = Uint8List.fromList(utf8.encode(gpx));
 
     // Define the file path in the bucket
     final filePath = '$taskId.gpx';
 
-    // Upload the GPX file to Supabase storage
+    // Upload or update the GPX file in Supabase storage
     final response =
-        await SupaFlow.client.storage.from('gpx_files').upload(filePath, file);
+        await SupaFlow.client.storage.from('gpx_files').uploadBinary(
+              filePath,
+              gpxBytes,
+              fileOptions: FileOptions(
+                contentType: 'application/gpx+xml',
+                upsert: true, // This will override the file if it exists
+              ),
+            );
 
     // Check if the upload was successful
     if (response != null && response.isNotEmpty) {
-      print('GPX file uploaded successfully');
+      print('GPX file uploaded/updated successfully');
       // You can add additional logic here, such as updating the task record with the file URL
     } else {
-      print('Error uploading GPX file: Upload failed');
+      print('Error uploading/updating GPX file: Operation failed');
     }
-
-    // Delete the temporary file
-    await file.delete();
   } catch (e) {
     print('Error saving GPX to Supabase: $e');
   }
@@ -63,7 +67,6 @@ String _generateGpx(List<LatLng> routeCoordinates) {
     builder.attribute('version', '1.1');
     builder.attribute('creator', 'MapangMakabayan');
     builder.attribute('xmlns', 'http://www.topografix.com/GPX/1/1');
-
     builder.element('trk', nest: () {
       builder.element('name', nest: 'MapangMakabayan Track');
       builder.element('trkseg', nest: () {
@@ -76,6 +79,5 @@ String _generateGpx(List<LatLng> routeCoordinates) {
       });
     });
   });
-
   return builder.buildDocument().toXmlString(pretty: true);
 }

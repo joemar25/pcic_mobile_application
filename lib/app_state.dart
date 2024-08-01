@@ -52,6 +52,12 @@ class FFAppState extends ChangeNotifier {
   void deleteAUTHID() {
     secureStorage.delete(key: 'ff_AUTHID');
   }
+
+  bool _startMapDownload = false;
+  bool get startMapDownload => _startMapDownload;
+  set startMapDownload(bool value) {
+    _startMapDownload = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {

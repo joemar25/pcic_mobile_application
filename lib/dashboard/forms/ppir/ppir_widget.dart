@@ -936,7 +936,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                             BoxDecoration(
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .error,
+                                                              .warning,
                                                           boxShadow: const [
                                                             BoxShadow(
                                                               blurRadius: 4.0,
@@ -962,126 +962,50 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                         alignment:
                                                             const AlignmentDirectional(
                                                                 0.0, 0.0),
-                                                        child: Text(
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                            'bi2tyefd' /* Repeat Again */,
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .titleSmall
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmallFamily,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryBtnText,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .titleSmallFamily),
-                                                              ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                                Expanded(
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(16.0, 8.0,
-                                                                16.0, 12.0),
-                                                    child: InkWell(
-                                                      splashColor:
-                                                          Colors.transparent,
-                                                      focusColor:
-                                                          Colors.transparent,
-                                                      hoverColor:
-                                                          Colors.transparent,
-                                                      highlightColor:
-                                                          Colors.transparent,
-                                                      onTap: () async {
-                                                        context.pushNamed(
-                                                          'dashboard',
-                                                          extra: <String,
-                                                              dynamic>{
-                                                            kTransitionInfoKey:
-                                                                const TransitionInfo(
-                                                              hasTransition:
-                                                                  true,
-                                                              transitionType:
-                                                                  PageTransitionType
-                                                                      .fade,
-                                                              duration: Duration(
-                                                                  milliseconds:
-                                                                      200),
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Icon(
+                                                              Icons
+                                                                  .settings_outlined,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .info,
+                                                              size: 24.0,
                                                             ),
-                                                          },
-                                                        );
-                                                      },
-                                                      child: Container(
-                                                        width: 40.0,
-                                                        height: 40.0,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondary,
-                                                          boxShadow: const [
-                                                            BoxShadow(
-                                                              blurRadius: 4.0,
-                                                              color: Color(
-                                                                  0x33000000),
-                                                              offset: Offset(
-                                                                0.0,
-                                                                2.0,
+                                                            Text(
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .getText(
+                                                                'bi2tyefd' /* Repeat Geotag */,
                                                               ),
-                                                            )
-                                                          ],
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      12.0),
-                                                          border: Border.all(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .accent1,
-                                                            width: 2.0,
-                                                          ),
-                                                        ),
-                                                        alignment:
-                                                            const AlignmentDirectional(
-                                                                0.0, 0.0),
-                                                        child: Text(
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                            'w3oxp9o9' /* View Geotag */,
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .titleSmall
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmallFamily,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryBtnText,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .titleSmall
+                                                                  .override(
+                                                                    fontFamily:
                                                                         FlutterFlowTheme.of(context)
-                                                                            .titleSmallFamily),
-                                                              ),
+                                                                            .titleSmallFamily,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryBtnText,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    useGoogleFonts: GoogleFonts
+                                                                            .asMap()
+                                                                        .containsKey(
+                                                                            FlutterFlowTheme.of(context).titleSmallFamily),
+                                                                  ),
+                                                            ),
+                                                          ]
+                                                              .divide(const SizedBox(
+                                                                  width: 5.0))
+                                                              .around(const SizedBox(
+                                                                  width: 5.0)),
                                                         ),
                                                       ),
                                                     ),
@@ -2211,122 +2135,129 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                         child: Divider(
                                           thickness: 2.0,
                                           color: FlutterFlowTheme.of(context)
-                                              .primaryText,
+                                              .boarderForm,
                                         ),
                                       ),
-                                      TextFormField(
-                                        controller: _model
-                                                .ppirRemarksFieldTextController ??=
-                                            TextEditingController(
-                                          text: ppirPpirFormsRow?.ppirRemarks,
-                                        ),
-                                        focusNode:
-                                            _model.ppirRemarksFieldFocusNode,
-                                        autofocus: false,
-                                        textInputAction: TextInputAction.next,
-                                        obscureText: false,
-                                        decoration: InputDecoration(
-                                          labelStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .labelMedium
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 10.0, 0.0, 10.0),
+                                        child: TextFormField(
+                                          controller: _model
+                                                  .ppirRemarksFieldTextController ??=
+                                              TextEditingController(
+                                            text: ppirPpirFormsRow?.ppirRemarks,
+                                          ),
+                                          focusNode:
+                                              _model.ppirRemarksFieldFocusNode,
+                                          autofocus: false,
+                                          textInputAction: TextInputAction.next,
+                                          obscureText: false,
+                                          decoration: InputDecoration(
+                                            labelStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .override(
+                                                      fontFamily:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMediumFamily,
+                                                      letterSpacing: 0.0,
+                                                      useGoogleFonts: GoogleFonts
+                                                              .asMap()
+                                                          .containsKey(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMediumFamily),
+                                                    ),
+                                            hintText:
+                                                FFLocalizations.of(context)
+                                                    .getText(
+                                              '762st5cb' /* Remarks */,
+                                            ),
+                                            hintStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .override(
+                                                      fontFamily:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMediumFamily,
+                                                      letterSpacing: 0.0,
+                                                      useGoogleFonts: GoogleFonts
+                                                              .asMap()
+                                                          .containsKey(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMediumFamily),
+                                                    ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .boarderForm,
+                                                width: 2.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(12.0),
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                width: 2.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(12.0),
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 2.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(12.0),
+                                            ),
+                                            focusedErrorBorder:
+                                                OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 2.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(12.0),
+                                            ),
+                                            contentPadding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    16.0, 24.0, 16.0, 12.0),
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
                                               .override(
                                                 fontFamily:
                                                     FlutterFlowTheme.of(context)
-                                                        .labelMediumFamily,
+                                                        .bodyMediumFamily,
                                                 letterSpacing: 0.0,
                                                 useGoogleFonts: GoogleFonts
                                                         .asMap()
                                                     .containsKey(
                                                         FlutterFlowTheme.of(
                                                                 context)
-                                                            .labelMediumFamily),
+                                                            .bodyMediumFamily),
                                               ),
-                                          hintText: FFLocalizations.of(context)
-                                              .getText(
-                                            '762st5cb' /* Remarks */,
-                                          ),
-                                          hintStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .labelMedium
-                                              .override(
-                                                fontFamily:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelMediumFamily,
-                                                letterSpacing: 0.0,
-                                                useGoogleFonts: GoogleFonts
-                                                        .asMap()
-                                                    .containsKey(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelMediumFamily),
-                                              ),
-                                          enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .boarderForm,
-                                              width: 2.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(12.0),
-                                          ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              width: 2.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(12.0),
-                                          ),
-                                          errorBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                              width: 2.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(12.0),
-                                          ),
-                                          focusedErrorBorder:
-                                              OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                              width: 2.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(12.0),
-                                          ),
-                                          contentPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 24.0, 16.0, 12.0),
+                                          maxLines: 16,
+                                          minLines: 10,
+                                          cursorColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                          validator: _model
+                                              .ppirRemarksFieldTextControllerValidator
+                                              .asValidator(context),
                                         ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMediumFamily,
-                                              letterSpacing: 0.0,
-                                              useGoogleFonts: GoogleFonts
-                                                      .asMap()
-                                                  .containsKey(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMediumFamily),
-                                            ),
-                                        maxLines: 16,
-                                        minLines: 10,
-                                        cursorColor:
-                                            FlutterFlowTheme.of(context)
-                                                .primary,
-                                        validator: _model
-                                            .ppirRemarksFieldTextControllerValidator
-                                            .asValidator(context),
                                       ),
                                       Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
@@ -2454,7 +2385,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                         child: Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 40.0, 0.0, 40.0),
+                                                  0.0, 10.0, 0.0, 10.0),
                                           child: Container(
                                             height: MediaQuery.sizeOf(context)
                                                     .height *
@@ -2701,7 +2632,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                         child: Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 40.0, 0.0, 40.0),
+                                                  0.0, 10.0, 0.0, 10.0),
                                           child: Container(
                                             height: MediaQuery.sizeOf(context)
                                                     .height *
@@ -2991,29 +2922,29 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                     widget.taskId,
                                   ),
                                 );
-                              }
 
-                              context.pushNamed(
-                                'formSuccess',
-                                queryParameters: {
-                                  'taskId': serializeParam(
-                                    ppirPpirFormsRow?.taskId,
-                                    ParamType.String,
-                                  ),
-                                  'type': serializeParam(
-                                    'save',
-                                    ParamType.String,
-                                  ),
-                                }.withoutNulls,
-                                extra: <String, dynamic>{
-                                  kTransitionInfoKey: const TransitionInfo(
-                                    hasTransition: true,
-                                    transitionType: PageTransitionType.scale,
-                                    alignment: Alignment.bottomCenter,
-                                    duration: Duration(milliseconds: 200),
-                                  ),
-                                },
-                              );
+                                context.pushNamed(
+                                  'formSuccess',
+                                  queryParameters: {
+                                    'taskId': serializeParam(
+                                      ppirPpirFormsRow?.taskId,
+                                      ParamType.String,
+                                    ),
+                                    'type': serializeParam(
+                                      'save',
+                                      ParamType.String,
+                                    ),
+                                  }.withoutNulls,
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: const TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType: PageTransitionType.scale,
+                                      alignment: Alignment.bottomCenter,
+                                      duration: Duration(milliseconds: 200),
+                                    ),
+                                  },
+                                );
+                              }
 
                               setState(() {});
                             },
@@ -3153,31 +3084,30 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                           widget.taskId,
                                         ),
                                       );
-                                    } else {
-                                      context.safePop();
-                                    }
 
-                                    context.pushNamed(
-                                      'formSuccess',
-                                      queryParameters: {
-                                        'taskId': serializeParam(
-                                          ppirPpirFormsRow?.taskId,
-                                          ParamType.String,
-                                        ),
-                                        'type': serializeParam(
-                                          'submit',
-                                          ParamType.String,
-                                        ),
-                                      }.withoutNulls,
-                                      extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
-                                          hasTransition: true,
-                                          transitionType:
-                                              PageTransitionType.fade,
-                                          duration: Duration(milliseconds: 200),
-                                        ),
-                                      },
-                                    );
+                                      context.pushNamed(
+                                        'formSuccess',
+                                        queryParameters: {
+                                          'taskId': serializeParam(
+                                            ppirPpirFormsRow?.taskId,
+                                            ParamType.String,
+                                          ),
+                                          'type': serializeParam(
+                                            'submit',
+                                            ParamType.String,
+                                          ),
+                                        }.withoutNulls,
+                                        extra: <String, dynamic>{
+                                          kTransitionInfoKey: const TransitionInfo(
+                                            hasTransition: true,
+                                            transitionType:
+                                                PageTransitionType.fade,
+                                            duration:
+                                                Duration(milliseconds: 200),
+                                          ),
+                                        },
+                                      );
+                                    }
 
                                     setState(() {});
                                   },

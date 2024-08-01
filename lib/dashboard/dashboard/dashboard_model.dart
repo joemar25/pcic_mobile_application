@@ -31,8 +31,8 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   List<TasksRow>? ongoingTasksData;
   // Stores action output result for [Backend Call - Query Rows] action in dashboard widget.
   List<TasksRow>? completedTasksData;
-  // Stores action output result for [Backend Call - SQLite (SELECT USERS)] action in dashboard widget.
-  List<SelectUsersRow>? currentUserProfileOffline;
+  // Stores action output result for [Backend Call - SQLite (SELECT PROFILE)] action in dashboard widget.
+  List<SelectProfileRow>? offlineUserProfile;
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
   // State field(s) for TextField widget.

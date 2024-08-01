@@ -49,6 +49,18 @@ class _LoginWidgetState extends State<LoginWidget>
           ),
         ],
       ),
+      'columnOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: const Offset(0.0, -100.0),
+            end: const Offset(0.0, 0.0),
+          ),
+        ],
+      ),
       'containerOnPageLoadAnimation2': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
@@ -236,7 +248,8 @@ class _LoginWidgetState extends State<LoginWidget>
                             ),
                           ),
                         ],
-                      ),
+                      ).animateOnPageLoad(
+                          animationsMap['columnOnPageLoadAnimation']!),
                     ).animateOnPageLoad(
                         animationsMap['containerOnPageLoadAnimation1']!),
                   ),

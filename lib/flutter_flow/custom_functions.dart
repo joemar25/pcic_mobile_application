@@ -105,3 +105,19 @@ String? getAddress(dynamic data) {
 
   return addressParts.join(', ');
 }
+
+String? lowerCaseWords(String? text) {
+  // lower Case Text
+  if (text == null) {
+    return null;
+  }
+  return text.toLowerCase();
+}
+
+String? capitalizeWords(String? text) {
+  // make all text all capital
+  if (text == null || text.isEmpty) {
+    return text;
+  }
+  return text.toUpperCase();
+}

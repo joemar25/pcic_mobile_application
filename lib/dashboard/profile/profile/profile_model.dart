@@ -8,8 +8,6 @@ class ProfileModel extends FlutterFlowModel<ProfileWidget> {
 
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
-  // State field(s) for Switch widget.
-  bool? switchValue;
 
   @override
   void initState(BuildContext context) {

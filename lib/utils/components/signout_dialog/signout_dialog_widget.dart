@@ -79,7 +79,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                     ),
                     Divider(
                       thickness: 2.0,
-                      color: FlutterFlowTheme.of(context).secondaryText,
+                      color: FlutterFlowTheme.of(context).boarderForm,
                     ),
                   ],
                 ),

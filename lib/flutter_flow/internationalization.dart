@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    '9h1tavaf': {
+    'zhv2ywch': {
       'en': '',
       'tl': '',
     },
@@ -186,8 +186,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Account',
       'tl': '',
     },
-    'j5gz4150': {
+    'crwnnuqi': {
       'en': 'Dark Mode',
+      'tl': '',
+    },
+    'a32n944v': {
+      'en': 'Light Mode',
       'tl': '',
     },
     'fr9mgbfc': {
@@ -317,7 +321,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    '3cxwfr3x': {
+    'zn8357vv': {
       'en': '',
       'tl': '',
     },
@@ -540,12 +544,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Geotag Control',
     },
     'bi2tyefd': {
-      'en': 'Repeat Again',
+      'en': 'Repeat Geotag',
       'tl': 'Ulitin Muli',
-    },
-    'w3oxp9o9': {
-      'en': 'View Geotag',
-      'tl': 'Tingnan ang Geotag',
     },
     'quqb1avc': {
       'en': 'Seed Variety',
@@ -791,9 +791,9 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Lat: ',
       'tl': '',
     },
-    'f8wojxym': {
+    'cmxtd6yw': {
       'en': 'Finish',
-      'tl': 'Tapusin',
+      'tl': '',
     },
     '0o8w3vlv': {
       'en': 'Home',
@@ -822,284 +822,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     'p5v52glk': {
-      'en': 'Home',
-      'tl': '',
-    },
-  },
-  // backupLogin
-  {
-    'ifbrpsmb': {
-      'en': 'Page Title',
-      'tl': '',
-    },
-    't7x9izgt': {
-      'en': 'Welcome Back',
-      'tl': '',
-    },
-    'atiwkpq2': {
-      'en': 'Please sign in to continue',
-      'tl': '',
-    },
-    '0owe4y3y': {
-      'en': 'Enter your email address',
-      'tl': '',
-    },
-    '1zxmy7cy': {
-      'en': '',
-      'tl': '',
-    },
-    'nbep94m3': {
-      'en': 'Enter your password',
-      'tl': '',
-    },
-    'klnfli61': {
-      'en': 'Login',
-      'tl': '',
-    },
-    'hd3ab2uq': {
-      'en': 'Forgot Password?',
-      'tl': '',
-    },
-    'uwanhobd': {
-      'en': 'Field is required',
-      'tl': '',
-    },
-    'zbb9mps1': {
-      'en': 'Please choose an option from the dropdown',
-      'tl': '',
-    },
-    'rdldhj65': {
-      'en': 'Field is required',
-      'tl': '',
-    },
-    'jymqj7c4': {
-      'en': 'Password must be atleast 8 characters',
-      'tl': '',
-    },
-    'c7gb21gr': {
-      'en': 'Please choose an option from the dropdown',
-      'tl': '',
-    },
-    'z8fvrgds': {
-      'en': 'Home',
-      'tl': '',
-    },
-  },
-  // backupForgotPassword
-  {
-    'w9dcjeuf': {
-      'en': 'Forgot Password',
-      'tl': '',
-    },
-    'c8nlfozw': {
-      'en':
-          'We will send you an email with a link to reset your password, please enter the email associated with your account below.',
-      'tl': '',
-    },
-    '15hoxiqu': {
-      'en': 'Your email address...',
-      'tl': '',
-    },
-    '8y92mn30': {
-      'en': 'Enter your email...',
-      'tl': '',
-    },
-    '9395kqfh': {
-      'en': 'Send Link',
-      'tl': '',
-    },
-    '0ll79bjc': {
-      'en': 'Home',
-      'tl': '',
-    },
-  },
-  // backupDashboard
-  {
-    'ytoxb7xh': {
-      'en': 'Welcome',
-      'tl': '',
-    },
-    'i65iq3wl': {
-      'en': 'Good morning ',
-      'tl': '',
-    },
-    'zqfomu4b': {
-      'en': '!',
-      'tl': '',
-    },
-    'auwndh4y': {
-      'en': 'Task Overview',
-      'tl': '',
-    },
-    'jmswm8xh': {
-      'en': 'For Dispatch',
-      'tl': '',
-    },
-    'gt3oe93z': {
-      'en': 'Ongoing',
-      'tl': '',
-    },
-    'oqyndspo': {
-      'en': 'Completed',
-      'tl': '',
-    },
-    '1o3tx9ww': {
-      'en': 'Find your task...',
-      'tl': '',
-    },
-    'u0ilplab': {
-      'en': 'Option 1',
-      'tl': '',
-    },
-    'qf1opmxm': {
-      'en': 'For Dispatch',
-      'tl': '',
-    },
-    '6384v6yp': {
-      'en': 'Ongoing',
-      'tl': '',
-    },
-    'uvmezpht': {
-      'en': 'Completed',
-      'tl': '',
-    },
-    'fh3buetp': {
-      'en': 'Button',
-      'tl': '',
-    },
-    'd5ntmcmy': {
-      'en': 'Home',
-      'tl': '',
-    },
-  },
-  // backupChats
-  {
-    'g0gx6khv': {
-      'en': 'Messages',
-      'tl': '',
-    },
-    'f4m503tg': {
-      'en': 'Below are messages with your friends.',
-      'tl': '',
-    },
-    'izdfmaub': {
-      'en': 'Below are messages with your friends.',
-      'tl': '',
-    },
-    '2ji9qsfy': {
-      'en': 'Messages',
-      'tl': '',
-    },
-  },
-  // backupMessages
-  {
-    'sb8stsca': {
-      'en': 'Type here to respond...',
-      'tl': '',
-    },
-    'iydwmdqh': {
-      'en': 'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',
-      'tl': '',
-    },
-    'uyssa78w': {
-      'en': 'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',
-      'tl': '',
-    },
-    '6ftjw0qe': {
-      'en': 'Home',
-      'tl': '',
-    },
-  },
-  // backupProfile
-  {
-    'yk077j0g': {
-      'en': 'Profile',
-      'tl': '',
-    },
-    'znb7ar6l': {
-      'en': 'Account Settings',
-      'tl': '',
-    },
-    'bvrij3mk': {
-      'en': 'Switch to Dark Mode',
-      'tl': '',
-    },
-    '49lns8nt': {
-      'en': 'Switch to Light Mode',
-      'tl': '',
-    },
-    'tirn6r5d': {
-      'en': 'Edit Profile',
-      'tl': '',
-    },
-    't74l5yf1': {
-      'en': 'Change Password',
-      'tl': '',
-    },
-    'hrdvndcs': {
-      'en': 'Log Out',
-      'tl': '',
-    },
-    'w3okt7py': {
-      'en': 'Account',
-      'tl': '',
-    },
-  },
-  // backupEditProfile
-  {
-    'gpwo6064': {
-      'en': 'Edit Profile',
-      'tl': '',
-    },
-    '76dnuh7r': {
-      'en': 'Your Name',
-      'tl': '',
-    },
-    'vk8xqirp': {
-      'en': 'Save Changes',
-      'tl': '',
-    },
-  },
-  // backupEditPassword
-  {
-    'gog0ic06': {
-      'en': 'Change Password',
-      'tl': '',
-    },
-    'hcqi0du5': {
-      'en':
-          'We will reset your password. Please enter the password and confirmation password below, and then confirm.',
-      'tl': '',
-    },
-    'xmbya7l4': {
-      'en': 'Old Password',
-      'tl': '',
-    },
-    '9nhjpdxo': {
-      'en': 'Enter Old Password...',
-      'tl': '',
-    },
-    'nt87phvt': {
-      'en': 'New Password',
-      'tl': '',
-    },
-    's5374frr': {
-      'en': 'Enter New Password...',
-      'tl': '',
-    },
-    '829dk1v0': {
-      'en': 'Confirm Password',
-      'tl': '',
-    },
-    'hvtbd07l': {
-      'en': 'Confirm New Password...',
-      'tl': '',
-    },
-    'jt3rji1z': {
-      'en': 'Confirm Changes',
-      'tl': '',
-    },
-    'fpwl7oma': {
       'en': 'Home',
       'tl': '',
     },

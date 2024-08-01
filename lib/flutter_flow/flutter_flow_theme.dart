@@ -78,6 +78,7 @@ abstract class FlutterFlowTheme {
   late Color inProgressIcon;
   late Color completeIcon;
   late Color boarderForm;
+  late Color wifiBars;
 
   @Deprecated('Use displaySmallFamily instead')
   String get title1Family => displaySmallFamily;
@@ -197,6 +198,7 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color inProgressIcon = const Color(0xFFE0A267);
   late Color completeIcon = const Color(0xFF15803E);
   late Color boarderForm = const Color(0xFFD0E1EF);
+  late Color wifiBars = const Color(0xFF336A4A);
 }
 
 abstract class Typography {
@@ -608,6 +610,7 @@ class DarkModeTheme extends FlutterFlowTheme {
   late Color inProgressIcon = const Color(0xFFFFFFFF);
   late Color completeIcon = const Color(0xFFFFFFFF);
   late Color boarderForm = const Color(0x7F658593);
+  late Color wifiBars = const Color(0xFF228B22);
 }
 
 extension TextStyleHelper on TextStyle {
