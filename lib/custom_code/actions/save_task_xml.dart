@@ -20,8 +20,8 @@ import 'package:intl/intl.dart';
 Future<String> saveTaskXml(String? genratedTaskXml) async {
   print('Starting saveTaskXml function');
 
-  if (generatedTaskXml == null || generatedTaskXml.isEmpty) {
-    print('Invalid input: generatedTaskXml is null or empty');
+  if (genratedTaskXml == null || genratedTaskXml.isEmpty) {
+    print('Invalid input: genratedTaskXml is null or empty');
     return 'Error: Invalid XML input';
   }
 
@@ -45,8 +45,7 @@ Future<String> saveTaskXml(String? genratedTaskXml) async {
 
     // Convert the XML string to Uint8List
     print('Converting XML to Uint8List');
-    final Uint8List xmlBytes =
-        Uint8List.fromList(utf8.encode(generatedTaskXml));
+    final Uint8List xmlBytes = Uint8List.fromList(utf8.encode(genratedTaskXml));
     print('XML converted to Uint8List successfully');
 
     // Upload the XML file to Supabase storage
@@ -66,7 +65,7 @@ Future<String> saveTaskXml(String? genratedTaskXml) async {
 
       // Save XML locally
       print('Saving XML locally');
-      await _saveXmlLocally(fileName, generatedTaskXml);
+      await _saveXmlLocally(fileName, genratedTaskXml);
       print('XML saved locally successfully');
 
       return 'XML saved successfully both in Supabase and locally';
