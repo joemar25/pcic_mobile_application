@@ -628,7 +628,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                 hasTransition: true,
                                                 transitionType:
                                                     PageTransitionType
-                                                        .topToBottom,
+                                                        .rightToLeft,
                                               ),
                                             },
                                           );
@@ -709,7 +709,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                 hasTransition: true,
                                                 transitionType:
                                                     PageTransitionType
-                                                        .topToBottom,
+                                                        .rightToLeft,
                                               ),
                                             },
                                           );
