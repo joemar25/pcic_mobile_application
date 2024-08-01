@@ -602,6 +602,8 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget> {
                             widget.taskId,
                           ),
                         );
+                        await Future.delayed(
+                            const Duration(milliseconds: 5000));
 
                         context.pushNamed(
                           'ppir',

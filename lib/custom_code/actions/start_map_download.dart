@@ -20,7 +20,6 @@ import 'dart:math';
 Future<void> startMapDownload(String accessToken) async {
   bool serviceEnabled;
   LocationPermission permission;
-  double lastReportedProgress = 0.0;
 
   serviceEnabled = await Geolocator.isLocationServiceEnabled();
   if (!serviceEnabled) {
@@ -85,10 +84,6 @@ Future<void> startMapDownload(String accessToken) async {
         maxReportInterval: Duration(seconds: 1),
       )
       .listen((progress) {
-    FFAppState().update(() {
-      FFAppState().mapDownloadProgress =
-          double.parse(progress.percentageProgress.toStringAsFixed(2)) / 100;
-    });
-    print('Download progress: ${FFAppState().mapDownloadProgress}');
+    print(progress.percentageProgress);
   });
 }
