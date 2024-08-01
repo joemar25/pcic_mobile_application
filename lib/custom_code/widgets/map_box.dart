@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'index.dart'; // Imports other custom widgets
+
 import 'dart:async';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart' as ll;
@@ -317,7 +319,6 @@ class _MapBoxState extends State<MapBox> {
           _routeCoordinates.add(_routeCoordinates.first);
         }
       });
-      _calculateAndDisplayArea();
 
       // Convert ll.LatLng to FlutterFlow's LatLng
       List<LatLng> convertedCoordinates = _routeCoordinates
@@ -331,41 +332,6 @@ class _MapBoxState extends State<MapBox> {
       /// saveGpx('idk', convertedCoordinates);
       saveGpx(widget.taskId ?? 'default_task_id', convertedCoordinates);
     }
-  }
-
-  void _calculateAndDisplayArea() {
-    double area = _calculateArea();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Tracking Complete'),
-            content: Text(
-                'Total area tracked: ${area.toStringAsFixed(2)} sq meters'),
-            actions: <Widget>[
-              TextButton(
-                child: Text('OK'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-    });
-  }
-
-  double _calculateArea() {
-    if (_routeCoordinates.length < 3) return 0;
-    double area = 0;
-    for (int i = 0; i < _routeCoordinates.length; i++) {
-      int j = (i + 1) % _routeCoordinates.length;
-      area += (_routeCoordinates[i].longitude * _routeCoordinates[j].latitude) -
-          (_routeCoordinates[j].longitude * _routeCoordinates[i].latitude);
-    }
-    return (area.abs() * 0.5) * 111319.9;
   }
 
   @override

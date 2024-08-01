@@ -1,4 +1,5 @@
 import '/backend/supabase/supabase.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -8,6 +9,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/permissions_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -30,11 +32,14 @@ class GeotaggingWidget extends StatefulWidget {
   State<GeotaggingWidget> createState() => _GeotaggingWidgetState();
 }
 
-class _GeotaggingWidgetState extends State<GeotaggingWidget> {
+class _GeotaggingWidgetState extends State<GeotaggingWidget>
+    with TickerProviderStateMixin {
   late GeotaggingModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   LatLng? currentUserLocationValue;
+
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
@@ -60,6 +65,21 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget> {
 
     getCurrentUserLocation(defaultLocation: const LatLng(0.0, 0.0), cached: true)
         .then((loc) => setState(() => currentUserLocationValue = loc));
+    animationsMap.addAll({
+      'iconOnPageLoadAnimation': AnimationInfo(
+        loop: true,
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          RotateEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
+    });
   }
 
   @override
@@ -548,7 +568,8 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget> {
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
                                       size: 20.0,
-                                    ),
+                                    ).animateOnPageLoad(animationsMap[
+                                        'iconOnPageLoadAnimation']!),
                                   ),
                                 if (_model.isFinished == false)
                                   Padding(
