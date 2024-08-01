@@ -199,7 +199,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                     child: SizedBox(
                                       height:
                                           MediaQuery.sizeOf(context).height *
-                                              0.1,
+                                              0.12,
                                       child: const ToastWidget(
                                         notificationTitle: 'Success',
                                         notificationMessage:
