@@ -499,6 +499,15 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                       ),
                                       Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 16.0, 0.0, 16.0),
+                                        child: Divider(
+                                          thickness: 2.0,
+                                          color: FlutterFlowTheme.of(context)
+                                              .boarderForm,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 12.0),
                                         child: Text(
                                           FFLocalizations.of(context).getText(
@@ -1044,15 +1053,6 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                           validator: _model
                                               .ppirTrackFarmlocTextControllerValidator
                                               .asValidator(context),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 16.0, 0.0, 16.0),
-                                        child: Divider(
-                                          thickness: 2.0,
-                                          color: FlutterFlowTheme.of(context)
-                                              .boarderForm,
                                         ),
                                       ),
                                       Padding(
