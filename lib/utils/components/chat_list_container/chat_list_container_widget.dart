@@ -94,7 +94,7 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
                 kTransitionInfoKey: const TransitionInfo(
                   hasTransition: true,
                   transitionType: PageTransitionType.rightToLeft,
-                  duration: Duration(milliseconds: 150),
+                  duration: Duration(milliseconds: 250),
                 ),
               },
             );

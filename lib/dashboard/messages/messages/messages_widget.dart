@@ -107,7 +107,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                     kTransitionInfoKey: const TransitionInfo(
                       hasTransition: true,
                       transitionType: PageTransitionType.leftToRight,
-                      duration: Duration(milliseconds: 200),
+                      duration: Duration(milliseconds: 250),
                     ),
                   },
                 );

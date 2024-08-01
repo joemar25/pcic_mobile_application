@@ -49,7 +49,7 @@ Future startMapDownload(String accessToken) async {
         maxReportInterval: Duration(seconds: 1),
       )
       .listen((progress) {
-    int roundedProgress = (progress.percentageProgress * 100).round();
-    FFAppState().mapDownloadProgress = roundedProgress.toDouble();
+    FFAppState().mapDownloadProgress =
+        double.parse(progress.percentageProgress.toStringAsFixed(2));
   });
 }
