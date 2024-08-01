@@ -107,7 +107,7 @@ class _SignatureWidgetState extends State<SignatureWidget>
                     boxShadow: const [
                       BoxShadow(
                         blurRadius: 3.0,
-                        color: Color(0x33000000),
+                        color: Color(0xFF17282E),
                         offset: Offset(
                           0.0,
                           1.0,
@@ -116,7 +116,7 @@ class _SignatureWidgetState extends State<SignatureWidget>
                     ],
                     borderRadius: BorderRadius.circular(16.0),
                     border: Border.all(
-                      color: FlutterFlowTheme.of(context).alternate,
+                      color: Colors.transparent,
                       width: 1.0,
                     ),
                   ),
@@ -283,9 +283,6 @@ class _SignatureWidgetState extends State<SignatureWidget>
                                                   0.0, 0.0, 0.0, 16.0),
                                           child: Container(
                                             decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
                                               borderRadius:
                                                   BorderRadius.circular(16.0),
                                               border: Border.all(

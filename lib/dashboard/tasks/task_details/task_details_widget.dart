@@ -2773,8 +2773,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                 context)
                                                             .height *
                                                         0.2,
-                                                    child:
-                                                        custom_widgets.Antonkz(
+                                                    child: custom_widgets
+                                                        .MapBase64(
                                                       width: MediaQuery.sizeOf(
                                                                   context)
                                                               .width *

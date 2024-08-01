@@ -157,7 +157,7 @@ class _MapBoxState extends State<MapBox> {
       intervalDuration: const Duration(seconds: 1),
       forceLocationManager: true,
       foregroundNotificationConfig: const ForegroundNotificationConfig(
-        notificationText: "MapangMakabayan is tracking your location",
+        notificationText: "PCIC is tracking your location",
         notificationTitle: "Location Tracking Active",
         enableWakeLock: true,
       ),

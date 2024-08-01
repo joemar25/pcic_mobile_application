@@ -820,6 +820,40 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                               ),
+                              FFButtonWidget(
+                                onPressed: () async {
+                                  await actions.resetMapStore();
+                                },
+                                text: FFLocalizations.of(context).getText(
+                                  'rm9fano9' /* Reset Map Tiless */,
+                                ),
+                                options: FFButtonOptions(
+                                  height: 40.0,
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      24.0, 0.0, 24.0, 0.0),
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .titleSmallFamily,
+                                        color: Colors.white,
+                                        letterSpacing: 0.0,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmallFamily),
+                                      ),
+                                  elevation: 3.0,
+                                  borderSide: const BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                              ),
                               Divider(
                                 height: 40.0,
                                 thickness: 1.0,

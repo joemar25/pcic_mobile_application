@@ -367,7 +367,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                           child: TextFormField(
                             controller: _model.textController,
                             focusNode: _model.textFieldFocusNode,
-                            autofocus: false,
+                            autofocus: true,
                             obscureText: false,
                             decoration: InputDecoration(
                               labelStyle: FlutterFlowTheme.of(context)

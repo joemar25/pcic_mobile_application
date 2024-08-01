@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'xcjonny6': {
+    'k3kkg31g': {
       'en': '',
       'tl': '',
     },
@@ -204,6 +204,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'ujnyyxhr': {
       'en': 'Download Map',
+      'tl': '',
+    },
+    'rm9fano9': {
+      'en': 'Reset Map Tiless',
       'tl': '',
     },
     'qi3464p6': {
@@ -325,7 +329,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    'llz85nn1': {
+    'pjxuhjj8': {
       'en': '',
       'tl': '',
     },
