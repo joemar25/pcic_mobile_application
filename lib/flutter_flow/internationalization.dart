@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    '75o42z9o': {
+    'tbuy7bfv': {
       'en': '',
       'tl': '',
     },
@@ -311,11 +311,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // messages
   {
-    'fzme6tgx': {
-      'en':
-          'Hello World oidtgiywiutuewutuutuituiutueiututuuthgfdhhfhfhfhfhfhfhhhfhfhf',
-      'tl': '',
-    },
     'qki0150o': {
       'en':
           'Hello World oidtgiywiutuewutuutuituiutueiututuuthgfdhhfhfhfhfhfhfhhhfhfhf',
@@ -329,7 +324,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    'l1orrkh7': {
+    '085g2f01': {
       'en': '',
       'tl': '',
     },

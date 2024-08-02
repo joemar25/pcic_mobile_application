@@ -86,6 +86,11 @@ Future<void> startMapDownload(String accessToken) async {
         maxReportInterval: Duration(seconds: 1),
       )
       .listen((progress) {
+    // Update FlutterFlow app state with the current progress
+    FFAppState().mapDownloadProgress = progress.percentageProgress.toDouble();
+
+    // This line is necessary to trigger a UI update in FlutterFlow
+    FFAppState().update(() {});
     print(progress.percentageProgress);
   });
 }

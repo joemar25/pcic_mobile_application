@@ -202,9 +202,9 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                         children: [
                                           Expanded(
                                             child: Text(
-                                              FFLocalizations.of(context)
-                                                  .getText(
-                                                'fzme6tgx' /* Hello World oidtgiywiutuewutuu... */,
+                                              valueOrDefault<String>(
+                                                messagesMessagesRow?.content,
+                                                'content',
                                               ),
                                               textAlign: TextAlign.justify,
                                               style:
