@@ -74,6 +74,7 @@ class _SssWidgetState extends State<SssWidget> {
                     height: 700.0,
                     accessToken:
                         'pk.eyJ1IjoicXVhbmJ5c29sdXRpb25zIiwiYSI6ImNsdWhrejRwdDJyYnAya3A2NHFqbXlsbHEifQ.WJ5Ng-AO-dTrlkUHD_ebMw',
+                    taskId: 'N/A',
                   ),
                 ),
               ),
