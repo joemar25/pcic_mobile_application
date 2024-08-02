@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'og5loz0t': {
+    'i0tvmadl': {
       'en': '',
       'tl': '',
     },
@@ -324,7 +324,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    '4dun65k0': {
+    '0f74ze20': {
       'en': '',
       'tl': '',
     },
@@ -815,21 +815,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Bahay',
     },
   },
-  // otherForm
-  {
-    'fa31tvpx': {
-      'en': 'Area 69',
-      'tl': 'Lugar 69',
-    },
-    '9ctwde8e': {
-      'en': 'Mar said, This is under maintenance!',
-      'tl': 'Sabi ni Mar, Under maintenance ito!',
-    },
-    '9s1xr77j': {
-      'en': 'Home',
-      'tl': 'Bahay',
-    },
-  },
   // sss
   {
     'yigfujp5': {
@@ -963,7 +948,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
-  // user_chats
+  // userChats
   {
     'gb6dx75i': {
       'en': 'Select User',

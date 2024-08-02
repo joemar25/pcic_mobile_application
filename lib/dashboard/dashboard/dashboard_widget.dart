@@ -41,6 +41,9 @@ class _DashboardWidgetState extends State<DashboardWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      if (RootPageContext.isInactiveRootPage(context)) {
+        return;
+      }
       // Online Query for Users
       _model.currentUserProfile = await UsersTable().queryRows(
         queryFn: (q) => q.eq(
@@ -693,11 +696,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.center,
                                                 children: [
-                                                  Text(
-                                                    valueOrDefault<String>(
-                                                      _model.fdc?.toString(),
-                                                      '0',
-                                                    ),
+                                                  AnimatedDefaultTextStyle(
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .displaySmall
@@ -717,6 +716,15 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                           context)
                                                                       .displaySmallFamily),
                                                         ),
+                                                    duration: const Duration(
+                                                        milliseconds: 600),
+                                                    curve: Curves.easeIn,
+                                                    child: Text(
+                                                      valueOrDefault<String>(
+                                                        _model.fdc?.toString(),
+                                                        '0',
+                                                      ),
+                                                    ),
                                                   ),
                                                   Icon(
                                                     Icons.timer_sharp,
@@ -802,11 +810,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.center,
                                                 children: [
-                                                  Text(
-                                                    valueOrDefault<String>(
-                                                      _model.onc?.toString(),
-                                                      '0',
-                                                    ),
+                                                  AnimatedDefaultTextStyle(
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .displaySmall
@@ -829,6 +833,15 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                           context)
                                                                       .displaySmallFamily),
                                                         ),
+                                                    duration: const Duration(
+                                                        milliseconds: 600),
+                                                    curve: Curves.easeIn,
+                                                    child: Text(
+                                                      valueOrDefault<String>(
+                                                        _model.onc?.toString(),
+                                                        '0',
+                                                      ),
+                                                    ),
                                                   ),
                                                   Icon(
                                                     Icons.incomplete_circle,
@@ -913,11 +926,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.center,
                                                 children: [
-                                                  Text(
-                                                    valueOrDefault<String>(
-                                                      _model.cc?.toString(),
-                                                      '0',
-                                                    ),
+                                                  AnimatedDefaultTextStyle(
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .displaySmall
@@ -940,6 +949,15 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                           context)
                                                                       .displaySmallFamily),
                                                         ),
+                                                    duration: const Duration(
+                                                        milliseconds: 600),
+                                                    curve: Curves.easeIn,
+                                                    child: Text(
+                                                      valueOrDefault<String>(
+                                                        _model.cc?.toString(),
+                                                        '0',
+                                                      ),
+                                                    ),
                                                   ),
                                                   Icon(
                                                     Icons.check_circle,
