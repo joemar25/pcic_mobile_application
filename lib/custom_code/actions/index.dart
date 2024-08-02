@@ -7,4 +7,3 @@ export 'initialize_f_m_t_c_backend.dart' show initializeFMTCBackend;
 export 'save_gpx.dart' show saveGpx;
 export 'start_map_download.dart' show startMapDownload;
 export 'reset_map_store.dart' show resetMapStore;
-export 'get_ip_address.dart' show getIpAddress;

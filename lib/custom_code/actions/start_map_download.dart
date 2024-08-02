@@ -84,6 +84,8 @@ Future<void> startMapDownload(String accessToken) async {
         maxReportInterval: Duration(seconds: 1),
       )
       .listen((progress) {
-    FFPageState().downloadProgress = progress.percentageProgress;
+    setState(() {
+      FFAppState().mapDownloadProgress = progress.percentageProgress;
+    });
   });
 }

@@ -116,7 +116,7 @@ class _ToastWidgetState extends State<ToastWidget>
                 Expanded(
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
@@ -140,7 +140,7 @@ class _ToastWidgetState extends State<ToastWidget>
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .titleSmallFamily,
-                                  fontSize: 10.0,
+                                  fontSize: 16.0,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
@@ -166,7 +166,7 @@ class _ToastWidgetState extends State<ToastWidget>
                                           .labelMediumFamily),
                                 ),
                       ),
-                    ].divide(const SizedBox(height: 4.0)),
+                    ].divide(const SizedBox(height: 2.0)),
                   ),
                 ),
                 FlutterFlowIconButton(
