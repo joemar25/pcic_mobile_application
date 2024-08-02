@@ -47,13 +47,9 @@ Future<void> startMapDownload(String accessToken) async {
   Position position = await Geolocator.getCurrentPosition();
   ll.LatLng currentLocation = ll.LatLng(position.latitude, position.longitude);
 
-// Create a bounding box around the user's location (approximately 2km in each direction)
-  double latDelta = 2.0 / 111.32; // Approx. 2 km in latitude
-  double lonDelta = 2.0 /
-      (111.32 *
-          cos(currentLocation.latitude *
-              pi /
-              180)); // Approx. 2 km in longitude
+  double latDelta = 0.5 / 111.32;
+  double lonDelta =
+      0.5 / (111.32 * cos(currentLocation.latitude * pi / 180)); //5meters
 
   LatLngBounds bounds = LatLngBounds(
     ll.LatLng(currentLocation.latitude - latDelta,

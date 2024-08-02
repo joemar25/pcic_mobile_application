@@ -8,32 +8,34 @@ import '/utils/components/empty_lists/empty_lists_widget.dart';
 import '/utils/components/user_chats/user_chats_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'chats_model.dart';
-export 'chats_model.dart';
+import 'chats_copy_model.dart';
+export 'chats_copy_model.dart';
 
-class ChatsWidget extends StatefulWidget {
-  const ChatsWidget({super.key});
+class ChatsCopyWidget extends StatefulWidget {
+  const ChatsCopyWidget({super.key});
 
   @override
-  State<ChatsWidget> createState() => _ChatsWidgetState();
+  State<ChatsCopyWidget> createState() => _ChatsCopyWidgetState();
 }
 
-class _ChatsWidgetState extends State<ChatsWidget> {
-  late ChatsModel _model;
+class _ChatsCopyWidgetState extends State<ChatsCopyWidget> {
+  late ChatsCopyModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ChatsModel());
+    _model = createModel(context, () => ChatsCopyModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.messageQuery = await MessagesTable().queryRows(
-        queryFn: (q) => q,
-      );
+      await UserLogsTable().insert({
+        'activity': 'Checking messages',
+        'user_id': currentUserUid,
+      });
     });
   }
 
@@ -94,7 +96,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                   children: [
                     Text(
                       FFLocalizations.of(context).getText(
-                        'ks6c14gr' /* Compose */,
+                        'treq1jtu' /* Compose */,
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily:
@@ -143,7 +145,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                 ),
                                 Text(
                                   FFLocalizations.of(context).getText(
-                                    'pue7zwxs' /* Messages */,
+                                    'bpbckr0j' /* Messages */,
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .headlineMedium
@@ -201,7 +203,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                   Expanded(
                                     child: Text(
                                       FFLocalizations.of(context).getText(
-                                        '0ovitz68' /* Conversations */,
+                                        '9rprm1n4' /* Conversations */,
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -228,11 +230,30 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    Builder(
-                                      builder: (context) {
-                                        final msgQ =
-                                            _model.messageQuery?.toList() ?? [];
-                                        if (msgQ.isEmpty) {
+                                    FutureBuilder<List<ChatsRow>>(
+                                      future: ChatsTable().queryRows(
+                                        queryFn: (q) => q.order('updated_at'),
+                                      ),
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 100.0,
+                                              height: 100.0,
+                                              child: SpinKitRipple(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                size: 100.0,
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                        List<ChatsRow> listViewChatsRowList =
+                                            snapshot.data!;
+
+                                        if (listViewChatsRowList.isEmpty) {
                                           return Center(
                                             child: SizedBox(
                                               height: MediaQuery.sizeOf(context)
@@ -250,30 +271,34 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                               vertical: 20.0),
                                           shrinkWrap: true,
                                           scrollDirection: Axis.vertical,
-                                          itemCount: msgQ.length,
+                                          itemCount:
+                                              listViewChatsRowList.length,
                                           separatorBuilder: (_, __) =>
                                               const SizedBox(height: 20.0),
-                                          itemBuilder: (context, msgQIndex) {
-                                            final msgQItem = msgQ[msgQIndex];
+                                          itemBuilder:
+                                              (context, listViewIndex) {
+                                            final listViewChatsRow =
+                                                listViewChatsRowList[
+                                                    listViewIndex];
                                             return wrapWithModel(
                                               model: _model
                                                   .chatListContainerModels
                                                   .getModel(
-                                                msgQItem.id.toString(),
-                                                msgQIndex,
+                                                listViewChatsRow.id,
+                                                listViewIndex,
                                               ),
                                               updateCallback: () =>
                                                   setState(() {}),
                                               child: ChatListContainerWidget(
                                                 key: Key(
-                                                  'Keyo46_${msgQItem.id.toString()}',
+                                                  'Key1vs_${listViewChatsRow.id}',
                                                 ),
-                                                chatId: msgQItem.chatId!,
-                                                receiverId:
-                                                    msgQItem.senderName ==
-                                                            currentUserUid
-                                                        ? msgQItem.receiverName!
-                                                        : msgQItem.senderName!,
+                                                chatId: listViewChatsRow.id,
+                                                receiverId: listViewChatsRow
+                                                            .user1Id ==
+                                                        currentUserUid
+                                                    ? listViewChatsRow.user2Id!
+                                                    : listViewChatsRow.user1Id!,
                                               ),
                                             );
                                           },

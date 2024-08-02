@@ -27,9 +27,6 @@ class FFAppState extends ChangeNotifier {
           await secureStorage.getDouble('ff_mapDownloadProgress') ??
               _mapDownloadProgress;
     });
-    await _safeInitAsync(() async {
-      _ipAddress = await secureStorage.getString('ff_ipAddress') ?? _ipAddress;
-    });
   }
 
   void update(VoidCallback callback) {
@@ -77,17 +74,6 @@ class FFAppState extends ChangeNotifier {
 
   void deleteMapDownloadProgress() {
     secureStorage.delete(key: 'ff_mapDownloadProgress');
-  }
-
-  String _ipAddress = '';
-  String get ipAddress => _ipAddress;
-  set ipAddress(String value) {
-    _ipAddress = value;
-    secureStorage.setString('ff_ipAddress', value);
-  }
-
-  void deleteIpAddress() {
-    secureStorage.delete(key: 'ff_ipAddress');
   }
 }
 

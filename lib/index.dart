@@ -23,3 +23,5 @@ export '/dashboard/geotag/geotagging/geotagging_widget.dart'
 export '/dashboard/forms/other_form/other_form_widget.dart'
     show OtherFormWidget;
 export '/utils/test/sss/sss_widget.dart' show SssWidget;
+export '/dashboard/messages/chats_copy/chats_copy_widget.dart'
+    show ChatsCopyWidget;

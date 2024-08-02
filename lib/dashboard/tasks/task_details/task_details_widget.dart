@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/toast/toast_widget.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
@@ -186,34 +187,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                   widget.taskId,
                                 ),
                               );
-                              await showModalBottomSheet(
-                                isScrollControlled: true,
-                                backgroundColor: Colors.transparent,
-                                enableDrag: false,
-                                context: context,
-                                builder: (context) {
-                                  return GestureDetector(
-                                    onTap: () => _model
-                                            .unfocusNode.canRequestFocus
-                                        ? FocusScope.of(context)
-                                            .requestFocus(_model.unfocusNode)
-                                        : FocusScope.of(context).unfocus(),
-                                    child: Padding(
-                                      padding: MediaQuery.viewInsetsOf(context),
-                                      child: SizedBox(
-                                        height:
-                                            MediaQuery.sizeOf(context).height *
-                                                0.1,
-                                        child: const ToastWidget(
-                                          notificationTitle: 'Success',
-                                          notificationMessage:
-                                              'You have successfully edited the farm location!',
-                                        ),
-                                      ),
-                                    ),
-                                  );
+                              await actions.successToast(
+                                context,
+                                'Success!',
+                                'You have successfully edited the farm location!',
+                                600,
+                                3000,
+                                () async {
+                                  context.safePop();
                                 },
-                              ).then((value) => safeSetState(() {}));
+                                () async {},
+                              );
                             },
                             child: const FaIcon(
                               FontAwesomeIcons.save,
