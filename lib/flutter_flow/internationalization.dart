@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'dv9fmp8r': {
+    'hf548o2j': {
       'en': '',
       'tl': '',
     },
@@ -200,10 +200,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'bl5bsc0f': {
       'en': 'Change Password',
-      'tl': '',
-    },
-    '8x5vjswp': {
-      'en': 'Go to customSignature',
       'tl': '',
     },
     'ujnyyxhr': {
@@ -328,7 +324,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    'u51eijce': {
+    'ok3hh92t': {
       'en': '',
       'tl': '',
     },

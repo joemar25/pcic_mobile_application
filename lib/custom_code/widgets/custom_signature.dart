@@ -32,8 +32,8 @@ class CustomSignature extends StatefulWidget {
 }
 
 class _CustomSignatureState extends State<CustomSignature> {
-  late SignatureController _controller;
-  Uint8List? _signatureData;
+  late final SignatureController _controller;
+  bool _isSaving = false;
 
   @override
   void initState() {
@@ -52,38 +52,41 @@ class _CustomSignatureState extends State<CustomSignature> {
   }
 
   Future<void> _saveSignature() async {
-    if (_controller.isNotEmpty) {
-      try {
-        _signatureData = await _controller.toPngBytes();
-        if (_signatureData != null) {
-          final String fileName =
-              'signature_${DateTime.now().millisecondsSinceEpoch}.png';
-
-          await Supabase.instance.client.storage
-              .from('signatures') // Replace with your bucket name
-              .uploadBinary(fileName, _signatureData!);
-
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Signature saved successfully')),
-          );
-
-          final String publicUrl = Supabase.instance.client.storage
-              .from('signatures')
-              .getPublicUrl(fileName);
-
-          // You can use publicUrl as needed (e.g., save to database)
-          print('Signature URL: $publicUrl');
-        }
-      } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('An error occurred: $e')),
-        );
-      }
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please draw a signature before saving')),
-      );
+    if (_controller.isEmpty) {
+      _showSnackBar('Please draw a signature before saving');
+      return;
     }
+
+    setState(() => _isSaving = true);
+
+    try {
+      final Uint8List? signatureData = await _controller.toPngBytes();
+      if (signatureData == null)
+        throw Exception('Failed to get signature data');
+
+      final String fileName =
+          'signature_${DateTime.now().millisecondsSinceEpoch}.png';
+
+      await Supabase.instance.client.storage
+          .from('signature')
+          .uploadBinary(fileName, signatureData);
+
+      final String publicUrl = Supabase.instance.client.storage
+          .from('signature')
+          .getPublicUrl(fileName);
+
+      _showSnackBar('Signature saved successfully');
+      print('Signature URL: $publicUrl');
+    } catch (e) {
+      _showSnackBar('An error occurred: $e');
+    } finally {
+      setState(() => _isSaving = false);
+    }
+  }
+
+  void _showSnackBar(String message) {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(message)));
   }
 
   @override
@@ -91,7 +94,8 @@ class _CustomSignatureState extends State<CustomSignature> {
     return Column(
       children: [
         Container(
-          height: 300,
+          width: widget.width ?? double.infinity,
+          height: widget.height ?? 300,
           decoration: BoxDecoration(
             border: Border.all(color: Colors.grey),
             borderRadius: BorderRadius.circular(8),
@@ -106,12 +110,14 @@ class _CustomSignatureState extends State<CustomSignature> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             ElevatedButton(
-              onPressed: () => _controller.clear(),
+              onPressed: _controller.clear,
               child: const Text('Clear'),
             ),
             ElevatedButton(
-              onPressed: _saveSignature,
-              child: const Text('Save'),
+              onPressed: _isSaving ? null : _saveSignature,
+              child: _isSaving
+                  ? const CircularProgressIndicator()
+                  : const Text('Save'),
             ),
           ],
         ),
