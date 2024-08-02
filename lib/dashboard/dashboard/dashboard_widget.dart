@@ -1116,27 +1116,32 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                       final forDispatchTasksListItem =
                                                           forDispatchTasksList[
                                                               forDispatchTasksListIndex];
-                                                      return wrapWithModel(
-                                                        model: _model
-                                                            .tasksModels1
-                                                            .getModel(
-                                                          forDispatchTasksListItem
-                                                              .id,
-                                                          forDispatchTasksListIndex,
-                                                        ),
-                                                        updateCallback: () =>
-                                                            setState(() {}),
-                                                        updateOnChange: true,
-                                                        child: TasksWidget(
-                                                          key: Key(
-                                                            'Keyjrg_${forDispatchTasksListItem.id}',
+                                                      return Align(
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: wrapWithModel(
+                                                          model: _model
+                                                              .tasksModels1
+                                                              .getModel(
+                                                            forDispatchTasksListItem
+                                                                .id,
+                                                            forDispatchTasksListIndex,
                                                           ),
-                                                          task:
-                                                              forDispatchTasksListItem
-                                                                  .id,
-                                                          status:
-                                                              forDispatchTasksListItem
-                                                                  .status,
+                                                          updateCallback: () =>
+                                                              setState(() {}),
+                                                          updateOnChange: true,
+                                                          child: TasksWidget(
+                                                            key: Key(
+                                                              'Keyjrg_${forDispatchTasksListItem.id}',
+                                                            ),
+                                                            task:
+                                                                forDispatchTasksListItem
+                                                                    .id,
+                                                            status:
+                                                                forDispatchTasksListItem
+                                                                    .status,
+                                                          ),
                                                         ),
                                                       );
                                                     },
@@ -1164,7 +1169,9 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                   }
 
                                                   return ListView.separated(
-                                                    padding: EdgeInsets.zero,
+                                                    padding:
+                                                        const EdgeInsets.symmetric(
+                                                            vertical: 15.0),
                                                     primary: false,
                                                     shrinkWrap: true,
                                                     scrollDirection:
@@ -1178,27 +1185,32 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                       final ongoingTasksListItem =
                                                           ongoingTasksList[
                                                               ongoingTasksListIndex];
-                                                      return wrapWithModel(
-                                                        model: _model
-                                                            .tasksModels2
-                                                            .getModel(
-                                                          ongoingTasksListItem
-                                                              .id,
-                                                          ongoingTasksListIndex,
-                                                        ),
-                                                        updateCallback: () =>
-                                                            setState(() {}),
-                                                        updateOnChange: true,
-                                                        child: TasksWidget(
-                                                          key: Key(
-                                                            'Keyu4c_${ongoingTasksListItem.id}',
+                                                      return Align(
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: wrapWithModel(
+                                                          model: _model
+                                                              .tasksModels2
+                                                              .getModel(
+                                                            ongoingTasksListItem
+                                                                .id,
+                                                            ongoingTasksListIndex,
                                                           ),
-                                                          task:
-                                                              ongoingTasksListItem
-                                                                  .id,
-                                                          status:
-                                                              ongoingTasksListItem
-                                                                  .status,
+                                                          updateCallback: () =>
+                                                              setState(() {}),
+                                                          updateOnChange: true,
+                                                          child: TasksWidget(
+                                                            key: Key(
+                                                              'Keyu4c_${ongoingTasksListItem.id}',
+                                                            ),
+                                                            task:
+                                                                ongoingTasksListItem
+                                                                    .id,
+                                                            status:
+                                                                ongoingTasksListItem
+                                                                    .status,
+                                                          ),
                                                         ),
                                                       );
                                                     },
@@ -1226,7 +1238,9 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                   }
 
                                                   return ListView.separated(
-                                                    padding: EdgeInsets.zero,
+                                                    padding:
+                                                        const EdgeInsets.symmetric(
+                                                            vertical: 15.0),
                                                     primary: false,
                                                     shrinkWrap: true,
                                                     scrollDirection:
