@@ -259,7 +259,7 @@ class _SignatureWidgetState extends State<SignatureWidget>
                                               borderRadius:
                                                   BorderRadius.circular(8.0),
                                               child: Image.network(
-                                                'https://images.unsplash.com/photo-1653136952516-f1362d7df156?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwxN3x8c2lnbmF0dXJlfGVufDB8fHx8MTcyMTkyNDk3NXww&ixlib=rb-4.0.3&q=80&w=1080',
+                                                _model.signatureUrlPath!,
                                                 height: 300.0,
                                                 fit: BoxFit.cover,
                                               ),

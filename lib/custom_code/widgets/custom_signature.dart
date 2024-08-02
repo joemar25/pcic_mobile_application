@@ -20,12 +20,12 @@ class CustomSignature extends StatefulWidget {
     super.key,
     this.width,
     this.height,
-    this.taskId,
+    required this.taskId,
   });
 
   final double? width;
   final double? height;
-  final String? taskId;
+  final String taskId;
 
   @override
   State<CustomSignature> createState() => _CustomSignatureState();
@@ -34,6 +34,7 @@ class CustomSignature extends StatefulWidget {
 class _CustomSignatureState extends State<CustomSignature> {
   late SignatureController _controller;
   Uint8List? _signatureData;
+  String? _fileName;
 
   @override
   void initState() {
@@ -56,12 +57,12 @@ class _CustomSignatureState extends State<CustomSignature> {
       try {
         _signatureData = await _controller.toPngBytes();
         if (_signatureData != null) {
-          final String fileName =
-              'signature_${DateTime.now().millisecondsSinceEpoch}.png';
+          _fileName = 'signature_${DateTime.now().millisecondsSinceEpoch}.png';
+          final String folderPath = 'PPIR_${widget.taskId}';
 
           await Supabase.instance.client.storage
-              .from('signature') // Replace with your bucket name
-              .uploadBinary(fileName, _signatureData!);
+              .from('signature')
+              .uploadBinary('$folderPath/$_fileName', _signatureData!);
 
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Signature saved successfully')),
@@ -69,14 +70,13 @@ class _CustomSignatureState extends State<CustomSignature> {
 
           final String publicUrl = Supabase.instance.client.storage
               .from('signature')
-              .getPublicUrl(fileName);
+              .getPublicUrl('$folderPath/$_fileName');
 
-          // You can use publicUrl as needed (e.g., save to database)
           print('Signature URL: $publicUrl');
         }
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('An error occurred: $e')),
+          SnackBar(content: Text('An error occurred while saving: $e')),
         );
       }
     } else {
@@ -86,12 +86,38 @@ class _CustomSignatureState extends State<CustomSignature> {
     }
   }
 
+  Future<void> _clearSignature() async {
+    _controller.clear();
+    if (_fileName != null) {
+      final String folderPath = 'PPIR_${widget.taskId}';
+      try {
+        await Supabase.instance.client.storage
+            .from('signature')
+            .remove(['$folderPath/$_fileName']);
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+              content: Text('Signature cleared and deleted from storage')),
+        );
+        _fileName = null;
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('An error occurred while deleting: $e')),
+        );
+      }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('No signature file to delete')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Container(
-          height: 300,
+          height: 230,
           decoration: BoxDecoration(
             border: Border.all(color: Colors.grey),
             borderRadius: BorderRadius.circular(8),
@@ -106,7 +132,7 @@ class _CustomSignatureState extends State<CustomSignature> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             ElevatedButton(
-              onPressed: () => _controller.clear(),
+              onPressed: _clearSignature,
               child: const Text('Clear'),
             ),
             ElevatedButton(
