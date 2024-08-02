@@ -5,7 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/chat_list_container/chat_list_container_widget.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/empty_lists/empty_lists_widget.dart';
-import '/utils/components/user_chat/user_chat_widget.dart';
+import '/utils/components/user_chats/user_chats_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -74,7 +74,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                       padding: MediaQuery.viewInsetsOf(context),
                       child: SizedBox(
                         height: MediaQuery.sizeOf(context).height * 0.5,
-                        child: const UserChatWidget(),
+                        child: const UserChatsWidget(),
                       ),
                     ),
                   );

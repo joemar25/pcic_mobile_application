@@ -15,7 +15,7 @@ import 'package:flutter_map_tile_caching/flutter_map_tile_caching.dart' as FMTC;
 import 'package:latlong2/latlong.dart' as ll;
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
-import 'dart:math';
+import 'dart:math' show pi, cos;
 
 Future<void> startMapDownload(String accessToken) async {
   bool serviceEnabled;
@@ -47,12 +47,13 @@ Future<void> startMapDownload(String accessToken) async {
   Position position = await Geolocator.getCurrentPosition();
   ll.LatLng currentLocation = ll.LatLng(position.latitude, position.longitude);
 
-  // Create a bounding box around the user's location (approximately 5km in each direction)
-  double latDelta = 0.018; // Roughly 5km in latitude
-  double lonDelta = 0.018 /
-      cos(currentLocation.latitude *
-          pi /
-          180); // Adjust for longitude based on latitude
+// Create a bounding box around the user's location (approximately 2km in each direction)
+  double latDelta = 2.0 / 111.32; // Approx. 2 km in latitude
+  double lonDelta = 2.0 /
+      (111.32 *
+          cos(currentLocation.latitude *
+              pi /
+              180)); // Approx. 2 km in longitude
 
   LatLngBounds bounds = LatLngBounds(
     ll.LatLng(currentLocation.latitude - latDelta,
@@ -75,8 +76,6 @@ Future<void> startMapDownload(String accessToken) async {
     ),
   );
 
-  double lastReportedProgress = 0.0;
-
   await FMTC.FMTCStore('mapStore')
       .download
       .startForeground(
@@ -88,22 +87,28 @@ Future<void> startMapDownload(String accessToken) async {
         maxReportInterval: Duration(seconds: 1),
       )
       .listen((progress) {
-    double currentProgress = (progress.percentageProgress * 10).round() / 10;
+    // Get the raw progress value
+    double rawProgress = progress.percentageProgress;
 
-    // Only update if the progress has changed by at least 0.1
-    if (currentProgress > lastReportedProgress) {
-      lastReportedProgress = currentProgress;
+    // Convert to a value between 0.0 and 1.0, keeping only the whole number part
+    double normalizedProgress = (rawProgress.floor() / 100);
 
-      FFAppState().mapDownloadProgress = currentProgress;
+    // Only update if the progress has increased to the next whole percentage
+    if (normalizedProgress > FFAppState().mapDownloadProgress ||
+        normalizedProgress == 1.0) {
+      // Assign the normalized progress value to mapDownloadProgress
+      FFAppState().mapDownloadProgress = normalizedProgress;
       FFAppState().update(() {}); // Trigger UI update
 
-      print('Download progress: ${currentProgress.toStringAsFixed(1)}%');
+      // Print both raw and normalized progress
+      print('Raw progress: ${rawProgress}%');
+      print(
+          'Normalized progress: ${(normalizedProgress * 100).toStringAsFixed(0)}%');
     }
 
     // Check if download is complete
-    if (currentProgress >= 100) {
-      print('Download completed');
-      // You can add additional logic here for when the download completes
+    if (progress.isComplete) {
+      print('ey');
     }
   });
 }

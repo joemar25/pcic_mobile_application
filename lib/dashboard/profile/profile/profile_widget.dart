@@ -951,23 +951,6 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                   ].divide(const SizedBox(width: 10.0)),
                                 ),
                               ),
-                              Text(
-                                valueOrDefault<String>(
-                                  FFAppState().mapDownloadProgress.toString(),
-                                  '0',
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily,
-                                      letterSpacing: 0.0,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMediumFamily),
-                                    ),
-                              ),
                               LinearPercentIndicator(
                                 percent: valueOrDefault<double>(
                                   FFAppState().mapDownloadProgress,
@@ -982,9 +965,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                 backgroundColor:
                                     FlutterFlowTheme.of(context).accent4,
                                 center: Text(
-                                  valueOrDefault<String>(
-                                    FFAppState().mapDownloadProgress.toString(),
-                                    '0.0',
+                                  formatNumber(
+                                    FFAppState().mapDownloadProgress,
+                                    formatType: FormatType.percent,
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .headlineSmall

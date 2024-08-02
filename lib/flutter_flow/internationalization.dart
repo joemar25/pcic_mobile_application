@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'iiypk89t': {
+    '1i5dwhr8': {
       'en': '',
       'tl': '',
     },
@@ -324,7 +324,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    'gl16l48p': {
+    'eij61zyo': {
       'en': '',
       'tl': '',
     },
@@ -955,46 +955,34 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
-  // user_chat
+  // user_chats
   {
-    'b22f94ks': {
+    'gb6dx75i': {
       'en': 'Select User',
       'tl': '',
     },
-    'p3pn4ggk': {
+    'hjf1n0gp': {
       'en': 'Randy Peterson',
       'tl': '',
     },
-    '1teubyvy': {
+    'umnwo680': {
       'en': 'name@domainname.com',
       'tl': '',
     },
-    'n1uynenc': {
+    '6770atir': {
       'en': 'Randy Peterson',
       'tl': '',
     },
-    'q4mxdxig': {
+    'ifqnarpx': {
       'en': 'name@domainname.com',
       'tl': '',
     },
-    '3yuov7rt': {
+    '7t4vwu9u': {
       'en': 'Randy Peterson',
       'tl': '',
     },
-    'nzeef5yx': {
+    'trqe09c9': {
       'en': 'name@domainname.com',
-      'tl': '',
-    },
-    'p8slw93u': {
-      'en': 'Randy Peterson',
-      'tl': '',
-    },
-    'iegasiy9': {
-      'en': 'name@domainname.com',
-      'tl': '',
-    },
-    '3t6rbo7i': {
-      'en': 'Add User',
       'tl': '',
     },
   },
