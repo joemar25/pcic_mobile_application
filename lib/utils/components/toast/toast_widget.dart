@@ -1,8 +1,10 @@
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'toast_model.dart';
 export 'toast_model.dart';
@@ -21,8 +23,11 @@ class ToastWidget extends StatefulWidget {
   State<ToastWidget> createState() => _ToastWidgetState();
 }
 
-class _ToastWidgetState extends State<ToastWidget> {
+class _ToastWidgetState extends State<ToastWidget>
+    with TickerProviderStateMixin {
   late ToastModel _model;
+
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void setState(VoidCallback callback) {
@@ -40,6 +45,28 @@ class _ToastWidgetState extends State<ToastWidget> {
       await Future.delayed(const Duration(milliseconds: 3000));
       context.safePop();
     });
+
+    animationsMap.addAll({
+      'containerOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 500.0.ms,
+            duration: 200.0.ms,
+            begin: const Offset(500.0, -780.0),
+            end: const Offset(100.0, -780.0),
+          ),
+          FadeEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 200.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
+    });
   }
 
   @override
@@ -56,8 +83,8 @@ class _ToastWidgetState extends State<ToastWidget> {
       child: Padding(
         padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
         child: Container(
-          width: 400.0,
-          height: MediaQuery.sizeOf(context).height * 1.0,
+          width: 200.0,
+          height: MediaQuery.sizeOf(context).height * 0.5,
           decoration: BoxDecoration(
             color: valueOrDefault<Color>(
               widget.notificationTitle == 'Success'
@@ -113,6 +140,7 @@ class _ToastWidgetState extends State<ToastWidget> {
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .titleSmallFamily,
+                                  fontSize: 10.0,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
@@ -131,6 +159,7 @@ class _ToastWidgetState extends State<ToastWidget> {
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .labelMediumFamily,
                                   color: FlutterFlowTheme.of(context).accent4,
+                                  fontSize: 9.0,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
@@ -158,7 +187,7 @@ class _ToastWidgetState extends State<ToastWidget> {
               ].divide(const SizedBox(width: 8.0)),
             ),
           ),
-        ),
+        ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation']!),
       ),
     );
   }

@@ -189,7 +189,6 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                 isScrollControlled: true,
                                 backgroundColor: Colors.transparent,
                                 enableDrag: false,
-                                useSafeArea: true,
                                 context: context,
                                 builder: (context) {
                                   return GestureDetector(
@@ -203,7 +202,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                       child: SizedBox(
                                         height:
                                             MediaQuery.sizeOf(context).height *
-                                                0.12,
+                                                0.1,
                                         child: const ToastWidget(
                                           notificationTitle: 'Success',
                                           notificationMessage:

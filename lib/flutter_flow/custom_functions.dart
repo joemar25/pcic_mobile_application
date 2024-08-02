@@ -121,3 +121,7 @@ String? capitalizeWords(String? text) {
   }
   return text.toUpperCase();
 }
+
+double newCustomFunction() {
+  return 2.0;
+}

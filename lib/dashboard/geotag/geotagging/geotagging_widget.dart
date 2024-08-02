@@ -610,8 +610,8 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 5.0, 0.0),
-                                    child: Icon(
-                                      Icons.downloading_sharp,
+                                    child: FaIcon(
+                                      FontAwesomeIcons.redoAlt,
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
                                       size: 20.0,

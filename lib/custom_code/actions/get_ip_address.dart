@@ -11,13 +11,14 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-Future<void> getIpAddress() async {
+import 'package:dart_ipify/dart_ipify.dart';
+
+Future getIpAddress() async {
   try {
     final ip = await Ipify.ipv4();
-    FFAppState().ipAddress = ip;
+    // FFAppState().ipAddress = ip;
   } catch (e) {
     print('Error getting IP address: $e');
-    // Optionally, you can set a default value or handle the error differently
-    FFAppState().ipAddress = 'Unable to retrieve IP';
+    // FFAppState().ipAddress = 'Unable to retrieve IP';
   }
 }

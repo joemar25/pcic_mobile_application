@@ -32,6 +32,7 @@ dependencies:
   collection: 1.18.0
   connectivity_plus: ^6.0.4
   csv: 6.0.0
+  dart_ipify: ^1.1.1
   dropdown_button2: 2.3.9
   easy_debounce: 2.0.1
   equatable: 2.0.5
@@ -165,6 +166,10 @@ flutter:
     - assets/rive_animations/
     - assets/pdfs/
     - assets/sqlite_db_files/
+  fonts:
+    - family: Face
+      fonts:
+        - asset: assets/fonts/Face.ttf
 
   
   # An image asset can refer to one or more resolution-specific "variants", see
