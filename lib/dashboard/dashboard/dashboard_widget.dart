@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/empty_lists/empty_lists_widget.dart';
 import '/utils/components/tasks/tasks_widget.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -44,6 +45,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
       if (RootPageContext.isInactiveRootPage(context)) {
         return;
       }
+      _model.getProfilePic = await actions.getTheSavedLocalProfile();
       // Online Query for Users
       _model.currentUserProfile = await UsersTable().queryRows(
         queryFn: (q) => q.eq(
@@ -115,6 +117,19 @@ class _DashboardWidgetState extends State<DashboardWidget>
             duration: 600.0.ms,
             begin: const Offset(0.0, 100.0),
             end: const Offset(0.0, 0.0),
+          ),
+        ],
+      ),
+      'circleImageOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          ShakeEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 1450.0.ms,
+            hz: 10,
+            offset: const Offset(0.0, 0.0),
+            rotation: 0.087,
           ),
         ],
       ),
@@ -458,11 +473,13 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                             decoration: const BoxDecoration(
                                               shape: BoxShape.circle,
                                             ),
-                                            child: Image.asset(
-                                              'assets/images/default_profile.png',
+                                            child: Image.memory(
+                                              _model.getProfilePic?.bytes ??
+                                                  Uint8List.fromList([]),
                                               fit: BoxFit.cover,
                                             ),
-                                          ),
+                                          ).animateOnPageLoad(animationsMap[
+                                              'circleImageOnPageLoadAnimation']!),
                                         ),
                                       ),
                                       Expanded(

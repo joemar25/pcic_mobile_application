@@ -10,3 +10,5 @@ export 'reset_map_store.dart' show resetMapStore;
 export 'cancel_map_download.dart' show cancelMapDownload;
 export 'success_toast.dart' show successToast;
 export 'save_to_f_t_p.dart' show saveToFTP;
+export 'upload_photo_url_to_asset.dart' show uploadPhotoUrlToAsset;
+export 'get_the_saved_local_profile.dart' show getTheSavedLocalProfile;

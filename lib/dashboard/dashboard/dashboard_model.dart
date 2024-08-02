@@ -22,6 +22,8 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Custom Action - getTheSavedLocalProfile] action in dashboard widget.
+  FFUploadedFile? getProfilePic;
   // Stores action output result for [Backend Call - Query Rows] action in dashboard widget.
   List<UsersRow>? currentUserProfile;
   // Stores action output result for [Backend Call - Query Rows] action in dashboard widget.

@@ -7,6 +7,8 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
+  // Stores action output result for [Custom Action - getTheSavedLocalProfile] action in editProfile widget.
+  FFUploadedFile? getProfilePic;
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
   bool isDataUploading = false;

@@ -6,7 +6,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'edit_profile_model.dart';
@@ -28,6 +30,11 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => EditProfileModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.getProfilePic = await actions.getTheSavedLocalProfile();
+    });
 
     _model.displayNameFocusNode ??= FocusNode();
   }
@@ -167,8 +174,9 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                       decoration: const BoxDecoration(
                                         shape: BoxShape.circle,
                                       ),
-                                      child: Image.asset(
-                                        'assets/images/default-avatar.jpg',
+                                      child: Image.memory(
+                                        _model.getProfilePic?.bytes ??
+                                            Uint8List.fromList([]),
                                         fit: BoxFit.contain,
                                       ),
                                     ),

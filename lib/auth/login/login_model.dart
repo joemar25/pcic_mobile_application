@@ -1,3 +1,4 @@
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'login_widget.dart' show LoginWidget;
 import 'package:flutter/material.dart';
@@ -46,6 +47,11 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
 
     return null;
   }
+
+  // Stores action output result for [Backend Call - Query Rows] action in loginButton widget.
+  List<UsersRow>? authUserQuery;
+  // Stores action output result for [Custom Action - uploadPhotoUrlToAsset] action in loginButton widget.
+  String? aasda;
 
   @override
   void initState(BuildContext context) {

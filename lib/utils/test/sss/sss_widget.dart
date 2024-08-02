@@ -68,13 +68,11 @@ class _SssWidgetState extends State<SssWidget> {
               Expanded(
                 child: SizedBox(
                   width: double.infinity,
-                  height: 700.0,
-                  child: custom_widgets.MapBox(
+                  height: 500.0,
+                  child: custom_widgets.CustomSignature(
                     width: double.infinity,
-                    height: 700.0,
-                    accessToken:
-                        'pk.eyJ1IjoicXVhbmJ5c29sdXRpb25zIiwiYSI6ImNsdWhrejRwdDJyYnAya3A2NHFqbXlsbHEifQ.WJ5Ng-AO-dTrlkUHD_ebMw',
-                    taskId: 'N/A',
+                    height: 500.0,
+                    taskId: 'helloSda',
                   ),
                 ),
               ),

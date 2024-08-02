@@ -35,10 +35,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await UserLogsTable().insert({
-        'activity': 'Checking user profile',
-        'user_id': currentUserUid,
-      });
+      _model.getProfilePic = await actions.getTheSavedLocalProfile();
     });
   }
 
@@ -215,8 +212,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                           child: ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(6.0),
-                                            child: Image.asset(
-                                              'assets/images/default-avatar.jpg',
+                                            child: Image.memory(
+                                              _model.getProfilePic?.bytes ??
+                                                  Uint8List.fromList([]),
                                               width: 70.0,
                                               height: 70.0,
                                               fit: BoxFit.cover,

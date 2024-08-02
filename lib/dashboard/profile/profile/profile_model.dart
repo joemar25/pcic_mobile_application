@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 class ProfileModel extends FlutterFlowModel<ProfileWidget> {
   ///  State fields for stateful widgets in this page.
 
+  // Stores action output result for [Custom Action - getTheSavedLocalProfile] action in profile widget.
+  FFUploadedFile? getProfilePic;
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
 

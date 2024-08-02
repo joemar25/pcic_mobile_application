@@ -75,6 +75,12 @@ class FFAppState extends ChangeNotifier {
   void deleteMapDownloadProgress() {
     secureStorage.delete(key: 'ff_mapDownloadProgress');
   }
+
+  String _localProfilePic = '';
+  String get localProfilePic => _localProfilePic;
+  set localProfilePic(String value) {
+    _localProfilePic = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {

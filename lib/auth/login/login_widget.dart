@@ -1,8 +1,10 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/permissions_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -583,6 +585,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                           0.0, 40.0, 0.0, 0.0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
+                                          Function() navigate = () {};
                                           GoRouter.of(context)
                                               .prepareAuthEvent();
 
@@ -598,8 +601,64 @@ class _LoginWidgetState extends State<LoginWidget>
                                             return;
                                           }
 
-                                          context.goNamedAuth(
+                                          navigate = () => context.goNamedAuth(
                                               'dashboard', context.mounted);
+                                          _model.authUserQuery =
+                                              await UsersTable().queryRows(
+                                            queryFn: (q) => q.eq(
+                                              'email',
+                                              currentUserEmail,
+                                            ),
+                                          );
+                                          _model.aasda = await actions
+                                              .uploadPhotoUrlToAsset(
+                                            _model
+                                                .authUserQuery?.first.photoUrl,
+                                          );
+                                          if (_model.aasda != null &&
+                                              _model.aasda != '') {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  _model.aasda!,
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                  ),
+                                                ),
+                                                duration: const Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .warning,
+                                              ),
+                                            );
+                                          } else {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  _model.aasda!,
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                  ),
+                                                ),
+                                                duration: const Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                              ),
+                                            );
+                                          }
+
+                                          navigate();
+
+                                          setState(() {});
                                         },
                                         text:
                                             FFLocalizations.of(context).getText(
