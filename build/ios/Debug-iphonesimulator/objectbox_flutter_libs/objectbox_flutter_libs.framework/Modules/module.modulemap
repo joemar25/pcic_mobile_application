@@ -1,0 +1,11 @@
+framework module objectbox_flutter_libs {
+  umbrella header "objectbox_flutter_libs-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module objectbox_flutter_libs.Swift {
+  header "objectbox_flutter_libs-Swift.h"
+  requires objc
+}

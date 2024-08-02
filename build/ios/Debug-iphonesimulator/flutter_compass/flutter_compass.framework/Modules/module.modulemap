@@ -1,0 +1,11 @@
+framework module flutter_compass {
+  umbrella header "flutter_compass-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module flutter_compass.Swift {
+  header "flutter_compass-Swift.h"
+  requires objc
+}

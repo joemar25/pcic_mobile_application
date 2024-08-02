@@ -1,0 +1,1354 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.9 (swiftlang-5.9.0.128.108 clang-1500.0.40.1)
+// swift-module-flags: -target x86_64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name ObjectBox
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import Combine
+import Foundation
+@_exported import ObjectBox
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public protocol EntityBinding : AnyObject {
+  associatedtype EntityType : ObjectBox.Entity, ObjectBox.EntityInspectable
+  associatedtype IdType : ObjectBox.IdBase
+  init()
+  func generatorBindingVersion() -> Swift.Int
+  func collect(fromEntity entity: Self.EntityType, id entityId: ObjectBox.Id, propertyCollector: ObjectBox.FlatBufferBuilder, store: ObjectBox.Store) throws
+  func postPut(fromEntity entity: Self.EntityType, id entityId: ObjectBox.Id, store: ObjectBox.Store) throws
+  func createEntity(entityReader: ObjectBox.FlatBufferReader, store: ObjectBox.Store) -> Self.EntityType
+  func setEntityIdUnlessStruct(of entity: Self.EntityType, to entityId: ObjectBox.Id)
+  func setStructEntityId(of entity: inout Self.EntityType, to entityId: ObjectBox.Id)
+  func entityId(of entity: Self.EntityType) -> ObjectBox.Id
+  func setToOneRelation(_ propertyId: ObjectBox.obx_schema_id, of entity: Self.EntityType, to entityId: ObjectBox.Id?)
+}
+extension ObjectBox.EntityBinding {
+  public func postPut(fromEntity entity: Self.EntityType, id idNumber: ObjectBox.Id, store: ObjectBox.Store)
+  public func setToOneRelation(_ propertyId: ObjectBox.obx_schema_id, of entity: Self.EntityType, to entityId: ObjectBox.Id?)
+  public func setStructEntityId(of entity: inout Self.EntityType, to entityId: ObjectBox.Id)
+  public func setEntityIdUnlessStruct(of entity: Self.EntityType, to entityId: ObjectBox.Id)
+}
+extension ObjectBox.Box {
+  public func query() -> ObjectBox.QueryBuilder<ObjectBox.Box<E>.EntityType>
+  public func query(_ conditions: () -> ObjectBox.QueryCondition<ObjectBox.Box<E>.EntityType>) -> ObjectBox.QueryBuilder<ObjectBox.Box<E>.EntityType>
+}
+@_hasMissingDesignatedInitializers public class StoreHelper {
+  public class func tempStore(model: Swift.OpaquePointer, maxDbSizeInKByte: Swift.UInt64 = 500) -> ObjectBox.Store
+  public class func newTemporaryDirectory() -> Foundation.URL
+  @objc deinit
+}
+public protocol EntityInspectable {
+  associatedtype EntityBindingType : ObjectBox.EntityBinding
+  static var entityInfo: ObjectBox.EntityInfo { get }
+  static var entityBinding: Self.EntityBindingType { get }
+}
+public protocol Entity {
+}
+public protocol __EntityRelatable {
+  associatedtype EntityType : ObjectBox.EntityInspectable, ObjectBox.__EntityRelatable
+  var _id: ObjectBox.EntityId<Self.EntityType> { get }
+}
+public protocol EntityPropertyTypeConvertible {
+  static var entityPropertyType: ObjectBox.PropertyType { get }
+}
+public protocol EntityScalarPropertyType {
+}
+public protocol LongPropertyType : ObjectBox.EntityPropertyTypeConvertible, ObjectBox.EntityScalarPropertyType {
+}
+extension Swift.Optional : ObjectBox.LongPropertyType, ObjectBox.EntityScalarPropertyType where Wrapped : ObjectBox.LongPropertyType {
+}
+public protocol LongPropertyQueryType : ObjectBox.LongPropertyType {
+  var int64Value: Swift.Int64 { get }
+}
+public protocol IntegerPropertyType : ObjectBox.EntityPropertyTypeConvertible, ObjectBox.EntityScalarPropertyType {
+}
+public protocol IntegerPropertyQueryType : ObjectBox.IntegerPropertyType {
+  var int64Value: Swift.Int64 { get }
+  var int32Value: Swift.Int32 { get }
+}
+extension Swift.Int32 : ObjectBox.IntegerPropertyQueryType {
+  public var int64Value: Swift.Int64 {
+    get
+  }
+  public var int32Value: Swift.Int32 {
+    get
+  }
+}
+extension Swift.Int64 : ObjectBox.LongPropertyQueryType {
+  public var int64Value: Swift.Int64 {
+    get
+  }
+}
+extension Swift.Int : ObjectBox.LongPropertyQueryType {
+  public var int64Value: Swift.Int64 {
+    get
+  }
+}
+public protocol StringPropertyType : ObjectBox.EntityPropertyTypeConvertible {
+}
+extension Swift.String : ObjectBox.StringPropertyType {
+}
+extension Swift.Optional : ObjectBox.StringPropertyType where Wrapped == Swift.String {
+}
+public protocol DatePropertyType : ObjectBox.EntityPropertyTypeConvertible {
+}
+extension Foundation.Date : ObjectBox.DatePropertyType {
+}
+extension Swift.Optional : ObjectBox.DatePropertyType where Wrapped == Foundation.Date {
+}
+public protocol DataPropertyType : ObjectBox.EntityPropertyTypeConvertible {
+}
+extension Foundation.Data : ObjectBox.DataPropertyType {
+}
+extension Swift.Optional : ObjectBox.DataPropertyType where Wrapped == Foundation.Data {
+}
+extension Swift.Array : ObjectBox.EntityPropertyTypeConvertible where Element == Swift.UInt8 {
+  public static var entityPropertyType: ObjectBox.PropertyType {
+    get
+  }
+}
+extension Swift.Bool : ObjectBox.EntityPropertyTypeConvertible, ObjectBox.EntityScalarPropertyType {
+  public static var entityPropertyType: ObjectBox.PropertyType {
+    get
+  }
+}
+public typealias Byte = Swift.UInt8
+extension Swift.Int8 : ObjectBox.EntityPropertyTypeConvertible, ObjectBox.EntityScalarPropertyType {
+  public static var entityPropertyType: ObjectBox.PropertyType {
+    get
+  }
+}
+extension Swift.Int16 : ObjectBox.EntityPropertyTypeConvertible, ObjectBox.EntityScalarPropertyType {
+  public static var entityPropertyType: ObjectBox.PropertyType {
+    get
+  }
+}
+extension Swift.Int32 : ObjectBox.EntityPropertyTypeConvertible, ObjectBox.EntityScalarPropertyType {
+  public static var entityPropertyType: ObjectBox.PropertyType {
+    get
+  }
+}
+extension Swift.Int64 : ObjectBox.EntityPropertyTypeConvertible, ObjectBox.EntityScalarPropertyType {
+  public static var entityPropertyType: ObjectBox.PropertyType {
+    get
+  }
+}
+extension Swift.Int : ObjectBox.EntityPropertyTypeConvertible, ObjectBox.EntityScalarPropertyType {
+  public static var entityPropertyType: ObjectBox.PropertyType {
+    get
+  }
+}
+extension Swift.UInt8 : ObjectBox.EntityPropertyTypeConvertible, ObjectBox.EntityScalarPropertyType {
+  public static var entityPropertyType: ObjectBox.PropertyType {
+    get
+  }
+}
+extension Swift.UInt16 : ObjectBox.EntityPropertyTypeConvertible, ObjectBox.EntityScalarPropertyType {
+  public static var entityPropertyType: ObjectBox.PropertyType {
+    get
+  }
+}
+extension Swift.UInt32 : ObjectBox.EntityPropertyTypeConvertible, ObjectBox.EntityScalarPropertyType {
+  public static var entityPropertyType: ObjectBox.PropertyType {
+    get
+  }
+}
+extension Swift.UInt64 : ObjectBox.EntityPropertyTypeConvertible, ObjectBox.EntityScalarPropertyType {
+  public static var entityPropertyType: ObjectBox.PropertyType {
+    get
+  }
+}
+extension Swift.UInt : ObjectBox.EntityPropertyTypeConvertible, ObjectBox.EntityScalarPropertyType {
+  public static var entityPropertyType: ObjectBox.PropertyType {
+    get
+  }
+}
+extension Swift.Float : ObjectBox.EntityPropertyTypeConvertible, ObjectBox.EntityScalarPropertyType {
+  public static var entityPropertyType: ObjectBox.PropertyType {
+    get
+  }
+}
+extension Swift.Double : ObjectBox.EntityPropertyTypeConvertible, ObjectBox.EntityScalarPropertyType {
+  public static var entityPropertyType: ObjectBox.PropertyType {
+    get
+  }
+}
+extension Swift.String : ObjectBox.EntityPropertyTypeConvertible {
+  public static var entityPropertyType: ObjectBox.PropertyType {
+    get
+  }
+}
+extension Foundation.Date : ObjectBox.EntityPropertyTypeConvertible, ObjectBox.EntityScalarPropertyType {
+  public static var entityPropertyType: ObjectBox.PropertyType {
+    get
+  }
+}
+extension Foundation.Data : ObjectBox.EntityPropertyTypeConvertible {
+  public static var entityPropertyType: ObjectBox.PropertyType {
+    get
+  }
+}
+extension Swift.Optional : ObjectBox.EntityPropertyTypeConvertible where Wrapped : ObjectBox.EntityPropertyTypeConvertible {
+  public static var entityPropertyType: ObjectBox.PropertyType {
+    get
+  }
+}
+extension ObjectBox.EntityId : ObjectBox.EntityPropertyTypeConvertible {
+  public static var entityPropertyType: ObjectBox.PropertyType {
+    get
+  }
+}
+public typealias Id = Swift.UInt64
+public protocol IdBase : ObjectBox.EntityPropertyTypeConvertible, Swift.Hashable {
+  init(_ entityId: ObjectBox.Id)
+  var value: ObjectBox.Id { get }
+}
+public protocol UntypedIdBase : ObjectBox.IdBase {
+}
+extension Swift.UInt64 : ObjectBox.UntypedIdBase {
+  public var value: ObjectBox.Id {
+    get
+  }
+}
+extension Swift.Int64 : ObjectBox.UntypedIdBase {
+  public init(_ entityId: ObjectBox.Id)
+  public var value: ObjectBox.Id {
+    get
+  }
+}
+public struct EntityId<R> : ObjectBox.IdBase, Swift.Hashable where R : ObjectBox.EntityInspectable, R : ObjectBox.__EntityRelatable {
+  public let value: ObjectBox.Id
+  public init(_ identifier: ObjectBox.Id)
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: ObjectBox.EntityId<R>, b: ObjectBox.EntityId<R>) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension ObjectBox.EntityId : Swift.ExpressibleByIntegerLiteral {
+  public init(integerLiteral value: ObjectBox.Id)
+  public typealias IntegerLiteralType = ObjectBox.Id
+}
+extension ObjectBox.EntityId : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+public class ModelBuilder {
+  public init() throws
+  @objc deinit
+  public func entityBuilder<T>(for type: T.Type = T.self, id schemaEntityID: Swift.UInt32, uid schemaEntityUID: Swift.UInt64) throws -> ObjectBox.EntityBuilder<T> where T : ObjectBox.EntityInspectable
+  public func lastEntity(id schemaEntityID: Swift.UInt32, uid schemaEntityUID: Swift.UInt64)
+  public func lastIndex(id schemaEntityID: Swift.UInt32, uid schemaEntityUID: Swift.UInt64)
+  public func lastRelation(id relationID: Swift.UInt32, uid relationUid: Swift.UInt64)
+  public func finish() -> Swift.OpaquePointer
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension ObjectBox.Observer : Combine.Subscription {
+  public func request(_ demand: Combine.Subscribers.Demand)
+  public func cancel()
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension ObjectBox.Box {
+  public var publisher: ObjectBox.BoxPublisher<ObjectBox.Box<E>.EntityType> {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+public class BoxPublisher<E> : Combine.Publisher where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType {
+  public typealias Output = [E]
+  public typealias Failure = ObjectBox.ObjectBoxError
+  public func receive<S>(subscriber: S) where S : Combine.Subscriber, S.Failure == ObjectBox.ObjectBoxError, S.Input == [E]
+  @objc deinit
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension ObjectBox.BoxPublisher {
+  public func receive<S>(subscriber: S, dispatchQueue: Dispatch.DispatchQueue) where S : Combine.Subscriber, S.Failure == ObjectBox.ObjectBoxError, S.Input == [E]
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension ObjectBox.Query {
+  public var publisher: ObjectBox.QueryPublisher<ObjectBox.Query<E>.EntityType> {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+public class QueryPublisher<E> : Combine.Publisher where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType {
+  public typealias Output = [E]
+  public typealias Failure = ObjectBox.ObjectBoxError
+  public func receive<S>(subscriber: S) where S : Combine.Subscriber, S.Failure == ObjectBox.ObjectBoxError, S.Input == [E]
+  @objc deinit
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension ObjectBox.QueryPublisher {
+  public func receive<S>(subscriber: S, dispatchQueue: Dispatch.DispatchQueue) where S : Combine.Subscriber, S.Failure == ObjectBox.ObjectBoxError, S.Input == [E]
+}
+@_hasMissingDesignatedInitializers public class Observer {
+  public struct Flags : Swift.OptionSet {
+    public let rawValue: Swift.Int
+    public static let sendInitial: ObjectBox.Observer.Flags
+    public static let dontSubscribe: ObjectBox.Observer.Flags
+    public init(rawValue: Swift.Int)
+    public typealias ArrayLiteralElement = ObjectBox.Observer.Flags
+    public typealias Element = ObjectBox.Observer.Flags
+    public typealias RawValue = Swift.Int
+  }
+  @objc deinit
+  public func unsubscribe()
+}
+extension ObjectBox.Box {
+  public func subscribe(dispatchQueue: Dispatch.DispatchQueue = DispatchQueue.main, flags: ObjectBox.Observer.Flags = [.sendInitial], changeHandler: @escaping () -> Swift.Void) -> ObjectBox.Observer
+  public func subscribe(dispatchQueue: Dispatch.DispatchQueue = DispatchQueue.main, flags: ObjectBox.Observer.Flags = [.sendInitial], resultHandler: @escaping ([ObjectBox.Box<E>.EntityType], ObjectBox.ObjectBoxError?) -> Swift.Void) -> ObjectBox.Observer
+  public func subscribeContiguous(dispatchQueue: Dispatch.DispatchQueue = DispatchQueue.main, flags: ObjectBox.Observer.Flags = [.sendInitial], resultHandler: @escaping (Swift.ContiguousArray<ObjectBox.Box<E>.EntityType>, ObjectBox.ObjectBoxError?) -> Swift.Void) -> ObjectBox.Observer
+}
+extension ObjectBox.Query {
+  public func subscribe(dispatchQueue: Dispatch.DispatchQueue = DispatchQueue.main, flags: ObjectBox.Observer.Flags = [.sendInitial], changeHandler: @escaping () -> Swift.Void) -> ObjectBox.Observer
+  public func subscribe(dispatchQueue: Dispatch.DispatchQueue = DispatchQueue.main, flags: ObjectBox.Observer.Flags = [.sendInitial], resultHandler: @escaping ([ObjectBox.Query<E>.EntityType], ObjectBox.ObjectBoxError?) -> Swift.Void) -> ObjectBox.Observer
+  public func subscribeContiguous(dispatchQueue: Dispatch.DispatchQueue = DispatchQueue.main, flags: ObjectBox.Observer.Flags = [.sendInitial], resultHandler: @escaping (Swift.ContiguousArray<ObjectBox.Query<E>.EntityType>, ObjectBox.ObjectBoxError?) -> Swift.Void) -> ObjectBox.Observer
+}
+public struct Property<E, V, R> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType, V : ObjectBox.EntityPropertyTypeConvertible {
+  public typealias EntityType = E
+  public typealias ValueType = V
+  public typealias ReferencedType = R
+  public init(propertyId: Swift.UInt32, isPrimaryKey: Swift.Bool = false)
+  public var isPrimaryKey: Swift.Bool {
+    get
+  }
+  public var propertyId: Swift.UInt32 {
+    get
+  }
+}
+public typealias ValueProperty<E, V> = ObjectBox.Property<E, V, Swift.Void> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType, V : ObjectBox.EntityPropertyTypeConvertible
+@_hasMissingDesignatedInitializers public class PropertyAlias<E, T> : ObjectBox.QueryCondition<E> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType, T : ObjectBox.EntityPropertyTypeConvertible {
+  public typealias EntityType = E
+  public typealias ValueType = T
+  final public let alias: Swift.String
+  @objc deinit
+}
+precedencegroup PropertyAliasPrecedence {
+  associativity: none
+  assignment: true
+  higherThan: LogicalConjunctionPrecedence, LogicalDisjunctionPrecedence
+  lowerThan: ComparisonPrecedence
+}
+infix operator .= : PropertyAliasPrecedence
+public func .= <E, T>(alias: Swift.String, condition: ObjectBox.PropertyQueryCondition<E, T>) -> ObjectBox.PropertyAlias<E, T> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType, T : ObjectBox.EntityPropertyTypeConvertible
+@_hasMissingDesignatedInitializers public class PropertyQuery<E, T> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType, T : ObjectBox.EntityPropertyTypeConvertible {
+  public typealias EntityType = E
+  public typealias ValueType = T
+  public func count() throws -> Swift.Int
+  @discardableResult
+  public func distinct() throws -> ObjectBox.PropertyQuery<ObjectBox.PropertyQuery<E, T>.EntityType, ObjectBox.PropertyQuery<E, T>.ValueType>
+  @objc deinit
+}
+extension ObjectBox.PropertyQuery where T : Swift.FixedWidthInteger {
+  public func sum() throws -> Swift.Int64
+  public func sumInt() throws -> Swift.Int
+  public func sumUnsigned() throws -> Swift.UInt64
+  public func max() throws -> T
+  public func min() throws -> T
+  public func average() throws -> Swift.Double
+  public func averageInt() throws -> T
+  public func find() throws -> [T]
+  public func findUnique() throws -> T?
+}
+extension ObjectBox.PropertyQuery where T == Swift.Int64 {
+  @discardableResult
+  public func with(nullValue: Swift.Int64) -> ObjectBox.PropertyQuery<ObjectBox.PropertyQuery<E, T>.EntityType, ObjectBox.PropertyQuery<E, T>.ValueType>
+}
+extension ObjectBox.PropertyQuery where T == Swift.Int64? {
+  @discardableResult
+  public func with(nullValue: Swift.Int64) -> ObjectBox.PropertyQuery<ObjectBox.PropertyQuery<E, T>.EntityType, ObjectBox.PropertyQuery<E, T>.ValueType>
+}
+extension ObjectBox.PropertyQuery where T == Swift.Double {
+  public func sum() throws -> Swift.Double
+  public func max() throws -> Swift.Double
+  public func min() throws -> Swift.Double
+  public func average() throws -> Swift.Double
+  public func findDoubles() throws -> [Swift.Double]
+  public func findUniqueDouble() throws -> Swift.Double?
+}
+extension ObjectBox.PropertyQuery where T == Swift.Double? {
+  @discardableResult
+  public func with(nullValue: Swift.Double) -> ObjectBox.PropertyQuery<ObjectBox.PropertyQuery<E, T>.EntityType, ObjectBox.PropertyQuery<E, T>.ValueType>
+}
+extension ObjectBox.PropertyQuery where T == Swift.Float {
+  public func sum() throws -> Swift.Double
+  public func max() throws -> Swift.Float
+  public func min() throws -> Swift.Float
+  public func average() throws -> Swift.Double
+  public func findFloats() throws -> [Swift.Float]
+  public func findUniqueFloat() throws -> Swift.Float?
+}
+extension ObjectBox.PropertyQuery where T == Swift.Float? {
+  @discardableResult
+  public func with(nullValue: Swift.Float) -> ObjectBox.PropertyQuery<ObjectBox.PropertyQuery<E, T>.EntityType, ObjectBox.PropertyQuery<E, T>.ValueType>
+}
+extension ObjectBox.PropertyQuery where T : ObjectBox.StringPropertyType {
+  @discardableResult
+  public func distinct(caseSensitiveCompare: Swift.Bool = true) throws -> ObjectBox.PropertyQuery<ObjectBox.PropertyQuery<E, T>.EntityType, ObjectBox.PropertyQuery<E, T>.ValueType>
+  public func findStrings() throws -> [Swift.String]
+  public func findString() throws -> Swift.String?
+  public func findUniqueString() throws -> Swift.String?
+}
+extension ObjectBox.PropertyQuery where T == Swift.String? {
+  @discardableResult
+  public func with(nullString: Swift.String) -> ObjectBox.PropertyQuery<ObjectBox.PropertyQuery<E, T>.EntityType, ObjectBox.PropertyQuery<E, T>.ValueType>
+}
+@_hasMissingDesignatedInitializers public class Query<E> : Swift.CustomDebugStringConvertible where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType {
+  public typealias EntityType = E
+  @objc deinit
+  public func find(offset: Swift.Int = 0, limit: Swift.Int = 0) throws -> [ObjectBox.Query<E>.EntityType]
+  public func findContiguous(offset: Swift.Int = 0, limit: Swift.Int = 0) throws -> Swift.ContiguousArray<ObjectBox.Query<E>.EntityType>
+  public func findIds(offset: Swift.Int = 0, limit: Swift.Int = 0) throws -> [ObjectBox.EntityId<ObjectBox.Query<E>.EntityType>]
+  @discardableResult
+  public func remove() throws -> Swift.UInt64
+  public func findFirst() throws -> ObjectBox.Query<E>.EntityType?
+  public func findUnique() throws -> ObjectBox.Query<E>.EntityType?
+  public func count() throws -> Swift.Int
+  public func property<T>(_ property: ObjectBox.Property<ObjectBox.Query<E>.EntityType, T, Swift.Void>) -> ObjectBox.PropertyQuery<ObjectBox.Query<E>.EntityType, T> where T : ObjectBox.EntityPropertyTypeConvertible
+  public func property<T>(_ property: ObjectBox.Property<ObjectBox.Query<E>.EntityType, T?, Swift.Void>) -> ObjectBox.PropertyQuery<ObjectBox.Query<E>.EntityType, T> where T : ObjectBox.EntityPropertyTypeConvertible
+  public func propertyInt64(_ property: ObjectBox.Property<ObjectBox.Query<E>.EntityType, Foundation.Date, Swift.Void>) -> ObjectBox.PropertyQuery<ObjectBox.Query<E>.EntityType, Swift.Int64>
+  public func propertyInt64(_ property: ObjectBox.Property<ObjectBox.Query<E>.EntityType, Foundation.Date?, Swift.Void>) -> ObjectBox.PropertyQuery<ObjectBox.Query<E>.EntityType, Swift.Int64>
+  public func setParameter(_ alias: Swift.String, to string: Swift.String)
+  public func setParameters(_ alias: Swift.String, to collection: [Swift.String])
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+public struct ToManyProperty<R> {
+  public enum ToManyId {
+    case valuePropertyId(ObjectBox.obx_schema_id)
+    case relationId(ObjectBox.obx_schema_id)
+    case backlinkRelationId(ObjectBox.obx_schema_id)
+  }
+  public init(_ toManyId: ObjectBox.ToManyProperty<R>.ToManyId)
+}
+extension ObjectBox.Query {
+  public func setParameter<T>(_ property: ObjectBox.Property<ObjectBox.Query<E>.EntityType, T, Swift.Void>, to value: T) where T : ObjectBox.EntityPropertyTypeConvertible, T : Swift.FixedWidthInteger
+  public func setParameter<T>(_ property: ObjectBox.Property<ObjectBox.Query<E>.EntityType, T?, Swift.Void>, to value: T) where T : ObjectBox.EntityPropertyTypeConvertible, T : Swift.FixedWidthInteger
+  public func setParameter<T>(_ alias: Swift.String, to value: T) where T : Swift.FixedWidthInteger
+  public func setParameters<T>(_ property: ObjectBox.Property<ObjectBox.Query<E>.EntityType, T, Swift.Void>, to value1: T, _ value2: T) where T : ObjectBox.EntityPropertyTypeConvertible, T : Swift.FixedWidthInteger
+  public func setParameters<T>(_ property: ObjectBox.Property<ObjectBox.Query<E>.EntityType, T?, Swift.Void>, to value1: T, _ value2: T) where T : ObjectBox.EntityPropertyTypeConvertible, T : Swift.FixedWidthInteger
+  public func setParameters<T>(_ alias: Swift.String, to value1: T, _ value2: T) where T : Swift.FixedWidthInteger
+  public func setParameters<T>(_ property: ObjectBox.Property<ObjectBox.Query<E>.EntityType, T, Swift.Void>, to collection: [T]) where T : ObjectBox.EntityPropertyTypeConvertible, T : Swift.FixedWidthInteger
+  public func setParameters<T>(_ property: ObjectBox.Property<ObjectBox.Query<E>.EntityType, T?, Swift.Void>, to collection: [T]) where T : ObjectBox.EntityPropertyTypeConvertible, T : Swift.FixedWidthInteger
+  public func setParameters<T>(_ alias: Swift.String, to collection: [T]) where T : Swift.FixedWidthInteger
+}
+extension ObjectBox.Query {
+  public func setParameter(_ property: ObjectBox.Property<ObjectBox.Query<E>.EntityType, Swift.Bool, Swift.Void>, to value: Swift.Bool)
+  public func setParameter(_ property: ObjectBox.Property<ObjectBox.Query<E>.EntityType, Swift.Bool?, Swift.Void>, to value: Swift.Bool)
+  public func setParameter(_ alias: Swift.String, to value: Swift.Bool)
+}
+extension ObjectBox.Query {
+  public func setParameter<T>(_ property: ObjectBox.Property<ObjectBox.Query<E>.EntityType, T, Swift.Void>, to value: T) where T : ObjectBox.EntityPropertyTypeConvertible, T : Swift.BinaryFloatingPoint
+  public func setParameter<T>(_ property: ObjectBox.Property<ObjectBox.Query<E>.EntityType, T?, Swift.Void>, to value: T) where T : ObjectBox.EntityPropertyTypeConvertible, T : Swift.BinaryFloatingPoint
+  public func setParameter<T>(_ property: ObjectBox.Property<ObjectBox.Query<E>.EntityType, T, Swift.Void>, toEqual value: T, tolerance: T) where T : ObjectBox.EntityPropertyTypeConvertible, T : Swift.BinaryFloatingPoint
+  public func setParameter<T>(_ property: ObjectBox.Property<ObjectBox.Query<E>.EntityType, T?, Swift.Void>, toEqual value: T, tolerance: T) where T : ObjectBox.EntityPropertyTypeConvertible, T : Swift.BinaryFloatingPoint
+  public func setParameters<T>(_ alias: Swift.String, toEqual value: T, tolerance: T) where T : Swift.BinaryFloatingPoint
+  public func setParameters<T>(_ property: ObjectBox.Property<ObjectBox.Query<E>.EntityType, T, Swift.Void>, to value1: T, _ value2: T) where T : ObjectBox.EntityPropertyTypeConvertible, T : Swift.BinaryFloatingPoint
+  public func setParameters<T>(_ property: ObjectBox.Property<ObjectBox.Query<E>.EntityType, T?, Swift.Void>, to value1: T, _ value2: T) where T : ObjectBox.EntityPropertyTypeConvertible, T : Swift.BinaryFloatingPoint
+}
+extension ObjectBox.Query {
+  public func setParameter(_ property: ObjectBox.Property<ObjectBox.Query<E>.EntityType, Swift.String, Swift.Void>, to string: Swift.String)
+  public func setParameter(_ property: ObjectBox.Property<ObjectBox.Query<E>.EntityType, Swift.String?, Swift.Void>, to string: Swift.String)
+  public func setParameters(_ property: ObjectBox.Property<ObjectBox.Query<E>.EntityType, Swift.String, Swift.Void>, to collection: [Swift.String])
+  public func setParameters(_ property: ObjectBox.Property<ObjectBox.Query<E>.EntityType, Swift.String?, Swift.Void>, to collection: [Swift.String])
+}
+extension ObjectBox.Query {
+  public func setParameter(_ property: ObjectBox.Property<ObjectBox.Query<E>.EntityType, Foundation.Date, Swift.Void>, to value: Foundation.Date)
+  public func setParameter(_ property: ObjectBox.Property<ObjectBox.Query<E>.EntityType, Foundation.Date?, Swift.Void>, to value: Foundation.Date)
+  public func setParameter(_ alias: Swift.String, to value: Foundation.Date)
+  public func setParameters(_ property: ObjectBox.Property<ObjectBox.Query<E>.EntityType, Foundation.Date, Swift.Void>, to collection: [Foundation.Date])
+  public func setParameters(_ property: ObjectBox.Property<ObjectBox.Query<E>.EntityType, Foundation.Date?, Swift.Void>, to collection: [Foundation.Date])
+  public func setParameters(_ alias: Swift.String, to collection: [Foundation.Date])
+  public func setParameters(_ property: ObjectBox.Property<ObjectBox.Query<E>.EntityType, Foundation.Date, Swift.Void>, to value1: Foundation.Date, _ value2: Foundation.Date)
+  public func setParameters(_ property: ObjectBox.Property<ObjectBox.Query<E>.EntityType, Foundation.Date?, Swift.Void>, to value1: Foundation.Date, _ value2: Foundation.Date)
+  public func setParameters(_ alias: Swift.String, to value1: Foundation.Date, _ value2: Foundation.Date)
+}
+extension ObjectBox.Query {
+  public func setParameter(_ property: ObjectBox.Property<ObjectBox.Query<E>.EntityType, Foundation.Data, Swift.Void>, to value: Foundation.Data)
+  public func setParameter(_ property: ObjectBox.Property<ObjectBox.Query<E>.EntityType, Foundation.Data?, Swift.Void>, to value: Foundation.Data)
+  public func setParameter(_ alias: Swift.String, to value: Foundation.Data)
+}
+@_hasMissingDesignatedInitializers public class QueryBuilderCondition {
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class PropertyQueryBuilderCondition : ObjectBox.QueryBuilderCondition {
+  @objc deinit
+}
+public struct FlatBufferReader {
+  public func read(at index: Swift.UInt16) -> Swift.Bool
+  public func read(at index: Swift.UInt16) -> Swift.Int8
+  public func read(at index: Swift.UInt16) -> Swift.Int16
+  public func read(at index: Swift.UInt16) -> Swift.Int32
+  public func read(at index: Swift.UInt16) -> Swift.Int64
+  public func read(at index: Swift.UInt16) -> Swift.UInt8
+  public func read(at index: Swift.UInt16) -> Swift.UInt16
+  public func read(at index: Swift.UInt16) -> Swift.UInt32
+  public func read(at index: Swift.UInt16) -> Swift.UInt64
+  public func read(at index: Swift.UInt16) -> Swift.Int
+  public func read(at index: Swift.UInt16) -> Swift.UInt
+  public func read(at index: Swift.UInt16) -> Swift.Float
+  public func read(at index: Swift.UInt16) -> Swift.Double
+  public func read(at index: Swift.UInt16) -> Foundation.Date
+  public func readNanos(at index: Swift.UInt16) -> Foundation.Date
+  public func read(at index: Swift.UInt16) -> Swift.String
+  public func read(at index: Swift.UInt16) -> Foundation.Data
+  public func read(at index: Swift.UInt16) -> [Swift.UInt8]
+  public func read<E>(at index: Swift.UInt16) -> ObjectBox.EntityId<E> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+  public func read<T>(at index: Swift.UInt16, store: ObjectBox.Store) -> ObjectBox.ToOne<T> where T : ObjectBox.EntityInspectable, T : ObjectBox.__EntityRelatable, T == T.EntityBindingType.EntityType
+  public func read(at index: Swift.UInt16) -> Swift.Bool?
+  public func read(at index: Swift.UInt16) -> Swift.Int8?
+  public func read(at index: Swift.UInt16) -> Swift.Int16?
+  public func read(at index: Swift.UInt16) -> Swift.Int32?
+  public func read(at index: Swift.UInt16) -> Swift.Int64?
+  public func read(at index: Swift.UInt16) -> Swift.UInt8?
+  public func read(at index: Swift.UInt16) -> Swift.UInt16?
+  public func read(at index: Swift.UInt16) -> Swift.UInt32?
+  public func read(at index: Swift.UInt16) -> Swift.UInt64?
+  public func read(at index: Swift.UInt16) -> Swift.Float?
+  public func read(at index: Swift.UInt16) -> Swift.Double?
+  public func read(at index: Swift.UInt16) -> Swift.Int?
+  public func read(at index: Swift.UInt16) -> Swift.UInt?
+  public func read(at index: Swift.UInt16) -> Foundation.Date?
+  public func readNanos(at index: Swift.UInt16) -> Foundation.Date?
+  public func read(at index: Swift.UInt16) -> Swift.String?
+  public func read(at index: Swift.UInt16) -> Foundation.Data?
+  public func read(at index: Swift.UInt16) -> [Swift.UInt8]?
+}
+@_hasMissingDesignatedInitializers final public class QueryBuilder<E> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType {
+  public typealias EntityType = E
+  public typealias QueryProperty<T> = ObjectBox.Property<ObjectBox.QueryBuilder<E>.EntityType, T, Swift.Void> where T : ObjectBox.EntityPropertyTypeConvertible
+  @objc deinit
+  final public func build() throws -> ObjectBox.Query<ObjectBox.QueryBuilder<E>.EntityType>
+  final public func ordered<T>(by property: ObjectBox.Property<ObjectBox.QueryBuilder<E>.EntityType, T, Swift.Void>, flags: [ObjectBox.OrderFlags] = []) -> ObjectBox.QueryBuilder<ObjectBox.QueryBuilder<E>.EntityType> where T : ObjectBox.EntityPropertyTypeConvertible
+  final public func ordered<T>(by property: ObjectBox.Property<ObjectBox.QueryBuilder<E>.EntityType, T, Swift.Void>, flags: ObjectBox.OrderFlags) -> ObjectBox.QueryBuilder<ObjectBox.QueryBuilder<E>.EntityType> where T : ObjectBox.EntityPropertyTypeConvertible
+}
+extension ObjectBox.QueryBuilder {
+  final public func link<V, R>(_ property: ObjectBox.Property<E, V, R>, conditions: @escaping () -> ObjectBox.QueryCondition<R>) -> ObjectBox.QueryBuilder<E> where V : ObjectBox.IdBase, R : ObjectBox.EntityInspectable, R : ObjectBox.__EntityRelatable, R == R.EntityBindingType.EntityType
+  final public func link<V>(_ property: ObjectBox.ToManyProperty<V>, conditions: @escaping () -> ObjectBox.QueryCondition<V>) -> ObjectBox.QueryBuilder<E> where V : ObjectBox.EntityInspectable, V : ObjectBox.__EntityRelatable, V == V.EntityBindingType.EntityType
+}
+@_hasMissingDesignatedInitializers public class QueryCondition<E> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType {
+  public typealias EntityType = E
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class PropertyQueryCondition<E, T> : ObjectBox.QueryCondition<E> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType, T : ObjectBox.EntityPropertyTypeConvertible {
+  public typealias EntityType = E
+  public typealias ValueType = T
+  @objc deinit
+}
+public func && <E>(lhs: ObjectBox.QueryCondition<E>, rhs: ObjectBox.QueryCondition<E>) -> ObjectBox.QueryCondition<E> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func || <E>(lhs: ObjectBox.QueryCondition<E>, rhs: ObjectBox.QueryCondition<E>) -> ObjectBox.QueryCondition<E> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+infix operator ∈ : ComparisonPrecedence
+infix operator ∉ : ComparisonPrecedence
+public func == <E, T>(lhs: ObjectBox.Property<E, ObjectBox.EntityId<T>, T>, rhs: ObjectBox.EntityId<T>) -> ObjectBox.PropertyQueryCondition<E, Swift.UInt64> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType, T : ObjectBox.Entity, T : ObjectBox.EntityInspectable, T : ObjectBox.__EntityRelatable
+extension ObjectBox.Property where V : ObjectBox.IdBase {
+  public func isEqual(to value: ObjectBox.Id) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Id>
+}
+extension ObjectBox.Property {
+  public func isNil() -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isNotNil() -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+}
+public func == <E>(lhs: ObjectBox.Property<E, Swift.Bool, Swift.Void>, rhs: Swift.Bool) -> ObjectBox.PropertyQueryCondition<E, Swift.Bool> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func != <E>(lhs: ObjectBox.Property<E, Swift.Bool, Swift.Void>, rhs: Swift.Bool) -> ObjectBox.PropertyQueryCondition<E, Swift.Bool> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func == <E>(lhs: ObjectBox.Property<E, Swift.Bool?, Swift.Void>, rhs: Swift.Bool) -> ObjectBox.PropertyQueryCondition<E, Swift.Bool?> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func != <E>(lhs: ObjectBox.Property<E, Swift.Bool?, Swift.Void>, rhs: Swift.Bool) -> ObjectBox.PropertyQueryCondition<E, Swift.Bool?> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+extension ObjectBox.Property where V == Swift.Bool {
+  public func isEqual(to value: Swift.Bool) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isNotEqual(to value: Swift.Bool) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+}
+extension ObjectBox.Property where V == Swift.Bool? {
+  public func isEqual(to value: Swift.Bool) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isNotEqual(to value: Swift.Bool) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+}
+public func == <E, VALUE>(lhs: ObjectBox.Property<E, VALUE, Swift.Void>, rhs: VALUE) -> ObjectBox.PropertyQueryCondition<E, VALUE> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType, VALUE : ObjectBox.EntityPropertyTypeConvertible, VALUE : Swift.FixedWidthInteger
+public func != <E, VALUE>(lhs: ObjectBox.Property<E, VALUE, Swift.Void>, rhs: VALUE) -> ObjectBox.PropertyQueryCondition<E, VALUE> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType, VALUE : ObjectBox.EntityPropertyTypeConvertible, VALUE : Swift.FixedWidthInteger
+public func < <E, VALUE>(lhs: ObjectBox.Property<E, VALUE, Swift.Void>, rhs: VALUE) -> ObjectBox.PropertyQueryCondition<E, VALUE> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType, VALUE : ObjectBox.EntityPropertyTypeConvertible, VALUE : Swift.FixedWidthInteger
+public func > <E, VALUE>(lhs: ObjectBox.Property<E, VALUE, Swift.Void>, rhs: VALUE) -> ObjectBox.PropertyQueryCondition<E, VALUE> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType, VALUE : ObjectBox.EntityPropertyTypeConvertible, VALUE : Swift.FixedWidthInteger
+public func ∈ <E, VALUE>(lhs: ObjectBox.Property<E, VALUE, Swift.Void>, rhs: Swift.Range<VALUE>) -> ObjectBox.PropertyQueryCondition<E, VALUE> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType, VALUE : ObjectBox.EntityPropertyTypeConvertible, VALUE : Swift.FixedWidthInteger
+public func ∈ <E, VALUE>(lhs: ObjectBox.Property<E, VALUE, Swift.Void>, rhs: Swift.ClosedRange<VALUE>) -> ObjectBox.PropertyQueryCondition<E, VALUE> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType, VALUE : ObjectBox.EntityPropertyTypeConvertible, VALUE : Swift.FixedWidthInteger
+public func ∈ <E, VALUE>(lhs: ObjectBox.Property<E, VALUE, Swift.Void>, rhs: [VALUE]) -> ObjectBox.PropertyQueryCondition<E, VALUE> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType, VALUE : ObjectBox.EntityPropertyTypeConvertible, VALUE : Swift.FixedWidthInteger
+public func ∉ <E, VALUE>(lhs: ObjectBox.Property<E, VALUE, Swift.Void>, rhs: [VALUE]) -> ObjectBox.PropertyQueryCondition<E, VALUE> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType, VALUE : ObjectBox.EntityPropertyTypeConvertible, VALUE : Swift.FixedWidthInteger
+extension ObjectBox.Property where V : Swift.FixedWidthInteger {
+  public func isEqual(to value: ObjectBox.Property<E, V, R>.ValueType) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isNotEqual(to value: ObjectBox.Property<E, V, R>.ValueType) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isLessThan(_ value: ObjectBox.Property<E, V, R>.ValueType) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isGreaterThan(_ value: ObjectBox.Property<E, V, R>.ValueType) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isBetween(_ lowerBound: ObjectBox.Property<E, V, R>.ValueType, and upperBound: ObjectBox.Property<E, V, R>.ValueType) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isIn(_ range: Swift.ClosedRange<ObjectBox.Property<E, V, R>.ValueType>) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isIn(_ range: Swift.Range<ObjectBox.Property<E, V, R>.ValueType>) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isIn(_ collection: [ObjectBox.Property<E, V, R>.ValueType]) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isNotIn(_ collection: [ObjectBox.Property<E, V, R>.ValueType]) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+}
+public func == <E, VALUE>(lhs: ObjectBox.Property<E, VALUE?, Swift.Void>, rhs: VALUE) -> ObjectBox.PropertyQueryCondition<E, VALUE> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType, VALUE : ObjectBox.EntityPropertyTypeConvertible, VALUE : Swift.FixedWidthInteger
+public func != <E, VALUE>(lhs: ObjectBox.Property<E, VALUE?, Swift.Void>, rhs: VALUE) -> ObjectBox.PropertyQueryCondition<E, VALUE> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType, VALUE : ObjectBox.EntityPropertyTypeConvertible, VALUE : Swift.FixedWidthInteger
+public func < <E, VALUE>(lhs: ObjectBox.Property<E, VALUE?, Swift.Void>, rhs: VALUE) -> ObjectBox.PropertyQueryCondition<E, VALUE> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType, VALUE : ObjectBox.EntityPropertyTypeConvertible, VALUE : Swift.FixedWidthInteger
+public func > <E, VALUE>(lhs: ObjectBox.Property<E, VALUE?, Swift.Void>, rhs: VALUE) -> ObjectBox.PropertyQueryCondition<E, VALUE> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType, VALUE : ObjectBox.EntityPropertyTypeConvertible, VALUE : Swift.FixedWidthInteger
+public func ∈ <E, VALUE>(lhs: ObjectBox.Property<E, VALUE?, Swift.Void>, rhs: Swift.Range<VALUE>) -> ObjectBox.PropertyQueryCondition<E, VALUE> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType, VALUE : ObjectBox.EntityPropertyTypeConvertible, VALUE : Swift.FixedWidthInteger
+public func ∈ <E, VALUE>(lhs: ObjectBox.Property<E, VALUE?, Swift.Void>, rhs: Swift.ClosedRange<VALUE>) -> ObjectBox.PropertyQueryCondition<E, VALUE> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType, VALUE : ObjectBox.EntityPropertyTypeConvertible, VALUE : Swift.FixedWidthInteger
+public func ∈ <E, VALUE>(lhs: ObjectBox.Property<E, VALUE?, Swift.Void>, rhs: [VALUE]) -> ObjectBox.PropertyQueryCondition<E, VALUE> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType, VALUE : ObjectBox.EntityPropertyTypeConvertible, VALUE : Swift.FixedWidthInteger
+public func ∉ <E, VALUE>(lhs: ObjectBox.Property<E, VALUE?, Swift.Void>, rhs: [VALUE]) -> ObjectBox.PropertyQueryCondition<E, VALUE> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType, VALUE : ObjectBox.EntityPropertyTypeConvertible, VALUE : Swift.FixedWidthInteger
+public func < <FP, E>(lhs: ObjectBox.Property<E, FP, Swift.Void>, rhs: FP) -> ObjectBox.PropertyQueryCondition<E, FP> where FP : ObjectBox.EntityPropertyTypeConvertible, FP : Swift.BinaryFloatingPoint, E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func > <FP, E>(lhs: ObjectBox.Property<E, FP, Swift.Void>, rhs: FP) -> ObjectBox.PropertyQueryCondition<E, FP> where FP : ObjectBox.EntityPropertyTypeConvertible, FP : Swift.BinaryFloatingPoint, E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func < <FP, E>(lhs: ObjectBox.Property<E, FP?, Swift.Void>, rhs: FP) -> ObjectBox.PropertyQueryCondition<E, FP> where FP : ObjectBox.EntityPropertyTypeConvertible, FP : Swift.BinaryFloatingPoint, E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func > <FP, E>(lhs: ObjectBox.Property<E, FP?, Swift.Void>, rhs: FP) -> ObjectBox.PropertyQueryCondition<E, FP> where FP : ObjectBox.EntityPropertyTypeConvertible, FP : Swift.BinaryFloatingPoint, E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+extension ObjectBox.Property where V : Swift.BinaryFloatingPoint {
+  public func isEqual(to other: ObjectBox.Property<E, V, R>.ValueType, tolerance: ObjectBox.Property<E, V, R>.ValueType) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isLessThan(_ value: ObjectBox.Property<E, V, R>.ValueType) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isGreaterThan(_ value: ObjectBox.Property<E, V, R>.ValueType) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isBetween(_ lowerBound: ObjectBox.Property<E, V, R>.ValueType, and upperBound: ObjectBox.Property<E, V, R>.ValueType) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+}
+public func == <E>(lhs: ObjectBox.Property<E, Swift.String, Swift.Void>, rhs: Swift.String) -> ObjectBox.PropertyQueryCondition<E, Swift.String> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func != <E>(lhs: ObjectBox.Property<E, Swift.String, Swift.Void>, rhs: Swift.String) -> ObjectBox.PropertyQueryCondition<E, Swift.String> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func < <E>(lhs: ObjectBox.Property<E, Swift.String, Swift.Void>, rhs: Swift.String) -> ObjectBox.PropertyQueryCondition<E, Swift.String> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func > <E>(lhs: ObjectBox.Property<E, Swift.String, Swift.Void>, rhs: Swift.String) -> ObjectBox.PropertyQueryCondition<E, Swift.String> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func ∈ <E>(lhs: ObjectBox.Property<E, Swift.String, Swift.Void>, rhs: [Swift.String]) -> ObjectBox.PropertyQueryCondition<E, Swift.String> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func == <E>(lhs: ObjectBox.Property<E, Swift.String?, Swift.Void>, rhs: Swift.String) -> ObjectBox.PropertyQueryCondition<E, Swift.String?> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func != <E>(lhs: ObjectBox.Property<E, Swift.String?, Swift.Void>, rhs: Swift.String) -> ObjectBox.PropertyQueryCondition<E, Swift.String?> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func < <E>(lhs: ObjectBox.Property<E, Swift.String?, Swift.Void>, rhs: Swift.String) -> ObjectBox.PropertyQueryCondition<E, Swift.String?> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func > <E>(lhs: ObjectBox.Property<E, Swift.String?, Swift.Void>, rhs: Swift.String) -> ObjectBox.PropertyQueryCondition<E, Swift.String?> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func ∈ <E>(lhs: ObjectBox.Property<E, Swift.String?, Swift.Void>, rhs: [Swift.String]) -> ObjectBox.PropertyQueryCondition<E, Swift.String?> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+extension ObjectBox.Property where V : ObjectBox.StringPropertyType {
+  public func isEqual(to string: Swift.String, caseSensitive: Swift.Bool = true) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isNotEqual(to string: Swift.String, caseSensitive: Swift.Bool = true) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isLessThan(_ string: Swift.String, caseSensitive: Swift.Bool = true) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isGreaterThan(_ string: Swift.String, caseSensitive: Swift.Bool = true) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isIn(_ collection: [Swift.String], caseSensitive: Swift.Bool = true) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func hasPrefix(_ prefix: Swift.String, caseSensitive: Swift.Bool = true) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func startsWith(_ prefix: Swift.String, caseSensitive: Swift.Bool = true) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func hasSuffix(_ suffix: Swift.String, caseSensitive: Swift.Bool = true) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func endsWith(_ suffix: Swift.String, caseSensitive: Swift.Bool = true) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func contains(_ substring: Swift.String, caseSensitive: Swift.Bool = true) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+}
+public func == <E>(lhs: ObjectBox.Property<E, Foundation.Data, Swift.Void>, rhs: Foundation.Data) -> ObjectBox.PropertyQueryCondition<E, Foundation.Data> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func < <E>(lhs: ObjectBox.Property<E, Foundation.Data, Swift.Void>, rhs: Foundation.Data) -> ObjectBox.PropertyQueryCondition<E, Foundation.Data> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func <= <E>(lhs: ObjectBox.Property<E, Foundation.Data, Swift.Void>, rhs: Foundation.Data) -> ObjectBox.PropertyQueryCondition<E, Foundation.Data> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func > <E>(lhs: ObjectBox.Property<E, Foundation.Data, Swift.Void>, rhs: Foundation.Data) -> ObjectBox.PropertyQueryCondition<E, Foundation.Data> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func >= <E>(lhs: ObjectBox.Property<E, Foundation.Data, Swift.Void>, rhs: Foundation.Data) -> ObjectBox.PropertyQueryCondition<E, Foundation.Data> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func == <E>(lhs: ObjectBox.Property<E, Foundation.Data?, Swift.Void>, rhs: Foundation.Data) -> ObjectBox.PropertyQueryCondition<E, Foundation.Data?> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func < <E>(lhs: ObjectBox.Property<E, Foundation.Data?, Swift.Void>, rhs: Foundation.Data) -> ObjectBox.PropertyQueryCondition<E, Foundation.Data?> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func > <E>(lhs: ObjectBox.Property<E, Foundation.Data?, Swift.Void>, rhs: Foundation.Data) -> ObjectBox.PropertyQueryCondition<E, Foundation.Data?> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+extension ObjectBox.Property where V : ObjectBox.DataPropertyType {
+  public func isEqual(to data: Foundation.Data) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isLessThan(_ data: Foundation.Data) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isLessThanEqual(_ data: Foundation.Data) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isGreaterThan(_ data: Foundation.Data) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isGreaterThanEqual(_ data: Foundation.Data) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+}
+public func == <E>(lhs: ObjectBox.Property<E, Foundation.Date, Swift.Void>, rhs: Foundation.Date) -> ObjectBox.PropertyQueryCondition<E, Foundation.Date> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func != <E>(lhs: ObjectBox.Property<E, Foundation.Date, Swift.Void>, rhs: Foundation.Date) -> ObjectBox.PropertyQueryCondition<E, Foundation.Date> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func < <E>(lhs: ObjectBox.Property<E, Foundation.Date, Swift.Void>, rhs: Foundation.Date) -> ObjectBox.PropertyQueryCondition<E, Foundation.Date> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func > <E>(lhs: ObjectBox.Property<E, Foundation.Date, Swift.Void>, rhs: Foundation.Date) -> ObjectBox.PropertyQueryCondition<E, Foundation.Date> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func ∈ <E>(lhs: ObjectBox.Property<E, Foundation.Date, Swift.Void>, rhs: Swift.Range<Foundation.Date>) -> ObjectBox.PropertyQueryCondition<E, Foundation.Date> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func ∈ <E>(lhs: ObjectBox.Property<E, Foundation.Date, Swift.Void>, rhs: Swift.ClosedRange<Foundation.Date>) -> ObjectBox.PropertyQueryCondition<E, Foundation.Date> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func ∈ <E>(lhs: ObjectBox.Property<E, Foundation.Date, Swift.Void>, rhs: [Foundation.Date]) -> ObjectBox.PropertyQueryCondition<E, Foundation.Date> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func ∉ <E>(lhs: ObjectBox.Property<E, Foundation.Date, Swift.Void>, rhs: [Foundation.Date]) -> ObjectBox.PropertyQueryCondition<E, Foundation.Date> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+extension ObjectBox.Property where V : ObjectBox.DatePropertyType {
+  public func isEqual(to date: Foundation.Date) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isNotEqual(to date: Foundation.Date) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isBetween(_ lowerBound: Foundation.Date, and upperBound: Foundation.Date) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isIn(_ range: Swift.Range<Foundation.Date>) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isIn(_ range: Swift.ClosedRange<Foundation.Date>) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isIn(_ collection: [Foundation.Date]) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isNotIn(_ collection: [Foundation.Date]) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isBefore(_ other: Foundation.Date) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isAfter(_ other: Foundation.Date) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+}
+public func == <E>(lhs: ObjectBox.Property<E, Foundation.Date?, Swift.Void>, rhs: Foundation.Date) -> ObjectBox.PropertyQueryCondition<E, Foundation.Date?> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func != <E>(lhs: ObjectBox.Property<E, Foundation.Date?, Swift.Void>, rhs: Foundation.Date) -> ObjectBox.PropertyQueryCondition<E, Foundation.Date?> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func < <E>(lhs: ObjectBox.Property<E, Foundation.Date?, Swift.Void>, rhs: Foundation.Date) -> ObjectBox.PropertyQueryCondition<E, Foundation.Date?> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func > <E>(lhs: ObjectBox.Property<E, Foundation.Date?, Swift.Void>, rhs: Foundation.Date) -> ObjectBox.PropertyQueryCondition<E, Foundation.Date?> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func ∈ <E>(lhs: ObjectBox.Property<E, Foundation.Date?, Swift.Void>, rhs: Swift.Range<Foundation.Date>) -> ObjectBox.PropertyQueryCondition<E, Foundation.Date?> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func ∈ <E>(lhs: ObjectBox.Property<E, Foundation.Date?, Swift.Void>, rhs: Swift.ClosedRange<Foundation.Date>) -> ObjectBox.PropertyQueryCondition<E, Foundation.Date?> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func ∈ <E>(lhs: ObjectBox.Property<E, Foundation.Date?, Swift.Void>, rhs: [Foundation.Date]) -> ObjectBox.PropertyQueryCondition<E, Foundation.Date?> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+public func ∉ <E>(lhs: ObjectBox.Property<E, Foundation.Date?, Swift.Void>, rhs: [Foundation.Date]) -> ObjectBox.PropertyQueryCondition<E, Foundation.Date?> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+extension ObjectBox.Property where V == Foundation.Date? {
+  public func isEqual(to date: Foundation.Date) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isNotEqual(to date: Foundation.Date) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isBetween(_ lowerBound: Foundation.Date, and upperBound: Foundation.Date) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isIn(_ range: Swift.Range<Foundation.Date>) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isIn(_ range: Swift.ClosedRange<Foundation.Date>) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isIn(_ collection: [Foundation.Date]) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isNotIn(_ collection: [Foundation.Date]) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isBefore(_ other: Foundation.Date) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+  public func isAfter(_ other: Foundation.Date) -> ObjectBox.PropertyQueryCondition<ObjectBox.Property<E, V, R>.EntityType, ObjectBox.Property<E, V, R>.ValueType>
+}
+@_hasMissingDesignatedInitializers final public class ToMany<S> : Swift.ExpressibleByNilLiteral where S : ObjectBox.EntityInspectable, S : ObjectBox.__EntityRelatable, S == S.EntityBindingType.EntityType {
+  public typealias ReferencedType = S
+  final public var resolved: Swift.Bool {
+    get
+  }
+  final public var hasPendingDbChanges: Swift.Bool {
+    get
+  }
+  public init(nilLiteral: ())
+  public static func backlink<OwningType>(sourceBox: ObjectBox.Box<ObjectBox.ToMany<S>.ReferencedType>, sourceProperty: ObjectBox.Property<ObjectBox.ToMany<S>.ReferencedType, ObjectBox.EntityId<OwningType>, OwningType>, targetId: ObjectBox.EntityId<OwningType>) -> ObjectBox.ToMany<ObjectBox.ToMany<S>.ReferencedType> where OwningType : ObjectBox.EntityInspectable, OwningType : ObjectBox.__EntityRelatable
+  public static func relation<OwningType>(sourceId: ObjectBox.EntityId<OwningType>, targetBox: ObjectBox.Box<ObjectBox.ToMany<S>.ReferencedType>, relationId: ObjectBox.obx_schema_id) -> ObjectBox.ToMany<ObjectBox.ToMany<S>.ReferencedType> where OwningType : ObjectBox.EntityInspectable, OwningType : ObjectBox.__EntityRelatable
+  public static func backlink<OwningType>(sourceBox: ObjectBox.Box<ObjectBox.ToMany<S>.ReferencedType>, targetId: ObjectBox.EntityId<OwningType>, relationId: ObjectBox.obx_schema_id) -> ObjectBox.ToMany<ObjectBox.ToMany<S>.ReferencedType> where OwningType : ObjectBox.EntityInspectable, OwningType : ObjectBox.__EntityRelatable, OwningType == OwningType.EntityBindingType.EntityType
+  final public func reset()
+  final public func applyToDb() throws
+  final public var canInteractWithDb: Swift.Bool {
+    get
+  }
+  final public func resolveFromDb() throws
+  final public func getUncachedFromDb() throws -> [ObjectBox.ToMany<S>.ReferencedType]
+  final public func getUncachedIdsFromDb() throws -> [ObjectBox.ToMany<S>.ReferencedType.EntityBindingType.IdType]
+  final public func replace<C>(_ newElements: __owned C) where S == C.Element, C : Swift.Collection, C.Element == S.EntityBindingType.EntityType
+  @objc deinit
+}
+extension ObjectBox.ToMany : Swift.RandomAccessCollection {
+  public typealias Index = Swift.Int
+  final public var startIndex: ObjectBox.ToMany<S>.Index {
+    get
+  }
+  final public var endIndex: ObjectBox.ToMany<S>.Index {
+    get
+  }
+  final public func index(after i: ObjectBox.ToMany<S>.Index) -> ObjectBox.ToMany<S>.Index
+  final public func index(before i: ObjectBox.ToMany<S>.Index) -> ObjectBox.ToMany<S>.Index
+  final public subscript(position: ObjectBox.ToMany<S>.Index) -> ObjectBox.ToMany<S>.ReferencedType {
+    get
+  }
+  public typealias Element = ObjectBox.ToMany<S>.ReferencedType
+  public typealias Indices = Swift.Range<ObjectBox.ToMany<S>.Index>
+  public typealias Iterator = Swift.IndexingIterator<ObjectBox.ToMany<S>>
+  public typealias SubSequence = Swift.Slice<ObjectBox.ToMany<S>>
+}
+extension ObjectBox.ToMany : Swift.RangeReplaceableCollection {
+  convenience public init()
+  final public func replaceSubrange<C, R>(_ subrange: R, with newElements: __owned C) where S == C.Element, C : Swift.Collection, R : Swift.RangeExpression, C.Element == S.EntityBindingType.EntityType, R.Bound == Swift.Int
+  final public func removeAll(keepingCapacity keepCapacity: Swift.Bool = false)
+  final public func removeAll(where shouldBeRemoved: (ObjectBox.ToMany<S>.ReferencedType) throws -> Swift.Bool) rethrows
+}
+extension ObjectBox.ToMany : Swift.CustomStringConvertible {
+  final public var description: Swift.String {
+    get
+  }
+}
+extension ObjectBox.ToMany : Swift.CustomDebugStringConvertible {
+  final public var debugDescription: Swift.String {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers final public class ToOne<T> : Swift.ExpressibleByNilLiteral where T : ObjectBox.EntityInspectable, T : ObjectBox.__EntityRelatable, T == T.EntityBindingType.EntityType {
+  public typealias Target = T
+  final public var hasValue: Swift.Bool {
+    get
+  }
+  final public var target: ObjectBox.ToOne<T>.Target? {
+    get
+    set
+  }
+  final public var targetId: ObjectBox.EntityId<ObjectBox.ToOne<T>.Target>? {
+    get
+    set
+  }
+  required public init(nilLiteral: ())
+  required public init(_ entity: ObjectBox.ToOne<T>.Target?)
+  final public func attach(to box: ObjectBox.Box<ObjectBox.ToOne<T>.Target>)
+  final public func reset()
+  @objc deinit
+}
+extension ObjectBox.ToOne : Swift.CustomStringConvertible {
+  final public var description: Swift.String {
+    get
+  }
+}
+extension ObjectBox.ToOne : Swift.CustomDebugStringConvertible {
+  final public var debugDescription: Swift.String {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class AsyncBox<E> where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType {
+  public typealias EntityType = E
+  public init(box: ObjectBox.Box<ObjectBox.AsyncBox<E>.EntityType>, enqueueTimeout: Foundation.TimeInterval)
+  @objc deinit
+  @discardableResult
+  public func put(_ entity: ObjectBox.AsyncBox<E>.EntityType, mode: ObjectBox.PutMode = .put) throws -> ObjectBox.EntityId<ObjectBox.AsyncBox<E>.EntityType>
+  @discardableResult
+  public func put<C>(_ entities: C, mode: ObjectBox.PutMode = .put) throws -> [ObjectBox.EntityId<ObjectBox.AsyncBox<E>.EntityType>] where E == C.Element, C : Swift.Collection, C.Element == E.EntityBindingType.EntityType
+  @discardableResult
+  public func put(_ entities: [ObjectBox.AsyncBox<E>.EntityType], mode: ObjectBox.PutMode = .put) throws -> [ObjectBox.EntityId<ObjectBox.AsyncBox<E>.EntityType>]
+  @discardableResult
+  public func put(_ entities: Swift.ContiguousArray<ObjectBox.AsyncBox<E>.EntityType>, mode: ObjectBox.PutMode = .put) throws -> Swift.ContiguousArray<ObjectBox.EntityId<ObjectBox.AsyncBox<E>.EntityType>>
+  @discardableResult
+  public func put(_ entities: ObjectBox.AsyncBox<E>.EntityType..., mode: ObjectBox.PutMode = .put) throws -> [ObjectBox.EntityId<ObjectBox.AsyncBox<E>.EntityType>]
+  public func remove(_ entityId: ObjectBox.EntityId<ObjectBox.AsyncBox<E>.EntityType>) throws
+  public func remove<I>(_ entityId: I) throws where I : ObjectBox.UntypedIdBase
+  public func remove(_ entity: ObjectBox.AsyncBox<E>.EntityType) throws
+  public func remove<C>(_ entities: C) throws where E == C.Element, C : Swift.Collection, C.Element == E.EntityBindingType.EntityType
+  public func remove(_ entities: ObjectBox.AsyncBox<E>.EntityType...) throws
+  public func remove<C>(_ entityIDs: C) throws where C : Swift.Collection, C.Element == ObjectBox.EntityId<E>
+  public func remove<I, C>(_ entityIDs: C) throws where I : ObjectBox.UntypedIdBase, I == C.Element, C : Swift.Collection
+  public func remove(_ entityIDs: ObjectBox.EntityId<ObjectBox.AsyncBox<E>.EntityType>...) throws
+  public func remove<I>(_ entityIDs: I...) throws where I : ObjectBox.UntypedIdBase
+}
+extension ObjectBox.Store {
+  @discardableResult
+  public func awaitAsyncSubmitted() -> Swift.Bool
+  @discardableResult
+  public func awaitAsyncCompleted() -> Swift.Bool
+}
+public enum ObjectBoxError : Swift.Error {
+  case unknown(code: Swift.Int32, message: Swift.String)
+  case cannotWriteWhileReading(message: Swift.String)
+  case uniqueViolation(message: Swift.String)
+  case notFound(message: Swift.String)
+  case illegalState(message: Swift.String)
+  case illegalArgument(message: Swift.String)
+  case allocation(message: Swift.String)
+  case noErrorInfo(message: Swift.String)
+  case general(message: Swift.String)
+  case dbFull(message: Swift.String)
+  case maxReadersExceeded(message: Swift.String)
+  case storeMustShutdown(message: Swift.String)
+  case storageGeneral(message: Swift.String)
+  case nonUniqueResult(message: Swift.String)
+  case propertyTypeMismatch(message: Swift.String)
+  case constraintViolated(message: Swift.String)
+  case stdIllegalArgument(message: Swift.String)
+  case stdOutOfRange(message: Swift.String)
+  case stdLength(message: Swift.String)
+  case stdBadAlloc(message: Swift.String)
+  case stdRange(message: Swift.String)
+  case stdOverflow(message: Swift.String)
+  case stdOther(message: Swift.String)
+  case schema(message: Swift.String)
+  case fileCorrupt(message: Swift.String)
+  case filePagesCorrupt(message: Swift.String)
+  case cannotRelateToUnsavedEntities(message: Swift.String)
+  case cannotAttachToStore(message: Swift.String)
+  case unexpected(error: any Swift.Error)
+  case sync(message: Swift.String)
+}
+@_hasMissingDesignatedInitializers public class EntityBuilder<T> {
+  public func flags(_ flags: ObjectBox.EntityFlags) throws
+  public func flags(_ flags: [ObjectBox.EntityFlags]) throws
+  public func addProperty(name: Swift.String, type: ObjectBox.PropertyType, flags: ObjectBox.PropertyFlags, id: Swift.UInt32, uid: Swift.UInt64, indexId: Swift.UInt32 = 0, indexUid: Swift.UInt64 = 0) throws
+  public func addProperty(name: Swift.String, type: ObjectBox.PropertyType, flags: [ObjectBox.PropertyFlags] = [], id: Swift.UInt32, uid: Swift.UInt64, indexId: Swift.UInt32 = 0, indexUid: Swift.UInt64 = 0) throws
+  public func addToOneRelation(name: Swift.String, targetEntityInfo: ObjectBox.EntityInfo, flags: [ObjectBox.PropertyFlags] = [], id propertyID: Swift.UInt32, uid propertyUID: Swift.UInt64, indexId indexID: Swift.UInt32, indexUid indexUID: Swift.UInt64) throws
+  public func addToManyRelation(id relationId: ObjectBox.obx_schema_id, uid relationUid: ObjectBox.obx_uid, targetId: ObjectBox.obx_schema_id, targetUid: ObjectBox.obx_uid) throws
+  public func lastProperty(id propertyID: Swift.UInt32, uid propertyUID: Swift.UInt64) throws
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class Store : Swift.CustomDebugStringConvertible {
+  public var directoryPath: Swift.String {
+    get
+  }
+  public static var version: Swift.String
+  public static let inMemoryPrefix: Swift.String
+  public static var versionAll: Swift.String {
+    get
+  }
+  public static var versionFullInfo: Swift.String {
+    get
+  }
+  public static var versionLib: Swift.String {
+    get
+  }
+  public static var versionCore: Swift.String {
+    get
+  }
+  public static func attachTo(directory: Swift.String) throws -> ObjectBox.Store
+  public static func isOpen(directory: Swift.String) throws -> Swift.Bool
+  public init(model: Swift.OpaquePointer, directory: Swift.String = "objectbox", maxDbSizeInKByte: Swift.UInt64 = 1024 * 1024, fileMode: Swift.UInt32 = 0o644, maxReaders: Swift.UInt32 = 0, readOnly: Swift.Bool = false) throws
+  @objc deinit
+  public func clone() throws -> ObjectBox.Store
+  public func box<T>(for entityType: T.Type = T.self) -> ObjectBox.Box<T> where T : ObjectBox.EntityInspectable, T : ObjectBox.__EntityRelatable, T == T.EntityBindingType.EntityType
+  public func closeAndDeleteAllFiles() throws
+  public func lazyAttachedObject<T>(key: Swift.String, creationBlock: () -> T) -> T where T : AnyObject
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var syncClient: (any ObjectBox.SyncClient)? {
+    get
+  }
+  public func runInTransaction<T>(_ block: () throws -> T) throws -> T
+  public func runInTransaction(_ block: () throws -> Swift.Void) throws
+  public func runInReadOnlyTransaction<T>(_ block: () throws -> T) throws -> T
+  public func runInReadOnlyTransaction(_ block: () throws -> Swift.Void) throws
+}
+@_hasMissingDesignatedInitializers public class FlatBufferBuilder {
+  @objc deinit
+}
+extension ObjectBox.FlatBufferBuilder {
+  public func collect(_ value: Swift.Bool, at propertyOffset: Swift.UInt16)
+  public func collect(_ value: Swift.Int8, at propertyOffset: Swift.UInt16)
+  public func collect(_ value: Swift.Int16, at propertyOffset: Swift.UInt16)
+  public func collect(_ value: Swift.Int32, at propertyOffset: Swift.UInt16)
+  public func collect(_ value: Swift.Int64, at propertyOffset: Swift.UInt16)
+  public func collect(_ value: Swift.UInt8, at propertyOffset: Swift.UInt16)
+  public func collect(_ value: Swift.UInt16, at propertyOffset: Swift.UInt16)
+  public func collect(_ value: Swift.UInt32, at propertyOffset: Swift.UInt16)
+  public func collect(_ value: Swift.UInt64, at propertyOffset: Swift.UInt16)
+  public func collect(_ value: Swift.Float, at propertyOffset: Swift.UInt16)
+  public func collect(_ value: Swift.Double, at propertyOffset: Swift.UInt16)
+  public func collect(_ date: Foundation.Date?, at propertyOffset: Swift.UInt16)
+  public func collectNanos(_ date: Foundation.Date?, at propertyOffset: Swift.UInt16)
+  public func collect(_ value: Swift.Int, at propertyOffset: Swift.UInt16)
+  public func collect(_ value: Swift.UInt, at propertyOffset: Swift.UInt16)
+  public func collect(dataOffset: ObjectBox.OBXDataOffset, at propertyOffset: Swift.UInt16)
+  public func prepare(string: Swift.String?) -> ObjectBox.OBXDataOffset
+  public func prepare(bytes data: Foundation.Data?) -> ObjectBox.OBXDataOffset
+  public func prepare(bytes: [Swift.UInt8]?) -> ObjectBox.OBXDataOffset
+}
+extension ObjectBox.FlatBufferBuilder {
+  public func collect(_ value: Swift.Int?, at propertyOffset: Swift.UInt16)
+  public func collect(_ value: Swift.Int64?, at propertyOffset: Swift.UInt16)
+  public func collect(_ value: Swift.Int32?, at propertyOffset: Swift.UInt16)
+  public func collect(_ value: Swift.Int16?, at propertyOffset: Swift.UInt16)
+  public func collect(_ value: Swift.Int8?, at propertyOffset: Swift.UInt16)
+  public func collect(_ value: Swift.UInt?, at propertyOffset: Swift.UInt16)
+  public func collect(_ value: Swift.UInt64?, at propertyOffset: Swift.UInt16)
+  public func collect(_ value: Swift.UInt32?, at propertyOffset: Swift.UInt16)
+  public func collect(_ value: Swift.UInt16?, at propertyOffset: Swift.UInt16)
+  public func collect(_ value: Swift.UInt8?, at propertyOffset: Swift.UInt16)
+  public func collect(_ value: Swift.Bool?, at propertyOffset: Swift.UInt16)
+  public func collect(_ value: Swift.Float?, at propertyOffset: Swift.UInt16)
+  public func collect(_ value: Swift.Double?, at propertyOffset: Swift.UInt16)
+  public func collect(_ value: Swift.String?, at propertyOffset: Swift.UInt16)
+  public func collect<T>(_ value: ObjectBox.EntityId<T>?, at propertyOffset: Swift.UInt16) where T : ObjectBox.EntityInspectable, T : ObjectBox.__EntityRelatable
+  public func collect<E>(_ toOne: ObjectBox.ToOne<E>, at propertyOffset: Swift.UInt16, store: ObjectBox.Store) throws where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType
+}
+public class EntityInfo {
+  public var entityName: Swift.String {
+    get
+  }
+  public var entitySchemaId: Swift.UInt32 {
+    get
+  }
+  public init(name entityName: Swift.String, id schemaId: Swift.UInt32)
+  @objc deinit
+}
+public protocol SyncClient : AnyObject {
+  var callListenersInMainThread: Swift.Bool { get set }
+  var loginListener: (any ObjectBox.SyncLoginListener)? { get set }
+  var completedListener: (any ObjectBox.SyncCompletedListener)? { get set }
+  var changeListener: (any ObjectBox.SyncChangeListener)? { get set }
+  var connectionListener: (any ObjectBox.SyncConnectionListener)? { get set }
+  var listener: (any ObjectBox.SyncListener)? { get set }
+  var updateRequestMode: ObjectBox.RequestUpdatesMode { get set }
+  func getState() -> ObjectBox.SyncState
+  func getStateString() -> Swift.String
+  func isClosed() -> Swift.Bool
+  func close()
+  func setCredentials(_ credentials: ObjectBox.SyncCredentials) throws
+  func start() throws
+  func stop() throws
+  @discardableResult
+  func requestUpdates() throws -> Swift.Bool
+  @discardableResult
+  func requestUpdatesAndSubscribe() throws -> Swift.Bool
+  @discardableResult
+  func cancelUpdates() throws -> Swift.Bool
+  @discardableResult
+  func fullSync() throws -> Swift.Bool
+  func waitForLoggedInState(timeoutMilliseconds: Swift.UInt) throws -> ObjectBox.SuccessTimeOut
+  @discardableResult
+  func sendHeartbeat() throws -> Swift.Bool
+  func setHeartbeatInterval(milliseconds: Swift.UInt) throws
+}
+public protocol SyncLoginListener {
+  func loggedIn()
+  func loginFailed(result: ObjectBox.SyncCode)
+}
+public protocol SyncCompletedListener {
+  func updatesCompleted()
+}
+public struct SyncChange {
+}
+public protocol SyncChangeListener {
+}
+public protocol SyncConnectionListener {
+  func connected()
+  func disconnected()
+}
+public protocol SyncListener : ObjectBox.SyncChangeListener, ObjectBox.SyncCompletedListener, ObjectBox.SyncConnectionListener, ObjectBox.SyncLoginListener {
+}
+@_hasMissingDesignatedInitializers public class Sync {
+  public static func isAvailable() -> Swift.Bool
+  public static func makeClient(store: ObjectBox.Store, url: Foundation.URL? = nil, urlString: Swift.String? = nil, credentials: ObjectBox.SyncCredentials? = nil) throws -> any ObjectBox.SyncClient
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class SyncCredentials {
+  public static func makeNone() -> ObjectBox.SyncCredentials
+  public static func makeSharedSecret(_ data: Foundation.Data) -> ObjectBox.SyncCredentials
+  public static func makeSharedSecret(_ string: Swift.String) -> ObjectBox.SyncCredentials
+  @objc deinit
+}
+public enum SyncCredentialsType : Swift.UInt32 {
+  case none, sharedSecret, googleAuth
+  public init?(rawValue: Swift.UInt32)
+  public typealias RawValue = Swift.UInt32
+  public var rawValue: Swift.UInt32 {
+    get
+  }
+}
+public enum RequestUpdatesMode : Swift.UInt32 {
+  case manual, auto, autoNoPushes
+  public init?(rawValue: Swift.UInt32)
+  public typealias RawValue = Swift.UInt32
+  public var rawValue: Swift.UInt32 {
+    get
+  }
+}
+public enum SyncState : Swift.UInt32 {
+  case created, started, connected, loggedIn, disconnected, stopped, dead
+  public init?(rawValue: Swift.UInt32)
+  public typealias RawValue = Swift.UInt32
+  public var rawValue: Swift.UInt32 {
+    get
+  }
+}
+public enum SyncCode : Swift.UInt32 {
+  case ok, reqRejected, credentialsRejected, unknown, authUnreachable, badVersion, clientIdTaken, txViolatedUnique
+  public init?(rawValue: Swift.UInt32)
+  public typealias RawValue = Swift.UInt32
+  public var rawValue: Swift.UInt32 {
+    get
+  }
+}
+public enum SuccessTimeOut {
+  case success, failure, timeout
+  public static func == (a: ObjectBox.SuccessTimeOut, b: ObjectBox.SuccessTimeOut) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum DebugFlags : Swift.UInt32 {
+  public typealias T = Swift.UInt32
+  public static var byteSize: Swift.Int {
+    get
+  }
+  public var value: Swift.UInt32 {
+    get
+  }
+  case logTransactionsRead
+  case logTransactionsWrite
+  case logQueries
+  case logQueryParameters
+  case logAsyncQueue
+  case logCacheHits
+  case logCacheAll
+  public static var max: ObjectBox.DebugFlags {
+    get
+  }
+  public static var min: ObjectBox.DebugFlags {
+    get
+  }
+  public init?(rawValue: Swift.UInt32)
+  public typealias RawValue = Swift.UInt32
+  public var rawValue: Swift.UInt32 {
+    get
+  }
+}
+public enum PutPaddingMode : Swift.UInt16 {
+  public typealias T = Swift.UInt16
+  public static var byteSize: Swift.Int {
+    get
+  }
+  public var value: Swift.UInt16 {
+    get
+  }
+  case unknown
+  case paddingautomatic
+  case paddingallowedbybuffer
+  case paddingbycaller
+  public static var max: ObjectBox.PutPaddingMode {
+    get
+  }
+  public static var min: ObjectBox.PutPaddingMode {
+    get
+  }
+  public init?(rawValue: Swift.UInt16)
+  public typealias RawValue = Swift.UInt16
+  public var rawValue: Swift.UInt16 {
+    get
+  }
+}
+public enum ValidateOnOpenMode : Swift.UInt16 {
+  public typealias T = Swift.UInt16
+  public static var byteSize: Swift.Int {
+    get
+  }
+  public var value: Swift.UInt16 {
+    get
+  }
+  case unknown
+  case none_
+  case regular
+  case withleaves
+  case allbranches
+  case full
+  public static var max: ObjectBox.ValidateOnOpenMode {
+    get
+  }
+  public static var min: ObjectBox.ValidateOnOpenMode {
+    get
+  }
+  public init?(rawValue: Swift.UInt16)
+  public typealias RawValue = Swift.UInt16
+  public var rawValue: Swift.UInt16 {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class Box<E> : Swift.CustomDebugStringConvertible where E : ObjectBox.EntityInspectable, E : ObjectBox.__EntityRelatable, E == E.EntityBindingType.EntityType {
+  public typealias EntityType = E
+  public func isEmpty() throws -> Swift.Bool
+  public var async: ObjectBox.AsyncBox<E> {
+    get
+  }
+  public func count(limit: Swift.Int = 0) throws -> Swift.Int
+  public func contains(_ entityId: ObjectBox.Box<E>.EntityType.EntityBindingType.IdType) throws -> Swift.Bool
+  public func contains(_ ids: [ObjectBox.Box<E>.EntityType.EntityBindingType.IdType]) throws -> Swift.Bool
+  public func contains(_ ids: ObjectBox.Box<E>.EntityType.EntityBindingType.IdType...) throws -> Swift.Bool
+  @objc deinit
+}
+extension ObjectBox.Box {
+  @discardableResult
+  public func put(_ entity: inout ObjectBox.Box<E>.EntityType, mode: ObjectBox.PutMode = .put) throws -> ObjectBox.Box<E>.EntityType.EntityBindingType.IdType
+  @discardableResult
+  public func put(_ entity: ObjectBox.Box<E>.EntityType, mode: ObjectBox.PutMode = .put) throws -> ObjectBox.Box<E>.EntityType.EntityBindingType.IdType
+  @discardableResult
+  public func putAndReturnIDs<C>(_ entities: C, mode: ObjectBox.PutMode = .put) throws -> [ObjectBox.Box<E>.EntityType.EntityBindingType.IdType] where E == C.Element, C : Swift.Collection, C.Element == E.EntityBindingType.EntityType
+  public func put<C>(_ entities: C, mode: ObjectBox.PutMode = .put) throws where E == C.Element, C : Swift.Collection, C.Element == E.EntityBindingType.EntityType
+  public func put(_ entities: [ObjectBox.Box<E>.EntityType], mode: ObjectBox.PutMode = .put) throws
+  public func put(_ entities: Swift.ContiguousArray<ObjectBox.Box<E>.EntityType>, mode: ObjectBox.PutMode = .put) throws
+  public func put(_ entities: inout [ObjectBox.Box<E>.EntityType], mode: ObjectBox.PutMode = .put) throws
+  public func putAndReturnIDs(_ entities: ObjectBox.Box<E>.EntityType..., mode: ObjectBox.PutMode = .put) throws -> [ObjectBox.Box<E>.EntityType.EntityBindingType.IdType]
+  public func put(_ entities: ObjectBox.Box<E>.EntityType..., mode: ObjectBox.PutMode = .put) throws
+}
+extension ObjectBox.Box {
+  public func get<I>(_ entityId: I) throws -> ObjectBox.Box<E>.EntityType? where I : ObjectBox.UntypedIdBase
+  public func get(_ id: ObjectBox.EntityId<ObjectBox.Box<E>.EntityType>) throws -> ObjectBox.Box<E>.EntityType?
+  public func get<I, C>(_ ids: C, maxCount: Swift.Int = 0) throws -> [ObjectBox.Box<E>.EntityType] where I : ObjectBox.IdBase, I == C.Element, C : Swift.Collection
+  public func getAsDictionary<C>(_ ids: C) throws -> [ObjectBox.EntityId<ObjectBox.Box<E>.EntityType> : ObjectBox.Box<E>.EntityType] where C : Swift.Collection, C.Element == ObjectBox.EntityId<E>
+  public func getAsDictionary<I, C>(_ ids: C) throws -> [I : ObjectBox.Box<E>.EntityType] where I : ObjectBox.UntypedIdBase, I == C.Element, C : Swift.Collection
+  public func all() throws -> [ObjectBox.Box<E>.EntityType]
+  public func allContiguous() throws -> Swift.ContiguousArray<ObjectBox.Box<E>.EntityType>
+}
+extension ObjectBox.Box {
+  public func visit(writable: Swift.Bool = false, visitor: (ObjectBox.Box<E>.EntityType) throws -> Swift.Bool) throws
+  public func forEach(writable: Swift.Bool = false, _ visitor: (ObjectBox.Box<E>.EntityType) throws -> Swift.Void) throws
+  public func `for`<C>(writable: Swift.Bool = false, _ ids: C, in visitor: (ObjectBox.Box<E>.EntityType?) throws -> Swift.Void) throws where C : Swift.Collection, C.Element == E.EntityBindingType.IdType
+  public func visit<C>(writable: Swift.Bool = false, _ ids: C, in visitor: (ObjectBox.Box<E>.EntityType?) throws -> Swift.Bool) throws where C : Swift.Collection, C.Element == E.EntityBindingType.IdType
+}
+extension ObjectBox.Box {
+  @discardableResult
+  public func remove<I>(_ entityId: I) throws -> Swift.Bool where I : ObjectBox.UntypedIdBase
+  @discardableResult
+  public func remove(_ entityId: ObjectBox.EntityId<ObjectBox.Box<E>.EntityType>) throws -> Swift.Bool
+  @discardableResult
+  public func remove(_ entity: ObjectBox.Box<E>.EntityType) throws -> Swift.Bool
+  @discardableResult
+  public func remove<C>(_ entities: C) throws -> Swift.UInt64 where E == C.Element, C : Swift.Collection, C.Element == E.EntityBindingType.EntityType
+  @discardableResult
+  public func remove(_ entities: [ObjectBox.Box<E>.EntityType]) throws -> Swift.UInt64
+  @discardableResult
+  public func remove(_ entities: Swift.ContiguousArray<ObjectBox.Box<E>.EntityType>) throws -> Swift.UInt64
+  @discardableResult
+  public func remove(_ entities: ObjectBox.Box<E>.EntityType...) throws -> Swift.UInt64
+  @discardableResult
+  public func remove(_ entityIDs: [ObjectBox.Id]) throws -> Swift.UInt64
+  @discardableResult
+  public func remove<I, C>(_ ids: C) throws -> Swift.UInt64 where I : ObjectBox.UntypedIdBase, I == C.Element, C : Swift.Collection
+  @discardableResult
+  public func remove<I>(_ ids: I...) throws -> Swift.UInt64 where I : ObjectBox.UntypedIdBase
+  @discardableResult
+  public func remove(_ ids: ObjectBox.Id...) throws -> Swift.UInt64
+  @discardableResult
+  public func remove(_ entityIDs: [ObjectBox.EntityId<ObjectBox.Box<E>.EntityType>]) throws -> Swift.UInt64
+  @discardableResult
+  public func remove<C>(_ entityIDs: C) throws -> Swift.UInt64 where C : Swift.Collection, C.Element == ObjectBox.EntityId<E>
+  @discardableResult
+  public func remove(_ ids: ObjectBox.EntityId<ObjectBox.Box<E>.EntityType>...) throws -> Swift.UInt64
+  @discardableResult
+  public func removeAll() throws -> Swift.UInt64
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+public enum PutMode : Swift.UInt32 {
+  case put, insert, update
+  public init?(rawValue: Swift.UInt32)
+  public typealias RawValue = Swift.UInt32
+  public var rawValue: Swift.UInt32 {
+    get
+  }
+}
+public enum OrderFlags : Swift.UInt32 {
+  public typealias T = Swift.UInt32
+  public static var byteSize: Swift.Int {
+    get
+  }
+  public var value: Swift.UInt32 {
+    get
+  }
+  case descending
+  case caseSensitive
+  case unsigned
+  case nullsLast
+  case nullsZero
+  public static var max: ObjectBox.OrderFlags {
+    get
+  }
+  public static var min: ObjectBox.OrderFlags {
+    get
+  }
+  public init?(rawValue: Swift.UInt32)
+  public typealias RawValue = Swift.UInt32
+  public var rawValue: Swift.UInt32 {
+    get
+  }
+}
+public enum EntityFlags : Swift.UInt32 {
+  public typealias T = Swift.UInt32
+  public static var byteSize: Swift.Int {
+    get
+  }
+  public var value: Swift.UInt32 {
+    get
+  }
+  case useNoArgConstructor
+  case syncEnabled
+  case sharedGlobalIds
+  public static var max: ObjectBox.EntityFlags {
+    get
+  }
+  public static var min: ObjectBox.EntityFlags {
+    get
+  }
+  public init?(rawValue: Swift.UInt32)
+  public typealias RawValue = Swift.UInt32
+  public var rawValue: Swift.UInt32 {
+    get
+  }
+}
+public enum PropertyType : Swift.UInt16 {
+  public typealias T = Swift.UInt16
+  public static var byteSize: Swift.Int {
+    get
+  }
+  public var value: Swift.UInt16 {
+    get
+  }
+  case unknown
+  case bool
+  case byte
+  case short
+  case char
+  case int
+  case long
+  case float
+  case double
+  case string
+  case date
+  case relation
+  case dateNano
+  case flex
+  case reserved3
+  case reserved4
+  case reserved5
+  case reserved6
+  case reserved7
+  case reserved8
+  case reserved9
+  case reserved10
+  case boolVector
+  case byteVector
+  case shortVector
+  case charVector
+  case intVector
+  case longVector
+  case floatVector
+  case doubleVector
+  case stringVector
+  case dateVector
+  case dateNanoVector
+  public static var max: ObjectBox.PropertyType {
+    get
+  }
+  public static var min: ObjectBox.PropertyType {
+    get
+  }
+  public init?(rawValue: Swift.UInt16)
+  public typealias RawValue = Swift.UInt16
+  public var rawValue: Swift.UInt16 {
+    get
+  }
+}
+public enum PropertyFlags : Swift.UInt32 {
+  public typealias T = Swift.UInt32
+  public static var byteSize: Swift.Int {
+    get
+  }
+  public var value: Swift.UInt32 {
+    get
+  }
+  case id
+  case nonPrimitiveType
+  case notNull
+  case indexed
+  case reserved
+  case unique
+  case idMonotonicSequence
+  case idSelfAssignable
+  case indexPartialSkipNull
+  case indexPartialSkipZero
+  case virtual
+  case indexHash
+  case indexHash64
+  case unsigned
+  case idCompanion
+  case uniqueOnConflictReplace
+  public static var min: ObjectBox.PropertyFlags {
+    get
+  }
+  public static var max: ObjectBox.PropertyFlags {
+    get
+  }
+  public init?(rawValue: Swift.UInt32)
+  public typealias RawValue = Swift.UInt32
+  public var rawValue: Swift.UInt32 {
+    get
+  }
+}
+extension ObjectBox.SyncCredentialsType : Swift.Equatable {}
+extension ObjectBox.SyncCredentialsType : Swift.Hashable {}
+extension ObjectBox.SyncCredentialsType : Swift.RawRepresentable {}
+extension ObjectBox.RequestUpdatesMode : Swift.Equatable {}
+extension ObjectBox.RequestUpdatesMode : Swift.Hashable {}
+extension ObjectBox.RequestUpdatesMode : Swift.RawRepresentable {}
+extension ObjectBox.SyncState : Swift.Equatable {}
+extension ObjectBox.SyncState : Swift.Hashable {}
+extension ObjectBox.SyncState : Swift.RawRepresentable {}
+extension ObjectBox.SyncCode : Swift.Equatable {}
+extension ObjectBox.SyncCode : Swift.Hashable {}
+extension ObjectBox.SyncCode : Swift.RawRepresentable {}
+extension ObjectBox.SuccessTimeOut : Swift.Equatable {}
+extension ObjectBox.SuccessTimeOut : Swift.Hashable {}
+extension ObjectBox.DebugFlags : Swift.Equatable {}
+extension ObjectBox.DebugFlags : Swift.Hashable {}
+extension ObjectBox.DebugFlags : Swift.RawRepresentable {}
+extension ObjectBox.PutPaddingMode : Swift.Equatable {}
+extension ObjectBox.PutPaddingMode : Swift.Hashable {}
+extension ObjectBox.PutPaddingMode : Swift.RawRepresentable {}
+extension ObjectBox.ValidateOnOpenMode : Swift.Equatable {}
+extension ObjectBox.ValidateOnOpenMode : Swift.Hashable {}
+extension ObjectBox.ValidateOnOpenMode : Swift.RawRepresentable {}
+extension ObjectBox.PutMode : Swift.Equatable {}
+extension ObjectBox.PutMode : Swift.Hashable {}
+extension ObjectBox.PutMode : Swift.RawRepresentable {}
+extension ObjectBox.OrderFlags : Swift.Equatable {}
+extension ObjectBox.OrderFlags : Swift.Hashable {}
+extension ObjectBox.OrderFlags : Swift.RawRepresentable {}
+extension ObjectBox.EntityFlags : Swift.Equatable {}
+extension ObjectBox.EntityFlags : Swift.Hashable {}
+extension ObjectBox.EntityFlags : Swift.RawRepresentable {}
+extension ObjectBox.PropertyType : Swift.Equatable {}
+extension ObjectBox.PropertyType : Swift.Hashable {}
+extension ObjectBox.PropertyType : Swift.RawRepresentable {}
+extension ObjectBox.PropertyFlags : Swift.Equatable {}
+extension ObjectBox.PropertyFlags : Swift.Hashable {}
+extension ObjectBox.PropertyFlags : Swift.RawRepresentable {}

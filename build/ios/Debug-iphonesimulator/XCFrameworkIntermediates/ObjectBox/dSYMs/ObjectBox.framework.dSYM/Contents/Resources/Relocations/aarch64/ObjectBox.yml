@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Volumes/GrayBoxSsd/dev/objectbox-swift/ios-framework/DerivedData/Build/Products/Release-iphonesimulator/ObjectBox.framework/ObjectBox'
+relocations:     []
+...
