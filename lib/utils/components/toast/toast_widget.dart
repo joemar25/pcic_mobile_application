@@ -83,7 +83,7 @@ class _ToastWidgetState extends State<ToastWidget>
       child: Padding(
         padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
         child: Container(
-          width: 200.0,
+          width: 250.0,
           height: MediaQuery.sizeOf(context).height * 0.5,
           decoration: BoxDecoration(
             color: valueOrDefault<Color>(
@@ -149,22 +149,25 @@ class _ToastWidgetState extends State<ToastWidget>
                           ),
                         ].divide(const SizedBox(width: 8.0)),
                       ),
-                      Text(
-                        valueOrDefault<String>(
-                          widget.notificationMessage,
-                          'Some body copy that is present in this small notification.',
+                      Expanded(
+                        child: Text(
+                          valueOrDefault<String>(
+                            widget.notificationMessage,
+                            'Some body copy that is present in this small notification.',
+                          ),
+                          style: FlutterFlowTheme.of(context)
+                              .labelMedium
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .labelMediumFamily,
+                                color: FlutterFlowTheme.of(context).accent4,
+                                fontSize: 9.0,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .labelMediumFamily),
+                              ),
                         ),
-                        style:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .labelMediumFamily,
-                                  color: FlutterFlowTheme.of(context).accent4,
-                                  fontSize: 9.0,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .labelMediumFamily),
-                                ),
                       ),
                     ].divide(const SizedBox(height: 2.0)),
                   ),

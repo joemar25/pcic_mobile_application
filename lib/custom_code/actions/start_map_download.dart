@@ -21,6 +21,8 @@ Future<void> startMapDownload(String accessToken) async {
   bool serviceEnabled;
   LocationPermission permission;
 
+  await FMTC.FMTCStore('mapStore').manage.create();
+
   serviceEnabled = await Geolocator.isLocationServiceEnabled();
   if (!serviceEnabled) {
     print('Location services are not enabled');
@@ -84,8 +86,6 @@ Future<void> startMapDownload(String accessToken) async {
         maxReportInterval: Duration(seconds: 1),
       )
       .listen((progress) {
-    setState(() {
-      FFAppState().mapDownloadProgress = progress.percentageProgress;
-    });
+    print(progress.percentageProgress);
   });
 }

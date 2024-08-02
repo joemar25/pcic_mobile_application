@@ -119,8 +119,8 @@ class _MessagesWidgetState extends State<MessagesWidget> {
               children: [
                 Text(
                   valueOrDefault<String>(
-                    messagesMessagesRow?.receiverName,
-                    'Reciever',
+                    messagesMessagesRow?.senderName,
+                    'sender',
                   ),
                   style: FlutterFlowTheme.of(context).displaySmall.override(
                         fontFamily:

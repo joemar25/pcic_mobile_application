@@ -17,7 +17,7 @@ Future initializeFMTCBackend() async {
   // Add your function code here!
   try {
     await FMTC.FMTCObjectBoxBackend().initialise(); // Initialize the backend
-    await FMTC.FMTCStore('mapStore').manage.create();
+
     print('FMTC initialized successfully');
   } catch (e, stack) {
     print('Error initializing FMTC: $e\n$stack');
