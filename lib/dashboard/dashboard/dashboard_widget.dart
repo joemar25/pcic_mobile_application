@@ -71,6 +71,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
             'completed',
           ),
         );
+        FFAppState().usersEmail = currentUserEmail;
+        FFAppState().update(() {});
         _model.fdc = valueOrDefault<int>(
           _model.forDispatchTasksData?.length,
           0,
@@ -83,8 +85,6 @@ class _DashboardWidgetState extends State<DashboardWidget>
           _model.completedTasksData?.length,
           0,
         );
-        setState(() {});
-        FFAppState().AUTHID = currentUserUid;
         setState(() {});
       } else {
         // Get User Profile, online email = offline email

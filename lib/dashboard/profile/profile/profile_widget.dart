@@ -208,11 +208,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                         child: ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(6.0),
-                                          child: Image.network(
-                                            valueOrDefault<String>(
-                                              profileUsersRow?.photoUrl,
-                                              'https://newsko.com.ph/wp-content/uploads/2024/06/Mikha.jpg',
-                                            ),
+                                          child: Image.asset(
+                                            'assets/images/default-avatar.jpg',
                                             width: 70.0,
                                             height: 70.0,
                                             fit: BoxFit.cover,
@@ -513,7 +510,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                                           context)
                                                                       .bodyMediumFamily,
                                                                   fontSize:
-                                                                      18.0,
+                                                                      16.0,
                                                                   letterSpacing:
                                                                       0.0,
                                                                   fontWeight:
@@ -661,7 +658,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .bodyMediumFamily,
-                                                        fontSize: 18.0,
+                                                        fontSize: 16.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
@@ -742,7 +739,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .bodyMediumFamily,
-                                                        fontSize: 18.0,
+                                                        fontSize: 16.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
@@ -891,7 +888,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .error,
-                                                        fontSize: 18.0,
+                                                        fontSize: 16.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,

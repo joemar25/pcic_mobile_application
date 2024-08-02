@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -175,13 +174,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                         decoration: const BoxDecoration(
                                           shape: BoxShape.circle,
                                         ),
-                                        child: CachedNetworkImage(
-                                          fadeInDuration:
-                                              const Duration(milliseconds: 500),
-                                          fadeOutDuration:
-                                              const Duration(milliseconds: 500),
-                                          imageUrl:
-                                              editProfileUsersRow!.photoUrl!,
+                                        child: Image.asset(
+                                          'assets/images/default-avatar.jpg',
                                           fit: BoxFit.cover,
                                         ),
                                       ),
@@ -277,7 +271,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           controller: _model.displayNameTextController ??=
                               TextEditingController(
                             text: valueOrDefault<String>(
-                              editProfileUsersRow.inspectorName,
+                              editProfileUsersRow?.inspectorName,
                               'Agent',
                             ),
                           ),

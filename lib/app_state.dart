@@ -19,7 +19,8 @@ class FFAppState extends ChangeNotifier {
   Future initializePersistedState() async {
     secureStorage = const FlutterSecureStorage();
     await _safeInitAsync(() async {
-      _AUTHID = await secureStorage.getString('ff_AUTHID') ?? _AUTHID;
+      _usersEmail =
+          await secureStorage.getString('ff_usersEmail') ?? _usersEmail;
     });
     await _safeInitAsync(() async {
       _mapDownloadProgress =
@@ -47,15 +48,15 @@ class FFAppState extends ChangeNotifier {
     _routeStarted = value;
   }
 
-  String _AUTHID = '';
-  String get AUTHID => _AUTHID;
-  set AUTHID(String value) {
-    _AUTHID = value;
-    secureStorage.setString('ff_AUTHID', value);
+  String _usersEmail = '';
+  String get usersEmail => _usersEmail;
+  set usersEmail(String value) {
+    _usersEmail = value;
+    secureStorage.setString('ff_usersEmail', value);
   }
 
-  void deleteAUTHID() {
-    secureStorage.delete(key: 'ff_AUTHID');
+  void deleteUsersEmail() {
+    secureStorage.delete(key: 'ff_usersEmail');
   }
 
   bool _startMapDownload = false;
