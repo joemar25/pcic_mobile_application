@@ -161,16 +161,16 @@ class _NavBarPageState extends State<NavBarPage> {
         selectedItemColor: FlutterFlowTheme.of(context).secondaryBackground,
         unselectedItemColor: FlutterFlowTheme.of(context).secondaryBackground,
         showSelectedLabels: true,
-        showUnselectedLabels: false,
+        showUnselectedLabels: true,
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: const Icon(
-              Icons.leaderboard,
+              FFIcons.kicons8Home,
               size: 24.0,
             ),
             activeIcon: const Icon(
-              Icons.home,
+              FFIcons.kicons8Home1,
               size: 24.0,
             ),
             label: FFLocalizations.of(context).getText(

@@ -3,10 +3,10 @@ import 'package:flutter/widgets.dart';
 class FFIcons {
   FFIcons._();
 
-  static const String _faceFamily = 'Face';
+  static const String _homeFamily = 'Home';
 
-  // Face
+  // Home
   static const IconData kicons8Home1 =
-      IconData(0xe806, fontFamily: _faceFamily);
-  static const IconData kicons8Home = IconData(0xe807, fontFamily: _faceFamily);
+      IconData(0xe800, fontFamily: _homeFamily);
+  static const IconData kicons8Home = IconData(0xe801, fontFamily: _homeFamily);
 }

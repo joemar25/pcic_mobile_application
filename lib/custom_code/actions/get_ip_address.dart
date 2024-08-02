@@ -16,9 +16,9 @@ import 'package:dart_ipify/dart_ipify.dart';
 Future getIpAddress() async {
   try {
     final ip = await Ipify.ipv4();
-    // FFAppState().ipAddress = ip;
+    FFAppState().ipAddress = ip;
   } catch (e) {
     print('Error getting IP address: $e');
-    // FFAppState().ipAddress = 'Unable to retrieve IP';
+    FFAppState().ipAddress = 'Unable to retrieve IP';
   }
 }
