@@ -60,7 +60,7 @@ class _CustomSignatureState extends State<CustomSignature> {
               'signature_${DateTime.now().millisecondsSinceEpoch}.png';
 
           await Supabase.instance.client.storage
-              .from('signatures') // Replace with your bucket name
+              .from('signature') // Replace with your bucket name
               .uploadBinary(fileName, _signatureData!);
 
           ScaffoldMessenger.of(context).showSnackBar(
@@ -68,7 +68,7 @@ class _CustomSignatureState extends State<CustomSignature> {
           );
 
           final String publicUrl = Supabase.instance.client.storage
-              .from('signatures')
+              .from('signature')
               .getPublicUrl(fileName);
 
           // You can use publicUrl as needed (e.g., save to database)
