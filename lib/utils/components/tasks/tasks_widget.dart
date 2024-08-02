@@ -1,4 +1,3 @@
-import '/backend/sqlite/sqlite_manager.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -45,16 +44,12 @@ class _TasksWidgetState extends State<TasksWidget>
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (FFAppState().ONLINE) {
-        _model.onlinePpirData = await PpirFormsTable().queryRows(
-          queryFn: (q) => q.eq(
-            'task_id',
-            widget.task,
-          ),
-        );
-      } else {
-        _model.offlinePpirData = await SQLiteManager.instance.selectPpirForms();
-      }
+      _model.onlinePpirData = await PpirFormsTable().queryRows(
+        queryFn: (q) => q.eq(
+          'task_id',
+          widget.task,
+        ),
+      );
     });
 
     animationsMap.addAll({
@@ -163,8 +158,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                 FFAppState().ONLINE
                                     ? _model
                                         .onlinePpirData?.first.ppirFarmername
-                                    : _model
-                                        .offlinePpirData?.first.ppirFarmername,
+                                    : 'Offline Farmer',
                                 'Farmer Name',
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -233,8 +227,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                           FFAppState().ONLINE
                                               ? _model.onlinePpirData?.first
                                                   .ppirNorth
-                                              : _model.offlinePpirData?.first
-                                                  .ppirNorth,
+                                              : 'Offline',
                                           'Farmer Name',
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -294,8 +287,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                           FFAppState().ONLINE
                                               ? _model.onlinePpirData?.first
                                                   .ppirWest
-                                              : _model.offlinePpirData?.first
-                                                  .ppirWest,
+                                              : 'Offline',
                                           'Farmer Name',
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -371,8 +363,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                                   FFAppState().ONLINE
                                                       ? _model.onlinePpirData
                                                           ?.first.ppirSouth
-                                                      : _model.offlinePpirData
-                                                          ?.first.ppirSouth,
+                                                      : 'Offline',
                                                   'Farmer Name',
                                                 ),
                                                 style:
@@ -432,8 +423,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                                   FFAppState().ONLINE
                                                       ? _model.onlinePpirData
                                                           ?.first.ppirEast
-                                                      : _model.offlinePpirData
-                                                          ?.first.ppirEast,
+                                                      : 'Offline',
                                                   'Farmer Name',
                                                 ),
                                                 style:
@@ -510,8 +500,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                       FFAppState().ONLINE
                                           ? _model.onlinePpirData?.first
                                               .ppirAssignmentid
-                                          : _model.offlinePpirData?.first
-                                              .ppirAssignmentid,
+                                          : 'Offline',
                                       'Farmer Name',
                                     ),
                                     style: FlutterFlowTheme.of(context)
@@ -562,8 +551,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                       FFAppState().ONLINE
                                           ? _model.onlinePpirData?.first
                                               .ppirAddress
-                                          : _model.offlinePpirData?.first
-                                              .ppirAddress,
+                                          : 'Offline',
                                       'Farmer Name',
                                     ),
                                     style: FlutterFlowTheme.of(context)

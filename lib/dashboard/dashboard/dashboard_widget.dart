@@ -1113,6 +1113,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                           ),
                                                           updateCallback: () =>
                                                               setState(() {}),
+                                                          updateOnChange: true,
                                                           child: TasksWidget(
                                                             key: Key(
                                                               'Keyjrg_${forDispatchTasksListItem.id}',
@@ -1181,6 +1182,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                           ),
                                                           updateCallback: () =>
                                                               setState(() {}),
+                                                          updateOnChange: true,
                                                           child: TasksWidget(
                                                             key: Key(
                                                               'Keyu4c_${ongoingTasksListItem.id}',
@@ -1246,6 +1248,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                         ),
                                                         updateCallback: () =>
                                                             setState(() {}),
+                                                        updateOnChange: true,
                                                         child: TasksWidget(
                                                           key: Key(
                                                             'Keynuv_${completedTasksListItem.id}',
