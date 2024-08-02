@@ -47,9 +47,9 @@ Future<void> startMapDownload(String accessToken) async {
   Position position = await Geolocator.getCurrentPosition();
   ll.LatLng currentLocation = ll.LatLng(position.latitude, position.longitude);
 
-  double latDelta = 0.5 / 111.32;
+  double latDelta = 1.0 / 111.32;
   double lonDelta =
-      0.5 / (111.32 * cos(currentLocation.latitude * pi / 180)); //5meters
+      1.0 / (111.32 * cos(currentLocation.latitude * pi / 180)); //5meters
 
   LatLngBounds bounds = LatLngBounds(
     ll.LatLng(currentLocation.latitude - latDelta,
