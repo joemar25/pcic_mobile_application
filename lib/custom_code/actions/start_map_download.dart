@@ -75,6 +75,8 @@ Future<void> startMapDownload(String accessToken) async {
     ),
   );
 
+  double lastReportedProgress = 0.0;
+
   await FMTC.FMTCStore('mapStore')
       .download
       .startForeground(
@@ -86,11 +88,22 @@ Future<void> startMapDownload(String accessToken) async {
         maxReportInterval: Duration(seconds: 1),
       )
       .listen((progress) {
-    // Update FlutterFlow app state with the current progress
-    FFAppState().mapDownloadProgress = progress.percentageProgress.toDouble();
+    double currentProgress = (progress.percentageProgress * 10).round() / 10;
 
-    // This line is necessary to trigger a UI update in FlutterFlow
-    FFAppState().update(() {});
-    print(progress.percentageProgress);
+    // Only update if the progress has changed by at least 0.1
+    if (currentProgress > lastReportedProgress) {
+      lastReportedProgress = currentProgress;
+
+      FFAppState().mapDownloadProgress = currentProgress;
+      FFAppState().update(() {}); // Trigger UI update
+
+      print('Download progress: ${currentProgress.toStringAsFixed(1)}%');
+    }
+
+    // Check if download is complete
+    if (currentProgress >= 100) {
+      print('Download completed');
+      // You can add additional logic here for when the download completes
+    }
   });
 }

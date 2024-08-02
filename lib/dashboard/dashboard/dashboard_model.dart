@@ -1,4 +1,3 @@
-import '/backend/sqlite/sqlite_manager.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
@@ -31,8 +30,6 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   List<TasksRow>? ongoingTasksData;
   // Stores action output result for [Backend Call - Query Rows] action in dashboard widget.
   List<TasksRow>? completedTasksData;
-  // Stores action output result for [Backend Call - SQLite (SELECT PROFILE)] action in dashboard widget.
-  List<SelectProfileRow>? offlineUserProfile;
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
   // State field(s) for TextField widget.

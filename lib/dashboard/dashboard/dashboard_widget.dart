@@ -1,5 +1,4 @@
 import '/auth/supabase_auth/auth_util.dart';
-import '/backend/sqlite/sqlite_manager.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_autocomplete_options_list.dart';
@@ -42,56 +41,47 @@ class _DashboardWidgetState extends State<DashboardWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (FFAppState().ONLINE) {
-        // Online Query for Users
-        _model.currentUserProfile = await UsersTable().queryRows(
-          queryFn: (q) => q.eq(
-            'email',
-            currentUserEmail,
-          ),
-        );
-        // Getting For Dispatch Tasks Data
-        _model.forDispatchTasksData = await TasksTable().queryRows(
-          queryFn: (q) => q.eq(
-            'status',
-            'for dispatch',
-          ),
-        );
-        // Getting ongoing Tasks Data
-        _model.ongoingTasksData = await TasksTable().queryRows(
-          queryFn: (q) => q.eq(
-            'status',
-            'ongoing',
-          ),
-        );
-        // Getting completed Tasks Data
-        _model.completedTasksData = await TasksTable().queryRows(
-          queryFn: (q) => q.eq(
-            'status',
-            'completed',
-          ),
-        );
-        FFAppState().usersEmail = currentUserEmail;
-        FFAppState().update(() {});
-        _model.fdc = valueOrDefault<int>(
-          _model.forDispatchTasksData?.length,
-          0,
-        );
-        _model.onc = valueOrDefault<int>(
-          _model.ongoingTasksData?.length,
-          0,
-        );
-        _model.cc = valueOrDefault<int>(
-          _model.completedTasksData?.length,
-          0,
-        );
-        setState(() {});
-      } else {
-        // Get User Profile, online email = offline email
-        _model.offlineUserProfile = await SQLiteManager.instance.selectProfile(
-          email: currentUserEmail,
-        );
-      }
+      // Online Query for Users
+      _model.currentUserProfile = await UsersTable().queryRows(
+        queryFn: (q) => q.eq(
+          'email',
+          currentUserEmail,
+        ),
+      );
+      // Getting For Dispatch Tasks Data
+      _model.forDispatchTasksData = await TasksTable().queryRows(
+        queryFn: (q) => q.eq(
+          'status',
+          'for dispatch',
+        ),
+      );
+      // Getting ongoing Tasks Data
+      _model.ongoingTasksData = await TasksTable().queryRows(
+        queryFn: (q) => q.eq(
+          'status',
+          'ongoing',
+        ),
+      );
+      // Getting completed Tasks Data
+      _model.completedTasksData = await TasksTable().queryRows(
+        queryFn: (q) => q.eq(
+          'status',
+          'completed',
+        ),
+      );
+      _model.fdc = valueOrDefault<int>(
+        _model.forDispatchTasksData?.length,
+        0,
+      );
+      _model.onc = valueOrDefault<int>(
+        _model.ongoingTasksData?.length,
+        0,
+      );
+      _model.cc = valueOrDefault<int>(
+        _model.completedTasksData?.length,
+        0,
+      );
+      setState(() {});
     });
 
     _model.textController ??= TextEditingController();
@@ -571,14 +561,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                           .inspectorName,
                                                                       'Agent',
                                                                     )
-                                                                  : valueOrDefault<
-                                                                      String>(
-                                                                      _model
-                                                                          .offlineUserProfile
-                                                                          ?.first
-                                                                          .inspectorName,
-                                                                      'Agent Offline',
-                                                                    )),
+                                                                  : 'Offline Mode'),
                                                           'Agent',
                                                         ),
                                                         style: TextStyle(
@@ -1130,7 +1113,6 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                           ),
                                                           updateCallback: () =>
                                                               setState(() {}),
-                                                          updateOnChange: true,
                                                           child: TasksWidget(
                                                             key: Key(
                                                               'Keyjrg_${forDispatchTasksListItem.id}',
@@ -1199,7 +1181,6 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                           ),
                                                           updateCallback: () =>
                                                               setState(() {}),
-                                                          updateOnChange: true,
                                                           child: TasksWidget(
                                                             key: Key(
                                                               'Keyu4c_${ongoingTasksListItem.id}',
@@ -1265,7 +1246,6 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                         ),
                                                         updateCallback: () =>
                                                             setState(() {}),
-                                                        updateOnChange: true,
                                                         child: TasksWidget(
                                                           key: Key(
                                                             'Keynuv_${completedTasksListItem.id}',
