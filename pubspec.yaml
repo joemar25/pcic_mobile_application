@@ -172,6 +172,9 @@ flutter:
     - family: Chat
       fonts:
         - asset: assets/fonts/Chat.ttf
+    - family: Loading
+      fonts:
+        - asset: assets/fonts/Loading.ttf
 
   
   # An image asset can refer to one or more resolution-specific "variants", see
