@@ -111,186 +111,194 @@ class _ChatsWidgetState extends State<ChatsWidget> {
               ].divide(const SizedBox(width: 10.0)),
             ),
           ),
-          body: Container(
-            width: double.infinity,
-            height: double.infinity,
-            decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).primary,
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(20.0, 80.0, 20.0, 0.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Icon(
-                                  Icons.message_rounded,
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  size: 30.0,
-                                ),
-                                Text(
-                                  FFLocalizations.of(context).getText(
-                                    'pue7zwxs' /* Messages */,
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .headlineMedium
-                                      .override(
-                                        fontFamily: FlutterFlowTheme.of(context)
-                                            .headlineMediumFamily,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                        fontSize: 28.0,
-                                        letterSpacing: 0.0,
-                                        useGoogleFonts: GoogleFonts.asMap()
-                                            .containsKey(
-                                                FlutterFlowTheme.of(context)
-                                                    .headlineMediumFamily),
-                                      ),
-                                ),
-                              ].divide(const SizedBox(width: 10.0)),
-                            ),
-                          ),
-                          wrapWithModel(
-                            model: _model.connectivityModel,
-                            updateCallback: () => setState(() {}),
-                            child: const ConnectivityWidget(),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: Padding(
+          body: SafeArea(
+            top: true,
+            child: Container(
+              width: double.infinity,
+              height: double.infinity,
+              decoration: BoxDecoration(
+                color: FlutterFlowTheme.of(context).primary,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
-                    child: Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primaryBackground,
-                        borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(0.0),
-                          bottomRight: Radius.circular(0.0),
-                          topLeft: Radius.circular(24.0),
-                          topRight: Radius.circular(24.0),
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            20.0, 40.0, 20.0, 0.0),
-                        child: Column(
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 80.0, 20.0, 0.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Row(
                           mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Flexible(
+                            Expanded(
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
-                                  Expanded(
-                                    child: Text(
-                                      FFLocalizations.of(context).getText(
-                                        '0ovitz68' /* Conversations */,
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMediumFamily,
-                                            fontSize: 18.0,
-                                            letterSpacing: 0.0,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMediumFamily),
-                                          ),
-                                    ),
+                                  Icon(
+                                    Icons.message_rounded,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    size: 30.0,
                                   ),
-                                ],
+                                  Text(
+                                    FFLocalizations.of(context).getText(
+                                      'pue7zwxs' /* Messages */,
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .headlineMedium
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .headlineMediumFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                          fontSize: 28.0,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .headlineMediumFamily),
+                                        ),
+                                  ),
+                                ].divide(const SizedBox(width: 10.0)),
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 10.0, 0.0, 0.0),
-                              child: SingleChildScrollView(
-                                child: Column(
+                            wrapWithModel(
+                              model: _model.connectivityModel,
+                              updateCallback: () => setState(() {}),
+                              child: const ConnectivityWidget(),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                      child: Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.of(context).primaryBackground,
+                          borderRadius: const BorderRadius.only(
+                            bottomLeft: Radius.circular(0.0),
+                            bottomRight: Radius.circular(0.0),
+                            topLeft: Radius.circular(24.0),
+                            topRight: Radius.circular(24.0),
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              20.0, 40.0, 20.0, 0.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Flexible(
+                                child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    Builder(
-                                      builder: (context) {
-                                        final msgQ =
-                                            _model.messageQuery?.toList() ?? [];
-                                        if (msgQ.isEmpty) {
-                                          return Center(
-                                            child: SizedBox(
-                                              height: MediaQuery.sizeOf(context)
-                                                      .height *
-                                                  0.6,
-                                              child: const EmptyListsWidget(
-                                                type: 'Messages',
-                                              ),
+                                    Expanded(
+                                      child: Text(
+                                        FFLocalizations.of(context).getText(
+                                          '0ovitz68' /* Conversations */,
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily,
+                                              fontSize: 18.0,
+                                              letterSpacing: 0.0,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily),
                                             ),
-                                          );
-                                        }
-
-                                        return ListView.separated(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 20.0),
-                                          shrinkWrap: true,
-                                          scrollDirection: Axis.vertical,
-                                          itemCount: msgQ.length,
-                                          separatorBuilder: (_, __) =>
-                                              const SizedBox(height: 20.0),
-                                          itemBuilder: (context, msgQIndex) {
-                                            final msgQItem = msgQ[msgQIndex];
-                                            return wrapWithModel(
-                                              model: _model
-                                                  .chatListContainerModels
-                                                  .getModel(
-                                                msgQItem.id.toString(),
-                                                msgQIndex,
-                                              ),
-                                              updateCallback: () =>
-                                                  setState(() {}),
-                                              child: ChatListContainerWidget(
-                                                key: Key(
-                                                  'Keyo46_${msgQItem.id.toString()}',
-                                                ),
-                                                chatId: msgQItem.chatId!,
-                                                receiverId:
-                                                    msgQItem.senderName ==
-                                                            currentUserUid
-                                                        ? msgQItem.receiverName!
-                                                        : msgQItem.senderName!,
-                                              ),
-                                            );
-                                          },
-                                        );
-                                      },
+                                      ),
                                     ),
                                   ],
                                 ),
                               ),
-                            ),
-                          ],
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 10.0, 0.0, 0.0),
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Builder(
+                                        builder: (context) {
+                                          final msgQ =
+                                              _model.messageQuery?.toList() ??
+                                                  [];
+                                          if (msgQ.isEmpty) {
+                                            return Center(
+                                              child: SizedBox(
+                                                height:
+                                                    MediaQuery.sizeOf(context)
+                                                            .height *
+                                                        0.6,
+                                                child: const EmptyListsWidget(
+                                                  type: 'Messages',
+                                                ),
+                                              ),
+                                            );
+                                          }
+
+                                          return ListView.separated(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 20.0),
+                                            shrinkWrap: true,
+                                            scrollDirection: Axis.vertical,
+                                            itemCount: msgQ.length,
+                                            separatorBuilder: (_, __) =>
+                                                const SizedBox(height: 20.0),
+                                            itemBuilder: (context, msgQIndex) {
+                                              final msgQItem = msgQ[msgQIndex];
+                                              return wrapWithModel(
+                                                model: _model
+                                                    .chatListContainerModels
+                                                    .getModel(
+                                                  msgQItem.id.toString(),
+                                                  msgQIndex,
+                                                ),
+                                                updateCallback: () =>
+                                                    setState(() {}),
+                                                child: ChatListContainerWidget(
+                                                  key: Key(
+                                                    'Keyo46_${msgQItem.id.toString()}',
+                                                  ),
+                                                  chatId: msgQItem.chatId!,
+                                                  receiverId: msgQItem
+                                                              .senderName ==
+                                                          currentUserUid
+                                                      ? msgQItem.receiverName!
+                                                      : msgQItem.senderName!,
+                                                ),
+                                              );
+                                            },
+                                          );
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

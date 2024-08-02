@@ -149,112 +149,102 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           alignment: const AlignmentDirectional(0.0, -0.13),
                           child: Container(
                             decoration: const BoxDecoration(),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {},
-                              child: Stack(
-                                children: [
-                                  Container(
-                                    width: 120.0,
-                                    height: 120.0,
-                                    decoration: BoxDecoration(
-                                      color:
-                                          FlutterFlowTheme.of(context).accent1,
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
-                                      child: Container(
-                                        width: 110.0,
-                                        height: 110.0,
-                                        clipBehavior: Clip.antiAlias,
-                                        decoration: const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: Image.asset(
-                                          'assets/images/default-avatar.jpg',
-                                          fit: BoxFit.cover,
-                                        ),
+                            child: Stack(
+                              children: [
+                                Container(
+                                  width: 120.0,
+                                  height: 120.0,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context).accent1,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Align(
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    child: Container(
+                                      width: 110.0,
+                                      height: 110.0,
+                                      clipBehavior: Clip.antiAlias,
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Image.asset(
+                                        'assets/images/default-avatar.jpg',
+                                        fit: BoxFit.cover,
                                       ),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        80.0, 80.0, 0.0, 0.0),
-                                    child: FlutterFlowIconButton(
-                                      borderRadius: 20.0,
-                                      borderWidth: 0.0,
-                                      buttonSize: 40.0,
-                                      fillColor:
-                                          FlutterFlowTheme.of(context).primary,
-                                      icon: const Icon(
-                                        Icons.edit_square,
-                                        color: Color(0xFFF1F4F8),
-                                        size: 20.0,
-                                      ),
-                                      onPressed: () async {
-                                        final selectedMedia = await selectMedia(
-                                          storageFolderPath: currentUserUid,
-                                          mediaSource: MediaSource.photoGallery,
-                                          multiImage: false,
-                                        );
-                                        if (selectedMedia != null &&
-                                            selectedMedia.every((m) =>
-                                                validateFileFormat(
-                                                    m.storagePath, context))) {
-                                          setState(() =>
-                                              _model.isDataUploading = true);
-                                          var selectedUploadedFiles =
-                                              <FFUploadedFile>[];
+                                ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      80.0, 80.0, 0.0, 0.0),
+                                  child: FlutterFlowIconButton(
+                                    borderRadius: 20.0,
+                                    borderWidth: 0.0,
+                                    buttonSize: 40.0,
+                                    fillColor:
+                                        FlutterFlowTheme.of(context).primary,
+                                    icon: const Icon(
+                                      Icons.edit_square,
+                                      color: Color(0xFFF1F4F8),
+                                      size: 20.0,
+                                    ),
+                                    onPressed: () async {
+                                      final selectedMedia = await selectMedia(
+                                        storageFolderPath: currentUserUid,
+                                        mediaSource: MediaSource.photoGallery,
+                                        multiImage: false,
+                                      );
+                                      if (selectedMedia != null &&
+                                          selectedMedia.every((m) =>
+                                              validateFileFormat(
+                                                  m.storagePath, context))) {
+                                        setState(() =>
+                                            _model.isDataUploading = true);
+                                        var selectedUploadedFiles =
+                                            <FFUploadedFile>[];
 
-                                          var downloadUrls = <String>[];
-                                          try {
-                                            selectedUploadedFiles =
-                                                selectedMedia
-                                                    .map((m) => FFUploadedFile(
-                                                          name: m.storagePath
-                                                              .split('/')
-                                                              .last,
-                                                          bytes: m.bytes,
-                                                          height: m.dimensions
-                                                              ?.height,
-                                                          width: m.dimensions
-                                                              ?.width,
-                                                          blurHash: m.blurHash,
-                                                        ))
-                                                    .toList();
+                                        var downloadUrls = <String>[];
+                                        try {
+                                          selectedUploadedFiles = selectedMedia
+                                              .map((m) => FFUploadedFile(
+                                                    name: m.storagePath
+                                                        .split('/')
+                                                        .last,
+                                                    bytes: m.bytes,
+                                                    height:
+                                                        m.dimensions?.height,
+                                                    width: m.dimensions?.width,
+                                                    blurHash: m.blurHash,
+                                                  ))
+                                              .toList();
 
-                                            downloadUrls =
-                                                await uploadSupabaseStorageFiles(
-                                              bucketName: 'user_profiles',
-                                              selectedFiles: selectedMedia,
-                                            );
-                                          } finally {
-                                            _model.isDataUploading = false;
-                                          }
-                                          if (selectedUploadedFiles.length ==
-                                                  selectedMedia.length &&
-                                              downloadUrls.length ==
-                                                  selectedMedia.length) {
-                                            setState(() {
-                                              _model.uploadedLocalFile =
-                                                  selectedUploadedFiles.first;
-                                              _model.uploadedFileUrl =
-                                                  downloadUrls.first;
-                                            });
-                                          } else {
-                                            setState(() {});
-                                            return;
-                                          }
+                                          downloadUrls =
+                                              await uploadSupabaseStorageFiles(
+                                            bucketName: 'user_profiles',
+                                            selectedFiles: selectedMedia,
+                                          );
+                                        } finally {
+                                          _model.isDataUploading = false;
                                         }
-                                      },
-                                    ),
+                                        if (selectedUploadedFiles.length ==
+                                                selectedMedia.length &&
+                                            downloadUrls.length ==
+                                                selectedMedia.length) {
+                                          setState(() {
+                                            _model.uploadedLocalFile =
+                                                selectedUploadedFiles.first;
+                                            _model.uploadedFileUrl =
+                                                downloadUrls.first;
+                                          });
+                                        } else {
+                                          setState(() {});
+                                          return;
+                                        }
+                                      }
+                                    },
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -359,10 +349,6 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                 0.0, 40.0, 0.0, 0.0),
                             child: FFButtonWidget(
                               onPressed: () async {
-                                if (_model.formKey.currentState == null ||
-                                    !_model.formKey.currentState!.validate()) {
-                                  return;
-                                }
                                 await UsersTable().update(
                                   data: {
                                     'inspector_name':
@@ -387,6 +373,13 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                       ParamType.String,
                                     ),
                                   }.withoutNulls,
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: const TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType: PageTransitionType.fade,
+                                      duration: Duration(milliseconds: 0),
+                                    ),
+                                  },
                                 );
                               },
                               text: FFLocalizations.of(context).getText(

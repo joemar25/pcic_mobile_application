@@ -233,14 +233,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'sss',
           path: '/sss',
           builder: (context, params) => const SssWidget(),
-        ),
-        FFRoute(
-          name: 'chatsCopy',
-          path: '/chats',
-          requireAuth: true,
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'chatsCopy')
-              : const ChatsCopyWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

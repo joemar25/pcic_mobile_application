@@ -2863,9 +2863,6 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                currentUserLocationValue =
-                                    await getCurrentUserLocation(
-                                        defaultLocation: const LatLng(0.0, 0.0));
                                 if (_model.isEditing!) {
                                   await showModalBottomSheet(
                                     isScrollControlled: true,
@@ -3126,9 +3123,6 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                currentUserLocationValue =
-                                    await getCurrentUserLocation(
-                                        defaultLocation: const LatLng(0.0, 0.0));
                                 await TasksTable().update(
                                   data: {
                                     'status': 'ongoing',

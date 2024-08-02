@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'mc71il90': {
+    'fth0p04o': {
       'en': '',
       'tl': '',
     },
@@ -324,7 +324,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    'zlz3z103': {
+    'bn9vai38': {
       'en': '',
       'tl': '',
     },
@@ -830,25 +830,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'p5v52glk': {
       'en': 'Home',
-      'tl': '',
-    },
-  },
-  // chatsCopy
-  {
-    'bpbckr0j': {
-      'en': 'Messages',
-      'tl': '',
-    },
-    '9rprm1n4': {
-      'en': 'Conversations',
-      'tl': '',
-    },
-    'treq1jtu': {
-      'en': 'Compose',
-      'tl': '',
-    },
-    '4avfetcr': {
-      'en': 'Messages',
       'tl': '',
     },
   },
