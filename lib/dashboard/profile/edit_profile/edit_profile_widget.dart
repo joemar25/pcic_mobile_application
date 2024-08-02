@@ -169,7 +169,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                       ),
                                       child: Image.asset(
                                         'assets/images/default-avatar.jpg',
-                                        fit: BoxFit.cover,
+                                        fit: BoxFit.contain,
                                       ),
                                     ),
                                   ),

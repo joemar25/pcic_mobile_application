@@ -2580,13 +2580,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Text(
-                                                    ppirPpirFormsRow?.ppirSigInsured ==
-                                                                null ||
-                                                            ppirPpirFormsRow
-                                                                    ?.ppirSigInsured ==
-                                                                ''
-                                                        ? 'Tap to signature'
-                                                        : 'Tap to update signature',
+                                                    FFLocalizations.of(context)
+                                                        .getText(
+                                                      'p2htj2ad' /* Tap to Signature */,
+                                                    ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
@@ -2830,63 +2827,27 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
-                                                  FutureBuilder<
-                                                      List<PpirFormsRow>>(
-                                                    future: PpirFormsTable()
-                                                        .queryRows(
-                                                      queryFn: (q) => q.eq(
-                                                        'task_id',
-                                                        widget.taskId,
-                                                      ),
+                                                  Text(
+                                                    FFLocalizations.of(context)
+                                                        .getText(
+                                                      'wyigefcb' /* Tap to Signature */,
                                                     ),
-                                                    builder:
-                                                        (context, snapshot) {
-                                                      // Customize what your widget looks like when it's loading.
-                                                      if (!snapshot.hasData) {
-                                                        return Center(
-                                                          child: SizedBox(
-                                                            width: 100.0,
-                                                            height: 100.0,
-                                                            child:
-                                                                SpinKitRipple(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primary,
-                                                              size: 100.0,
-                                                            ),
-                                                          ),
-                                                        );
-                                                      }
-                                                      List<PpirFormsRow>
-                                                          textPpirFormsRowList =
-                                                          snapshot.data!;
-
-                                                      return Text(
-                                                        ppirPpirFormsRow?.ppirSigIuia ==
-                                                                    null ||
-                                                                ppirPpirFormsRow
-                                                                        ?.ppirSigIuia ==
-                                                                    ''
-                                                            ? 'Tap to signature'
-                                                            : 'Tap to update signature',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
                                                                           context)
-                                                                      .bodyMediumFamily,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily),
-                                                                ),
-                                                      );
-                                                    },
+                                                                      .bodyMediumFamily),
+                                                        ),
                                                   ),
                                                   InkWell(
                                                     splashColor:
