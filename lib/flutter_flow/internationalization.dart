@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'hf548o2j': {
+    '0ncmr6h8': {
       'en': '',
       'tl': '',
     },
@@ -324,7 +324,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    'ok3hh92t': {
+    'ktwszdsw': {
       'en': '',
       'tl': '',
     },
@@ -892,14 +892,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     's03qmvgh': {
       'en': 'Retry signature',
       'tl': 'Subukang muli ang lagda',
-    },
-    'fts37cq3': {
-      'en': 'Clear',
-      'tl': 'Maaliwalas',
-    },
-    'a0f7s2dm': {
-      'en': 'Save',
-      'tl': 'I-save',
     },
   },
   // backupTasks

@@ -2,12 +2,11 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:signature/signature.dart';
 import 'signature_model.dart';
 export 'signature_model.dart';
 
@@ -185,13 +184,7 @@ class _SignatureWidgetState extends State<SignatureWidget>
                                                 hoverColor: Colors.transparent,
                                                 highlightColor:
                                                     Colors.transparent,
-                                                onTap: () async {
-                                                  setState(() {
-                                                    _model
-                                                        .signatureDataController
-                                                        ?.clear();
-                                                  });
-                                                },
+                                                onTap: () async {},
                                                 child: Text(
                                                   FFLocalizations.of(context)
                                                       .getText(
@@ -290,149 +283,20 @@ class _SignatureWidgetState extends State<SignatureWidget>
                                                         .secondaryText,
                                               ),
                                             ),
-                                            child: Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(5.0, 5.0, 5.0, 5.0),
-                                              child: ClipRect(
-                                                child: Signature(
-                                                  controller: _model
-                                                          .signatureDataController ??=
-                                                      SignatureController(
-                                                    penStrokeWidth: 2.0,
-                                                    penColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primaryText,
-                                                    exportBackgroundColor:
-                                                        Colors.white,
-                                                  ),
-                                                  backgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondaryBackground,
-                                                  height: 300.0,
-                                                ),
+                                            child: const SizedBox(
+                                              width: double.infinity,
+                                              height: 300.0,
+                                              child: custom_widgets
+                                                  .CustomSignature(
+                                                width: double.infinity,
+                                                height: 300.0,
+                                                taskId: 'lorem',
                                               ),
                                             ),
                                           ),
                                         ),
                                       ),
                                   ],
-                                ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 16.0, 0.0, 0.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 4.0, 0.0),
-                                        child: FFButtonWidget(
-                                          onPressed: () async {
-                                            setState(() {
-                                              _model.signatureDataController
-                                                  ?.clear();
-                                            });
-                                          },
-                                          text: FFLocalizations.of(context)
-                                              .getText(
-                                            'fts37cq3' /* Clear */,
-                                          ),
-                                          options: FFButtonOptions(
-                                            height: 50.0,
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    32.0, 0.0, 32.0, 0.0),
-                                            iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
-                                            color: FlutterFlowTheme.of(context)
-                                                .warning,
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmall
-                                                    .override(
-                                                      fontFamily:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmallFamily,
-                                                      color: Colors.white,
-                                                      fontSize: 16.0,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      useGoogleFonts: GoogleFonts
-                                                              .asMap()
-                                                          .containsKey(
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmallFamily),
-                                                    ),
-                                            elevation: 2.0,
-                                            borderSide: const BorderSide(
-                                              color: Colors.transparent,
-                                              width: 1.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(40.0),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 4.0, 0.0),
-                                        child: FFButtonWidget(
-                                          onPressed: () {
-                                            print('saveButton pressed ...');
-                                          },
-                                          text: FFLocalizations.of(context)
-                                              .getText(
-                                            'a0f7s2dm' /* Save */,
-                                          ),
-                                          options: FFButtonOptions(
-                                            height: 50.0,
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    32.0, 0.0, 32.0, 0.0),
-                                            iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmall
-                                                    .override(
-                                                      fontFamily:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmallFamily,
-                                                      color: Colors.white,
-                                                      fontSize: 16.0,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      useGoogleFonts: GoogleFonts
-                                                              .asMap()
-                                                          .containsKey(
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmallFamily),
-                                                    ),
-                                            elevation: 2.0,
-                                            borderSide: const BorderSide(
-                                              color: Colors.transparent,
-                                              width: 1.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(40.0),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
                                 ),
                               ],
                             ),
