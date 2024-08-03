@@ -301,3 +301,55 @@ class DashboardReadQueryRow extends SqliteRow {
 }
 
 /// END DASHBOARD READ QUERY
+
+/// BEGIN GET LAST SYNC TIMESTAMP
+Future<List<GetLastSyncTimestampRow>> performGetLastSyncTimestamp(
+  Database database,
+) {
+  const query = '''
+SELECT last_sync_timestamp FROM sync_status WHERE table_name = ?;
+''';
+  return _readQuery(database, query, (d) => GetLastSyncTimestampRow(d));
+}
+
+class GetLastSyncTimestampRow extends SqliteRow {
+  GetLastSyncTimestampRow(super.data);
+}
+
+/// END GET LAST SYNC TIMESTAMP
+
+/// BEGIN GET QUEUED CHANGES
+Future<List<GetQueuedChangesRow>> performGetQueuedChanges(
+  Database database,
+) {
+  const query = '''
+SELECT * FROM sync_queue ORDER BY timestamp ASC;
+''';
+  return _readQuery(database, query, (d) => GetQueuedChangesRow(d));
+}
+
+class GetQueuedChangesRow extends SqliteRow {
+  GetQueuedChangesRow(super.data);
+
+  String? get tableName => data['table_name'] as String?;
+}
+
+/// END GET QUEUED CHANGES
+
+/// BEGIN GET MODIFIED RECORDS
+Future<List<GetModifiedRecordsRow>> performGetModifiedRecords(
+  Database database,
+) {
+  const query = '''
+SELECT * FROM tasks WHERE last_modified > ?;
+''';
+  return _readQuery(database, query, (d) => GetModifiedRecordsRow(d));
+}
+
+class GetModifiedRecordsRow extends SqliteRow {
+  GetModifiedRecordsRow(super.data);
+
+  DateTime? get lastModified => data['last_modified'] as DateTime?;
+}
+
+/// END GET MODIFIED RECORDS

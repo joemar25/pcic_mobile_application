@@ -70,6 +70,21 @@ class SQLiteManager {
         _database,
       );
 
+  Future<List<GetLastSyncTimestampRow>> getLastSyncTimestamp() =>
+      performGetLastSyncTimestamp(
+        _database,
+      );
+
+  Future<List<GetQueuedChangesRow>> getQueuedChanges() =>
+      performGetQueuedChanges(
+        _database,
+      );
+
+  Future<List<GetModifiedRecordsRow>> getModifiedRecords() =>
+      performGetModifiedRecords(
+        _database,
+      );
+
   /// END READ QUERY CALLS
 
   /// START UPDATE QUERY CALLS
@@ -264,6 +279,70 @@ class SQLiteManager {
         createduserid: createduserid,
         updatedat: updatedat,
         regionid: regionid,
+      );
+
+  Future insertUpdateSyncStatus({
+    String? tablename,
+    DateTime? lastsynctimestamp,
+  }) =>
+      performInsertUpdateSyncStatus(
+        _database,
+        tablename: tablename,
+        lastsynctimestamp: lastsynctimestamp,
+      );
+
+  Future addToSyncQueue({
+    String? tablename,
+    String? recordid,
+    String? action,
+    String? data,
+    DateTime? timestamp,
+  }) =>
+      performAddToSyncQueue(
+        _database,
+        tablename: tablename,
+        recordid: recordid,
+        action: action,
+        data: data,
+        timestamp: timestamp,
+      );
+
+  Future removeFromSyncQueue({
+    String? id,
+  }) =>
+      performRemoveFromSyncQueue(
+        _database,
+        id: id,
+      );
+
+  Future updateLastModifiedTimestamp({
+    DateTime? lastmodified,
+    String? id,
+  }) =>
+      performUpdateLastModifiedTimestamp(
+        _database,
+        lastmodified: lastmodified,
+        id: id,
+      );
+
+  Future bulkInsert({
+    String? id,
+    String? title,
+    String? status,
+  }) =>
+      performBulkInsert(
+        _database,
+        id: id,
+        title: title,
+        status: status,
+      );
+
+  Future deleteRecords({
+    String? id,
+  }) =>
+      performDeleteRecords(
+        _database,
+        id: id,
       );
 
   /// END UPDATE QUERY CALLS

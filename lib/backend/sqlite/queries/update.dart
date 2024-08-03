@@ -248,3 +248,91 @@ WHERE id = ?
 }
 
 /// END UPDATE DASHBOARD QUERY
+
+/// BEGIN INSERTUPDATE SYNC STATUS
+Future performInsertUpdateSyncStatus(
+  Database database, {
+  String? tablename,
+  DateTime? lastsynctimestamp,
+}) {
+  const query = '''
+INSERT OR REPLACE INTO sync_status (table_name, last_sync_timestamp)
+VALUES (?, ?);
+''';
+  return database.rawQuery(query);
+}
+
+/// END INSERTUPDATE SYNC STATUS
+
+/// BEGIN ADD TO SYNC QUEUE
+Future performAddToSyncQueue(
+  Database database, {
+  String? tablename,
+  String? recordid,
+  String? action,
+  String? data,
+  DateTime? timestamp,
+}) {
+  const query = '''
+INSERT INTO sync_queue (table_name, record_id, action, data, timestamp)
+VALUES (?, ?, ?, ?, ?);
+''';
+  return database.rawQuery(query);
+}
+
+/// END ADD TO SYNC QUEUE
+
+/// BEGIN REMOVE FROM SYNC QUEUE
+Future performRemoveFromSyncQueue(
+  Database database, {
+  String? id,
+}) {
+  const query = '''
+DELETE FROM sync_queue WHERE id = ?;
+''';
+  return database.rawQuery(query);
+}
+
+/// END REMOVE FROM SYNC QUEUE
+
+/// BEGIN UPDATE LAST MODIFIED TIMESTAMP
+Future performUpdateLastModifiedTimestamp(
+  Database database, {
+  DateTime? lastmodified,
+  String? id,
+}) {
+  const query = '''
+UPDATE tasks SET ..., last_modified = ? WHERE id = ?;
+''';
+  return database.rawQuery(query);
+}
+
+/// END UPDATE LAST MODIFIED TIMESTAMP
+
+/// BEGIN BULK INSERT
+Future performBulkInsert(
+  Database database, {
+  String? id,
+  String? title,
+  String? status,
+}) {
+  const query = '''
+INSERT OR REPLACE INTO tasks (id, title, status, ...) VALUES (?, ?, ?, ...);
+''';
+  return database.rawQuery(query);
+}
+
+/// END BULK INSERT
+
+/// BEGIN DELETE RECORDS
+Future performDeleteRecords(
+  Database database, {
+  String? id,
+}) {
+  const query = '''
+DELETE FROM tasks WHERE id = ?;
+''';
+  return database.rawQuery(query);
+}
+
+/// END DELETE RECORDS

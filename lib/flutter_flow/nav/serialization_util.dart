@@ -272,6 +272,12 @@ dynamic deserializeParam<T>(
             return SelectProfileRow(data);
           case DashboardReadQueryRow:
             return DashboardReadQueryRow(data);
+          case GetLastSyncTimestampRow:
+            return GetLastSyncTimestampRow(data);
+          case GetQueuedChangesRow:
+            return GetQueuedChangesRow(data);
+          case GetModifiedRecordsRow:
+            return GetModifiedRecordsRow(data);
           default:
             return null;
         }
