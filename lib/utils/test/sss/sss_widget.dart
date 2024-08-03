@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'sss_model.dart';
 export 'sss_model.dart';
 
@@ -33,6 +34,8 @@ class _SssWidgetState extends State<SssWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -45,7 +48,7 @@ class _SssWidgetState extends State<SssWidget> {
           automaticallyImplyLeading: false,
           title: Text(
             FFLocalizations.of(context).getText(
-              'yigfujp5' /* MAP */,
+              'yigfujp5' /* Offline Map */,
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: FlutterFlowTheme.of(context).headlineMediumFamily,
@@ -60,11 +63,44 @@ class _SssWidgetState extends State<SssWidget> {
           centerTitle: false,
           elevation: 2.0,
         ),
-        body: const SafeArea(
+        body: SafeArea(
           top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(
+                      FFLocalizations.of(context).getText(
+                        'eu5u7k9c' /* Map Search */,
+                      ),
+                      style: FlutterFlowTheme.of(context).bodyLarge.override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).bodyLargeFamily,
+                            letterSpacing: 0.0,
+                            useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                FlutterFlowTheme.of(context).bodyLargeFamily),
+                          ),
+                    ),
+                    Text(
+                      FFLocalizations.of(context).getText(
+                        'dptyz7gi' /* Downloaded Maps */,
+                      ),
+                      style: FlutterFlowTheme.of(context).bodyLarge.override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).bodyLargeFamily,
+                            letterSpacing: 0.0,
+                            useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                FlutterFlowTheme.of(context).bodyLargeFamily),
+                          ),
+                    ),
+                  ],
+                ),
+              ),
               Expanded(
                 child: SizedBox(
                   width: double.infinity,
@@ -72,6 +108,7 @@ class _SssWidgetState extends State<SssWidget> {
                   child: custom_widgets.SearchableMapWidget(
                     width: double.infinity,
                     height: 300.0,
+                    accessToken: FFAppState().accessToken,
                   ),
                 ),
               ),

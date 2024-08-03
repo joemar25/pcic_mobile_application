@@ -25,18 +25,18 @@ class SearchableMapWidget extends StatefulWidget {
     Key? key,
     this.width,
     this.height,
+    required this.accessToken,
   }) : super(key: key);
 
   final double? width;
   final double? height;
+  final String accessToken;
 
   @override
   State<SearchableMapWidget> createState() => _SearchableMapWidgetState();
 }
 
 class _SearchableMapWidgetState extends State<SearchableMapWidget> {
-  final String accessToken =
-      'pk.eyJ1IjoicXVhbmJ5c29sdXRpb25zIiwiYSI6ImNsdWhrejRwdDJyYnAya3A2NHFqbXlsbHEifQ.WJ5Ng-AO-dTrlkUHD_ebMw';
   final TextEditingController _typeAheadController = TextEditingController();
   final MapController _mapController = MapController();
   ll.LatLng _center = ll.LatLng(0, 0);
@@ -104,7 +104,7 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
 
     try {
       Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high,
+        desiredAccuracy: LocationAccuracy.best,
         forceAndroidLocationManager: true,
       );
       setState(() {
@@ -122,7 +122,7 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
 
   Future<List<Map<String, dynamic>>> forwardGeocoding(String query) async {
     final String url =
-        'https://api.mapbox.com/geocoding/v5/mapbox.places/$query.json?access_token=$accessToken';
+        'https://api.mapbox.com/geocoding/v5/mapbox.places/$query.json?access_token=${widget.accessToken}';
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
@@ -143,10 +143,6 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
       _center = newCenter;
     });
     _mapController.move(newCenter, 17);
-  }
-
-  String _sanitizeStoreName(String name) {
-    return name.replaceAll(RegExp(r'[^a-zA-Z0-9_]'), '_').toLowerCase();
   }
 
   Future<void> _saveMap() async {
@@ -176,7 +172,7 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
       _isDownloading = true;
     });
 
-    final String storeName = _sanitizeStoreName(_selectedAddress);
+    final String storeName = sanitizeStoreName(_selectedAddress);
 
     try {
       await FMTC.FMTCStore(storeName).manage.create();
@@ -187,9 +183,9 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
         maxZoom: (_mapController.camera.zoom + 2).ceil(),
         options: TileLayer(
           urlTemplate:
-              'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}@2x?access_token=${accessToken}',
+              'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}@2x?access_token=${widget.accessToken}',
           additionalOptions: {
-            'accessToken': accessToken,
+            'accessToken': widget.accessToken,
             'id': 'mapbox/satellite-v9',
           },
         ),
@@ -294,7 +290,7 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
                         urlTemplate:
                             'https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v12/tiles/{z}/{x}/{y}?access_token={accessToken}',
                         additionalOptions: {
-                          'accessToken': accessToken,
+                          'accessToken': widget.accessToken,
                         },
                       ),
                       MarkerLayer(

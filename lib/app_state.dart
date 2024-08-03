@@ -27,6 +27,10 @@ class FFAppState extends ChangeNotifier {
           await secureStorage.getDouble('ff_mapDownloadProgress') ??
               _mapDownloadProgress;
     });
+    await _safeInitAsync(() async {
+      _accessToken =
+          await secureStorage.getString('ff_accessToken') ?? _accessToken;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -80,6 +84,18 @@ class FFAppState extends ChangeNotifier {
   String get localProfilePic => _localProfilePic;
   set localProfilePic(String value) {
     _localProfilePic = value;
+  }
+
+  String _accessToken =
+      'pk.eyJ1IjoicXVhbmJ5c29sdXRpb25zIiwiYSI6ImNsdWhrejRwdDJyYnAya3A2NHFqbXlsbHEifQ.WJ5Ng-AO-dTrlkUHD_ebMw';
+  String get accessToken => _accessToken;
+  set accessToken(String value) {
+    _accessToken = value;
+    secureStorage.setString('ff_accessToken', value);
+  }
+
+  void deleteAccessToken() {
+    secureStorage.delete(key: 'ff_accessToken');
   }
 }
 

@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'ulc3mmn0': {
+    'to1hlio7': {
       'en': '',
       'tl': '',
     },
@@ -202,12 +202,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Change Password',
       'tl': '',
     },
-    'ujnyyxhr': {
-      'en': 'Download Map',
-      'tl': '',
-    },
-    '6otrhp9w': {
-      'en': 'Cancel Download',
+    'qvfftd30': {
+      'en': 'Download Maps',
       'tl': '',
     },
     'qi3464p6': {
@@ -324,7 +320,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    '5urx6d0r': {
+    'phnxvl5p': {
       'en': '',
       'tl': '',
     },
@@ -818,12 +814,39 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // sss
   {
     'yigfujp5': {
-      'en': 'MAP',
+      'en': 'Offline Map',
+      'tl': '',
+    },
+    'eu5u7k9c': {
+      'en': 'Map Search',
+      'tl': '',
+    },
+    'dptyz7gi': {
+      'en': 'Downloaded Maps',
       'tl': '',
     },
     'p5v52glk': {
       'en': 'Home',
       'tl': '',
+    },
+  },
+  // pcicMap
+  {
+    'hopzh8rp': {
+      'en': 'Map Search',
+      'tl': '',
+    },
+    'xg5zqtpy': {
+      'en': 'Downloaded',
+      'tl': '',
+    },
+    '0euf32cz': {
+      'en': 'Offline Map',
+      'tl': '',
+    },
+    'hdh6xlcb': {
+      'en': 'Home',
+      'tl': 'Bahay',
     },
   },
   // tasks

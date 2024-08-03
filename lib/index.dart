@@ -21,3 +21,4 @@ export '/auth/forgot_password/forgot_password_widget.dart'
 export '/dashboard/geotag/geotagging/geotagging_widget.dart'
     show GeotaggingWidget;
 export '/utils/test/sss/sss_widget.dart' show SssWidget;
+export '/dashboard/offlinemap/pcic_map/pcic_map_widget.dart' show PcicMapWidget;
