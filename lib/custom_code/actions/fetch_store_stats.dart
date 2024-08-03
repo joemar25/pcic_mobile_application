@@ -13,8 +13,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_map_tile_caching/flutter_map_tile_caching.dart' as FMTC;
 
-Future<ListOfMapStatsStruct> fetchStoreStats() async {
-  List<Map<String, dynamic>> mapStatsList = [];
+Future<List<MapStatsStruct>> fetchStoreStats() async {
+  List<MapStatsStruct> tempList = []; // Use List<MapStatsStruct> here
 
   try {
     final stats = FMTC.FMTCRoot.stats;
@@ -33,11 +33,11 @@ Future<ListOfMapStatsStruct> fetchStoreStats() async {
     print('Total Tiles: $length');
 
     // Add overall statistics
-    mapStatsList.add({
-      'storeName': 'Overall',
-      'realSize': realSize.toStringAsFixed(2),
-      'numberOfTiles': length.toString(),
-    });
+    tempList.add(MapStatsStruct(
+      storeName: 'Overall',
+      realSize: realSize.toStringAsFixed(2),
+      numberOfTiles: length.toString(),
+    ));
 
     // Fetch and add information for each store
     for (final store in storesAvailable) {
@@ -45,11 +45,11 @@ Future<ListOfMapStatsStruct> fetchStoreStats() async {
       final storeRealSize = await storeStats.realSize;
       final storeLength = await storeStats.length;
 
-      mapStatsList.add({
-        'storeName': store.toString(),
-        'realSize': storeRealSize.toStringAsFixed(2),
-        'numberOfTiles': storeLength.toString(),
-      });
+      tempList.add(MapStatsStruct(
+        storeName: store.toString(),
+        realSize: storeRealSize.toStringAsFixed(2),
+        numberOfTiles: storeLength.toString(),
+      ));
 
       // Print individual store statistics (you can keep or remove these print statements)
       print('\nStore: $store');
@@ -60,5 +60,6 @@ Future<ListOfMapStatsStruct> fetchStoreStats() async {
     print('Error fetching FMTC stats: $e');
   }
 
-  return mapStatsList;
+  // You've already created a List<MapStatsStruct>
+  return tempList;
 }

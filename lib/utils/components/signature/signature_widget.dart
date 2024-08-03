@@ -14,9 +14,11 @@ class SignatureWidget extends StatefulWidget {
   const SignatureWidget({
     super.key,
     required this.taskId,
+    required this.signatureFor,
   });
 
   final String? taskId;
+  final String? signatureFor;
 
   @override
   State<SignatureWidget> createState() => _SignatureWidgetState();
@@ -291,6 +293,8 @@ class _SignatureWidgetState extends State<SignatureWidget>
                                                 width: double.infinity,
                                                 height: 300.0,
                                                 taskId: widget.taskId!,
+                                                signatureFor:
+                                                    widget.signatureFor,
                                               ),
                                             ),
                                           ),

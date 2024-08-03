@@ -12,8 +12,6 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'index.dart'; // Imports other custom widgets
-
 import 'package:signature/signature.dart';
 import 'dart:typed_data';
 import 'package:intl/intl.dart';
@@ -24,11 +22,13 @@ class CustomSignature extends StatefulWidget {
     this.width,
     this.height,
     required this.taskId,
+    this.signatureFor,
   });
 
   final double? width;
   final double? height;
   final String taskId;
+  final String? signatureFor;
 
   @override
   State<CustomSignature> createState() => _CustomSignatureState();
@@ -114,10 +114,16 @@ class _CustomSignatureState extends State<CustomSignature> {
 
             print('Signature URL: $publicUrl');
 
-            // Update the ppir_forms table with the signature file path
-            await SupaFlow.client.from('ppir_forms').update({
-              'signature_file_path': filePath,
-            }).eq('task_id', widget.taskId);
+            try {
+              final response = await SupaFlow.client.from('ppir_forms').update({
+                'ppir_sig_insured': filePath,
+              }).eq('task_id', widget.taskId);
+
+              print('Update response: $response');
+            } catch (e) {
+              print('Error updating ppir_forms: $e');
+              // Handle the error appropriately
+            }
 
             print('ppir_forms table updated with signature file path');
           } else {
@@ -176,10 +182,16 @@ class _CustomSignatureState extends State<CustomSignature> {
         );
         _fileName = null;
 
-        // Update the ppir_forms table to remove the signature file path
-        await SupaFlow.client.from('ppir_forms').update({
-          'signature_file_path': null,
-        }).eq('task_id', widget.taskId);
+        try {
+          final response = await SupaFlow.client.from('ppir_forms').update({
+            'ppir_sig_insured': filePath,
+          }).eq('task_id', widget.taskId);
+
+          print('Update response: $response');
+        } catch (e) {
+          print('Error updating ppir_forms: $e');
+          // Handle the error appropriately
+        }
 
         print('ppir_forms table updated to remove signature file path');
       } catch (e) {
