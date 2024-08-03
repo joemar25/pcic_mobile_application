@@ -272,7 +272,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                 children: [
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
-                                        30.0, 0.0, 30.0, 0.0),
+                                        20.0, 20.0, 20.0, 0.0),
                                     child: Container(
                                       width: 600.0,
                                       constraints: const BoxConstraints(
@@ -285,7 +285,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             BorderRadius.circular(12.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
+                                        padding: const EdgeInsets.all(10.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:

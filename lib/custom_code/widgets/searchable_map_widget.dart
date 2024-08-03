@@ -12,11 +12,9 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'package:flutter_map/flutter_map.dart';
-import 'package:flutter_map_tile_caching/flutter_map_tile_caching.dart'
-    as FMTC; // Alias for tile caching
-import 'package:mapbox_search/mapbox_search.dart';
-import 'package:latlong2/latlong.dart' as ll; // Alias for latlong2
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 class SearchableMapWidget extends StatefulWidget {
   const SearchableMapWidget({
@@ -33,77 +31,24 @@ class SearchableMapWidget extends StatefulWidget {
 }
 
 class _SearchableMapWidgetState extends State<SearchableMapWidget> {
-  final MapController mapController = MapController();
-  ll.LatLng? currentLocation;
-  List<FMTC.TileProvider> tileProviders = [];
-  FMTC.TileCaching? tileCaching;
-  String? searchedAddress;
+  final String accessToken = 'YOUR_MAPBOX_ACCESS_TOKEN';
+  final TextEditingController _typeAheadController = TextEditingController();
 
-  @override
-  void initState() {
-    super.initState();
-    _initializeMap();
-    _initializeSearch();
-    _initializeTileCaching();
-  }
-
-  void _initializeMap() {
-    // Replace 'YOUR_MAPBOX_ACCESS_TOKEN' with your actual Mapbox access token
-    tileProviders.add(
-      FMTC.NetworkTileProvider(
-        urlTemplate:
-            'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
-        tileWidth: 256,
-        tileHeight: 256,
-        zoom: 0,
-        maxZoom: 19,
-        id: 'mapbox/streets-v11',
-        accessToken: 'YOUR_MAPBOX_ACCESS_TOKEN',
-      ),
-    );
-  }
-
-  void _initializeSearch() {
-    // Replace 'YOUR_MAPBOX_ACCESS_TOKEN' with your actual Mapbox access token
-    MapboxSearch.initialize(accessToken: 'YOUR_MAPBOX_ACCESS_TOKEN');
-  }
-
-  void _initializeTileCaching() {
-    // Choose appropriate path for tile caching
-    final cachePath =
-        '${(await getApplicationDocumentsDirectory()).path}/map_cache';
-
-    tileCaching = FMTC.TileCaching(
-      tileProvider: tileProviders.first,
-      cachePath: cachePath,
-    );
-  }
-
-  Future<void> _searchAddress(String address) async {
-    try {
-      final response = await MapboxSearch.search(address);
-      final firstResult = response.features.first;
-      final geometry = firstResult.geometry;
-      final latitude = geometry.coordinates[1];
-      final longitude = geometry.coordinates[0];
-
-      setState(() {
-        currentLocation = ll.LatLng(latitude, longitude);
-        searchedAddress = address;
-        mapController.move(currentLocation!, 13);
-      });
-    } catch (e) {
-      print('Error searching address: $e');
-    }
-  }
-
-  Future<void> _downloadMapTiles(ll.LatLng location) async {
-    if (tileCaching != null && currentLocation != null) {
-      final bounds = ll.LatLngBounds.fromPoints([
-        location,
-        location,
-      ]);
-      await tileCaching.downloadTiles(bounds, zoom: 13);
+  Future<List<Map<String, dynamic>>> forwardGeocoding(String query) async {
+    final String url =
+        'https://api.mapbox.com/geocoding/v5/mapbox.places/$query.json?access_token=$accessToken';
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      final features = data['features'] as List;
+      return features.map((feature) {
+        return {
+          'place_name': feature['place_name'],
+          'coordinates': feature['geometry']['coordinates'],
+        };
+      }).toList();
+    } else {
+      throw Exception('Failed to load geocoding data');
     }
   }
 
@@ -114,56 +59,37 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
       height: widget.height,
       child: Column(
         children: [
-          Expanded(
-            child: FlutterMap(
-              mapController: mapController,
-              options: MapOptions(
-                center: ll.LatLng(51.5, -0.09), // Initial center
-                zoom: 13.0,
-                interactiveFlags: InteractiveFlag.all,
-              ),
-              children: [
-                TileLayer(
-                  tileProvider: tileProviders.first,
-                ),
-                currentLocation != null
-                    ? MarkerLayer(
-                        markers: [
-                          Marker(
-                            width: 80.0,
-                            height: 80.0,
-                            point: currentLocation!,
-                            builder: (ctx) => Icon(Icons.location_pin),
-                          ),
-                        ],
-                      )
-                    : SizedBox.shrink(),
-              ],
-            ),
-          ),
           Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: 'Enter address',
-              ),
-              onSubmitted: (value) {
-                _searchAddress(value);
+            padding: const EdgeInsets.all(8.0),
+            child: TypeAheadField<Map<String, dynamic>>(
+              suggestionsCallback: (pattern) async {
+                if (pattern.isEmpty) {
+                  return [];
+                }
+                return await forwardGeocoding(pattern);
               },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Visibility(
-              visible: currentLocation != null,
-              child: ElevatedButton(
-                onPressed: () {
-                  if (currentLocation != null) {
-                    _downloadMapTiles(currentLocation!);
-                  }
-                },
-                child: Text('Download Map Tiles for ${searchedAddress ?? ''}'),
-              ),
+              itemBuilder: (context, suggestion) {
+                return ListTile(
+                  title: Text(suggestion['place_name']),
+                );
+              },
+              onSelected: (suggestion) {
+                _typeAheadController.text = suggestion['place_name'];
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: Text(suggestion['place_name']),
+                    content: Text(
+                        'Coordinates: ${suggestion['coordinates'][1]}, ${suggestion['coordinates'][0]}'),
+                    actions: [
+                      TextButton(
+                        child: Text('OK'),
+                        onPressed: () => Navigator.pop(context),
+                      ),
+                    ],
+                  ),
+                );
+              },
             ),
           ),
         ],
