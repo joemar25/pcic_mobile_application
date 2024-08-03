@@ -70,7 +70,7 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
           ),
           title: Text(
             FFLocalizations.of(context).getText(
-              '0euf32cz' /* Offline Map */,
+              'idur2ho8' /* Offline Map */,
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: FlutterFlowTheme.of(context).headlineMediumFamily,
@@ -82,7 +82,7 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                 ),
           ),
           actions: const [],
-          centerTitle: true,
+          centerTitle: false,
           elevation: 2.0,
         ),
         body: Column(

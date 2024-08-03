@@ -122,7 +122,7 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
 
   Future<List<Map<String, dynamic>>> forwardGeocoding(String query) async {
     final String url =
-        'https://api.mapbox.com/geocoding/v5/mapbox.places/$query.json?access_token=${widget.accessToken}';
+        'https://api.mapbox.com/geocoding/v5/mapbox.places/$query.json?access_token=${widget.accessToken}&country=PH';
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       final data = json.decode(response.body);

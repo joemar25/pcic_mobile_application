@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'to1hlio7': {
+    '337q3pcq': {
       'en': '',
       'tl': '',
     },
@@ -320,7 +320,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    'phnxvl5p': {
+    'by5mizda': {
       'en': '',
       'tl': '',
     },
@@ -840,7 +840,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Downloaded',
       'tl': '',
     },
-    '0euf32cz': {
+    'idur2ho8': {
       'en': 'Offline Map',
       'tl': '',
     },
@@ -876,17 +876,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'hh1zsrbx': {
       'en': 'It seems that you don\'t have any recent activity.',
       'tl': 'Mukhang wala kang anumang kamakailang aktibidad.',
-    },
-  },
-  // userCard
-  {
-    'q2srxkm7': {
-      'en': 'UserName',
-      'tl': 'UserName',
-    },
-    'e7kvimdo': {
-      'en': 'Subtitle',
-      'tl': 'Subtitle',
     },
   },
   // changePhoto

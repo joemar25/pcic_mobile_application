@@ -13,6 +13,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'geotagging_model.dart';
 export 'geotagging_model.dart';
 
@@ -91,6 +92,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
     if (currentUserLocationValue == null) {
       return Container(
         color: FlutterFlowTheme.of(context).primaryBackground,
@@ -173,8 +175,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                       height:
                                           MediaQuery.sizeOf(context).height *
                                               1.0,
-                                      accessToken:
-                                          'pk.eyJ1IjoicXVhbmJ5c29sdXRpb25zIiwiYSI6ImNsdWhrejRwdDJyYnAya3A2NHFqbXlsbHEifQ.WJ5Ng-AO-dTrlkUHD_ebMw',
+                                      accessToken: FFAppState().accessToken,
                                       taskId: widget.taskId,
                                     ),
                                   ),
