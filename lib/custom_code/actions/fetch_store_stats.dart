@@ -13,31 +13,30 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_map_tile_caching/flutter_map_tile_caching.dart' as FMTC;
 
-Future<List<MapStatsStruct>> fetchStoreStats() async {
-  List<MapStatsStruct> tempList = []; // Use List<MapStatsStruct> here
-
+Future<void> fetchStoreStats() async {
   try {
     final stats = FMTC.FMTCRoot.stats;
+    final storesAvailable = await stats.storesAvailable;
 
     // Fetch the statistics
-    final storesAvailable = await stats.storesAvailable;
-    final realSize = await stats.realSize;
-    final size = await stats.size;
-    final length = await stats.length;
 
-    // Print the statistics (you can keep or remove these print statements)
-    print('FMTC Statistics:');
-    print('Stores Available: $storesAvailable');
-    print('Real Size: ${realSize.toStringAsFixed(2)} KiB');
-    print('Size: ${size.toStringAsFixed(2)} KiB');
-    print('Total Tiles: $length');
+    // final realSize = await stats.realSize;
+    // final size = await stats.size;
+    // final length = await stats.length;
 
-    // Add overall statistics
-    tempList.add(MapStatsStruct(
-      storeName: 'Overall',
-      realSize: realSize.toStringAsFixed(2),
-      numberOfTiles: length.toString(),
-    ));
+    // // Print the statistics (you can keep or remove these print statements)
+    // print('FMTC Statistics:');
+    // print('Stores Available: $storesAvailable');
+    // print('Real Size: ${realSize.toStringAsFixed(2)} KiB');
+    // print('Size: ${size.toStringAsFixed(2)} KiB');
+    // print('Total Tiles: $length');
+
+    // // Add overall statistics
+    // FFAppState().listOfMapDownloads.add(MapStatsStruct(
+    //       storeName: 'Overall',
+    //       realSize: realSize.toStringAsFixed(2),
+    //       numberOfTiles: length.toString(),
+    //     ));
 
     // Fetch and add information for each store
     for (final store in storesAvailable) {
@@ -45,11 +44,13 @@ Future<List<MapStatsStruct>> fetchStoreStats() async {
       final storeRealSize = await storeStats.realSize;
       final storeLength = await storeStats.length;
 
-      tempList.add(MapStatsStruct(
-        storeName: store.toString(),
-        realSize: storeRealSize.toStringAsFixed(2),
-        numberOfTiles: storeLength.toString(),
-      ));
+      FFAppState().listOfMapDownloads.add(
+            MapStatsStruct(
+              storeName: store.toString(),
+              realSize: storeRealSize.toStringAsFixed(2),
+              numberOfTiles: storeLength.toString(),
+            ),
+          );
 
       // Print individual store statistics (you can keep or remove these print statements)
       print('\nStore: $store');
@@ -59,7 +60,4 @@ Future<List<MapStatsStruct>> fetchStoreStats() async {
   } catch (e) {
     print('Error fetching FMTC stats: $e');
   }
-
-  // You've already created a List<MapStatsStruct>
-  return tempList;
 }

@@ -801,6 +801,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                 ),
                                               },
                                             );
+
+                                            await actions.fetchStoreStats();
                                           },
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
