@@ -12,3 +12,4 @@ export 'success_toast.dart' show successToast;
 export 'save_to_f_t_p.dart' show saveToFTP;
 export 'upload_photo_url_to_asset.dart' show uploadPhotoUrlToAsset;
 export 'get_the_saved_local_profile.dart' show getTheSavedLocalProfile;
+export 'fetch_store_stats.dart' show fetchStoreStats;

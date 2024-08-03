@@ -80,12 +80,6 @@ class FFAppState extends ChangeNotifier {
     secureStorage.delete(key: 'ff_mapDownloadProgress');
   }
 
-  String _localProfilePic = '';
-  String get localProfilePic => _localProfilePic;
-  set localProfilePic(String value) {
-    _localProfilePic = value;
-  }
-
   String _accessToken =
       'pk.eyJ1IjoicXVhbmJ5ZGV2cyIsImEiOiJjbHplNmtybm4wbHZsMmlva3pkbDY2bG1yIn0.I-82-7hu310FPXYvKTIMMQ';
   String get accessToken => _accessToken;
