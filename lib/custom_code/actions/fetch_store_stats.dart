@@ -18,44 +18,34 @@ Future<void> fetchStoreStats() async {
     final stats = FMTC.FMTCRoot.stats;
     final storesAvailable = await stats.storesAvailable;
 
-    // Fetch the statistics
-
-    // final realSize = await stats.realSize;
-    // final size = await stats.size;
-    // final length = await stats.length;
-
-    // // Print the statistics (you can keep or remove these print statements)
-    // print('FMTC Statistics:');
-    // print('Stores Available: $storesAvailable');
-    // print('Real Size: ${realSize.toStringAsFixed(2)} KiB');
-    // print('Size: ${size.toStringAsFixed(2)} KiB');
-    // print('Total Tiles: $length');
-
-    // // Add overall statistics
-    // FFAppState().listOfMapDownloads.add(MapStatsStruct(
-    //       storeName: 'Overall',
-    //       realSize: realSize.toStringAsFixed(2),
-    //       numberOfTiles: length.toString(),
-    //     ));
-
     // Fetch and add information for each store
     for (final store in storesAvailable) {
       final storeStats = FMTC.FMTCRoot.stats;
       final storeRealSize = await storeStats.realSize;
       final storeLength = await storeStats.length;
 
+      // Clean the storeName: remove symbols, separate words with spaces, and capitalize
+      final cleanedStoreName = store.storeName
+          .replaceAll(RegExp(r'[^a-zA-Z0-9\s]'),
+              ' ') // Remove symbols and replace with space
+          .split(' ')
+          .where((part) => part.isNotEmpty) // Remove empty parts
+          .map((part) => capitalizeWords(part))
+          .join(' ');
+
       FFAppState().listOfMapDownloads.add(
             MapStatsStruct(
-              storeName: store.toString(),
+              storeName: cleanedStoreName,
               realSize: storeRealSize.toStringAsFixed(2),
               numberOfTiles: storeLength.toString(),
             ),
           );
 
       // Print individual store statistics (you can keep or remove these print statements)
-      print('\nStore: $store');
+      print('\nStore: ${store.storeName}');
       print('Real Size: ${storeRealSize.toStringAsFixed(2)} KiB');
       print('Tiles: $storeLength');
+      print(FFAppState().listOfMapDownloads);
     }
   } catch (e) {
     print('Error fetching FMTC stats: $e');

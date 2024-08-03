@@ -100,10 +100,42 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                       accessToken: FFAppState().accessToken,
                     ),
                   ),
-                  ListView(
-                    padding: EdgeInsets.zero,
-                    scrollDirection: Axis.vertical,
-                    children: const [],
+                  Builder(
+                    builder: (context) {
+                      final listOfDownloads = FFAppState()
+                          .listOfMapDownloads
+                          .map((e) => e)
+                          .toList();
+
+                      return ListView.builder(
+                        padding: EdgeInsets.zero,
+                        scrollDirection: Axis.vertical,
+                        itemCount: listOfDownloads.length,
+                        itemBuilder: (context, listOfDownloadsIndex) {
+                          final listOfDownloadsItem =
+                              listOfDownloads[listOfDownloadsIndex];
+                          return Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                listOfDownloadsItem.storeName,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
+                                    ),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
                   ),
                 ],
               ),
