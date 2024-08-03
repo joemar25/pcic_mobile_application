@@ -1,3 +1,4 @@
+import '/backend/sqlite/sqlite_manager.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -42,6 +43,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await SQLiteManager.instance.selectUsers();
+      await SQLiteManager.instance.selectSyncLogs();
+      await SQLiteManager.instance.getLastSyncTimestamp();
+      await SQLiteManager.instance.getQueuedChanges();
+      await SQLiteManager.instance.getModifiedRecords();
       _model.isEditing = false;
       setState(() {});
     });
