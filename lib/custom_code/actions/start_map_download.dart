@@ -47,9 +47,9 @@ Future<void> startMapDownload(String accessToken) async {
   Position position = await Geolocator.getCurrentPosition();
   ll.LatLng currentLocation = ll.LatLng(position.latitude, position.longitude);
 
-  double latDelta = 1.0 / 111.32;
-  double lonDelta =
-      1.0 / (111.32 * cos(currentLocation.latitude * pi / 180)); //5meters
+  double latDelta =
+      100 / 111320; // 1 degree of latitude is approximately 111320 meters
+  double lonDelta = 100 / (111320 * cos(currentLocation.latitude * pi / 180));
 
   LatLngBounds bounds = LatLngBounds(
     ll.LatLng(currentLocation.latitude - latDelta,
@@ -60,7 +60,7 @@ Future<void> startMapDownload(String accessToken) async {
 
   final region = FMTC.RectangleRegion(bounds);
   final downloadableRegion = region.toDownloadable(
-    minZoom: 10,
+    minZoom: 16,
     maxZoom: 22, // Adjusted max zoom for faster download
     options: TileLayer(
       urlTemplate:
@@ -76,8 +76,8 @@ Future<void> startMapDownload(String accessToken) async {
       .download
       .startForeground(
         region: downloadableRegion,
-        parallelThreads: 10,
-        maxBufferLength: 500,
+        parallelThreads: 15,
+        maxBufferLength: 100,
         skipExistingTiles: true,
         skipSeaTiles: true,
         maxReportInterval: Duration(seconds: 1),
@@ -97,7 +97,7 @@ Future<void> startMapDownload(String accessToken) async {
       FFAppState().update(() {}); // Trigger UI update
 
       // Print both raw and normalized progress
-      print('Raw progress: ${rawProgress}%');
+      print('Raw progress: ${rawProgress.toStringAsFixed(2)}%');
       print(
           'Normalized progress: ${(normalizedProgress * 100).toStringAsFixed(0)}%');
     }

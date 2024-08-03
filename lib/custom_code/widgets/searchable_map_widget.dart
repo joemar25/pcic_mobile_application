@@ -15,13 +15,16 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart' as ll;
+import 'package:geolocator/geolocator.dart';
 
 class SearchableMapWidget extends StatefulWidget {
   const SearchableMapWidget({
-    super.key,
+    Key? key,
     this.width,
     this.height,
-  });
+  }) : super(key: key);
 
   final double? width;
   final double? height;
@@ -31,8 +34,69 @@ class SearchableMapWidget extends StatefulWidget {
 }
 
 class _SearchableMapWidgetState extends State<SearchableMapWidget> {
-  final String accessToken = 'YOUR_MAPBOX_ACCESS_TOKEN';
+  final String accessToken =
+      'pk.eyJ1IjoicXVhbmJ5c29sdXRpb25zIiwiYSI6ImNsdWhrejRwdDJyYnAya3A2NHFqbXlsbHEifQ.WJ5Ng-AO-dTrlkUHD_ebMw';
   final TextEditingController _typeAheadController = TextEditingController();
+  final MapController _mapController = MapController();
+  ll.LatLng _center = ll.LatLng(0, 0);
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _getCurrentLocation();
+  }
+
+  Future<void> _getCurrentLocation() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    // Check if location services are enabled
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      setState(() {
+        _isLoading = false;
+      });
+      return;
+    }
+
+    // Check location permission
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        setState(() {
+          _isLoading = false;
+        });
+        return;
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      setState(() {
+        _isLoading = false;
+      });
+      return;
+    }
+
+    try {
+      Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high,
+        forceAndroidLocationManager: true,
+      );
+      setState(() {
+        _center = ll.LatLng(position.latitude, position.longitude);
+        _isLoading = false;
+      });
+      _mapController.move(
+          _center, 17); // Move map to current location with zoom 17
+    } catch (e) {
+      print("Error getting location: $e");
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
 
   Future<List<Map<String, dynamic>>> forwardGeocoding(String query) async {
     final String url =
@@ -50,6 +114,13 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
     } else {
       throw Exception('Failed to load geocoding data');
     }
+  }
+
+  void _moveMap(ll.LatLng newCenter) {
+    setState(() {
+      _center = newCenter;
+    });
+    _mapController.move(newCenter, 17);
   }
 
   @override
@@ -75,22 +146,46 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
               },
               onSelected: (suggestion) {
                 _typeAheadController.text = suggestion['place_name'];
-                showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    title: Text(suggestion['place_name']),
-                    content: Text(
-                        'Coordinates: ${suggestion['coordinates'][1]}, ${suggestion['coordinates'][0]}'),
-                    actions: [
-                      TextButton(
-                        child: Text('OK'),
-                        onPressed: () => Navigator.pop(context),
+                final lon = suggestion['coordinates'][0];
+                final lat = suggestion['coordinates'][1];
+                _moveMap(ll.LatLng(lat, lon));
+              },
+            ),
+          ),
+          Expanded(
+            child: _isLoading
+                ? Center(child: CircularProgressIndicator())
+                : FlutterMap(
+                    mapController: _mapController,
+                    options: MapOptions(
+                      initialCenter: _center,
+                      initialZoom: 17,
+                      maxZoom: 22,
+                    ),
+                    children: [
+                      TileLayer(
+                        urlTemplate:
+                            'https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v12/tiles/{z}/{x}/{y}?access_token={accessToken}',
+                        additionalOptions: {
+                          'accessToken': accessToken,
+                        },
+                      ),
+                      MarkerLayer(
+                        markers: [
+                          Marker(
+                            width: 80.0,
+                            height: 80.0,
+                            point: _center,
+                            child: Icon(
+                              Icons.location_on,
+                              color: Colors.red,
+                              size: 40.0,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                );
-              },
-            ),
           ),
         ],
       ),
