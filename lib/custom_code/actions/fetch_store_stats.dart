@@ -18,36 +18,39 @@ Future<void> fetchStoreStats() async {
     final stats = FMTC.FMTCRoot.stats;
     final storesAvailable = await stats.storesAvailable;
 
-    // Fetch and add information for each store
+    List<MapStatsStruct> updatedList = [];
+
     for (final store in storesAvailable) {
-      final storeStats = FMTC.FMTCRoot.stats;
-      final storeRealSize = await storeStats.realSize;
-      final storeLength = await storeStats.length;
+      String rawStoreName = store.storeName;
+      String cleanedStoreName = cleanStoreName(rawStoreName);
 
-      // Clean the storeName: remove symbols, separate words with spaces, and capitalize
-      final cleanedStoreName = store.storeName
-          .replaceAll(RegExp(r'[^a-zA-Z0-9\s]'),
-              ' ') // Remove symbols and replace with space
-          .split(' ')
-          .where((part) => part.isNotEmpty) // Remove empty parts
-          .map((part) => capitalizeWords(part))
-          .join(' ');
+      final storeStats = FMTC.FMTCStore(store.storeName).stats;
+      String storeSize = (await storeStats.size).toString();
+      String storeLength = (await storeStats.length).toString();
 
-      FFAppState().listOfMapDownloads.add(
-            MapStatsStruct(
-              storeName: cleanedStoreName,
-              realSize: storeRealSize.toStringAsFixed(2),
-              numberOfTiles: storeLength.toString(),
-            ),
-          );
-
-      // Print individual store statistics (you can keep or remove these print statements)
-      print('\nStore: ${store.storeName}');
-      print('Real Size: ${storeRealSize.toStringAsFixed(2)} KiB');
-      print('Tiles: $storeLength');
-      print(FFAppState().listOfMapDownloads);
+      updatedList.add(MapStatsStruct(
+        storeName: cleanedStoreName,
+        size: 'Size: ${storeSize}',
+        length: 'Totol Tiles ${storeLength}',
+      ));
     }
+
+    FFAppState().listOfMapDownloads = updatedList;
   } catch (e) {
     print('Error fetching FMTC stats: $e');
+  }
+}
+
+String cleanStoreName(String rawName) {
+  List<String> parts = rawName.split('__');
+  parts = parts
+      .map((part) => part.split('_').map((word) => word.capitalize()).join(' '))
+      .toList();
+  return parts.join(', ');
+}
+
+extension StringExtension on String {
+  String capitalize() {
+    return "${this[0].toUpperCase()}${this.substring(1)}";
   }
 }

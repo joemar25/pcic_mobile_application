@@ -7,12 +7,26 @@ import '/flutter_flow/flutter_flow_util.dart';
 
 class MapStatsStruct extends BaseStruct {
   MapStatsStruct({
+    String? size,
+    String? length,
     String? storeName,
-    String? realSize,
-    String? numberOfTiles,
-  })  : _storeName = storeName,
-        _realSize = realSize,
-        _numberOfTiles = numberOfTiles;
+  })  : _size = size,
+        _length = length,
+        _storeName = storeName;
+
+  // "size" field.
+  String? _size;
+  String get size => _size ?? '';
+  set size(String? val) => _size = val;
+
+  bool hasSize() => _size != null;
+
+  // "length" field.
+  String? _length;
+  String get length => _length ?? '';
+  set length(String? val) => _length = val;
+
+  bool hasLength() => _length != null;
 
   // "storeName" field.
   String? _storeName;
@@ -21,65 +35,51 @@ class MapStatsStruct extends BaseStruct {
 
   bool hasStoreName() => _storeName != null;
 
-  // "realSize" field.
-  String? _realSize;
-  String get realSize => _realSize ?? '';
-  set realSize(String? val) => _realSize = val;
-
-  bool hasRealSize() => _realSize != null;
-
-  // "numberOfTiles" field.
-  String? _numberOfTiles;
-  String get numberOfTiles => _numberOfTiles ?? '';
-  set numberOfTiles(String? val) => _numberOfTiles = val;
-
-  bool hasNumberOfTiles() => _numberOfTiles != null;
-
   static MapStatsStruct fromMap(Map<String, dynamic> data) => MapStatsStruct(
+        size: data['size'] as String?,
+        length: data['length'] as String?,
         storeName: data['storeName'] as String?,
-        realSize: data['realSize'] as String?,
-        numberOfTiles: data['numberOfTiles'] as String?,
       );
 
   static MapStatsStruct? maybeFromMap(dynamic data) =>
       data is Map ? MapStatsStruct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
+        'size': _size,
+        'length': _length,
         'storeName': _storeName,
-        'realSize': _realSize,
-        'numberOfTiles': _numberOfTiles,
       }.withoutNulls;
 
   @override
   Map<String, dynamic> toSerializableMap() => {
+        'size': serializeParam(
+          _size,
+          ParamType.String,
+        ),
+        'length': serializeParam(
+          _length,
+          ParamType.String,
+        ),
         'storeName': serializeParam(
           _storeName,
-          ParamType.String,
-        ),
-        'realSize': serializeParam(
-          _realSize,
-          ParamType.String,
-        ),
-        'numberOfTiles': serializeParam(
-          _numberOfTiles,
           ParamType.String,
         ),
       }.withoutNulls;
 
   static MapStatsStruct fromSerializableMap(Map<String, dynamic> data) =>
       MapStatsStruct(
+        size: deserializeParam(
+          data['size'],
+          ParamType.String,
+          false,
+        ),
+        length: deserializeParam(
+          data['length'],
+          ParamType.String,
+          false,
+        ),
         storeName: deserializeParam(
           data['storeName'],
-          ParamType.String,
-          false,
-        ),
-        realSize: deserializeParam(
-          data['realSize'],
-          ParamType.String,
-          false,
-        ),
-        numberOfTiles: deserializeParam(
-          data['numberOfTiles'],
           ParamType.String,
           false,
         ),
@@ -91,23 +91,22 @@ class MapStatsStruct extends BaseStruct {
   @override
   bool operator ==(Object other) {
     return other is MapStatsStruct &&
-        storeName == other.storeName &&
-        realSize == other.realSize &&
-        numberOfTiles == other.numberOfTiles;
+        size == other.size &&
+        length == other.length &&
+        storeName == other.storeName;
   }
 
   @override
-  int get hashCode =>
-      const ListEquality().hash([storeName, realSize, numberOfTiles]);
+  int get hashCode => const ListEquality().hash([size, length, storeName]);
 }
 
 MapStatsStruct createMapStatsStruct({
+  String? size,
+  String? length,
   String? storeName,
-  String? realSize,
-  String? numberOfTiles,
 }) =>
     MapStatsStruct(
+      size: size,
+      length: length,
       storeName: storeName,
-      realSize: realSize,
-      numberOfTiles: numberOfTiles,
     );
