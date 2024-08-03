@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '/backend/schema/structs/index.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:csv/csv.dart';
 import 'package:synchronized/synchronized.dart';
@@ -90,6 +91,35 @@ class FFAppState extends ChangeNotifier {
 
   void deleteAccessToken() {
     secureStorage.delete(key: 'ff_accessToken');
+  }
+
+  List<MapStatsStruct> _listOfMapDownloads = [];
+  List<MapStatsStruct> get listOfMapDownloads => _listOfMapDownloads;
+  set listOfMapDownloads(List<MapStatsStruct> value) {
+    _listOfMapDownloads = value;
+  }
+
+  void addToListOfMapDownloads(MapStatsStruct value) {
+    listOfMapDownloads.add(value);
+  }
+
+  void removeFromListOfMapDownloads(MapStatsStruct value) {
+    listOfMapDownloads.remove(value);
+  }
+
+  void removeAtIndexFromListOfMapDownloads(int index) {
+    listOfMapDownloads.removeAt(index);
+  }
+
+  void updateListOfMapDownloadsAtIndex(
+    int index,
+    MapStatsStruct Function(MapStatsStruct) updateFn,
+  ) {
+    listOfMapDownloads[index] = updateFn(_listOfMapDownloads[index]);
+  }
+
+  void insertAtIndexInListOfMapDownloads(int index, MapStatsStruct value) {
+    listOfMapDownloads.insert(index, value);
   }
 }
 

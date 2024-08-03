@@ -283,14 +283,14 @@ class _SignatureWidgetState extends State<SignatureWidget>
                                                         .secondaryText,
                                               ),
                                             ),
-                                            child: const SizedBox(
+                                            child: SizedBox(
                                               width: double.infinity,
                                               height: 300.0,
                                               child: custom_widgets
                                                   .CustomSignature(
                                                 width: double.infinity,
                                                 height: 300.0,
-                                                taskId: 'lorem',
+                                                taskId: widget.taskId!,
                                               ),
                                             ),
                                           ),

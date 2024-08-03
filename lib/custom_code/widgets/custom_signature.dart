@@ -12,8 +12,11 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'index.dart'; // Imports other custom widgets
+
 import 'package:signature/signature.dart';
 import 'dart:typed_data';
+import 'package:intl/intl.dart';
 
 class CustomSignature extends StatefulWidget {
   const CustomSignature({
@@ -57,22 +60,69 @@ class _CustomSignatureState extends State<CustomSignature> {
       try {
         _signatureData = await _controller.toPngBytes();
         if (_signatureData != null) {
-          _fileName = 'signature_${DateTime.now().millisecondsSinceEpoch}.png';
-          final String folderPath = 'PPIR_${widget.taskId}';
+          _fileName =
+              'signature_${DateFormat('yyyyMMdd_HHmmss').format(DateTime.now())}.png';
 
-          await Supabase.instance.client.storage
-              .from('signature')
-              .uploadBinary('$folderPath/$_fileName', _signatureData!);
+          // Query the tasks table to get service_group and task_number
+          final taskResponse = await SupaFlow.client
+              .from('tasks')
+              .select('service_group, task_number, assignee')
+              .eq('id', widget.taskId)
+              .single()
+              .execute();
 
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Signature saved successfully')),
-          );
+          if (taskResponse.status != 200 || taskResponse.data == null) {
+            throw Exception(
+                'Error querying tasks table: ${taskResponse.status}');
+          }
 
-          final String publicUrl = Supabase.instance.client.storage
-              .from('signature')
-              .getPublicUrl('$folderPath/$_fileName');
+          final taskData = taskResponse.data as Map<String, dynamic>;
+          final String serviceGroup = taskData['service_group'] ?? '';
+          final String taskNumber = taskData['task_number'] ?? '';
 
-          print('Signature URL: $publicUrl');
+          // Get the current user's email
+          final currentUser = SupaFlow.client.auth.currentUser;
+          final String userEmail =
+              currentUser?.email ?? taskData['assignee'] ?? '';
+
+          if (userEmail.isEmpty) {
+            throw Exception('Unable to get user email');
+          }
+
+          // Define the file path in the bucket
+          final filePath =
+              '$serviceGroup/$userEmail/$taskNumber/attachments/$_fileName';
+
+          // Upload the signature file to Supabase storage
+          final response =
+              await SupaFlow.client.storage.from('for_ftp').uploadBinary(
+                    filePath,
+                    _signatureData!,
+                    fileOptions: FileOptions(
+                      contentType: 'image/png',
+                      upsert: true,
+                    ),
+                  );
+
+          if (response != null) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Signature saved successfully')),
+            );
+
+            final String publicUrl =
+                SupaFlow.client.storage.from('for_ftp').getPublicUrl(filePath);
+
+            print('Signature URL: $publicUrl');
+
+            // Update the ppir_forms table with the signature file path
+            await SupaFlow.client.from('ppir_forms').update({
+              'signature_file_path': filePath,
+            }).eq('task_id', widget.taskId);
+
+            print('ppir_forms table updated with signature file path');
+          } else {
+            throw Exception('Error uploading signature file');
+          }
         }
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -89,17 +139,49 @@ class _CustomSignatureState extends State<CustomSignature> {
   Future<void> _clearSignature() async {
     _controller.clear();
     if (_fileName != null) {
-      final String folderPath = 'PPIR_${widget.taskId}';
       try {
-        await Supabase.instance.client.storage
-            .from('signature')
-            .remove(['$folderPath/$_fileName']);
+        // Query the tasks table to get service_group and task_number
+        final taskResponse = await SupaFlow.client
+            .from('tasks')
+            .select('service_group, task_number, assignee')
+            .eq('id', widget.taskId)
+            .single()
+            .execute();
+
+        if (taskResponse.status != 200 || taskResponse.data == null) {
+          throw Exception('Error querying tasks table: ${taskResponse.status}');
+        }
+
+        final taskData = taskResponse.data as Map<String, dynamic>;
+        final String serviceGroup = taskData['service_group'] ?? '';
+        final String taskNumber = taskData['task_number'] ?? '';
+
+        // Get the current user's email
+        final currentUser = SupaFlow.client.auth.currentUser;
+        final String userEmail =
+            currentUser?.email ?? taskData['assignee'] ?? '';
+
+        if (userEmail.isEmpty) {
+          throw Exception('Unable to get user email');
+        }
+
+        final filePath =
+            '$serviceGroup/$userEmail/$taskNumber/attachments/$_fileName';
+
+        await SupaFlow.client.storage.from('for_ftp').remove([filePath]);
 
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
               content: Text('Signature cleared and deleted from storage')),
         );
         _fileName = null;
+
+        // Update the ppir_forms table to remove the signature file path
+        await SupaFlow.client.from('ppir_forms').update({
+          'signature_file_path': null,
+        }).eq('task_id', widget.taskId);
+
+        print('ppir_forms table updated to remove signature file path');
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('An error occurred while deleting: $e')),
