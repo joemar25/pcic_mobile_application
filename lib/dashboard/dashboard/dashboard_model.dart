@@ -26,13 +26,15 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   // Stores action output result for [Custom Action - getTheSavedLocalProfile] action in dashboard widget.
   FFUploadedFile? getProfilePic;
   // Stores action output result for [Backend Call - Query Rows] action in dashboard widget.
-  List<UsersRow>? currentUserProfile;
+  List<UsersRow>? onlineSelectUserProfile;
   // Stores action output result for [Backend Call - Query Rows] action in dashboard widget.
-  List<TasksRow>? forDispatchTasksData;
+  List<TasksRow>? onlineForDispatchTasksData;
   // Stores action output result for [Backend Call - Query Rows] action in dashboard widget.
-  List<TasksRow>? ongoingTasksData;
+  List<TasksRow>? onlineOngoingTasksData;
   // Stores action output result for [Backend Call - Query Rows] action in dashboard widget.
-  List<TasksRow>? completedTasksData;
+  List<TasksRow>? onlineCompletedTasksData;
+  // Stores action output result for [Backend Call - SQLite (SELECT PROFILE)] action in dashboard widget.
+  List<SelectProfileRow>? offlineSelectUserProfile;
   // Stores action output result for [Backend Call - SQLite (SELECT TASKS base on status)] action in dashboard widget.
   List<SELECTTASKSBaseOnStatusRow>? offlineForDispatchTasksData;
   // Stores action output result for [Backend Call - SQLite (SELECT TASKS base on status)] action in dashboard widget.

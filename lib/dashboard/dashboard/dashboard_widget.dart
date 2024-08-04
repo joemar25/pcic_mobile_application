@@ -49,49 +49,54 @@ class _DashboardWidgetState extends State<DashboardWidget>
       _model.getProfilePic = await actions.getTheSavedLocalProfile();
       if (FFAppState().ONLINE) {
         // Online Query for Users
-        _model.currentUserProfile = await UsersTable().queryRows(
+        _model.onlineSelectUserProfile = await UsersTable().queryRows(
           queryFn: (q) => q.eq(
             'email',
             currentUserEmail,
           ),
         );
         // Getting For Dispatch Tasks Data
-        _model.forDispatchTasksData = await TasksTable().queryRows(
+        _model.onlineForDispatchTasksData = await TasksTable().queryRows(
           queryFn: (q) => q.eq(
             'status',
             'for dispatch',
           ),
         );
         // Getting ongoing Tasks Data
-        _model.ongoingTasksData = await TasksTable().queryRows(
+        _model.onlineOngoingTasksData = await TasksTable().queryRows(
           queryFn: (q) => q.eq(
             'status',
             'ongoing',
           ),
         );
         // Getting completed Tasks Data
-        _model.completedTasksData = await TasksTable().queryRows(
+        _model.onlineCompletedTasksData = await TasksTable().queryRows(
           queryFn: (q) => q.eq(
             'status',
             'completed',
           ),
         );
-        // ONLINE: Set page variable values
+        // COMPLETED: Set page variable values
         _model.fdc = valueOrDefault<int>(
-          _model.forDispatchTasksData?.length,
+          _model.onlineForDispatchTasksData?.length,
           0,
         );
         _model.onc = valueOrDefault<int>(
-          _model.ongoingTasksData?.length,
+          _model.onlineOngoingTasksData?.length,
           0,
         );
         _model.cc = valueOrDefault<int>(
-          _model.completedTasksData?.length,
+          _model.onlineCompletedTasksData?.length,
           0,
+        );
+        _model.inspectorName = valueOrDefault<String>(
+          _model.onlineSelectUserProfile?.first.inspectorName,
+          'Inspector Online',
         );
         setState(() {});
       } else {
-        await SQLiteManager.instance.selectProfile(
+        _model.offlineSelectUserProfile =
+            await SQLiteManager.instance.selectProfile(
           email: currentUserEmail,
         );
         // OFFLINE: Select all for dispatch tasks
@@ -121,6 +126,10 @@ class _DashboardWidgetState extends State<DashboardWidget>
         _model.cc = valueOrDefault<int>(
           _model.offlineCompletedTasksData?.length,
           0,
+        );
+        _model.inspectorName = valueOrDefault<String>(
+          _model.offlineSelectUserProfile?.first.inspectorName,
+          'Inspector Offline',
         );
         setState(() {});
       }
@@ -622,20 +631,10 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                         TextSpan(
                                                           text: valueOrDefault<
                                                               String>(
-                                                            functions.sentenceCaseWords(FFAppState()
-                                                                    .ONLINE
-                                                                ? valueOrDefault<
-                                                                    String>(
+                                                            functions
+                                                                .sentenceCaseWords(
                                                                     _model
-                                                                        .currentUserProfile
-                                                                        ?.first
-                                                                        .inspectorName,
-                                                                    'Agent',
-                                                                  )
-                                                                : _model
-                                                                    .currentUserProfile
-                                                                    ?.first
-                                                                    .inspectorName),
+                                                                        .inspectorName),
                                                             'Agent',
                                                           ),
                                                           style: TextStyle(
@@ -1173,7 +1172,11 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                 child: Builder(
                                                   builder: (context) {
                                                     final forDispatchTasksList =
-                                                        _model.forDispatchTasksData
+                                                        (FFAppState().ONLINE
+                                                                    ? _model
+                                                                        .onlineForDispatchTasksData
+                                                                    : _model
+                                                                        .offlineForDispatchTasksData)
                                                                 ?.toList() ??
                                                             [];
                                                     if (forDispatchTasksList
@@ -1212,8 +1215,16 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                             model: _model
                                                                 .tasksModels1
                                                                 .getModel(
-                                                              forDispatchTasksListItem
-                                                                  .id,
+                                                              FFAppState()
+                                                                      .ONLINE
+                                                                  ? _model
+                                                                      .onlineForDispatchTasksData!
+                                                                      .first
+                                                                      .id
+                                                                  : _model
+                                                                      .offlineForDispatchTasksData!
+                                                                      .first
+                                                                      .id!,
                                                               forDispatchTasksListIndex,
                                                             ),
                                                             updateCallback:
@@ -1223,14 +1234,27 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                 true,
                                                             child: TasksWidget(
                                                               key: Key(
-                                                                'Keyjrg_${forDispatchTasksListItem.id}',
+                                                                'Keyjrg_${FFAppState().ONLINE ? _model.onlineForDispatchTasksData!.first.id : _model.offlineForDispatchTasksData!.first.id!}',
                                                               ),
-                                                              task:
-                                                                  forDispatchTasksListItem
-                                                                      .id,
-                                                              status:
-                                                                  forDispatchTasksListItem
-                                                                      .status,
+                                                              task: FFAppState()
+                                                                      .ONLINE
+                                                                  ? _model
+                                                                      .onlineForDispatchTasksData!
+                                                                      .first
+                                                                      .id
+                                                                  : _model
+                                                                      .offlineForDispatchTasksData!
+                                                                      .first
+                                                                      .id!,
+                                                              status: FFAppState().ONLINE
+                                                                  ? _model
+                                                                      .onlineForDispatchTasksData!
+                                                                      .first
+                                                                      .status
+                                                                  : _model
+                                                                      .offlineForDispatchTasksData!
+                                                                      .first
+                                                                      .status!,
                                                             ),
                                                           ),
                                                         );
@@ -1246,7 +1270,11 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                 child: Builder(
                                                   builder: (context) {
                                                     final ongoingTasksList =
-                                                        _model.ongoingTasksData
+                                                        (FFAppState().ONLINE
+                                                                    ? _model
+                                                                        .onlineOngoingTasksData
+                                                                    : _model
+                                                                        .offlineOngoingTasksData)
                                                                 ?.toList() ??
                                                             [];
                                                     if (ongoingTasksList
@@ -1285,8 +1313,16 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                             model: _model
                                                                 .tasksModels2
                                                                 .getModel(
-                                                              ongoingTasksListItem
-                                                                  .id,
+                                                              FFAppState()
+                                                                      .ONLINE
+                                                                  ? _model
+                                                                      .onlineForDispatchTasksData!
+                                                                      .first
+                                                                      .id
+                                                                  : _model
+                                                                      .offlineForDispatchTasksData!
+                                                                      .first
+                                                                      .id!,
                                                               ongoingTasksListIndex,
                                                             ),
                                                             updateCallback:
@@ -1296,14 +1332,27 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                 true,
                                                             child: TasksWidget(
                                                               key: Key(
-                                                                'Keyu4c_${ongoingTasksListItem.id}',
+                                                                'Keykok_${FFAppState().ONLINE ? _model.onlineForDispatchTasksData!.first.id : _model.offlineForDispatchTasksData!.first.id!}',
                                                               ),
-                                                              task:
-                                                                  ongoingTasksListItem
-                                                                      .id,
-                                                              status:
-                                                                  ongoingTasksListItem
-                                                                      .status,
+                                                              task: FFAppState()
+                                                                      .ONLINE
+                                                                  ? _model
+                                                                      .onlineForDispatchTasksData!
+                                                                      .first
+                                                                      .id
+                                                                  : _model
+                                                                      .offlineForDispatchTasksData!
+                                                                      .first
+                                                                      .id!,
+                                                              status: FFAppState().ONLINE
+                                                                  ? _model
+                                                                      .onlineForDispatchTasksData!
+                                                                      .first
+                                                                      .status
+                                                                  : _model
+                                                                      .offlineForDispatchTasksData!
+                                                                      .first
+                                                                      .status!,
                                                             ),
                                                           ),
                                                         );
@@ -1319,7 +1368,11 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                 child: Builder(
                                                   builder: (context) {
                                                     final completedTasksList =
-                                                        _model.completedTasksData
+                                                        (FFAppState().ONLINE
+                                                                    ? _model
+                                                                        .onlineCompletedTasksData
+                                                                    : _model
+                                                                        .offlineCompletedTasksData)
                                                                 ?.toList() ??
                                                             [];
                                                     if (completedTasksList
@@ -1350,27 +1403,55 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                         final completedTasksListItem =
                                                             completedTasksList[
                                                                 completedTasksListIndex];
-                                                        return wrapWithModel(
-                                                          model: _model
-                                                              .tasksModels3
-                                                              .getModel(
-                                                            completedTasksListItem
-                                                                .id,
-                                                            completedTasksListIndex,
-                                                          ),
-                                                          updateCallback: () =>
-                                                              setState(() {}),
-                                                          updateOnChange: true,
-                                                          child: TasksWidget(
-                                                            key: Key(
-                                                              'Keynuv_${completedTasksListItem.id}',
+                                                        return Align(
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: wrapWithModel(
+                                                            model: _model
+                                                                .tasksModels3
+                                                                .getModel(
+                                                              FFAppState()
+                                                                      .ONLINE
+                                                                  ? _model
+                                                                      .onlineForDispatchTasksData!
+                                                                      .first
+                                                                      .id
+                                                                  : _model
+                                                                      .offlineForDispatchTasksData!
+                                                                      .first
+                                                                      .id!,
+                                                              completedTasksListIndex,
                                                             ),
-                                                            task:
-                                                                completedTasksListItem
-                                                                    .id,
-                                                            status:
-                                                                completedTasksListItem
-                                                                    .status,
+                                                            updateCallback:
+                                                                () => setState(
+                                                                    () {}),
+                                                            updateOnChange:
+                                                                true,
+                                                            child: TasksWidget(
+                                                              key: Key(
+                                                                'Key5pb_${FFAppState().ONLINE ? _model.onlineForDispatchTasksData!.first.id : _model.offlineForDispatchTasksData!.first.id!}',
+                                                              ),
+                                                              task: FFAppState()
+                                                                      .ONLINE
+                                                                  ? _model
+                                                                      .onlineForDispatchTasksData!
+                                                                      .first
+                                                                      .id
+                                                                  : _model
+                                                                      .offlineForDispatchTasksData!
+                                                                      .first
+                                                                      .id!,
+                                                              status: FFAppState().ONLINE
+                                                                  ? _model
+                                                                      .onlineForDispatchTasksData!
+                                                                      .first
+                                                                      .status
+                                                                  : _model
+                                                                      .offlineForDispatchTasksData!
+                                                                      .first
+                                                                      .status!,
+                                                            ),
                                                           ),
                                                         );
                                                       },
