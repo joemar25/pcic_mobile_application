@@ -650,7 +650,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                             .inspectorName,
                                                                         'Agent',
                                                                       )
-                                                                    : 'Offline Mode'),
+                                                                    : currentUserEmail),
                                                             'Agent',
                                                           ),
                                                           style: TextStyle(
