@@ -46,18 +46,18 @@ class SELECTTASKSBaseOnStatusRow extends SqliteRow {
 
 /// END SELECT TASKS BASE ON STATUS
 
-/// BEGIN SELECT USERS
-Future<List<SelectUsersRow>> performSelectUsers(
+/// BEGIN SELECT USERS IN SAME REGION
+Future<List<SELECTUSERSInSameRegionRow>> performSELECTUSERSInSameRegion(
   Database database,
 ) {
   const query = '''
 SELECT * FROM users
 ''';
-  return _readQuery(database, query, (d) => SelectUsersRow(d));
+  return _readQuery(database, query, (d) => SELECTUSERSInSameRegionRow(d));
 }
 
-class SelectUsersRow extends SqliteRow {
-  SelectUsersRow(super.data);
+class SELECTUSERSInSameRegionRow extends SqliteRow {
+  SELECTUSERSInSameRegionRow(super.data);
 
   String? get id => data['id'] as String?;
   String? get role => data['role'] as String?;
@@ -73,7 +73,7 @@ class SelectUsersRow extends SqliteRow {
   String? get regionId => data['region_id'] as String?;
 }
 
-/// END SELECT USERS
+/// END SELECT USERS IN SAME REGION
 
 /// BEGIN SELECT SEEDS
 Future<List<SelectSeedsRow>> performSelectSeeds(

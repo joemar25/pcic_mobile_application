@@ -256,8 +256,8 @@ dynamic deserializeParam<T>(
         switch (T) {
           case SELECTTASKSBaseOnStatusRow:
             return SELECTTASKSBaseOnStatusRow(data);
-          case SelectUsersRow:
-            return SelectUsersRow(data);
+          case SELECTUSERSInSameRegionRow:
+            return SELECTUSERSInSameRegionRow(data);
           case SelectSeedsRow:
             return SelectSeedsRow(data);
           case SelectPpirFormsRow:

@@ -37,7 +37,8 @@ class SQLiteManager {
         status: status,
       );
 
-  Future<List<SelectUsersRow>> selectUsers() => performSelectUsers(
+  Future<List<SELECTUSERSInSameRegionRow>> sELECTUSERSInSameRegion() =>
+      performSELECTUSERSInSameRegion(
         _database,
       );
 

@@ -47,67 +47,35 @@ class _DashboardWidgetState extends State<DashboardWidget>
         return;
       }
       _model.getProfilePic = await actions.getTheSavedLocalProfile();
-      // Online Query for Users
-      _model.currentUserProfile = await UsersTable().queryRows(
-        queryFn: (q) => q.eq(
-          'email',
-          currentUserEmail,
-        ),
-      );
-      // Getting For Dispatch Tasks Data
-      _model.forDispatchTasksData = await TasksTable().queryRows(
-        queryFn: (q) => q.eq(
-          'status',
-          'for dispatch',
-        ),
-      );
-      // Getting ongoing Tasks Data
-      _model.ongoingTasksData = await TasksTable().queryRows(
-        queryFn: (q) => q.eq(
-          'status',
-          'ongoing',
-        ),
-      );
-      // Getting completed Tasks Data
-      _model.completedTasksData = await TasksTable().queryRows(
-        queryFn: (q) => q.eq(
-          'status',
-          'completed',
-        ),
-      );
-      await SQLiteManager.instance.getLastSyncTimestamp();
-      _model.varname = await SQLiteManager.instance.getQueuedChanges();
-      // OFFLINE: Select all for dispatch tasks
-      _model.offlineForDispatchTasksData =
-          await SQLiteManager.instance.sELECTTASKSBaseOnStatus(
-        status: 'for dispatch',
-      );
-      // OFFLINE: Select all ongoing tasks
-      _model.offlineOngoingTasksData =
-          await SQLiteManager.instance.sELECTTASKSBaseOnStatus(
-        status: 'ongoing',
-      );
-      // OFFLINE: Select all completed tasks
-      _model.offlineCompletedTasksData =
-          await SQLiteManager.instance.sELECTTASKSBaseOnStatus(
-        status: 'ongoing',
-      );
-      _model.ddd = await SQLiteManager.instance.selectSyncLogs();
-      await SQLiteManager.instance.selectProfile(
-        email: currentUserEmail,
-      );
-      await SQLiteManager.instance.updateSyncStatus(
-        id: currentUserUid,
-        syncstatus: true,
-        lastsyncedat: getCurrentTimestamp,
-        updatedat: getCurrentTimestamp,
-      );
-      await SQLiteManager.instance.insertUpdateSyncStatus(
-        tablename: 'users',
-        lastsynctimestamp: dateTimeFromSecondsSinceEpoch(
-            getCurrentTimestamp.secondsSinceEpoch),
-      );
       if (FFAppState().ONLINE) {
+        // Online Query for Users
+        _model.currentUserProfile = await UsersTable().queryRows(
+          queryFn: (q) => q.eq(
+            'email',
+            currentUserEmail,
+          ),
+        );
+        // Getting For Dispatch Tasks Data
+        _model.forDispatchTasksData = await TasksTable().queryRows(
+          queryFn: (q) => q.eq(
+            'status',
+            'for dispatch',
+          ),
+        );
+        // Getting ongoing Tasks Data
+        _model.ongoingTasksData = await TasksTable().queryRows(
+          queryFn: (q) => q.eq(
+            'status',
+            'ongoing',
+          ),
+        );
+        // Getting completed Tasks Data
+        _model.completedTasksData = await TasksTable().queryRows(
+          queryFn: (q) => q.eq(
+            'status',
+            'completed',
+          ),
+        );
         // ONLINE: Set page variable values
         _model.fdc = valueOrDefault<int>(
           _model.forDispatchTasksData?.length,
@@ -123,6 +91,24 @@ class _DashboardWidgetState extends State<DashboardWidget>
         );
         setState(() {});
       } else {
+        await SQLiteManager.instance.selectProfile(
+          email: currentUserEmail,
+        );
+        // OFFLINE: Select all for dispatch tasks
+        _model.offlineForDispatchTasksData =
+            await SQLiteManager.instance.sELECTTASKSBaseOnStatus(
+          status: 'for dispatch',
+        );
+        // OFFLINE: Select all ongoing tasks
+        _model.offlineOngoingTasksData =
+            await SQLiteManager.instance.sELECTTASKSBaseOnStatus(
+          status: 'ongoing',
+        );
+        // OFFLINE: Select all completed tasks
+        _model.offlineCompletedTasksData =
+            await SQLiteManager.instance.sELECTTASKSBaseOnStatus(
+          status: 'ongoing',
+        );
         // OFFLINE: Set page variable values
         _model.fdc = valueOrDefault<int>(
           _model.offlineForDispatchTasksData?.length,

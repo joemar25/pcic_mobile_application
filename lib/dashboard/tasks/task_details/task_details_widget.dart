@@ -45,7 +45,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.isEditing = false;
       setState(() {});
-      await SQLiteManager.instance.selectUsers();
+      await SQLiteManager.instance.sELECTUSERSInSameRegion();
       await SQLiteManager.instance.selectSyncLogs();
       await SQLiteManager.instance.getLastSyncTimestamp();
       await SQLiteManager.instance.getQueuedChanges();
