@@ -1,4 +1,5 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/backend/sqlite/sqlite_manager.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_autocomplete_options_list.dart';
@@ -74,6 +75,16 @@ class _DashboardWidgetState extends State<DashboardWidget>
           'completed',
         ),
       );
+      await SQLiteManager.instance.getLastSyncTimestamp();
+      _model.varname = await SQLiteManager.instance.getQueuedChanges();
+      _model.aaa = await SQLiteManager.instance.selectTasks();
+      _model.bbb = await SQLiteManager.instance.selectUsers();
+      _model.ccc = await SQLiteManager.instance.selectMessages();
+      _model.ddd = await SQLiteManager.instance.selectSyncLogs();
+      await SQLiteManager.instance.updateSyncStatus();
+      await SQLiteManager.instance.updateTask();
+      await SQLiteManager.instance.updateUsers();
+      await SQLiteManager.instance.insertUpdateSyncStatus();
       _model.fdc = valueOrDefault<int>(
         _model.forDispatchTasksData?.length,
         0,

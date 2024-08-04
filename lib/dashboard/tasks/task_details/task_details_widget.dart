@@ -43,13 +43,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.isEditing = false;
+      setState(() {});
       await SQLiteManager.instance.selectUsers();
       await SQLiteManager.instance.selectSyncLogs();
       await SQLiteManager.instance.getLastSyncTimestamp();
       await SQLiteManager.instance.getQueuedChanges();
       await SQLiteManager.instance.getModifiedRecords();
-      _model.isEditing = false;
-      setState(() {});
     });
 
     _model.farmLocInputFocusNode ??= FocusNode();

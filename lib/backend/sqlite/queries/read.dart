@@ -251,6 +251,8 @@ Future<List<SelectProfileRow>> performSelectProfile(
 }) {
   final query = '''
 SELECT * FROM users WHERE email = '$email'
+--SELECT * FROM users WHERE email = ?
+
 ''';
   return _readQuery(database, query, (d) => SelectProfileRow(d));
 }

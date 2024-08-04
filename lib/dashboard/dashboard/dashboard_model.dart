@@ -1,3 +1,4 @@
+import '/backend/sqlite/sqlite_manager.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
@@ -32,6 +33,16 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   List<TasksRow>? ongoingTasksData;
   // Stores action output result for [Backend Call - Query Rows] action in dashboard widget.
   List<TasksRow>? completedTasksData;
+  // Stores action output result for [Backend Call - SQLite (Get Queued Changes)] action in dashboard widget.
+  List<GetQueuedChangesRow>? varname;
+  // Stores action output result for [Backend Call - SQLite (SELECT TASKS)] action in dashboard widget.
+  List<SelectTasksRow>? aaa;
+  // Stores action output result for [Backend Call - SQLite (SELECT USERS)] action in dashboard widget.
+  List<SelectUsersRow>? bbb;
+  // Stores action output result for [Backend Call - SQLite (SELECT MESSAGES)] action in dashboard widget.
+  List<SelectMessagesRow>? ccc;
+  // Stores action output result for [Backend Call - SQLite (SELECT SYNC LOGS)] action in dashboard widget.
+  List<SelectSyncLogsRow>? ddd;
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
   // State field(s) for TextField widget.
