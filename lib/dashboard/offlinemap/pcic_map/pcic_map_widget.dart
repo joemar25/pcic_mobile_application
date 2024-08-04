@@ -110,7 +110,7 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
 
                       return RefreshIndicator(
                         onRefresh: () async {
-                          setState(() {});
+                          await actions.fetchStoreStats();
                         },
                         child: ListView.builder(
                           padding: EdgeInsets.zero,
@@ -305,7 +305,7 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                   [
                     () async {},
                     () async {
-                      setState(() {});
+                      await actions.fetchStoreStats();
                     }
                   ][i]();
                 },
