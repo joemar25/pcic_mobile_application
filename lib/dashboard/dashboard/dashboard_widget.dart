@@ -800,8 +800,12 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                     curve: Curves.easeIn,
                                                     child: Text(
                                                       valueOrDefault<String>(
-                                                        _model.fdc?.toString(),
-                                                        '0',
+                                                        FFAppState().ONLINE
+                                                            ? _model.fdc
+                                                                ?.toString()
+                                                            : _model.fdc
+                                                                ?.toString(),
+                                                        'fdc',
                                                       ),
                                                     ),
                                                   ),
@@ -916,10 +920,19 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                         milliseconds: 600),
                                                     curve: Curves.easeIn,
                                                     child: Text(
-                                                      valueOrDefault<String>(
-                                                        _model.onc?.toString(),
-                                                        '0',
-                                                      ),
+                                                      FFAppState().ONLINE
+                                                          ? valueOrDefault<
+                                                              String>(
+                                                              _model.onc
+                                                                  ?.toString(),
+                                                              'onc',
+                                                            )
+                                                          : valueOrDefault<
+                                                              String>(
+                                                              _model.onc
+                                                                  ?.toString(),
+                                                              'onc',
+                                                            ),
                                                     ),
                                                   ),
                                                   Icon(
@@ -1032,10 +1045,19 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                         milliseconds: 600),
                                                     curve: Curves.easeIn,
                                                     child: Text(
-                                                      valueOrDefault<String>(
-                                                        _model.cc?.toString(),
-                                                        '0',
-                                                      ),
+                                                      FFAppState().ONLINE
+                                                          ? valueOrDefault<
+                                                              String>(
+                                                              _model.cc
+                                                                  ?.toString(),
+                                                              'cc',
+                                                            )
+                                                          : valueOrDefault<
+                                                              String>(
+                                                              _model.cc
+                                                                  ?.toString(),
+                                                              'cc',
+                                                            ),
                                                     ),
                                                   ),
                                                   Icon(
