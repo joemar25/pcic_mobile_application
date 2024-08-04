@@ -14,6 +14,8 @@ import 'package:flutter/material.dart';
 
 import 'index.dart'; // Imports other custom widgets
 
+import 'index.dart'; // Imports other custom widgets
+
 import 'dart:async';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart' as ll;
@@ -49,7 +51,6 @@ class _MapBoxState extends State<MapBox> {
   bool _isTracking = false;
   bool _isInitialized = false;
   String? _errorMessage;
-  String? _currentStoreName;
   bool _isMapReady = false;
   bool _isOnline = true;
 
@@ -72,42 +73,17 @@ class _MapBoxState extends State<MapBox> {
     _initializeLocation();
   }
 
-  Future<String?> _getStoreForLocation(ll.LatLng location) async {
-    final stats = FMTC.FMTCRoot.stats;
-    final storesAvailable = await stats.storesAvailable;
-
-    for (final storeName in storesAvailable) {
-      final store = FMTC.FMTCStore(storeName);
-      final bounds = await store.storeBounds;
-      if (bounds != null) {
-        if (location.latitude >= bounds.south &&
-            location.latitude <= bounds.north &&
-            location.longitude >= bounds.west &&
-            location.longitude <= bounds.east) {
-          return storeName;
-        }
-      }
-    }
-    return null;
-  }
-
+  // Initialization of current marker
   Future<void> _initializeLocation() async {
     try {
       await _checkLocationPermission();
       await _checkLocationAccuracy();
 
       Position initialPosition = await _getCurrentPositionWithRetry();
-      final initialLatLng =
-          ll.LatLng(initialPosition.latitude, initialPosition.longitude);
-
-      final appropriateStore = await _getStoreForLocation(initialLatLng);
-
       setState(() {
-        _currentLocation = initialLatLng;
+        _currentLocation =
+            ll.LatLng(initialPosition.latitude, initialPosition.longitude);
         _isInitialized = true;
-        if (appropriateStore != null) {
-          _currentStoreName = appropriateStore;
-        }
       });
 
       _startLocationStream();
@@ -222,15 +198,6 @@ class _MapBoxState extends State<MapBox> {
         _recentLocations.removeAt(0);
       }
       ll.LatLng averageLocation = _calculateAverageLocation();
-
-      if (_currentLocation != null) {
-        final newStoreName = await _getStoreForLocation(_currentLocation!);
-        if (newStoreName != _currentStoreName) {
-          setState(() {
-            _currentStoreName = newStoreName;
-          });
-        }
-      }
 
       if (_startingPosition != null) {
         double distanceFromStart = _distance.as(
@@ -432,18 +399,13 @@ class _MapBoxState extends State<MapBox> {
         ),
         children: [
           TileLayer(
-            tileProvider: _currentStoreName != null
-                ? FMTC.FMTCStore(_currentStoreName!).getTileProvider()
-                : NetworkTileProvider(),
-            urlTemplate: _currentStoreName != null
-                ? null // Use null when using a local store
-                : 'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token={accessToken}',
-            additionalOptions: _currentStoreName != null
-                ? {}
-                : {
-                    'accessToken': widget.accessToken ??
-                        'your_default_mapbox_access_token_here',
-                  },
+            tileProvider: FMTC.FMTCStore('mapStore').getTileProvider(),
+            urlTemplate:
+                'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token={accessToken}',
+            additionalOptions: {
+              'accessToken':
+                  widget.accessToken ?? 'your_default_mapbox_access_token_here',
+            },
           ),
           CurrentLocationLayer(
             alignPositionOnUpdate: AlignOnUpdate.always,
