@@ -39,7 +39,6 @@ Future<void> deleteMapStore(BuildContext context, String storeName) async {
     try {
       final mgmt = FMTC.FMTCStore(storeName).manage;
       await mgmt.delete();
-      FFAppState().update(() {}); // Trigger UI update
       print('Deleted store "$storeName".');
 
       // Show success message
