@@ -249,11 +249,7 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                                               context,
                                               listOfDownloadsItem.rawStoreName,
                                             );
-                                            FFAppState()
-                                                .updateListOfMapDownloadsAtIndex(
-                                              listOfDownloadsIndex,
-                                              (e) => e,
-                                            );
+
                                             setState(() {});
                                           },
                                         ),

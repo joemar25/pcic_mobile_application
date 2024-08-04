@@ -304,9 +304,10 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
           ),
           if (_isDownloading)
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: LinearProgressIndicator(value: _downloadProgress),
-            ),
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: LinearProgressIndicator(
+                    value: _downloadProgress,
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.green))),
           Expanded(
             child: _isLoading
                 ? Center(child: CircularProgressIndicator())
