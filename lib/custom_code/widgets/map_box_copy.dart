@@ -12,8 +12,6 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'index.dart'; // Imports other custom widgets
-
 import 'dart:async';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart' as ll;
@@ -22,8 +20,8 @@ import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
 import 'package:flutter_map_tile_caching/flutter_map_tile_caching.dart' as FMTC;
 import 'package:connectivity_plus/connectivity_plus.dart';
 
-class MapBox extends StatefulWidget {
-  const MapBox({
+class MapBoxCopy extends StatefulWidget {
+  const MapBoxCopy({
     super.key,
     this.width,
     this.height,
@@ -37,10 +35,10 @@ class MapBox extends StatefulWidget {
   final String? taskId;
 
   @override
-  State<MapBox> createState() => _MapBoxState();
+  State<MapBoxCopy> createState() => _MapBoxCopyState();
 }
 
-class _MapBoxState extends State<MapBox> {
+class _MapBoxCopyState extends State<MapBoxCopy> {
   final MapController _mapController = MapController();
   ll.LatLng? _currentLocation;
   List<ll.LatLng> _routeCoordinates = [];
@@ -51,6 +49,8 @@ class _MapBoxState extends State<MapBox> {
   String? _errorMessage;
   bool _isMapReady = false;
   bool _isOnline = true;
+  TileProvider? _tileProvider;
+  String? _storeName;
 
   ll.LatLng? _startingPosition;
 
@@ -69,6 +69,27 @@ class _MapBoxState extends State<MapBox> {
     super.initState();
     _checkConnectivity();
     _initializeLocation();
+    _initializeTileProvider();
+  }
+
+  Future<void> _initializeTileProvider() async {
+    final stats = FMTC.FMTCRoot.stats;
+    final stores = await stats.storesAvailable;
+    if (stores.length >= 2) {
+      _storeName = stores[1].storeName;
+    } else if (stores.isNotEmpty) {
+      _storeName = stores[0].storeName;
+    } else {
+      print("No stores available");
+      return;
+    }
+
+    _tileProvider = FMTC.FMTCStore(_storeName!).getTileProvider(
+      settings: FMTC.FMTCTileProviderSettings(
+        behavior: FMTC.CacheBehavior.cacheOnly,
+      ),
+    );
+    setState(() {}); // Trigger rebuild with the new tile provider
   }
 
   // Initialization of current marker
@@ -375,7 +396,7 @@ class _MapBoxState extends State<MapBox> {
       );
     }
 
-    if (!_isInitialized || _currentLocation == null) {
+    if (!_isInitialized || _currentLocation == null || _tileProvider == null) {
       return const Center(child: CircularProgressIndicator());
     }
 
@@ -397,13 +418,12 @@ class _MapBoxState extends State<MapBox> {
         ),
         children: [
           TileLayer(
-            tileProvider: FMTC.FMTCStore('mapStore').getTileProvider(),
             urlTemplate:
-                'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token={accessToken}',
+                'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}@2x?access_token=${widget.accessToken}',
             additionalOptions: {
-              'accessToken':
-                  widget.accessToken ?? 'your_default_mapbox_access_token_here',
+              'accessToken': widget.accessToken ?? '',
             },
+            tileProvider: _tileProvider,
           ),
           CurrentLocationLayer(
             alignPositionOnUpdate: AlignOnUpdate.always,

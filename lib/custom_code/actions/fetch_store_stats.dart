@@ -29,10 +29,10 @@ Future<void> fetchStoreStats() async {
       String storeLength = (await storeStats.length).toString();
 
       updatedList.add(MapStatsStruct(
-        storeName: cleanedStoreName,
-        size: 'Size: ${storeSize}',
-        length: 'Totol Tiles ${storeLength}',
-      ));
+          storeName: cleanedStoreName,
+          size: 'Size: ${storeSize}',
+          length: 'Totol Tiles ${storeLength}',
+          rawStoreName: rawStoreName));
     }
 
     FFAppState().listOfMapDownloads = updatedList;

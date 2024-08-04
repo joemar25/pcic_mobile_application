@@ -45,6 +45,7 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
   String _selectedAddress = '';
   double _downloadProgress = 0.0;
   bool _isDownloading = false;
+  final FocusNode _focusNode = FocusNode();
 
   @override
   void initState() {
@@ -146,6 +147,8 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
   }
 
   Future<void> _saveMap() async {
+    _focusNode.unfocus();
+
     if (_boundaryBox == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Please select an area to save the map.')),
@@ -229,6 +232,12 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
   }
 
   @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       width: widget.width,
@@ -239,6 +248,7 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
             padding: const EdgeInsets.all(8.0),
             child: TypeAheadField<Map<String, dynamic>>(
               controller: _typeAheadController,
+              focusNode: _focusNode,
               builder: (context, controller, focusNode) {
                 return TextField(
                   controller: controller,

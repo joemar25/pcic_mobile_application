@@ -10,9 +10,11 @@ class MapStatsStruct extends BaseStruct {
     String? size,
     String? length,
     String? storeName,
+    String? rawStoreName,
   })  : _size = size,
         _length = length,
-        _storeName = storeName;
+        _storeName = storeName,
+        _rawStoreName = rawStoreName;
 
   // "size" field.
   String? _size;
@@ -35,10 +37,18 @@ class MapStatsStruct extends BaseStruct {
 
   bool hasStoreName() => _storeName != null;
 
+  // "rawStoreName" field.
+  String? _rawStoreName;
+  String get rawStoreName => _rawStoreName ?? '';
+  set rawStoreName(String? val) => _rawStoreName = val;
+
+  bool hasRawStoreName() => _rawStoreName != null;
+
   static MapStatsStruct fromMap(Map<String, dynamic> data) => MapStatsStruct(
         size: data['size'] as String?,
         length: data['length'] as String?,
         storeName: data['storeName'] as String?,
+        rawStoreName: data['rawStoreName'] as String?,
       );
 
   static MapStatsStruct? maybeFromMap(dynamic data) =>
@@ -48,6 +58,7 @@ class MapStatsStruct extends BaseStruct {
         'size': _size,
         'length': _length,
         'storeName': _storeName,
+        'rawStoreName': _rawStoreName,
       }.withoutNulls;
 
   @override
@@ -62,6 +73,10 @@ class MapStatsStruct extends BaseStruct {
         ),
         'storeName': serializeParam(
           _storeName,
+          ParamType.String,
+        ),
+        'rawStoreName': serializeParam(
+          _rawStoreName,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -83,6 +98,11 @@ class MapStatsStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        rawStoreName: deserializeParam(
+          data['rawStoreName'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -93,20 +113,24 @@ class MapStatsStruct extends BaseStruct {
     return other is MapStatsStruct &&
         size == other.size &&
         length == other.length &&
-        storeName == other.storeName;
+        storeName == other.storeName &&
+        rawStoreName == other.rawStoreName;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([size, length, storeName]);
+  int get hashCode =>
+      const ListEquality().hash([size, length, storeName, rawStoreName]);
 }
 
 MapStatsStruct createMapStatsStruct({
   String? size,
   String? length,
   String? storeName,
+  String? rawStoreName,
 }) =>
     MapStatsStruct(
       size: size,
       length: length,
       storeName: storeName,
+      rawStoreName: rawStoreName,
     );

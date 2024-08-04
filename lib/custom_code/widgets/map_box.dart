@@ -86,7 +86,7 @@ class _MapBoxState extends State<MapBox> {
 
     _tileProvider = FMTC.FMTCStore(_storeName!).getTileProvider(
       settings: FMTC.FMTCTileProviderSettings(
-        behavior: FMTC.CacheBehavior.cacheOnly,
+        behavior: FMTC.CacheBehavior.cacheFirst,
       ),
     );
     setState(() {}); // Trigger rebuild with the new tile provider
