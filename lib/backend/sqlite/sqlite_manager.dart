@@ -23,7 +23,7 @@ class SQLiteManager {
     }
     _database = await initializeDatabaseFromDbFile(
       'db_sync',
-      'pcic_offline_db.db',
+      'new_db.db',
     );
   }
 

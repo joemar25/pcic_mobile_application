@@ -526,7 +526,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                               errorBuilder: (context, error,
                                                       stackTrace) =>
                                                   Image.asset(
-                                                'assets/images/error_image.jpg',
+                                                'assets/images/error_image.png',
                                                 fit: BoxFit.cover,
                                               ),
                                             ),
@@ -633,9 +633,13 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                               String>(
                                                             functions
                                                                 .sentenceCaseWords(
-                                                                    _model
-                                                                        .inspectorName),
-                                                            'Agent',
+                                                                    valueOrDefault<
+                                                                        String>(
+                                                              _model
+                                                                  .inspectorName,
+                                                              'Inspector Name Default',
+                                                            )),
+                                                            'Inspector Name (Offline-Online',
                                                           ),
                                                           style: TextStyle(
                                                             color: FlutterFlowTheme
@@ -1165,299 +1169,554 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                           child: TabBarView(
                                             controller: _model.tabBarController,
                                             children: [
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 12.0, 0.0, 12.0),
-                                                child: Builder(
-                                                  builder: (context) {
-                                                    final forDispatchTasksList =
-                                                        (FFAppState().ONLINE
-                                                                    ? _model
-                                                                        .onlineForDispatchTasksData
-                                                                    : _model
-                                                                        .offlineForDispatchTasksData)
-                                                                ?.toList() ??
-                                                            [];
-                                                    if (forDispatchTasksList
-                                                        .isEmpty) {
-                                                      return const Center(
-                                                        child: EmptyListsWidget(
-                                                          type: 'Ongoing Tasks',
-                                                        ),
-                                                      );
-                                                    }
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  if (FFAppState().ONLINE)
+                                                    Expanded(
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    12.0,
+                                                                    0.0,
+                                                                    12.0),
+                                                        child: Builder(
+                                                          builder: (context) {
+                                                            final onlineForDispatchList =
+                                                                _model.onlineForDispatchTasksData
+                                                                        ?.toList() ??
+                                                                    [];
+                                                            if (onlineForDispatchList
+                                                                .isEmpty) {
+                                                              return const Center(
+                                                                child:
+                                                                    EmptyListsWidget(
+                                                                  type:
+                                                                      'Ongoing Tasks',
+                                                                ),
+                                                              );
+                                                            }
 
-                                                    return ListView.separated(
-                                                      padding:
-                                                          const EdgeInsets.symmetric(
-                                                              vertical: 15.0),
-                                                      primary: false,
-                                                      shrinkWrap: true,
-                                                      scrollDirection:
-                                                          Axis.vertical,
-                                                      itemCount:
-                                                          forDispatchTasksList
-                                                              .length,
-                                                      separatorBuilder:
-                                                          (_, __) => const SizedBox(
-                                                              height: 15.0),
-                                                      itemBuilder: (context,
-                                                          forDispatchTasksListIndex) {
-                                                        final forDispatchTasksListItem =
-                                                            forDispatchTasksList[
-                                                                forDispatchTasksListIndex];
-                                                        return Align(
-                                                          alignment:
-                                                              const AlignmentDirectional(
-                                                                  0.0, 0.0),
-                                                          child: wrapWithModel(
-                                                            model: _model
-                                                                .tasksModels1
-                                                                .getModel(
-                                                              FFAppState()
-                                                                      .ONLINE
-                                                                  ? _model
-                                                                      .onlineForDispatchTasksData!
-                                                                      .first
-                                                                      .id
-                                                                  : _model
-                                                                      .offlineForDispatchTasksData!
-                                                                      .first
-                                                                      .id!,
-                                                              forDispatchTasksListIndex,
-                                                            ),
-                                                            updateCallback:
-                                                                () => setState(
-                                                                    () {}),
-                                                            updateOnChange:
-                                                                true,
-                                                            child: TasksWidget(
-                                                              key: Key(
-                                                                'Keyjrg_${FFAppState().ONLINE ? _model.onlineForDispatchTasksData!.first.id : _model.offlineForDispatchTasksData!.first.id!}',
-                                                              ),
-                                                              task: FFAppState()
-                                                                      .ONLINE
-                                                                  ? _model
-                                                                      .onlineForDispatchTasksData!
-                                                                      .first
-                                                                      .id
-                                                                  : _model
-                                                                      .offlineForDispatchTasksData!
-                                                                      .first
-                                                                      .id!,
-                                                              status: FFAppState().ONLINE
-                                                                  ? _model
-                                                                      .onlineForDispatchTasksData!
-                                                                      .first
-                                                                      .status
-                                                                  : _model
-                                                                      .offlineForDispatchTasksData!
-                                                                      .first
-                                                                      .status!,
-                                                            ),
-                                                          ),
-                                                        );
-                                                      },
-                                                    );
-                                                  },
-                                                ),
+                                                            return ListView
+                                                                .separated(
+                                                              padding: const EdgeInsets
+                                                                  .symmetric(
+                                                                      vertical:
+                                                                          15.0),
+                                                              primary: false,
+                                                              scrollDirection:
+                                                                  Axis.vertical,
+                                                              itemCount:
+                                                                  onlineForDispatchList
+                                                                      .length,
+                                                              separatorBuilder: (_,
+                                                                      __) =>
+                                                                  const SizedBox(
+                                                                      height:
+                                                                          15.0),
+                                                              itemBuilder: (context,
+                                                                  onlineForDispatchListIndex) {
+                                                                final onlineForDispatchListItem =
+                                                                    onlineForDispatchList[
+                                                                        onlineForDispatchListIndex];
+                                                                return Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      wrapWithModel(
+                                                                    model: _model
+                                                                        .tasksModels1
+                                                                        .getModel(
+                                                                      onlineForDispatchListItem
+                                                                          .id,
+                                                                      onlineForDispatchListIndex,
+                                                                    ),
+                                                                    updateCallback: () =>
+                                                                        setState(
+                                                                            () {}),
+                                                                    updateOnChange:
+                                                                        true,
+                                                                    child:
+                                                                        TasksWidget(
+                                                                      key: Key(
+                                                                        'Key6rs_${onlineForDispatchListItem.id}',
+                                                                      ),
+                                                                      task: onlineForDispatchListItem
+                                                                          .id,
+                                                                      status: onlineForDispatchListItem
+                                                                          .status,
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                              },
+                                                            );
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  if (!FFAppState().ONLINE)
+                                                    Expanded(
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    12.0,
+                                                                    0.0,
+                                                                    12.0),
+                                                        child: Builder(
+                                                          builder: (context) {
+                                                            final offlineForDispatchList =
+                                                                _model.offlineForDispatchTasksData
+                                                                        ?.toList() ??
+                                                                    [];
+                                                            if (offlineForDispatchList
+                                                                .isEmpty) {
+                                                              return const Center(
+                                                                child:
+                                                                    EmptyListsWidget(
+                                                                  type:
+                                                                      'Ongoing Tasks',
+                                                                ),
+                                                              );
+                                                            }
+
+                                                            return ListView
+                                                                .separated(
+                                                              padding: const EdgeInsets
+                                                                  .symmetric(
+                                                                      vertical:
+                                                                          15.0),
+                                                              primary: false,
+                                                              scrollDirection:
+                                                                  Axis.vertical,
+                                                              itemCount:
+                                                                  offlineForDispatchList
+                                                                      .length,
+                                                              separatorBuilder: (_,
+                                                                      __) =>
+                                                                  const SizedBox(
+                                                                      height:
+                                                                          15.0),
+                                                              itemBuilder: (context,
+                                                                  offlineForDispatchListIndex) {
+                                                                final offlineForDispatchListItem =
+                                                                    offlineForDispatchList[
+                                                                        offlineForDispatchListIndex];
+                                                                return Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      wrapWithModel(
+                                                                    model: _model
+                                                                        .tasksModels2
+                                                                        .getModel(
+                                                                      _model
+                                                                          .offlineForDispatchTasksData!
+                                                                          .first
+                                                                          .id!,
+                                                                      offlineForDispatchListIndex,
+                                                                    ),
+                                                                    updateCallback: () =>
+                                                                        setState(
+                                                                            () {}),
+                                                                    updateOnChange:
+                                                                        true,
+                                                                    child:
+                                                                        TasksWidget(
+                                                                      key: Key(
+                                                                        'Keykxn_${_model.offlineForDispatchTasksData!.first.id!}',
+                                                                      ),
+                                                                      task: _model
+                                                                          .offlineForDispatchTasksData!
+                                                                          .first
+                                                                          .id!,
+                                                                      status: _model
+                                                                          .offlineForDispatchTasksData!
+                                                                          .first
+                                                                          .status!,
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                              },
+                                                            );
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ),
+                                                ],
                                               ),
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 12.0, 0.0, 12.0),
-                                                child: Builder(
-                                                  builder: (context) {
-                                                    final ongoingTasksList =
-                                                        (FFAppState().ONLINE
-                                                                    ? _model
-                                                                        .onlineOngoingTasksData
-                                                                    : _model
-                                                                        .offlineOngoingTasksData)
-                                                                ?.toList() ??
-                                                            [];
-                                                    if (ongoingTasksList
-                                                        .isEmpty) {
-                                                      return const Center(
-                                                        child: EmptyListsWidget(
-                                                          type: 'Ongoing Tasks',
-                                                        ),
-                                                      );
-                                                    }
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  if (FFAppState().ONLINE)
+                                                    Expanded(
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    12.0,
+                                                                    0.0,
+                                                                    12.0),
+                                                        child: Builder(
+                                                          builder: (context) {
+                                                            final onlineOngoingList =
+                                                                _model.onlineOngoingTasksData
+                                                                        ?.toList() ??
+                                                                    [];
+                                                            if (onlineOngoingList
+                                                                .isEmpty) {
+                                                              return const Center(
+                                                                child:
+                                                                    EmptyListsWidget(
+                                                                  type:
+                                                                      'Ongoing Tasks',
+                                                                ),
+                                                              );
+                                                            }
 
-                                                    return ListView.separated(
-                                                      padding:
-                                                          const EdgeInsets.symmetric(
-                                                              vertical: 15.0),
-                                                      primary: false,
-                                                      shrinkWrap: true,
-                                                      scrollDirection:
-                                                          Axis.vertical,
-                                                      itemCount:
-                                                          ongoingTasksList
-                                                              .length,
-                                                      separatorBuilder:
-                                                          (_, __) => const SizedBox(
-                                                              height: 15.0),
-                                                      itemBuilder: (context,
-                                                          ongoingTasksListIndex) {
-                                                        final ongoingTasksListItem =
-                                                            ongoingTasksList[
-                                                                ongoingTasksListIndex];
-                                                        return Align(
-                                                          alignment:
-                                                              const AlignmentDirectional(
-                                                                  0.0, 0.0),
-                                                          child: wrapWithModel(
-                                                            model: _model
-                                                                .tasksModels2
-                                                                .getModel(
-                                                              FFAppState()
-                                                                      .ONLINE
-                                                                  ? _model
-                                                                      .onlineForDispatchTasksData!
-                                                                      .first
-                                                                      .id
-                                                                  : _model
-                                                                      .offlineForDispatchTasksData!
-                                                                      .first
-                                                                      .id!,
-                                                              ongoingTasksListIndex,
-                                                            ),
-                                                            updateCallback:
-                                                                () => setState(
-                                                                    () {}),
-                                                            updateOnChange:
-                                                                true,
-                                                            child: TasksWidget(
-                                                              key: Key(
-                                                                'Keykok_${FFAppState().ONLINE ? _model.onlineForDispatchTasksData!.first.id : _model.offlineForDispatchTasksData!.first.id!}',
-                                                              ),
-                                                              task: FFAppState()
-                                                                      .ONLINE
-                                                                  ? _model
-                                                                      .onlineForDispatchTasksData!
-                                                                      .first
-                                                                      .id
-                                                                  : _model
-                                                                      .offlineForDispatchTasksData!
-                                                                      .first
-                                                                      .id!,
-                                                              status: FFAppState().ONLINE
-                                                                  ? _model
-                                                                      .onlineForDispatchTasksData!
-                                                                      .first
-                                                                      .status
-                                                                  : _model
-                                                                      .offlineForDispatchTasksData!
-                                                                      .first
-                                                                      .status!,
-                                                            ),
-                                                          ),
-                                                        );
-                                                      },
-                                                    );
-                                                  },
-                                                ),
+                                                            return ListView
+                                                                .separated(
+                                                              padding: const EdgeInsets
+                                                                  .symmetric(
+                                                                      vertical:
+                                                                          15.0),
+                                                              primary: false,
+                                                              scrollDirection:
+                                                                  Axis.vertical,
+                                                              itemCount:
+                                                                  onlineOngoingList
+                                                                      .length,
+                                                              separatorBuilder: (_,
+                                                                      __) =>
+                                                                  const SizedBox(
+                                                                      height:
+                                                                          15.0),
+                                                              itemBuilder: (context,
+                                                                  onlineOngoingListIndex) {
+                                                                final onlineOngoingListItem =
+                                                                    onlineOngoingList[
+                                                                        onlineOngoingListIndex];
+                                                                return Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      wrapWithModel(
+                                                                    model: _model
+                                                                        .tasksModels3
+                                                                        .getModel(
+                                                                      onlineOngoingListItem
+                                                                          .id,
+                                                                      onlineOngoingListIndex,
+                                                                    ),
+                                                                    updateCallback: () =>
+                                                                        setState(
+                                                                            () {}),
+                                                                    updateOnChange:
+                                                                        true,
+                                                                    child:
+                                                                        TasksWidget(
+                                                                      key: Key(
+                                                                        'Key3b5_${onlineOngoingListItem.id}',
+                                                                      ),
+                                                                      task: onlineOngoingListItem
+                                                                          .id,
+                                                                      status: onlineOngoingListItem
+                                                                          .status,
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                              },
+                                                            );
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  if (!FFAppState().ONLINE)
+                                                    Expanded(
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    12.0,
+                                                                    0.0,
+                                                                    12.0),
+                                                        child: Builder(
+                                                          builder: (context) {
+                                                            final offlineOngoingList =
+                                                                _model.offlineOngoingTasksData
+                                                                        ?.toList() ??
+                                                                    [];
+                                                            if (offlineOngoingList
+                                                                .isEmpty) {
+                                                              return const Center(
+                                                                child:
+                                                                    EmptyListsWidget(
+                                                                  type:
+                                                                      'Ongoing Tasks',
+                                                                ),
+                                                              );
+                                                            }
+
+                                                            return ListView
+                                                                .separated(
+                                                              padding: const EdgeInsets
+                                                                  .symmetric(
+                                                                      vertical:
+                                                                          15.0),
+                                                              primary: false,
+                                                              scrollDirection:
+                                                                  Axis.vertical,
+                                                              itemCount:
+                                                                  offlineOngoingList
+                                                                      .length,
+                                                              separatorBuilder: (_,
+                                                                      __) =>
+                                                                  const SizedBox(
+                                                                      height:
+                                                                          15.0),
+                                                              itemBuilder: (context,
+                                                                  offlineOngoingListIndex) {
+                                                                final offlineOngoingListItem =
+                                                                    offlineOngoingList[
+                                                                        offlineOngoingListIndex];
+                                                                return Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      wrapWithModel(
+                                                                    model: _model
+                                                                        .tasksModels4
+                                                                        .getModel(
+                                                                      _model
+                                                                          .offlineForDispatchTasksData!
+                                                                          .first
+                                                                          .id!,
+                                                                      offlineOngoingListIndex,
+                                                                    ),
+                                                                    updateCallback: () =>
+                                                                        setState(
+                                                                            () {}),
+                                                                    updateOnChange:
+                                                                        true,
+                                                                    child:
+                                                                        TasksWidget(
+                                                                      key: Key(
+                                                                        'Keym0n_${_model.offlineForDispatchTasksData!.first.id!}',
+                                                                      ),
+                                                                      task: _model
+                                                                          .offlineForDispatchTasksData!
+                                                                          .first
+                                                                          .id!,
+                                                                      status: _model
+                                                                          .offlineForDispatchTasksData!
+                                                                          .first
+                                                                          .status!,
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                              },
+                                                            );
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ),
+                                                ],
                                               ),
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 12.0, 0.0, 12.0),
-                                                child: Builder(
-                                                  builder: (context) {
-                                                    final completedTasksList =
-                                                        (FFAppState().ONLINE
-                                                                    ? _model
-                                                                        .onlineCompletedTasksData
-                                                                    : _model
-                                                                        .offlineCompletedTasksData)
-                                                                ?.toList() ??
-                                                            [];
-                                                    if (completedTasksList
-                                                        .isEmpty) {
-                                                      return const Center(
-                                                        child: EmptyListsWidget(
-                                                          type: 'Ongoing Tasks',
-                                                        ),
-                                                      );
-                                                    }
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  if (FFAppState().ONLINE)
+                                                    Expanded(
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    12.0,
+                                                                    0.0,
+                                                                    12.0),
+                                                        child: Builder(
+                                                          builder: (context) {
+                                                            final onlineCompletedList =
+                                                                _model.onlineCompletedTasksData
+                                                                        ?.toList() ??
+                                                                    [];
+                                                            if (onlineCompletedList
+                                                                .isEmpty) {
+                                                              return const Center(
+                                                                child:
+                                                                    EmptyListsWidget(
+                                                                  type:
+                                                                      'Ongoing Tasks',
+                                                                ),
+                                                              );
+                                                            }
 
-                                                    return ListView.separated(
-                                                      padding:
-                                                          const EdgeInsets.symmetric(
-                                                              vertical: 15.0),
-                                                      primary: false,
-                                                      shrinkWrap: true,
-                                                      scrollDirection:
-                                                          Axis.vertical,
-                                                      itemCount:
-                                                          completedTasksList
-                                                              .length,
-                                                      separatorBuilder:
-                                                          (_, __) => const SizedBox(
-                                                              height: 15.0),
-                                                      itemBuilder: (context,
-                                                          completedTasksListIndex) {
-                                                        final completedTasksListItem =
-                                                            completedTasksList[
-                                                                completedTasksListIndex];
-                                                        return Align(
-                                                          alignment:
-                                                              const AlignmentDirectional(
-                                                                  0.0, 0.0),
-                                                          child: wrapWithModel(
-                                                            model: _model
-                                                                .tasksModels3
-                                                                .getModel(
-                                                              FFAppState()
-                                                                      .ONLINE
-                                                                  ? _model
-                                                                      .onlineForDispatchTasksData!
-                                                                      .first
-                                                                      .id
-                                                                  : _model
-                                                                      .offlineForDispatchTasksData!
-                                                                      .first
-                                                                      .id!,
-                                                              completedTasksListIndex,
-                                                            ),
-                                                            updateCallback:
-                                                                () => setState(
-                                                                    () {}),
-                                                            updateOnChange:
-                                                                true,
-                                                            child: TasksWidget(
-                                                              key: Key(
-                                                                'Key5pb_${FFAppState().ONLINE ? _model.onlineForDispatchTasksData!.first.id : _model.offlineForDispatchTasksData!.first.id!}',
-                                                              ),
-                                                              task: FFAppState()
-                                                                      .ONLINE
-                                                                  ? _model
-                                                                      .onlineForDispatchTasksData!
-                                                                      .first
-                                                                      .id
-                                                                  : _model
-                                                                      .offlineForDispatchTasksData!
-                                                                      .first
-                                                                      .id!,
-                                                              status: FFAppState().ONLINE
-                                                                  ? _model
-                                                                      .onlineForDispatchTasksData!
-                                                                      .first
-                                                                      .status
-                                                                  : _model
-                                                                      .offlineForDispatchTasksData!
-                                                                      .first
-                                                                      .status!,
-                                                            ),
-                                                          ),
-                                                        );
-                                                      },
-                                                    );
-                                                  },
-                                                ),
+                                                            return ListView
+                                                                .separated(
+                                                              padding: const EdgeInsets
+                                                                  .symmetric(
+                                                                      vertical:
+                                                                          15.0),
+                                                              primary: false,
+                                                              scrollDirection:
+                                                                  Axis.vertical,
+                                                              itemCount:
+                                                                  onlineCompletedList
+                                                                      .length,
+                                                              separatorBuilder: (_,
+                                                                      __) =>
+                                                                  const SizedBox(
+                                                                      height:
+                                                                          15.0),
+                                                              itemBuilder: (context,
+                                                                  onlineCompletedListIndex) {
+                                                                final onlineCompletedListItem =
+                                                                    onlineCompletedList[
+                                                                        onlineCompletedListIndex];
+                                                                return Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      wrapWithModel(
+                                                                    model: _model
+                                                                        .tasksModels5
+                                                                        .getModel(
+                                                                      onlineCompletedListItem
+                                                                          .id,
+                                                                      onlineCompletedListIndex,
+                                                                    ),
+                                                                    updateCallback: () =>
+                                                                        setState(
+                                                                            () {}),
+                                                                    updateOnChange:
+                                                                        true,
+                                                                    child:
+                                                                        TasksWidget(
+                                                                      key: Key(
+                                                                        'Keyj41_${onlineCompletedListItem.id}',
+                                                                      ),
+                                                                      task: onlineCompletedListItem
+                                                                          .id,
+                                                                      status: onlineCompletedListItem
+                                                                          .status,
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                              },
+                                                            );
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  if (!FFAppState().ONLINE)
+                                                    Expanded(
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    12.0,
+                                                                    0.0,
+                                                                    12.0),
+                                                        child: Builder(
+                                                          builder: (context) {
+                                                            final offlineCompletedList =
+                                                                _model.offlineCompletedTasksData
+                                                                        ?.toList() ??
+                                                                    [];
+                                                            if (offlineCompletedList
+                                                                .isEmpty) {
+                                                              return const Center(
+                                                                child:
+                                                                    EmptyListsWidget(
+                                                                  type:
+                                                                      'Ongoing Tasks',
+                                                                ),
+                                                              );
+                                                            }
+
+                                                            return ListView
+                                                                .separated(
+                                                              padding: const EdgeInsets
+                                                                  .symmetric(
+                                                                      vertical:
+                                                                          15.0),
+                                                              primary: false,
+                                                              scrollDirection:
+                                                                  Axis.vertical,
+                                                              itemCount:
+                                                                  offlineCompletedList
+                                                                      .length,
+                                                              separatorBuilder: (_,
+                                                                      __) =>
+                                                                  const SizedBox(
+                                                                      height:
+                                                                          15.0),
+                                                              itemBuilder: (context,
+                                                                  offlineCompletedListIndex) {
+                                                                final offlineCompletedListItem =
+                                                                    offlineCompletedList[
+                                                                        offlineCompletedListIndex];
+                                                                return Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      wrapWithModel(
+                                                                    model: _model
+                                                                        .tasksModels6
+                                                                        .getModel(
+                                                                      _model
+                                                                          .offlineForDispatchTasksData!
+                                                                          .first
+                                                                          .id!,
+                                                                      offlineCompletedListIndex,
+                                                                    ),
+                                                                    updateCallback: () =>
+                                                                        setState(
+                                                                            () {}),
+                                                                    updateOnChange:
+                                                                        true,
+                                                                    child:
+                                                                        TasksWidget(
+                                                                      key: Key(
+                                                                        'Keyxit_${_model.offlineForDispatchTasksData!.first.id!}',
+                                                                      ),
+                                                                      task: _model
+                                                                          .offlineForDispatchTasksData!
+                                                                          .first
+                                                                          .id!,
+                                                                      status: _model
+                                                                          .offlineForDispatchTasksData!
+                                                                          .first
+                                                                          .status!,
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                              },
+                                                            );
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ),
+                                                ],
                                               ),
                                             ],
                                           ),

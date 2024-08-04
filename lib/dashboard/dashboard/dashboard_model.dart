@@ -60,6 +60,12 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   late FlutterFlowDynamicModels<TasksModel> tasksModels2;
   // Models for tasks dynamic component.
   late FlutterFlowDynamicModels<TasksModel> tasksModels3;
+  // Models for tasks dynamic component.
+  late FlutterFlowDynamicModels<TasksModel> tasksModels4;
+  // Models for tasks dynamic component.
+  late FlutterFlowDynamicModels<TasksModel> tasksModels5;
+  // Models for tasks dynamic component.
+  late FlutterFlowDynamicModels<TasksModel> tasksModels6;
 
   @override
   void initState(BuildContext context) {
@@ -67,6 +73,9 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
     tasksModels1 = FlutterFlowDynamicModels(() => TasksModel());
     tasksModels2 = FlutterFlowDynamicModels(() => TasksModel());
     tasksModels3 = FlutterFlowDynamicModels(() => TasksModel());
+    tasksModels4 = FlutterFlowDynamicModels(() => TasksModel());
+    tasksModels5 = FlutterFlowDynamicModels(() => TasksModel());
+    tasksModels6 = FlutterFlowDynamicModels(() => TasksModel());
   }
 
   @override
@@ -79,5 +88,8 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
     tasksModels1.dispose();
     tasksModels2.dispose();
     tasksModels3.dispose();
+    tasksModels4.dispose();
+    tasksModels5.dispose();
+    tasksModels6.dispose();
   }
 }
