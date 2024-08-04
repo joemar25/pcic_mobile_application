@@ -1,9 +1,9 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/custom_code/actions/index.dart' as actions;
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'sss_model.dart';
 export 'sss_model.dart';
 
@@ -34,6 +34,8 @@ class _SssWidgetState extends State<SssWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -66,33 +68,16 @@ class _SssWidgetState extends State<SssWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              FFButtonWidget(
-                onPressed: () async {
-                  await actions.fetchStoreStats();
-                },
-                text: FFLocalizations.of(context).getText(
-                  'p3cbb4i4' /* Button */,
-                ),
-                options: FFButtonOptions(
-                  height: 40.0,
-                  padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                  iconPadding:
-                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: FlutterFlowTheme.of(context).primary,
-                  textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                        fontFamily:
-                            FlutterFlowTheme.of(context).titleSmallFamily,
-                        color: Colors.white,
-                        letterSpacing: 0.0,
-                        useGoogleFonts: GoogleFonts.asMap().containsKey(
-                            FlutterFlowTheme.of(context).titleSmallFamily),
-                      ),
-                  elevation: 3.0,
-                  borderSide: const BorderSide(
-                    color: Colors.transparent,
-                    width: 1.0,
+              Expanded(
+                child: SizedBox(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: custom_widgets.MapBox(
+                    width: double.infinity,
+                    height: double.infinity,
+                    accessToken: FFAppState().accessToken,
+                    taskId: 'Lorem',
                   ),
-                  borderRadius: BorderRadius.circular(8.0),
                 ),
               ),
             ],
