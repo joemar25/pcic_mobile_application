@@ -134,6 +134,18 @@ class _DashboardWidgetState extends State<DashboardWidget>
         lastsynctimestamp: dateTimeFromSecondsSinceEpoch(
             getCurrentTimestamp.secondsSinceEpoch),
       );
+      if (FFAppState().ONLINE) {
+        _model.fdc = _model.fdc;
+        _model.onc = _model.onc;
+        _model.cc = _model.cc;
+        setState(() {});
+      } else {
+        _model.fdc = _model.fdc;
+        _model.onc = _model.onc;
+        _model.cc = _model.cc;
+        setState(() {});
+      }
+
       _model.fdc = valueOrDefault<int>(
         _model.forDispatchTasksData?.length,
         0,
@@ -650,7 +662,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                             .inspectorName,
                                                                         'Agent',
                                                                       )
-                                                                    : currentUserEmail),
+                                                                    : _model
+                                                                        .inspectorName),
                                                             'Agent',
                                                           ),
                                                           style: TextStyle(
