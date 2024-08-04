@@ -49,7 +49,7 @@ Future performUpdatePPIRBasicInfo(
   String? ppirfarmername,
   String? ppiraddress,
   String? ppirfarmertype,
-  int? ppirmobileno,
+  String? ppirmobileno,
   String? ppirgroupname,
   String? ppirgroupaddress,
   DateTime? updatedat,
@@ -108,7 +108,7 @@ Future performUpdatePPIRCropInfo(
   String? ppirstagecrop,
   String? ppirareaact,
   DateTime? updatedat,
-  DateTime? isdirty,
+  bool? isdirty,
   String? taskid,
 }) {
   const query = '''

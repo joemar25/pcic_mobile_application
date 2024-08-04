@@ -50,6 +50,39 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
       await SQLiteManager.instance.getLastSyncTimestamp();
       await SQLiteManager.instance.getQueuedChanges();
       await SQLiteManager.instance.getModifiedRecords();
+      await SQLiteManager.instance.insertUpdateSyncStatus(
+        tablename: 'table_name',
+        lastsynctimestamp: getCurrentTimestamp,
+      );
+      await SQLiteManager.instance.updatePPIRBasicInfo(
+        ppirfarmername: 'ppir_farmername',
+        ppiraddress: 'ppir_address',
+        ppirfarmertype: 'ppir_farmertype',
+        ppirgroupname: 'ppir_groupname',
+        ppirmobileno: 'ppir_mobileno',
+        ppirgroupaddress: 'ppir_groupaddress',
+        updatedat: getCurrentTimestamp,
+        taskid: 'task_id',
+      );
+      await SQLiteManager.instance.updatePPIRLocation(
+        ppirsouth: 'ppir_south',
+        ppirnorth: 'ppir_north',
+        ppireast: 'ppir_east',
+        ppirwest: 'ppir_west',
+        ppirfarmloc: 'ppir_farmloc',
+        isupdatedat: getCurrentTimestamp,
+        isdirty: true,
+        taskid: 'task_id',
+      );
+      await SQLiteManager.instance.updatePPIRCropInfo(
+        ppirvariety: 'ppir_variety',
+        ppirareaaci: 'ppir_area_aci',
+        ppirstagecrop: 'ppir_stagecrop',
+        ppirareaact: 'ppir_area_act',
+        updatedat: getCurrentTimestamp,
+        isdirty: true,
+        taskid: 'task_id',
+      );
     });
 
     _model.farmLocInputFocusNode ??= FocusNode();
