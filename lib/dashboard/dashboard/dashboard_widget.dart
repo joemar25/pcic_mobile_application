@@ -537,6 +537,12 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                               _model.getProfilePic?.bytes ??
                                                   Uint8List.fromList([]),
                                               fit: BoxFit.cover,
+                                              errorBuilder: (context, error,
+                                                      stackTrace) =>
+                                                  Image.asset(
+                                                'assets/images/error_image.jpg',
+                                                fit: BoxFit.cover,
+                                              ),
                                             ),
                                           ).animateOnPageLoad(animationsMap[
                                               'circleImageOnPageLoadAnimation']!),
