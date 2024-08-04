@@ -46,19 +46,25 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
   double _downloadProgress = 0.0;
   bool _isDownloading = false;
   final FocusNode _focusNode = FocusNode();
+  bool _mounted = true;
 
   @override
   void initState() {
     super.initState();
-    _getCurrentLocation();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_mounted) {
+        _getCurrentLocation();
+      }
+    });
     _mapController.mapEventStream.listen((event) {
-      if (event is MapEventMoveEnd) {
+      if (event is MapEventMoveEnd && _mounted) {
         _updateBoundaryBox();
       }
     });
   }
 
   void _updateBoundaryBox() {
+    if (!_mounted) return;
     setState(() {
       final bounds = _mapController.camera.visibleBounds;
       final center = bounds.center;
@@ -74,14 +80,18 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
   }
 
   Future<void> _getCurrentLocation() async {
+    if (!_mounted) return;
+
     bool serviceEnabled;
     LocationPermission permission;
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      setState(() {
-        _isLoading = false;
-      });
+      if (_mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
       return;
     }
 
@@ -89,17 +99,21 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        setState(() {
-          _isLoading = false;
-        });
+        if (_mounted) {
+          setState(() {
+            _isLoading = false;
+          });
+        }
         return;
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      setState(() {
-        _isLoading = false;
-      });
+      if (_mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
       return;
     }
 
@@ -108,16 +122,20 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
         desiredAccuracy: LocationAccuracy.best,
         forceAndroidLocationManager: true,
       );
-      setState(() {
-        _center = ll.LatLng(position.latitude, position.longitude);
-        _isLoading = false;
-      });
-      _mapController.move(_center, 17);
+      if (_mounted) {
+        setState(() {
+          _center = ll.LatLng(position.latitude, position.longitude);
+          _isLoading = false;
+        });
+        _mapController.move(_center, 17);
+      }
     } catch (e) {
       print("Error getting location: $e");
-      setState(() {
-        _isLoading = false;
-      });
+      if (_mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
     }
   }
 
@@ -140,6 +158,7 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
   }
 
   void _moveMap(ll.LatLng newCenter) {
+    if (!_mounted) return;
     setState(() {
       _center = newCenter;
     });
@@ -147,6 +166,7 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
   }
 
   Future<void> _saveMap() async {
+    if (!_mounted) return;
     _focusNode.unfocus();
 
     if (_boundaryBox == null) {
@@ -233,7 +253,9 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
 
   @override
   void dispose() {
+    _mounted = false;
     _focusNode.dispose();
+    _mapController.dispose();
     super.dispose();
   }
 
