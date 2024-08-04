@@ -81,10 +81,20 @@ class _DashboardWidgetState extends State<DashboardWidget>
       _model.bbb = await SQLiteManager.instance.selectUsers();
       _model.ccc = await SQLiteManager.instance.selectMessages();
       _model.ddd = await SQLiteManager.instance.selectSyncLogs();
+      await SQLiteManager.instance.selectProfile(
+        email: currentUserEmail,
+      );
       await SQLiteManager.instance.updateSyncStatus();
       await SQLiteManager.instance.updateTask();
-      await SQLiteManager.instance.updateUsers();
-      await SQLiteManager.instance.insertUpdateSyncStatus();
+      await SQLiteManager.instance.updateUsers(
+        id: 'id',
+        email: '',
+      );
+      await SQLiteManager.instance.insertUpdateSyncStatus(
+        tablename: 'users',
+        lastsynctimestamp: dateTimeFromSecondsSinceEpoch(
+            getCurrentTimestamp.secondsSinceEpoch),
+      );
       _model.fdc = valueOrDefault<int>(
         _model.forDispatchTasksData?.length,
         0,
