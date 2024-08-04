@@ -11,7 +11,6 @@ import '/utils/components/empty_lists/empty_lists_widget.dart';
 import '/utils/components/tasks/tasks_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
-import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -78,9 +77,21 @@ class _DashboardWidgetState extends State<DashboardWidget>
       );
       await SQLiteManager.instance.getLastSyncTimestamp();
       _model.varname = await SQLiteManager.instance.getQueuedChanges();
-      _model.aaa = await SQLiteManager.instance.selectTasks();
-      _model.bbb = await SQLiteManager.instance.selectUsers();
-      _model.ccc = await SQLiteManager.instance.selectMessages();
+      // OFFLINE: Select all for dispatch tasks
+      _model.offlineForDispatchTasksData =
+          await SQLiteManager.instance.sELECTTASKSBaseOnStatus(
+        status: 'for dispatch',
+      );
+      // OFFLINE: Select all ongoing tasks
+      _model.offlineOngoingTasksData =
+          await SQLiteManager.instance.sELECTTASKSBaseOnStatus(
+        status: 'ongoing',
+      );
+      // OFFLINE: Select all completed tasks
+      _model.offlineCompletedTasksData =
+          await SQLiteManager.instance.sELECTTASKSBaseOnStatus(
+        status: 'ongoing',
+      );
       _model.ddd = await SQLiteManager.instance.selectSyncLogs();
       await SQLiteManager.instance.selectProfile(
         email: currentUserEmail,
@@ -91,62 +102,42 @@ class _DashboardWidgetState extends State<DashboardWidget>
         lastsyncedat: getCurrentTimestamp,
         updatedat: getCurrentTimestamp,
       );
-      await SQLiteManager.instance.updateTask(
-        id: currentUserUid,
-        tasknumber: 'task_number',
-        servicegroup: 'service_group',
-        servicetypes: 'service_types',
-        priority: 'priority',
-        assignee: 'assignee',
-        fileid: 'file_id',
-        dateadded: getCurrentTimestamp,
-        dateaccess: getCurrentTimestamp,
-        status: true,
-        tasktype: 'task_type',
-        attemptcount: valueOrDefault<int>(
-          random_data.randomInteger(0, 100000000),
-          0,
-        ),
-        updatedat: getCurrentTimestamp,
-        isdeleted: true,
-        syncstatus: true,
-        lastsyncedat: getCurrentTimestamp,
-        localid: 'local_id',
-        isdirty: true,
-        isupdating: true,
-      );
-      await SQLiteManager.instance.updateUsers(
-        id: 'id',
-        role: 'role',
-        email: currentUserEmail,
-        photourl: 'photo_url',
-        inspectorname: 'inspector_name',
-        mobilenumber: currentPhoneNumber,
-        isonline: true,
-        authuserid: currentUserUid,
-        regionid: 'region_id',
-        updatedat: 'updated_at',
-        createduserid: 'created_user_id',
-        createdat: 'created_at',
-      );
       await SQLiteManager.instance.insertUpdateSyncStatus(
         tablename: 'users',
         lastsynctimestamp: dateTimeFromSecondsSinceEpoch(
             getCurrentTimestamp.secondsSinceEpoch),
       );
-      _model.fdc = valueOrDefault<int>(
-        _model.forDispatchTasksData?.length,
-        0,
-      );
-      _model.onc = valueOrDefault<int>(
-        _model.ongoingTasksData?.length,
-        0,
-      );
-      _model.cc = valueOrDefault<int>(
-        _model.completedTasksData?.length,
-        0,
-      );
-      setState(() {});
+      if (FFAppState().ONLINE) {
+        // ONLINE: Set page variable values
+        _model.fdc = valueOrDefault<int>(
+          _model.forDispatchTasksData?.length,
+          0,
+        );
+        _model.onc = valueOrDefault<int>(
+          _model.ongoingTasksData?.length,
+          0,
+        );
+        _model.cc = valueOrDefault<int>(
+          _model.completedTasksData?.length,
+          0,
+        );
+        setState(() {});
+      } else {
+        // OFFLINE: Set page variable values
+        _model.fdc = valueOrDefault<int>(
+          _model.offlineForDispatchTasksData?.length,
+          0,
+        );
+        _model.onc = valueOrDefault<int>(
+          _model.offlineOngoingTasksData?.length,
+          0,
+        );
+        _model.cc = valueOrDefault<int>(
+          _model.offlineCompletedTasksData?.length,
+          0,
+        );
+        setState(() {});
+      }
     });
 
     _model.textController ??= TextEditingController();
@@ -806,12 +797,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                     curve: Curves.easeIn,
                                                     child: Text(
                                                       valueOrDefault<String>(
-                                                        FFAppState().ONLINE
-                                                            ? _model.fdc
-                                                                ?.toString()
-                                                            : _model.fdc
-                                                                ?.toString(),
-                                                        'fdc',
+                                                        _model.fdc?.toString(),
+                                                        '0',
                                                       ),
                                                     ),
                                                   ),
@@ -926,19 +913,10 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                         milliseconds: 600),
                                                     curve: Curves.easeIn,
                                                     child: Text(
-                                                      FFAppState().ONLINE
-                                                          ? valueOrDefault<
-                                                              String>(
-                                                              _model.onc
-                                                                  ?.toString(),
-                                                              'onc',
-                                                            )
-                                                          : valueOrDefault<
-                                                              String>(
-                                                              _model.onc
-                                                                  ?.toString(),
-                                                              'onc',
-                                                            ),
+                                                      valueOrDefault<String>(
+                                                        _model.onc?.toString(),
+                                                        '0',
+                                                      ),
                                                     ),
                                                   ),
                                                   Icon(
@@ -1051,19 +1029,10 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                         milliseconds: 600),
                                                     curve: Curves.easeIn,
                                                     child: Text(
-                                                      FFAppState().ONLINE
-                                                          ? valueOrDefault<
-                                                              String>(
-                                                              _model.cc
-                                                                  ?.toString(),
-                                                              'cc',
-                                                            )
-                                                          : valueOrDefault<
-                                                              String>(
-                                                              _model.cc
-                                                                  ?.toString(),
-                                                              'cc',
-                                                            ),
+                                                      valueOrDefault<String>(
+                                                        _model.cc?.toString(),
+                                                        '0',
+                                                      ),
                                                     ),
                                                   ),
                                                   Icon(

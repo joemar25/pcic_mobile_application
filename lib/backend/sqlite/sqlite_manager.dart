@@ -29,8 +29,12 @@ class SQLiteManager {
 
   /// START READ QUERY CALLS
 
-  Future<List<SelectTasksRow>> selectTasks() => performSelectTasks(
+  Future<List<SELECTTASKSBaseOnStatusRow>> sELECTTASKSBaseOnStatus({
+    String? status,
+  }) =>
+      performSELECTTASKSBaseOnStatus(
         _database,
+        status: status,
       );
 
   Future<List<SelectUsersRow>> selectUsers() => performSelectUsers(

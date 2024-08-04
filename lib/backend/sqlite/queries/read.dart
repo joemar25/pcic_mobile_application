@@ -8,18 +8,19 @@ Future<List<T>> _readQuery<T>(
 ) =>
     database.rawQuery(query).then((r) => r.map((e) => create(e)).toList());
 
-/// BEGIN SELECT TASKS
-Future<List<SelectTasksRow>> performSelectTasks(
-  Database database,
-) {
-  const query = '''
-SELECT * FROM tasks
+/// BEGIN SELECT TASKS BASE ON STATUS
+Future<List<SELECTTASKSBaseOnStatusRow>> performSELECTTASKSBaseOnStatus(
+  Database database, {
+  String? status,
+}) {
+  final query = '''
+SELECT * FROM tasks WHERE status='$status'
 ''';
-  return _readQuery(database, query, (d) => SelectTasksRow(d));
+  return _readQuery(database, query, (d) => SELECTTASKSBaseOnStatusRow(d));
 }
 
-class SelectTasksRow extends SqliteRow {
-  SelectTasksRow(super.data);
+class SELECTTASKSBaseOnStatusRow extends SqliteRow {
+  SELECTTASKSBaseOnStatusRow(super.data);
 
   String? get id => data['id'] as String?;
   String? get taskNumber => data['task_number'] as String?;
@@ -43,7 +44,7 @@ class SelectTasksRow extends SqliteRow {
   bool? get isUpdating => data['is_updating'] as bool?;
 }
 
-/// END SELECT TASKS
+/// END SELECT TASKS BASE ON STATUS
 
 /// BEGIN SELECT USERS
 Future<List<SelectUsersRow>> performSelectUsers(

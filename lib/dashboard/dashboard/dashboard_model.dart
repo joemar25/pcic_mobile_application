@@ -35,12 +35,12 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   List<TasksRow>? completedTasksData;
   // Stores action output result for [Backend Call - SQLite (Get Queued Changes)] action in dashboard widget.
   List<GetQueuedChangesRow>? varname;
-  // Stores action output result for [Backend Call - SQLite (SELECT TASKS)] action in dashboard widget.
-  List<SelectTasksRow>? aaa;
-  // Stores action output result for [Backend Call - SQLite (SELECT USERS)] action in dashboard widget.
-  List<SelectUsersRow>? bbb;
-  // Stores action output result for [Backend Call - SQLite (SELECT MESSAGES)] action in dashboard widget.
-  List<SelectMessagesRow>? ccc;
+  // Stores action output result for [Backend Call - SQLite (SELECT TASKS base on status)] action in dashboard widget.
+  List<SELECTTASKSBaseOnStatusRow>? offlineForDispatchTasksData;
+  // Stores action output result for [Backend Call - SQLite (SELECT TASKS base on status)] action in dashboard widget.
+  List<SELECTTASKSBaseOnStatusRow>? offlineOngoingTasksData;
+  // Stores action output result for [Backend Call - SQLite (SELECT TASKS base on status)] action in dashboard widget.
+  List<SELECTTASKSBaseOnStatusRow>? offlineCompletedTasksData;
   // Stores action output result for [Backend Call - SQLite (SELECT SYNC LOGS)] action in dashboard widget.
   List<SelectSyncLogsRow>? ddd;
   // Model for connectivity component.
