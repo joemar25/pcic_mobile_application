@@ -13,6 +13,7 @@ import '/utils/components/signature/signature_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:easy_debounce/easy_debounce.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -1861,33 +1862,80 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                       .boarderForm,
                                             ),
                                           ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 10.0, 0.0, 10.0),
-                                            child: TextFormField(
-                                              controller: _model
-                                                      .ppirAreaActFieldTextController ??=
-                                                  TextEditingController(
-                                                text: valueOrDefault<String>(
-                                                  ppirPpirFormsRow?.ppirAreaAct,
-                                                  '1.5',
-                                                ),
-                                              ),
-                                              focusNode: _model
-                                                  .ppirAreaActFieldFocusNode,
-                                              autofocus: false,
-                                              textInputAction:
-                                                  TextInputAction.next,
-                                              obscureText: false,
-                                              decoration: InputDecoration(
-                                                labelText:
-                                                    FFLocalizations.of(context)
-                                                        .getText(
-                                                  'hw506fw0' /* Actual Area Planted */,
-                                                ),
-                                                labelStyle:
-                                                    FlutterFlowTheme.of(context)
+                                          InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              await showModalBottomSheet<bool>(
+                                                  context: context,
+                                                  builder: (context) {
+                                                    return SizedBox(
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height /
+                                                              3,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width,
+                                                      child:
+                                                          CupertinoDatePicker(
+                                                        mode:
+                                                            CupertinoDatePickerMode
+                                                                .date,
+                                                        minimumDate:
+                                                            DateTime(1900),
+                                                        initialDateTime:
+                                                            getCurrentTimestamp,
+                                                        maximumDate:
+                                                            DateTime(2050),
+                                                        use24hFormat: false,
+                                                        onDateTimeChanged:
+                                                            (newDateTime) =>
+                                                                safeSetState(
+                                                                    () {
+                                                          _model.datePicked =
+                                                              newDateTime;
+                                                        }),
+                                                      ),
+                                                    );
+                                                  });
+                                            },
+                                            child: Container(
+                                              decoration: const BoxDecoration(),
+                                              child: Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 10.0, 0.0, 10.0),
+                                                child: TextFormField(
+                                                  controller: _model
+                                                          .ppirAreaActFieldTextController ??=
+                                                      TextEditingController(
+                                                    text:
+                                                        valueOrDefault<String>(
+                                                      ppirPpirFormsRow
+                                                          ?.ppirAreaAct,
+                                                      '1.5',
+                                                    ),
+                                                  ),
+                                                  focusNode: _model
+                                                      .ppirAreaActFieldFocusNode,
+                                                  autofocus: false,
+                                                  textInputAction:
+                                                      TextInputAction.next,
+                                                  obscureText: false,
+                                                  decoration: InputDecoration(
+                                                    labelText:
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                      'hw506fw0' /* Actual Area Planted */,
+                                                    ),
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
                                                         .labelMedium
                                                         .override(
                                                           fontFamily:
@@ -1902,8 +1950,8 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                                           context)
                                                                       .labelMediumFamily),
                                                         ),
-                                                hintStyle:
-                                                    FlutterFlowTheme.of(context)
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
                                                         .labelMedium
                                                         .override(
                                                           fontFamily:
@@ -1918,64 +1966,72 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                                           context)
                                                                       .labelMediumFamily),
                                                         ),
-                                                enabledBorder:
-                                                    OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .boarderForm,
-                                                    width: 2.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          12.0),
-                                                ),
-                                                focusedBorder:
-                                                    OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
-                                                    width: 2.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          12.0),
-                                                ),
-                                                errorBorder: OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .error,
-                                                    width: 2.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          12.0),
-                                                ),
-                                                focusedErrorBorder:
-                                                    OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .error,
-                                                    width: 2.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          12.0),
-                                                ),
-                                                filled: true,
-                                                fillColor:
-                                                    FlutterFlowTheme.of(context)
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .boarderForm,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    errorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    focusedErrorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    filled: true,
+                                                    fillColor: FlutterFlowTheme
+                                                            .of(context)
                                                         .secondaryBackground,
-                                                contentPadding:
-                                                    const EdgeInsetsDirectional
-                                                        .fromSTEB(16.0, 12.0,
-                                                            16.0, 12.0),
-                                              ),
-                                              style:
-                                                  FlutterFlowTheme.of(context)
+                                                    contentPadding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                16.0,
+                                                                12.0,
+                                                                16.0,
+                                                                12.0),
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
@@ -1990,15 +2046,19 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
-                                              keyboardType: const TextInputType
-                                                  .numberWithOptions(
-                                                  decimal: true),
-                                              cursorColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              validator: _model
-                                                  .ppirAreaActFieldTextControllerValidator
-                                                  .asValidator(context),
+                                                  keyboardType:
+                                                      const TextInputType
+                                                          .numberWithOptions(
+                                                          decimal: true),
+                                                  cursorColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary,
+                                                  validator: _model
+                                                      .ppirAreaActFieldTextControllerValidator
+                                                      .asValidator(context),
+                                                ),
+                                              ),
                                             ),
                                           ),
                                           Padding(
@@ -2294,6 +2354,58 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                           Padding(
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 10.0, 0.0, 10.0),
+                                            child: FFButtonWidget(
+                                              onPressed: () {
+                                                print('Button pressed ...');
+                                              },
+                                              text: ppirPpirFormsRow!
+                                                  .ppirDopdsAct!,
+                                              options: FFButtonOptions(
+                                                width: double.infinity,
+                                                height: 45.0,
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 10.0, 0.0, 10.0),
+                                                iconPadding:
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
+                                                        ),
+                                                elevation: 0.0,
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .boarderForm,
+                                                  width: 2.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(12.0),
+                                              ),
+                                              showLoadingIndicator: false,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 16.0, 0.0, 16.0),
                                             child: Divider(
                                               thickness: 2.0,
@@ -2311,7 +2423,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                       .ppirRemarksFieldTextController ??=
                                                   TextEditingController(
                                                 text: ppirPpirFormsRow
-                                                    ?.ppirRemarks,
+                                                    .ppirRemarks,
                                               ),
                                               focusNode: _model
                                                   .ppirRemarksFieldFocusNode,
@@ -2448,7 +2560,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                       .ppirPreparedByNameFieldTextController ??=
                                                   TextEditingController(
                                                 text: ppirPpirFormsRow
-                                                    ?.ppirNameInsured,
+                                                    .ppirNameInsured,
                                               ),
                                               focusNode: _model
                                                   .ppirPreparedByNameFieldFocusNode,
@@ -2714,7 +2826,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                       .ppirConfirmedByNameFieldTextController ??=
                                                   TextEditingController(
                                                 text: ppirPpirFormsRow
-                                                    ?.ppirNameIuia,
+                                                    .ppirNameIuia,
                                               ),
                                               focusNode: _model
                                                   .ppirConfirmedByNameFieldFocusNode,
@@ -3159,7 +3271,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                       'formSuccess',
                                       queryParameters: {
                                         'taskId': serializeParam(
-                                          ppirPpirFormsRow?.taskId,
+                                          ppirPpirFormsRow.taskId,
                                           ParamType.String,
                                         ),
                                         'type': serializeParam(
@@ -3372,7 +3484,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                             'formSuccess',
                                             queryParameters: {
                                               'taskId': serializeParam(
-                                                ppirPpirFormsRow?.taskId,
+                                                ppirPpirFormsRow.taskId,
                                                 ParamType.String,
                                               ),
                                               'type': serializeParam(
