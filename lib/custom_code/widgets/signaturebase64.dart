@@ -12,135 +12,142 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-// class Signaturebase64 extends StatefulWidget {
-//   const Signaturebase64({
-//     super.key,
-//     this.width,
-//     this.height,
-//     this.blob,
-//   });
-
-//   final double? width;
-//   final double? height;
-//   final String? blob;
-
-//   @override
-//   State<Signaturebase64> createState() => _Signaturebase64State();
-// }
-
-// class _Signaturebase64State extends State<Signaturebase64> {
-//   List<String> _imageUrls = [];
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     if (widget.blob != null) {
-//       _decodeBase64Images(widget.blob!);
-//     }
-//   }
-
-//   void _decodeBase64Images(String base64Data) {
-//     try {
-//       // Split the base64 data in case multiple images are passed
-//       final base64Strings = base64Data.split(',');
-//       setState(() {
-//         _imageUrls = base64Strings
-//             .map((base64String) => 'data:image/png;base64,$base64String')
-//             .toList();
-//       });
-//     } catch (e) {
-//       print('Error decoding base64 images: $e');
-//     }
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       width: widget.width,
-//       height: widget.height,
-//       child: ListView.builder(
-//         scrollDirection: Axis.horizontal,
-//         itemCount: _imageUrls.length,
-//         itemBuilder: (context, index) {
-//           return Padding(
-//             padding: const EdgeInsets.all(8.0),
-//             child: Image.network(
-//               _imageUrls[index],
-//               fit: BoxFit.cover,
-//               width: widget.width,
-//               height: widget.height,
-//             ),
-//           );
-//         },
-//       ),
-//     );
-//   }
-// }
-
-// mar is updating this
 import 'dart:convert';
+import 'dart:typed_data';
 
 class Signaturebase64 extends StatefulWidget {
   const Signaturebase64({
-    Key? key,
+    super.key,
     this.width,
     this.height,
-    this.blob,
-  }) : super(key: key);
+    this.taskId,
+    this.signatureFor,
+  });
 
   final double? width;
   final double? height;
-  final String? blob;
+  final String? taskId;
+  final String? signatureFor;
 
   @override
   State<Signaturebase64> createState() => _Signaturebase64State();
 }
 
 class _Signaturebase64State extends State<Signaturebase64> {
-  List<Uint8List> _imageData = [];
+  Uint8List? _signatureData;
+  String _statusMessage = '';
+  bool _isLoading = false;
+  bool _isDisposed = false;
 
   @override
   void initState() {
     super.initState();
-    if (widget.blob != null) {
-      _decodeBase64Images(widget.blob!);
-    }
+    debugPrint('Signaturebase64: initState called');
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        _loadExistingSignature();
+      }
+    });
   }
 
-  void _decodeBase64Images(String base64Data) {
+  void setStateIfMounted(VoidCallback fn) {
+    if (mounted && !_isDisposed) setState(fn);
+  }
+
+  Future<void> _loadExistingSignature() async {
+    debugPrint('Signaturebase64: Loading existing signature');
+    if (_isDisposed) return;
+    setStateIfMounted(() => _isLoading = true);
     try {
-      // Split the base64 data in case multiple images are passed
-      final base64Strings = base64Data.split(',');
-      setState(() {
-        _imageData = base64Strings
-            .map((base64String) => base64Decode(base64String.trim()))
-            .toList();
-      });
+      if (!FFAppState().ONLINE) {
+        throw Exception('No internet connection');
+      }
+
+      final response = await SupaFlow.client
+          .from('ppir_forms')
+          .select(widget.signatureFor == 'insured'
+              ? 'ppir_sig_insured'
+              : 'ppir_sig_iuia')
+          .eq('task_id', widget.taskId)
+          .single()
+          .execute();
+
+      if (_isDisposed) return;
+
+      if (response.status == 200 && response.data != null) {
+        final signatureBlob = response.data[widget.signatureFor == 'insured'
+            ? 'ppir_sig_insured'
+            : 'ppir_sig_iuia'] as String?;
+        if (signatureBlob != null) {
+          setStateIfMounted(() {
+            _signatureData = base64.decode(signatureBlob);
+            _statusMessage = 'Signature loaded';
+          });
+        } else {
+          setStateIfMounted(() {
+            _statusMessage = 'No signature found';
+          });
+        }
+      }
     } catch (e) {
-      print('Error decoding base64 images: $e');
+      debugPrint('Error loading existing signature: $e');
+      setStateIfMounted(() {
+        _statusMessage = 'Failed to load signature: ${e.toString()}';
+      });
+    } finally {
+      setStateIfMounted(() => _isLoading = false);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: widget.width,
-      height: widget.height,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: _imageData.length,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Image.memory(
-              _imageData[index],
-              fit: BoxFit.cover,
-              width: widget.width,
-              height: widget.height,
+      height: widget.height ?? 230,
+      width: widget.width ?? double.infinity,
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            if (_isLoading)
+              Center(child: CircularProgressIndicator())
+            else if (_signatureData != null)
+              Image.memory(
+                _signatureData!,
+                fit: BoxFit.contain,
+                width: double.infinity,
+                height: double.infinity,
+              )
+            else
+              Center(child: Text('No signature available')),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                color: Colors.black.withOpacity(0.5),
+                padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                child: Text(
+                  _statusMessage,
+                  style: TextStyle(color: Colors.white),
+                  textAlign: TextAlign.center,
+                ),
+              ),
             ),
-          );
-        },
+          ],
+        ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    debugPrint('Signaturebase64: dispose called');
+    _isDisposed = true;
+    super.dispose();
   }
 }
