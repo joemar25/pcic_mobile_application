@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'index.dart'; // Imports other custom widgets
+
 import 'dart:convert';
 import 'dart:typed_data';
 
@@ -35,14 +37,12 @@ class Signaturebase64 extends StatefulWidget {
 
 class _Signaturebase64State extends State<Signaturebase64> {
   Uint8List? _signatureData;
-  String _statusMessage = '';
   bool _isLoading = false;
   bool _isDisposed = false;
 
   @override
   void initState() {
     super.initState();
-    debugPrint('Signaturebase64: initState called');
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
         _loadExistingSignature();
@@ -55,7 +55,6 @@ class _Signaturebase64State extends State<Signaturebase64> {
   }
 
   Future<void> _loadExistingSignature() async {
-    debugPrint('Signaturebase64: Loading existing signature');
     if (_isDisposed) return;
     setStateIfMounted(() => _isLoading = true);
     try {
@@ -81,19 +80,11 @@ class _Signaturebase64State extends State<Signaturebase64> {
         if (signatureBlob != null) {
           setStateIfMounted(() {
             _signatureData = base64.decode(signatureBlob);
-            _statusMessage = 'Signature loaded';
-          });
-        } else {
-          setStateIfMounted(() {
-            _statusMessage = 'No signature found';
           });
         }
       }
     } catch (e) {
       debugPrint('Error loading existing signature: $e');
-      setStateIfMounted(() {
-        _statusMessage = 'Failed to load signature: ${e.toString()}';
-      });
     } finally {
       setStateIfMounted(() => _isLoading = false);
     }
@@ -110,43 +101,22 @@ class _Signaturebase64State extends State<Signaturebase64> {
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8),
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            if (_isLoading)
-              Center(child: CircularProgressIndicator())
-            else if (_signatureData != null)
-              Image.memory(
-                _signatureData!,
-                fit: BoxFit.contain,
-                width: double.infinity,
-                height: double.infinity,
-              )
-            else
-              Center(child: Text('No signature available')),
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Container(
-                color: Colors.black.withOpacity(0.5),
-                padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                child: Text(
-                  _statusMessage,
-                  style: TextStyle(color: Colors.white),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
-          ],
-        ),
+        child: _isLoading
+            ? Center(child: CircularProgressIndicator())
+            : (_signatureData != null
+                ? Image.memory(
+                    _signatureData!,
+                    fit: BoxFit.contain,
+                    width: double.infinity,
+                    height: double.infinity,
+                  )
+                : SizedBox.shrink()),
       ),
     );
   }
 
   @override
   void dispose() {
-    debugPrint('Signaturebase64: dispose called');
     _isDisposed = true;
     super.dispose();
   }
