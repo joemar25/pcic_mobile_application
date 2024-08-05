@@ -81,67 +81,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
     _model.ppirAreaActFieldFocusNode ??= FocusNode();
 
     _model.ppirAreaDopDsFieldFocusNode ??= FocusNode();
-    _model.ppirAreaDopDsFieldFocusNode!.addListener(
-      () async {
-        final datePicked1Date = await showDatePicker(
-          context: context,
-          initialDate: getCurrentTimestamp,
-          firstDate: DateTime(1900),
-          lastDate: DateTime(2050),
-        );
-
-        if (datePicked1Date != null) {
-          safeSetState(() {
-            _model.datePicked1 = DateTime(
-              datePicked1Date.year,
-              datePicked1Date.month,
-              datePicked1Date.day,
-            );
-          });
-        }
-        setState(() {
-          _model.ppirAreaDopDsFieldTextController?.text = dateTimeFormat(
-            'd/M/y',
-            _model.datePicked1,
-            locale: FFLocalizations.of(context).languageCode,
-          );
-          _model.ppirAreaDopDsFieldTextController?.selection =
-              TextSelection.collapsed(
-                  offset: _model.ppirAreaDopDsFieldTextController!.text.length);
-        });
-      },
-    );
 
     _model.ppirAreaDopTpFieldFocusNode ??= FocusNode();
     _model.ppirAreaDopTpFieldFocusNode!.addListener(
-      () async {
-        final datePicked2Date = await showDatePicker(
-          context: context,
-          initialDate: getCurrentTimestamp,
-          firstDate: DateTime(1900),
-          lastDate: DateTime(2050),
-        );
-
-        if (datePicked2Date != null) {
-          safeSetState(() {
-            _model.datePicked2 = DateTime(
-              datePicked2Date.year,
-              datePicked2Date.month,
-              datePicked2Date.day,
-            );
-          });
-        }
-        setState(() {
-          _model.ppirAreaDopTpFieldTextController?.text = dateTimeFormat(
-            'd/M/y',
-            _model.datePicked2,
-            locale: FFLocalizations.of(context).languageCode,
-          );
-          _model.ppirAreaDopTpFieldTextController?.selection =
-              TextSelection.collapsed(
-                  offset: _model.ppirAreaDopTpFieldTextController!.text.length);
-        });
-      },
+      () async {},
     );
 
     _model.ppirRemarksFieldFocusNode ??= FocusNode();
@@ -2323,6 +2266,85 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                             validator: _model
                                                 .ppirAreaDopTpFieldTextControllerValidator
                                                 .asValidator(context),
+                                          ),
+                                          FFButtonWidget(
+                                            onPressed: () async {
+                                              final datePickedDate =
+                                                  await showDatePicker(
+                                                context: context,
+                                                initialDate:
+                                                    getCurrentTimestamp,
+                                                firstDate: DateTime(1900),
+                                                lastDate: DateTime(2050),
+                                              );
+
+                                              if (datePickedDate != null) {
+                                                safeSetState(() {
+                                                  _model.datePicked = DateTime(
+                                                    datePickedDate.year,
+                                                    datePickedDate.month,
+                                                    datePickedDate.day,
+                                                  );
+                                                });
+                                              }
+                                              setState(() {
+                                                _model
+                                                    .ppirAreaDopDsFieldTextController
+                                                    ?.text = dateTimeFormat(
+                                                  'd/M/y',
+                                                  _model.datePicked,
+                                                  locale: FFLocalizations.of(
+                                                          context)
+                                                      .languageCode,
+                                                );
+                                                _model.ppirAreaDopDsFieldTextController
+                                                        ?.selection =
+                                                    TextSelection.collapsed(
+                                                        offset: _model
+                                                            .ppirAreaDopDsFieldTextController!
+                                                            .text
+                                                            .length);
+                                              });
+                                            },
+                                            text: FFLocalizations.of(context)
+                                                .getText(
+                                              's3ddhx27' /* Button */,
+                                            ),
+                                            options: FFButtonOptions(
+                                              height: 40.0,
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      24.0, 0.0, 24.0, 0.0),
+                                              iconPadding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmallFamily,
+                                                        color: Colors.white,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmallFamily),
+                                                      ),
+                                              elevation: 3.0,
+                                              borderSide: const BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
                                           ),
                                           Padding(
                                             padding:

@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    '2jip5coa': {
+    '38jocfy6': {
       'en': '',
       'tl': '',
     },
@@ -253,7 +253,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'cp355i4p': {
+    'kuu8xozj': {
       'en': '',
       'tl': '',
     },
@@ -265,7 +265,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    '3us8kpze': {
+    't7qrawjq': {
       'en': '',
       'tl': '',
     },
@@ -277,7 +277,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'uuwdv9dm': {
+    'v8fw7zeo': {
       'en': '',
       'tl': '',
     },
@@ -332,7 +332,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    'bifpttfk': {
+    '7v8996mc': {
       'en': '',
       'tl': '',
     },
@@ -616,6 +616,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '5xaja5pg': {
       'en': 'Actual Date of Planting (TP)',
+      'tl': '',
+    },
+    's3ddhx27': {
+      'en': 'Button',
       'tl': '',
     },
     '80o0gacf': {
