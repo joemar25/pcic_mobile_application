@@ -225,7 +225,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
           return Scaffold(
-            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            backgroundColor: FlutterFlowTheme.of(context).primary,
             body: const PageLoaderWidget(),
           );
         }
@@ -239,7 +239,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
             onWillPop: () async => false,
             child: Scaffold(
               key: scaffoldKey,
-              backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+              backgroundColor: FlutterFlowTheme.of(context).primary,
               body: SafeArea(
                 top: true,
                 child: Container(
@@ -563,7 +563,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                   errorBuilder: (context, error,
                                                           stackTrace) =>
                                                       Image.asset(
-                                                    'assets/images/error_image.png',
+                                                    'assets/images/error_image.gif',
                                                     fit: BoxFit.cover,
                                                   ),
                                                 ),

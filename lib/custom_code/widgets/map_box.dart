@@ -22,18 +22,22 @@ import 'package:flutter_map_tile_caching/flutter_map_tile_caching.dart' as FMTC;
 import 'package:connectivity_plus/connectivity_plus.dart';
 
 class MapBox extends StatefulWidget {
-  const MapBox({
-    super.key,
+  MapBox({
+    Key? key,
     this.width,
     this.height,
     this.accessToken,
     this.taskId,
-  });
+  }) : super(key: key);
 
   final double? width;
   final double? height;
   final String? accessToken;
   final String? taskId;
+
+  final GlobalKey<_MapBoxState> mapBoxKey = GlobalKey<_MapBoxState>();
+
+  void recenterMap() => mapBoxKey.currentState?.recenterMap();
 
   @override
   State<MapBox> createState() => _MapBoxState();
@@ -401,6 +405,12 @@ class _MapBoxState extends State<MapBox> {
     }
   }
 
+  void recenterMap() {
+    if (_currentLocation != null && _isMapReady) {
+      _mapController.move(_currentLocation!, _currentZoom);
+    }
+  }
+
   @override
   void dispose() {
     _positionStreamSubscription?.cancel();
@@ -444,6 +454,7 @@ class _MapBoxState extends State<MapBox> {
     }
 
     return SizedBox(
+      key: widget.mapBoxKey,
       width: widget.width ?? MediaQuery.of(context).size.width,
       height: widget.height ?? MediaQuery.of(context).size.height,
       child: FlutterMap(
