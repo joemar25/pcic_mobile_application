@@ -2434,6 +2434,124 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                   .asValidator(context),
                                             ),
                                           ),
+                                          FFButtonWidget(
+                                            onPressed: () async {
+                                              await showModalBottomSheet<bool>(
+                                                  context: context,
+                                                  builder: (context) {
+                                                    final datePicked3CupertinoTheme =
+                                                        CupertinoTheme.of(
+                                                            context);
+                                                    return Container(
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height /
+                                                              3,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                      child: CupertinoTheme(
+                                                        data:
+                                                            datePicked3CupertinoTheme
+                                                                .copyWith(
+                                                          textTheme:
+                                                              datePicked3CupertinoTheme
+                                                                  .textTheme
+                                                                  .copyWith(
+                                                            dateTimePickerTextStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .headlineMediumFamily,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryText,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).headlineMediumFamily),
+                                                                    ),
+                                                          ),
+                                                        ),
+                                                        child:
+                                                            CupertinoDatePicker(
+                                                          mode:
+                                                              CupertinoDatePickerMode
+                                                                  .date,
+                                                          minimumDate:
+                                                              DateTime(1900),
+                                                          initialDateTime:
+                                                              getCurrentTimestamp,
+                                                          maximumDate:
+                                                              DateTime(2050),
+                                                          backgroundColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .secondaryBackground,
+                                                          use24hFormat: false,
+                                                          onDateTimeChanged:
+                                                              (newDateTime) =>
+                                                                  safeSetState(
+                                                                      () {
+                                                            _model.datePicked3 =
+                                                                newDateTime;
+                                                          }),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  });
+                                            },
+                                            text: FFLocalizations.of(context)
+                                                .getText(
+                                              '65ujsode' /* Button */,
+                                            ),
+                                            options: FFButtonOptions(
+                                              width: double.infinity,
+                                              height: 40.0,
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      24.0, 0.0, 24.0, 0.0),
+                                              iconPadding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmallFamily,
+                                                        color: Colors.white,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmallFamily),
+                                                      ),
+                                              elevation: 3.0,
+                                              borderSide: const BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                          ),
                                           Padding(
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(

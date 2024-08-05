@@ -12,18 +12,23 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'index.dart'; // Imports other custom widgets
+
+import 'dart:convert';
 import 'package:signature/signature.dart';
 import 'dart:typed_data';
 import 'package:intl/intl.dart';
+import 'dart:ui' as ui;
+import 'package:image_picker/image_picker.dart';
 
 class CustomSignature extends StatefulWidget {
   const CustomSignature({
-    super.key,
+    Key? key,
     this.width,
     this.height,
     required this.taskId,
     this.signatureFor,
-  });
+  }) : super(key: key);
 
   final double? width;
   final double? height;
@@ -34,191 +39,221 @@ class CustomSignature extends StatefulWidget {
   State<CustomSignature> createState() => _CustomSignatureState();
 }
 
-class _CustomSignatureState extends State<CustomSignature> {
+class _CustomSignatureState extends State<CustomSignature>
+    with AutomaticKeepAliveClientMixin {
   late SignatureController _controller;
   Uint8List? _signatureData;
   String? _fileName;
+  final ImagePicker _picker = ImagePicker();
+  String _statusMessage = '';
+  bool _isLoading = false;
+  bool _isDisposed = false;
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
     super.initState();
+    debugPrint('CustomSignature: initState called');
     _controller = SignatureController(
       penStrokeWidth: 2,
       penColor: Colors.black,
       exportBackgroundColor: Colors.white,
     );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  Future<void> _saveSignature() async {
-    if (_controller.isNotEmpty) {
-      try {
-        _signatureData = await _controller.toPngBytes();
-        if (_signatureData != null) {
-          _fileName =
-              'signature_${DateFormat('yyyyMMdd_HHmmss').format(DateTime.now())}.png';
-
-          // Query the tasks table to get service_group and task_number
-          final taskResponse = await SupaFlow.client
-              .from('tasks')
-              .select('service_group, task_number, assignee')
-              .eq('id', widget.taskId)
-              .single()
-              .execute();
-
-          if (taskResponse.status != 200 || taskResponse.data == null) {
-            throw Exception(
-                'Error querying tasks table: ${taskResponse.status}');
-          }
-
-          final taskData = taskResponse.data as Map<String, dynamic>;
-          final String serviceGroup = taskData['service_group'] ?? '';
-          final String taskNumber = taskData['task_number'] ?? '';
-
-          // Get the current user's email
-          final currentUser = SupaFlow.client.auth.currentUser;
-          final String userEmail =
-              currentUser?.email ?? taskData['assignee'] ?? '';
-
-          if (userEmail.isEmpty) {
-            throw Exception('Unable to get user email');
-          }
-
-          // Define the file path in the bucket
-          final filePath =
-              '$serviceGroup/$userEmail/$taskNumber/attachments/$_fileName';
-
-          // Upload the signature file to Supabase storage
-          final response =
-              await SupaFlow.client.storage.from('for_ftp').uploadBinary(
-                    filePath,
-                    _signatureData!,
-                    fileOptions: FileOptions(
-                      contentType: 'image/png',
-                      upsert: true,
-                    ),
-                  );
-
-          if (response != null) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Signature saved successfully')),
-            );
-
-            final String publicUrl =
-                SupaFlow.client.storage.from('for_ftp').getPublicUrl(filePath);
-
-            print('Signature URL: $publicUrl');
-
-            try {
-              final response = await SupaFlow.client.from('ppir_forms').update({
-                'ppir_sig_insured': filePath,
-              }).eq('task_id', widget.taskId);
-
-              print('Update response: $response');
-            } catch (e) {
-              print('Error updating ppir_forms: $e');
-              // Handle the error appropriately
-            }
-
-            print('ppir_forms table updated with signature file path');
-          } else {
-            throw Exception('Error uploading signature file');
-          }
-        }
-      } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('An error occurred while saving: $e')),
-        );
+    _fileName = widget.signatureFor == 'insured' ? 'insured.png' : 'iuia.png';
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        _loadExistingSignature();
       }
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please draw a signature before saving')),
-      );
+    });
+  }
+
+  void setStateIfMounted(VoidCallback fn) {
+    if (mounted && !_isDisposed) setState(fn);
+  }
+
+  Future<void> _loadExistingSignature() async {
+    debugPrint('CustomSignature: Loading existing signature');
+    if (_isDisposed) return;
+    setStateIfMounted(() => _isLoading = true);
+    try {
+      if (!FFAppState().ONLINE) {
+        throw Exception('No internet connection');
+      }
+
+      final response = await SupaFlow.client
+          .from('ppir_forms')
+          .select(widget.signatureFor == 'insured'
+              ? 'ppir_sig_insured'
+              : 'ppir_sig_iuia')
+          .eq('task_id', widget.taskId)
+          .single()
+          .execute();
+
+      if (_isDisposed) return;
+
+      if (response.status == 200 && response.data != null) {
+        final signatureBlob = response.data[widget.signatureFor == 'insured'
+            ? 'ppir_sig_insured'
+            : 'ppir_sig_iuia'] as String?;
+        if (signatureBlob != null) {
+          setStateIfMounted(() {
+            _signatureData = base64.decode(signatureBlob);
+            _statusMessage = 'Existing signature loaded';
+          });
+        }
+      }
+    } catch (e) {
+      debugPrint('Error loading existing signature: $e');
+      setStateIfMounted(() {
+        _statusMessage = 'Failed to load existing signature: ${e.toString()}';
+      });
+    } finally {
+      setStateIfMounted(() => _isLoading = false);
+    }
+  }
+
+  Future<void> _pickImageAndConvertToBase64() async {
+    debugPrint('CustomSignature: Picking image');
+    if (_isDisposed) return;
+    setStateIfMounted(() => _isLoading = true);
+    try {
+      final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+      if (image == null) {
+        debugPrint('No image selected');
+        return;
+      }
+
+      final Uint8List imageBytes = await image.readAsBytes();
+      final String base64String = base64.encode(imageBytes);
+
+      if (_isDisposed) return;
+      setStateIfMounted(() {
+        _signatureData = imageBytes;
+        _statusMessage = 'Signature image uploaded';
+      });
+
+      await _saveSignatureToDatabase(base64String);
+    } catch (e) {
+      debugPrint('Error picking image: $e');
+      setStateIfMounted(() {
+        _statusMessage = 'Failed to pick image: ${e.toString()}';
+      });
+    } finally {
+      setStateIfMounted(() => _isLoading = false);
+    }
+  }
+
+  Future<void> _saveSignatureToDatabase(String base64Signature) async {
+    debugPrint('CustomSignature: Saving signature to database');
+    if (_isDisposed) return;
+    try {
+      if (!FFAppState().ONLINE) {
+        throw Exception('No internet connection');
+      }
+
+      final updateField = widget.signatureFor == 'insured'
+          ? 'ppir_sig_insured'
+          : 'ppir_sig_iuia';
+
+      final response = await SupaFlow.client.from('ppir_forms').update({
+        updateField: base64Signature,
+      }).eq('task_id', widget.taskId);
+
+      debugPrint('Update response: $response');
+      setStateIfMounted(() {
+        _statusMessage = 'Signature saved successfully';
+      });
+    } catch (e) {
+      debugPrint('Error updating ppir_forms: $e');
+      setStateIfMounted(() {
+        _statusMessage = 'Failed to save signature: ${e.toString()}';
+      });
     }
   }
 
   Future<void> _clearSignature() async {
+    debugPrint('CustomSignature: Clearing signature');
+    if (_isDisposed) return;
     _controller.clear();
-    if (_fileName != null) {
-      try {
-        // Query the tasks table to get service_group and task_number
-        final taskResponse = await SupaFlow.client
-            .from('tasks')
-            .select('service_group, task_number, assignee')
-            .eq('id', widget.taskId)
-            .single()
-            .execute();
+    setStateIfMounted(() {
+      _signatureData = null;
+      _statusMessage = 'Signature cleared';
+    });
 
-        if (taskResponse.status != 200 || taskResponse.data == null) {
-          throw Exception('Error querying tasks table: ${taskResponse.status}');
-        }
-
-        final taskData = taskResponse.data as Map<String, dynamic>;
-        final String serviceGroup = taskData['service_group'] ?? '';
-        final String taskNumber = taskData['task_number'] ?? '';
-
-        // Get the current user's email
-        final currentUser = SupaFlow.client.auth.currentUser;
-        final String userEmail =
-            currentUser?.email ?? taskData['assignee'] ?? '';
-
-        if (userEmail.isEmpty) {
-          throw Exception('Unable to get user email');
-        }
-
-        final filePath =
-            '$serviceGroup/$userEmail/$taskNumber/attachments/$_fileName';
-
-        await SupaFlow.client.storage.from('for_ftp').remove([filePath]);
-
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-              content: Text('Signature cleared and deleted from storage')),
-        );
-        _fileName = null;
-
-        try {
-          final response = await SupaFlow.client.from('ppir_forms').update({
-            'ppir_sig_insured': filePath,
-          }).eq('task_id', widget.taskId);
-
-          print('Update response: $response');
-        } catch (e) {
-          print('Error updating ppir_forms: $e');
-          // Handle the error appropriately
-        }
-
-        print('ppir_forms table updated to remove signature file path');
-      } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('An error occurred while deleting: $e')),
-        );
+    try {
+      if (!FFAppState().ONLINE) {
+        throw Exception('No internet connection');
       }
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('No signature file to delete')),
-      );
+
+      final updateField = widget.signatureFor == 'insured'
+          ? 'ppir_sig_insured'
+          : 'ppir_sig_iuia';
+
+      final response = await SupaFlow.client.from('ppir_forms').update({
+        updateField: null,
+      }).eq('task_id', widget.taskId);
+
+      debugPrint('Clear signature response: $response');
+    } catch (e) {
+      debugPrint('Error clearing signature: $e');
+      setStateIfMounted(() {
+        _statusMessage =
+            'Failed to clear signature from database: ${e.toString()}';
+      });
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Column(
       children: [
         Container(
           height: 230,
+          width: widget.width ?? double.infinity,
           decoration: BoxDecoration(
             border: Border.all(color: Colors.grey),
             borderRadius: BorderRadius.circular(8),
           ),
-          child: Signature(
-            controller: _controller,
-            backgroundColor: Colors.white,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                if (_isLoading)
+                  Center(child: CircularProgressIndicator())
+                else if (_signatureData != null)
+                  Image.memory(
+                    _signatureData!,
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: double.infinity,
+                  )
+                else
+                  Signature(
+                    controller: _controller,
+                    backgroundColor: Colors.white,
+                    width: double.infinity,
+                    height: double.infinity,
+                  ),
+                Positioned(
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Container(
+                    color: Colors.black.withOpacity(0.5),
+                    padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                    child: Text(
+                      _statusMessage,
+                      style: TextStyle(color: Colors.white),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         const SizedBox(height: 20),
@@ -226,16 +261,64 @@ class _CustomSignatureState extends State<CustomSignature> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             ElevatedButton(
-              onPressed: _clearSignature,
+              onPressed: _isLoading ? null : _clearSignature,
               child: const Text('Clear'),
             ),
             ElevatedButton(
-              onPressed: _saveSignature,
-              child: const Text('Save'),
+              onPressed: (_isLoading || !FFAppState().ONLINE)
+                  ? null
+                  : _pickImageAndConvertToBase64,
+              child: const Text('Upload Signature'),
+            ),
+            ElevatedButton(
+              onPressed: _isLoading
+                  ? null
+                  : () async {
+                      if (_controller.isNotEmpty) {
+                        setStateIfMounted(() => _isLoading = true);
+                        try {
+                          if (!FFAppState().ONLINE) {
+                            throw Exception('No internet connection');
+                          }
+                          final Uint8List? data =
+                              await _controller.toPngBytes();
+                          if (data != null && !_isDisposed) {
+                            final String base64String = base64.encode(data);
+                            await _saveSignatureToDatabase(base64String);
+                            setStateIfMounted(() {
+                              _signatureData = data;
+                              _statusMessage = 'Drawn signature saved';
+                            });
+                          }
+                        } catch (e) {
+                          debugPrint('Error saving drawn signature: $e');
+                          setStateIfMounted(() {
+                            _statusMessage =
+                                'Failed to save drawn signature: ${e.toString()}';
+                          });
+                        } finally {
+                          setStateIfMounted(() => _isLoading = false);
+                        }
+                      } else {
+                        setStateIfMounted(() {
+                          _statusMessage =
+                              'Please draw a signature before saving';
+                        });
+                      }
+                    },
+              child: const Text('Save Drawn Signature'),
             ),
           ],
         ),
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    debugPrint('CustomSignature: dispose called');
+    _isDisposed = true;
+    _controller.dispose();
+    super.dispose();
   }
 }
