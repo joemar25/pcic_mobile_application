@@ -12,7 +12,7 @@ import '/utils/components/page_loader/page_loader_widget.dart';
 import '/utils/components/signature/signature_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
-import 'package:flutter/cupertino.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -83,90 +83,12 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
 
     _model.ppirAreaDopDsFieldFocusNode ??= FocusNode();
     _model.ppirAreaDopDsFieldFocusNode!.addListener(
-      () async {
-        await showModalBottomSheet<bool>(
-            context: context,
-            builder: (context) {
-              final datePicked1CupertinoTheme = CupertinoTheme.of(context);
-              return Container(
-                height: MediaQuery.of(context).size.height / 3,
-                width: MediaQuery.of(context).size.width,
-                color: FlutterFlowTheme.of(context).secondaryBackground,
-                child: CupertinoTheme(
-                  data: datePicked1CupertinoTheme.copyWith(
-                    textTheme: datePicked1CupertinoTheme.textTheme.copyWith(
-                      dateTimePickerTextStyle:
-                          FlutterFlowTheme.of(context).headlineMedium.override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .headlineMediumFamily,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                letterSpacing: 0.0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .headlineMediumFamily),
-                              ),
-                    ),
-                  ),
-                  child: CupertinoDatePicker(
-                    mode: CupertinoDatePickerMode.date,
-                    minimumDate: DateTime(1900),
-                    initialDateTime: getCurrentTimestamp,
-                    maximumDate: DateTime(2050),
-                    backgroundColor:
-                        FlutterFlowTheme.of(context).secondaryBackground,
-                    use24hFormat: false,
-                    onDateTimeChanged: (newDateTime) => safeSetState(() {
-                      _model.datePicked1 = newDateTime;
-                    }),
-                  ),
-                ),
-              );
-            });
-      },
+      () async {},
     );
 
     _model.ppirAreaDopTpFieldFocusNode ??= FocusNode();
     _model.ppirAreaDopTpFieldFocusNode!.addListener(
-      () async {
-        await showModalBottomSheet<bool>(
-            context: context,
-            builder: (context) {
-              final datePicked2CupertinoTheme = CupertinoTheme.of(context);
-              return Container(
-                height: MediaQuery.of(context).size.height / 3,
-                width: MediaQuery.of(context).size.width,
-                color: FlutterFlowTheme.of(context).secondaryBackground,
-                child: CupertinoTheme(
-                  data: datePicked2CupertinoTheme.copyWith(
-                    textTheme: datePicked2CupertinoTheme.textTheme.copyWith(
-                      dateTimePickerTextStyle:
-                          FlutterFlowTheme.of(context).headlineMedium.override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .headlineMediumFamily,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                letterSpacing: 0.0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .headlineMediumFamily),
-                              ),
-                    ),
-                  ),
-                  child: CupertinoDatePicker(
-                    mode: CupertinoDatePickerMode.date,
-                    minimumDate: DateTime(1900),
-                    initialDateTime: getCurrentTimestamp,
-                    maximumDate: DateTime(2050),
-                    backgroundColor:
-                        FlutterFlowTheme.of(context).secondaryBackground,
-                    use24hFormat: false,
-                    onDateTimeChanged: (newDateTime) => safeSetState(() {
-                      _model.datePicked2 = newDateTime;
-                    }),
-                  ),
-                ),
-              );
-            });
-      },
+      () async {},
     );
 
     _model.ppirRemarksFieldFocusNode ??= FocusNode();
@@ -2092,10 +2014,17 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               ),
                                               focusNode: _model
                                                   .ppirAreaDopDsFieldFocusNode,
+                                              onChanged: (_) =>
+                                                  EasyDebounce.debounce(
+                                                '_model.ppirAreaDopDsFieldTextController',
+                                                const Duration(milliseconds: 2000),
+                                                () => setState(() {}),
+                                              ),
                                               autofocus: false,
+                                              textCapitalization:
+                                                  TextCapitalization.none,
                                               textInputAction:
                                                   TextInputAction.next,
-                                              readOnly: true,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 labelText:
@@ -2230,10 +2159,17 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               ),
                                               focusNode: _model
                                                   .ppirAreaDopTpFieldFocusNode,
+                                              onChanged: (_) =>
+                                                  EasyDebounce.debounce(
+                                                '_model.ppirAreaDopTpFieldTextController',
+                                                const Duration(milliseconds: 2000),
+                                                () => setState(() {}),
+                                              ),
                                               autofocus: false,
+                                              textCapitalization:
+                                                  TextCapitalization.none,
                                               textInputAction:
                                                   TextInputAction.next,
-                                              readOnly: true,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 labelText:

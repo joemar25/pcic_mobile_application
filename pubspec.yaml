@@ -33,6 +33,7 @@ dependencies:
   connectivity_plus: ^6.0.4
   csv: 6.0.0
   dropdown_button2: 2.3.9
+  easy_debounce: 2.0.1
   elegant_notification: ^1.11.2
   equatable: 2.0.5
   file_picker: 8.0.3

@@ -2793,20 +2793,14 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                             context)
                                                                         .width *
                                                                     0.8,
-                                                                height: MediaQuery.sizeOf(
-                                                                            context)
-                                                                        .height *
-                                                                    0.2,
+                                                                height: 230.0,
                                                                 child: custom_widgets
                                                                     .Signaturebase64(
                                                                   width: MediaQuery.sizeOf(
                                                                               context)
                                                                           .width *
                                                                       0.8,
-                                                                  height: MediaQuery.sizeOf(
-                                                                              context)
-                                                                          .height *
-                                                                      0.2,
+                                                                  height: 230.0,
                                                                   taskId: widget
                                                                       .taskId,
                                                                   signatureFor:
