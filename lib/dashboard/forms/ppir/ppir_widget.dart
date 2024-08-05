@@ -81,27 +81,8 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
 
     _model.ppirAreaActFieldFocusNode ??= FocusNode();
 
+    _model.ppirAreaDopDsFieldTextController ??= TextEditingController();
     _model.ppirAreaDopDsFieldFocusNode ??= FocusNode();
-    _model.ppirAreaDopDsFieldFocusNode!.addListener(
-      () async {
-        final datePicked1Date = await showDatePicker(
-          context: context,
-          initialDate: getCurrentTimestamp,
-          firstDate: DateTime(1900),
-          lastDate: DateTime(2050),
-        );
-
-        if (datePicked1Date != null) {
-          safeSetState(() {
-            _model.datePicked1 = DateTime(
-              datePicked1Date.year,
-              datePicked1Date.month,
-              datePicked1Date.day,
-            );
-          });
-        }
-      },
-    );
 
     _model.ppirAreaDopTpFieldFocusNode ??= FocusNode();
     _model.ppirAreaDopTpFieldFocusNode!.addListener(
@@ -164,6 +145,14 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
           !anim.applyInitialState),
       this,
     );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {
+          _model.ppirAreaDopDsFieldTextController?.text = dateTimeFormat(
+            'd/M/y',
+            _model.datePicked2,
+            locale: FFLocalizations.of(context).languageCode,
+          );
+        }));
   }
 
   @override
@@ -2041,18 +2030,35 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                     0.0, 10.0, 0.0, 10.0),
                                             child: TextFormField(
                                               controller: _model
-                                                      .ppirAreaDopDsFieldTextController ??=
-                                                  TextEditingController(
-                                                text: ppirPpirFormsRow
-                                                    ?.ppirDopdsAct,
-                                              ),
+                                                  .ppirAreaDopDsFieldTextController,
                                               focusNode: _model
                                                   .ppirAreaDopDsFieldFocusNode,
                                               onChanged: (_) =>
                                                   EasyDebounce.debounce(
                                                 '_model.ppirAreaDopDsFieldTextController',
                                                 const Duration(milliseconds: 2000),
-                                                () => setState(() {}),
+                                                () async {
+                                                  final datePicked1Date =
+                                                      await showDatePicker(
+                                                    context: context,
+                                                    initialDate:
+                                                        getCurrentTimestamp,
+                                                    firstDate: DateTime(1900),
+                                                    lastDate: DateTime(2050),
+                                                  );
+
+                                                  if (datePicked1Date !=
+                                                      null) {
+                                                    safeSetState(() {
+                                                      _model.datePicked1 =
+                                                          DateTime(
+                                                        datePicked1Date.year,
+                                                        datePicked1Date.month,
+                                                        datePicked1Date.day,
+                                                      );
+                                                    });
+                                                  }
+                                                },
                                               ),
                                               autofocus: false,
                                               textCapitalization:
@@ -2351,8 +2357,13 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                   });
                                                 }
                                               },
-                                              text: ppirPpirFormsRow!
-                                                  .ppirDopdsAct!,
+                                              text: dateTimeFormat(
+                                                'd/M/y',
+                                                _model.datePicked3,
+                                                locale:
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                              ),
                                               options: FFButtonOptions(
                                                 width: double.infinity,
                                                 height: 45.0,
@@ -2415,7 +2426,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                       .ppirRemarksFieldTextController ??=
                                                   TextEditingController(
                                                 text: ppirPpirFormsRow
-                                                    .ppirRemarks,
+                                                    ?.ppirRemarks,
                                               ),
                                               focusNode: _model
                                                   .ppirRemarksFieldFocusNode,
@@ -2552,7 +2563,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                       .ppirPreparedByNameFieldTextController ??=
                                                   TextEditingController(
                                                 text: ppirPpirFormsRow
-                                                    .ppirNameInsured,
+                                                    ?.ppirNameInsured,
                                               ),
                                               focusNode: _model
                                                   .ppirPreparedByNameFieldFocusNode,
@@ -2818,7 +2829,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                       .ppirConfirmedByNameFieldTextController ??=
                                                   TextEditingController(
                                                 text: ppirPpirFormsRow
-                                                    .ppirNameIuia,
+                                                    ?.ppirNameIuia,
                                               ),
                                               focusNode: _model
                                                   .ppirConfirmedByNameFieldFocusNode,
@@ -3263,7 +3274,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                       'formSuccess',
                                       queryParameters: {
                                         'taskId': serializeParam(
-                                          ppirPpirFormsRow.taskId,
+                                          ppirPpirFormsRow?.taskId,
                                           ParamType.String,
                                         ),
                                         'type': serializeParam(
@@ -3476,7 +3487,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                             'formSuccess',
                                             queryParameters: {
                                               'taskId': serializeParam(
-                                                ppirPpirFormsRow.taskId,
+                                                ppirPpirFormsRow?.taskId,
                                                 ParamType.String,
                                               ),
                                               'type': serializeParam(
