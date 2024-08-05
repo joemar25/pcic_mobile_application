@@ -75,21 +75,64 @@ class _MapBoxState extends State<MapBox> {
   Future<void> _initializeTileProvider() async {
     final stats = FMTC.FMTCRoot.stats;
     final stores = await stats.storesAvailable;
-    if (stores.length >= 2) {
-      _storeName = stores[1].storeName;
-    } else if (stores.isNotEmpty) {
-      _storeName = stores[0].storeName;
-    } else {
+
+    if (stores.isEmpty) {
       print("No stores available");
       return;
     }
 
-    _tileProvider = FMTC.FMTCStore(_storeName!).getTileProvider(
-      settings: FMTC.FMTCTileProviderSettings(
-        behavior: FMTC.CacheBehavior.cacheFirst,
-      ),
-    );
-    setState(() {}); // Trigger rebuild with the new tile provider
+    // Get the current location
+    Position position = await _getCurrentPositionWithRetry();
+    ll.LatLng currentLocation =
+        ll.LatLng(position.latitude, position.longitude);
+
+    // Find a store that contains the current location
+    for (var store in stores) {
+      final md = FMTC.FMTCStore(store.storeName).metadata;
+      final metadata = await md.read;
+      if (metadata.containsKey('region_north') &&
+          metadata.containsKey('region_south') &&
+          metadata.containsKey('region_east') &&
+          metadata.containsKey('region_west')) {
+        final north = double.parse(metadata['region_north'] as String);
+        final south = double.parse(metadata['region_south'] as String);
+        final east = double.parse(metadata['region_east'] as String);
+        final west = double.parse(metadata['region_west'] as String);
+        final region = {
+          'north': north,
+          'south': south,
+          'east': east,
+          'west': west,
+        };
+        if (_isLocationInRegion(currentLocation, region)) {
+          _storeName = store.storeName;
+          break;
+        }
+      }
+    }
+
+    // If no matching store found, use the first store
+    if (_storeName == null && stores.isNotEmpty) {
+      _storeName = stores[0].storeName;
+    }
+
+    if (_storeName != null) {
+      _tileProvider = FMTC.FMTCStore(_storeName!).getTileProvider(
+        settings: FMTC.FMTCTileProviderSettings(
+          behavior: FMTC.CacheBehavior.cacheFirst,
+        ),
+      );
+      setState(() {}); // Trigger rebuild with the new tile provider
+    } else {
+      print("No suitable store found");
+    }
+  }
+
+  bool _isLocationInRegion(ll.LatLng location, Map<String, double> region) {
+    return location.latitude >= region['south']! &&
+        location.latitude <= region['north']! &&
+        location.longitude >= region['west']! &&
+        location.longitude <= region['east']!;
   }
 
   // Initialization of current marker

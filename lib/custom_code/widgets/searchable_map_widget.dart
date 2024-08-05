@@ -63,6 +63,16 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
     });
   }
 
+  Future<void> _saveStoreRegion(String storeName, LatLngBounds bounds) async {
+    final md = FMTC.FMTCStore(storeName).metadata;
+    await md.setBulk(kvs: {
+      'region_north': bounds.north.toString(),
+      'region_south': bounds.south.toString(),
+      'region_east': bounds.east.toString(),
+      'region_west': bounds.west.toString(),
+    });
+  }
+
   void _updateBoundaryBox() {
     if (!_mounted) return;
     setState(() {
@@ -231,6 +241,7 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
         });
 
         if (progress.isComplete) {
+          _saveStoreRegion(storeName, _boundaryBox!);
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
                 content: Text('Map download completed for $_selectedAddress')),
