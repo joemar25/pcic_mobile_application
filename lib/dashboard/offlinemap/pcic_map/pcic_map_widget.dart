@@ -267,7 +267,9 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                                                   listOfDownloadsItem
                                                       .rawStoreName,
                                                 );
-
+                                                FFAppState()
+                                                    .removeAtIndexFromListOfMapDownloads(
+                                                        listOfDownloadsIndex);
                                                 setState(() {});
                                               },
                                             ),
