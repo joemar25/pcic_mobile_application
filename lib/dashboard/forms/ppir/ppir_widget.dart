@@ -2023,6 +2023,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                               .none,
                                                       textInputAction:
                                                           TextInputAction.next,
+                                                      readOnly: true,
                                                       obscureText: false,
                                                       decoration:
                                                           InputDecoration(
