@@ -121,6 +121,12 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInListOfMapDownloads(int index, MapStatsStruct value) {
     listOfMapDownloads.insert(index, value);
   }
+
+  String _mapBoxKeyString = '';
+  String get mapBoxKeyString => _mapBoxKeyString;
+  set mapBoxKeyString(String value) {
+    _mapBoxKeyString = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {

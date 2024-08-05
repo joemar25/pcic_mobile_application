@@ -11,11 +11,13 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'package:p_c_i_c_mobile_app/custom_code/widgets/map_box.dart';
-
-Future centerMap(BuildContext context) async {
-  final mapBoxWidget = context.findAncestorWidgetOfExactType<MapBox>();
-  if (mapBoxWidget != null) {
+Future centerMap(
+  BuildContext context,
+  String mapBoxKeyString,
+) async {
+  // Add your function code here!
+  final mapBoxWidget = context.findRootAncestorStateOfType<State<MapBox>>();
+  if (mapBoxWidget != null && mapBoxWidget is _MapBoxState) {
     mapBoxWidget.recenterMap();
   } else {
     print('MapBox widget not found in the widget tree');

@@ -28,16 +28,12 @@ class MapBox extends StatefulWidget {
     this.height,
     this.accessToken,
     this.taskId,
-  }) : super(key: key);
+  });
 
   final double? width;
   final double? height;
   final String? accessToken;
   final String? taskId;
-
-  final GlobalKey<_MapBoxState> mapBoxKey = GlobalKey<_MapBoxState>();
-
-  void recenterMap() => mapBoxKey.currentState?.recenterMap();
 
   @override
   State<MapBox> createState() => _MapBoxState();
@@ -453,68 +449,80 @@ class _MapBoxState extends State<MapBox> {
       return const Center(child: CircularProgressIndicator());
     }
 
-    return SizedBox(
-      key: widget.mapBoxKey,
-      width: widget.width ?? MediaQuery.of(context).size.width,
-      height: widget.height ?? MediaQuery.of(context).size.height,
-      child: FlutterMap(
-        mapController: _mapController,
-        options: MapOptions(
-          initialCenter: _currentLocation!,
-          initialZoom: _currentZoom,
-          minZoom: 16,
-          maxZoom: 22,
-          onMapReady: () {
-            setState(() {
-              _isMapReady = true;
-            });
-          },
+    return Stack(
+      children: [
+        SizedBox(
+          width: widget.width ?? MediaQuery.of(context).size.width,
+          height: widget.height ?? MediaQuery.of(context).size.height,
+          child: FlutterMap(
+            mapController: _mapController,
+            options: MapOptions(
+              initialCenter: _currentLocation!,
+              initialZoom: _currentZoom,
+              minZoom: 16,
+              maxZoom: 22,
+              onMapReady: () {
+                setState(() {
+                  _isMapReady = true;
+                });
+              },
+            ),
+            children: [
+              TileLayer(
+                urlTemplate:
+                    'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}@2x?access_token=${widget.accessToken}',
+                additionalOptions: {
+                  'accessToken': widget.accessToken ?? '',
+                },
+                tileProvider: _tileProvider,
+              ),
+              CurrentLocationLayer(
+                alignPositionOnUpdate: AlignOnUpdate.always,
+                alignDirectionStream: null,
+                style: LocationMarkerStyle(
+                  marker: const DefaultLocationMarker(color: Colors.green),
+                  markerSize: const Size(15, 15),
+                  markerDirection: MarkerDirection.heading,
+                  accuracyCircleColor: Colors.green.withOpacity(0.2),
+                  headingSectorColor: Colors.green.withOpacity(0.8),
+                ),
+                alignDirectionAnimationDuration: Duration(milliseconds: 100),
+              ),
+              if (_isTracking)
+                PolylineLayer(
+                  polylines: [
+                    Polyline(
+                      points: _routeCoordinates,
+                      strokeWidth: 4.0,
+                      color: Colors.blue,
+                    ),
+                  ],
+                ),
+              if (!_isTracking && _routeCoordinates.isNotEmpty)
+                PolygonLayer(
+                  polygons: [
+                    Polygon(
+                      points: _routeCoordinates,
+                      color: Colors.blue.withOpacity(0.2),
+                      borderColor: Colors.blue,
+                      borderStrokeWidth: 3,
+                    ),
+                  ],
+                ),
+              MarkerLayer(markers: _cornerMarkers),
+            ],
+          ),
         ),
-        children: [
-          TileLayer(
-            urlTemplate:
-                'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}@2x?access_token=${widget.accessToken}',
-            additionalOptions: {
-              'accessToken': widget.accessToken ?? '',
-            },
-            tileProvider: _tileProvider,
+        Positioned(
+          top: 10,
+          right: 10,
+          child: FloatingActionButton(
+            mini: true,
+            child: Icon(Icons.center_focus_strong),
+            onPressed: recenterMap,
           ),
-          CurrentLocationLayer(
-            alignPositionOnUpdate: AlignOnUpdate.always,
-            alignDirectionStream: null,
-            style: LocationMarkerStyle(
-              marker: const DefaultLocationMarker(color: Colors.green),
-              markerSize: const Size(15, 15),
-              markerDirection: MarkerDirection.heading,
-              accuracyCircleColor: Colors.green.withOpacity(0.2),
-              headingSectorColor: Colors.green.withOpacity(0.8),
-            ),
-            alignDirectionAnimationDuration: Duration(milliseconds: 100),
-          ),
-          if (_isTracking)
-            PolylineLayer(
-              polylines: [
-                Polyline(
-                  points: _routeCoordinates,
-                  strokeWidth: 4.0,
-                  color: Colors.blue,
-                ),
-              ],
-            ),
-          if (!_isTracking && _routeCoordinates.isNotEmpty)
-            PolygonLayer(
-              polygons: [
-                Polygon(
-                  points: _routeCoordinates,
-                  color: Colors.blue.withOpacity(0.2),
-                  borderColor: Colors.blue,
-                  borderStrokeWidth: 3,
-                ),
-              ],
-            ),
-          MarkerLayer(markers: _cornerMarkers),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

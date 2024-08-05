@@ -247,10 +247,9 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                                   color: Colors.white,
                                                   size: 20.0,
                                                 ),
-                                                onPressed: () async {
-                                                  await actions.centerMap(
-                                                    context,
-                                                  );
+                                                onPressed: () {
+                                                  print(
+                                                      'IconButton pressed ...');
                                                 },
                                               ),
                                             ),
