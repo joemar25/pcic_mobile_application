@@ -229,31 +229,6 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                               ),
                                             ),
                                           ),
-                                          Align(
-                                            alignment: const AlignmentDirectional(
-                                                0.85, -0.4),
-                                            child: Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      0.0, 50.0, 0.0, 0.0),
-                                              child: FlutterFlowIconButton(
-                                                borderColor: Colors.transparent,
-                                                borderRadius: 30.0,
-                                                borderWidth: 1.0,
-                                                buttonSize: 40.0,
-                                                fillColor: const Color(0x7F0F1113),
-                                                icon: const Icon(
-                                                  Icons.location_pin,
-                                                  color: Colors.white,
-                                                  size: 20.0,
-                                                ),
-                                                onPressed: () {
-                                                  print(
-                                                      'IconButton pressed ...');
-                                                },
-                                              ),
-                                            ),
-                                          ),
                                         ],
                                       ),
                                     ),

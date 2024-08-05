@@ -514,12 +514,30 @@ class _MapBoxState extends State<MapBox> {
           ),
         ),
         Positioned(
-          top: 10,
-          right: 10,
-          child: FloatingActionButton(
-            mini: true,
-            child: Icon(Icons.center_focus_strong),
-            onPressed: recenterMap,
+          top: 50,
+          right: 20,
+          child: Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              color: Color(0x7f0f1113),
+              shape: BoxShape.circle,
+              border: Border.all(color: Colors.transparent, width: 1),
+            ),
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(30),
+                onTap: recenterMap,
+                child: Center(
+                  child: Icon(
+                    Icons.center_focus_strong,
+                    color: Colors.white,
+                    size: 24,
+                  ),
+                ),
+              ),
+            ),
           ),
         ),
       ],
