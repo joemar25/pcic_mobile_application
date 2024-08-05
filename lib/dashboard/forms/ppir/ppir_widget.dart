@@ -12,7 +12,6 @@ import '/utils/components/page_loader/page_loader_widget.dart';
 import '/utils/components/signature/signature_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -83,8 +82,92 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
     _model.ppirAreaActFieldFocusNode ??= FocusNode();
 
     _model.ppirAreaDopDsFieldFocusNode ??= FocusNode();
+    _model.ppirAreaDopDsFieldFocusNode!.addListener(
+      () async {
+        await showModalBottomSheet<bool>(
+            context: context,
+            builder: (context) {
+              final datePicked1CupertinoTheme = CupertinoTheme.of(context);
+              return Container(
+                height: MediaQuery.of(context).size.height / 3,
+                width: MediaQuery.of(context).size.width,
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+                child: CupertinoTheme(
+                  data: datePicked1CupertinoTheme.copyWith(
+                    textTheme: datePicked1CupertinoTheme.textTheme.copyWith(
+                      dateTimePickerTextStyle:
+                          FlutterFlowTheme.of(context).headlineMedium.override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .headlineMediumFamily,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .headlineMediumFamily),
+                              ),
+                    ),
+                  ),
+                  child: CupertinoDatePicker(
+                    mode: CupertinoDatePickerMode.date,
+                    minimumDate: DateTime(1900),
+                    initialDateTime: getCurrentTimestamp,
+                    maximumDate: DateTime(2050),
+                    backgroundColor:
+                        FlutterFlowTheme.of(context).secondaryBackground,
+                    use24hFormat: false,
+                    onDateTimeChanged: (newDateTime) => safeSetState(() {
+                      _model.datePicked1 = newDateTime;
+                    }),
+                  ),
+                ),
+              );
+            });
+      },
+    );
 
     _model.ppirAreaDopTpFieldFocusNode ??= FocusNode();
+    _model.ppirAreaDopTpFieldFocusNode!.addListener(
+      () async {
+        await showModalBottomSheet<bool>(
+            context: context,
+            builder: (context) {
+              final datePicked2CupertinoTheme = CupertinoTheme.of(context);
+              return Container(
+                height: MediaQuery.of(context).size.height / 3,
+                width: MediaQuery.of(context).size.width,
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+                child: CupertinoTheme(
+                  data: datePicked2CupertinoTheme.copyWith(
+                    textTheme: datePicked2CupertinoTheme.textTheme.copyWith(
+                      dateTimePickerTextStyle:
+                          FlutterFlowTheme.of(context).headlineMedium.override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .headlineMediumFamily,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .headlineMediumFamily),
+                              ),
+                    ),
+                  ),
+                  child: CupertinoDatePicker(
+                    mode: CupertinoDatePickerMode.date,
+                    minimumDate: DateTime(1900),
+                    initialDateTime: getCurrentTimestamp,
+                    maximumDate: DateTime(2050),
+                    backgroundColor:
+                        FlutterFlowTheme.of(context).secondaryBackground,
+                    use24hFormat: false,
+                    onDateTimeChanged: (newDateTime) => safeSetState(() {
+                      _model.datePicked2 = newDateTime;
+                    }),
+                  ),
+                ),
+              );
+            });
+      },
+    );
 
     _model.ppirRemarksFieldFocusNode ??= FocusNode();
 
@@ -2009,87 +2092,6 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               ),
                                               focusNode: _model
                                                   .ppirAreaDopDsFieldFocusNode,
-                                              onChanged: (_) =>
-                                                  EasyDebounce.debounce(
-                                                '_model.ppirAreaDopDsFieldTextController',
-                                                const Duration(milliseconds: 2000),
-                                                () async {
-                                                  await showModalBottomSheet<
-                                                          bool>(
-                                                      context: context,
-                                                      builder: (context) {
-                                                        final datePicked1CupertinoTheme =
-                                                            CupertinoTheme.of(
-                                                                context);
-                                                        return Container(
-                                                          height: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .height /
-                                                              3,
-                                                          width: MediaQuery.of(
-                                                                  context)
-                                                              .size
-                                                              .width,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryBackground,
-                                                          child: CupertinoTheme(
-                                                            data:
-                                                                datePicked1CupertinoTheme
-                                                                    .copyWith(
-                                                              textTheme:
-                                                                  datePicked1CupertinoTheme
-                                                                      .textTheme
-                                                                      .copyWith(
-                                                                dateTimePickerTextStyle:
-                                                                    FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .headlineMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              FlutterFlowTheme.of(context).headlineMediumFamily,
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primaryText,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          useGoogleFonts:
-                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).headlineMediumFamily),
-                                                                        ),
-                                                              ),
-                                                            ),
-                                                            child:
-                                                                CupertinoDatePicker(
-                                                              mode:
-                                                                  CupertinoDatePickerMode
-                                                                      .date,
-                                                              minimumDate:
-                                                                  DateTime(
-                                                                      1900),
-                                                              initialDateTime:
-                                                                  getCurrentTimestamp,
-                                                              maximumDate:
-                                                                  DateTime(
-                                                                      2050),
-                                                              backgroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                              use24hFormat:
-                                                                  false,
-                                                              onDateTimeChanged:
-                                                                  (newDateTime) =>
-                                                                      safeSetState(
-                                                                          () {
-                                                                _model.datePicked1 =
-                                                                    newDateTime;
-                                                              }),
-                                                            ),
-                                                          ),
-                                                        );
-                                                      });
-                                                },
-                                              ),
                                               autofocus: false,
                                               textInputAction:
                                                   TextInputAction.next,
@@ -2228,87 +2230,6 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               ),
                                               focusNode: _model
                                                   .ppirAreaDopTpFieldFocusNode,
-                                              onChanged: (_) =>
-                                                  EasyDebounce.debounce(
-                                                '_model.ppirAreaDopTpFieldTextController',
-                                                const Duration(milliseconds: 2000),
-                                                () async {
-                                                  await showModalBottomSheet<
-                                                          bool>(
-                                                      context: context,
-                                                      builder: (context) {
-                                                        final datePicked2CupertinoTheme =
-                                                            CupertinoTheme.of(
-                                                                context);
-                                                        return Container(
-                                                          height: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .height /
-                                                              3,
-                                                          width: MediaQuery.of(
-                                                                  context)
-                                                              .size
-                                                              .width,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryBackground,
-                                                          child: CupertinoTheme(
-                                                            data:
-                                                                datePicked2CupertinoTheme
-                                                                    .copyWith(
-                                                              textTheme:
-                                                                  datePicked2CupertinoTheme
-                                                                      .textTheme
-                                                                      .copyWith(
-                                                                dateTimePickerTextStyle:
-                                                                    FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .headlineMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              FlutterFlowTheme.of(context).headlineMediumFamily,
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primaryText,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          useGoogleFonts:
-                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).headlineMediumFamily),
-                                                                        ),
-                                                              ),
-                                                            ),
-                                                            child:
-                                                                CupertinoDatePicker(
-                                                              mode:
-                                                                  CupertinoDatePickerMode
-                                                                      .date,
-                                                              minimumDate:
-                                                                  DateTime(
-                                                                      1900),
-                                                              initialDateTime:
-                                                                  getCurrentTimestamp,
-                                                              maximumDate:
-                                                                  DateTime(
-                                                                      2050),
-                                                              backgroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                              use24hFormat:
-                                                                  false,
-                                                              onDateTimeChanged:
-                                                                  (newDateTime) =>
-                                                                      safeSetState(
-                                                                          () {
-                                                                _model.datePicked2 =
-                                                                    newDateTime;
-                                                              }),
-                                                            ),
-                                                          ),
-                                                        );
-                                                      });
-                                                },
-                                              ),
                                               autofocus: false,
                                               textInputAction:
                                                   TextInputAction.next,
@@ -2432,124 +2353,6 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               validator: _model
                                                   .ppirAreaDopTpFieldTextControllerValidator
                                                   .asValidator(context),
-                                            ),
-                                          ),
-                                          FFButtonWidget(
-                                            onPressed: () async {
-                                              await showModalBottomSheet<bool>(
-                                                  context: context,
-                                                  builder: (context) {
-                                                    final datePicked3CupertinoTheme =
-                                                        CupertinoTheme.of(
-                                                            context);
-                                                    return Container(
-                                                      height:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .height /
-                                                              3,
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                              .size
-                                                              .width,
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .secondaryBackground,
-                                                      child: CupertinoTheme(
-                                                        data:
-                                                            datePicked3CupertinoTheme
-                                                                .copyWith(
-                                                          textTheme:
-                                                              datePicked3CupertinoTheme
-                                                                  .textTheme
-                                                                  .copyWith(
-                                                            dateTimePickerTextStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .headlineMediumFamily,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryText,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).headlineMediumFamily),
-                                                                    ),
-                                                          ),
-                                                        ),
-                                                        child:
-                                                            CupertinoDatePicker(
-                                                          mode:
-                                                              CupertinoDatePickerMode
-                                                                  .date,
-                                                          minimumDate:
-                                                              DateTime(1900),
-                                                          initialDateTime:
-                                                              getCurrentTimestamp,
-                                                          maximumDate:
-                                                              DateTime(2050),
-                                                          backgroundColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .secondaryBackground,
-                                                          use24hFormat: false,
-                                                          onDateTimeChanged:
-                                                              (newDateTime) =>
-                                                                  safeSetState(
-                                                                      () {
-                                                            _model.datePicked3 =
-                                                                newDateTime;
-                                                          }),
-                                                        ),
-                                                      ),
-                                                    );
-                                                  });
-                                            },
-                                            text: FFLocalizations.of(context)
-                                                .getText(
-                                              '65ujsode' /* Button */,
-                                            ),
-                                            options: FFButtonOptions(
-                                              width: double.infinity,
-                                              height: 40.0,
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              textStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmall
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmallFamily,
-                                                        color: Colors.white,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmallFamily),
-                                                      ),
-                                              elevation: 3.0,
-                                              borderSide: const BorderSide(
-                                                color: Colors.transparent,
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
                                             ),
                                           ),
                                           Padding(
