@@ -24,21 +24,37 @@ Future successToast(
   Future<dynamic> Function()?
       onAnimationEnd, // action done on when duration elapses
 ) async {
-// see here that ElegantNotification without any 'dot something' in front
+  // see here that ElegantNotification without any 'dot something' in front
   ElegantNotification(
-    title: Text(title),
-    description: Text(description),
+    title: Text(
+      title,
+      style: TextStyle(
+        fontSize: 16,
+        color: Colors.white,
+      ),
+    ),
+    description: Text(
+      description,
+      style: TextStyle(
+        fontSize: 9,
+        color: Colors.white,
+      ),
+    ),
     animationDuration: Duration(milliseconds: animationDuration),
     toastDuration: Duration(milliseconds: toastDuration),
     icon: Icon(
-// you can specify which icon you want, here I am using Material icons Library
+      // you can specify which icon you want, here I am using Material icons Library
       Icons.check_circle_outline,
-      color: Colors.green,
+      color: Colors.white,
+      size: 24,
     ),
-// here you specify the colour of the progress bar, I am using Orange
-    progressIndicatorColor: Colors.green,
-// these two lines below allow actions to be triggered on close pressed or on end
+    // here you specify the colour of the progress bar, I am using Orange
+    progressIndicatorColor: Colors.white,
+    background: Colors.green,
+    // these two lines below allow actions to be triggered on close pressed or on end
     onCloseButtonPressed: onClosePressed,
     onProgressFinished: onAnimationEnd,
+    width: 250,
+    height: 60,
   ).show(context);
 }

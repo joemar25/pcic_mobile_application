@@ -197,6 +197,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .labelMediumFamily,
                                 letterSpacing: 0.0,
+                                fontWeight: FontWeight.normal,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
                                         .labelMediumFamily),
@@ -247,7 +248,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                           fillColor:
                               FlutterFlowTheme.of(context).secondaryBackground,
                           contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                              15.0, 16.0, 15.0, 16.0),
+                              15.0, 10.0, 15.0, 10.0),
                           suffixIcon: InkWell(
                             onTap: () => setState(
                               () => _model.oldPasswordVisibility =
@@ -296,6 +297,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .labelMediumFamily,
                                 letterSpacing: 0.0,
+                                fontWeight: FontWeight.normal,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
                                         .labelMediumFamily),
@@ -346,7 +348,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                           fillColor:
                               FlutterFlowTheme.of(context).secondaryBackground,
                           contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                              15.0, 16.0, 15.0, 16.0),
+                              15.0, 10.0, 15.0, 10.0),
                           suffixIcon: InkWell(
                             onTap: () => setState(
                               () => _model.newPasswordVisibility =
@@ -395,6 +397,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .labelMediumFamily,
                                 letterSpacing: 0.0,
+                                fontWeight: FontWeight.normal,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
                                         .labelMediumFamily),
@@ -445,7 +448,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                           fillColor:
                               FlutterFlowTheme.of(context).secondaryBackground,
                           contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                              15.0, 16.0, 15.0, 16.0),
+                              15.0, 10.0, 15.0, 10.0),
                           suffixIcon: InkWell(
                             onTap: () => setState(
                               () => _model.confirmNewPasswordVisibility =

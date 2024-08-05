@@ -90,34 +90,26 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Flexible(
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Expanded(
-                            child: Text(
-                              FFLocalizations.of(context).getText(
-                                'ajwqbdpu' /* Forgot Password */,
-                              ),
-                              textAlign: TextAlign.start,
-                              style: FlutterFlowTheme.of(context)
-                                  .headlineMedium
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .headlineMediumFamily,
-                                    fontSize: 28.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.bold,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .headlineMediumFamily),
-                                  ),
+                      child: Text(
+                        FFLocalizations.of(context).getText(
+                          'ajwqbdpu' /* Forgot Password */,
+                        ),
+                        textAlign: TextAlign.start,
+                        style: FlutterFlowTheme.of(context)
+                            .headlineMedium
+                            .override(
+                              fontFamily: FlutterFlowTheme.of(context)
+                                  .headlineMediumFamily,
+                              fontSize: 28.0,
+                              letterSpacing: 0.0,
+                              fontWeight: FontWeight.bold,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .headlineMediumFamily),
                             ),
-                          ),
-                        ],
                       ),
                     ),
-                    Expanded(
+                    Flexible(
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -143,35 +135,23 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                         ],
                       ),
                     ),
-                    Flexible(
-                      child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            0.0, 20.0, 0.0, 40.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Expanded(
-                              child: Text(
-                                FFLocalizations.of(context).getText(
-                                  'owzqo8qh' /* We will send you an email with... */,
-                                ),
-                                textAlign: TextAlign.justify,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.normal,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMediumFamily),
-                                    ),
-                              ),
-                            ),
-                          ],
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 40.0),
+                      child: Text(
+                        FFLocalizations.of(context).getText(
+                          'owzqo8qh' /* We will send you an email with... */,
                         ),
+                        textAlign: TextAlign.justify,
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
+                              letterSpacing: 0.0,
+                              fontWeight: FontWeight.normal,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily),
+                            ),
                       ),
                     ),
                     Form(
@@ -197,6 +177,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                                       fontFamily: FlutterFlowTheme.of(context)
                                           .labelMediumFamily,
                                       letterSpacing: 0.0,
+                                      fontWeight: FontWeight.normal,
                                       useGoogleFonts: GoogleFonts.asMap()
                                           .containsKey(
                                               FlutterFlowTheme.of(context)
@@ -250,7 +231,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                                 fillColor: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
                                 contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 16.0, 15.0, 16.0),
+                                    15.0, 10.0, 15.0, 10.0),
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium

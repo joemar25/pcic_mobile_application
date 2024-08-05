@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/utils/components/page_loader/page_loader_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -121,16 +122,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
         if (!snapshot.hasData) {
           return Scaffold(
             backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-            body: Center(
-              child: SizedBox(
-                width: 100.0,
-                height: 100.0,
-                child: SpinKitRipple(
-                  color: FlutterFlowTheme.of(context).primary,
-                  size: 100.0,
-                ),
-              ),
-            ),
+            body: const PageLoaderWidget(),
           );
         }
         List<PpirFormsRow> geotaggingPpirFormsRowList = snapshot.data!;

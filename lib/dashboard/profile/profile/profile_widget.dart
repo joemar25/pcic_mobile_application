@@ -1,14 +1,16 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
+import '/utils/components/page_loader/page_loader_widget.dart';
 import '/utils/components/signout_dialog/signout_dialog_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'profile_model.dart';
 export 'profile_model.dart';
@@ -20,10 +22,13 @@ class ProfileWidget extends StatefulWidget {
   State<ProfileWidget> createState() => _ProfileWidgetState();
 }
 
-class _ProfileWidgetState extends State<ProfileWidget> {
+class _ProfileWidgetState extends State<ProfileWidget>
+    with TickerProviderStateMixin {
   late ProfileModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
@@ -33,6 +38,21 @@ class _ProfileWidgetState extends State<ProfileWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.getProfilePic = await actions.getTheSavedLocalProfile();
+    });
+
+    animationsMap.addAll({
+      'containerOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: const Offset(0.0, 100.0),
+            end: const Offset(0.0, 0.0),
+          ),
+        ],
+      ),
     });
   }
 
@@ -57,16 +77,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
         if (!snapshot.hasData) {
           return Scaffold(
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            body: Center(
-              child: SizedBox(
-                width: 100.0,
-                height: 100.0,
-                child: SpinKitRipple(
-                  color: FlutterFlowTheme.of(context).primary,
-                  size: 100.0,
-                ),
-              ),
-            ),
+            body: const PageLoaderWidget(),
           );
         }
         List<UsersRow> profileUsersRowList = snapshot.data!;
@@ -97,7 +108,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 80.0, 20.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -166,7 +177,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           ),
                           child: Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
-                                20.0, 40.0, 20.0, 0.0),
+                                20.0, 20.0, 20.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -227,34 +238,31 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                           Row(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
-                                              Expanded(
-                                                child: Text(
-                                                  valueOrDefault<String>(
-                                                    functions.sentenceCaseWords(
-                                                        profileUsersRow
-                                                            ?.inspectorName),
-                                                    'Agent',
-                                                  ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .headlineSmall
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .headlineSmallFamily,
-                                                        fontSize: 22.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineSmallFamily),
-                                                      ),
+                                              Text(
+                                                valueOrDefault<String>(
+                                                  functions.sentenceCaseWords(
+                                                      profileUsersRow
+                                                          ?.inspectorName),
+                                                  'Agent',
                                                 ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleLarge
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleLargeFamily,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleLargeFamily),
+                                                        ),
                                               ),
                                             ],
                                           ),
@@ -262,34 +270,29 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Expanded(
-                                                child: Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 5.0, 0.0, 0.0),
-                                                  child: Text(
-                                                    valueOrDefault<String>(
-                                                      profileUsersRow?.email,
-                                                      'agent@gmail.com',
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodySmall
-                                                        .override(
-                                                          fontFamily: 'Outfit',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                          useGoogleFonts:
-                                                              GoogleFonts
-                                                                      .asMap()
-                                                                  .containsKey(
-                                                                      'Outfit'),
-                                                        ),
+                                                child: Text(
+                                                  valueOrDefault<String>(
+                                                    profileUsersRow?.email,
+                                                    'agent@gmail.com',
                                                   ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodySmall
+                                                      .override(
+                                                        fontFamily: 'Outfit',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        fontSize: 16.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                        useGoogleFonts:
+                                                            GoogleFonts.asMap()
+                                                                .containsKey(
+                                                                    'Outfit'),
+                                                      ),
                                                 ),
                                               ),
                                             ],
@@ -347,8 +350,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                           MainAxisSize.max,
                                                       children: [
                                                         Icon(
-                                                          Icons
-                                                              .wb_sunny_rounded,
+                                                          Icons.nights_stay,
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primaryText,
@@ -367,7 +369,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                                 fontFamily: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMediumFamily,
-                                                                fontSize: 18.0,
+                                                                fontSize: 16.0,
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
@@ -801,8 +803,6 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                 ),
                                               },
                                             );
-
-                                            await actions.fetchStoreStats();
                                           },
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -893,14 +893,11 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                           .resolve(
                                                               Directionality.of(
                                                                   context)),
-                                                  child: SizedBox(
-                                                    height: 180.0,
-                                                    width: MediaQuery.sizeOf(
-                                                                context)
-                                                            .width *
-                                                        0.8,
+                                                  child: const SizedBox(
+                                                    height: 162.0,
+                                                    width: 300.0,
                                                     child:
-                                                        const SignoutDialogWidget(),
+                                                        SignoutDialogWidget(),
                                                   ),
                                                 );
                                               },
@@ -954,7 +951,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               ],
                             ),
                           ),
-                        ),
+                        ).animateOnPageLoad(
+                            animationsMap['containerOnPageLoadAnimation']!),
                       ),
                     ),
                   ],

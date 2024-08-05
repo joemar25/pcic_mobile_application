@@ -408,7 +408,7 @@ class _MapBoxState extends State<MapBox> {
         options: MapOptions(
           initialCenter: _currentLocation!,
           initialZoom: _currentZoom,
-          minZoom: 10,
+          minZoom: 16,
           maxZoom: 22,
           onMapReady: () {
             setState(() {

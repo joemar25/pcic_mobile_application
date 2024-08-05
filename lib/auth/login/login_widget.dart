@@ -182,72 +182,78 @@ class _LoginWidgetState extends State<LoginWidget>
                               ),
                             ),
                           ),
-                          FFButtonWidget(
-                            onPressed: () async {
-                              await requestPermission(locationPermission);
-                              if (await getPermissionStatus(
-                                  locationPermission)) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      'Permission Goods',
-                                      style: TextStyle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 28.0, 0.0, 0.0),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                await requestPermission(locationPermission);
+                                if (await getPermissionStatus(
+                                    locationPermission)) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Permission Goods',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                        ),
                                       ),
+                                      duration: const Duration(milliseconds: 4000),
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context)
+                                              .secondary,
                                     ),
-                                    duration: const Duration(milliseconds: 4000),
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).secondary,
-                                  ),
-                                );
-                              } else {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      'Permission denied',
-                                      style: TextStyle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
+                                  );
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Permission denied',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                        ),
                                       ),
+                                      duration: const Duration(milliseconds: 4000),
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context)
+                                              .secondary,
                                     ),
-                                    duration: const Duration(milliseconds: 4000),
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).secondary,
-                                  ),
-                                );
-                              }
+                                  );
+                                }
 
-                              context.pushNamed('sss');
-                            },
-                            text: FFLocalizations.of(context).getText(
-                              '7n7i2ifo' /* DONT DELETE SOMEONE IS TESTING... */,
-                            ),
-                            options: FFButtonOptions(
-                              height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).primary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .titleSmallFamily,
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .titleSmallFamily),
-                                  ),
-                              elevation: 3.0,
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
+                                context.pushNamed('sss');
+                              },
+                              text: FFLocalizations.of(context).getText(
+                                '7n7i2ifo' /* DONT DELETE SOMEONE IS TESTING... */,
                               ),
-                              borderRadius: BorderRadius.circular(8.0),
+                              options: FFButtonOptions(
+                                height: 40.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).primary,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .titleSmallFamily,
+                                      color: Colors.white,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmallFamily),
+                                    ),
+                                elevation: 3.0,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
                             ),
                           ),
                         ].addToEnd(const SizedBox(height: 20.0)),
@@ -361,6 +367,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                   FlutterFlowTheme.of(context)
                                                       .labelMediumFamily,
                                               letterSpacing: 0.0,
+                                              fontWeight: FontWeight.normal,
                                               useGoogleFonts: GoogleFonts
                                                       .asMap()
                                                   .containsKey(
@@ -428,7 +435,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                             .secondaryBackground,
                                         contentPadding:
                                             const EdgeInsetsDirectional.fromSTEB(
-                                                15.0, 16.0, 15.0, 16.0),
+                                                15.0, 10.0, 15.0, 10.0),
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -472,6 +479,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                   FlutterFlowTheme.of(context)
                                                       .labelMediumFamily,
                                               letterSpacing: 0.0,
+                                              fontWeight: FontWeight.normal,
                                               useGoogleFonts: GoogleFonts
                                                       .asMap()
                                                   .containsKey(
@@ -539,7 +547,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                             .secondaryBackground,
                                         contentPadding:
                                             const EdgeInsetsDirectional.fromSTEB(
-                                                15.0, 16.0, 15.0, 16.0),
+                                                15.0, 10.0, 15.0, 10.0),
                                         suffixIcon: InkWell(
                                           onTap: () => setState(
                                             () => _model

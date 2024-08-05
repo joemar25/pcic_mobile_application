@@ -178,6 +178,7 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .titleLargeFamily,
+                                  fontSize: 16.0,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
@@ -206,6 +207,7 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .bodyMediumFamily,
                                   color: FlutterFlowTheme.of(context).primary,
+                                  fontSize: 12.0,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
@@ -225,7 +227,7 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .headlineSmallFamily,
-                                fontSize: 14.0,
+                                fontSize: 12.0,
                                 letterSpacing: 0.0,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
@@ -247,6 +249,7 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .bodyMediumFamily,
                                   color: FlutterFlowTheme.of(context).primary,
+                                  fontSize: 12.0,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
@@ -266,7 +269,7 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .headlineSmallFamily,
-                                fontSize: 14.0,
+                                fontSize: 12.0,
                                 letterSpacing: 0.0,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
@@ -294,6 +297,7 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .bodyMediumFamily,
                                   color: FlutterFlowTheme.of(context).primary,
+                                  fontSize: 12.0,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
@@ -313,7 +317,7 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .headlineSmallFamily,
-                                fontSize: 14.0,
+                                fontSize: 12.0,
                                 letterSpacing: 0.0,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
@@ -335,6 +339,7 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .bodyMediumFamily,
                                   color: FlutterFlowTheme.of(context).primary,
+                                  fontSize: 12.0,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
@@ -354,7 +359,7 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .headlineSmallFamily,
-                                fontSize: 14.0,
+                                fontSize: 12.0,
                                 letterSpacing: 0.0,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)

@@ -1,9 +1,11 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
+import '/utils/components/page_loader/page_loader_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -144,71 +146,83 @@ class _MessagesWidgetState extends State<MessagesWidget> {
           ),
           body: SafeArea(
             top: true,
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            20.0, 0.0, 20.0, 0.0),
-                        child: SingleChildScrollView(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Row(
+            child: FutureBuilder<ApiCallResponse>(
+              future: TestMarCall.call(),
+              builder: (context, snapshot) {
+                // Customize what your widget looks like when it's loading.
+                if (!snapshot.hasData) {
+                  return const PageLoaderWidget();
+                }
+                final columnTestMarResponse = snapshot.data!;
+
+                return Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                20.0, 0.0, 20.0, 0.0),
+                            child: SingleChildScrollView(
+                              child: Column(
                                 mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.end,
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
-                                  Container(
-                                    width: 50.0,
-                                    height: 50.0,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                      image: DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: Image.asset(
-                                          'assets/images/default_profile.png',
-                                        ).image,
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Container(
+                                        width: 50.0,
+                                        height: 50.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          image: DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image: Image.asset(
+                                              'assets/images/default_profile.png',
+                                            ).image,
+                                          ),
+                                          shape: BoxShape.circle,
+                                        ),
                                       ),
-                                      shape: BoxShape.circle,
-                                    ),
-                                  ),
-                                  Container(
-                                    width:
-                                        MediaQuery.sizeOf(context).width * 0.5,
-                                    decoration: BoxDecoration(
-                                      color:
-                                          FlutterFlowTheme.of(context).accent1,
-                                      borderRadius: const BorderRadius.only(
-                                        bottomLeft: Radius.circular(6.0),
-                                        bottomRight: Radius.circular(24.0),
-                                        topLeft: Radius.circular(24.0),
-                                        topRight: Radius.circular(24.0),
-                                      ),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          20.0, 20.0, 20.0, 20.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Expanded(
-                                            child: Text(
-                                              valueOrDefault<String>(
-                                                messagesMessagesRow?.content,
-                                                'content',
-                                              ),
-                                              textAlign: TextAlign.justify,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
+                                      Container(
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                0.5,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .accent1,
+                                          borderRadius: const BorderRadius.only(
+                                            bottomLeft: Radius.circular(6.0),
+                                            bottomRight: Radius.circular(24.0),
+                                            topLeft: Radius.circular(24.0),
+                                            topRight: Radius.circular(24.0),
+                                          ),
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  20.0, 20.0, 20.0, 20.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  valueOrDefault<String>(
+                                                    messagesMessagesRow
+                                                        ?.content,
+                                                    'content',
+                                                  ),
+                                                  textAlign: TextAlign.justify,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
@@ -223,47 +237,50 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ].divide(const SizedBox(width: 10.0)),
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    width:
-                                        MediaQuery.sizeOf(context).width * 0.6,
-                                    decoration: BoxDecoration(
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      borderRadius: const BorderRadius.only(
-                                        bottomLeft: Radius.circular(24.0),
-                                        bottomRight: Radius.circular(6.0),
-                                        topLeft: Radius.circular(24.0),
-                                        topRight: Radius.circular(24.0),
-                                      ),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          20.0, 20.0, 20.0, 20.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Expanded(
-                                            child: Text(
-                                              FFLocalizations.of(context)
-                                                  .getText(
-                                                'qki0150o' /* Hello World oidtgiywiutuewutuu... */,
+                                                ),
                                               ),
-                                              textAlign: TextAlign.justify,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ].divide(const SizedBox(width: 10.0)),
+                                  ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                0.6,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          borderRadius: const BorderRadius.only(
+                                            bottomLeft: Radius.circular(24.0),
+                                            bottomRight: Radius.circular(6.0),
+                                            topLeft: Radius.circular(24.0),
+                                            topRight: Radius.circular(24.0),
+                                          ),
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  20.0, 20.0, 20.0, 20.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'qki0150o' /* Hello World oidtgiywiutuewutuu... */,
+                                                  ),
+                                                  textAlign: TextAlign.justify,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
@@ -281,180 +298,192 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Container(
-                                    width:
-                                        MediaQuery.sizeOf(context).width * 0.6,
-                                    decoration: BoxDecoration(
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      borderRadius: BorderRadius.circular(24.0),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(12.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Flexible(
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                              child: Image.network(
-                                                'https://picsum.photos/seed/486/600',
-                                                width: 300.0,
-                                                height: 200.0,
-                                                fit: BoxFit.cover,
+                                                ),
                                               ),
-                                            ),
+                                            ],
                                           ),
-                                        ],
+                                        ),
                                       ),
-                                    ),
+                                    ],
                                   ),
-                                ],
-                              ),
-                            ].divide(const SizedBox(height: 15.0)),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
-                    boxShadow: const [
-                      BoxShadow(
-                        blurRadius: 4.0,
-                        color: Color(0x33000000),
-                        offset: Offset(
-                          2.0,
-                          0.0,
-                        ),
-                      )
-                    ],
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(0.0),
-                      bottomRight: Radius.circular(0.0),
-                      topLeft: Radius.circular(24.0),
-                      topRight: Radius.circular(24.0),
-                    ),
-                  ),
-                  child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Icon(
-                          Icons.image_outlined,
-                          color: FlutterFlowTheme.of(context).primaryText,
-                          size: 30.0,
-                        ),
-                        Expanded(
-                          child: TextFormField(
-                            controller: _model.textController,
-                            focusNode: _model.textFieldFocusNode,
-                            autofocus: true,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .labelMediumFamily,
-                                    letterSpacing: 0.0,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .labelMediumFamily),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Container(
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                0.6,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          borderRadius:
+                                              BorderRadius.circular(24.0),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(12.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Flexible(
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                  child: Image.network(
+                                                    'https://picsum.photos/seed/486/600',
+                                                    width: 300.0,
+                                                    height: 200.0,
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                              hintStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .labelMediumFamily,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.normal,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .labelMediumFamily),
-                                  ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: Color(0x00C8D7E4),
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                              focusedErrorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                              filled: true,
-                              fillColor: FlutterFlowTheme.of(context).accent1,
-                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  15.0, 16.0, 15.0, 16.0),
-                              prefixIcon: Icon(
-                                Icons.text_fields,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                              ),
-                              suffixIcon: Icon(
-                                Icons.send_rounded,
-                                color: FlutterFlowTheme.of(context).primaryText,
+                                ].divide(const SizedBox(height: 15.0)),
                               ),
                             ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.normal,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily),
-                                  lineHeight: 2.5,
-                                ),
-                            validator: _model.textControllerValidator
-                                .asValidator(context),
                           ),
-                        ),
-                      ].divide(const SizedBox(width: 10.0)),
+                        ],
+                      ),
                     ),
-                  ),
-                ),
-              ],
+                    Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        boxShadow: const [
+                          BoxShadow(
+                            blurRadius: 4.0,
+                            color: Color(0x33000000),
+                            offset: Offset(
+                              2.0,
+                              0.0,
+                            ),
+                          )
+                        ],
+                        borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(0.0),
+                          bottomRight: Radius.circular(0.0),
+                          topLeft: Radius.circular(24.0),
+                          topRight: Radius.circular(24.0),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            20.0, 20.0, 20.0, 20.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Icon(
+                              Icons.image_outlined,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              size: 30.0,
+                            ),
+                            Expanded(
+                              child: TextFormField(
+                                controller: _model.textController,
+                                focusNode: _model.textFieldFocusNode,
+                                autofocus: true,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  labelStyle: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .labelMediumFamily,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.normal,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMediumFamily),
+                                      ),
+                                  hintStyle: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .labelMediumFamily,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.normal,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMediumFamily),
+                                      ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: const BorderSide(
+                                      color: Color(0x00C8D7E4),
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(12.0),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(12.0),
+                                  ),
+                                  errorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(12.0),
+                                  ),
+                                  focusedErrorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(12.0),
+                                  ),
+                                  filled: true,
+                                  fillColor:
+                                      FlutterFlowTheme.of(context).accent1,
+                                  contentPadding:
+                                      const EdgeInsetsDirectional.fromSTEB(
+                                          15.0, 10.0, 15.0, 10.0),
+                                  prefixIcon: Icon(
+                                    Icons.text_fields,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                                  suffixIcon: Icon(
+                                    Icons.send_rounded,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.normal,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
+                                      lineHeight: 2.5,
+                                    ),
+                                validator: _model.textControllerValidator
+                                    .asValidator(context),
+                              ),
+                            ),
+                          ].divide(const SizedBox(width: 10.0)),
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              },
             ),
           ),
         );

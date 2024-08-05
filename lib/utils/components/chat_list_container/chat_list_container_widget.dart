@@ -134,7 +134,8 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -152,6 +153,7 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .bodyLargeFamily,
+                                fontSize: 14.0,
                                 letterSpacing: 0.0,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
@@ -172,6 +174,7 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .labelMediumFamily,
+                                  fontSize: 12.0,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
@@ -198,6 +201,7 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .labelSmallFamily,
+                                  fontSize: 10.0,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)

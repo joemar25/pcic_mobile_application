@@ -3,6 +3,7 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/utils/components/page_loader/page_loader_widget.dart';
 import '/utils/components/toast/toast_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
@@ -109,16 +110,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
         if (!snapshot.hasData) {
           return Scaffold(
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            body: Center(
-              child: SizedBox(
-                width: 100.0,
-                height: 100.0,
-                child: SpinKitRipple(
-                  color: FlutterFlowTheme.of(context).primary,
-                  size: 100.0,
-                ),
-              ),
-            ),
+            body: const PageLoaderWidget(),
           );
         }
         List<PpirFormsRow> taskDetailsPpirFormsRowList = snapshot.data!;
@@ -233,7 +225,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                 600,
                                 3000,
                                 () async {
-                                  context.safePop();
+                                  Navigator.pop(context);
                                 },
                                 () async {},
                               );

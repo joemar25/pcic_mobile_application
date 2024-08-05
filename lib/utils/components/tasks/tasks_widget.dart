@@ -166,6 +166,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                   .override(
                                     fontFamily: FlutterFlowTheme.of(context)
                                         .titleLargeFamily,
+                                    fontSize: 18.0,
                                     letterSpacing: 0.0,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
@@ -213,6 +214,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primary,
+                                              fontSize: 12.0,
                                               letterSpacing: 0.0,
                                               useGoogleFonts: GoogleFonts
                                                       .asMap()
@@ -236,6 +238,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                               fontFamily:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMediumFamily,
+                                              fontSize: 12.0,
                                               letterSpacing: 0.0,
                                               useGoogleFonts: GoogleFonts
                                                       .asMap()
@@ -273,6 +276,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primary,
+                                              fontSize: 12.0,
                                               letterSpacing: 0.0,
                                               useGoogleFonts: GoogleFonts
                                                       .asMap()
@@ -296,6 +300,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                               fontFamily:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMediumFamily,
+                                              fontSize: 12.0,
                                               letterSpacing: 0.0,
                                               useGoogleFonts: GoogleFonts
                                                       .asMap()
@@ -349,6 +354,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primary,
+                                                          fontSize: 12.0,
                                                           letterSpacing: 0.0,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
@@ -374,6 +380,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                                               FlutterFlowTheme.of(
                                                                       context)
                                                                   .bodyMediumFamily,
+                                                          fontSize: 12.0,
                                                           letterSpacing: 0.0,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
@@ -409,6 +416,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primary,
+                                                          fontSize: 12.0,
                                                           letterSpacing: 0.0,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
@@ -434,6 +442,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                                               FlutterFlowTheme.of(
                                                                       context)
                                                                   .bodyMediumFamily,
+                                                          fontSize: 12.0,
                                                           letterSpacing: 0.0,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
@@ -484,6 +493,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                     .override(
                                       fontFamily: FlutterFlowTheme.of(context)
                                           .bodyMediumFamily,
+                                      fontSize: 12.0,
                                       letterSpacing: 0.0,
                                       useGoogleFonts: GoogleFonts.asMap()
                                           .containsKey(
@@ -511,6 +521,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                                   .bodyMediumFamily,
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
+                                          fontSize: 12.0,
                                           letterSpacing: 0.0,
                                           useGoogleFonts: GoogleFonts.asMap()
                                               .containsKey(
@@ -535,6 +546,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                     .override(
                                       fontFamily: FlutterFlowTheme.of(context)
                                           .bodyMediumFamily,
+                                      fontSize: 12.0,
                                       letterSpacing: 0.0,
                                       useGoogleFonts: GoogleFonts.asMap()
                                           .containsKey(
@@ -562,6 +574,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                                   .bodyMediumFamily,
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
+                                          fontSize: 12.0,
                                           letterSpacing: 0.0,
                                           useGoogleFonts: GoogleFonts.asMap()
                                               .containsKey(

@@ -1,6 +1,8 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/utils/components/page_loader/page_loader_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
@@ -86,81 +88,91 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
           centerTitle: false,
           elevation: 2.0,
         ),
-        body: Column(
-          children: [
-            Expanded(
-              child: TabBarView(
-                controller: _model.tabBarController,
-                children: [
-                  SizedBox(
-                    width: double.infinity,
-                    height: double.infinity,
-                    child: custom_widgets.SearchableMapWidget(
-                      width: double.infinity,
-                      height: double.infinity,
-                      accessToken: FFAppState().accessToken,
-                    ),
-                  ),
-                  Builder(
-                    builder: (context) {
-                      final listOfDownloads = FFAppState()
-                          .listOfMapDownloads
-                          .map((e) => e)
-                          .toList();
+        body: FutureBuilder<ApiCallResponse>(
+          future: TestMarCall.call(),
+          builder: (context, snapshot) {
+            // Customize what your widget looks like when it's loading.
+            if (!snapshot.hasData) {
+              return const PageLoaderWidget();
+            }
+            final tabBarTestMarResponse = snapshot.data!;
 
-                      return RefreshIndicator(
-                        onRefresh: () async {
-                          await actions.fetchStoreStats();
-                        },
-                        child: ListView.builder(
-                          padding: EdgeInsets.zero,
-                          scrollDirection: Axis.vertical,
-                          itemCount: listOfDownloads.length,
-                          itemBuilder: (context, listOfDownloadsIndex) {
-                            final listOfDownloadsItem =
-                                listOfDownloads[listOfDownloadsIndex];
-                            return Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 16.0, 16.0, 16.0),
-                              child: Container(
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  boxShadow: const [
-                                    BoxShadow(
-                                      blurRadius: 7.0,
-                                      color: Color(0x2F1D2429),
-                                      offset: Offset(
-                                        0.0,
-                                        3.0,
-                                      ),
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                child: Padding(
+            return Column(
+              children: [
+                Expanded(
+                  child: TabBarView(
+                    controller: _model.tabBarController,
+                    children: [
+                      SizedBox(
+                        width: double.infinity,
+                        height: double.infinity,
+                        child: custom_widgets.SearchableMapWidget(
+                          width: double.infinity,
+                          height: double.infinity,
+                          accessToken: FFAppState().accessToken,
+                        ),
+                      ),
+                      Builder(
+                        builder: (context) {
+                          final listOfDownloads = FFAppState()
+                              .listOfMapDownloads
+                              .map((e) => e)
+                              .toList();
+
+                          return RefreshIndicator(
+                            onRefresh: () async {
+                              await actions.fetchStoreStats();
+                            },
+                            child: ListView.builder(
+                              padding: EdgeInsets.zero,
+                              scrollDirection: Axis.vertical,
+                              itemCount: listOfDownloads.length,
+                              itemBuilder: (context, listOfDownloadsIndex) {
+                                final listOfDownloadsItem =
+                                    listOfDownloads[listOfDownloadsIndex];
+                                return Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
-                                      12.0, 8.0, 12.0, 8.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Expanded(
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  12.0, 0.0, 8.0, 0.0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                listOfDownloadsItem.storeName,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
+                                      16.0, 16.0, 16.0, 16.0),
+                                  child: Container(
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          blurRadius: 7.0,
+                                          color: Color(0x2F1D2429),
+                                          offset: Offset(
+                                            0.0,
+                                            3.0,
+                                          ),
+                                        )
+                                      ],
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          12.0, 8.0, 12.0, 8.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Expanded(
+                                            child: Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      12.0, 0.0, 8.0, 0.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    listOfDownloadsItem
+                                                        .storeName,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
                                                         .bodyLarge
                                                         .override(
                                                           fontFamily:
@@ -175,139 +187,149 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                                                                           context)
                                                                       .bodyLargeFamily),
                                                         ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 4.0, 0.0, 0.0),
-                                                child: Text(
-                                                  listOfDownloadsItem.length,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .labelSmall
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelSmallFamily,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 4.0,
+                                                                0.0, 0.0),
+                                                    child: Text(
+                                                      listOfDownloadsItem
+                                                          .length,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelSmall
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .labelSmallFamily),
-                                                      ),
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 4.0, 0.0, 0.0),
-                                                child: Text(
-                                                  listOfDownloadsItem.size,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .labelSmall
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelSmallFamily,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
+                                                                    .labelSmallFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .labelSmallFamily),
+                                                              ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 4.0,
+                                                                0.0, 0.0),
+                                                    child: Text(
+                                                      listOfDownloadsItem.size,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelSmall
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .labelSmallFamily),
-                                                      ),
-                                                ),
+                                                                    .labelSmallFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .labelSmallFamily),
+                                                              ),
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
-                                            ],
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 4.0, 0.0),
-                                        child: FlutterFlowIconButton(
-                                          borderColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .alternate,
-                                          borderRadius: 8.0,
-                                          borderWidth: 2.0,
-                                          buttonSize: 40.0,
-                                          icon: Icon(
-                                            Icons.delete_forever_outlined,
-                                            color: FlutterFlowTheme.of(context)
-                                                .error,
-                                            size: 20.0,
-                                          ),
-                                          onPressed: () async {
-                                            await actions.deleteMapStore(
-                                              context,
-                                              listOfDownloadsItem.rawStoreName,
-                                            );
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 4.0, 0.0),
+                                            child: FlutterFlowIconButton(
+                                              borderColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .alternate,
+                                              borderRadius: 8.0,
+                                              borderWidth: 2.0,
+                                              buttonSize: 40.0,
+                                              icon: Icon(
+                                                Icons.delete_forever_outlined,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                size: 20.0,
+                                              ),
+                                              onPressed: () async {
+                                                await actions.deleteMapStore(
+                                                  context,
+                                                  listOfDownloadsItem
+                                                      .rawStoreName,
+                                                );
 
-                                            setState(() {});
-                                          },
-                                        ),
+                                                setState(() {});
+                                              },
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ],
+                                    ),
                                   ),
-                                ),
-                              ),
-                            );
-                          },
+                                );
+                              },
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                Align(
+                  alignment: const Alignment(0.0, 0),
+                  child: TabBar(
+                    labelColor: FlutterFlowTheme.of(context).primaryText,
+                    unselectedLabelColor:
+                        FlutterFlowTheme.of(context).secondaryText,
+                    labelPadding: const EdgeInsets.all(10.0),
+                    labelStyle: FlutterFlowTheme.of(context)
+                        .titleMedium
+                        .override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).titleMediumFamily,
+                          letterSpacing: 0.0,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(
+                              FlutterFlowTheme.of(context).titleMediumFamily),
                         ),
-                      );
+                    unselectedLabelStyle: const TextStyle(),
+                    indicatorColor: FlutterFlowTheme.of(context).primary,
+                    padding: const EdgeInsets.all(4.0),
+                    tabs: [
+                      Tab(
+                        text: FFLocalizations.of(context).getText(
+                          'hopzh8rp' /* Map Search */,
+                        ),
+                      ),
+                      Tab(
+                        text: FFLocalizations.of(context).getText(
+                          'xg5zqtpy' /* Downloaded */,
+                        ),
+                      ),
+                    ],
+                    controller: _model.tabBarController,
+                    onTap: (i) async {
+                      [
+                        () async {},
+                        () async {
+                          await actions.fetchStoreStats();
+                        }
+                      ][i]();
                     },
                   ),
-                ],
-              ),
-            ),
-            Align(
-              alignment: const Alignment(0.0, 0),
-              child: TabBar(
-                labelColor: FlutterFlowTheme.of(context).primaryText,
-                unselectedLabelColor:
-                    FlutterFlowTheme.of(context).secondaryText,
-                labelPadding: const EdgeInsets.all(10.0),
-                labelStyle: FlutterFlowTheme.of(context).titleMedium.override(
-                      fontFamily:
-                          FlutterFlowTheme.of(context).titleMediumFamily,
-                      letterSpacing: 0.0,
-                      useGoogleFonts: GoogleFonts.asMap().containsKey(
-                          FlutterFlowTheme.of(context).titleMediumFamily),
-                    ),
-                unselectedLabelStyle: const TextStyle(),
-                indicatorColor: FlutterFlowTheme.of(context).primary,
-                padding: const EdgeInsets.all(4.0),
-                tabs: [
-                  Tab(
-                    text: FFLocalizations.of(context).getText(
-                      'hopzh8rp' /* Map Search */,
-                    ),
-                  ),
-                  Tab(
-                    text: FFLocalizations.of(context).getText(
-                      'xg5zqtpy' /* Downloaded */,
-                    ),
-                  ),
-                ],
-                controller: _model.tabBarController,
-                onTap: (i) async {
-                  [
-                    () async {},
-                    () async {
-                      await actions.fetchStoreStats();
-                    }
-                  ][i]();
-                },
-              ),
-            ),
-          ],
+                ),
+              ],
+            );
+          },
         ),
       ),
     );
