@@ -2,7 +2,6 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'ppir_widget.dart' show PpirWidget;
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PpirModel extends FlutterFlowModel<PpirWidget> {
@@ -52,7 +51,6 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
   // State field(s) for ppir_seed_var_corn_dropdown widget.
   String? ppirSeedVarCornDropdownValue;
   FormFieldController<String>? ppirSeedVarCornDropdownValueController;
-  DateTime? datePicked;
   // State field(s) for ppir_area_act_field widget.
   FocusNode? ppirAreaActFieldFocusNode;
   TextEditingController? ppirAreaActFieldTextController;
@@ -63,11 +61,14 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
   TextEditingController? ppirAreaDopDsFieldTextController;
   String? Function(BuildContext, String?)?
       ppirAreaDopDsFieldTextControllerValidator;
+  DateTime? datePicked1;
   // State field(s) for ppir_area_dop_tp_field widget.
   FocusNode? ppirAreaDopTpFieldFocusNode;
   TextEditingController? ppirAreaDopTpFieldTextController;
   String? Function(BuildContext, String?)?
       ppirAreaDopTpFieldTextControllerValidator;
+  DateTime? datePicked2;
+  DateTime? datePicked3;
   // State field(s) for ppir_remarks_field widget.
   FocusNode? ppirRemarksFieldFocusNode;
   TextEditingController? ppirRemarksFieldTextController;
