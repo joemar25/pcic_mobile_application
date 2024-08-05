@@ -56,19 +56,18 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
   TextEditingController? ppirAreaActFieldTextController;
   String? Function(BuildContext, String?)?
       ppirAreaActFieldTextControllerValidator;
+  DateTime? datePicked1;
   // State field(s) for ppir_area_dop_ds_field widget.
   FocusNode? ppirAreaDopDsFieldFocusNode;
   TextEditingController? ppirAreaDopDsFieldTextController;
   String? Function(BuildContext, String?)?
       ppirAreaDopDsFieldTextControllerValidator;
-  DateTime? datePicked1;
+  DateTime? datePicked2;
   // State field(s) for ppir_area_dop_tp_field widget.
   FocusNode? ppirAreaDopTpFieldFocusNode;
   TextEditingController? ppirAreaDopTpFieldTextController;
   String? Function(BuildContext, String?)?
       ppirAreaDopTpFieldTextControllerValidator;
-  DateTime? datePicked2;
-  DateTime? datePicked3;
   // State field(s) for ppir_remarks_field widget.
   FocusNode? ppirRemarksFieldFocusNode;
   TextEditingController? ppirRemarksFieldTextController;
