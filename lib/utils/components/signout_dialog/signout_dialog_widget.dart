@@ -2,7 +2,9 @@ import '/auth/supabase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'signout_dialog_model.dart';
 export 'signout_dialog_model.dart';
 
@@ -45,7 +47,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
         borderRadius: BorderRadius.circular(24.0),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: EdgeInsets.all(20.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
@@ -106,7 +108,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                     ),
                   ],
                 ),
-              ].divide(const SizedBox(height: 10.0)),
+              ].divide(SizedBox(height: 10.0)),
             ),
             Row(
               mainAxisSize: MainAxisSize.max,
@@ -168,11 +170,11 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                             ),
                       ),
                     ),
-                  ].divide(const SizedBox(width: 20.0)),
+                  ].divide(SizedBox(width: 20.0)),
                 ),
               ],
             ),
-          ].divide(const SizedBox(height: 30.0)),
+          ].divide(SizedBox(height: 30.0)),
         ),
       ),
     );

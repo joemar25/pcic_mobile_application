@@ -12,12 +12,11 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'index.dart';
-
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart' as latlong;
 import 'package:xml/xml.dart';
 import 'dart:convert';
+import 'package:flutter_map/plugin_api.dart';
 
 class MapBase64 extends StatefulWidget {
   const MapBase64({
@@ -25,11 +24,13 @@ class MapBase64 extends StatefulWidget {
     this.width,
     this.height,
     this.blob,
+    required this.accessToken,
   });
 
   final double? width;
   final double? height;
   final String? blob;
+  final String accessToken;
 
   @override
   State<MapBase64> createState() => _MapBase64State();
@@ -37,10 +38,13 @@ class MapBase64 extends StatefulWidget {
 
 class _MapBase64State extends State<MapBase64> {
   List<latlong.LatLng> _coordinates = [];
+  late final MapController _mapController;
+  final NetworkTileProvider _tileProvider = NetworkTileProvider();
 
   @override
   void initState() {
     super.initState();
+    _mapController = MapController();
     if (widget.blob != null) {
       _parseGPX(widget.blob!);
     }
@@ -48,11 +52,9 @@ class _MapBase64State extends State<MapBase64> {
 
   void _parseGPX(String base64Data) {
     try {
-      // Decode the base64 string to get the GPX data
       final decodedBytes = base64Decode(base64Data);
       final gpxString = utf8.decode(decodedBytes);
 
-      // Parse the GPX data using the xml package
       final document = XmlDocument.parse(gpxString);
       final trkpts = document.findAllElements('trkpt');
 
@@ -67,8 +69,20 @@ class _MapBase64State extends State<MapBase64> {
       setState(() {
         _coordinates = coordinates;
       });
+
+      WidgetsBinding.instance.addPostFrameCallback((_) => _fitBounds());
     } catch (e) {
       print('Error parsing GPX data: $e');
+    }
+  }
+
+  void _fitBounds() {
+    if (_coordinates.isNotEmpty) {
+      final bounds = LatLngBounds.fromPoints(_coordinates);
+      _mapController.fitBounds(
+        bounds,
+        options: FitBoundsOptions(padding: EdgeInsets.all(50.0)),
+      );
     }
   }
 
@@ -78,16 +92,24 @@ class _MapBase64State extends State<MapBase64> {
       width: widget.width,
       height: widget.height,
       child: FlutterMap(
+        mapController: _mapController,
         options: MapOptions(
           initialCenter: _coordinates.isNotEmpty
               ? _coordinates.first
               : latlong.LatLng(0, 0),
           initialZoom: 13.0,
+          interactionOptions: InteractionOptions(
+            flags: InteractiveFlag.all & ~InteractiveFlag.rotate,
+          ),
         ),
         children: [
           TileLayer(
-            urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-            subdomains: ['a', 'b', 'c'],
+            urlTemplate:
+                'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}@2x?access_token=${widget.accessToken}',
+            additionalOptions: {
+              'accessToken': widget.accessToken,
+            },
+            tileProvider: _tileProvider,
           ),
           PolylineLayer(
             polylines: [

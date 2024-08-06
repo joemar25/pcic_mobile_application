@@ -8,7 +8,7 @@ Future performUpdateAttemptStatus(
   bool? syncstatus,
   bool? isdirty,
 }) {
-  const query = '''
+  final query = '''
 UPDATE attempts
 SET status = ?, 
     comments = ?, 
@@ -30,7 +30,7 @@ Future performUpdateSyncStatus(
   DateTime? lastsyncedat,
   DateTime? updatedat,
 }) {
-  const query = '''
+  final query = '''
 UPDATE attempts
 SET sync_status = ?,
     last_synced_at = ?,
@@ -55,7 +55,7 @@ Future performUpdatePPIRBasicInfo(
   DateTime? updatedat,
   String? taskid,
 }) {
-  const query = '''
+  final query = '''
 UPDATE ppir_forms
 SET ppir_farmername = ?,
     ppir_address = ?,
@@ -84,7 +84,7 @@ Future performUpdatePPIRLocation(
   bool? isdirty,
   String? taskid,
 }) {
-  const query = '''
+  final query = '''
 UPDATE ppir_forms
 SET ppir_north = ?,
     ppir_south = ?,
@@ -111,7 +111,7 @@ Future performUpdatePPIRCropInfo(
   bool? isdirty,
   String? taskid,
 }) {
-  const query = '''
+  final query = '''
 UPDATE ppir_forms
 SET ppir_variety = ?,
     ppir_stage_crop = ?,
@@ -149,7 +149,7 @@ Future performUpdateTask(
   bool? isdirty,
   bool? isupdating,
 }) {
-  const query = '''
+  final query = '''
 UPDATE tasks
 SET 
   task_number = ?,
@@ -194,7 +194,7 @@ Future performUpdateUsers(
   String? updatedat,
   String? regionid,
 }) {
-  const query = '''
+  final query = '''
 UPDATE users
 SET 
   role = ?,
@@ -229,7 +229,7 @@ Future performUpdateDashboardQuery(
   DateTime? updatedat,
   String? regionid,
 }) {
-  const query = '''
+  final query = '''
 UPDATE users
 SET 
   role = ?,
@@ -255,7 +255,7 @@ Future performInsertUpdateSyncStatus(
   String? tablename,
   DateTime? lastsynctimestamp,
 }) {
-  const query = '''
+  final query = '''
 INSERT OR REPLACE INTO sync_status (table_name, last_sync_timestamp)
 VALUES (?, ?);
 ''';
@@ -273,7 +273,7 @@ Future performAddToSyncQueue(
   String? data,
   DateTime? timestamp,
 }) {
-  const query = '''
+  final query = '''
 INSERT INTO sync_queue (table_name, record_id, action, data, timestamp)
 VALUES (?, ?, ?, ?, ?);
 ''';
@@ -287,7 +287,7 @@ Future performRemoveFromSyncQueue(
   Database database, {
   String? id,
 }) {
-  const query = '''
+  final query = '''
 DELETE FROM sync_queue WHERE id = ?;
 ''';
   return database.rawQuery(query);
@@ -301,7 +301,7 @@ Future performUpdateLastModifiedTimestamp(
   DateTime? lastmodified,
   String? id,
 }) {
-  const query = '''
+  final query = '''
 UPDATE tasks SET ..., last_modified = ? WHERE id = ?;
 ''';
   return database.rawQuery(query);
@@ -316,7 +316,7 @@ Future performBulkInsert(
   String? title,
   String? status,
 }) {
-  const query = '''
+  final query = '''
 INSERT OR REPLACE INTO tasks (id, title, status, ...) VALUES (?, ?, ?, ...);
 ''';
   return database.rawQuery(query);
@@ -329,7 +329,7 @@ Future performDeleteRecords(
   Database database, {
   String? id,
 }) {
-  const query = '''
+  final query = '''
 DELETE FROM tasks WHERE id = ?;
 ''';
   return database.rawQuery(query);
