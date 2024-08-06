@@ -11,17 +11,30 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-// Additional imports for SQLite
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 Future<String> syncOnlineOfflineDb() async {
-  // Get the path to the local database
-  final databasePath = await getDatabasesPath();
-  final path = join(databasePath, 'offline_db.db');
+  // Initialize the SQLiteManager to ensure the database is loaded
+  await SQLiteManager.initialize();
 
-  // Open the local database
-  final localDb = await openDatabase(path);
+  // Get the database instance
+  final localDb = SQLiteManager.instance.database;
+
+  // List of expected table names
+  final expectedTables = [
+    'attempts',
+    'chats',
+    'file_read',
+    'messages',
+    'ppir_forms',
+    'regions',
+    'seeds',
+    'sync_log',
+    'tasks',
+    'user_logs',
+    'users'
+  ];
 
   // Get all table names from the local database
   final tables = await localDb.rawQuery(
@@ -32,14 +45,25 @@ Future<String> syncOnlineOfflineDb() async {
   // Create a list to store the table names
   final tableNames = <String>[];
 
-  // Loop through the tables and add the names to the list
+  // Loop through the tables and add the names to the list, excluding unwanted tables
   for (final table in tables) {
-    tableNames.add(table['name'] as String);
+    final tableName = table['name'] as String;
+    if (tableName != 'sqlite_sequence' && tableName != 'android_metadata') {
+      tableNames.add(tableName);
+    }
   }
 
-  // Close the local database
-  await localDb.close();
+  // Check for missing tables
+  final missingTables =
+      expectedTables.where((table) => !tableNames.contains(table)).toList();
 
-  // Return the table names as a string
-  return tableNames.join(', ');
+  // Close the local database (if needed)
+  // await localDb.close();
+
+  // Return the table names and any missing tables as a string
+  if (missingTables.isNotEmpty) {
+    return 'Tables found: ${tableNames.join(', ')}. Missing tables: ${missingTables.join(', ')}.';
+  } else {
+    return 'All expected tables are present: ${tableNames.join(', ')}.';
+  }
 }
