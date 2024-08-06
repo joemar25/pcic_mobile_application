@@ -3290,8 +3290,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget>
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
                                 children: [
-                                  if ((_model.isFtpSaved == false) &&
-                                      (widget.taskStatus != 'completed'))
+                                  if (_model.isFtpSaved == false)
                                     Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           16.0, 8.0, 16.0, 12.0),
