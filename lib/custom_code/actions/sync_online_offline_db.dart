@@ -11,8 +11,35 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-Future<String?> syncOnlineOfflineDb() async {
-  // Add your function code here!
-  String msg = 'Database sync success!';
-  return msg ?? '';
+// Additional imports for SQLite
+import 'package:sqflite/sqflite.dart';
+import 'package:path/path.dart';
+
+Future<String> syncOnlineOfflineDb() async {
+  // Get the path to the local database
+  final databasePath = await getDatabasesPath();
+  final path = join(databasePath, 'offline_db.db');
+
+  // Open the local database
+  final localDb = await openDatabase(path);
+
+  // Get all table names from the local database
+  final tables = await localDb.rawQuery(
+    'SELECT name FROM sqlite_master WHERE type = ?',
+    ['table'],
+  );
+
+  // Create a list to store the table names
+  final tableNames = <String>[];
+
+  // Loop through the tables and add the names to the list
+  for (final table in tables) {
+    tableNames.add(table['name'] as String);
+  }
+
+  // Close the local database
+  await localDb.close();
+
+  // Return the table names as a string
+  return tableNames.join(', ');
 }

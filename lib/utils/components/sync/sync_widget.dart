@@ -95,7 +95,15 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
       focusColor: Colors.transparent,
       hoverColor: Colors.transparent,
       highlightColor: Colors.transparent,
-      onTap: () async {},
+      onTap: () async {
+        // Start of Sync
+        _model.clicked = true;
+        setState(() {});
+        await Future.delayed(const Duration(milliseconds: 5000));
+        // End of Sync
+        _model.clicked = false;
+        setState(() {});
+      },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 100),
         curve: Curves.easeInOutQuint,

@@ -236,6 +236,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'pcicMap',
           path: '/pcicMap',
           builder: (context, params) => const PcicMapWidget(),
+        ),
+        FFRoute(
+          name: 'list1',
+          path: '/list1',
+          builder: (context, params) => const List1Widget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

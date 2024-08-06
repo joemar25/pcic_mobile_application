@@ -309,10 +309,29 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                     child: const SyncWidget(),
                                   ),
                                 ),
-                                wrapWithModel(
-                                  model: _model.connectivityModel,
-                                  updateCallback: () => setState(() {}),
-                                  child: const ConnectivityWidget(),
+                                InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    context.pushNamed(
+                                      'list1',
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: const TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 0),
+                                        ),
+                                      },
+                                    );
+                                  },
+                                  child: wrapWithModel(
+                                    model: _model.connectivityModel,
+                                    updateCallback: () => setState(() {}),
+                                    child: const ConnectivityWidget(),
+                                  ),
                                 ),
                               ],
                             ),

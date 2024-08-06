@@ -23,7 +23,7 @@ class SQLiteManager {
     }
     _database = await initializeDatabaseFromDbFile(
       'db_sync',
-      'new_db.db',
+      'offline_db.db',
     );
   }
 
