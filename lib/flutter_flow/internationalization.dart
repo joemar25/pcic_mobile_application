@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    '98n1j9a2': {
+    '0n4kh8bk': {
       'en': '',
       'tl': '',
     },
@@ -253,7 +253,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'j2u1obr9': {
+    'j6bf9pnn': {
       'en': '',
       'tl': '',
     },
@@ -265,7 +265,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'orb4h3eu': {
+    '8dqn9dqt': {
       'en': '',
       'tl': '',
     },
@@ -277,7 +277,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'dnogd2mq': {
+    'y6ec1l3j': {
       'en': '',
       'tl': '',
     },
@@ -332,7 +332,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    'w1namsln': {
+    'w0xossa0': {
       'en': '',
       'tl': '',
     },
@@ -519,12 +519,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Geotag',
       'tl': 'Geotag',
     },
-    '4bn5fz7r': {
+    'kfsvnfnl': {
       'en': 'Re-FTP',
       'tl': '',
     },
-    '6bmae823': {
-      'en': 'Re-Geotag',
+    'cwddpguo': {
+      'en': 'Re-FTP',
       'tl': '',
     },
     '4jnx5njc': {

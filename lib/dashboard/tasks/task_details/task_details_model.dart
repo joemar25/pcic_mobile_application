@@ -17,7 +17,7 @@ class TaskDetailsModel extends FlutterFlowModel<TaskDetailsWidget> {
   FocusNode? farmLocInputFocusNode;
   TextEditingController? farmLocInputTextController;
   String? Function(BuildContext, String?)? farmLocInputTextControllerValidator;
-  // Stores action output result for [Custom Action - saveToFTP] action in resubmitFtp widget.
+  // Stores action output result for [Custom Action - saveToFTP] action in reFTP widget.
   bool? isFtpSaved;
   // Model for savingMode component.
   late SavingModeModel savingModeModel;
