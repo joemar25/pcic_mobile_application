@@ -50,7 +50,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget>
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.isEditing = false;
-      _model.isReFTP = false;
+      _model.isReFTPClicked = false;
       setState(() {});
     });
 
@@ -3290,7 +3290,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget>
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
                                 children: [
-                                  if (widget.taskStatus == 'completed')
+                                  if ((_model.isFtpSaved == false) &&
+                                      (widget.taskStatus != 'completed'))
                                     Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           16.0, 8.0, 16.0, 12.0),
@@ -3300,13 +3301,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget>
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
-                                          _model.isReFTP = true;
+                                          _model.isReFTPClicked = true;
                                           setState(() {});
                                           _model.isFtpSaved =
                                               await actions.saveToFTP(
                                             containerTasksRow?.id,
                                           );
-                                          _model.isReFTP = false;
+                                          _model.isReFTPClicked = false;
                                           setState(() {});
                                           if (_model.isFtpSaved!) {
                                             context.pushNamed(

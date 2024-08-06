@@ -8,7 +8,7 @@ class TaskDetailsModel extends FlutterFlowModel<TaskDetailsWidget> {
 
   bool? isEditing = true;
 
-  bool? isReFTP = true;
+  bool? isReFTPClicked = true;
 
   ///  State fields for stateful widgets in this page.
 
