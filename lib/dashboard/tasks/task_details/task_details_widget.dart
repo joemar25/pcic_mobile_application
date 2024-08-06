@@ -3559,10 +3559,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget>
                               ),
                             ],
                           ),
-                          if (valueOrDefault<bool>(
-                            _model.isFtpSaved,
-                            false,
-                          ))
+                          if (_model.isReFTPClicked == true)
                             wrapWithModel(
                               model: _model.savingModeModel,
                               updateCallback: () => setState(() {}),
