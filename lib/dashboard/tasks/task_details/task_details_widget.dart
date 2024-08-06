@@ -3598,7 +3598,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget>
                               ),
                             ],
                           ),
-                          if (_model.isFtpSaved ?? true)
+                          if (!_model.isFtpSaved!)
                             wrapWithModel(
                               model: _model.savingModeModel,
                               updateCallback: () => setState(() {}),
