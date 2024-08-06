@@ -3409,7 +3409,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         },
                                         text:
                                             FFLocalizations.of(context).getText(
-                                          'cwddpguo' /* Re-FTP */,
+                                          'cwddpguo' /* Re-Submit */,
                                         ),
                                         icon: const Icon(
                                           Icons.swap_vert_sharp,
