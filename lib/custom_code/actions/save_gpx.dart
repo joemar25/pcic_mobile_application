@@ -70,7 +70,7 @@ Future saveGpx(
 
     // Define the file path in the bucket
     final filePath =
-        '$serviceGroup/$userEmail/$taskNumber/attachments/$taskId.gpx';
+        '$serviceGroup/$userEmail/$taskNumber/attachments/geotag.gpx';
     print('Supabase file path: $filePath');
 
     // Upload or update the GPX file in Supabase storage
@@ -151,7 +151,7 @@ Future<void> _saveGpxLocally(String taskId, String gpxContent) async {
   print('Starting _saveGpxLocally function');
   try {
     final directory = await getApplicationDocumentsDirectory();
-    final file = File('${directory.path}/$taskId.gpx');
+    final file = File('${directory.path}/geotag.gpx');
     print('Local file path: ${file.path}');
 
     await file.writeAsString(gpxContent);
