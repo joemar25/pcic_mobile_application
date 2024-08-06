@@ -109,8 +109,17 @@ class _List1WidgetState extends State<List1Widget> {
                       ),
                 ),
                 FFButtonWidget(
-                  onPressed: () {
-                    print('Button pressed ...');
+                  onPressed: () async {
+                    context.pushNamed(
+                      'offlineTasksList',
+                      extra: <String, dynamic>{
+                        kTransitionInfoKey: const TransitionInfo(
+                          hasTransition: true,
+                          transitionType: PageTransitionType.fade,
+                          duration: Duration(milliseconds: 0),
+                        ),
+                      },
+                    );
                   },
                   text: FFLocalizations.of(context).getText(
                     '4twa0pya' /* List of Tasks */,
