@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 class ChatsModel extends FlutterFlowModel<ChatsWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - Query Rows] action in chats widget.
   List<ChatsRow>? messageQuery;
   // Model for connectivity component.
@@ -25,7 +24,6 @@ class ChatsModel extends FlutterFlowModel<ChatsWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     connectivityModel.dispose();
     chatListContainerModels.dispose();
   }

@@ -9,7 +9,6 @@ class List1Model extends FlutterFlowModel<List1Widget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Custom Action - syncOnlineOfflineDb] action in list1 widget.
   String? valueasdasd;
 
@@ -17,7 +16,5 @@ class List1Model extends FlutterFlowModel<List1Widget> {
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 }

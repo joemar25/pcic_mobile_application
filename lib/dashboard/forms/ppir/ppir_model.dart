@@ -15,7 +15,6 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - Query Rows] action in ppir widget.
   List<PpirFormsRow>? ppirData;
   // State field(s) for ppir_track_coordinates widget.
@@ -107,7 +106,6 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     ppirTrackCoordinatesFocusNode?.dispose();
     ppirTrackCoordinatesTextController?.dispose();
 

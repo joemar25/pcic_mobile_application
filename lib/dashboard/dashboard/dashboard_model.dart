@@ -25,7 +25,6 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Custom Action - getTheSavedLocalProfile] action in dashboard widget.
   FFUploadedFile? getProfilePic;
   // Stores action output result for [Backend Call - Query Rows] action in dashboard widget.
@@ -86,7 +85,6 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     syncModel.dispose();
     connectivityModel.dispose();
     textFieldFocusNode?.dispose();

@@ -1,4 +1,4 @@
-import '/backend/api_requests/api_calls.dart';
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import 'dart:async';
@@ -14,7 +14,7 @@ class MessagesModel extends FlutterFlowModel<MessagesWidget> {
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
-  Completer<ApiCallResponse>? apiRequestCompleter;
+  Completer<List<MessagesRow>>? requestCompleter;
 
   @override
   void initState(BuildContext context) {
@@ -29,7 +29,7 @@ class MessagesModel extends FlutterFlowModel<MessagesWidget> {
   }
 
   /// Additional helper methods.
-  Future waitForApiRequestCompleted({
+  Future waitForRequestCompleted({
     double minWait = 0,
     double maxWait = double.infinity,
   }) async {
@@ -37,7 +37,7 @@ class MessagesModel extends FlutterFlowModel<MessagesWidget> {
     while (true) {
       await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
-      final requestComplete = apiRequestCompleter?.isCompleted ?? false;
+      final requestComplete = requestCompleter?.isCompleted ?? false;
       if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
         break;
       }

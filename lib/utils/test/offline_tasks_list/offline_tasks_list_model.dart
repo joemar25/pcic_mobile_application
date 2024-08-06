@@ -10,7 +10,6 @@ class OfflineTasksListModel extends FlutterFlowModel<OfflineTasksListWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - SQLite (SELECT TASKS base on status)] action in offlineTasksList widget.
   List<SELECTTASKSBaseOnStatusRow>? offlineOngoingTasks;
 
@@ -18,7 +17,5 @@ class OfflineTasksListModel extends FlutterFlowModel<OfflineTasksListWidget> {
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 }

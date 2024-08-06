@@ -12,7 +12,6 @@ class TaskDetailsModel extends FlutterFlowModel<TaskDetailsWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for farm_loc_input widget.
   FocusNode? farmLocInputFocusNode;
   TextEditingController? farmLocInputTextController;
@@ -29,7 +28,6 @@ class TaskDetailsModel extends FlutterFlowModel<TaskDetailsWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     farmLocInputFocusNode?.dispose();
     farmLocInputTextController?.dispose();
 

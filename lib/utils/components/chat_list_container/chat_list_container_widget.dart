@@ -188,7 +188,7 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
                           child: Text(
                             valueOrDefault<String>(
                               dateTimeFormat(
-                                'yMMMd',
+                                "yMMMd",
                                 containerMessagesRow?.timestamp,
                                 locale:
                                     FFLocalizations.of(context).languageCode,
