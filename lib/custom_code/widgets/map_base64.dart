@@ -15,18 +15,19 @@ import 'package:flutter/material.dart';
 import 'index.dart'; // Imports other custom widgets
 
 import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong2/latlong.dart';
+import 'package:latlong2/latlong.dart' as latlong;
 import 'package:xml/xml.dart';
 import 'dart:convert';
+import 'dart:math' as math;
 
 class MapBase64 extends StatefulWidget {
   const MapBase64({
-    super.key,
+    Key? key,
     this.width,
     this.height,
     this.blob,
     required this.accessToken,
-  });
+  }) : super(key: key);
 
   final double? width;
   final double? height;
@@ -38,7 +39,7 @@ class MapBase64 extends StatefulWidget {
 }
 
 class _MapBase64State extends State<MapBase64> {
-  List<LatLng> _coordinates = [];
+  List<latlong.LatLng> _coordinates = [];
   late final MapController _mapController;
 
   @override
@@ -58,45 +59,81 @@ class _MapBase64State extends State<MapBase64> {
       final document = XmlDocument.parse(gpxString);
       final trkpts = document.findAllElements('trkpt');
 
-      List<LatLng> coordinates = [];
+      List<latlong.LatLng> coordinates = [];
 
       for (var trkpt in trkpts) {
         final lat = double.parse(trkpt.getAttribute('lat')!);
         final lon = double.parse(trkpt.getAttribute('lon')!);
-        coordinates.add(LatLng(lat, lon));
+        coordinates.add(latlong.LatLng(lat, lon));
       }
 
       setState(() {
         _coordinates = coordinates;
       });
 
-      WidgetsBinding.instance.addPostFrameCallback((_) => _fitBounds());
+      WidgetsBinding.instance.addPostFrameCallback((_) => _centerMap());
     } catch (e) {
       print('Error parsing GPX data: $e');
     }
   }
 
-  void _fitBounds() {
+  void _centerMap() {
     if (_coordinates.isNotEmpty) {
-      final bounds = LatLngBounds.fromPoints(_coordinates);
-      _mapController.fitBounds(
-        bounds,
-        options: const FitBoundsOptions(padding: EdgeInsets.all(50.0)),
-      );
+      final bounds = _calculateBounds(_coordinates);
+      final centerLat = (bounds[0] + bounds[2]) / 2;
+      final centerLon = (bounds[1] + bounds[3]) / 2;
+      final zoom = _calculateZoom(bounds);
+      _mapController.move(latlong.LatLng(centerLat, centerLon), zoom);
     }
+  }
+
+  List<double> _calculateBounds(List<latlong.LatLng> points) {
+    double minLat = double.infinity;
+    double maxLat = -double.infinity;
+    double minLon = double.infinity;
+    double maxLon = -double.infinity;
+
+    for (var point in points) {
+      minLat = math.min(minLat, point.latitude);
+      maxLat = math.max(maxLat, point.latitude);
+      minLon = math.min(minLon, point.longitude);
+      maxLon = math.max(maxLon, point.longitude);
+    }
+
+    return [minLat, minLon, maxLat, maxLon];
+  }
+
+  double _calculateZoom(List<double> bounds) {
+    const WORLD_PX_HEIGHT = 256.0;
+    const WORLD_PX_WIDTH = 256.0;
+    const ZOOM_MAX = 21.0;
+
+    final latFraction = (bounds[2] - bounds[0]) / 360.0;
+    final lonFraction = (bounds[3] - bounds[1]) / 360.0;
+
+    final latZoom =
+        (math.log(WORLD_PX_HEIGHT / latFraction) / math.ln2).round() - 1;
+    final lonZoom =
+        (math.log(WORLD_PX_WIDTH / lonFraction) / math.ln2).round() - 1;
+
+    return math.min(latZoom, lonZoom).toDouble().clamp(0.0, ZOOM_MAX);
   }
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       width: widget.width,
       height: widget.height,
       child: FlutterMap(
         mapController: _mapController,
         options: MapOptions(
-          center: _coordinates.isNotEmpty ? _coordinates.first : LatLng(0, 0),
-          zoom: 13.0,
-          interactiveFlags: InteractiveFlag.all & ~InteractiveFlag.rotate,
+          initialCenter: _coordinates.isNotEmpty
+              ? _coordinates.first
+              : latlong.LatLng(0, 0),
+          initialZoom: 18.0,
+          interactionOptions: InteractionOptions(
+            flags: InteractiveFlag.all & ~InteractiveFlag.rotate,
+          ),
         ),
         children: [
           TileLayer(
