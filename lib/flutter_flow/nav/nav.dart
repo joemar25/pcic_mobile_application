@@ -241,6 +241,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'list1',
           path: '/list1',
           builder: (context, params) => const List1Widget(),
+        ),
+        FFRoute(
+          name: 'offlineTasksList',
+          path: '/offlineTasksList',
+          builder: (context, params) => const OfflineTasksListWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

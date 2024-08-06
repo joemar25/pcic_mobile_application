@@ -23,3 +23,5 @@ export '/dashboard/geotag/geotagging/geotagging_widget.dart'
 export '/utils/test/sss/sss_widget.dart' show SssWidget;
 export '/dashboard/offlinemap/pcic_map/pcic_map_widget.dart' show PcicMapWidget;
 export '/utils/test/list1/list1_widget.dart' show List1Widget;
+export '/utils/test/offline_tasks_list/offline_tasks_list_widget.dart'
+    show OfflineTasksListWidget;
