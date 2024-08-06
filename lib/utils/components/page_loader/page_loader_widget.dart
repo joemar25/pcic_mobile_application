@@ -35,21 +35,32 @@ class _PageLoaderWidgetState extends State<PageLoaderWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
-      child: Container(
-        width: 141.0,
-        height: 100.0,
-        decoration: BoxDecoration(
-          color: FlutterFlowTheme.of(context).secondaryBackground,
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            image: Image.asset(
-              'assets/images/pccc.gif',
-            ).image,
+    return Stack(
+      children: [
+        Container(
+          width: double.infinity,
+          height: double.infinity,
+          decoration: BoxDecoration(
+            color: FlutterFlowTheme.of(context).primaryBackground,
           ),
         ),
-      ),
+        Align(
+          alignment: const AlignmentDirectional(0.0, 0.0),
+          child: Container(
+            width: double.infinity,
+            height: 100.0,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.contain,
+                alignment: const AlignmentDirectional(0.0, 0.0),
+                image: Image.asset(
+                  'assets/images/pccc.gif',
+                ).image,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

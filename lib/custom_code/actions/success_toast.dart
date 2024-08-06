@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 
 import 'package:elegant_notification/elegant_notification.dart';
 import 'package:elegant_notification/resources/arrays.dart';
+import 'package:elegant_notification/resources/stacked_options.dart';
 
 Future successToast(
   BuildContext context,
@@ -20,9 +21,6 @@ Future successToast(
   String description, // description text in the notification
   int animationDuration, // duration in seconds
   int toastDuration,
-  Future<dynamic> Function()? onClosePressed, // action done on 'close' pressed
-  Future<dynamic> Function()?
-      onAnimationEnd, // action done on when duration elapses
 ) async {
   // see here that ElegantNotification without any 'dot something' in front
   ElegantNotification(
@@ -48,13 +46,19 @@ Future successToast(
       color: Colors.white,
       size: 24,
     ),
-    // here you specify the colour of the progress bar, I am using Orange
-    progressIndicatorColor: Colors.white,
+    showProgressIndicator: false,
     background: Colors.green,
-    // these two lines below allow actions to be triggered on close pressed or on end
-    onCloseButtonPressed: onClosePressed,
-    onProgressFinished: onAnimationEnd,
     width: 250,
     height: 60,
+    closeButton: (dismiss) => ElevatedButton(
+      onPressed: dismiss,
+      style: ElevatedButton.styleFrom(
+        shape: const CircleBorder(),
+        padding: const EdgeInsets.all(10),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      child: const Icon(Icons.close, color: Colors.white),
+    ),
   ).show(context);
 }

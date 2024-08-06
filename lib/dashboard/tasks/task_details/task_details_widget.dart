@@ -224,10 +224,6 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                 'You have successfully edited the farm location!',
                                 600,
                                 3000,
-                                () async {
-                                  Navigator.pop(context);
-                                },
-                                () async {},
                               );
                             },
                             child: const FaIcon(
@@ -3210,119 +3206,257 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                 ),
                               ),
                             ),
-                          if (widget.taskStatus == 'completed')
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 8.0, 16.0, 12.0),
-                              child: InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  await TasksTable().update(
-                                    data: {
-                                      'status': 'ongoing',
-                                    },
-                                    matchingRows: (rows) => rows.eq(
-                                      'id',
-                                      widget.taskId,
-                                    ),
-                                  );
-                                  await AttemptsTable().insert({
-                                    'task_id': widget.taskId,
-                                  });
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              if (widget.taskStatus == 'completed')
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 8.0, 16.0, 12.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      _model.isFtpSaved =
+                                          await actions.saveToFTP(
+                                        containerTasksRow?.id,
+                                      );
+                                      if (_model.isFtpSaved!) {
+                                        context.pushNamed(
+                                          'successProfile',
+                                          queryParameters: {
+                                            'message': serializeParam(
+                                              'FTP Submitted',
+                                              ParamType.String,
+                                            ),
+                                          }.withoutNulls,
+                                          extra: <String, dynamic>{
+                                            kTransitionInfoKey: const TransitionInfo(
+                                              hasTransition: true,
+                                              transitionType:
+                                                  PageTransitionType.fade,
+                                              duration:
+                                                  Duration(milliseconds: 200),
+                                            ),
+                                          },
+                                        );
+                                      } else {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              'FTP submission fail!',
+                                              style: TextStyle(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                              ),
+                                            ),
+                                            duration:
+                                                const Duration(milliseconds: 4000),
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .warning,
+                                          ),
+                                        );
+                                      }
 
-                                  context.pushNamed(
-                                    'geotagging',
-                                    queryParameters: {
-                                      'taskId': serializeParam(
-                                        widget.taskId,
-                                        ParamType.String,
-                                      ),
-                                      'taskType': serializeParam(
-                                        containerTasksRow?.taskType,
-                                        ParamType.String,
-                                      ),
-                                      'taskStatus': serializeParam(
-                                        containerTasksRow?.status,
-                                        ParamType.String,
-                                      ),
-                                    }.withoutNulls,
-                                    extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
-                                        hasTransition: true,
-                                        transitionType:
-                                            PageTransitionType.scale,
-                                        alignment: Alignment.bottomCenter,
-                                        duration: Duration(milliseconds: 200),
-                                      ),
+                                      setState(() {});
                                     },
-                                  );
-                                },
-                                child: Container(
-                                  width: 300.0,
-                                  height: 50.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    boxShadow: const [
-                                      BoxShadow(
-                                        blurRadius: 4.0,
-                                        color: Color(0x33000000),
-                                        offset: Offset(
-                                          0.0,
-                                          2.0,
-                                        ),
-                                      )
-                                    ],
-                                    borderRadius: BorderRadius.circular(12.0),
-                                    border: Border.all(
-                                      color:
-                                          FlutterFlowTheme.of(context).accent1,
-                                      width: 2.0,
-                                    ),
-                                  ),
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(6.0),
-                                        child: Icon(
-                                          Icons.redo_sharp,
+                                    child: Container(
+                                      width: MediaQuery.sizeOf(context).width *
+                                          0.35,
+                                      height: 50.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .earthYellow,
+                                        boxShadow: const [
+                                          BoxShadow(
+                                            blurRadius: 4.0,
+                                            color: Color(0x33000000),
+                                            offset: Offset(
+                                              0.0,
+                                              2.0,
+                                            ),
+                                          )
+                                        ],
+                                        borderRadius:
+                                            BorderRadius.circular(12.0),
+                                        border: Border.all(
                                           color: FlutterFlowTheme.of(context)
-                                              .primaryBtnText,
-                                          size: 24.0,
+                                              .accent1,
+                                          width: 2.0,
                                         ),
                                       ),
-                                      Text(
-                                        FFLocalizations.of(context).getText(
-                                          'm6egon7b' /* Resubmit */,
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmallFamily,
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(6.0),
+                                            child: Icon(
+                                              Icons.six_ft_apart,
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryBtnText,
-                                              letterSpacing: 0.0,
-                                              useGoogleFonts: GoogleFonts
-                                                      .asMap()
-                                                  .containsKey(
+                                              size: 24.0,
+                                            ),
+                                          ),
+                                          Text(
+                                            FFLocalizations.of(context).getText(
+                                              '4bn5fz7r' /* Re-FTP */,
+                                            ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .titleSmall
+                                                .override(
+                                                  fontFamily:
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .titleSmallFamily),
-                                            ),
+                                                          .titleSmallFamily,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryBtnText,
+                                                  letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmallFamily),
+                                                ),
+                                          ),
+                                        ],
                                       ),
-                                    ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ),
+                              if (widget.taskStatus == 'completed')
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 8.0, 16.0, 12.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await TasksTable().update(
+                                        data: {
+                                          'status': 'ongoing',
+                                        },
+                                        matchingRows: (rows) => rows.eq(
+                                          'id',
+                                          widget.taskId,
+                                        ),
+                                      );
+                                      await AttemptsTable().insert({
+                                        'task_id': widget.taskId,
+                                      });
+
+                                      context.pushNamed(
+                                        'geotagging',
+                                        queryParameters: {
+                                          'taskId': serializeParam(
+                                            widget.taskId,
+                                            ParamType.String,
+                                          ),
+                                          'taskType': serializeParam(
+                                            containerTasksRow?.taskType,
+                                            ParamType.String,
+                                          ),
+                                          'taskStatus': serializeParam(
+                                            containerTasksRow?.status,
+                                            ParamType.String,
+                                          ),
+                                        }.withoutNulls,
+                                        extra: <String, dynamic>{
+                                          kTransitionInfoKey: const TransitionInfo(
+                                            hasTransition: true,
+                                            transitionType:
+                                                PageTransitionType.scale,
+                                            alignment: Alignment.bottomCenter,
+                                            duration:
+                                                Duration(milliseconds: 200),
+                                          ),
+                                        },
+                                      );
+                                    },
+                                    child: Container(
+                                      width: MediaQuery.sizeOf(context).width *
+                                          0.35,
+                                      height: 50.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        boxShadow: const [
+                                          BoxShadow(
+                                            blurRadius: 4.0,
+                                            color: Color(0x33000000),
+                                            offset: Offset(
+                                              0.0,
+                                              2.0,
+                                            ),
+                                          )
+                                        ],
+                                        borderRadius:
+                                            BorderRadius.circular(12.0),
+                                        border: Border.all(
+                                          color: FlutterFlowTheme.of(context)
+                                              .accent1,
+                                          width: 2.0,
+                                        ),
+                                      ),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(6.0),
+                                            child: Icon(
+                                              Icons.redo_sharp,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBtnText,
+                                              size: 24.0,
+                                            ),
+                                          ),
+                                          Text(
+                                            FFLocalizations.of(context).getText(
+                                              '6bmae823' /* Re-Geotag */,
+                                            ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .titleSmall
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmallFamily,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryBtnText,
+                                                  letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmallFamily),
+                                                ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          ),
                         ],
                       ),
                     );

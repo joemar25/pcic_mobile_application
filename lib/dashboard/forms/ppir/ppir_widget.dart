@@ -2023,7 +2023,6 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                               .none,
                                                       textInputAction:
                                                           TextInputAction.next,
-                                                      readOnly: true,
                                                       obscureText: false,
                                                       decoration:
                                                           InputDecoration(
@@ -3484,7 +3483,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                 .showSnackBar(
                                               SnackBar(
                                                 content: Text(
-                                                  'The task is successfully save to FTP!',
+                                                  'FTP submission success!',
                                                   style: TextStyle(
                                                     color: FlutterFlowTheme.of(
                                                             context)
@@ -3503,7 +3502,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                 .showSnackBar(
                                               SnackBar(
                                                 content: Text(
-                                                  'The task is not save to FTP!',
+                                                  'FTP submission fail!',
                                                   style: TextStyle(
                                                     color: FlutterFlowTheme.of(
                                                             context)
