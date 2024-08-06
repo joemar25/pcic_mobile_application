@@ -10,6 +10,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/empty_lists/empty_lists_widget.dart';
 import '/utils/components/page_loader/page_loader_widget.dart';
+import '/utils/components/sync/sync_widget.dart';
 import '/utils/components/tasks/tasks_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -297,6 +298,15 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                             ),
                                       ),
                                     ].divide(const SizedBox(width: 10.0)),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 5.0, 0.0),
+                                  child: wrapWithModel(
+                                    model: _model.syncModel,
+                                    updateCallback: () => setState(() {}),
+                                    child: const SyncWidget(),
                                   ),
                                 ),
                                 wrapWithModel(

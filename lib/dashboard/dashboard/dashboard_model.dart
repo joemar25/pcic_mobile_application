@@ -2,6 +2,7 @@ import '/backend/sqlite/sqlite_manager.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
+import '/utils/components/sync/sync_widget.dart';
 import '/utils/components/tasks/tasks_widget.dart';
 import 'dashboard_widget.dart' show DashboardWidget;
 import 'package:flutter/material.dart';
@@ -41,6 +42,8 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   List<SELECTTASKSBaseOnStatusRow>? offlineOngoingTasksData;
   // Stores action output result for [Backend Call - SQLite (SELECT TASKS base on status)] action in dashboard widget.
   List<SELECTTASKSBaseOnStatusRow>? offlineCompletedTasksData;
+  // Model for sync component.
+  late SyncModel syncModel;
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
   // State field(s) for TextField widget.
@@ -69,6 +72,7 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
 
   @override
   void initState(BuildContext context) {
+    syncModel = createModel(context, () => SyncModel());
     connectivityModel = createModel(context, () => ConnectivityModel());
     tasksModels1 = FlutterFlowDynamicModels(() => TasksModel());
     tasksModels2 = FlutterFlowDynamicModels(() => TasksModel());
@@ -81,6 +85,7 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   @override
   void dispose() {
     unfocusNode.dispose();
+    syncModel.dispose();
     connectivityModel.dispose();
     textFieldFocusNode?.dispose();
 

@@ -14,3 +14,4 @@ export 'upload_photo_url_to_asset.dart' show uploadPhotoUrlToAsset;
 export 'get_the_saved_local_profile.dart' show getTheSavedLocalProfile;
 export 'fetch_store_stats.dart' show fetchStoreStats;
 export 'delete_map_store.dart' show deleteMapStore;
+export 'sync_online_offline_db.dart' show syncOnlineOfflineDb;

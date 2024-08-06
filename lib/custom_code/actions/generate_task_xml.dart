@@ -11,8 +11,6 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'index.dart'; // Imports other custom actions
-
 import 'package:xml/xml.dart';
 
 Future<String> generateTaskXml(String? taskId) async {
@@ -31,6 +29,8 @@ Future<String> generateTaskXml(String? taskId) async {
 
   final taskData = response.data as Map<String, dynamic>;
   final ppirData = taskData['ppir_forms'] as Map<String, dynamic>;
+
+  print(ppirData);
 
   final builder = XmlBuilder();
   builder.processing('xml', 'version="1.0" encoding="UTF-8"');

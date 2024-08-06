@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'k86q6w7p': {
+    'tsmgayg6': {
       'en': '',
       'tl': '',
     },
@@ -253,7 +253,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'crsk8gkv': {
+    'f3yruqak': {
       'en': '',
       'tl': '',
     },
@@ -265,7 +265,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'iiqagcn1': {
+    '26yv8i8y': {
       'en': '',
       'tl': '',
     },
@@ -277,7 +277,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    't7gfcuh0': {
+    '6962z0er': {
       'en': '',
       'tl': '',
     },
@@ -332,7 +332,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    'llcoea8j': {
+    '59qc0wsf': {
       'en': '',
       'tl': '',
     },
@@ -632,6 +632,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'p2htj2ad': {
       'en': 'Tap to Signature',
+      'tl': '',
+    },
+    'b7688dq2': {
+      'en': 'DON\'T DELETE TAT IS TESTING HERE',
       'tl': '',
     },
     'bf0l7x1o': {
