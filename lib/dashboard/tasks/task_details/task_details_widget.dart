@@ -3290,7 +3290,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget>
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
                                 children: [
-                                  if (_model.isReFTPClicked == false)
+                                  if ((_model.isReFTPClicked == false) &&
+                                      !_model.isFtpSaved!)
                                     Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           16.0, 8.0, 16.0, 12.0),
