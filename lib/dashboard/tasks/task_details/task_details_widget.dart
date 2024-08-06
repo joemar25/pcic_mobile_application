@@ -3276,7 +3276,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               await actions.saveToFTP(
                                             widget.taskId,
                                           );
-                                          _model.isReFTPClicked = true;
+                                          _model.isReFTPClicked = false;
                                           setState(() {});
                                           if (_model.isFtpSaved!) {
                                             context.pushNamed(
