@@ -7,6 +7,11 @@ class SyncModel extends FlutterFlowModel<SyncWidget> {
 
   bool clicked = true;
 
+  ///  State fields for stateful widgets in this component.
+
+  // Stores action output result for [Custom Action - syncOnlineOfflineDb] action in Container widget.
+  String? aww;
+
   @override
   void initState(BuildContext context) {}
 

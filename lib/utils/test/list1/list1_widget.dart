@@ -69,7 +69,7 @@ class _List1WidgetState extends State<List1Widget> {
           ),
           title: Text(
             FFLocalizations.of(context).getText(
-              'tcs90efh' /* Page Title */,
+              'tcs90efh' /* Area 69 */,
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: FlutterFlowTheme.of(context).headlineMediumFamily,
@@ -96,12 +96,12 @@ class _List1WidgetState extends State<List1Widget> {
                 Text(
                   valueOrDefault<String>(
                     _model.out,
-                    'asdasd',
+                    'Loading....',
                   ),
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
                         fontFamily:
                             FlutterFlowTheme.of(context).headlineMediumFamily,
-                        color: Colors.white,
+                        color: FlutterFlowTheme.of(context).primaryText,
                         fontSize: 20.0,
                         letterSpacing: 0.0,
                         useGoogleFonts: GoogleFonts.asMap().containsKey(

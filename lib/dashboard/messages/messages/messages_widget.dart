@@ -4,8 +4,10 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/page_loader/page_loader_widget.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -147,7 +149,10 @@ class _MessagesWidgetState extends State<MessagesWidget> {
           body: SafeArea(
             top: true,
             child: FutureBuilder<ApiCallResponse>(
-              future: TestMarCall.call(),
+              future:
+                  (_model.apiRequestCompleter ??= Completer<ApiCallResponse>()
+                        ..complete(TestMarCall.call()))
+                      .future,
               builder: (context, snapshot) {
                 // Customize what your widget looks like when it's loading.
                 if (!snapshot.hasData) {
@@ -274,9 +279,10 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                             children: [
                                               Expanded(
                                                 child: Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    'qki0150o' /* Hello World oidtgiywiutuewutuu... */,
+                                                  valueOrDefault<String>(
+                                                    messagesMessagesRow
+                                                        ?.content,
+                                                    'hello',
                                                   ),
                                                   textAlign: TextAlign.justify,
                                                   style: FlutterFlowTheme.of(
@@ -319,27 +325,6 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                               .primary,
                                           borderRadius:
                                               BorderRadius.circular(24.0),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(12.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Flexible(
-                                                child: ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
-                                                  child: Image.network(
-                                                    'https://picsum.photos/seed/486/600',
-                                                    width: 300.0,
-                                                    height: 200.0,
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
                                         ),
                                       ),
                                     ],
@@ -384,97 +369,143 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                               size: 30.0,
                             ),
                             Expanded(
-                              child: TextFormField(
-                                controller: _model.textController,
-                                focusNode: _model.textFieldFocusNode,
-                                autofocus: true,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  labelStyle: FlutterFlowTheme.of(context)
-                                      .labelMedium
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    8.0, 0.0, 8.0, 0.0),
+                                child: TextFormField(
+                                  controller: _model.textController,
+                                  focusNode: _model.textFieldFocusNode,
+                                  autofocus: true,
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                    labelText:
+                                        FFLocalizations.of(context).getText(
+                                      'p1rbee74' /* Message */,
+                                    ),
+                                    labelStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMediumFamily,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMediumFamily),
+                                        ),
+                                    hintStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMediumFamily,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMediumFamily),
+                                        ),
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context)
+                                            .alternate,
+                                        width: 2.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        width: 2.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    errorBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        width: 2.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    focusedErrorBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        width: 2.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    contentPadding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            12.0, 0.0, 0.0, 0.0),
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
                                       .override(
                                         fontFamily: FlutterFlowTheme.of(context)
-                                            .labelMediumFamily,
+                                            .bodyMediumFamily,
                                         letterSpacing: 0.0,
-                                        fontWeight: FontWeight.normal,
                                         useGoogleFonts: GoogleFonts.asMap()
                                             .containsKey(
                                                 FlutterFlowTheme.of(context)
-                                                    .labelMediumFamily),
+                                                    .bodyMediumFamily),
                                       ),
-                                  hintStyle: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        fontFamily: FlutterFlowTheme.of(context)
-                                            .labelMediumFamily,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.normal,
-                                        useGoogleFonts: GoogleFonts.asMap()
-                                            .containsKey(
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMediumFamily),
-                                      ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: const BorderSide(
-                                      color: Color(0x00C8D7E4),
-                                      width: 2.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(12.0),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      width: 2.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(12.0),
-                                  ),
-                                  errorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 2.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(12.0),
-                                  ),
-                                  focusedErrorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 2.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(12.0),
-                                  ),
-                                  filled: true,
-                                  fillColor:
-                                      FlutterFlowTheme.of(context).accent1,
-                                  contentPadding:
-                                      const EdgeInsetsDirectional.fromSTEB(
-                                          15.0, 10.0, 15.0, 10.0),
-                                  prefixIcon: Icon(
-                                    Icons.text_fields,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                  ),
-                                  suffixIcon: Icon(
-                                    Icons.send_rounded,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                  ),
+                                  validator: _model.textControllerValidator
+                                      .asValidator(context),
                                 ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
+                              ),
+                            ),
+                            FFButtonWidget(
+                              onPressed: () async {
+                                await MessagesTable().insert({
+                                  'chat_id': widget.chatId,
+                                  'content': _model.textController.text,
+                                });
+                                setState(() {
+                                  _model.textController?.clear();
+                                });
+                                setState(
+                                    () => _model.apiRequestCompleter = null);
+                                await _model.waitForApiRequestCompleted();
+                              },
+                              text: FFLocalizations.of(context).getText(
+                                'k1xjvuwe' /* 
+ */
+                                ,
+                              ),
+                              icon: const Icon(
+                                Icons.send_rounded,
+                                size: 24.0,
+                              ),
+                              options: FFButtonOptions(
+                                height: 40.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    10.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).primary,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
                                     .override(
                                       fontFamily: FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily,
+                                          .titleSmallFamily,
+                                      color: Colors.white,
                                       letterSpacing: 0.0,
-                                      fontWeight: FontWeight.normal,
+                                      fontWeight: FontWeight.w500,
                                       useGoogleFonts: GoogleFonts.asMap()
                                           .containsKey(
                                               FlutterFlowTheme.of(context)
-                                                  .bodyMediumFamily),
-                                      lineHeight: 2.5,
+                                                  .titleSmallFamily),
                                     ),
-                                validator: _model.textControllerValidator
-                                    .asValidator(context),
+                                elevation: 0.0,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(12.0),
                               ),
                             ),
                           ].divide(const SizedBox(width: 10.0)),

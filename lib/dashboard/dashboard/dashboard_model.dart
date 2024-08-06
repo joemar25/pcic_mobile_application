@@ -21,6 +21,8 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
 
   String inspectorName = 'inspectorName';
 
+  String? userType = 'Agent';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

@@ -96,6 +96,10 @@ class _DashboardWidgetState extends State<DashboardWidget>
           _model.onlineSelectUserProfile?.first.inspectorName,
           'Inspector Online',
         );
+        _model.userType = valueOrDefault<String>(
+          _model.onlineSelectUserProfile?.first.role,
+          'Agent',
+        );
         setState(() {});
       } else {
         _model.offlineSelectUserProfile =
@@ -133,6 +137,10 @@ class _DashboardWidgetState extends State<DashboardWidget>
         _model.inspectorName = valueOrDefault<String>(
           _model.offlineSelectUserProfile?.first.inspectorName,
           'Inspector Offline',
+        );
+        _model.userType = valueOrDefault<String>(
+          _model.offlineSelectUserProfile?.first.role,
+          'Agent',
         );
         setState(() {});
       }
@@ -300,15 +308,16 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                     ].divide(const SizedBox(width: 10.0)),
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 5.0, 0.0),
-                                  child: wrapWithModel(
-                                    model: _model.syncModel,
-                                    updateCallback: () => setState(() {}),
-                                    child: const SyncWidget(),
+                                if (_model.userType == 'National_Admin')
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 5.0, 0.0),
+                                    child: wrapWithModel(
+                                      model: _model.syncModel,
+                                      updateCallback: () => setState(() {}),
+                                      child: const SyncWidget(),
+                                    ),
                                   ),
-                                ),
                                 InkWell(
                                   splashColor: Colors.transparent,
                                   focusColor: Colors.transparent,

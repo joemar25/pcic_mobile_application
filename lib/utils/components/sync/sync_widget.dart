@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -99,9 +100,11 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
         // Start of Sync
         _model.clicked = true;
         setState(() {});
-        await Future.delayed(const Duration(milliseconds: 5000));
+        _model.aww = await actions.syncOnlineOfflineDb();
         // End of Sync
         _model.clicked = false;
+        setState(() {});
+
         setState(() {});
       },
       child: AnimatedContainer(

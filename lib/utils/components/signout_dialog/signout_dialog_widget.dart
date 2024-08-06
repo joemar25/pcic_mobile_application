@@ -108,69 +108,78 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                 ),
               ].divide(const SizedBox(height: 10.0)),
             ),
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    InkWell(
-                      splashColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onTap: () async {
-                        Navigator.pop(context);
-                      },
-                      child: Text(
-                        FFLocalizations.of(context).getText(
-                          'l878cyp1' /* CANCEL */,
+            Container(
+              width: MediaQuery.sizeOf(context).width * 1.0,
+              height: MediaQuery.sizeOf(context).height * 0.2,
+              decoration: const BoxDecoration(),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          Navigator.pop(context);
+                        },
+                        child: Text(
+                          FFLocalizations.of(context).getText(
+                            'l878cyp1' /* CANCEL */,
+                          ),
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
+                                fontSize: 16.0,
+                                letterSpacing: 0.0,
+                                fontWeight: FontWeight.w600,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily),
+                              ),
                         ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodyMediumFamily,
-                              fontSize: 16.0,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.w600,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily),
-                            ),
                       ),
-                    ),
-                    InkWell(
-                      splashColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onTap: () async {
-                        GoRouter.of(context).prepareAuthEvent();
-                        await authManager.signOut();
-                        GoRouter.of(context).clearRedirectLocation();
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          GoRouter.of(context).prepareAuthEvent();
+                          await authManager.signOut();
+                          GoRouter.of(context).clearRedirectLocation();
 
-                        context.goNamedAuth('login', context.mounted);
-                      },
-                      child: Text(
-                        FFLocalizations.of(context).getText(
-                          '6fku8v4x' /* SIGN OUT */,
+                          context.goNamedAuth('login', context.mounted);
+                        },
+                        child: Text(
+                          FFLocalizations.of(context).getText(
+                            '6fku8v4x' /* SIGN OUT */,
+                          ),
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
+                                color: FlutterFlowTheme.of(context).error,
+                                fontSize: 16.0,
+                                letterSpacing: 0.0,
+                                fontWeight: FontWeight.w600,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily),
+                              ),
                         ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodyMediumFamily,
-                              color: FlutterFlowTheme.of(context).error,
-                              fontSize: 16.0,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.w600,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily),
-                            ),
                       ),
-                    ),
-                  ].divide(const SizedBox(width: 20.0)),
-                ),
-              ],
+                    ].divide(const SizedBox(width: 20.0)),
+                  ),
+                ],
+              ),
             ),
           ].divide(const SizedBox(height: 30.0)),
         ),

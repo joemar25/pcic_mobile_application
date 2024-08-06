@@ -10,7 +10,7 @@ class ChatsModel extends FlutterFlowModel<ChatsWidget> {
 
   final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - Query Rows] action in chats widget.
-  List<MessagesRow>? messageQuery;
+  List<ChatsRow>? messageQuery;
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
   // Models for chatListContainer dynamic component.

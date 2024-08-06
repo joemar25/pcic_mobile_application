@@ -38,8 +38,13 @@ class _ChatsWidgetState extends State<ChatsWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.messageQuery = await MessagesTable().queryRows(
-        queryFn: (q) => q,
+      _model.messageQuery = await ChatsTable().queryRows(
+        queryFn: (q) => q
+            .neq(
+              'user2_id',
+              currentUserUid,
+            )
+            .order('updated_at'),
       );
     });
 
@@ -313,7 +318,7 @@ class _ChatsWidgetState extends State<ChatsWidget>
                                                   model: _model
                                                       .chatListContainerModels
                                                       .getModel(
-                                                    msgQItem.id.toString(),
+                                                    msgQItem.id,
                                                     msgQIndex,
                                                   ),
                                                   updateCallback: () =>
@@ -321,14 +326,14 @@ class _ChatsWidgetState extends State<ChatsWidget>
                                                   child:
                                                       ChatListContainerWidget(
                                                     key: Key(
-                                                      'Keyo46_${msgQItem.id.toString()}',
+                                                      'Keyo46_${msgQItem.id}',
                                                     ),
-                                                    chatId: msgQItem.chatId!,
-                                                    receiverId: msgQItem
-                                                                .senderName ==
-                                                            currentUserUid
-                                                        ? msgQItem.receiverName!
-                                                        : msgQItem.senderName!,
+                                                    chatId: msgQItem.id,
+                                                    receiverId:
+                                                        msgQItem.user1Id ==
+                                                                currentUserUid
+                                                            ? msgQItem.user2Id!
+                                                            : msgQItem.user1Id!,
                                                   ),
                                                 );
                                               },
