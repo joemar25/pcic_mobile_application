@@ -14,77 +14,77 @@ import 'package:flutter/material.dart';
 Future validationLogic() async {
   // validation logic for changePassword
 // Define the validation rules for the changePassword form
-  final formKey = GlobalKey<FormState>();
-  String currentPassword;
-  String newPassword;
-  String confirmPassword;
+  // final formKey = GlobalKey<FormState>();
+  // String currentPassword;
+  // String newPassword;
+  // String confirmPassword;
 
-  // Validate the form fields
-  bool validateForm() {
-    final form = formKey.currentState;
-    if (form.validate()) {
-      form.save();
-      return true;
-    }
-    return false;
-  }
+  // // Validate the form fields
+  // bool validateForm() {
+  //   final form = formKey.currentState;
+  //   if (form.validate()) {
+  //     form.save();
+  //     return true;
+  //   }
+  //   return false;
+  // }
 
-  // Validate the current password
-  bool validateCurrentPassword(String value) {
-    if (value.isEmpty) {
-      return false;
-    }
-    return true;
-  }
+  // // Validate the current password
+  // bool validateCurrentPassword(String value) {
+  //   if (value.isEmpty) {
+  //     return false;
+  //   }
+  //   return true;
+  // }
 
-  // Validate the new password
-  bool validateNewPassword(String value) {
-    if (value.isEmpty) {
-      return false;
-    }
-    return true;
-  }
+  // // Validate the new password
+  // bool validateNewPassword(String value) {
+  //   if (value.isEmpty) {
+  //     return false;
+  //   }
+  //   return true;
+  // }
 
-  // Validate the confirm password
-  bool validateConfirmPassword(String value) {
-    if (value.isEmpty) {
-      return false;
-    }
-    if (value != newPassword) {
-      return false;
-    }
-    return true;
-  }
+  // // Validate the confirm password
+  // bool validateConfirmPassword(String value) {
+  //   if (value.isEmpty) {
+  //     return false;
+  //   }
+  //   if (value != newPassword) {
+  //     return false;
+  //   }
+  //   return true;
+  // }
 
-  // Check if the current password is correct
-  bool checkCurrentPassword(String value) {
-    // TODO: Implement the logic to check the current password
-    return true;
-  }
+  // // Check if the current password is correct
+  // bool checkCurrentPassword(String value) {
+  //   // TODO: Implement the logic to check the current password
+  //   return true;
+  // }
 
-  // Update the password
-  void updatePassword() {
-    // TODO: Implement the logic to update the password
-  }
+  // // Update the password
+  // void updatePassword() {
+  //   // TODO: Implement the logic to update the password
+  // }
 
-  // Call the validation functions and update the password if the form is valid
-  if (validateForm()) {
-    if (validateCurrentPassword(currentPassword)) {
-      if (checkCurrentPassword(currentPassword)) {
-        if (validateNewPassword(newPassword)) {
-          if (validateConfirmPassword(confirmPassword)) {
-            updatePassword();
-          } else {
-            // Show an error message for the confirm password field
-          }
-        } else {
-          // Show an error message for the new password field
-        }
-      } else {
-        // Show an error message for the current password field
-      }
-    } else {
-      // Show an error message for the current password field
-    }
-  }
+  // // Call the validation functions and update the password if the form is valid
+  // if (validateForm()) {
+  //   if (validateCurrentPassword(currentPassword)) {
+  //     if (checkCurrentPassword(currentPassword)) {
+  //       if (validateNewPassword(newPassword)) {
+  //         if (validateConfirmPassword(confirmPassword)) {
+  //           updatePassword();
+  //         } else {
+  //           // Show an error message for the confirm password field
+  //         }
+  //       } else {
+  //         // Show an error message for the new password field
+  //       }
+  //     } else {
+  //       // Show an error message for the current password field
+  //     }
+  //   } else {
+  //     // Show an error message for the current password field
+  //   }
+  // }
 }

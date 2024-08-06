@@ -18,19 +18,28 @@ Future<String> generateTaskXml(String? taskId) async {
     throw Exception('Task ID cannot be null');
   }
 
-  final response = await SupaFlow.client.from('tasks').select('''
-        *,
-        ppir_forms:ppir_forms!inner(*)
-      ''').eq('id', taskId).single().execute();
+  final response = await Supabase.instance.client
+      .rpc('get_tasks_ppir_forms_and_users')
+      .eq('task_id', taskId)
+      .single()
+      .execute();
+
+  // final response = await SupaFlow.client.from('tasks').select('''
+  //       *,
+  //       ppir_forms:ppir_forms!inner(*)
+  //     ''').eq('id', taskId).single().execute();
 
   if (response.status != 200 || response.data == null) {
     throw Exception('No matching data found for task ID: $taskId');
   }
 
-  final taskData = response.data as Map<String, dynamic>;
-  final ppirData = taskData['ppir_forms'] as Map<String, dynamic>;
+  // final taskData = response.data as Map<String, dynamic>;
+  // final ppirData = taskData['ppir_forms'] as Map<String, dynamic>;
+  // print(ppirData);
 
-  print(ppirData);
+  final data = response.data as Map<String, dynamic>;
+
+  print(data);
 
   final builder = XmlBuilder();
   builder.processing('xml', 'version="1.0" encoding="UTF-8"');
