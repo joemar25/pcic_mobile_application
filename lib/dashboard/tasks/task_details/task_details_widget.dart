@@ -3559,7 +3559,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget>
                               ),
                             ],
                           ),
-                          if (!valueOrDefault<bool>(
+                          if (valueOrDefault<bool>(
                             _model.isFtpSaved,
                             false,
                           ))
