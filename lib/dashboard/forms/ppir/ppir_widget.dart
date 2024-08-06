@@ -83,9 +83,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
     _model.ppirAreaDopDsFieldFocusNode ??= FocusNode();
 
     _model.ppirAreaDopTpFieldFocusNode ??= FocusNode();
-    _model.ppirAreaDopTpFieldFocusNode!.addListener(
-      () async {},
-    );
+    _model.ppirAreaDopTpFieldFocusNode!.addListener(() => setState(() {}));
 
     _model.ppirRemarksFieldFocusNode ??= FocusNode();
 

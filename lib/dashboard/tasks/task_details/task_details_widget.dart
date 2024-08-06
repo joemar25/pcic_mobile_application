@@ -1,5 +1,6 @@
 import '/backend/sqlite/sqlite_manager.dart';
 import '/backend/supabase/supabase.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -11,6 +12,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -31,11 +33,14 @@ class TaskDetailsWidget extends StatefulWidget {
   State<TaskDetailsWidget> createState() => _TaskDetailsWidgetState();
 }
 
-class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
+class _TaskDetailsWidgetState extends State<TaskDetailsWidget>
+    with TickerProviderStateMixin {
   late TaskDetailsModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   LatLng? currentUserLocationValue;
+
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
@@ -45,6 +50,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.isEditing = false;
+      _model.isReFTP = false;
       setState(() {});
       await SQLiteManager.instance.sELECTUSERSInSameRegion();
       await SQLiteManager.instance.selectSyncLogs();
@@ -87,6 +93,28 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
     });
 
     _model.farmLocInputFocusNode ??= FocusNode();
+
+    animationsMap.addAll({
+      'containerOnActionTriggerAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onActionTrigger,
+        applyInitialState: true,
+        effectsBuilder: () => [
+          ShimmerEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            color: const Color(0x80FFFFFF),
+            angle: 0.524,
+          ),
+        ],
+      ),
+    });
+    setupAnimations(
+      animationsMap.values.where((anim) =>
+          anim.trigger == AnimationTrigger.onActionTrigger ||
+          !anim.applyInitialState),
+      this,
+    );
   }
 
   @override
@@ -3220,10 +3248,14 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      _model.isReFTP = true;
+                                      setState(() {});
                                       _model.isFtpSaved =
                                           await actions.saveToFTP(
                                         containerTasksRow?.id,
                                       );
+                                      _model.isReFTP = false;
+                                      setState(() {});
                                       if (_model.isFtpSaved!) {
                                         context.pushNamed(
                                           'successProfile',
@@ -3333,6 +3365,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         ],
                                       ),
                                     ),
+                                  ).animateOnActionTrigger(
+                                    animationsMap[
+                                        'containerOnActionTriggerAnimation']!,
                                   ),
                                 ),
                               if (widget.taskStatus == 'completed')

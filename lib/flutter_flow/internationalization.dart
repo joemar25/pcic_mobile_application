@@ -143,7 +143,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'u2bxcacb': {
+    'vmv9wgol': {
       'en': '',
       'tl': '',
     },
@@ -253,7 +253,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'nt5svmrq': {
+    '31qk9qmi': {
       'en': '',
       'tl': '',
     },
@@ -265,7 +265,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    '719b2qk9': {
+    'dspnews2': {
       'en': '',
       'tl': '',
     },
@@ -277,7 +277,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'ub67w2e8': {
+    '4fjk6iv7': {
       'en': '',
       'tl': '',
     },
@@ -332,7 +332,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    'exn1dolb': {
+    '4i9shd1e': {
       'en': '',
       'tl': '',
     },
@@ -988,6 +988,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'trqe09c9': {
       'en': 'name@domainname.com',
+      'tl': '',
+    },
+  },
+  // savingMode
+  {
+    'whighhgr': {
+      'en': 'Loading...',
       'tl': '',
     },
   },
