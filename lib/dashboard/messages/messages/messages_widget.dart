@@ -155,7 +155,10 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                     future: (_model.requestCompleter ??=
                             Completer<List<MessagesRow>>()
                               ..complete(MessagesTable().querySingleRow(
-                                queryFn: (q) => q,
+                                queryFn: (q) => q.eq(
+                                  'content',
+                                  widget.chatId,
+                                ),
                               )))
                         .future,
                     builder: (context, snapshot) {
@@ -191,7 +194,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                         children: [
                           Stack(
                             children: [
-                              if (listViewMessagesRow?.senderName ==
+                              if (listViewMessagesRow?.senderName !=
                                   currentUserUid)
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
@@ -257,7 +260,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                     ],
                                   ),
                                 ),
-                              if (listViewMessagesRow?.senderName !=
+                              if (listViewMessagesRow?.receiverName ==
                                   currentUserUid)
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
@@ -270,7 +273,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                         width: 273.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
-                                              .accent1,
+                                              .primary,
                                           borderRadius: const BorderRadius.only(
                                             bottomLeft: Radius.circular(6.0),
                                             bottomRight: Radius.circular(24.0),
