@@ -47,6 +47,1481 @@ Future<String> generateTaskXml(String? taskId) async {
     builder.element('Attachments', nest: '');
 
     builder.element('AuditLogs', nest: () {
+      // Task Status Audit Log
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Task');
+        builder.element('Label', nest: 'Task Status');
+        builder.element('Message',
+            nest: "Task status is changed to '${data['status']}'.");
+        builder.element('SnapshotValue', nest: 'For Dispatch');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp',
+            nest: data['task_updated_at']?.toString() ?? '');
+        builder.element('UpdatedValue', nest: data['status']?.toString() ?? '');
+        builder.element('FieldLabel', nest: 'Task Status');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      // Captured Mobile Location Audit Logs
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Captured Mobile Location');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp',
+            nest: data['task_updated_at']?.toString() ?? '');
+        builder.element('UpdatedValue', nest: data['status']?.toString() ?? '');
+        builder.element('FieldLabel', nest: 'Captured Mobile Location');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Captured Mobile Location');
+        builder.element('SnapshotValue', nest: '');
+        builder.element('Source', nest: 'System');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp',
+            nest: data['task_updated_at']?.toString() ?? '');
+        builder.element('UpdatedValue', nest: data['status']?.toString() ?? '');
+        builder.element('FieldLabel', nest: 'Captured Mobile Location');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      // UpdatePostPlanting script Audit Log
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Task');
+        builder.element('Message',
+            nest:
+                "Executed P${data['ppir_assignmentid']?.toString() ?? ''} - UpdatePostPlanting script.");
+        builder.element('Source', nest: 'System');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp',
+            nest: data['task_updated_at']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label',
+            nest: 'PPIR - Post Planting Inspection Report &gt; Actual');
+        builder.element('SnapshotValue', nest: '');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp',
+            nest: data['task_updated_at']?.toString() ?? '');
+        builder.element('UpdatedValue', nest: '0.2500');
+        builder.element('FieldId', nest: '');
+        builder.element('FormTitle',
+            nest: 'PPIR - Post Planting Inspection Report');
+        builder.element('FieldLabel', nest: 'Actual');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label',
+            nest: 'PPIR - Post Planting Inspection Report &gt; Region');
+        builder.element('SnapshotValue', nest: '');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp',
+            nest: data['task_updated_at']?.toString() ?? '');
+        builder.element('UpdatedValue',
+            nest: data['service_group']?.toString() ?? '');
+        builder.element('FieldId', nest: '');
+        builder.element('FormTitle',
+            nest: 'PPIR - Post Planting Inspection Report');
+        builder.element('FieldLabel', nest: 'Region');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Task');
+        builder.element('Message',
+            nest:
+                'Executed P${data['ppir_assignmentid']?.toString() ?? ''} - UpdatePostPlanting script.');
+        builder.element('Source', nest: 'System');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:27:02.4373782Z');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label',
+            nest:
+                'PPIR - Post Planting Inspection Report &gt; Actual - Date of Planting (DS)');
+        builder.element('SnapshotValue', nest: '');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp',
+            nest: data['task_updated_at']?.toString() ?? '');
+        builder.element('UpdatedValue',
+            nest: data['ppir_dopds_act']?.toString() ?? '');
+        builder.element('FieldId', nest: '');
+        builder.element('FormTitle',
+            nest: 'PPIR - Post Planting Inspection Report');
+        builder.element('FieldLabel', nest: 'Actual - Date of Planting (DS)');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label',
+            nest:
+                'PPIR - Post Planting Inspection Report &gt; Actual - Date of Planting (TP)');
+        builder.element('SnapshotValue', nest: '');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp',
+            nest: data['task_updated_at']?.toString() ?? '');
+        builder.element('UpdatedValue',
+            nest: data['ppir_doptp_act']?.toString() ?? '');
+        builder.element('FieldId', nest: '');
+        builder.element('FormTitle',
+            nest: 'PPIR - Post Planting Inspection Report');
+        builder.element('FieldLabel', nest: 'Actual - Date of Planting (TP)');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label',
+            nest:
+                'PPIR - Post Planting Inspection Report &gt; Seed Variety Planted - Corn/Rice');
+        builder.element('SnapshotValue', nest: '');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp',
+            nest: data['task_updated_at']?.toString() ?? '');
+        builder.element('UpdatedValue',
+            nest: data['ppir_svp_aci']?.toString() ?? '');
+        builder.element('FieldId', nest: '');
+        builder.element('FormTitle',
+            nest: 'PPIR - Post Planting Inspection Report');
+        builder.element('FieldLabel', nest: 'Seed Variety Planted - Corn/Rice');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Task');
+        builder.element('Message',
+            nest:
+                'Executed P${data['ppir_assignmentid']?.toString() ?? ''} - UpdatePostPlanting script.');
+        builder.element('Source', nest: 'System');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp',
+            nest: data['task_updated_at']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label',
+            nest: 'PPIR - Post Planting Inspection Report &gt; Variety');
+        builder.element('SnapshotValue', nest: '');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:27:21.86Z');
+        builder.element('UpdatedValue',
+            nest: data['ppir_svp_act']?.toString() ?? '');
+        builder.element('FieldId', nest: '');
+        builder.element('FormTitle',
+            nest: 'PPIR - Post Planting Inspection Report');
+        builder.element('FieldLabel', nest: 'Variety');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('Label',
+          nest:
+              'PPIR - Post Planting Inspection Report &gt; Stage of Crop ATV');
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label',
+            nest:
+                'PPIR - Post Planting Inspection Report &gt; Stage of Crop ATV');
+        builder.element('SnapshotValue', nest: '');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:27:21.86Z');
+        builder.element('UpdatedValue', nest: 'RICE-DOUGH STG. (MATURITY)');
+        builder.element('FieldId', nest: 'Stage of Crop ATV');
+        builder.element('FormTitle',
+            nest: 'PPIR - Post Planting Inspection Report');
+        builder.element('FieldLabel', nest: 'Stage of Crop ATV');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Task');
+        builder.element('Message',
+            nest:
+                'Executed P${data['ppir_assignmentid']?.toString() ?? ''} - UpdatePostPlanting script.');
+        builder.element('Source', nest: 'System');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:27:28.7517927Z');
+      });
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label',
+            nest: 'PPIR - Post Planting Inspection Report &gt; Full Name:');
+        builder.element('SnapshotValue', nest: '');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:27:27.52Z');
+        builder.element('UpdatedValue', nest: 'F');
+        builder.element('FieldId', nest: '');
+        builder.element('FormTitle',
+            nest: 'PPIR - Post Planting Inspection Report');
+        builder.element('FieldLabel', nest: 'Full Name:');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label',
+            nest:
+                'PPIR - Post Planting Inspection Report &gt; Signature: (Insured)');
+        builder.element('SnapshotValue', nest: '');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:27:27.52Z');
+        builder.element('UpdatedValue',
+            nest: '{"events":[],"attemptCount":0,"duration":0}');
+        builder.element('FieldId', nest: '');
+        builder.element('FormTitle',
+            nest: 'PPIR - Post Planting Inspection Report');
+        builder.element('FieldLabel', nest: 'Signature: (Insured)');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Task');
+        builder.element('Message',
+            nest:
+                'Executed P${data['ppir_assignmentid']?.toString() ?? ''} - UpdatePostPlanting script.');
+        builder.element('Source', nest: 'System');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:27:40.5418779Z');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label',
+            nest:
+                'PPIR - Post Planting Inspection Report &gt; Signature: (Insured)');
+        builder.element('SnapshotValue',
+            nest: '{"events":[],"attemptCount":0,"duration":0}');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:27:29.743Z');
+        builder.element('UpdatedValue',
+            nest:
+                '{"events":[{"type":0,"timestamp":"2024-04-08T13:27:26.735+08:00"},{"type":2,"timestamp":"2024-04-08T13:27:29.352+08:00"}],"attemptCount":1,"duration":0}');
+        builder.element('FieldId', nest: '');
+        builder.element('FormTitle',
+            nest: 'PPIR - Post Planting Inspection Report');
+        builder.element('FieldLabel', nest: 'Signature: (Insured)');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Task');
+        builder.element('Message',
+            nest:
+                'Executed P${data['ppir_assignmentid']?.toString() ?? ''} - UpdatePostPlanting script.');
+        builder.element('Source', nest: 'System');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:27:52.2099499Z');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label',
+            nest: 'PPIR - Post Planting Inspection Report &gt; Full Name:');
+        builder.element('SnapshotValue', nest: '');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:28:21.815Z');
+        builder.element('UpdatedValue', nest: 'Inspector ');
+        builder.element('FieldId', nest: '');
+        builder.element('FormTitle',
+            nest: 'PPIR - Post Planting Inspection Report');
+        builder.element('FieldLabel', nest: 'Full Name:');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Task');
+        builder.element('Message',
+            nest:
+                'Executed P${data['ppir_assignmentid']?.toString() ?? ''} - UpdatePostPlanting script.');
+        builder.element('Source', nest: 'System');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:28:24.4310056Z');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label',
+            nest: 'PPIR - Post Planting Inspection Report &gt; Full Name:');
+        builder.element('SnapshotValue', nest: 'Inspector ');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:28:25.002Z');
+        builder.element('UpdatedValue', nest: 'Inspector');
+        builder.element('FieldId', nest: '');
+        builder.element('FormTitle',
+            nest: 'PPIR - Post Planting Inspection Report');
+        builder.element('FieldLabel', nest: 'Full Name:');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label',
+            nest:
+                'PPIR - Post Planting Inspection Report &gt; Signature: (IU/IA)');
+        builder.element('SnapshotValue', nest: '');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:28:25.002Z');
+        builder.element('UpdatedValue',
+            nest: '{"events":[],"attemptCount":0,"duration":0}');
+        builder.element('FieldId', nest: '');
+        builder.element('FormTitle',
+            nest: 'PPIR - Post Planting Inspection Report');
+        builder.element('FieldLabel', nest: 'Signature: (IU/IA)');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Task');
+        builder.element('Message',
+            nest:
+                'Executed P${data['ppir_assignmentid']?.toString() ?? ''} - UpdatePostPlanting script.');
+        builder.element('Source', nest: 'System');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:28:36.975082Z');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label',
+            nest:
+                'PPIR - Post Planting Inspection Report &gt; Signature: (IU/IA)');
+        builder.element('SnapshotValue',
+            nest: '{"events":[],"attemptCount":0,"duration":0}');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:28:33.479Z');
+        builder.element('UpdatedValue',
+            nest:
+                '{"events":[{"type":0,"timestamp":"2024-04-08T13:28:24.559+08:00"},{"type":2,"timestamp":"2024-04-08T13:28:33.079+08:00"}],"attemptCount":1,"duration":0}');
+        builder.element('FieldId', nest: '');
+        builder.element('FormTitle',
+            nest: 'PPIR - Post Planting Inspection Report');
+        builder.element('FieldLabel', nest: 'Signature: (IU/IA)');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Task');
+        builder.element('Message',
+            nest:
+                'Executed P${data['ppir_assignmentid']?.toString() ?? ''} - UpdatePostPlanting script.');
+        builder.element('Source', nest: 'System');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:28:48.7513389Z');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label',
+            nest: 'Tracked Farm &gt; Total Area (in sqm.)');
+        builder.element('SnapshotValue', nest: '');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue',
+            nest: data['track_totalarea']?.toString() ?? '0');
+        builder.element('FieldId', nest: '');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Total Area (in sqm.)');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Date and Time');
+        builder.element('SnapshotValue', nest: '');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue',
+            nest: data['track_datetime']?.toString() ?? '');
+        builder.element('FieldId', nest: '');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Date and Time');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Last Coordinates');
+        builder.element('SnapshotValue', nest: '');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue',
+            nest: data['track_lastcoord']?.toString() ?? '');
+        builder.element('FieldId', nest: '');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Last Coordinates');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue',
+            nest: 'Coordinate Row|track_coordinate_row|');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue',
+            nest:
+                'Coordinates|track_coordinates|${data['track_coordinates']?.toString() ?? ''}');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue',
+            nest:
+                'Date/Time|track_coord_timestamp|${data['track_coord_timestamp']?.toString() ?? ''}');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Task');
+        builder.element('Message',
+            nest:
+                'Executed P${data['ppir_assignmentid']?.toString() ?? ''} - UpdatePostPlanting script.');
+        builder.element('Source', nest: 'System');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T02:31:09.1609392Z');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label',
+            nest: 'PPIR - Post Planting Inspection Report &gt; Hidden Field');
+        builder.element('SnapshotValue', nest: '');
+        builder.element('Source', nest: 'System');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T02:31:08.8601031Z');
+        builder.element('UpdatedValue',
+            nest:
+                'N - ${data['ppir_north']?.toString() ?? ''} | E - ${data['ppir_east']?.toString() ?? ''} | S - ${data['ppir_south']?.toString() ?? ''} | W - ${data['ppir_west']?.toString() ?? ''}');
+        builder.element('FieldId', nest: '');
+        builder.element('FormTitle',
+            nest: 'PPIR - Post Planting Inspection Report');
+        builder.element('FieldLabel', nest: 'Hidden Field');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Task');
+        builder.element('Message', nest: 'Task created.');
+        builder.element('Source', nest: 'System');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T02:31:03.8278713Z');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Assigned Date Time');
+        builder.element('Source', nest: 'System');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T02:31:08.3743402Z');
+        builder.element('UpdatedValue',
+            nest: '2024-04-08T02:31:03.8278713+00:00');
+        builder.element('FieldLabel', nest: 'Assigned Date Time');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Agent');
+        builder.element('Source', nest: 'System');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T02:31:08.3743402Z');
+        builder.element('UpdatedValue',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('FieldLabel', nest: 'Agent');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue',
+            nest: 'Coordinate Row|track_coordinate_row|');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue',
+            nest:
+                'Coordinates|track_coordinates|${data['track_coordinates']?.toString() ?? '{"accuracy":null,"barangayVillage":null,"buildingName":null,"city":null,"country":null,"latitude":14.6531133,"longitude":121.0351767,"province":null,"street":null,"timestamp":"2024-04-08T13:29:05.649+08:00","unitLotNo":null,"zipCode":null}'}');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue',
+            nest:
+                'Date/Time|track_coord_timestamp|${data['track_coord_timestamp']?.toString() ?? '04/08/2024 1:29:05 pm'}');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue',
+            nest: 'Coordinate Row|track_coordinate_row|');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue',
+            nest:
+                'Coordinates|track_coordinates|${data['track_coordinates']?.toString() ?? '{"accuracy":null,"barangayVillage":null,"buildingName":null,"city":null,"country":null,"latitude":14.6531133,"longitude":121.0351767,"province":null,"street":null,"timestamp":"2024-04-08T13:29:08.649+08:00","unitLotNo":null,"zipCode":null}'}');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue',
+            nest:
+                'Date/Time|track_coord_timestamp|${data['track_coord_timestamp']?.toString() ?? '04/08/2024 1:29:08 pm'}');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue',
+            nest: 'Coordinate Row|track_coordinate_row|');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue',
+            nest:
+                'Coordinates|track_coordinates|${data['track_coordinates']?.toString() ?? '{"accuracy":null,"barangayVillage":null,"buildingName":null,"city":null,"country":null,"latitude":14.6531133,"longitude":121.0351767,"province":null,"street":null,"timestamp":"2024-04-08T13:29:11.649+08:00","unitLotNo":null,"zipCode":null}'}');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue',
+            nest:
+                'Date/Time|track_coord_timestamp|${data['track_coord_timestamp']?.toString() ?? '04/08/2024 1:29:11 pm'}');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue', nest: 'Section Break||');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue',
+            nest: 'Coordinate Row|track_coordinate_row|');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue',
+            nest:
+                'Coordinates|track_coordinates|${data['track_coordinates']?.toString() ?? '{"accuracy":null,"barangayVillage":null,"buildingName":null,"city":null,"country":null,"latitude":14.6531133,"longitude":121.0351767,"province":null,"street":null,"timestamp":"2024-04-08T13:29:14.649+08:00","unitLotNo":null,"zipCode":null}'}');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue',
+            nest:
+                'Date/Time|track_coord_timestamp|${data['track_coord_timestamp']?.toString() ?? '04/08/2024 1:29:14 pm'}');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue', nest: 'Section Break||');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue',
+            nest: 'Coordinate Row|track_coordinate_row|');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue',
+            nest:
+                'Coordinates|track_coordinates|${data['track_coordinates']?.toString() ?? '{"accuracy":null,"barangayVillage":null,"buildingName":null,"city":null,"country":null,"latitude":14.6531133,"longitude":121.0351767,"province":null,"street":null,"timestamp":"2024-04-08T13:29:17.649+08:00","unitLotNo":null,"zipCode":null}'}');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue',
+            nest:
+                'Date/Time|track_coord_timestamp|${data['track_coord_timestamp']?.toString() ?? '04/08/2024 1:29:17 pm'}');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue',
+            nest:
+                'Date/Time|track_coord_timestamp|${data['track_coord_timestamp']?.toString() ?? '04/08/2024 1:29:17 pm'}');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue', nest: 'Section Break||');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue',
+            nest: 'Coordinate Row|track_coordinate_row|');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue',
+            nest:
+                'Coordinates|track_coordinates|${data['track_coordinates']?.toString() ?? '{"accuracy":null,"barangayVillage":null,"buildingName":null,"city":null,"country":null,"latitude":14.6531133,"longitude":121.0351767,"province":null,"street":null,"timestamp":"2024-04-08T13:29:20.649+08:00","unitLotNo":null,"zipCode":null}'}');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue',
+            nest:
+                'Date/Time|track_coord_timestamp|${data['track_coord_timestamp']?.toString() ?? '04/08/2024 1:29:20 pm'}');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue', nest: 'Section Break||');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue',
+            nest: 'Coordinate Row|track_coordinate_row|');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue',
+            nest:
+                'Coordinates|track_coordinates|${data['track_coordinates']?.toString() ?? '{"accuracy":null,"barangayVillage":null,"buildingName":null,"city":null,"country":null,"latitude":14.6531133,"longitude":121.0351767,"province":null,"street":null,"timestamp":"2024-04-08T13:29:22.228+08:00","unitLotNo":null,"zipCode":null}'}');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue',
+            nest:
+                'Date/Time|track_coord_timestamp|${data['track_coord_timestamp']?.toString() ?? '04/08/2024 1:29:22 pm'}');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue', nest: 'Section Break||');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue', nest: 'Section Break||');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('UpdatedValue', nest: 'Section Break||');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('SnapshotValue',
+            nest: 'Coordinates|track_coordinates|');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('SnapshotValue',
+            nest: 'Date/Time|track_coord_timestamp|');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Fields');
+        builder.element('SnapshotValue',
+            nest: 'Coordinate Row|track_coordinate_row|');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Field');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Task');
+        builder.element('Message',
+            nest:
+                'Executed P${data['ipv4']?.toString() ?? ''} - UpdatePostPlanting script.');
+        builder.element('Source', nest: 'System');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:31.9213368Z');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Tracked Farm &gt; Farm Location');
+        builder.element('SnapshotValue', nest: '');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:48.04Z');
+        builder.element('UpdatedValue', nest: 'Farm');
+        builder.element('FieldId', nest: '');
+        builder.element('FormTitle', nest: 'Tracked Farm');
+        builder.element('FieldLabel', nest: 'Farm Location');
+        builder.element('IPAddress', nest: '172.31.37.162');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Task');
+        builder.element('Message',
+            nest:
+                'Executed P${data['ipv4']?.toString() ?? ''} - UpdatePostPlanting script.');
+        builder.element('Source', nest: 'System');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:29:53.7502153Z');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label',
+            nest: 'PPIR - Post Planting Inspection Report &gt; Remarks:');
+        builder.element('SnapshotValue', nest: '');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:30:45.183Z');
+        builder.element('UpdatedValue', nest: 'Remarks');
+        builder.element('FieldId', nest: 'ppir_remarks');
+        builder.element('FormTitle',
+            nest: 'PPIR - Post Planting Inspection Report');
+        builder.element('FieldLabel', nest: 'Remarks:');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label',
+            nest:
+                'PPIR - Post Planting Inspection Report &gt; Signature: (Insured)PPIR - Post Planting Inspection Report &gt; Signature: (Insured)');
+        builder.element('SnapshotValue',
+            nest:
+                '{"events":[{"type":0,"timestamp":"2024-04-08T13:27:26.735+08:00"},{"type":2,"timestamp":"2024-04-08T13:27:29.352+08:00"}],"attemptCount":1,"duration":0}');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:30:45.183Z');
+        builder.element('UpdatedValue',
+            nest:
+                '{"events":[{"type":0,"timestamp":"2024-04-08T13:27:26.735+08:00"},{"type":2,"timestamp":"2024-04-08T13:27:29.352+08:00"},{"type":0,"timestamp":"2024-04-08T13:30:31.656+08:00"},{"type":2,"timestamp":"2024-04-08T13:30:35.456+08:00"}],"attemptCount":2,"duration":0}');
+        builder.element('FieldId', nest: 'ppir_sig_insured');
+        builder.element('FormTitle',
+            nest: 'PPIR - Post Planting Inspection Report');
+        builder.element('FieldLabel', nest: 'Signature: (Insured)');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Task');
+        builder.element('Message',
+            nest:
+                'Executed P${data['ipv4']?.toString() ?? ''} - UpdatePostPlanting script.');
+        builder.element('Source', nest: 'System');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:30:51.4918205Z');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Task');
+        builder.element('Label', nest: 'Task Status');
+        builder.element('Message',
+            nest: "Task status is changed to 'Submitted'.");
+        builder.element('SnapshotValue', nest: 'In Progress');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:30:57.111Z');
+        builder.element('UpdatedValue', nest: 'Submitted');
+        builder.element('FieldLabel', nest: 'Task Status');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Captured Mobile Location');
+        builder.element('SnapshotValue', nest: 'Quezon City, 1100');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:30:57.111Z');
+        builder.element('UpdatedValue', nest: '14.653113, 121.035177');
+        builder.element('FieldLabel', nest: 'Captured Mobile Location');
+        builder.element('FieldLabel', nest: 'Captured Mobile Location');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Captured Mobile Location');
+        builder.element('SnapshotValue', nest: '14.653113, 121.035177');
+        builder.element('Source', nest: 'System');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:30:57.111Z');
+        builder.element('UpdatedValue',
+            nest:
+                'GAOC (Gan Advanced Osseointegration Center), Quezon City, 1105');
+        builder.element('FieldLabel', nest: 'Captured Mobile Location');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Agent');
+        builder.element('SnapshotValue',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:30:59.921735Z');
+        builder.element('FieldLabel', nest: 'Agent');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Assigned Date Time');
+        builder.element('SnapshotValue',
+            nest: '2024-04-08T02:31:03.8278713+00:00');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:30:59.921735Z');
+        builder.element('UpdatedValue',
+            nest: '2024-04-08T05:30:59.9217363+00:00');
+        builder.element('FieldLabel', nest: 'Assigned Date Time');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Field');
+        builder.element('Label', nest: 'Dispatch Acknowledged');
+        builder.element('SnapshotValue', nest: 'True');
+        builder.element('Source',
+            nest: data['inspector_name']?.toString() ?? '');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:30:59.921735Z');
+        builder.element('UpdatedValue', nest: 'False');
+        builder.element('FieldLabel', nest: 'Dispatch Acknowledged');
+        builder.element('IPAddress', nest: data['ipv4']?.toString() ?? '');
+      });
+
+      builder.element('TaskAuditLogZipModel', nest: () {
+        builder.element('AuditLevel', nest: 'Task');
+        builder.element('Message',
+            nest:
+                'Executed P${data['ipv4']?.toString() ?? ''} - ${data['service_group']?.toString() ?? ''} PPIR script.');
+        builder.element('Source', nest: 'System');
+        builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
+        builder.element('Timestamp', nest: '2024-04-08T05:31:00.8335183Z');
+      });
+
+      builder.element('CreatedBy', nest: 'System');
+      builder.element('DateCreated', nest: '2024-04-08T02:31:03.8278713Z');
+      builder.element('DispatchAcknowledged', nest: 'false');
+      builder.element('DueDate', nest: () {
+        builder.attribute('xsi:nil', 'true');
+      });
+
+      builder.element('Forms', nest: () {
+        builder.element('FormZipModel', nest: () {
+          builder.element('ContentId', nest: '___C313c757e');
+
+          builder.element('Fields', nest: () {
+            builder.element('FormFieldZipModel', nest: () {
+              builder.element('ContentId', nest: '___C8af47c47');
+              builder.element('Indicator', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('Label', nest: 'Farmer');
+              builder.element('LockFieldType', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('ObjectId',
+                  nest: 'fb036b78-a523-428c-9099-5cd30e0cfd48');
+              builder.element('ParentObjectId',
+                  nest: '00000000-0000-0000-0000-000000000000');
+              builder.element('RefDataParentRowId', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('Options', nest: '');
+              builder.element('Sequence', nest: '1');
+              builder.element('Type', nest: 'TabHeader');
+            });
+
+            builder.element('FormFieldZipModel', nest: () {
+              builder.element('FieldId', nest: 'ppir_insuranceid');
+              builder.element('ContentId', nest: 'ppir_insuranceid');
+              builder.element('Indicator', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('Label', nest: 'Insurance ID:');
+              builder.element('LockFieldType', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('ObjectId',
+                  nest: '7fd346a8-7ca4-4095-a4f0-7ad59594620b');
+              builder.element('ParentObjectId',
+                  nest: '00000000-0000-0000-0000-000000000000');
+              builder.element('RefDataParentRowId', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('Options', nest: '');
+              builder.element('Sequence', nest: '3');
+              builder.element('Type', nest: 'Number');
+              builder.element('Value',
+                  nest: data['ppir_insuranceid']?.toString() ?? '');
+            });
+
+            builder.element('FormFieldZipModel', nest: () {
+              builder.element('FieldId', nest: 'ppir_farmername');
+              builder.element('ContentId', nest: 'ppir_farmername');
+              builder.element('Indicator', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('Label', nest: 'Name of Farmer:');
+              builder.element('LockFieldType', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('ObjectId',
+                  nest: 'edda9582-34f4-4e5d-8fcb-fb4e7cf38e12');
+              builder.element('ParentObjectId',
+                  nest: '00000000-0000-0000-0000-000000000000');
+              builder.element('RefDataParentRowId', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('Options', nest: '');
+              builder.element('Sequence', nest: '4');
+              builder.element('Type', nest: 'Text');
+              builder.element('Value',
+                  nest: data['ppir_farmername']?.toString() ?? '');
+            });
+
+            builder.element('FormFieldZipModel', nest: () {
+              builder.element('FieldId', nest: 'ppir_address');
+              builder.element('ContentId', nest: 'ppir_address');
+              builder.element('Indicator', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('Label', nest: 'Address:');
+              builder.element('LockFieldType', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('ObjectId',
+                  nest: 'b7fa21e1-5275-4880-bd93-b4e3e9ed5298');
+              builder.element('ParentObjectId',
+                  nest: '00000000-0000-0000-0000-000000000000');
+              builder.element('RefDataParentRowId', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('Options', nest: '');
+              builder.element('Sequence', nest: '5');
+              builder.element('Type', nest: 'Paragraph');
+              builder.element('Value',
+                  nest: data['ppir_address']?.toString() ?? '');
+            });
+
+            builder.element('FormFieldZipModel', nest: () {
+              builder.element('FieldId', nest: 'ppir_mobileno');
+              builder.element('ContentId', nest: 'ppir_mobileno');
+              builder.element('Indicator', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('Label', nest: 'Mobile No.');
+              builder.element('LockFieldType', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('ObjectId',
+                  nest: 'e5a61bf2-5218-4363-af96-3b9c67e53b19');
+              builder.element('ParentObjectId',
+                  nest: '00000000-0000-0000-0000-000000000000');
+              builder.element('RefDataParentRowId', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('Options', nest: '');
+              builder.element('Sequence', nest: '7');
+              builder.element('Type', nest: 'Text');
+              builder.element('Value',
+                  nest: data['ppir_mobileno']?.toString() ?? '');
+            });
+
+            builder.element('FormFieldZipModel', nest: () {
+              builder.element('ContentId', nest: '___C8c5c666c');
+              builder.element('Indicator', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('Label', nest: 'Heading 3');
+              builder.element('LockFieldType', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('ObjectId',
+                  nest: '35e08ccb-2683-4ea6-8b39-53abbcfd308c');
+              builder.element('ParentObjectId',
+                  nest: 'e1741f98-0db6-4831-9d5d-226e55c82216');
+              builder.element('RefDataParentRowId', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('Options', nest: '');
+              builder.element('Sequence', nest: '15');
+              builder.element('Type', nest: 'Label');
+              builder.element('Value', nest: 'Location of Sketch Plan');
+            });
+
+            builder.element('FormFieldZipModel', nest: () {
+              builder.element('ContentId', nest: '___C849d713a');
+              builder.element('Indicator', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('Label', nest: 'Filler');
+              builder.element('LockFieldType', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('ObjectId',
+                  nest: 'b125be87-9a5d-497c-a353-7dad592d3b0a');
+              builder.element('ParentObjectId',
+                  nest: 'e1741f98-0db6-4831-9d5d-226e55c82216');
+              builder.element('RefDataParentRowId', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('Options', nest: '');
+              builder.element('Sequence', nest: '19');
+              builder.element('Type', nest: 'Filler');
+            });
+
+            builder.element('FormFieldZipModel', nest: () {
+              builder.element('FieldId', nest: 'ppir_north');
+              builder.element('ContentId', nest: 'ppir_north');
+              builder.element('Indicator', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('Label', nest: 'North:');
+              builder.element('LockFieldType', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('ObjectId',
+                  nest: '9c9cdbb7-a0cf-48a6-a88f-9b9d003a2fe4');
+              builder.element('ParentObjectId',
+                  nest: 'e1741f98-0db6-4831-9d5d-226e55c82216');
+              builder.element('RefDataParentRowId', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('Options', nest: '');
+              builder.element('Sequence', nest: '17');
+              builder.element('Type', nest: 'Text');
+              builder.element('Value',
+                  nest: data['ppir_north']?.toString() ?? '');
+            });
+
+            builder.element('FormFieldZipModel', nest: () {
+              builder.element('FieldId', nest: 'ppir_east');
+              builder.element('ContentId', nest: 'ppir_east');
+              builder.element('Indicator', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('Label', nest: 'East:');
+              builder.element('LockFieldType', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('ObjectId',
+                  nest: '67cb381c-583b-4b5b-9d7b-cab659b82df1');
+              builder.element('ParentObjectId',
+                  nest: 'e1741f98-0db6-4831-9d5d-226e55c82216');
+              builder.element('RefDataParentRowId', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('Options', nest: '');
+              builder.element('Sequence', nest: '18');
+              builder.element('Type', nest: 'Text');
+              builder.element('Value',
+                  nest: data['ppir_east']?.toString() ?? '');
+            });
+
+            builder.element('FormFieldZipModel', nest: () {
+              builder.element('ContentId', nest: '___Ced4bb507');
+              builder.element('Indicator', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('Label', nest: 'Filler');
+              builder.element('LockFieldType', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('ObjectId',
+                  nest: '38ddbce4-1d2a-4571-a130-26ffbe74290a');
+              builder.element('ParentObjectId',
+                  nest: 'e1741f98-0db6-4831-9d5d-226e55c82216');
+              builder.element('RefDataParentRowId', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('Options', nest: '');
+              builder.element('Sequence', nest: '16');
+              builder.element('Type', nest: 'Filler');
+            });
+
+            builder.element('FormFieldZipModel', nest: () {
+              builder.element('FieldId', nest: 'ppir_south');
+              builder.element('ContentId', nest: 'ppir_south');
+              builder.element('Indicator', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('Label', nest: 'South:');
+              builder.element('LockFieldType', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('ObjectId',
+                  nest: '9dae3068-2783-4b5c-9661-0546cdd62d32');
+              builder.element('ParentObjectId',
+                  nest: 'e1741f98-0db6-4831-9d5d-226e55c82216');
+              builder.element('RefDataParentRowId', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('Options', nest: '');
+              builder.element('Sequence', nest: '20');
+              builder.element('Type', nest: 'Text');
+              builder.element('Value',
+                  nest: data['ppir_south']?.toString() ?? '');
+            });
+
+            builder.element('FormFieldZipModel', nest: () {
+              builder.element('FieldId', nest: 'ppir_west');
+              builder.element('ContentId', nest: 'ppir_west');
+              builder.element('Indicator', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('Label', nest: 'West:');
+              builder.element('LockFieldType', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('ObjectId',
+                  nest: '808c57b1-fef3-4e2a-afdc-4e49ac1ee55e');
+              builder.element('ParentObjectId',
+                  nest: 'e1741f98-0db6-4831-9d5d-226e55c82216');
+              builder.element('RefDataParentRowId', nest: () {
+                builder.attribute('xsi:nil', 'true');
+              });
+              builder.element('Options', nest: '');
+              builder.element('Sequence', nest: '21');
+              builder.element('Type', nest: 'Text');
+              builder.element('Value',
+                  nest: data['ppir_west']?.toString() ?? '');
+            });
+          });
+        });
+      });
+
       //   // Task Status Audit Log
       //   builder.element('TaskAuditLogZipModel', nest: () {
       //     builder.element('AuditLevel', nest: 'Task');
