@@ -37,12 +37,7 @@ class _ChatsWidgetState extends State<ChatsWidget>
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.messageQuery = await ChatsTable().queryRows(
-        queryFn: (q) => q
-            .neq(
-              'user2_id',
-              currentUserUid,
-            )
-            .order('updated_at'),
+        queryFn: (q) => q,
       );
     });
 
@@ -298,10 +293,10 @@ class _ChatsWidgetState extends State<ChatsWidget>
                                                   'Keyo46_${msgQItem.id}',
                                                 ),
                                                 chatId: msgQItem.id,
-                                                receiverId: msgQItem.user1Id ==
+                                                receiverId: msgQItem.user2Id ==
                                                         currentUserUid
-                                                    ? msgQItem.user2Id!
-                                                    : msgQItem.user1Id!,
+                                                    ? msgQItem.user1Id!
+                                                    : msgQItem.user2Id!,
                                               ),
                                             );
                                           },

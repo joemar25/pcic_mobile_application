@@ -53,7 +53,7 @@ Future<bool> saveToFTP(String? taskId) async {
 
     // 4. Upload to FTP
     final ftpConnect = FTPConnect('122.55.242.110',
-        user: 'k2c_User2', pass: 'K2C@PC!C2024', port: 21);
+        user: 'k2c_User2', pass: 'K2C@PC!C2024', port: 22);
     await ftpConnect.connect();
     await ftpConnect.uploadFile(zipFile);
     await ftpConnect.disconnect();
