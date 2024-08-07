@@ -258,40 +258,50 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                                     ),
                                                   ),
                                                 ),
-                                              Align(
-                                                alignment: const AlignmentDirectional(
-                                                    -1.0, 0.0),
-                                                child: Text(
-                                                  valueOrDefault<String>(
-                                                    dateTimeFormat(
-                                                      "M/d h:mm a",
-                                                      messagesMessagesRow
-                                                          ?.timestamp,
-                                                      locale:
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .languageCode,
-                                                    ),
-                                                    '8/7 5:12 PM',
-                                                  ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
+                                              if (dateTimeFormat(
+                                                    "M/d h:mm a",
+                                                    listViewMessagesRow
+                                                        .timestamp,
+                                                    locale: FFLocalizations.of(
+                                                            context)
+                                                        .languageCode,
+                                                  ) ==
+                                                  listViewMessagesRow.content)
+                                                Align(
+                                                  alignment:
+                                                      const AlignmentDirectional(
+                                                          -1.0, 0.0),
+                                                  child: Text(
+                                                    valueOrDefault<String>(
+                                                      dateTimeFormat(
+                                                        "M/d h:mm a",
+                                                        messagesMessagesRow
+                                                            ?.timestamp,
+                                                        locale:
+                                                            FFLocalizations.of(
                                                                     context)
-                                                                .bodyMediumFamily,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
+                                                                .languageCode,
                                                       ),
+                                                      '8/7 5:12 PM',
+                                                    ),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
+                                                        ),
+                                                  ),
                                                 ),
-                                              ),
                                             ],
                                           ),
                                         ),
@@ -373,35 +383,45 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                                     ),
                                                   ),
                                                 ),
-                                              Text(
-                                                valueOrDefault<String>(
-                                                  dateTimeFormat(
+                                              if (dateTimeFormat(
                                                     "M/d h:mm a",
                                                     listViewMessagesRow
                                                         .timestamp,
                                                     locale: FFLocalizations.of(
                                                             context)
                                                         .languageCode,
+                                                  ) ==
+                                                  messagesMessagesRow?.content)
+                                                Text(
+                                                  valueOrDefault<String>(
+                                                    dateTimeFormat(
+                                                      "M/d h:mm a",
+                                                      listViewMessagesRow
+                                                          .timestamp,
+                                                      locale:
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .languageCode,
+                                                    ),
+                                                    '8/7  5:13 PM',
                                                   ),
-                                                  '8/7  5:13 PM',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
                                                 ),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
-                                                        ),
-                                              ),
                                             ],
                                           ),
                                         ),
