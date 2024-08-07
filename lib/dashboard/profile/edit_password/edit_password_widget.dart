@@ -511,8 +511,6 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                               },
                               matchingRows: (rows) => rows,
                             );
-
-                            setState(() {});
                           },
                           text: FFLocalizations.of(context).getText(
                             'mjwnfucf' /* Confirm Changes */,

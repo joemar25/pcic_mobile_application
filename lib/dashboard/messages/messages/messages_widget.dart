@@ -152,11 +152,11 @@ class _MessagesWidgetState extends State<MessagesWidget> {
               children: [
                 Expanded(
                   child: FutureBuilder<List<MessagesRow>>(
-                    future: (_model
-                            .requestCompleter ??= Completer<List<MessagesRow>>()
-                          ..complete(MessagesTable().queryRows(
-                            queryFn: (q) => q.order('content', ascending: true),
-                          )))
+                    future: (_model.requestCompleter ??=
+                            Completer<List<MessagesRow>>()
+                              ..complete(MessagesTable().querySingleRow(
+                                queryFn: (q) => q,
+                              )))
                         .future,
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.
@@ -175,17 +175,23 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                       List<MessagesRow> listViewMessagesRowList =
                           snapshot.data!;
 
-                      return ListView.builder(
+                      // Return an empty Container when the item does not exist.
+                      if (snapshot.data!.isEmpty) {
+                        return Container();
+                      }
+                      final listViewMessagesRow =
+                          listViewMessagesRowList.isNotEmpty
+                              ? listViewMessagesRowList.first
+                              : null;
+
+                      return ListView(
                         padding: EdgeInsets.zero,
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
-                        itemCount: listViewMessagesRowList.length,
-                        itemBuilder: (context, listViewIndex) {
-                          final listViewMessagesRow =
-                              listViewMessagesRowList[listViewIndex];
-                          return Stack(
+                        children: [
+                          Stack(
                             children: [
-                              if (listViewMessagesRow.senderName !=
+                              if (listViewMessagesRow?.senderName ==
                                   currentUserUid)
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
@@ -251,7 +257,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                     ],
                                   ),
                                 ),
-                              if (listViewMessagesRow.senderName ==
+                              if (listViewMessagesRow?.senderName !=
                                   currentUserUid)
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
@@ -319,8 +325,8 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                   ),
                                 ),
                             ],
-                          );
-                        },
+                          ),
+                        ],
                       );
                     },
                   ),
