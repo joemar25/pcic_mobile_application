@@ -10,10 +10,10 @@ class MessagesModel extends FlutterFlowModel<MessagesWidget> {
 
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
+  // State field(s) for inputChat widget.
+  FocusNode? inputChatFocusNode;
+  TextEditingController? inputChatTextController;
+  String? Function(BuildContext, String?)? inputChatTextControllerValidator;
   Completer<List<MessagesRow>>? requestCompleter;
 
   @override
@@ -24,8 +24,8 @@ class MessagesModel extends FlutterFlowModel<MessagesWidget> {
   @override
   void dispose() {
     connectivityModel.dispose();
-    textFieldFocusNode?.dispose();
-    textController?.dispose();
+    inputChatFocusNode?.dispose();
+    inputChatTextController?.dispose();
   }
 
   /// Additional helper methods.

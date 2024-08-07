@@ -111,10 +111,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'PCIC Geotagging ',
       'tl': '',
     },
-    '7n7i2ifo': {
-      'en': 'DONT DELETE SOMEONE IS TESTING HERE ',
-      'tl': '',
-    },
     'm6ts5v8u': {
       'en': 'Welcome Back',
       'tl': '',
@@ -143,7 +139,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'g3d54vuo': {
+    '91e9u8do': {
       'en': '',
       'tl': '',
     },
@@ -253,7 +249,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    '0wgt6f7t': {
+    '4mn14vc5': {
       'en': '',
       'tl': '',
     },
@@ -265,7 +261,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'qvkuo8we': {
+    'qknfac4s': {
       'en': '',
       'tl': '',
     },
@@ -277,7 +273,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'u59h47hw': {
+    'ru2h4b4z': {
       'en': '',
       'tl': '',
     },
@@ -319,12 +315,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // messages
   {
-    'p1rbee74': {
-      'en': 'Message',
+    'of52etyq': {
+      'en': 'Label here...',
       'tl': '',
     },
-    'k1xjvuwe': {
-      'en': '\n',
+    'f9pdwlqc': {
+      'en': 'Send\n',
       'tl': '',
     },
     'zxojetjq': {

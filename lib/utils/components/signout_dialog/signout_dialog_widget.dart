@@ -38,8 +38,8 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
-      height: double.infinity,
+      width: 600.0,
+      height: 250.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
         borderRadius: BorderRadius.circular(24.0),
@@ -110,7 +110,6 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
             ),
             Container(
               width: MediaQuery.sizeOf(context).width * 1.0,
-              height: MediaQuery.sizeOf(context).height * 0.2,
               decoration: const BoxDecoration(),
               child: Row(
                 mainAxisSize: MainAxisSize.max,

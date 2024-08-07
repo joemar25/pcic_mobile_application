@@ -5,9 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
-import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'edit_password_model.dart';
@@ -34,21 +32,6 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => EditPasswordModel());
-
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (/* NOT RECOMMENDED */ _model.confirmNewPasswordTextController.text ==
-          'true') {
-        // If change password is accepted
-        await actions.changePassword(
-          '\${oldPasswordController.text}',
-          '\${newPasswordController.text}',
-        );
-      } else {
-        // error message if change password failed
-        await actions.validationLogic();
-      }
-    });
 
     _model.oldPasswordTextController ??= TextEditingController();
     _model.oldPasswordFocusNode ??= FocusNode();

@@ -674,7 +674,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                   .inspectorName,
                                                               'Inspector Name Default',
                                                             )),
-                                                            'Inspector Name (Offline-Online',
+                                                            'Inspector Name',
                                                           ),
                                                           style: TextStyle(
                                                             color: FlutterFlowTheme
