@@ -152,11 +152,11 @@ class _MessagesWidgetState extends State<MessagesWidget> {
               children: [
                 Expanded(
                   child: FutureBuilder<List<MessagesRow>>(
-                    future: (_model.requestCompleter ??=
-                            Completer<List<MessagesRow>>()
-                              ..complete(MessagesTable().queryRows(
-                                queryFn: (q) => q.order('timestamp'),
-                              )))
+                    future: (_model
+                            .requestCompleter ??= Completer<List<MessagesRow>>()
+                          ..complete(MessagesTable().queryRows(
+                            queryFn: (q) => q.order('content', ascending: true),
+                          )))
                         .future,
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.

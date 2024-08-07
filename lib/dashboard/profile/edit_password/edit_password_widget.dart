@@ -505,6 +505,14 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                               email: _model.oldPasswordTextController.text,
                               context: context,
                             );
+                            await UserLogsTable().update(
+                              data: {
+                                'user_id': currentUserUid,
+                              },
+                              matchingRows: (rows) => rows,
+                            );
+
+                            setState(() {});
                           },
                           text: FFLocalizations.of(context).getText(
                             'mjwnfucf' /* Confirm Changes */,
