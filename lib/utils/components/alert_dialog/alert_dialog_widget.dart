@@ -4,18 +4,18 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'signout_dialog_model.dart';
-export 'signout_dialog_model.dart';
+import 'alert_dialog_model.dart';
+export 'alert_dialog_model.dart';
 
-class SignoutDialogWidget extends StatefulWidget {
-  const SignoutDialogWidget({super.key});
+class AlertDialogWidget extends StatefulWidget {
+  const AlertDialogWidget({super.key});
 
   @override
-  State<SignoutDialogWidget> createState() => _SignoutDialogWidgetState();
+  State<AlertDialogWidget> createState() => _AlertDialogWidgetState();
 }
 
-class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
-  late SignoutDialogModel _model;
+class _AlertDialogWidgetState extends State<AlertDialogWidget> {
+  late AlertDialogModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -26,7 +26,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => SignoutDialogModel());
+    _model = createModel(context, () => AlertDialogModel());
   }
 
   @override
@@ -53,10 +53,11 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Lottie.asset(
-                'assets/lottie_animations/Logout_lottie_red.json',
+                'assets/lottie_animations/Alert_lottie_(2).json',
                 width: 150.0,
-                height: 130.0,
+                height: 150.0,
                 fit: BoxFit.cover,
+                frameRate: FrameRate(120.0),
                 animate: true,
               ),
               Column(
@@ -73,7 +74,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                               alignment: const AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  'pd2yz8ne' /* Confirm Sign Out */,
+                                  '4poy7kn4' /* Info */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .headlineLarge
@@ -103,8 +104,9 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                           alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
-                              'q15wq9be' /* Are you sure you want to sign ... */,
+                              '5w0hrwzw' /* The current gpx file will be d... */,
                             ),
+                            textAlign: TextAlign.center,
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -150,7 +152,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                               },
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  'l152ugox' /* CANCEL */,
+                                  'ma51aika' /* CANCEL */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -172,7 +174,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                           width: 100.0,
                           height: 40.0,
                           decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context).error,
+                            color: FlutterFlowTheme.of(context).warning,
                             borderRadius: BorderRadius.circular(50.0),
                           ),
                           child: Align(
@@ -191,7 +193,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                               },
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  'g6dhrxe7' /* SIGN OUT */,
+                                  'z8ore9hv' /* CONTINUE */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -215,7 +217,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                   ],
                 ),
               ),
-            ].divide(const SizedBox(height: 30.0)).addToStart(const SizedBox(height: 15.0)),
+            ].divide(const SizedBox(height: 20.0)),
           ),
         ),
       ),

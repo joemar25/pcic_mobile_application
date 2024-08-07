@@ -139,7 +139,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'vylw6tto': {
+    'dikzem6j': {
       'en': '',
       'tl': '',
     },
@@ -249,7 +249,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'r7gxv36l': {
+    'b0bt8bnd': {
       'en': '',
       'tl': '',
     },
@@ -261,7 +261,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'qv6j8l4e': {
+    'u3yt2nrk': {
       'en': '',
       'tl': '',
     },
@@ -273,7 +273,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    '8ef7b7r9': {
+    'af14ub4b': {
       'en': '',
       'tl': '',
     },
@@ -525,7 +525,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Geotag',
       'tl': '',
     },
-    'l58n6r1v': {
+    '74ljinxs': {
       'en': 'Repeat Geotag',
       'tl': '',
     },
@@ -1012,6 +1012,26 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'whighhgr': {
       'en': 'Loading...',
+      'tl': '',
+    },
+  },
+  // alertDialog
+  {
+    '4poy7kn4': {
+      'en': 'Info',
+      'tl': '',
+    },
+    '5w0hrwzw': {
+      'en':
+          'The current gpx file will be deleted. \nAre you sure you want to continue?',
+      'tl': '',
+    },
+    'ma51aika': {
+      'en': 'CANCEL',
+      'tl': '',
+    },
+    'z8ore9hv': {
+      'en': 'CONTINUE',
       'tl': '',
     },
   },
