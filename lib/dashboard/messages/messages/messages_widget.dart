@@ -187,15 +187,8 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                               listViewMessagesRowList[listViewIndex];
                           return Stack(
                             children: [
-                              if ((listViewMessagesRow.senderName !=
-                                      currentUserUid) &&
-                                  (messagesMessagesRow?.content ==
-                                      dateTimeFormat(
-                                        "M/d h:mm a",
-                                        listViewMessagesRow.timestamp,
-                                        locale: FFLocalizations.of(context)
-                                            .languageCode,
-                                      )))
+                              if (listViewMessagesRow.senderName !=
+                                  currentUserUid)
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       10.0, 10.0, 10.0, 10.0),
@@ -203,6 +196,9 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Container(
+                                        constraints: const BoxConstraints(
+                                          maxWidth: 300.0,
+                                        ),
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .accent1,
@@ -295,15 +291,8 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                     ],
                                   ),
                                 ),
-                              if ((listViewMessagesRow.senderName ==
-                                      currentUserUid) &&
-                                  (listViewMessagesRow.content ==
-                                      dateTimeFormat(
-                                        "M/d h:mm a",
-                                        listViewMessagesRow.timestamp,
-                                        locale: FFLocalizations.of(context)
-                                            .languageCode,
-                                      )))
+                              if (listViewMessagesRow.senderName ==
+                                  currentUserUid)
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       10.0, 10.0, 10.0, 10.0),
@@ -312,6 +301,9 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       Container(
+                                        constraints: const BoxConstraints(
+                                          maxWidth: 300.0,
+                                        ),
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
@@ -507,6 +499,8 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                             'content': _model.inputChatTextController.text,
                             'sender_name': currentUserUid,
                             'receiver_name': messagesMessagesRow?.senderName,
+                            'timestamp':
+                                supaSerialize<DateTime>(getCurrentTimestamp),
                           });
                           setState(() {
                             _model.inputChatTextController?.clear();

@@ -1,5 +1,4 @@
 import '/auth/supabase_auth/auth_util.dart';
-import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -487,11 +486,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                             const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            await UserLogsTable().insert({
-                              'user_id': currentUserUid,
-                              'activity': 'Saving edited password.',
-                            });
-                            if (_model.oldPasswordTextController.text.isEmpty) {
+                            if (currentUserEmail.isEmpty) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                   content: Text(
@@ -502,14 +497,8 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                               return;
                             }
                             await authManager.resetPassword(
-                              email: _model.oldPasswordTextController.text,
+                              email: currentUserEmail,
                               context: context,
-                            );
-                            await UserLogsTable().update(
-                              data: {
-                                'user_id': currentUserUid,
-                              },
-                              matchingRows: (rows) => rows,
                             );
                           },
                           text: FFLocalizations.of(context).getText(
