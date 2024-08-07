@@ -155,10 +155,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                     future: (_model.requestCompleter ??=
                             Completer<List<MessagesRow>>()
                               ..complete(MessagesTable().querySingleRow(
-                                queryFn: (q) => q.eq(
-                                  'content',
-                                  widget.chatId,
-                                ),
+                                queryFn: (q) => q,
                               )))
                         .future,
                     builder: (context, snapshot) {
