@@ -40,8 +40,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
       await actions.verifyPassword(
         '0',
       );
-      if (/* NOT RECOMMENDED */ _model.confirmNewPasswordTextController.text ==
-          'true') {
+      if (_model.isPasswordVerified) {
         // update Password
         await actions.updatePassword(
           'o',

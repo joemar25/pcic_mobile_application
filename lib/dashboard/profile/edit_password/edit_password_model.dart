@@ -4,6 +4,10 @@ import 'edit_password_widget.dart' show EditPasswordWidget;
 import 'package:flutter/material.dart';
 
 class EditPasswordModel extends FlutterFlowModel<EditPasswordWidget> {
+  ///  Local state fields for this page.
+
+  bool isPasswordVerified = true;
+
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();

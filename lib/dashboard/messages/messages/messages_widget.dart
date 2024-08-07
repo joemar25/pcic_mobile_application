@@ -420,7 +420,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                             obscureText: false,
                             decoration: InputDecoration(
                               labelText: FFLocalizations.of(context).getText(
-                                'of52etyq' /* Label here... */,
+                                'of52etyq' /* Message.. */,
                               ),
                               labelStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
