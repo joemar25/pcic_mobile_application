@@ -894,8 +894,8 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                               Directionality.of(
                                                                   context)),
                                                   child: const SizedBox(
-                                                    height: 162.0,
-                                                    width: 300.0,
+                                                    height: 375.0,
+                                                    width: 200.0,
                                                     child:
                                                         SignoutDialogWidget(),
                                                   ),

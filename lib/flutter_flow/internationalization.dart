@@ -139,7 +139,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'soxi1kyg': {
+    't7bufy9x': {
       'en': '',
       'tl': '',
     },
@@ -249,7 +249,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'rrc61qnk': {
+    '1f53c67c': {
       'en': '',
       'tl': '',
     },
@@ -261,7 +261,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'co68eyvf': {
+    '6rrxnmz9': {
       'en': '',
       'tl': '',
     },
@@ -273,7 +273,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    '8wdn2j3l': {
+    'jlnt9h6c': {
       'en': '',
       'tl': '',
     },
@@ -960,19 +960,19 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // signoutDialog
   {
-    'yovt82s2': {
+    'pd2yz8ne': {
       'en': 'Confirm Sign Out',
       'tl': '',
     },
-    'jzto1w3u': {
+    'q15wq9be': {
       'en': 'Are you sure you want to sign out?',
       'tl': '',
     },
-    'l878cyp1': {
+    'l152ugox': {
       'en': 'CANCEL',
       'tl': '',
     },
-    '6fku8v4x': {
+    'g6dhrxe7': {
       'en': 'SIGN OUT',
       'tl': '',
     },
