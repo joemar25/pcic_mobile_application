@@ -230,11 +230,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                                       .fromSTEB(
                                                           0.0, 4.0, 10.0, 4.0),
                                                   child: Text(
-                                                    valueOrDefault<String>(
-                                                      messagesMessagesRow
-                                                          ?.content,
-                                                      'hello world',
-                                                    ),
+                                                    listViewMessagesRow.content,
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
@@ -337,11 +333,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                                       .fromSTEB(
                                                           10.0, 4.0, 0.0, 4.0),
                                                   child: Text(
-                                                    valueOrDefault<String>(
-                                                      messagesMessagesRow
-                                                          ?.content,
-                                                      'hello world',
-                                                    ),
+                                                    listViewMessagesRow.content,
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium

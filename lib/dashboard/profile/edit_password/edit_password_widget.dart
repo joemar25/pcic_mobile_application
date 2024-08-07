@@ -36,16 +36,17 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await authManager.refreshUser();
       // CHECK PASSWORD
       await actions.verifyPassword(
         '0',
       );
-      if (currentUserEmailVerified) {
+      if (/* NOT RECOMMENDED */ _model.confirmNewPasswordTextController.text ==
+          'true') {
         // update Password
         await actions.updatePassword(
           'o',
         );
+        // Password changed
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
@@ -63,6 +64,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
           ),
         );
       } else {
+        // Password change failed
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
