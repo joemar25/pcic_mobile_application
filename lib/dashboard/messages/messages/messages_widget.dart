@@ -154,8 +154,8 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                   child: FutureBuilder<List<MessagesRow>>(
                     future: (_model.requestCompleter ??=
                             Completer<List<MessagesRow>>()
-                              ..complete(MessagesTable().querySingleRow(
-                                queryFn: (q) => q,
+                              ..complete(MessagesTable().queryRows(
+                                queryFn: (q) => q.order('timestamp'),
                               )))
                         .future,
                     builder: (context, snapshot) {
@@ -175,23 +175,17 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                       List<MessagesRow> listViewMessagesRowList =
                           snapshot.data!;
 
-                      // Return an empty Container when the item does not exist.
-                      if (snapshot.data!.isEmpty) {
-                        return Container();
-                      }
-                      final listViewMessagesRow =
-                          listViewMessagesRowList.isNotEmpty
-                              ? listViewMessagesRowList.first
-                              : null;
-
-                      return ListView(
+                      return ListView.builder(
                         padding: EdgeInsets.zero,
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
-                        children: [
-                          Stack(
+                        itemCount: listViewMessagesRowList.length,
+                        itemBuilder: (context, listViewIndex) {
+                          final listViewMessagesRow =
+                              listViewMessagesRowList[listViewIndex];
+                          return Stack(
                             children: [
-                              if (listViewMessagesRow?.senderName !=
+                              if (listViewMessagesRow.senderName !=
                                   currentUserUid)
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
@@ -257,7 +251,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                     ],
                                   ),
                                 ),
-                              if (listViewMessagesRow?.senderName ==
+                              if (listViewMessagesRow.senderName ==
                                   currentUserUid)
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
@@ -325,8 +319,8 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                   ),
                                 ),
                             ],
-                          ),
-                        ],
+                          );
+                        },
                       );
                     },
                   ),
