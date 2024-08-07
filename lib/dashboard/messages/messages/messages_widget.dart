@@ -156,8 +156,12 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                     future: (_model.requestCompleter ??=
                             Completer<List<MessagesRow>>()
                               ..complete(MessagesTable().queryRows(
-                                queryFn: (q) =>
-                                    q.order('timestamp', ascending: true),
+                                queryFn: (q) => q
+                                    .eq(
+                                      'chat_id',
+                                      widget.chatId,
+                                    )
+                                    .order('timestamp', ascending: true),
                               )))
                         .future,
                     builder: (context, snapshot) {
@@ -327,7 +331,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                             children: [
                                               Align(
                                                 alignment: const AlignmentDirectional(
-                                                    0.0, 0.0),
+                                                    1.0, 0.0),
                                                 child: Padding(
                                                   padding: const EdgeInsetsDirectional
                                                       .fromSTEB(

@@ -4,7 +4,9 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'edit_password_model.dart';
@@ -31,6 +33,54 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => EditPasswordModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await authManager.refreshUser();
+      // CHECK PASSWORD
+      await actions.verifyPassword(
+        '0',
+      );
+      if (currentUserEmailVerified) {
+        // update Password
+        await actions.updatePassword(
+          'o',
+        );
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'password changed',
+              style: FlutterFlowTheme.of(context).titleMedium.override(
+                    fontFamily: FlutterFlowTheme.of(context).titleMediumFamily,
+                    color: FlutterFlowTheme.of(context).primaryText,
+                    letterSpacing: 0.0,
+                    useGoogleFonts: GoogleFonts.asMap().containsKey(
+                        FlutterFlowTheme.of(context).titleMediumFamily),
+                  ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).secondary,
+          ),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'password change failed',
+              style: FlutterFlowTheme.of(context).titleSmall.override(
+                    fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
+                    color: FlutterFlowTheme.of(context).primaryText,
+                    letterSpacing: 0.0,
+                    useGoogleFonts: GoogleFonts.asMap().containsKey(
+                        FlutterFlowTheme.of(context).titleSmallFamily),
+                  ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).secondary,
+          ),
+        );
+      }
+    });
 
     _model.oldPasswordTextController ??= TextEditingController();
     _model.oldPasswordFocusNode ??= FocusNode();
