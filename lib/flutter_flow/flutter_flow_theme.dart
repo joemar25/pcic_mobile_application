@@ -200,7 +200,7 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color completeIcon = const Color(0xFF15803E);
   late Color boarderForm = const Color(0xFFD0E1EF);
   late Color wifiBars = const Color(0xFF336A4A);
-  late Color altText1 = const Color(0xFF94A1AA);
+  late Color altText1 = const Color(0x7F818485);
 }
 
 abstract class Typography {
@@ -613,7 +613,7 @@ class DarkModeTheme extends FlutterFlowTheme {
   late Color completeIcon = const Color(0xFFFFFFFF);
   late Color boarderForm = const Color(0x7F658593);
   late Color wifiBars = const Color(0xFF228B22);
-  late Color altText1 = const Color(0xFFD0E1EF);
+  late Color altText1 = const Color(0x7FD8DCDE);
 }
 
 extension TextStyleHelper on TextStyle {

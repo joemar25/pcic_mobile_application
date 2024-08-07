@@ -111,8 +111,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .bodyMediumFamily,
-                                  color:
-                                      FlutterFlowTheme.of(context).boarderForm,
+                                  color: FlutterFlowTheme.of(context).altText1,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)

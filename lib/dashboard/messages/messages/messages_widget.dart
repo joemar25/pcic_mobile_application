@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import 'dart:async';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -178,7 +179,6 @@ class _MessagesWidgetState extends State<MessagesWidget> {
 
                       return ListView.builder(
                         padding: EdgeInsets.zero,
-                        reverse: true,
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
                         itemCount: listViewMessagesRowList.length,
@@ -215,38 +215,49 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-                                              Align(
-                                                alignment: const AlignmentDirectional(
-                                                    -1.0, 0.0),
-                                                child: Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 4.0, 10.0, 4.0),
-                                                  child: Text(
-                                                    valueOrDefault<String>(
-                                                      messagesMessagesRow
-                                                          ?.content,
-                                                      'hello world',
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
+                                              if (listViewMessagesRow.content ==
+                                                  dateTimeFormat(
+                                                    "M/d h:mm a",
+                                                    listViewMessagesRow
+                                                        .timestamp,
+                                                    locale: FFLocalizations.of(
                                                             context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
-                                                        ),
+                                                        .languageCode,
+                                                  ))
+                                                Align(
+                                                  alignment:
+                                                      const AlignmentDirectional(
+                                                          -1.0, 0.0),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 4.0,
+                                                                10.0, 4.0),
+                                                    child: Text(
+                                                      valueOrDefault<String>(
+                                                        messagesMessagesRow
+                                                            ?.content,
+                                                        'hello world',
+                                                      ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyMediumFamily),
+                                                              ),
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
                                               Align(
                                                 alignment: const AlignmentDirectional(
                                                     -1.0, 0.0),
@@ -319,38 +330,49 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.end,
                                             children: [
-                                              Align(
-                                                alignment: const AlignmentDirectional(
-                                                    0.0, 0.0),
-                                                child: Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          10.0, 4.0, 0.0, 4.0),
-                                                  child: Text(
-                                                    valueOrDefault<String>(
-                                                      messagesMessagesRow
-                                                          ?.content,
-                                                      'hello world',
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
+                                              if (listViewMessagesRow.content ==
+                                                  dateTimeFormat(
+                                                    "M/d h:mm a",
+                                                    listViewMessagesRow
+                                                        .timestamp,
+                                                    locale: FFLocalizations.of(
                                                             context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
-                                                        ),
+                                                        .languageCode,
+                                                  ))
+                                                Align(
+                                                  alignment:
+                                                      const AlignmentDirectional(
+                                                          0.0, 0.0),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(10.0, 4.0,
+                                                                0.0, 4.0),
+                                                    child: Text(
+                                                      valueOrDefault<String>(
+                                                        messagesMessagesRow
+                                                            ?.content,
+                                                        'hello world',
+                                                      ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyMediumFamily),
+                                                              ),
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
                                               Text(
                                                 valueOrDefault<String>(
                                                   dateTimeFormat(
@@ -409,6 +431,11 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                           child: TextFormField(
                             controller: _model.inputChatTextController,
                             focusNode: _model.inputChatFocusNode,
+                            onChanged: (_) => EasyDebounce.debounce(
+                              '_model.inputChatTextController',
+                              const Duration(milliseconds: 0),
+                              () => setState(() {}),
+                            ),
                             autofocus: true,
                             obscureText: false,
                             decoration: InputDecoration(
