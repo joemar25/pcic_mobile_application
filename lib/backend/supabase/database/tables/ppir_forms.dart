@@ -9,7 +9,7 @@ class PpirFormsTable extends SupabaseTable<PpirFormsRow> {
 }
 
 class PpirFormsRow extends SupabaseDataRow {
-  PpirFormsRow(super.data);
+  PpirFormsRow(Map<String, dynamic> data) : super(data);
 
   @override
   SupabaseTable get table => PpirFormsTable();
