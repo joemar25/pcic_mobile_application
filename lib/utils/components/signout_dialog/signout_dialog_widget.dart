@@ -44,7 +44,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
         width: 338.0,
         height: 392.0,
         decoration: BoxDecoration(
-          color: FlutterFlowTheme.of(context).secondaryBackground,
+          color: FlutterFlowTheme.of(context).primaryBackground,
           borderRadius: BorderRadius.circular(24.0),
         ),
         child: Padding(

@@ -155,7 +155,8 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                     future: (_model.requestCompleter ??=
                             Completer<List<MessagesRow>>()
                               ..complete(MessagesTable().queryRows(
-                                queryFn: (q) => q.order('timestamp'),
+                                queryFn: (q) =>
+                                    q.order('timestamp', ascending: true),
                               )))
                         .future,
                     builder: (context, snapshot) {
@@ -177,6 +178,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
 
                       return ListView.builder(
                         padding: EdgeInsets.zero,
+                        reverse: true,
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
                         itemCount: listViewMessagesRowList.length,
@@ -194,7 +196,6 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Container(
-                                        width: 273.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .accent1,
@@ -209,16 +210,18 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   20.0, 20.0, 20.0, 20.0),
-                                          child: Row(
+                                          child: Column(
                                             mainAxisSize: MainAxisSize.max,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
                                               Align(
                                                 alignment: const AlignmentDirectional(
-                                                    0.0, 0.0),
+                                                    -1.0, 0.0),
                                                 child: Padding(
                                                   padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
-                                                          10.0, 4.0, 10.0, 4.0),
+                                                          0.0, 4.0, 10.0, 4.0),
                                                   child: Text(
                                                     valueOrDefault<String>(
                                                       messagesMessagesRow
@@ -244,6 +247,40 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                                   ),
                                                 ),
                                               ),
+                                              Align(
+                                                alignment: const AlignmentDirectional(
+                                                    -1.0, 0.0),
+                                                child: Text(
+                                                  valueOrDefault<String>(
+                                                    dateTimeFormat(
+                                                      "M/d h:mm a",
+                                                      messagesMessagesRow
+                                                          ?.timestamp,
+                                                      locale:
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .languageCode,
+                                                    ),
+                                                    '8/7 5:12 PM',
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
+                                                ),
+                                              ),
                                             ],
                                           ),
                                         ),
@@ -261,7 +298,6 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       Container(
-                                        width: 273.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
@@ -276,8 +312,12 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   20.0, 20.0, 20.0, 20.0),
-                                          child: Row(
+                                          child: Column(
                                             mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.end,
                                             children: [
                                               Align(
                                                 alignment: const AlignmentDirectional(
@@ -285,7 +325,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                                 child: Padding(
                                                   padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
-                                                          10.0, 4.0, 10.0, 4.0),
+                                                          10.0, 4.0, 0.0, 4.0),
                                                   child: Text(
                                                     valueOrDefault<String>(
                                                       messagesMessagesRow
@@ -310,6 +350,35 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                                         ),
                                                   ),
                                                 ),
+                                              ),
+                                              Text(
+                                                valueOrDefault<String>(
+                                                  dateTimeFormat(
+                                                    "M/d h:mm a",
+                                                    listViewMessagesRow
+                                                        .timestamp,
+                                                    locale: FFLocalizations.of(
+                                                            context)
+                                                        .languageCode,
+                                                  ),
+                                                  '8/7  5:13 PM',
+                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
+                                                        ),
                                               ),
                                             ],
                                           ),
