@@ -257,7 +257,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                     ],
                                   ),
                                 ),
-                              if (listViewMessagesRow?.receiverName ==
+                              if (listViewMessagesRow?.senderName ==
                                   currentUserUid)
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
