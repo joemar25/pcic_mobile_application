@@ -498,7 +498,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                             'chat_id': widget.chatId,
                             'content': _model.inputChatTextController.text,
                             'sender_name': currentUserUid,
-                            'receiver_name': messagesMessagesRow?.senderName,
+                            'receiver_name': messagesMessagesRow?.receiverName,
                             'timestamp':
                                 supaSerialize<DateTime>(getCurrentTimestamp),
                           });

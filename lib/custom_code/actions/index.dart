@@ -16,3 +16,4 @@ export 'fetch_store_stats.dart' show fetchStoreStats;
 export 'delete_map_store.dart' show deleteMapStore;
 export 'sync_online_offline_db.dart' show syncOnlineOfflineDb;
 export 'change_password.dart' show changePassword;
+export 'verify_password.dart' show verifyPassword;
