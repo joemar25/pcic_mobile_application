@@ -435,6 +435,8 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                             await MessagesTable().insert({
                               'chat_id': widget.chatId,
                               'content': _model.textController.text,
+                              'sender_name': currentUserUid,
+                              'receiver_name': messagesMessagesRow?.senderName,
                             });
                             setState(() {
                               _model.textController?.clear();
