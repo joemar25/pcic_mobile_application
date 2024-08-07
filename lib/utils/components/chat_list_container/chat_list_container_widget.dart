@@ -86,7 +86,7 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
               'messages',
               queryParameters: {
                 'chatId': serializeParam(
-                  widget.chatId,
+                  containerMessagesRow?.chatId,
                   ParamType.String,
                 ),
               }.withoutNulls,

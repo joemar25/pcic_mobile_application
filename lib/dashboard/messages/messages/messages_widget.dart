@@ -155,7 +155,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                     future: (_model.requestCompleter ??=
                             Completer<List<MessagesRow>>()
                               ..complete(MessagesTable().queryRows(
-                                queryFn: (q) => q,
+                                queryFn: (q) => q.order('timestamp'),
                               )))
                         .future,
                     builder: (context, snapshot) {

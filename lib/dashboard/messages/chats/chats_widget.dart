@@ -293,10 +293,10 @@ class _ChatsWidgetState extends State<ChatsWidget>
                                                   'Keyo46_${msgQItem.id}',
                                                 ),
                                                 chatId: msgQItem.id,
-                                                receiverId: msgQItem.user2Id ==
+                                                receiverId: msgQItem.user1Id ==
                                                         currentUserUid
-                                                    ? msgQItem.user1Id!
-                                                    : msgQItem.user2Id!,
+                                                    ? msgQItem.user2Id!
+                                                    : msgQItem.user1Id!,
                                               ),
                                             );
                                           },
