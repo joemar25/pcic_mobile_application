@@ -194,7 +194,6 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Container(
-                                        width: 100.0,
                                         height: 50.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
@@ -209,33 +208,39 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                         child: Align(
                                           alignment:
                                               const AlignmentDirectional(0.0, 0.0),
-                                          child: Text(
-                                            valueOrDefault<String>(
-                                              messagesMessagesRow?.content,
-                                              'hello world',
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    10.0, 4.0, 10.0, 4.0),
+                                            child: Text(
+                                              valueOrDefault<String>(
+                                                messagesMessagesRow?.content,
+                                                'hello world',
+                                              ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
                                             ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMediumFamily,
-                                                  letterSpacing: 0.0,
-                                                  useGoogleFonts: GoogleFonts
-                                                          .asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMediumFamily),
-                                                ),
                                           ),
                                         ),
                                       ),
                                     ],
                                   ),
                                 ),
-                              if (messagesMessagesRow?.receiverName ==
+                              if (messagesMessagesRow?.senderName ==
                                   currentUserUid)
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
@@ -245,7 +250,6 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       Container(
-                                        width: 100.0,
                                         height: 50.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
@@ -260,26 +264,32 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                         child: Align(
                                           alignment:
                                               const AlignmentDirectional(0.0, 0.0),
-                                          child: Text(
-                                            valueOrDefault<String>(
-                                              messagesMessagesRow?.content,
-                                              'hello world',
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    10.0, 4.0, 10.0, 4.0),
+                                            child: Text(
+                                              valueOrDefault<String>(
+                                                messagesMessagesRow?.content,
+                                                'hello world',
+                                              ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
                                             ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMediumFamily,
-                                                  letterSpacing: 0.0,
-                                                  useGoogleFonts: GoogleFonts
-                                                          .asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMediumFamily),
-                                                ),
                                           ),
                                         ),
                                       ),

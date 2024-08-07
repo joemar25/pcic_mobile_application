@@ -11,23 +11,14 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-Future<dynamic> changePassword(
-  String oldPassword,
-  String newPassword,
-) async {
-  try {
-    final response = await Supabase.instance.client.auth.updateUser(
-      UserAttributes(
-        password: newPassword,
-      ),
-    );
-    if (response.user != null) {
-      return {'success': true, 'message': 'Password updated successfully'};
-    } else {
-      return {'success': false, 'message': 'Failed to update password'};
-    }
-  } catch (e) {
-    return {'success': false, 'message': e.toString()};
+Future changePassword(String? newPassword) async {
+  final response = await SupaFlow.client.auth
+      .updateUser(UserAttributes(password: newPassword));
+
+  if (response.user != null) {
+    return true;
+  } else {
+    return false;
   }
 }
 
