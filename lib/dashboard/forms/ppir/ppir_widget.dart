@@ -3653,6 +3653,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                 width: 1.0,
                               ),
                               borderRadius: BorderRadius.circular(8.0),
+                              disabledColor:
+                                  FlutterFlowTheme.of(context).accent1,
+                              disabledTextColor:
+                                  FlutterFlowTheme.of(context).error,
                             ),
                           ),
                         ],
