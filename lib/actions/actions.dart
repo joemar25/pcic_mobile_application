@@ -50,7 +50,7 @@ Future permissionBlock(BuildContext context) async {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: const Text(
-          'Camera access is enabled already',
+          'Camera access granted',
           style: TextStyle(),
         ),
         duration: const Duration(milliseconds: 4000),
@@ -66,7 +66,7 @@ Future permissionBlock(BuildContext context) async {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: const Text(
-          'Photo Library access is enabled already',
+          'Photo Library access granted',
           style: TextStyle(),
         ),
         duration: const Duration(milliseconds: 4000),
@@ -82,7 +82,7 @@ Future permissionBlock(BuildContext context) async {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: const Text(
-          'Location access is enabled already',
+          'Location access granted',
           style: TextStyle(),
         ),
         duration: const Duration(milliseconds: 4000),
@@ -98,7 +98,7 @@ Future permissionBlock(BuildContext context) async {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: const Text(
-          'Notification access is enabled already',
+          'Notification access granted',
           style: TextStyle(),
         ),
         duration: const Duration(milliseconds: 4000),
