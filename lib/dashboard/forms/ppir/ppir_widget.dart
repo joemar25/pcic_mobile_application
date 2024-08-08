@@ -487,11 +487,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                     onPressed: () async {
                                                       if (await getPermissionStatus(
                                                           notificationsPermission)) {
-                                                        await actions
-                                                            .downloadGpx(
-                                                          ppirPpirFormsRow?.gpx,
-                                                          widget.taskId,
-                                                        );
+                                                        await launchURL('');
                                                         ScaffoldMessenger.of(
                                                                 context)
                                                             .clearSnackBars();

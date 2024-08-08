@@ -11,9 +11,6 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-Future<String> downloadGpx(
-  String? gpxContent,
-  String? fileName,
-) async {
+Future<String> getGpxLink(String? taskId) async {
   // Add your function code here!
 }
