@@ -487,7 +487,13 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                     onPressed: () async {
                                                       if (await getPermissionStatus(
                                                           notificationsPermission)) {
-                                                        await launchURL('');
+                                                        _model.gpxLink =
+                                                            await actions
+                                                                .getGpxLink(
+                                                          widget.taskId,
+                                                        );
+                                                        await launchURL(
+                                                            _model.gpxLink!);
                                                         ScaffoldMessenger.of(
                                                                 context)
                                                             .clearSnackBars();
@@ -538,6 +544,8 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                           ),
                                                         );
                                                       }
+
+                                                      setState(() {});
                                                     },
                                                     text: FFLocalizations.of(
                                                             context)

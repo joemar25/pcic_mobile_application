@@ -17,6 +17,8 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
 
   // Stores action output result for [Backend Call - Query Rows] action in ppir widget.
   List<PpirFormsRow>? ppirData;
+  // Stores action output result for [Custom Action - getGpxLink] action in repeatGeotagButtonT widget.
+  String? gpxLink;
   // State field(s) for ppir_track_coordinates widget.
   FocusNode? ppirTrackCoordinatesFocusNode;
   TextEditingController? ppirTrackCoordinatesTextController;

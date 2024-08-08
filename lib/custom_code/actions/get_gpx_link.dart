@@ -13,4 +13,5 @@ import 'package:flutter/material.dart';
 
 Future<String> getGpxLink(String? taskId) async {
   // Add your function code here!
+  return '';
 }
