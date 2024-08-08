@@ -3,19 +3,15 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/chat_list_container/chat_list_container_widget.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/empty_lists/empty_lists_widget.dart';
 import '/utils/components/page_loader/page_loader_widget.dart';
 import '/utils/components/user_chats/user_chats_widget.dart';
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'chats_model.dart';
 export 'chats_model.dart';
 
@@ -54,8 +50,8 @@ class _ChatsWidgetState extends State<ChatsWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 100.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 100.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -80,7 +76,7 @@ class _ChatsWidgetState extends State<ChatsWidget>
         if (!snapshot.hasData) {
           return Scaffold(
             backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-            body: PageLoaderWidget(),
+            body: const PageLoaderWidget(),
           );
         }
         List<ChatsRow> chatsChatsRowList = snapshot.data!;
@@ -104,9 +100,9 @@ class _ChatsWidgetState extends State<ChatsWidget>
                         onTap: () => FocusScope.of(context).unfocus(),
                         child: Padding(
                           padding: MediaQuery.viewInsetsOf(context),
-                          child: Container(
+                          child: SizedBox(
                             height: MediaQuery.sizeOf(context).height * 0.5,
-                            child: UserChatsWidget(),
+                            child: const UserChatsWidget(),
                           ),
                         ),
                       );
@@ -145,7 +141,7 @@ class _ChatsWidgetState extends State<ChatsWidget>
                         ),
                       ],
                     ),
-                  ].divide(SizedBox(width: 10.0)),
+                  ].divide(const SizedBox(width: 10.0)),
                 ),
               ),
               body: SafeArea(
@@ -161,7 +157,7 @@ class _ChatsWidgetState extends State<ChatsWidget>
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             20.0, 20.0, 20.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -202,13 +198,13 @@ class _ChatsWidgetState extends State<ChatsWidget>
                                                       .headlineMediumFamily),
                                             ),
                                       ),
-                                    ].divide(SizedBox(width: 10.0)),
+                                    ].divide(const SizedBox(width: 10.0)),
                                   ),
                                 ),
                                 wrapWithModel(
                                   model: _model.connectivityModel,
                                   updateCallback: () => setState(() {}),
-                                  child: ConnectivityWidget(),
+                                  child: const ConnectivityWidget(),
                                 ),
                               ],
                             ),
@@ -217,14 +213,14 @@ class _ChatsWidgetState extends State<ChatsWidget>
                       ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 15.0, 0.0, 0.0),
                           child: Container(
                             width: double.infinity,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .primaryBackground,
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                 bottomLeft: Radius.circular(0.0),
                                 bottomRight: Radius.circular(0.0),
                                 topLeft: Radius.circular(24.0),
@@ -232,7 +228,7 @@ class _ChatsWidgetState extends State<ChatsWidget>
                               ),
                             ),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   20.0, 20.0, 20.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -270,10 +266,10 @@ class _ChatsWidgetState extends State<ChatsWidget>
                                   Expanded(
                                     flex: 15,
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 15.0, 0.0, 0.0),
                                       child: Container(
-                                        decoration: BoxDecoration(),
+                                        decoration: const BoxDecoration(),
                                         child: Builder(
                                           builder: (context) {
                                             final msgQ =
@@ -281,12 +277,12 @@ class _ChatsWidgetState extends State<ChatsWidget>
                                                     [];
                                             if (msgQ.isEmpty) {
                                               return Center(
-                                                child: Container(
+                                                child: SizedBox(
                                                   height:
                                                       MediaQuery.sizeOf(context)
                                                               .height *
                                                           0.6,
-                                                  child: EmptyListsWidget(
+                                                  child: const EmptyListsWidget(
                                                     type: 'Messages',
                                                   ),
                                                 ),
@@ -294,7 +290,7 @@ class _ChatsWidgetState extends State<ChatsWidget>
                                             }
 
                                             return ListView.separated(
-                                              padding: EdgeInsets.fromLTRB(
+                                              padding: const EdgeInsets.fromLTRB(
                                                 0,
                                                 0,
                                                 0,
@@ -304,7 +300,7 @@ class _ChatsWidgetState extends State<ChatsWidget>
                                               scrollDirection: Axis.vertical,
                                               itemCount: msgQ.length,
                                               separatorBuilder: (_, __) =>
-                                                  SizedBox(height: 20.0),
+                                                  const SizedBox(height: 20.0),
                                               itemBuilder:
                                                   (context, msgQIndex) {
                                                 final msgQItem =

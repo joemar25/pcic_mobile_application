@@ -7,10 +7,8 @@ import '/utils/components/connectivity/connectivity_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:provider/provider.dart';
 import 'edit_password_model.dart';
 export 'edit_password_model.dart';
 
@@ -18,7 +16,7 @@ class EditPasswordWidget extends StatefulWidget {
   const EditPasswordWidget({
     super.key,
     String? formFieldName,
-  }) : this.formFieldName = formFieldName ?? 'Field Name';
+  }) : formFieldName = formFieldName ?? 'Field Name';
 
   final String formFieldName;
 
@@ -60,7 +58,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                         FlutterFlowTheme.of(context).titleMediumFamily),
                   ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).secondary,
           ),
         );
@@ -78,7 +76,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                         FlutterFlowTheme.of(context).titleSmallFamily),
                   ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).secondary,
           ),
         );
@@ -131,18 +129,18 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
             wrapWithModel(
               model: _model.connectivityModel,
               updateCallback: () => setState(() {}),
-              child: ConnectivityWidget(),
+              child: const ConnectivityWidget(),
             ),
           ],
         ),
-        actions: [],
+        actions: const [],
         centerTitle: false,
         elevation: 0.0,
       ),
       body: SafeArea(
         top: true,
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -180,11 +178,11 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                       child: Container(
                         width: 250.0,
                         height: 250.0,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Color(0x00FFFFFF),
                         ),
                         child: Lottie.asset(
@@ -200,7 +198,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 40.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 40.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -231,13 +229,13 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
+                    SizedBox(
                       width: double.infinity,
                       child: TextFormField(
                         controller: _model.oldPasswordTextController,
                         focusNode: _model.oldPasswordFocusNode,
                         autofocus: true,
-                        autofillHints: [AutofillHints.password],
+                        autofillHints: const [AutofillHints.password],
                         obscureText: !_model.oldPasswordVisibility,
                         decoration: InputDecoration(
                           labelText: FFLocalizations.of(context).getText(
@@ -299,7 +297,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                           filled: true,
                           fillColor:
                               FlutterFlowTheme.of(context).secondaryBackground,
-                          contentPadding: EdgeInsetsDirectional.fromSTEB(
+                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
                               15.0, 10.0, 15.0, 10.0),
                           suffixIcon: InkWell(
                             onTap: () => setState(
@@ -311,7 +309,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                               _model.oldPasswordVisibility
                                   ? Icons.visibility_outlined
                                   : Icons.visibility_off_outlined,
-                              color: Color(0xFF757575),
+                              color: const Color(0xFF757575),
                               size: 24.0,
                             ),
                           ),
@@ -331,13 +329,13 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                             .asValidator(context),
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       width: double.infinity,
                       child: TextFormField(
                         controller: _model.newPasswordTextController,
                         focusNode: _model.newPasswordFocusNode,
                         autofocus: true,
-                        autofillHints: [AutofillHints.password],
+                        autofillHints: const [AutofillHints.password],
                         obscureText: !_model.newPasswordVisibility,
                         decoration: InputDecoration(
                           labelText: FFLocalizations.of(context).getText(
@@ -399,7 +397,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                           filled: true,
                           fillColor:
                               FlutterFlowTheme.of(context).secondaryBackground,
-                          contentPadding: EdgeInsetsDirectional.fromSTEB(
+                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
                               15.0, 10.0, 15.0, 10.0),
                           suffixIcon: InkWell(
                             onTap: () => setState(
@@ -411,7 +409,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                               _model.newPasswordVisibility
                                   ? Icons.visibility_outlined
                                   : Icons.visibility_off_outlined,
-                              color: Color(0xFF757575),
+                              color: const Color(0xFF757575),
                               size: 24.0,
                             ),
                           ),
@@ -431,13 +429,13 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                             .asValidator(context),
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       width: double.infinity,
                       child: TextFormField(
                         controller: _model.confirmNewPasswordTextController,
                         focusNode: _model.confirmNewPasswordFocusNode,
                         autofocus: true,
-                        autofillHints: [AutofillHints.password],
+                        autofillHints: const [AutofillHints.password],
                         obscureText: !_model.confirmNewPasswordVisibility,
                         decoration: InputDecoration(
                           labelText: FFLocalizations.of(context).getText(
@@ -499,7 +497,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                           filled: true,
                           fillColor:
                               FlutterFlowTheme.of(context).secondaryBackground,
-                          contentPadding: EdgeInsetsDirectional.fromSTEB(
+                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
                               15.0, 10.0, 15.0, 10.0),
                           suffixIcon: InkWell(
                             onTap: () => setState(
@@ -511,7 +509,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                               _model.confirmNewPasswordVisibility
                                   ? Icons.visibility_outlined
                                   : Icons.visibility_off_outlined,
-                              color: Color(0xFF757575),
+                              color: const Color(0xFF757575),
                               size: 24.0,
                             ),
                           ),
@@ -533,15 +531,15 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                       ),
                     ),
                     Align(
-                      alignment: AlignmentDirectional(0.0, 0.0),
+                      alignment: const AlignmentDirectional(0.0, 0.0),
                       child: Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                         child: FFButtonWidget(
                           onPressed: () async {
                             if (currentUserEmail.isEmpty) {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
+                                const SnackBar(
                                   content: Text(
                                     'Email required!',
                                   ),
@@ -560,9 +558,9 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                           options: FFButtonOptions(
                             width: double.infinity,
                             height: 50.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -578,7 +576,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                                           .titleSmallFamily),
                                 ),
                             elevation: 0.0,
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -587,7 +585,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                         ),
                       ),
                     ),
-                  ].divide(SizedBox(height: 20.0)),
+                  ].divide(const SizedBox(height: 20.0)),
                 ),
               ),
             ],

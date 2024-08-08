@@ -9,7 +9,7 @@ class TasksTable extends SupabaseTable<TasksRow> {
 }
 
 class TasksRow extends SupabaseDataRow {
-  TasksRow(Map<String, dynamic> data) : super(data);
+  TasksRow(super.data);
 
   @override
   SupabaseTable get table => TasksTable();

@@ -1,13 +1,10 @@
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'dart:math';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'sync_model.dart';
 export 'sync_model.dart';
@@ -111,13 +108,13 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
         setState(() {});
       },
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 100),
+        duration: const Duration(milliseconds: 100),
         curve: Curves.easeInOutQuint,
         width: 30.0,
         height: 30.0,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               blurRadius: 4.0,
               color: Color(0x33000000),
@@ -138,7 +135,7 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
           children: [
             if (!_model.clicked)
               Align(
-                alignment: AlignmentDirectional(0.0, 0.0),
+                alignment: const AlignmentDirectional(0.0, 0.0),
                 child: Icon(
                   Icons.sync,
                   color: FFAppState().ONLINE
@@ -149,7 +146,7 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
               ),
             if (_model.clicked)
               Align(
-                alignment: AlignmentDirectional(0.0, 0.0),
+                alignment: const AlignmentDirectional(0.0, 0.0),
                 child: Icon(
                   Icons.sync,
                   color: FlutterFlowTheme.of(context).warning,
