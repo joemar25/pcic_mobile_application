@@ -369,10 +369,6 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                     currentUserUid,
                                   ),
                                 );
-                                await UserLogsTable().insert({
-                                  'user_id': currentUserUid,
-                                  'activity': 'Saving profile.',
-                                });
 
                                 context.pushNamed(
                                   'successProfile',

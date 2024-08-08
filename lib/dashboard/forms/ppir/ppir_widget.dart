@@ -599,9 +599,10 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                           0.3,
                                                       height: 40.0,
                                                       decoration: BoxDecoration(
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .forDispatchColor,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondary,
                                                         boxShadow: const [
                                                           BoxShadow(
                                                             blurRadius: 4.0,

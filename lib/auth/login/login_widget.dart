@@ -8,6 +8,7 @@ import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'login_model.dart';
 export 'login_model.dart';
@@ -133,11 +134,8 @@ class _LoginWidgetState extends State<LoginWidget>
                                     decoration: const BoxDecoration(),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(10.0),
-                                      child: Image.asset(
-                                        Theme.of(context).brightness ==
-                                                Brightness.dark
-                                            ? 'assets/images/pcic_logo.png'
-                                            : 'assets/images/pcic_logo.png',
+                                      child: SvgPicture.asset(
+                                        'assets/images/PCIC-Logo.svg',
                                         width: double.infinity,
                                         fit: BoxFit.contain,
                                       ),
@@ -195,7 +193,7 @@ class _LoginWidgetState extends State<LoginWidget>
                       bottomLeft: Radius.circular(0.0),
                       bottomRight: Radius.circular(0.0),
                       topLeft: Radius.circular(24.0),
-                      topRight: Radius.circular(25.0),
+                      topRight: Radius.circular(24.0),
                     ),
                   ),
                   child: Padding(
@@ -542,13 +540,13 @@ class _LoginWidgetState extends State<LoginWidget>
                                               currentUserEmail,
                                             ),
                                           );
+                                          _model.isUploadedSuccess =
+                                              await actions
+                                                  .uploadPhotoUrlToAsset(
+                                            _model
+                                                .authUserQuery?.first.photoUrl,
+                                          );
                                           if (kDebugMode) {
-                                            _model.isUploadedSuccess =
-                                                await actions
-                                                    .uploadPhotoUrlToAsset(
-                                              _model.authUserQuery?.first
-                                                  .photoUrl,
-                                            );
                                             if (_model.isUploadedSuccess !=
                                                     null &&
                                                 _model.isUploadedSuccess !=
@@ -603,7 +601,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                         },
                                         text:
                                             FFLocalizations.of(context).getText(
-                                          '32i6nk7l' /* Sign in */,
+                                          '32i6nk7l' /* Log in */,
                                         ),
                                         options: FFButtonOptions(
                                           width: double.infinity,

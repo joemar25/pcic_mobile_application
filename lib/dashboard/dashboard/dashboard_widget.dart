@@ -234,8 +234,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
         child: Scaffold(
           key: scaffoldKey,
           backgroundColor: FlutterFlowTheme.of(context).primary,
-          body: SafeArea(
-            top: true,
+          body: Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 60.0, 0.0, 0.0),
             child: Container(
               width: double.infinity,
               height: double.infinity,

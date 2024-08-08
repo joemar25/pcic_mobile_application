@@ -1,4 +1,3 @@
-import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -468,7 +467,7 @@ class _FormSuccessWidgetState extends State<FormSuccessWidget>
                                   alignment: const AlignmentDirectional(0.0, -1.0),
                                   child: Text(
                                     FFLocalizations.of(context).getText(
-                                      '4pa6ldza' /* Tasks  */,
+                                      '4pa6ldza' /* Task  */,
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .labelMedium
@@ -601,76 +600,34 @@ class _FormSuccessWidgetState extends State<FormSuccessWidget>
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         children: [
-                                          FutureBuilder<List<UsersRow>>(
-                                            future: UsersTable().querySingleRow(
-                                              queryFn: (q) => q.eq(
-                                                'id',
-                                                currentUserUid,
+                                          Container(
+                                            width: 48.0,
+                                            height: 48.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .accent1,
+                                              shape: BoxShape.circle,
+                                              border: Border.all(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                width: 2.0,
                                               ),
                                             ),
-                                            builder: (context, snapshot) {
-                                              // Customize what your widget looks like when it's loading.
-                                              if (!snapshot.hasData) {
-                                                return Center(
-                                                  child: SizedBox(
-                                                    width: 100.0,
-                                                    height: 100.0,
-                                                    child: SpinKitRipple(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                      size: 100.0,
-                                                    ),
-                                                  ),
-                                                );
-                                              }
-                                              List<UsersRow>
-                                                  containerUsersRowList =
-                                                  snapshot.data!;
-
-                                              final containerUsersRow =
-                                                  containerUsersRowList
-                                                          .isNotEmpty
-                                                      ? containerUsersRowList
-                                                          .first
-                                                      : null;
-
-                                              return Container(
-                                                width: 48.0,
-                                                height: 48.0,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .accent1,
-                                                  shape: BoxShape.circle,
-                                                  border: Border.all(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
-                                                    width: 2.0,
-                                                  ),
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(2.0),
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(40.0),
+                                                child: Image.asset(
+                                                  'assets/images/default-avatar.jpg',
+                                                  width: 60.0,
+                                                  height: 60.0,
+                                                  fit: BoxFit.cover,
                                                 ),
-                                                child: Padding(
-                                                  padding: const EdgeInsets.all(2.0),
-                                                  child: ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            40.0),
-                                                    child: Image.network(
-                                                      valueOrDefault<String>(
-                                                        containerUsersRow
-                                                            ?.photoUrl,
-                                                        'https://newsko.com.ph/wp-content/uploads/2024/06/Mikha.jpg',
-                                                      ),
-                                                      width: 60.0,
-                                                      height: 60.0,
-                                                      fit: BoxFit.cover,
-                                                    ),
-                                                  ),
-                                                ),
-                                              );
-                                            },
+                                              ),
+                                            ),
                                           ),
                                           Stack(
                                             alignment:
