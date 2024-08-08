@@ -131,6 +131,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'chatId',
               ParamType.String,
             ),
+            recieverId: params.getParam(
+              'recieverId',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(

@@ -18,9 +18,11 @@ class MessagesWidget extends StatefulWidget {
   const MessagesWidget({
     super.key,
     required this.chatId,
+    required this.recieverId,
   });
 
   final String? chatId;
+  final String? recieverId;
 
   @override
   State<MessagesWidget> createState() => _MessagesWidgetState();
@@ -126,7 +128,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                     future: UsersTable().querySingleRow(
                       queryFn: (q) => q.eq(
                         'id',
-                        messagesMessagesRow?.senderName,
+                        widget.recieverId,
                       ),
                     ),
                     builder: (context, snapshot) {

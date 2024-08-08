@@ -89,6 +89,10 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
                   containerMessagesRow?.chatId,
                   ParamType.String,
                 ),
+                'recieverId': serializeParam(
+                  widget.receiverId,
+                  ParamType.String,
+                ),
               }.withoutNulls,
               extra: <String, dynamic>{
                 kTransitionInfoKey: const TransitionInfo(
