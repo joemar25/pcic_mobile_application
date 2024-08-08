@@ -10,7 +10,6 @@ import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/empty_lists/empty_lists_widget.dart';
 import '/utils/components/sync/sync_widget.dart';
 import '/utils/components/tasks/tasks_widget.dart';
-import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
@@ -144,8 +143,6 @@ class _DashboardWidgetState extends State<DashboardWidget>
         );
         setState(() {});
       }
-
-      await action_blocks.permissionBlock(context);
     });
 
     _model.textController ??= TextEditingController();

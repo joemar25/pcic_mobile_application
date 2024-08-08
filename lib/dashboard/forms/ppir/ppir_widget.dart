@@ -10,7 +10,6 @@ import '/flutter_flow/form_field_controller.dart';
 import '/utils/components/signature/signature_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
-import '/flutter_flow/permissions_util.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -485,65 +484,13 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                   ),
                                                   FFButtonWidget(
                                                     onPressed: () async {
-                                                      if (await getPermissionStatus(
-                                                          notificationsPermission)) {
-                                                        _model.gpxLink =
-                                                            await actions
-                                                                .getGpxLink(
-                                                          widget.taskId,
-                                                        );
-                                                        await launchURL(
-                                                            _model.gpxLink!);
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .clearSnackBars();
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                          SnackBar(
-                                                            content: Text(
-                                                              'Download Started',
-                                                              style: TextStyle(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                              ),
-                                                            ),
-                                                            duration: const Duration(
-                                                                milliseconds:
-                                                                    4000),
-                                                            backgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondary,
-                                                          ),
-                                                        );
-                                                      } else {
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .clearSnackBars();
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                          SnackBar(
-                                                            content: Text(
-                                                              'Notification must be enabled in settings.',
-                                                              style: TextStyle(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                              ),
-                                                            ),
-                                                            duration: const Duration(
-                                                                milliseconds:
-                                                                    4000),
-                                                            backgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondary,
-                                                          ),
-                                                        );
-                                                      }
+                                                      _model.gpxLink =
+                                                          await actions
+                                                              .getGpxLink(
+                                                        widget.taskId,
+                                                      );
+                                                      await launchURL(
+                                                          _model.gpxLink!);
 
                                                       setState(() {});
                                                     },
@@ -3461,14 +3408,6 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                           'id',
                                           widget.taskId,
                                         ),
-                                      );
-                                      _model.generatedTaskXmlFile =
-                                          await actions.generateTaskXml(
-                                        widget.taskId,
-                                      );
-                                      await actions.saveTaskXml(
-                                        _model.generatedTaskXmlFile,
-                                        widget.taskId,
                                       );
                                       _model.isFtpSaved =
                                           await actions.saveToFTP(
