@@ -234,7 +234,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                       child: TextFormField(
                         controller: _model.oldPasswordTextController,
                         focusNode: _model.oldPasswordFocusNode,
-                        autofocus: true,
+                        autofocus: false,
                         autofillHints: const [AutofillHints.password],
                         obscureText: !_model.oldPasswordVisibility,
                         decoration: InputDecoration(
@@ -334,7 +334,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                       child: TextFormField(
                         controller: _model.newPasswordTextController,
                         focusNode: _model.newPasswordFocusNode,
-                        autofocus: true,
+                        autofocus: false,
                         autofillHints: const [AutofillHints.password],
                         obscureText: !_model.newPasswordVisibility,
                         decoration: InputDecoration(
@@ -434,8 +434,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                       child: TextFormField(
                         controller: _model.confirmNewPasswordTextController,
                         focusNode: _model.confirmNewPasswordFocusNode,
-                        autofocus: true,
-                        autofillHints: const [AutofillHints.password],
+                        autofocus: false,
                         obscureText: !_model.confirmNewPasswordVisibility,
                         decoration: InputDecoration(
                           labelText: FFLocalizations.of(context).getText(
