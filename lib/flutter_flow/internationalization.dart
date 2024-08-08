@@ -139,7 +139,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'uruoaz5q': {
+    '8c1g15s3': {
       'en': '',
       'tl': '',
     },
@@ -249,7 +249,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'hlpr4owr': {
+    '6y9ke90w': {
       'en': '',
       'tl': '',
     },
@@ -261,7 +261,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'a0vmhxav': {
+    'vcahnx9w': {
       'en': '',
       'tl': '',
     },
@@ -273,7 +273,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'xsnthsy3': {
+    'e1t6xdyi': {
       'en': '',
       'tl': '',
     },
@@ -1090,6 +1090,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'PCIC Mobile Application needs access to your location to enable Geotagging. This will help us accurately tag photos with your current location for better service delivery and documentation. Please grant location access to continue.',
       'tl':
           '\"Ang PCI Mobile Application ay nangangailangan ng access sa iyong camera upang paganahin ang geotagging. Ang tampok na ito ay magbibigay-daan sa amin upang tumpak na i-tag ang mga larawan sa iyong kasalukuyang lokasyon, pagpapabuti ng paghahatid ng serbisyo at dokumentasyon. Mangyaring bigyan ang camera ng access upang magpatuloy.\"',
+    },
+    'wku3aye0': {
+      'en':
+          '\"PCIC Mobile Application requires permission to send you notifications. This will allow us to keep you informed with important updates and reminders, improving our service delivery and communication. Please enable notifications to continue.\"',
+      'tl': '',
     },
     'bzztgqlw': {
       'en': '',

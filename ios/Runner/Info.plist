@@ -53,7 +53,8 @@
     <string>&quot;PCIC Mobile Application requires access to your camera to enable geotagging. This feature will allow us to accurately tag photos with your current location, improving service delivery and documentation. Please grant camera access to continue.&quot;</string>
 	<key>NSPhotoLibraryUsageDescription</key>
     <string>&quot;PCIC Mobile Application requires access to your photo library to enable geotagging. This will help us select and tag photos with your current location, improving service delivery and documentation. Please grant photo library access to continue.&quot;</string>
-
+	<key>PermissionGroupNotification</key>
+    <string>"PCIC Mobile Application requires permission to send you notifications. This will allow us to keep you informed with important updates and reminders, improving our service delivery and communication. Please enable notifications to continue."</string>
 
 
 	<key>UILaunchStoryboardName</key>

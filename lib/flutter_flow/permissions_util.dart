@@ -11,6 +11,7 @@ const kPermissionStateToBool = {
 const cameraPermission = Permission.camera;
 const photoLibraryPermission = Permission.photos;
 const locationPermission = Permission.location;
+const notificationsPermission = Permission.notification;
 
 Future<bool> getPermissionStatus(Permission setting) async {
   final status = await setting.status;
