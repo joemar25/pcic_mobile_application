@@ -107,76 +107,75 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(0.0),
             ),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  width: 60.0,
-                  height: 60.0,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).accent1,
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: FlutterFlowTheme.of(context).primary,
-                      width: 2.0,
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(2.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(40.0),
-                      child: Image.asset(
-                        'assets/images/default_profile.png',
-                        width: 44.0,
-                        height: 44.0,
-                        fit: BoxFit.cover,
+            child: FutureBuilder<List<UsersRow>>(
+              future: UsersTable().querySingleRow(
+                queryFn: (q) => q.eq(
+                  'id',
+                  widget.receiverId,
+                ),
+              ),
+              builder: (context, snapshot) {
+                // Customize what your widget looks like when it's loading.
+                if (!snapshot.hasData) {
+                  return Center(
+                    child: SizedBox(
+                      width: 100.0,
+                      height: 100.0,
+                      child: SpinKitRipple(
+                        color: FlutterFlowTheme.of(context).primary,
+                        size: 100.0,
                       ),
                     ),
-                  ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        FutureBuilder<List<UsersRow>>(
-                          future: UsersTable().querySingleRow(
-                            queryFn: (q) => q.eq(
-                              'id',
-                              widget.receiverId,
-                            ),
+                  );
+                }
+                List<UsersRow> rowUsersRowList = snapshot.data!;
+
+                final rowUsersRow =
+                    rowUsersRowList.isNotEmpty ? rowUsersRowList.first : null;
+
+                return Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: 60.0,
+                      height: 60.0,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).accent1,
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: FlutterFlowTheme.of(context).primary,
+                          width: 2.0,
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(40.0),
+                          child: Image.network(
+                            rowUsersRow!.photoUrl!,
+                            width: 44.0,
+                            height: 44.0,
+                            fit: BoxFit.cover,
                           ),
-                          builder: (context, snapshot) {
-                            // Customize what your widget looks like when it's loading.
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 100.0,
-                                  height: 100.0,
-                                  child: SpinKitRipple(
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    size: 100.0,
-                                  ),
-                                ),
-                              );
-                            }
-                            List<UsersRow> textUsersRowList = snapshot.data!;
-
-                            final textUsersRow = textUsersRowList.isNotEmpty
-                                ? textUsersRowList.first
-                                : null;
-
-                            return Text(
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
                               valueOrDefault<String>(
                                 functions
                                     .sentenceCaseWords(valueOrDefault<String>(
-                                  textUsersRow?.inspectorName,
+                                  rowUsersRow.inspectorName,
                                   'Inspector Name',
                                 )),
                                 'Inspector Name',
@@ -194,68 +193,70 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
                                             FlutterFlowTheme.of(context)
                                                 .bodyLargeFamily),
                                   ),
-                            );
-                          },
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 4.0, 0.0, 0.0),
-                          child: Text(
-                            valueOrDefault<String>(
-                              containerMessagesRow?.content,
-                              'Message',
                             ),
-                            textAlign: TextAlign.start,
-                            style: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .labelMediumFamily,
-                                  fontSize: 12.0,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .labelMediumFamily),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 4.0, 0.0, 0.0),
+                              child: Text(
+                                valueOrDefault<String>(
+                                  containerMessagesRow?.content,
+                                  'Message',
                                 ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 4.0, 0.0, 0.0),
-                          child: Text(
-                            valueOrDefault<String>(
-                              dateTimeFormat(
-                                "yMMMd",
-                                containerMessagesRow?.timestamp,
-                                locale:
-                                    FFLocalizations.of(context).languageCode,
+                                textAlign: TextAlign.start,
+                                style: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .labelMediumFamily,
+                                      fontSize: 12.0,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMediumFamily),
+                                    ),
                               ),
-                              'Last Seen',
                             ),
-                            textAlign: TextAlign.start,
-                            style: FlutterFlowTheme.of(context)
-                                .labelSmall
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .labelSmallFamily,
-                                  fontSize: 10.0,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .labelSmallFamily),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 4.0, 0.0, 0.0),
+                              child: Text(
+                                valueOrDefault<String>(
+                                  dateTimeFormat(
+                                    "yMMMd",
+                                    containerMessagesRow?.timestamp,
+                                    locale: FFLocalizations.of(context)
+                                        .languageCode,
+                                  ),
+                                  'Last Seen',
                                 ),
-                          ),
+                                textAlign: TextAlign.start,
+                                style: FlutterFlowTheme.of(context)
+                                    .labelSmall
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .labelSmallFamily,
+                                      fontSize: 10.0,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .labelSmallFamily),
+                                    ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
-                Icon(
-                  Icons.chevron_right_rounded,
-                  color: FlutterFlowTheme.of(context).secondaryText,
-                  size: 24.0,
-                ),
-              ],
+                    Icon(
+                      Icons.chevron_right_rounded,
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      size: 24.0,
+                    ),
+                  ],
+                );
+              },
             ),
           ),
         );

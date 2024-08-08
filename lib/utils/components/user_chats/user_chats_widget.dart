@@ -154,7 +154,7 @@ class _UserChatsWidgetState extends State<UserChatsWidget> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      listViewUsersRow.id,
+                                      listViewUsersRow.inspectorName,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
