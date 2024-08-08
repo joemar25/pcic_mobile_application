@@ -624,13 +624,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             context.pushNamed(
-                                              'editPassword',
-                                              queryParameters: {
-                                                'formFieldName': serializeParam(
-                                                  profileUsersRow?.email,
-                                                  ParamType.String,
-                                                ),
-                                              }.withoutNulls,
+                                              'editProfile',
                                               extra: <String, dynamic>{
                                                 kTransitionInfoKey:
                                                     const TransitionInfo(
