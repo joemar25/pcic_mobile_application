@@ -11,10 +11,8 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'dart:convert';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 Future<void> downloadGpx(String? taskId) async {
   print('Starting downloadGpx function');
@@ -66,57 +64,22 @@ Future<void> downloadGpx(String? taskId) async {
 
       // Get the app's document directory
       final directory = await getApplicationDocumentsDirectory();
-      final localPath = '${directory.path}/downloaded_geotag.gpx';
+      final attachmentsDir = Directory('${directory.path}/attachments');
+      if (!(await attachmentsDir.exists())) {
+        await attachmentsDir.create(recursive: true);
+      }
+      final localPath = '${attachmentsDir.path}/geotag_$taskNumber.gpx';
 
       // Write the downloaded content to a local file
       final File localFile = File(localPath);
       await localFile.writeAsBytes(response);
 
       print('GPX file saved locally at: $localPath');
-
-      // Check and request storage permission
-      if (await Permission.storage.request().isGranted) {
-        // Move the file to the Downloads folder
-        final downloadDir = Directory('/storage/emulated/0/Download');
-        if (!(await downloadDir.exists())) {
-          await downloadDir.create(recursive: true);
-        }
-        final downloadPath = '${downloadDir.path}/geotag_$taskNumber.gpx';
-        await localFile.copy(downloadPath);
-
-        print('GPX file moved to Downloads folder: $downloadPath');
-
-        // Show a success message
-        ScaffoldMessenger.of(FFAppState().navigatorKey.currentContext!)
-            .showSnackBar(
-          SnackBar(
-            content:
-                Text('GPX file downloaded successfully to Downloads folder'),
-            duration: Duration(seconds: 3),
-          ),
-        );
-      } else {
-        print('Storage permission denied');
-        ScaffoldMessenger.of(FFAppState().navigatorKey.currentContext!)
-            .showSnackBar(
-          SnackBar(
-            content: Text('Storage permission required to save the file'),
-            duration: Duration(seconds: 3),
-          ),
-        );
-      }
     } else {
       print('Error downloading GPX file from Supabase: Operation failed');
       throw Exception('Failed to download GPX file from Supabase');
     }
   } catch (e) {
     print('Error in downloadGpx function: $e');
-    ScaffoldMessenger.of(FFAppState().navigatorKey.currentContext!)
-        .showSnackBar(
-      SnackBar(
-        content: Text('Error downloading GPX file: $e'),
-        duration: Duration(seconds: 3),
-      ),
-    );
   }
 }

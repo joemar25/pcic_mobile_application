@@ -637,6 +637,31 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                               .downloadGpx(
                                                             widget.taskId,
                                                           );
+                                                          ScaffoldMessenger.of(
+                                                                  context)
+                                                              .clearSnackBars();
+                                                          ScaffoldMessenger.of(
+                                                                  context)
+                                                              .showSnackBar(
+                                                            SnackBar(
+                                                              content: Text(
+                                                                'Download Started',
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                ),
+                                                              ),
+                                                              duration: const Duration(
+                                                                  milliseconds:
+                                                                      4000),
+                                                              backgroundColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondary,
+                                                            ),
+                                                          );
                                                         },
                                                         child: Row(
                                                           mainAxisSize:
