@@ -210,13 +210,23 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                         ) ??
                         false;
                     if (confirmDialogResponse) {
-                      context.pushNamed(
-                        'dashboard',
+                      context.goNamed(
+                        'taskDetails',
+                        queryParameters: {
+                          'taskId': serializeParam(
+                            ppirPpirFormsRow?.taskId,
+                            ParamType.String,
+                          ),
+                          'taskStatus': serializeParam(
+                            'ongoing',
+                            ParamType.String,
+                          ),
+                        }.withoutNulls,
                         extra: <String, dynamic>{
                           kTransitionInfoKey: const TransitionInfo(
                             hasTransition: true,
-                            transitionType: PageTransitionType.fade,
-                            duration: Duration(milliseconds: 0),
+                            transitionType: PageTransitionType.topToBottom,
+                            duration: Duration(milliseconds: 200),
                           ),
                         },
                       );

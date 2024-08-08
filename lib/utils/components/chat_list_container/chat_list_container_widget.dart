@@ -141,24 +141,57 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          valueOrDefault<String>(
-                            functions.sentenceCaseWords(
-                                containerMessagesRow?.senderName),
-                            'Inspector Name',
+                        FutureBuilder<List<UsersRow>>(
+                          future: UsersTable().querySingleRow(
+                            queryFn: (q) => q.eq(
+                              'id',
+                              widget.receiverId,
+                            ),
                           ),
-                          textAlign: TextAlign.start,
-                          style: FlutterFlowTheme.of(context)
-                              .bodyLarge
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyLargeFamily,
-                                fontSize: 14.0,
-                                letterSpacing: 0.0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyLargeFamily),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 100.0,
+                                  height: 100.0,
+                                  child: SpinKitRipple(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    size: 100.0,
+                                  ),
+                                ),
+                              );
+                            }
+                            List<UsersRow> textUsersRowList = snapshot.data!;
+
+                            final textUsersRow = textUsersRowList.isNotEmpty
+                                ? textUsersRowList.first
+                                : null;
+
+                            return Text(
+                              valueOrDefault<String>(
+                                functions
+                                    .sentenceCaseWords(valueOrDefault<String>(
+                                  textUsersRow?.inspectorName,
+                                  'Inspector Name',
+                                )),
+                                'Inspector Name',
                               ),
+                              textAlign: TextAlign.start,
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyLarge
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyLargeFamily,
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyLargeFamily),
+                                  ),
+                            );
+                          },
                         ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(

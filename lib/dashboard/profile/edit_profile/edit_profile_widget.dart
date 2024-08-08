@@ -274,7 +274,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                             ),
                           ),
                           focusNode: _model.displayNameFocusNode,
-                          autofocus: true,
+                          autofocus: false,
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: FFLocalizations.of(context).getText(
