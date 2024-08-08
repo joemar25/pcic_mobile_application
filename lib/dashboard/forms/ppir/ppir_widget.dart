@@ -3570,7 +3570,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                               disabledColor:
                                   FlutterFlowTheme.of(context).accent1,
                               disabledTextColor:
-                                  FlutterFlowTheme.of(context).error,
+                                  FlutterFlowTheme.of(context).lineColor,
                             ),
                           ),
                         ],
