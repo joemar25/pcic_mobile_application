@@ -139,7 +139,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'gev7f1bf': {
+    'twlepnuq': {
       'en': '',
       'tl': '',
     },
@@ -249,7 +249,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    '01k6dia1': {
+    '62bvfo42': {
       'en': '',
       'tl': '',
     },
@@ -261,7 +261,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    '2b98fq5b': {
+    'vavfrynz': {
       'en': '',
       'tl': '',
     },
@@ -273,7 +273,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'js0k6c3e': {
+    '3c4gramw': {
       'en': '',
       'tl': '',
     },
@@ -526,7 +526,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     '74ljinxs': {
-      'en': 'Repeat Geotag',
+      'en': 'Repeat',
+      'tl': '',
+    },
+    '70di5nne': {
+      'en': 'Download',
       'tl': '',
     },
     'ze2pl4ye': {
