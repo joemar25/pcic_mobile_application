@@ -186,7 +186,41 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                     size: 30.0,
                   ),
                   onPressed: () async {
-                    context.pop();
+                    var confirmDialogResponse = await showDialog<bool>(
+                          context: context,
+                          builder: (alertDialogContext) {
+                            return AlertDialog(
+                              title: const Text('Info'),
+                              content: const Text(
+                                  'This will cancel your current progress in the tasks. Are you sure to cancel?'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext, false),
+                                  child: const Text('Cancel'),
+                                ),
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext, true),
+                                  child: const Text('Confirm'),
+                                ),
+                              ],
+                            );
+                          },
+                        ) ??
+                        false;
+                    if (confirmDialogResponse) {
+                      context.pushNamed(
+                        'dashboard',
+                        extra: <String, dynamic>{
+                          kTransitionInfoKey: const TransitionInfo(
+                            hasTransition: true,
+                            transitionType: PageTransitionType.fade,
+                            duration: Duration(milliseconds: 0),
+                          ),
+                        },
+                      );
+                    }
                   },
                 ),
                 title: Text(
@@ -3015,7 +3049,16 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                       ) ??
                                       false;
                               if (confirmDialogResponse) {
-                                context.pushNamed('dashboard');
+                                context.pushNamed(
+                                  'dashboard',
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: const TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType: PageTransitionType.fade,
+                                      duration: Duration(milliseconds: 0),
+                                    ),
+                                  },
+                                );
                               }
                             },
                             text: FFLocalizations.of(context).getText(

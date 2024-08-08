@@ -542,50 +542,59 @@ class _LoginWidgetState extends State<LoginWidget>
                                               currentUserEmail,
                                             ),
                                           );
-                                          _model.aasda = await actions
-                                              .uploadPhotoUrlToAsset(
-                                            _model
-                                                .authUserQuery?.first.photoUrl,
-                                          );
-                                          if (_model.aasda != null &&
-                                              _model.aasda != '') {
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(
-                                              SnackBar(
-                                                content: Text(
-                                                  _model.aasda!,
-                                                  style: TextStyle(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                  ),
-                                                ),
-                                                duration: const Duration(
-                                                    milliseconds: 4000),
-                                                backgroundColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .warning,
-                                              ),
+                                          if (kDebugMode) {
+                                            _model.isUploadedSuccess =
+                                                await actions
+                                                    .uploadPhotoUrlToAsset(
+                                              _model.authUserQuery?.first
+                                                  .photoUrl,
                                             );
-                                          } else {
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(
-                                              SnackBar(
-                                                content: Text(
-                                                  _model.aasda!,
-                                                  style: TextStyle(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
+                                            if (_model.isUploadedSuccess !=
+                                                    null &&
+                                                _model.isUploadedSuccess !=
+                                                    '') {
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                SnackBar(
+                                                  content: Text(
+                                                    _model.isUploadedSuccess!,
+                                                    style: TextStyle(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                    ),
                                                   ),
+                                                  duration: const Duration(
+                                                      milliseconds: 4000),
+                                                  backgroundColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .warning,
                                                 ),
-                                                duration: const Duration(
-                                                    milliseconds: 4000),
-                                                backgroundColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .error,
-                                              ),
-                                            );
+                                              );
+                                            } else {
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                SnackBar(
+                                                  content: Text(
+                                                    _model.isUploadedSuccess!,
+                                                    style: TextStyle(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                    ),
+                                                  ),
+                                                  duration: const Duration(
+                                                      milliseconds: 4000),
+                                                  backgroundColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .error,
+                                                ),
+                                              );
+                                            }
                                           }
 
                                           navigate();
