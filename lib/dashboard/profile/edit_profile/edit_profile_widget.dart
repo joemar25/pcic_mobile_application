@@ -365,8 +365,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                     'photo_url': _model.uploadedFileUrl,
                                   },
                                   matchingRows: (rows) => rows.eq(
-                                    'id',
-                                    currentUserUid,
+                                    'email',
+                                    currentUserEmail,
                                   ),
                                 );
 
