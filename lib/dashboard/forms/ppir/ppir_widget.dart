@@ -489,6 +489,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                           notificationsPermission)) {
                                                         await actions
                                                             .downloadGpx(
+                                                          ppirPpirFormsRow?.gpx,
                                                           widget.taskId,
                                                         );
                                                         ScaffoldMessenger.of(
