@@ -10,6 +10,8 @@ class ProfileModel extends FlutterFlowModel<ProfileWidget> {
   FFUploadedFile? getProfilePic;
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
+  // Stores action output result for [Custom Action - syncData] action in Row widget.
+  String? message;
 
   @override
   void initState(BuildContext context) {

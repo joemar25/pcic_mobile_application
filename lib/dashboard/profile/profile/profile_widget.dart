@@ -878,6 +878,28 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                         .secondary,
                                               ),
                                             );
+                                            _model.message =
+                                                await actions.syncData();
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  _model.message!,
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                  ),
+                                                ),
+                                                duration: const Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondary,
+                                              ),
+                                            );
+
+                                            setState(() {});
                                           },
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
