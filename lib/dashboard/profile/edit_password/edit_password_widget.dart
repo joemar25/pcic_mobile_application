@@ -49,7 +49,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              'password changed',
+              _model.passwordChangeMessage,
               style: FlutterFlowTheme.of(context).titleMedium.override(
                     fontFamily: FlutterFlowTheme.of(context).titleMediumFamily,
                     color: FlutterFlowTheme.of(context).primaryText,
@@ -67,7 +67,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              'password change failed',
+              _model.passwordChangeMessage,
               style: FlutterFlowTheme.of(context).titleSmall.override(
                     fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
                     color: FlutterFlowTheme.of(context).primaryText,

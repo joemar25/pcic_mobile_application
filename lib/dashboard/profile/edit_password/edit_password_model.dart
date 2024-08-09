@@ -8,6 +8,8 @@ class EditPasswordModel extends FlutterFlowModel<EditPasswordWidget> {
 
   bool isPasswordVerified = true;
 
+  String passwordChangeMessage = '\${editPasswordResult}';
+
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
