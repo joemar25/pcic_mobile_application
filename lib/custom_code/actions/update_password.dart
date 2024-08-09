@@ -16,7 +16,7 @@ import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
 Future<String> updatePassword(String newPassword) async {
   try {
-    final supabase.User? user = SupaFlow.client.auth.currentUser;
+    final user = SupaFlow.client.auth.currentUser;
 
     if (user == null) {
       print('Update failed: User is not authenticated');
@@ -33,8 +33,8 @@ Future<String> updatePassword(String newPassword) async {
       print('Password updated successfully');
       return 'Password updated successfully';
     } else {
-      print('Update failed: ${response.error?.message}');
-      return 'Update failed: ${response.error?.message}';
+      print('Update failed: Unknown error');
+      return 'Update failed: Unknown error';
     }
   } catch (e) {
     print('Error updating password: $e');
