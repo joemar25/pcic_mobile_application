@@ -353,75 +353,72 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                         ),
                         Align(
                           alignment: const AlignmentDirectional(0.0, 0.05),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 40.0, 0.0, 0.0),
-                            child: FFButtonWidget(
-                              onPressed: () async {
-                                await UsersTable().update(
-                                  data: {
-                                    'inspector_name':
-                                        _model.displayNameTextController.text,
-                                    'photo_url': _model.uploadedFileUrl,
-                                  },
-                                  matchingRows: (rows) => rows.eq(
-                                    'email',
-                                    currentUserEmail,
-                                  ),
-                                );
-
-                                context.pushNamed(
-                                  'successProfile',
-                                  queryParameters: {
-                                    'message': serializeParam(
-                                      'Profile is now updated.',
-                                      ParamType.String,
-                                    ),
-                                  }.withoutNulls,
-                                  extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
-                                      hasTransition: true,
-                                      transitionType: PageTransitionType.fade,
-                                      duration: Duration(milliseconds: 0),
-                                    ),
-                                  },
-                                );
-                              },
-                              text: FFLocalizations.of(context).getText(
-                                'ntj2ozhk' /* Save Changes */,
-                              ),
-                              options: FFButtonOptions(
-                                width: double.infinity,
-                                height: 50.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    24.0, 0.0, 24.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
-                                color: FlutterFlowTheme.of(context).primary,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .titleSmallFamily,
-                                      color: Colors.white,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w500,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmallFamily),
-                                    ),
-                                elevation: 0.0,
-                                borderSide: const BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1.0,
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              await UsersTable().update(
+                                data: {
+                                  'inspector_name':
+                                      _model.displayNameTextController.text,
+                                },
+                                matchingRows: (rows) => rows.eq(
+                                  'email',
+                                  currentUserEmail,
                                 ),
-                                borderRadius: BorderRadius.circular(12.0),
+                              );
+
+                              context.pushNamed(
+                                'successProfile',
+                                queryParameters: {
+                                  'message': serializeParam(
+                                    'Profile is now updated.',
+                                    ParamType.String,
+                                  ),
+                                }.withoutNulls,
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: const TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType: PageTransitionType.fade,
+                                    duration: Duration(milliseconds: 0),
+                                  ),
+                                },
+                              );
+                            },
+                            text: FFLocalizations.of(context).getText(
+                              'ntj2ozhk' /* Save Changes */,
+                            ),
+                            options: FFButtonOptions(
+                              width: double.infinity,
+                              height: 50.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 24.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).primary,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .titleSmallFamily,
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .titleSmallFamily),
+                                  ),
+                              elevation: 0.0,
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
                               ),
+                              borderRadius: BorderRadius.circular(12.0),
                             ),
                           ),
                         ),
-                      ],
+                      ]
+                          .divide(const SizedBox(height: 20.0))
+                          .around(const SizedBox(height: 20.0)),
                     ),
                   ),
                 ],
