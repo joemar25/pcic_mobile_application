@@ -19,3 +19,4 @@ export 'change_password.dart' show changePassword;
 export 'verify_password.dart' show verifyPassword;
 export 'update_password.dart' show updatePassword;
 export 'get_gpx_link.dart' show getGpxLink;
+export 'sync_data.dart' show syncData;
