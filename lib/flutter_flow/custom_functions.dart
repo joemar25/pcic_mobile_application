@@ -125,3 +125,9 @@ String? capitalizeWords(String? text) {
 String sanitizeStoreName(String storeName) {
   return storeName.replaceAll(RegExp(r'[^a-zA-Z0-9_]'), '_').toLowerCase();
 }
+
+String? verifyOldPassword() {
+  // verify old password
+// TODO: Implement verifyOldPassword function
+  return null;
+}

@@ -14,13 +14,18 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
-Future<String> updatePassword(String newPassword) async {
+Future<String> updatePassword(String oldPassword, String newPassword) async {
   try {
     final user = SupaFlow.client.auth.currentUser;
 
     if (user == null) {
-      print('Update failed: User is not authenticated');
       return 'User is not authenticated';
+    }
+
+    // Verify old password
+    bool isOldPasswordCorrect = await verifyOldPassword(oldPassword);
+    if (!isOldPasswordCorrect) {
+      return 'Old password is incorrect';
     }
 
     final response = await SupaFlow.client.auth.updateUser(
@@ -30,14 +35,11 @@ Future<String> updatePassword(String newPassword) async {
     );
 
     if (response.user != null) {
-      print('Password updated successfully');
       return 'Password updated successfully';
     } else {
-      print('Update failed: Unknown error');
       return 'Update failed: Unknown error';
     }
   } catch (e) {
-    print('Error updating password: $e');
     return 'Error updating password: $e';
   }
 }

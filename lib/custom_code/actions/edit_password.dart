@@ -15,19 +15,13 @@ import 'package:flutter/material.dart';
 // and then add the boilerplate code using the green button on the right!
 
 Future<bool> editPassword(String oldPassword, String newPassword) async {
-  bool isVerified = await verifyPassword(oldPassword);
-  if (isVerified) {
-    String updateResult = await updatePassword(newPassword);
-    if (updateResult.contains('successfully')) {
-      // Password updated successfully
-      return true;
-    } else {
-      // Update failed
-      print(updateResult);
-      return false;
-    }
+  String updateResult = await updatePassword(oldPassword, newPassword);
+  if (updateResult.contains('successfully')) {
+    // Password updated successfully
+    return true;
   } else {
-    // Verification failed
+    // Update failed
+    print(updateResult);
     return false;
   }
 }
