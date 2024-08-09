@@ -13,15 +13,29 @@ import 'package:flutter/material.dart';
 
 import 'dart:convert';
 
-Future<bool> updatePassword(String newPassword) async {
-  // Add your function code here!
-  final response = await SupaFlow.client.rpc('update_user_password', params: {
-    'new_password': newPassword,
-  });
+import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
-  if (response.error == null) {
-    return true;
-  } else {
+Future<bool> updatePassword(String newPassword) async {
+  try {
+    final supabase.User? user = SupaFlow.client.auth.currentUser;
+
+    if (user == null) {
+      return false; // User is not authenticated
+    }
+
+    final response = await SupaFlow.client.auth.updateUser(
+      supabase.UserAttributes(
+        password: newPassword,
+      ),
+    );
+
+    if (response.user != null) {
+      return true; // Password updated successfully
+    } else {
+      return false; // Update failed
+    }
+  } catch (e) {
+    print('Error updating password: $e');
     return false;
   }
 }
