@@ -14,19 +14,23 @@ import 'package:flutter/material.dart';
 // Set your action name, define your arguments and return parameter,
 // and then add the boilerplate code using the green button on the right!
 
-Future<void> editPassword(String oldPassword, String newPassword) async {
+Future<void> editPassword(
+  String oldPassword,
+  String newPassword,
+) async {
+  // Add your function code here!
   bool isVerified = await verifyPassword(oldPassword);
   if (isVerified) {
     bool isUpdated = await updatePassword(newPassword);
     if (isUpdated) {
-      // Show success message
-      showSnackBar(context, "Password updated successfully");
+      // Password updated successfully
+      FFAppState().addToNotifications('Password updated successfully');
     } else {
-      // Show error message
-      showSnackBar(context, "Failed to update password");
+      // Failed to update password
+      FFAppState().addToNotifications('Failed to update password');
     }
   } else {
-    // Show error message
-    showSnackBar(context, "Current password is incorrect");
+    // Current password is incorrect
+    FFAppState().addToNotifications('Current password is incorrect');
   }
 }
