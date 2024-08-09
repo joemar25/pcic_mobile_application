@@ -12,15 +12,15 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 import 'dart:convert';
-
 import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
-Future<bool> updatePassword(String newPassword) async {
+Future<String> updatePassword(String newPassword) async {
   try {
     final supabase.User? user = SupaFlow.client.auth.currentUser;
 
     if (user == null) {
-      return false; // User is not authenticated
+      print('Update failed: User is not authenticated');
+      return 'User is not authenticated';
     }
 
     final response = await SupaFlow.client.auth.updateUser(
@@ -30,12 +30,14 @@ Future<bool> updatePassword(String newPassword) async {
     );
 
     if (response.user != null) {
-      return true; // Password updated successfully
+      print('Password updated successfully');
+      return 'Password updated successfully';
     } else {
-      return false; // Update failed
+      print('Update failed: ${response.error?.message}');
+      return 'Update failed: ${response.error?.message}';
     }
   } catch (e) {
     print('Error updating password: $e');
-    return false;
+    return 'Error updating password: $e';
   }
 }
