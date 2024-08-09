@@ -1,4 +1,5 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/backend/sqlite/sqlite_manager.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -12,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'profile_model.dart';
 export 'profile_model.dart';
 
@@ -38,6 +40,10 @@ class _ProfileWidgetState extends State<ProfileWidget>
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.getProfilePic = await actions.getTheSavedLocalProfile();
+      _model.offlineSelectUserProfile =
+          await SQLiteManager.instance.selectProfile(
+        email: currentUserEmail,
+      );
     });
 
     animationsMap.addAll({
@@ -65,6 +71,8 @@ class _ProfileWidgetState extends State<ProfileWidget>
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return FutureBuilder<List<UsersRow>>(
       future: UsersTable().querySingleRow(
         queryFn: (q) => q.eq(
@@ -241,8 +249,17 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               Text(
                                                 valueOrDefault<String>(
                                                   functions.sentenceCaseWords(
-                                                      profileUsersRow
-                                                          ?.inspectorName),
+                                                      FFAppState().ONLINE
+                                                          ? profileUsersRow
+                                                              ?.inspectorName
+                                                          : valueOrDefault<
+                                                              String>(
+                                                              _model
+                                                                  .offlineSelectUserProfile
+                                                                  ?.first
+                                                                  .inspectorName,
+                                                              'Inspector Name',
+                                                            )),
                                                   'Agent',
                                                 ),
                                                 style:
@@ -881,10 +898,12 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                             _model.message =
                                                 await actions.syncData();
                                             ScaffoldMessenger.of(context)
+                                                .clearSnackBars();
+                                            ScaffoldMessenger.of(context)
                                                 .showSnackBar(
                                               SnackBar(
                                                 content: Text(
-                                                  _model.message!,
+                                                  'Sync success!',
                                                   style: TextStyle(
                                                     color: FlutterFlowTheme.of(
                                                             context)
