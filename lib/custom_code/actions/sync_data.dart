@@ -12,5 +12,5 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 Future<String> syncData() async {
-  return '';
+  return 'test';
 }
