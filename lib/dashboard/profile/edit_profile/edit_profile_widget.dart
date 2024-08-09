@@ -36,6 +36,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
       _model.getProfilePic = await actions.getTheSavedLocalProfile();
     });
 
+    _model.displayNameTextController ??= TextEditingController();
     _model.displayNameFocusNode ??= FocusNode();
   }
 
@@ -266,19 +267,14 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         TextFormField(
-                          controller: _model.displayNameTextController ??=
-                              TextEditingController(
-                            text: valueOrDefault<String>(
-                              editProfileUsersRow?.inspectorName,
-                              'Agent',
-                            ),
-                          ),
+                          controller: _model.displayNameTextController,
                           focusNode: _model.displayNameFocusNode,
                           autofocus: false,
                           obscureText: false,
                           decoration: InputDecoration(
-                            labelText: FFLocalizations.of(context).getText(
-                              'r9vm5mt1' /* Name */,
+                            labelText: valueOrDefault<String>(
+                              editProfileUsersRow?.inspectorName,
+                              'Agent',
                             ),
                             labelStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
