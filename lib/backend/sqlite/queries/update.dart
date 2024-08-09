@@ -313,11 +313,13 @@ UPDATE tasks SET ..., last_modified = ? WHERE id = ?;
 Future performBulkInsert(
   Database database, {
   String? id,
-  String? title,
+  String? taskNumber,
+  String? serviceType,
   String? status,
 }) {
-  const query = '''
-INSERT OR REPLACE INTO tasks (id, title, status, ...) VALUES (?, ?, ?, ...);
+  final query = '''
+INSERT OR REPLACE INTO tasks (id, task_number, service_type, status) 
+VALUES ('$id', '$taskNumber', '$serviceType', '$status')
 ''';
   return database.rawQuery(query);
 }

@@ -1,6 +1,6 @@
-import '/auth/supabase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
@@ -38,185 +38,159 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Align(
+    return Container(
+      width: 400.0,
+      height: MediaQuery.sizeOf(context).height * 1.0,
+      decoration: BoxDecoration(
+        color: FlutterFlowTheme.of(context).primaryBackground,
+        borderRadius: BorderRadius.circular(24.0),
+        shape: BoxShape.rectangle,
+      ),
       alignment: const AlignmentDirectional(0.0, 0.0),
-      child: Container(
-        width: 338.0,
-        height: 392.0,
-        decoration: BoxDecoration(
-          color: FlutterFlowTheme.of(context).primaryBackground,
-          borderRadius: BorderRadius.circular(24.0),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Lottie.asset(
-                'assets/lottie_animations/Logout_lottie_red.json',
-                width: 150.0,
-                height: 130.0,
-                fit: BoxFit.cover,
-                animate: true,
-              ),
-              Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Expanded(
-                            child: Align(
-                              alignment: const AlignmentDirectional(0.0, 0.0),
-                              child: Text(
-                                FFLocalizations.of(context).getText(
-                                  'pd2yz8ne' /* Confirm Sign Out */,
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .headlineLarge
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .headlineLargeFamily,
-                                      fontSize: 30.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w600,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .headlineLargeFamily),
-                                    ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Expanded(
-                        child: Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
-                          child: Text(
-                            FFLocalizations.of(context).getText(
-                              'q15wq9be' /* Are you sure you want to sign ... */,
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily,
-                                  color: FlutterFlowTheme.of(context).altText1,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily),
-                                ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ].divide(const SizedBox(height: 15.0)),
-              ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                child: Row(
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Lottie.asset(
+              'assets/lottie_animations/Logout_lottie_red.json',
+              width: 150.0,
+              height: 130.0,
+              fit: BoxFit.cover,
+              animate: true,
+            ),
+            Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Column(
                   mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Container(
-                          width: 100.0,
-                          height: 40.0,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50.0),
-                          ),
+                        Expanded(
                           child: Align(
                             alignment: const AlignmentDirectional(0.0, 0.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                Navigator.pop(context);
-                              },
-                              child: Text(
-                                FFLocalizations.of(context).getText(
-                                  'l152ugox' /* CANCEL */,
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily,
-                                      fontSize: 14.0,
-                                      letterSpacing: 0.0,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMediumFamily),
-                                    ),
+                            child: Text(
+                              FFLocalizations.of(context).getText(
+                                'pd2yz8ne' /* Confirm Sign Out */,
                               ),
+                              style: FlutterFlowTheme.of(context)
+                                  .headlineLarge
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .headlineLargeFamily,
+                                    fontSize: 30.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .headlineLargeFamily),
+                                  ),
                             ),
                           ),
                         ),
-                        Container(
-                          width: 100.0,
-                          height: 40.0,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context).error,
-                            borderRadius: BorderRadius.circular(50.0),
-                          ),
-                          child: Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                GoRouter.of(context).prepareAuthEvent();
-                                await authManager.signOut();
-                                GoRouter.of(context).clearRedirectLocation();
-
-                                context.goNamedAuth('login', context.mounted);
-                              },
-                              child: Text(
-                                FFLocalizations.of(context).getText(
-                                  'g6dhrxe7' /* SIGN OUT */,
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily,
-                                      color: Colors.white,
-                                      fontSize: 14.0,
-                                      letterSpacing: 0.0,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMediumFamily),
-                                    ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ].divide(const SizedBox(width: 25.0)),
+                      ],
                     ),
                   ],
                 ),
-              ),
-            ].divide(const SizedBox(height: 30.0)).addToStart(const SizedBox(height: 15.0)),
-          ),
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
+                      child: Align(
+                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        child: Text(
+                          FFLocalizations.of(context).getText(
+                            'q15wq9be' /* Are you sure you want to sign ... */,
+                          ),
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily),
+                              ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                FFButtonWidget(
+                  onPressed: () async {
+                    Navigator.pop(context);
+                  },
+                  text: FFLocalizations.of(context).getText(
+                    'm2zyxgem' /* Cancel */,
+                  ),
+                  options: FFButtonOptions(
+                    height: 40.0,
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                    iconPadding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    color: FlutterFlowTheme.of(context).alternate,
+                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).titleSmallFamily,
+                          color: Colors.white,
+                          letterSpacing: 0.0,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(
+                              FlutterFlowTheme.of(context).titleSmallFamily),
+                        ),
+                    elevation: 3.0,
+                    borderSide: const BorderSide(
+                      color: Colors.transparent,
+                      width: 1.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                ),
+                FFButtonWidget(
+                  onPressed: () async {
+                    Navigator.pop(context);
+                  },
+                  text: FFLocalizations.of(context).getText(
+                    'quqrp02y' /* Sign Out */,
+                  ),
+                  options: FFButtonOptions(
+                    height: 40.0,
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                    iconPadding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    color: FlutterFlowTheme.of(context).error,
+                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).titleSmallFamily,
+                          color: Colors.white,
+                          letterSpacing: 0.0,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(
+                              FlutterFlowTheme.of(context).titleSmallFamily),
+                        ),
+                    elevation: 3.0,
+                    borderSide: const BorderSide(
+                      color: Colors.transparent,
+                      width: 1.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                ),
+              ].divide(const SizedBox(width: 10.0)).around(const SizedBox(width: 10.0)),
+            ),
+          ].divide(const SizedBox(height: 20.0)).around(const SizedBox(height: 20.0)),
         ),
       ),
     );

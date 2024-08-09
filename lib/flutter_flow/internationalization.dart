@@ -139,7 +139,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'puiyk4xh': {
+    'l70ml39r': {
       'en': '',
       'tl': '',
     },
@@ -253,7 +253,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    '56jm24mh': {
+    'gzhw90qf': {
       'en': '',
       'tl': '',
     },
@@ -265,7 +265,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'ceaq8io1': {
+    'l1ae4p8i': {
       'en': '',
       'tl': '',
     },
@@ -277,7 +277,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'uw19al6m': {
+    'kdc3xr0z': {
       'en': '',
       'tl': '',
     },
@@ -300,7 +300,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    '1xz3cstr': {
+    'jcjx99t6': {
       'en': '',
       'tl': '',
     },
@@ -515,7 +515,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Geotag',
     },
     'kfsvnfnl': {
-      'en': 'Re-FTP',
+      'en': 'Resubmit',
       'tl': '',
     },
     'cwddpguo': {
@@ -534,7 +534,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     '3veba0qh': {
-      'en': 'Repeat',
+      'en': 'Repeat Geotag',
       'tl': '',
     },
     '57upt8rw': {
@@ -855,7 +855,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Offline Map',
       'tl': '',
     },
-    'hdh6xlcb': {
+    '8n2rvzxw': {
       'en': 'Home',
       'tl': 'Bahay',
     },
@@ -870,7 +870,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'List of Tasks',
       'tl': '',
     },
-    '8sw5dww3': {
+    'lj1x71om': {
       'en': 'Home',
       'tl': 'Bahay',
     },
@@ -980,12 +980,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Are you sure you want to sign out?',
       'tl': '',
     },
-    'l152ugox': {
-      'en': 'CANCEL',
+    'm2zyxgem': {
+      'en': 'Cancel',
       'tl': '',
     },
-    'g6dhrxe7': {
-      'en': 'SIGN OUT',
+    'quqrp02y': {
+      'en': 'Sign Out',
       'tl': '',
     },
   },
@@ -1023,7 +1023,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // savingMode
   {
     'whighhgr': {
-      'en': 'Loading...',
+      'en': 'Loading',
       'tl': '',
     },
   },

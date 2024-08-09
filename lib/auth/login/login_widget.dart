@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/permissions_util.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -516,83 +517,106 @@ class _LoginWidgetState extends State<LoginWidget>
                                       child: FFButtonWidget(
                                         onPressed: () async {
                                           Function() navigate = () {};
-                                          GoRouter.of(context)
-                                              .prepareAuthEvent();
+                                          if (await getPermissionStatus(
+                                              locationPermission)) {
+                                            GoRouter.of(context)
+                                                .prepareAuthEvent();
 
-                                          final user =
-                                              await authManager.signInWithEmail(
-                                            context,
-                                            _model
-                                                .emailFieldTextController.text,
-                                            _model.passwordFieldTextController
-                                                .text,
-                                          );
-                                          if (user == null) {
-                                            return;
-                                          }
-
-                                          navigate = () => context.goNamedAuth(
-                                              'dashboard', context.mounted);
-                                          _model.authUserQuery =
-                                              await UsersTable().queryRows(
-                                            queryFn: (q) => q.eq(
-                                              'email',
-                                              currentUserEmail,
-                                            ),
-                                          );
-                                          _model.isUploadedSuccess =
-                                              await actions
-                                                  .uploadPhotoUrlToAsset(
-                                            _model
-                                                .authUserQuery?.first.photoUrl,
-                                          );
-                                          if (kDebugMode) {
-                                            if (_model.isUploadedSuccess !=
-                                                    null &&
-                                                _model.isUploadedSuccess !=
-                                                    '') {
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(
-                                                SnackBar(
-                                                  content: Text(
-                                                    _model.isUploadedSuccess!,
-                                                    style: TextStyle(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                    ),
-                                                  ),
-                                                  duration: const Duration(
-                                                      milliseconds: 4000),
-                                                  backgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .warning,
-                                                ),
-                                              );
-                                            } else {
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(
-                                                SnackBar(
-                                                  content: Text(
-                                                    _model.isUploadedSuccess!,
-                                                    style: TextStyle(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                    ),
-                                                  ),
-                                                  duration: const Duration(
-                                                      milliseconds: 4000),
-                                                  backgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .error,
-                                                ),
-                                              );
+                                            final user = await authManager
+                                                .signInWithEmail(
+                                              context,
+                                              _model.emailFieldTextController
+                                                  .text,
+                                              _model.passwordFieldTextController
+                                                  .text,
+                                            );
+                                            if (user == null) {
+                                              return;
                                             }
+
+                                            navigate = () =>
+                                                context.goNamedAuth('dashboard',
+                                                    context.mounted);
+                                            _model.authUserQuery =
+                                                await UsersTable().queryRows(
+                                              queryFn: (q) => q.eq(
+                                                'email',
+                                                currentUserEmail,
+                                              ),
+                                            );
+                                            _model.isUploadedSuccess =
+                                                await actions
+                                                    .uploadPhotoUrlToAsset(
+                                              _model.authUserQuery?.first
+                                                  .photoUrl,
+                                            );
+                                            if (kDebugMode) {
+                                              if (_model.isUploadedSuccess !=
+                                                      null &&
+                                                  _model.isUploadedSuccess !=
+                                                      '') {
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                  SnackBar(
+                                                    content: Text(
+                                                      _model.isUploadedSuccess!,
+                                                      style: TextStyle(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                      ),
+                                                    ),
+                                                    duration: const Duration(
+                                                        milliseconds: 4000),
+                                                    backgroundColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .warning,
+                                                  ),
+                                                );
+                                              } else {
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                  SnackBar(
+                                                    content: Text(
+                                                      _model.isUploadedSuccess!,
+                                                      style: TextStyle(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                      ),
+                                                    ),
+                                                    duration: const Duration(
+                                                        milliseconds: 4000),
+                                                    backgroundColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .error,
+                                                  ),
+                                                );
+                                              }
+                                            }
+                                          } else {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  'Location permission must be enabled.',
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                  ),
+                                                ),
+                                                duration: const Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondary,
+                                              ),
+                                            );
                                           }
 
                                           navigate();

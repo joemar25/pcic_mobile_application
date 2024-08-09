@@ -7,14 +7,14 @@ export '/dashboard/profile/edit_password/edit_password_widget.dart'
 export '/dashboard/profile/edit_profile/edit_profile_widget.dart'
     show EditProfileWidget;
 export '/dashboard/messages/messages/messages_widget.dart' show MessagesWidget;
-export '/dashboard/tasks/task_details/task_details_widget.dart'
+export '/dashboard/forms/task_details/task_details_widget.dart'
     show TaskDetailsWidget;
 export '/dashboard/forms/ppir/ppir_widget.dart' show PpirWidget;
-export '/utils/extra/form_success/form_success_widget.dart'
+export '/utils/components/form_success/form_success_widget.dart'
     show FormSuccessWidget;
-export '/utils/extra/fail/fail_widget.dart' show FailWidget;
+export '/utils/components/fail/fail_widget.dart' show FailWidget;
 export '/dashboard/dashboard/dashboard_widget.dart' show DashboardWidget;
-export '/utils/extra/success_profile/success_profile_widget.dart'
+export '/utils/components/success_profile/success_profile_widget.dart'
     show SuccessProfileWidget;
 export '/auth/forgot_password/forgot_password_widget.dart'
     show ForgotPasswordWidget;

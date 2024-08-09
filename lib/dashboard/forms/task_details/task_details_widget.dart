@@ -4,12 +4,13 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/page_loader/page_loader_widget.dart';
+import '/utils/components/saving_mode/saving_mode_widget.dart';
 import '/utils/components/toast/toast_widget.dart';
-import '/utils/extra/saving_mode/saving_mode_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -3257,196 +3258,204 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                 ),
                               Row(
                                 mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   if (widget.taskStatus == 'completed')
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 8.0, 16.0, 12.0),
-                                      child: FFButtonWidget(
-                                        onPressed: () async {
-                                          _model.isReFTPClicked = true;
-                                          setState(() {});
-                                          _model.isFtpSaved =
-                                              await actions.saveToFTP(
-                                            widget.taskId,
-                                          );
-                                          _model.isReFTPClicked = false;
-                                          setState(() {});
-                                          if (_model.isFtpSaved!) {
-                                            context.pushNamed(
-                                              'successProfile',
-                                              queryParameters: {
-                                                'message': serializeParam(
-                                                  'FTP Successfully saved.',
-                                                  ParamType.String,
-                                                ),
-                                              }.withoutNulls,
+                                    Flexible(
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 8.0, 16.0, 12.0),
+                                        child: FFButtonWidget(
+                                          onPressed: () async {
+                                            _model.isReFTPClicked = true;
+                                            setState(() {});
+                                            _model.isFtpSaved =
+                                                await actions.saveToFTP(
+                                              widget.taskId,
                                             );
-                                          } else {
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(
-                                              SnackBar(
-                                                content: Text(
-                                                  'Fail to upload to FTP.',
-                                                  style: TextStyle(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
+                                            _model.isReFTPClicked = false;
+                                            setState(() {});
+                                            if (_model.isFtpSaved!) {
+                                              context.pushNamed(
+                                                'successProfile',
+                                                queryParameters: {
+                                                  'message': serializeParam(
+                                                    'FTP Successfully saved.',
+                                                    ParamType.String,
                                                   ),
+                                                }.withoutNulls,
+                                              );
+                                            } else {
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                SnackBar(
+                                                  content: Text(
+                                                    'Fail to upload to FTP.',
+                                                    style: TextStyle(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                    ),
+                                                  ),
+                                                  duration: const Duration(
+                                                      milliseconds: 4000),
+                                                  backgroundColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .tertiary,
                                                 ),
-                                                duration: const Duration(
-                                                    milliseconds: 4000),
-                                                backgroundColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .tertiary,
-                                              ),
-                                            );
-                                          }
+                                              );
+                                            }
 
-                                          setState(() {});
-                                        },
-                                        text:
-                                            FFLocalizations.of(context).getText(
-                                          'kfsvnfnl' /* Re-FTP */,
-                                        ),
-                                        icon: const Icon(
-                                          Icons.swap_vert_sharp,
-                                          size: 15.0,
-                                        ),
-                                        options: FFButtonOptions(
-                                          width:
-                                              MediaQuery.sizeOf(context).width *
-                                                  0.35,
-                                          height: 50.0,
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  24.0, 0.0, 24.0, 0.0),
-                                          iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 0.0),
-                                          color: FlutterFlowTheme.of(context)
-                                              .warning,
-                                          textStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .titleSmall
-                                              .override(
-                                                fontFamily:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmallFamily,
-                                                color: Colors.white,
-                                                letterSpacing: 0.0,
-                                                useGoogleFonts: GoogleFonts
-                                                        .asMap()
-                                                    .containsKey(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .titleSmallFamily),
-                                              ),
-                                          elevation: 3.0,
-                                          borderSide: const BorderSide(
-                                            color: Colors.transparent,
-                                            width: 1.0,
+                                            setState(() {});
+                                          },
+                                          text: FFLocalizations.of(context)
+                                              .getText(
+                                            'kfsvnfnl' /* Resubmit */,
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
+                                          icon: const Icon(
+                                            Icons.swap_vert_sharp,
+                                            size: 15.0,
+                                          ),
+                                          options: FFButtonOptions(
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                0.35,
+                                            height: 50.0,
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    24.0, 0.0, 24.0, 0.0),
+                                            iconPadding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            color: FlutterFlowTheme.of(context)
+                                                .warning,
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmall
+                                                    .override(
+                                                      fontFamily:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmallFamily,
+                                                      color: Colors.white,
+                                                      letterSpacing: 0.0,
+                                                      useGoogleFonts: GoogleFonts
+                                                              .asMap()
+                                                          .containsKey(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmallFamily),
+                                                    ),
+                                            elevation: 3.0,
+                                            borderSide: const BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  if (widget.taskStatus == 'completed')
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 8.0, 16.0, 12.0),
-                                      child: FFButtonWidget(
-                                        onPressed: () async {
-                                          await TasksTable().update(
-                                            data: {
-                                              'status': 'ongoing',
-                                            },
-                                            matchingRows: (rows) => rows.eq(
-                                              'id',
-                                              widget.taskId,
-                                            ),
-                                          );
-                                          await AttemptsTable().insert({
-                                            'task_id': widget.taskId,
-                                          });
-
-                                          context.pushNamed(
-                                            'geotagging',
-                                            queryParameters: {
-                                              'taskId': serializeParam(
+                                  if ((widget.taskStatus == 'completed') &&
+                                      kDebugMode)
+                                    Flexible(
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 8.0, 16.0, 12.0),
+                                        child: FFButtonWidget(
+                                          onPressed: () async {
+                                            await TasksTable().update(
+                                              data: {
+                                                'status': 'ongoing',
+                                              },
+                                              matchingRows: (rows) => rows.eq(
+                                                'id',
                                                 widget.taskId,
-                                                ParamType.String,
                                               ),
-                                              'taskType': serializeParam(
-                                                containerTasksRow?.taskType,
-                                                ParamType.String,
-                                              ),
-                                              'taskStatus': serializeParam(
-                                                containerTasksRow?.status,
-                                                ParamType.String,
-                                              ),
-                                            }.withoutNulls,
-                                            extra: <String, dynamic>{
-                                              kTransitionInfoKey:
-                                                  const TransitionInfo(
-                                                hasTransition: true,
-                                                transitionType:
-                                                    PageTransitionType.scale,
-                                                alignment:
-                                                    Alignment.bottomCenter,
-                                                duration:
-                                                    Duration(milliseconds: 200),
-                                              ),
-                                            },
-                                          );
-                                        },
-                                        text:
-                                            FFLocalizations.of(context).getText(
-                                          'cwddpguo' /* Re-Submit */,
-                                        ),
-                                        icon: const Icon(
-                                          Icons.swap_vert_sharp,
-                                          size: 15.0,
-                                        ),
-                                        options: FFButtonOptions(
-                                          width:
-                                              MediaQuery.sizeOf(context).width *
-                                                  0.35,
-                                          height: 50.0,
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  24.0, 0.0, 24.0, 0.0),
-                                          iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 0.0),
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          textStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .titleSmall
-                                              .override(
-                                                fontFamily:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmallFamily,
-                                                color: Colors.white,
-                                                letterSpacing: 0.0,
-                                                useGoogleFonts: GoogleFonts
-                                                        .asMap()
-                                                    .containsKey(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .titleSmallFamily),
-                                              ),
-                                          elevation: 3.0,
-                                          borderSide: const BorderSide(
-                                            color: Colors.transparent,
-                                            width: 1.0,
+                                            );
+                                            await AttemptsTable().insert({
+                                              'task_id': widget.taskId,
+                                            });
+
+                                            context.pushNamed(
+                                              'geotagging',
+                                              queryParameters: {
+                                                'taskId': serializeParam(
+                                                  widget.taskId,
+                                                  ParamType.String,
+                                                ),
+                                                'taskType': serializeParam(
+                                                  containerTasksRow?.taskType,
+                                                  ParamType.String,
+                                                ),
+                                                'taskStatus': serializeParam(
+                                                  containerTasksRow?.status,
+                                                  ParamType.String,
+                                                ),
+                                              }.withoutNulls,
+                                              extra: <String, dynamic>{
+                                                kTransitionInfoKey:
+                                                    const TransitionInfo(
+                                                  hasTransition: true,
+                                                  transitionType:
+                                                      PageTransitionType.scale,
+                                                  alignment:
+                                                      Alignment.bottomCenter,
+                                                  duration: Duration(
+                                                      milliseconds: 200),
+                                                ),
+                                              },
+                                            );
+                                          },
+                                          text: FFLocalizations.of(context)
+                                              .getText(
+                                            'cwddpguo' /* Re-Submit */,
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
+                                          icon: const Icon(
+                                            Icons.swap_vert_sharp,
+                                            size: 15.0,
+                                          ),
+                                          options: FFButtonOptions(
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                0.35,
+                                            height: 50.0,
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    24.0, 0.0, 24.0, 0.0),
+                                            iconPadding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmall
+                                                    .override(
+                                                      fontFamily:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmallFamily,
+                                                      color: Colors.white,
+                                                      letterSpacing: 0.0,
+                                                      useGoogleFonts: GoogleFonts
+                                                              .asMap()
+                                                          .containsKey(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmallFamily),
+                                                    ),
+                                            elevation: 3.0,
+                                            borderSide: const BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
                                         ),
                                       ),
                                     ),

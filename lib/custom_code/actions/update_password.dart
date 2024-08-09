@@ -15,11 +15,11 @@ import 'dart:convert';
 
 Future<bool> updatePassword(String newPassword) async {
   // Add your function code here!
-  final response = await SupaFlow.client.auth.updateUser(
-    UserAttributes(password: newPassword),
-  );
+  final response = await SupaFlow.client.rpc('update_user_password', params: {
+    'new_password': newPassword,
+  });
 
-  if (response.user != null) {
+  if (response.error == null) {
     return true;
   } else {
     return false;

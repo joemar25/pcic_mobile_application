@@ -336,13 +336,15 @@ class SQLiteManager {
 
   Future bulkInsert({
     String? id,
-    String? title,
+    String? taskNumber,
+    String? serviceType,
     String? status,
   }) =>
       performBulkInsert(
         _database,
         id: id,
-        title: title,
+        taskNumber: taskNumber,
+        serviceType: serviceType,
         status: status,
       );
 

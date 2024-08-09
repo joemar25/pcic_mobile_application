@@ -79,7 +79,7 @@ class _List1WidgetState extends State<List1Widget> {
                 ),
           ),
           actions: const [],
-          centerTitle: true,
+          centerTitle: false,
           elevation: 2.0,
         ),
         body: SafeArea(

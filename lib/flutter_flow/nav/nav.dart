@@ -109,12 +109,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'editPassword',
           path: '/editPassword',
           requireAuth: true,
-          builder: (context, params) => EditPasswordWidget(
-            formFieldName: params.getParam(
-              'formFieldName',
-              ParamType.String,
-            ),
-          ),
+          builder: (context, params) => const EditPasswordWidget(),
         ),
         FFRoute(
           name: 'editProfile',

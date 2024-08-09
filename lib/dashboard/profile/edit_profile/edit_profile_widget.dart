@@ -169,8 +169,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                   child: Align(
                                     alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Container(
-                                      width: 110.0,
-                                      height: 110.0,
+                                      width: 120.0,
+                                      height: 120.0,
                                       clipBehavior: Clip.antiAlias,
                                       decoration: const BoxDecoration(
                                         shape: BoxShape.circle,

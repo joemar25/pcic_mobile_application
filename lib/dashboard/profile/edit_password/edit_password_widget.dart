@@ -13,12 +13,7 @@ import 'edit_password_model.dart';
 export 'edit_password_model.dart';
 
 class EditPasswordWidget extends StatefulWidget {
-  const EditPasswordWidget({
-    super.key,
-    String? formFieldName,
-  }) : formFieldName = formFieldName ?? 'Field Name';
-
-  final String formFieldName;
+  const EditPasswordWidget({super.key});
 
   @override
   State<EditPasswordWidget> createState() => _EditPasswordWidgetState();
@@ -36,6 +31,11 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      // Edit Password
+      await actions.editPassword(
+        _model.oldPasswordTextController.text,
+        _model.newPasswordTextController.text,
+      );
       // CHECK PASSWORD
       await actions.verifyPassword(
         '0',

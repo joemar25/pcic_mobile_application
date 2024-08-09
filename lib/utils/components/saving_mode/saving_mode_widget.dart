@@ -45,6 +45,19 @@ class _SavingModeWidgetState extends State<SavingModeWidget>
           ),
         ],
       ),
+      'textOnPageLoadAnimation': AnimationInfo(
+        loop: true,
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          TiltEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: const Offset(0, 0),
+            end: const Offset(0, 0.349),
+          ),
+        ],
+      ),
     });
   }
 
@@ -60,7 +73,9 @@ class _SavingModeWidgetState extends State<SavingModeWidget>
     return Container(
       width: MediaQuery.sizeOf(context).width * 1.0,
       height: MediaQuery.sizeOf(context).height * 1.0,
-      decoration: const BoxDecoration(),
+      decoration: const BoxDecoration(
+        color: Color(0x1717282E),
+      ),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -71,21 +86,24 @@ class _SavingModeWidgetState extends State<SavingModeWidget>
             color: FlutterFlowTheme.of(context).primary,
             size: 100.0,
           ).animateOnPageLoad(animationsMap['iconOnPageLoadAnimation']!),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
-            child: Text(
-              FFLocalizations.of(context).getText(
-                'whighhgr' /* Loading... */,
-              ),
-              style: FlutterFlowTheme.of(context).headlineMedium.override(
-                    fontFamily:
-                        FlutterFlowTheme.of(context).headlineMediumFamily,
-                    color: FlutterFlowTheme.of(context).alternate,
-                    letterSpacing: 0.0,
-                    useGoogleFonts: GoogleFonts.asMap().containsKey(
-                        FlutterFlowTheme.of(context).headlineMediumFamily),
-                  ),
-            ),
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                FFLocalizations.of(context).getText(
+                  'whighhgr' /* Loading */,
+                ),
+                style: FlutterFlowTheme.of(context).headlineMedium.override(
+                      fontFamily:
+                          FlutterFlowTheme.of(context).headlineMediumFamily,
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      letterSpacing: 0.0,
+                      useGoogleFonts: GoogleFonts.asMap().containsKey(
+                          FlutterFlowTheme.of(context).headlineMediumFamily),
+                    ),
+              ).animateOnPageLoad(animationsMap['textOnPageLoadAnimation']!),
+            ],
           ),
         ],
       ),

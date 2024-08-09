@@ -352,206 +352,217 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceAround,
+                                                    MainAxisAlignment.center,
                                                 children: [
-                                                  FFButtonWidget(
-                                                    onPressed: () async {
-                                                      var confirmDialogResponse =
-                                                          await showDialog<
-                                                                  bool>(
-                                                                context:
-                                                                    context,
-                                                                builder:
-                                                                    (alertDialogContext) {
-                                                                  return AlertDialog(
-                                                                    title: const Text(
-                                                                        'Info'),
-                                                                    content: const Text(
-                                                                        'The current gpx file will be deleted. Are you sure?'),
-                                                                    actions: [
-                                                                      TextButton(
-                                                                        onPressed: () => Navigator.pop(
-                                                                            alertDialogContext,
-                                                                            false),
-                                                                        child: const Text(
-                                                                            'Cancel'),
-                                                                      ),
-                                                                      TextButton(
-                                                                        onPressed: () => Navigator.pop(
-                                                                            alertDialogContext,
-                                                                            true),
-                                                                        child: const Text(
-                                                                            'Confirm'),
-                                                                      ),
-                                                                    ],
-                                                                  );
-                                                                },
-                                                              ) ??
-                                                              false;
-                                                      if (confirmDialogResponse) {
-                                                        await PpirFormsTable()
-                                                            .update(
-                                                          data: {
-                                                            'gpx': '',
-                                                          },
-                                                          matchingRows:
-                                                              (rows) => rows.eq(
-                                                            'task_id',
-                                                            widget.taskId,
-                                                          ),
-                                                        );
-
-                                                        context.pushNamed(
-                                                          'geotagging',
-                                                          queryParameters: {
-                                                            'taskId':
-                                                                serializeParam(
+                                                  Flexible(
+                                                    child: FFButtonWidget(
+                                                      onPressed: () async {
+                                                        var confirmDialogResponse =
+                                                            await showDialog<
+                                                                    bool>(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (alertDialogContext) {
+                                                                    return AlertDialog(
+                                                                      title: const Text(
+                                                                          'Info'),
+                                                                      content: const Text(
+                                                                          'The current gpx file will be deleted. Are you sure?'),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () => Navigator.pop(
+                                                                              alertDialogContext,
+                                                                              false),
+                                                                          child:
+                                                                              const Text('Cancel'),
+                                                                        ),
+                                                                        TextButton(
+                                                                          onPressed: () => Navigator.pop(
+                                                                              alertDialogContext,
+                                                                              true),
+                                                                          child:
+                                                                              const Text('Confirm'),
+                                                                        ),
+                                                                      ],
+                                                                    );
+                                                                  },
+                                                                ) ??
+                                                                false;
+                                                        if (confirmDialogResponse) {
+                                                          await PpirFormsTable()
+                                                              .update(
+                                                            data: {
+                                                              'gpx': '',
+                                                            },
+                                                            matchingRows:
+                                                                (rows) =>
+                                                                    rows.eq(
+                                                              'task_id',
                                                               widget.taskId,
-                                                              ParamType.String,
                                                             ),
-                                                            'taskType':
-                                                                serializeParam(
-                                                              'ppir',
-                                                              ParamType.String,
-                                                            ),
-                                                            'taskStatus':
-                                                                serializeParam(
-                                                              'ongoing',
-                                                              ParamType.String,
-                                                            ),
-                                                          }.withoutNulls,
-                                                        );
-                                                      }
-                                                    },
-                                                    text: FFLocalizations.of(
-                                                            context)
-                                                        .getText(
-                                                      '3veba0qh' /* Repeat */,
-                                                    ),
-                                                    icon: const Icon(
-                                                      Icons.map_outlined,
-                                                      size: 15.0,
-                                                    ),
-                                                    options: FFButtonOptions(
-                                                      height: 40.0,
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  24.0,
-                                                                  0.0,
-                                                                  24.0,
-                                                                  0.0),
-                                                      iconPadding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .tertiary,
-                                                      textStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmallFamily,
-                                                                color: Colors
-                                                                    .white,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .titleSmallFamily),
-                                                              ),
-                                                      elevation: 3.0,
-                                                      borderSide: const BorderSide(
-                                                        color:
-                                                            Colors.transparent,
-                                                        width: 1.0,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                    ),
-                                                  ),
-                                                  FFButtonWidget(
-                                                    onPressed: () async {
-                                                      _model.gpxLink =
-                                                          await actions
-                                                              .getGpxLink(
-                                                        widget.taskId,
-                                                      );
-                                                      await launchURL(
-                                                          _model.gpxLink!);
+                                                          );
 
-                                                      setState(() {});
-                                                    },
-                                                    text: FFLocalizations.of(
-                                                            context)
-                                                        .getText(
-                                                      '57upt8rw' /* Download */,
-                                                    ),
-                                                    icon: const Icon(
-                                                      Icons.download_outlined,
-                                                      size: 15.0,
-                                                    ),
-                                                    options: FFButtonOptions(
-                                                      height: 40.0,
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  24.0,
-                                                                  0.0,
-                                                                  24.0,
-                                                                  0.0),
-                                                      iconPadding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .success,
-                                                      textStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmallFamily,
-                                                                color: Colors
-                                                                    .white,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .titleSmallFamily),
+                                                          context.pushNamed(
+                                                            'geotagging',
+                                                            queryParameters: {
+                                                              'taskId':
+                                                                  serializeParam(
+                                                                widget.taskId,
+                                                                ParamType
+                                                                    .String,
                                                               ),
-                                                      elevation: 3.0,
-                                                      borderSide: const BorderSide(
-                                                        color:
-                                                            Colors.transparent,
-                                                        width: 1.0,
+                                                              'taskType':
+                                                                  serializeParam(
+                                                                'ppir',
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                              'taskStatus':
+                                                                  serializeParam(
+                                                                'ongoing',
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                            }.withoutNulls,
+                                                          );
+                                                        }
+                                                      },
+                                                      text: FFLocalizations.of(
+                                                              context)
+                                                          .getText(
+                                                        '3veba0qh' /* Repeat Geotag */,
                                                       ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
+                                                      icon: const Icon(
+                                                        Icons.map_outlined,
+                                                        size: 15.0,
+                                                      ),
+                                                      options: FFButtonOptions(
+                                                        height: 40.0,
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    24.0,
+                                                                    0.0,
+                                                                    24.0,
+                                                                    0.0),
+                                                        iconPadding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .tertiary,
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmallFamily,
+                                                                  color: Colors
+                                                                      .white,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .titleSmallFamily),
+                                                                ),
+                                                        elevation: 3.0,
+                                                        borderSide: const BorderSide(
+                                                          color: Colors
+                                                              .transparent,
+                                                          width: 1.0,
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                      ),
                                                     ),
                                                   ),
+                                                  if (kDebugMode)
+                                                    Flexible(
+                                                      child: FFButtonWidget(
+                                                        onPressed: () async {
+                                                          _model.gpxLink =
+                                                              await actions
+                                                                  .getGpxLink(
+                                                            widget.taskId,
+                                                          );
+                                                          await launchURL(
+                                                              _model.gpxLink!);
+
+                                                          setState(() {});
+                                                        },
+                                                        text:
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .getText(
+                                                          '57upt8rw' /* Download */,
+                                                        ),
+                                                        icon: const Icon(
+                                                          Icons
+                                                              .download_outlined,
+                                                          size: 15.0,
+                                                        ),
+                                                        options:
+                                                            FFButtonOptions(
+                                                          height: 40.0,
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      24.0,
+                                                                      0.0,
+                                                                      24.0,
+                                                                      0.0),
+                                                          iconPadding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .success,
+                                                          textStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmall
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .titleSmallFamily,
+                                                                    color: Colors
+                                                                        .white,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    useGoogleFonts: GoogleFonts
+                                                                            .asMap()
+                                                                        .containsKey(
+                                                                            FlutterFlowTheme.of(context).titleSmallFamily),
+                                                                  ),
+                                                          elevation: 3.0,
+                                                          borderSide:
+                                                              const BorderSide(
+                                                            color: Colors
+                                                                .transparent,
+                                                            width: 1.0,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
+                                                      ),
+                                                    ),
                                                 ]
                                                     .divide(
                                                         const SizedBox(width: 20.0))

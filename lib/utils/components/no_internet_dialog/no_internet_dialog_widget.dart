@@ -154,19 +154,6 @@ class _NoInternetDialogWidgetState extends State<NoInternetDialogWidget> {
                   borderRadius: BorderRadius.circular(8.0),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: <Widget>[].divide(const SizedBox(width: 25.0)),
-                    ),
-                  ],
-                ),
-              ),
             ].divide(const SizedBox(height: 20.0)),
           ),
         ),
