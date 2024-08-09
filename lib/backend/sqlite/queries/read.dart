@@ -12,9 +12,10 @@ Future<List<T>> _readQuery<T>(
 Future<List<SELECTTASKSBaseOnStatusRow>> performSELECTTASKSBaseOnStatus(
   Database database, {
   String? status,
+  String? assignee,
 }) {
   const query = '''
-SELECT * FROM tasks WHERE status='ongoing'
+SELECT * FROM tasks WHERE status='ongoing' AND assignee=''
 ''';
   return _readQuery(database, query, (d) => SELECTTASKSBaseOnStatusRow(d));
 }

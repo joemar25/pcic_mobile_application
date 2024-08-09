@@ -31,10 +31,12 @@ class SQLiteManager {
 
   Future<List<SELECTTASKSBaseOnStatusRow>> sELECTTASKSBaseOnStatus({
     String? status,
+    String? assignee,
   }) =>
       performSELECTTASKSBaseOnStatus(
         _database,
         status: status,
+        assignee: assignee,
       );
 
   Future<List<SELECTUSERSInSameRegionRow>> sELECTUSERSInSameRegion() =>

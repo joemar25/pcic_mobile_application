@@ -139,7 +139,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    '2p57i1zy': {
+    'bl4bf5s0': {
       'en': '',
       'tl': '',
     },
@@ -202,6 +202,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Download Maps',
       'tl': '',
     },
+    'xyhadzea': {
+      'en': 'Sync Database',
+      'tl': '',
+    },
     'qi3464p6': {
       'en': 'Sign Out',
       'tl': '',
@@ -249,7 +253,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'jgab6prv': {
+    'ill0nmro': {
       'en': '',
       'tl': '',
     },
@@ -261,7 +265,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    '6249t873': {
+    '9b0fxlmy': {
       'en': '',
       'tl': '',
     },
@@ -273,7 +277,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    '2sq58f5s': {
+    'zbahvby3': {
       'en': '',
       'tl': '',
     },

@@ -109,16 +109,19 @@ class _DashboardWidgetState extends State<DashboardWidget>
         _model.offlineForDispatchTasksData =
             await SQLiteManager.instance.sELECTTASKSBaseOnStatus(
           status: 'for dispatch',
+          assignee: currentUserUid,
         );
         // OFFLINE: Select all ongoing tasks
         _model.offlineOngoingTasksData =
             await SQLiteManager.instance.sELECTTASKSBaseOnStatus(
           status: 'ongoing',
+          assignee: currentUserUid,
         );
         // OFFLINE: Select all completed tasks
         _model.offlineCompletedTasksData =
             await SQLiteManager.instance.sELECTTASKSBaseOnStatus(
           status: 'ongoing',
+          assignee: currentUserUid,
         );
         // OFFLINE: Set page variable values
         _model.fdc = valueOrDefault<int>(
