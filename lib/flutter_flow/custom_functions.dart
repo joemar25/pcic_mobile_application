@@ -127,6 +127,19 @@ String sanitizeStoreName(String storeName) {
 }
 
 String? verifyOldPassword() {
+  Future<bool> verifyOldPassword(String oldPassword) async {
+    try {
+      final response =
+          await SupaFlow.client.rpc('verify_user_password', params: {
+        'password': oldPassword,
+      });
+      return response as bool;
+    } catch (e) {
+      print('Error verifying old password: $e');
+      return false;
+    }
+  }
+
   // verify old password
 // TODO: Implement verifyOldPassword function
   return null;
