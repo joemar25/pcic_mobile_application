@@ -98,8 +98,6 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
   List<PpirFormsRow>? riceVariety;
   // Stores action output result for [Backend Call - Update Row(s)] action in submitButton widget.
   List<PpirFormsRow>? cornVariety;
-  // Stores action output result for [Custom Action - saveToFTP] action in submitButton widget.
-  bool? isFtpSaved;
 
   @override
   void initState(BuildContext context) {}
