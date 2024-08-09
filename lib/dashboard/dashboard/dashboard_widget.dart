@@ -309,7 +309,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                if (kDebugMode) {
+                                if (FFAppState().ONLINE && kDebugMode) {
                                   context.pushNamed(
                                     'list1',
                                     extra: <String, dynamic>{

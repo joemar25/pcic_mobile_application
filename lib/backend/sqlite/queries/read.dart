@@ -49,10 +49,11 @@ class SELECTTASKSBaseOnStatusRow extends SqliteRow {
 
 /// BEGIN SELECT USERS IN SAME REGION
 Future<List<SELECTUSERSInSameRegionRow>> performSELECTUSERSInSameRegion(
-  Database database,
-) {
-  const query = '''
-SELECT * FROM users
+  Database database, {
+  String? regionId,
+}) {
+  final query = '''
+SELECT * FROM users WHERE region_id='$regionId'
 ''';
   return _readQuery(database, query, (d) => SELECTUSERSInSameRegionRow(d));
 }
@@ -102,10 +103,11 @@ class SelectSeedsRow extends SqliteRow {
 
 /// BEGIN SELECT PPIR FORMS
 Future<List<SelectPpirFormsRow>> performSelectPpirForms(
-  Database database,
-) {
-  const query = '''
-SELECT * FROM ppir_forms
+  Database database, {
+  String? taskId,
+}) {
+  final query = '''
+SELECT * FROM ppir_forms WHERE task_id='$taskId'
 ''';
   return _readQuery(database, query, (d) => SelectPpirFormsRow(d));
 }
@@ -252,8 +254,7 @@ Future<List<SelectProfileRow>> performSelectProfile(
   String? email,
 }) {
   final query = '''
-SELECT * FROM users WHERE email = '$email'
---SELECT * FROM users WHERE email = ?
+SELECT * FROM users WHERE email='$email'
 
 ''';
   return _readQuery(database, query, (d) => SelectProfileRow(d));
@@ -277,34 +278,6 @@ class SelectProfileRow extends SqliteRow {
 }
 
 /// END SELECT PROFILE
-
-/// BEGIN DASHBOARD READ QUERY
-Future<List<DashboardReadQueryRow>> performDashboardReadQuery(
-  Database database,
-) {
-  const query = '''
-SELECT * FROM users WHERE id = ?
-''';
-  return _readQuery(database, query, (d) => DashboardReadQueryRow(d));
-}
-
-class DashboardReadQueryRow extends SqliteRow {
-  DashboardReadQueryRow(super.data);
-
-  String? get role => data['role'] as String?;
-  String? get email => data['email'] as String?;
-  String? get photoUrl => data['photo_url'] as String?;
-  String? get inspectorName => data['inspector_name'] as String?;
-  String? get mobileNumber => data['mobile_number'] as String?;
-  bool? get isOnline => data['is_online'] as bool?;
-  String? get authUserId => data['auth_user_id'] as String?;
-  String? get createdUserId => data['created_user_id'] as String?;
-  DateTime? get createdAt => data['created_at'] as DateTime?;
-  DateTime? get deletedAt => data['deleted_at'] as DateTime?;
-  String? get regionId => data['region_id'] as String?;
-}
-
-/// END DASHBOARD READ QUERY
 
 /// BEGIN GET LAST SYNC TIMESTAMP
 Future<List<GetLastSyncTimestampRow>> performGetLastSyncTimestamp(

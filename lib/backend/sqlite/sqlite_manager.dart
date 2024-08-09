@@ -39,17 +39,24 @@ class SQLiteManager {
         assignee: assignee,
       );
 
-  Future<List<SELECTUSERSInSameRegionRow>> sELECTUSERSInSameRegion() =>
+  Future<List<SELECTUSERSInSameRegionRow>> sELECTUSERSInSameRegion({
+    String? regionId,
+  }) =>
       performSELECTUSERSInSameRegion(
         _database,
+        regionId: regionId,
       );
 
   Future<List<SelectSeedsRow>> selectSeeds() => performSelectSeeds(
         _database,
       );
 
-  Future<List<SelectPpirFormsRow>> selectPpirForms() => performSelectPpirForms(
+  Future<List<SelectPpirFormsRow>> selectPpirForms({
+    String? taskId,
+  }) =>
+      performSelectPpirForms(
         _database,
+        taskId: taskId,
       );
 
   Future<List<SelectMessagesRow>> selectMessages() => performSelectMessages(
@@ -70,11 +77,6 @@ class SQLiteManager {
       performSelectProfile(
         _database,
         email: email,
-      );
-
-  Future<List<DashboardReadQueryRow>> dashboardReadQuery() =>
-      performDashboardReadQuery(
-        _database,
       );
 
   Future<List<GetLastSyncTimestampRow>> getLastSyncTimestamp() =>
