@@ -530,7 +530,7 @@ class _MapBoxState extends State<MapBox> {
                 onTap: recenterMap,
                 child: Center(
                   child: Icon(
-                    Icons.center_focus_strong,
+                    Icons.my_location_outlined,
                     color: Colors.white,
                     size: 24,
                   ),

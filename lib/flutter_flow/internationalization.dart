@@ -139,7 +139,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    '388a8zur': {
+    '2p57i1zy': {
       'en': '',
       'tl': '',
     },
@@ -249,7 +249,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    't9z6o367': {
+    'jgab6prv': {
       'en': '',
       'tl': '',
     },
@@ -261,7 +261,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'r2sdh3y1': {
+    '6249t873': {
       'en': '',
       'tl': '',
     },
@@ -273,7 +273,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'tnugipkc': {
+    '2sq58f5s': {
       'en': '',
       'tl': '',
     },
@@ -1040,6 +1040,22 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'z8ore9hv': {
       'en': 'CONTINUE',
+      'tl': '',
+    },
+  },
+  // noInternetDialog
+  {
+    'm2d8uxk3': {
+      'en': 'Info',
+      'tl': '',
+    },
+    'wreq3f64': {
+      'en':
+          'You have no current internet connection. To download a map, please connect to the internet.',
+      'tl': '',
+    },
+    'o9ko1105': {
+      'en': 'Reconnect',
       'tl': '',
     },
   },
