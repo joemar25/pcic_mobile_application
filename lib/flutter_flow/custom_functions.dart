@@ -125,21 +125,3 @@ String? capitalizeWords(String? text) {
 String sanitizeStoreName(String storeName) {
   return storeName.replaceAll(RegExp(r'[^a-zA-Z0-9_]'), '_').toLowerCase();
 }
-
-String? verifyOldPassword() {
-  Future<bool> verifyOldPassword(String oldPassword) async {
-    try {
-      final response =
-          await SupaFlow.client.rpc('verify_user_password', params: {
-        'password': oldPassword,
-      });
-      return response as bool;
-    } catch (e) {
-      print('Error verifying old password: $e');
-      return false;
-    }
-  }
-
-  // verify old password
-// TODO: Implement verifyOldPassword function
-}
