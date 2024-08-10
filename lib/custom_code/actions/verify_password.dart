@@ -12,22 +12,15 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 Future<bool> verifyPassword(String currentPassword) async {
-  try {
-    final user = SupaFlow.client.auth.currentUser;
-    if (user == null) {
-      print('User is not authenticated');
-      return false;
-    }
+  // Assuming the user is already authenticated
+  final response = await SupaFlow.client.rpc('verify_user_password', params: {
+    'password': currentPassword,
+  });
 
-    // Use Supabase's signIn method to verify the password
-    final response = await SupaFlow.client.auth.signInWithPassword(
-      email: user.email!,
-      password: currentPassword,
-    );
-
-    return response.user != null;
-  } catch (e) {
-    print('Error verifying password: $e');
+  // Check if the response data is true
+  if (response == true) {
+    return true;
+  } else {
     return false;
   }
 }
