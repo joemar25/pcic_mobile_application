@@ -2,6 +2,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/empty_lists/empty_lists_widget.dart';
+import '/utils/components/no_internet_dialog/no_internet_dialog_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
@@ -91,14 +92,34 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
               child: TabBarView(
                 controller: _model.tabBarController,
                 children: [
-                  SizedBox(
-                    width: double.infinity,
-                    height: double.infinity,
-                    child: custom_widgets.SearchableMapWidget(
-                      width: double.infinity,
-                      height: double.infinity,
-                      accessToken: FFAppState().accessToken,
-                    ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      if (!FFAppState().ONLINE)
+                        Expanded(
+                          child: Align(
+                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            child: wrapWithModel(
+                              model: _model.noInternetDialogModel,
+                              updateCallback: () => setState(() {}),
+                              updateOnChange: true,
+                              child: const NoInternetDialogWidget(),
+                            ),
+                          ),
+                        ),
+                      if (FFAppState().ONLINE)
+                        Expanded(
+                          child: SizedBox(
+                            width: double.infinity,
+                            height: double.infinity,
+                            child: custom_widgets.SearchableMapWidget(
+                              width: double.infinity,
+                              height: double.infinity,
+                              accessToken: FFAppState().accessToken,
+                            ),
+                          ),
+                        ),
+                    ],
                   ),
                   Builder(
                     builder: (context) {
