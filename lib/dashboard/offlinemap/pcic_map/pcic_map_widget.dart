@@ -96,13 +96,20 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       if (!FFAppState().ONLINE)
-                        Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
-                          child: wrapWithModel(
-                            model: _model.noInternetDialogModel,
-                            updateCallback: () => setState(() {}),
-                            updateOnChange: true,
-                            child: const NoInternetDialogWidget(),
+                        Expanded(
+                          child: Align(
+                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            child: Container(
+                              width: double.infinity,
+                              height: 500.0,
+                              decoration: const BoxDecoration(),
+                              child: wrapWithModel(
+                                model: _model.noInternetDialogModel,
+                                updateCallback: () => setState(() {}),
+                                updateOnChange: true,
+                                child: const NoInternetDialogWidget(),
+                              ),
+                            ),
                           ),
                         ),
                       if (FFAppState().ONLINE)
