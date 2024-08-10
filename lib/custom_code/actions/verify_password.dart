@@ -11,18 +11,23 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'dart:convert';
-
 Future<bool> verifyPassword(String currentPassword) async {
-  // Assuming the user is already authenticated
-  final response = await SupaFlow.client.rpc('verify_user_password', params: {
-    'password': currentPassword,
-  });
+  try {
+    final user = SupaFlow.client.auth.currentUser;
+    if (user == null) {
+      print('User is not authenticated');
+      return false;
+    }
 
-  // Check if the response data is true
-  if (response == true) {
-    return true;
-  } else {
+    // Use Supabase's signIn method to verify the password
+    final response = await SupaFlow.client.auth.signInWithPassword(
+      email: user.email!,
+      password: currentPassword,
+    );
+
+    return response.user != null;
+  } catch (e) {
+    print('Error verifying password: $e');
     return false;
   }
 }

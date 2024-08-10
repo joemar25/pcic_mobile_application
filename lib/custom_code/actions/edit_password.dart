@@ -14,21 +14,19 @@ import 'package:flutter/material.dart';
 // Set your action name, define your arguments and return parameter,
 // and then add the boilerplate code using the green button on the right!
 
-Future<bool> editPassword(String oldPassword, String newPassword) async {
-  // First, verify the old password
-  bool isOldPasswordCorrect = await verifyPassword(oldPassword);
-
-  if (!isOldPasswordCorrect) {
-    print('Old password is incorrect');
-    return false;
-  }
-
-  // If old password is correct, proceed to update the password
+Future<String> editPassword(String oldPassword, String newPassword) async {
   try {
+    // First, verify the old password
+    bool isOldPasswordCorrect = await verifyPassword(oldPassword);
+
+    if (!isOldPasswordCorrect) {
+      return 'Old password is incorrect';
+    }
+
+    // If old password is correct, proceed to update the password
     final user = SupaFlow.client.auth.currentUser;
     if (user == null) {
-      print('User is not authenticated');
-      return false;
+      return 'User is not authenticated';
     }
 
     final response = await SupaFlow.client.auth.updateUser(
@@ -38,14 +36,11 @@ Future<bool> editPassword(String oldPassword, String newPassword) async {
     );
 
     if (response.user != null) {
-      print('Password updated successfully');
-      return true;
+      return 'Password updated successfully';
     } else {
-      print('Update failed: Unknown error');
-      return false;
+      return 'Update failed: Unknown error';
     }
   } catch (e) {
-    print('Error updating password: $e');
-    return false;
+    return 'Error updating password: $e';
   }
 }
