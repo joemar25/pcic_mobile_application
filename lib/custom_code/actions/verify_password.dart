@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+// Verify Password
+
 import 'dart:convert';
 
 Future<bool> verifyPassword(String currentPassword) async {
@@ -19,6 +21,10 @@ Future<bool> verifyPassword(String currentPassword) async {
     'password': currentPassword,
   });
 
-  // If the RPC returns true, the password is correct
-  return response.data == true;
+  // Check if the response data is true
+  if (response == true) {
+    return true;
+  } else {
+    return false;
+  }
 }

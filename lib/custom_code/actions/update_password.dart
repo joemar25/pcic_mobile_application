@@ -11,23 +11,19 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+//Update Password
+
 import 'dart:convert';
 
 Future<bool> updatePassword(String newPassword) async {
-  try {
-    final response = await SupaFlow.client.auth.updateUser(
-      UserAttributes(password: newPassword),
-    );
+  // Add your function code here!
+  final response = await SupaFlow.client.auth.updateUser(
+    UserAttributes(password: newPassword),
+  );
 
-    if (response.error == null) {
-      print('Password updated successfully');
-      return true;
-    } else {
-      print('Update failed: ${response.error.message}');
-      return false;
-    }
-  } catch (e) {
-    print('Error updating password: $e');
+  if (response.user != null) {
+    return true;
+  } else {
     return false;
   }
 }
