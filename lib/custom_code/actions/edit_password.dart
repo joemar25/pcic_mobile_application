@@ -12,13 +12,37 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 Future<bool> editPassword(String oldPassword, String newPassword) async {
-  String updateResult = await updatePassword(oldPassword, newPassword);
-  if (updateResult.contains('successfully')) {
-    // Password updated successfully
-    return true;
-  } else {
-    // Update failed
-    print(updateResult);
+  // First, verify the old password
+  bool isOldPasswordCorrect = await verifyPassword(oldPassword);
+
+  if (!isOldPasswordCorrect) {
+    print('Old password is incorrect');
+    return false;
+  }
+
+  // If old password is correct, proceed to update the password
+  try {
+    final user = SupaFlow.client.auth.currentUser;
+    if (user == null) {
+      print('User is not authenticated');
+      return false;
+    }
+
+    final response = await SupaFlow.client.auth.updateUser(
+      UserAttributes(
+        password: newPassword,
+      ),
+    );
+
+    if (response.user != null) {
+      print('Password updated successfully');
+      return true;
+    } else {
+      print('Update failed: Unknown error');
+      return false;
+    }
+  } catch (e) {
+    print('Error updating password: $e');
     return false;
   }
 }
