@@ -19,11 +19,11 @@ Future<bool> updatePassword(String newPassword) async {
       UserAttributes(password: newPassword),
     );
 
-    if (response.user != null) {
+    if (response.error == null) {
       print('Password updated successfully');
       return true;
     } else {
-      print('Update failed: ${response.error?.message ?? 'Unknown error'}');
+      print('Update failed: ${response.error.message}');
       return false;
     }
   } catch (e) {
