@@ -16,7 +16,7 @@ import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
 Future<String> updatePassword(String oldPassword, String newPassword) async {
   // Function to verify the old password
-  Future<bool> verifyOldPassword(String oldPassword) async {
+  Future<bool> verifyUserOldPassword(String oldPassword) async {
     try {
       // Call the Supabase RPC function to verify the user's old password
       final response =
@@ -31,7 +31,7 @@ Future<String> updatePassword(String oldPassword, String newPassword) async {
   }
 
   // Verify the old password
-  bool isOldPasswordCorrect = await verifyOldPassword(oldPassword);
+  bool isOldPasswordCorrect = await verifyUserOldPassword(oldPassword);
 
   if (!isOldPasswordCorrect) {
     return 'Old password is incorrect';
