@@ -14,17 +14,6 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
-// In lib/flutter_flow/custom_functions.dart
-Future<bool> verifyOldPassword(String oldPassword) async {
-  // Implement password verification logic here
-  // This is a placeholder implementation; replace with actual verification
-  final response = await SupaFlow.client.rpc('verify_user_password', params: {
-    'password': oldPassword,
-  });
-  return response == true;
-}
-
-// In lib/custom_code/actions/update_password.dart
 Future<String> updatePassword(String oldPassword, String newPassword) async {
   bool isOldPasswordCorrect = await verifyOldPassword(oldPassword);
 
@@ -52,4 +41,12 @@ Future<String> updatePassword(String oldPassword, String newPassword) async {
   } catch (e) {
     return 'Error updating password: $e';
   }
+}
+
+Future<bool> verifyOldPassword(String oldPassword) async {
+  final response = await SupaFlow.client.rpc('verify_user_password', params: {
+    'password': oldPassword,
+  });
+
+  return response == true;
 }
