@@ -43,7 +43,6 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
       if (_model.isPasswordVerified) {
         // update Password
         await actions.updatePassword(
-          _model.oldPasswordTextController.text,
           _model.newPasswordTextController.text,
         );
         // Password changed

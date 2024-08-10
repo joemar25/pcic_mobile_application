@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'dart:convert';
+
 Future<bool> verifyPassword(String currentPassword) async {
   // Assuming the user is already authenticated
   final response = await SupaFlow.client.rpc('verify_user_password', params: {
