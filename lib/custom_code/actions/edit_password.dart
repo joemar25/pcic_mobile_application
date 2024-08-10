@@ -11,9 +11,20 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-// Set your action name, define your arguments and return parameter,
-// and then add the boilerplate code using the green button on the right!
+import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
+// Custom function to verify the old password
+Future<bool> verifyOldPassword(String oldPassword) async {
+  final response = await supabase.Supabase.instance.client
+      .rpc('verify_user_password', params: {
+    'password': oldPassword,
+  }).execute();
+
+  // Return whether the password is correct
+  return response.data == true;
+}
+
+// Custom action to update the user's password
 Future<String> editPassword(String oldPassword, String newPassword) async {
   try {
     // First, verify the old password
@@ -24,14 +35,15 @@ Future<String> editPassword(String oldPassword, String newPassword) async {
     }
 
     // If old password is correct, proceed to update the password
-    final response = await SupaFlow.client.rpc('update_user_password', params: {
+    final response = await supabase.Supabase.instance.client
+        .rpc('update_user_password', params: {
       'new_password': newPassword,
-    });
+    }).execute();
 
-    if (response as bool) {
+    if (response.error == null) {
       return 'Password updated successfully';
     } else {
-      return 'Update failed: Unknown error';
+      return 'Update failed: ${response.error.message}';
     }
   } catch (e) {
     return 'Error updating password: $e';
