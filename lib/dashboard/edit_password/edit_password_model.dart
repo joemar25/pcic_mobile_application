@@ -1,5 +1,5 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import '/utils/components/connectivity/connectivity_widget.dart';
+import '/utils/connectivity/connectivity_widget.dart';
 import 'edit_password_widget.dart' show EditPasswordWidget;
 import 'package:flutter/material.dart';
 

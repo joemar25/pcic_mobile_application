@@ -11,14 +11,10 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'dart:convert';
-
-Future<bool> verifyPassword(String currentPassword) async {
-  // Assuming the user is already authenticated
-  final response = await SupaFlow.client.rpc('verify_user_password', params: {
-    'password': currentPassword,
-  });
-
-  // If the RPC returns true, the password is correct
-  return response.data == true;
+Future<bool> comparePasswords(
+    String newPassword, String confirmPassword) async {
+  return newPassword == confirmPassword;
 }
+
+// Set your action name, define your arguments and return parameter,
+// and then add the boilerplate code using the green button on the right!

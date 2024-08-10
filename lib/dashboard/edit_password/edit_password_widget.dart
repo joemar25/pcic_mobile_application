@@ -3,7 +3,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/utils/components/connectivity/connectivity_widget.dart';
+import '/utils/connectivity/connectivity_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -41,7 +41,12 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
         '0',
       );
       if (_model.isPasswordVerified) {
-        // update Password
+        // Compare Password
+        await actions.comparePasswords(
+          _model.newPasswordTextController.text,
+          _model.confirmNewPasswordTextController.text,
+        );
+        // Update Password
         await actions.updatePassword(
           _model.newPasswordTextController.text,
         );
@@ -49,7 +54,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              _model.passwordChangeMessage,
+              'Password changed',
               style: FlutterFlowTheme.of(context).titleMedium.override(
                     fontFamily: FlutterFlowTheme.of(context).titleMediumFamily,
                     color: FlutterFlowTheme.of(context).primaryText,
@@ -67,7 +72,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              _model.passwordChangeMessage,
+              'Password change failed',
               style: FlutterFlowTheme.of(context).titleSmall.override(
                     fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
                     color: FlutterFlowTheme.of(context).primaryText,

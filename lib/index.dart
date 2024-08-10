@@ -1,13 +1,13 @@
 // Export pages
 export '/auth/login/login_widget.dart' show LoginWidget;
 export '/dashboard/profile/profile/profile_widget.dart' show ProfileWidget;
-export '/dashboard/messages/chats/chats_widget.dart' show ChatsWidget;
-export '/dashboard/profile/edit_password/edit_password_widget.dart'
+export '/dashboard/chats/chats_widget.dart' show ChatsWidget;
+export '/dashboard/edit_password/edit_password_widget.dart'
     show EditPasswordWidget;
 export '/dashboard/profile/edit_profile/edit_profile_widget.dart'
     show EditProfileWidget;
 export '/dashboard/messages/messages/messages_widget.dart' show MessagesWidget;
-export '/dashboard/forms/task_details/task_details_widget.dart'
+export '/dashboard/task_details/task_details_widget.dart'
     show TaskDetailsWidget;
 export '/dashboard/forms/ppir/ppir_widget.dart' show PpirWidget;
 export '/utils/components/form_success/form_success_widget.dart'

@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 Future<bool> editPassword(String oldPassword, String newPassword) async {
-  // First, verify the old password
+  // Verify the old password
   bool isOldPasswordCorrect = await verifyPassword(oldPassword);
 
   if (!isOldPasswordCorrect) {
@@ -38,7 +38,7 @@ Future<bool> editPassword(String oldPassword, String newPassword) async {
       print('Password updated successfully');
       return true;
     } else {
-      print('Update failed: Unknown error');
+      print('Update failed: ${response.error?.message ?? 'Unknown error'}');
       return false;
     }
   } catch (e) {

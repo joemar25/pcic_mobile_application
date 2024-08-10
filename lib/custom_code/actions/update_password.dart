@@ -14,14 +14,20 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 
 Future<bool> updatePassword(String newPassword) async {
-  // Add your function code here!
-  final response = await SupaFlow.client.auth.updateUser(
-    UserAttributes(password: newPassword),
-  );
+  try {
+    final response = await SupaFlow.client.auth.updateUser(
+      UserAttributes(password: newPassword),
+    );
 
-  if (response.user != null) {
-    return true;
-  } else {
+    if (response.user != null) {
+      print('Password updated successfully');
+      return true;
+    } else {
+      print('Update failed: ${response.error?.message ?? 'Unknown error'}');
+      return false;
+    }
+  } catch (e) {
+    print('Error updating password: $e');
     return false;
   }
 }

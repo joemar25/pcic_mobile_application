@@ -1,6 +1,6 @@
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/utils/components/connectivity/connectivity_widget.dart';
+import '/utils/connectivity/connectivity_widget.dart';
 import 'dart:async';
 import 'messages_widget.dart' show MessagesWidget;
 import 'package:flutter/material.dart';
