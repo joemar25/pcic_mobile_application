@@ -107,12 +107,26 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                             ),
                           ),
                         ),
-                      if (!FFAppState().ONLINE)
-                        wrapWithModel(
-                          model: _model.noInternetDialogModel,
-                          updateCallback: () => setState(() {}),
-                          child: const NoInternetDialogWidget(),
+                      Expanded(
+                        child: Container(
+                          constraints: const BoxConstraints(
+                            minWidth: double.infinity,
+                            minHeight: 100.0,
+                          ),
+                          decoration: const BoxDecoration(),
+                          child: Visibility(
+                            visible: !FFAppState().ONLINE,
+                            child: Align(
+                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              child: wrapWithModel(
+                                model: _model.noInternetDialogModel,
+                                updateCallback: () => setState(() {}),
+                                child: const NoInternetDialogWidget(),
+                              ),
+                            ),
+                          ),
                         ),
+                      ),
                     ],
                   ),
                   Builder(
