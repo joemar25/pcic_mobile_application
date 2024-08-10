@@ -855,19 +855,15 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                     .secondary,
                                           ),
                                         );
-                                        await SQLiteManager.instance.bulkInsert(
-                                          id: 'afdfd',
-                                          taskNumber: '3',
-                                          serviceType: 'Region 01 PPIR',
-                                          status: 'ongoing',
-                                        );
+                                        _model.syncOutput =
+                                            await actions.syncData();
                                         ScaffoldMessenger.of(context)
                                             .clearSnackBars();
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
                                           SnackBar(
                                             content: Text(
-                                              'Sync success!',
+                                              _model.syncOutput!,
                                               style: TextStyle(
                                                 color:
                                                     FlutterFlowTheme.of(context)
@@ -881,6 +877,8 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                     .secondary,
                                           ),
                                         );
+
+                                        setState(() {});
                                       },
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,

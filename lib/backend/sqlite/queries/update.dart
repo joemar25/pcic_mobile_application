@@ -318,8 +318,7 @@ Future performBulkInsert(
   String? status,
 }) {
   final query = '''
-INSERT OR REPLACE INTO tasks (id, task_number, service_type, status) 
-VALUES ('$id', '$taskNumber', '$serviceType', '$status')
+INSERT OR REPLACE INTO tasks (id, task_number, service_type, status) VALUES ('$id', '$taskNumber', '$serviceType', '$status')
 ''';
   return database.rawQuery(query);
 }
