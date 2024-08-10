@@ -434,6 +434,7 @@ class _MapBoxState extends State<MapBox> {
 
   @override
   void dispose() {
+    _smoothHeadingController.close();
     _positionStreamSubscription?.cancel();
     _mapController.dispose();
     super.dispose();
