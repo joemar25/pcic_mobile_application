@@ -19,6 +19,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
 import 'package:flutter_map_tile_caching/flutter_map_tile_caching.dart' as FMTC;
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter_compass/flutter_compass.dart';
 
 class MapBox extends StatefulWidget {
   MapBox({
@@ -62,6 +63,11 @@ class _MapBoxState extends State<MapBox> {
   static const int _maxRetries = 3;
 
   List<ll.LatLng> _recentLocations = [];
+  final StreamController<double> _smoothHeadingController =
+      StreamController<double>.broadcast();
+  List<double> _headingBuffer = [];
+  static const int _headingBufferSize =
+      5; // Adjust this value for more or less smoothing
 
   @override
   void initState() {
@@ -69,6 +75,26 @@ class _MapBoxState extends State<MapBox> {
     _checkConnectivity();
     _initializeLocation();
     _initializeTileProvider();
+    _setupSmoothHeadingStream();
+  }
+
+  void _setupSmoothHeadingStream() {
+    FlutterCompass.events?.listen((event) {
+      if (event.heading != null) {
+        _headingBuffer.add(event.heading!);
+        if (_headingBuffer.length > _headingBufferSize) {
+          _headingBuffer.removeAt(0);
+        }
+        double averageHeading =
+            _headingBuffer.reduce((a, b) => a + b) / _headingBuffer.length;
+        _smoothHeadingController.add(_normalizeHeading(averageHeading));
+      }
+    });
+  }
+
+  double _normalizeHeading(double heading) {
+    // Ensure the heading is always between 0 and 360 degrees
+    return (heading + 360) % 360;
   }
 
   Future<void> _initializeTileProvider() async {
@@ -477,15 +503,18 @@ class _MapBoxState extends State<MapBox> {
               ),
               CurrentLocationLayer(
                 alignPositionOnUpdate: AlignOnUpdate.always,
-                alignDirectionStream: null,
+                alignDirectionOnUpdate: AlignOnUpdate.never,
+                alignDirectionStream: _smoothHeadingController.stream,
                 style: LocationMarkerStyle(
                   marker: const DefaultLocationMarker(color: Colors.green),
-                  markerSize: const Size(15, 15),
+                  markerSize: const Size(
+                      15, 15), // Slightly larger for better visibility
                   markerDirection: MarkerDirection.heading,
                   accuracyCircleColor: Colors.green.withOpacity(0.2),
                   headingSectorColor: Colors.green.withOpacity(0.8),
                 ),
-                alignDirectionAnimationDuration: Duration(milliseconds: 100),
+                alignDirectionAnimationDuration: Duration(
+                    milliseconds: 200), // Slightly slower for smoother rotation
               ),
               if (_isTracking)
                 PolylineLayer(
