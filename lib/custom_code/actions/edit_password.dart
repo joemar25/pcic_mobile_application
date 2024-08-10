@@ -40,10 +40,10 @@ Future<String> editPassword(String oldPassword, String newPassword) async {
       'new_password': newPassword,
     }).execute();
 
-    if (response.error == null) {
-      return 'Password updated successfully';
+    if (response.hasError) {
+      return 'Update failed: ${response.error?.message ?? "Unknown error"}';
     } else {
-      return 'Update failed: ${response.error.message}';
+      return 'Password updated successfully';
     }
   } catch (e) {
     return 'Error updating password: $e';
