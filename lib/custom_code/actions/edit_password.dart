@@ -17,25 +17,18 @@ import 'package:flutter/material.dart';
 Future<String> editPassword(String oldPassword, String newPassword) async {
   try {
     // First, verify the old password
-    bool isOldPasswordCorrect = await verifyPassword(oldPassword);
+    bool isOldPasswordCorrect = await verifyOldPassword(oldPassword);
 
     if (!isOldPasswordCorrect) {
       return 'Old password is incorrect';
     }
 
     // If old password is correct, proceed to update the password
-    final user = SupaFlow.client.auth.currentUser;
-    if (user == null) {
-      return 'User is not authenticated';
-    }
+    final response = await SupaFlow.client.rpc('update_user_password', params: {
+      'new_password': newPassword,
+    });
 
-    final response = await SupaFlow.client.auth.updateUser(
-      UserAttributes(
-        password: newPassword,
-      ),
-    );
-
-    if (response.user != null) {
+    if (response as bool) {
       return 'Password updated successfully';
     } else {
       return 'Update failed: Unknown error';

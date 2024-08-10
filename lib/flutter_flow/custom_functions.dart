@@ -142,5 +142,4 @@ String? verifyOldPassword() {
 
   // verify old password
 // TODO: Implement verifyOldPassword function
-  return null;
 }
