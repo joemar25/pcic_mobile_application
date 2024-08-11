@@ -47,12 +47,14 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
   bool _isDownloading = false;
   final FocusNode _focusNode = FocusNode();
   bool _mounted = true;
+  bool _hasInternet = true;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (_mounted) {
+        _checkInternetConnectivity();
         _getCurrentLocation();
       }
     });
@@ -60,6 +62,13 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
       if (event is MapEventMoveEnd && _mounted) {
         _updateBoundaryBox();
       }
+    });
+  }
+
+  Future<void> _checkInternetConnectivity() async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    setState(() {
+      _hasInternet = connectivityResult != ConnectivityResult.none;
     });
   }
 
@@ -179,6 +188,15 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
     if (!_mounted) return;
     _focusNode.unfocus();
 
+    await _checkInternetConnectivity();
+    if (!_hasInternet) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            content: Text('No internet connection. Unable to download map.')),
+      );
+      return;
+    }
+
     if (_boundaryBox == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Please select an area to save the map.')),
@@ -290,7 +308,7 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
                     hintText: 'Search for a location',
                     suffixIcon: IconButton(
                       icon: Icon(Icons.save),
-                      onPressed: _saveMap,
+                      onPressed: _hasInternet ? _saveMap : null,
                     ),
                   ),
                 );
@@ -315,10 +333,29 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
           ),
           if (_isDownloading)
             Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: LinearProgressIndicator(
-                    value: _downloadProgress,
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.green))),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: LinearProgressIndicator(
+                value: _downloadProgress,
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+              ),
+            ),
+          if (!_hasInternet)
+            Container(
+              padding: EdgeInsets.all(16),
+              color: Colors.red[100],
+              child: Row(
+                children: [
+                  Icon(Icons.error_outline, color: Colors.red),
+                  SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      'No internet connection. Map download is not available.',
+                      style: TextStyle(color: Colors.red[900]),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           Expanded(
             child: _isLoading
                 ? Center(child: CircularProgressIndicator())
