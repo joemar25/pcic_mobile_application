@@ -334,18 +334,30 @@ class SQLiteManager {
         id: id,
       );
 
-  Future bulkInsert({
+  Future taskInsert({
     String? id,
     String? taskNumber,
-    String? serviceType,
+    String? serviceGroup,
     String? status,
+    String? serviceType,
+    String? priority,
+    String? assignee,
+    String? fileId,
+    String? dateAdded,
+    String? dateAccess,
   }) =>
-      performBulkInsert(
+      performTaskInsert(
         _database,
         id: id,
         taskNumber: taskNumber,
-        serviceType: serviceType,
+        serviceGroup: serviceGroup,
         status: status,
+        serviceType: serviceType,
+        priority: priority,
+        assignee: assignee,
+        fileId: fileId,
+        dateAdded: dateAdded,
+        dateAccess: dateAccess,
       );
 
   Future deleteRecords({

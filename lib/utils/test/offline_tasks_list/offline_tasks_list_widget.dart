@@ -1,11 +1,12 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/sqlite/sqlite_manager.dart';
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/utils/components/empty_lists/empty_lists_widget.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'offline_tasks_list_model.dart';
 export 'offline_tasks_list_model.dart';
@@ -26,15 +27,6 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => OfflineTasksListModel());
-
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.offlineOngoingTasks =
-          await SQLiteManager.instance.sELECTTASKSBaseOnStatus(
-        status: 'ongoing',
-        assignee: currentUserUid,
-      );
-    });
   }
 
   @override
@@ -97,29 +89,152 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Builder(
-                    builder: (context) {
-                      final offlineOngoingTasksList =
-                          _model.offlineOngoingTasks?.toList() ?? [];
-                      if (offlineOngoingTasksList.isEmpty) {
-                        return const EmptyListsWidget(
-                          type: 'Offline Ongoing Tasks',
+                  FFButtonWidget(
+                    onPressed: () async {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Sync Started',
+                            style: TextStyle(
+                              color: FlutterFlowTheme.of(context).primaryText,
+                            ),
+                          ),
+                          duration: const Duration(milliseconds: 4000),
+                          backgroundColor:
+                              FlutterFlowTheme.of(context).secondary,
+                        ),
+                      );
+                      // Online Tasks
+                      _model.onlineTasks = await TasksTable().queryRows(
+                        queryFn: (q) => q,
+                      );
+                      // Number Iteration
+                      _model.iteration = valueOrDefault<int>(
+                        _model.onlineTasks?.length,
+                        0,
+                      );
+                      setState(() {});
+                      while (_model.iteration != 0) {
+                        // Offline Tasks
+                        await SQLiteManager.instance.taskInsert(
+                          id: _model.onlineTasks?.first.id,
+                          taskNumber: _model.onlineTasks?.first.taskNumber,
+                          serviceGroup: _model.onlineTasks?.first.serviceGroup,
+                          status: _model.onlineTasks?.first.status,
+                          serviceType: _model.onlineTasks?.first.serviceType,
+                          priority: _model.onlineTasks?.first.priority,
+                          assignee: _model.onlineTasks?.first.assignee,
+                          fileId: _model.onlineTasks?.first.fileId,
+                          dateAdded:
+                              _model.onlineTasks?.first.dateAdded?.toString(),
+                          dateAccess:
+                              _model.onlineTasks?.first.dateAccess?.toString(),
+                        );
+                        await Future.delayed(
+                            const Duration(milliseconds: 2000));
+                        ScaffoldMessenger.of(context).clearSnackBars();
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              valueOrDefault<String>(
+                                _model.iteration?.toString(),
+                                '0',
+                              ),
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context).primaryText,
+                              ),
+                            ),
+                            duration: const Duration(milliseconds: 4000),
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).forDispatchColor,
+                          ),
+                        );
+                        // Number Iteration
+                        _model.iteration = _model.iteration! + -1;
+                        setState(() {});
+                      }
+                      ScaffoldMessenger.of(context).clearSnackBars();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Sync done',
+                            style: GoogleFonts.getFont(
+                              'Roboto',
+                              color: FlutterFlowTheme.of(context).primaryText,
+                            ),
+                          ),
+                          duration: const Duration(milliseconds: 4000),
+                          backgroundColor:
+                              FlutterFlowTheme.of(context).secondary,
+                        ),
+                      );
+
+                      setState(() {});
+                    },
+                    text: FFLocalizations.of(context).getText(
+                      'o7uaesf0' /* Add Task */,
+                    ),
+                    options: FFButtonOptions(
+                      height: 40.0,
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                      iconPadding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: FlutterFlowTheme.of(context).primary,
+                      textStyle: FlutterFlowTheme.of(context)
+                          .titleSmall
+                          .override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).titleSmallFamily,
+                            color: Colors.white,
+                            letterSpacing: 0.0,
+                            useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                FlutterFlowTheme.of(context).titleSmallFamily),
+                          ),
+                      elevation: 3.0,
+                      borderSide: const BorderSide(
+                        color: Colors.transparent,
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                  ),
+                  FutureBuilder<List<SELECTTASKSBaseOnStatusRow>>(
+                    future: SQLiteManager.instance.sELECTTASKSBaseOnStatus(
+                      status: 'ongoing',
+                      assignee: currentUserEmail,
+                    ),
+                    builder: (context, snapshot) {
+                      // Customize what your widget looks like when it's loading.
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: SizedBox(
+                            width: 100.0,
+                            height: 100.0,
+                            child: SpinKitRipple(
+                              color: FlutterFlowTheme.of(context).primary,
+                              size: 100.0,
+                            ),
+                          ),
                         );
                       }
+                      final listViewSELECTTASKSBaseOnStatusRowList =
+                          snapshot.data!;
 
                       return ListView.builder(
                         padding: EdgeInsets.zero,
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
-                        itemCount: offlineOngoingTasksList.length,
-                        itemBuilder: (context, offlineOngoingTasksListIndex) {
-                          final offlineOngoingTasksListItem =
-                              offlineOngoingTasksList[
-                                  offlineOngoingTasksListIndex];
+                        itemCount:
+                            listViewSELECTTASKSBaseOnStatusRowList.length,
+                        itemBuilder: (context, listViewIndex) {
+                          final listViewSELECTTASKSBaseOnStatusRow =
+                              listViewSELECTTASKSBaseOnStatusRowList[
+                                  listViewIndex];
                           return Text(
                             valueOrDefault<String>(
-                              offlineOngoingTasksListItem.taskNumber,
-                              'task #',
+                              listViewSELECTTASKSBaseOnStatusRow.taskNumber,
+                              'aa',
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium

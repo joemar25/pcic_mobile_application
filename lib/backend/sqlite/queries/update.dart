@@ -309,21 +309,28 @@ UPDATE tasks SET ..., last_modified = ? WHERE id = ?;
 
 /// END UPDATE LAST MODIFIED TIMESTAMP
 
-/// BEGIN BULK INSERT
-Future performBulkInsert(
+/// BEGIN TASK INSERT
+Future performTaskInsert(
   Database database, {
   String? id,
   String? taskNumber,
-  String? serviceType,
+  String? serviceGroup,
   String? status,
+  String? serviceType,
+  String? priority,
+  String? assignee,
+  String? fileId,
+  String? dateAdded,
+  String? dateAccess,
 }) {
   final query = '''
-INSERT OR REPLACE INTO tasks (id, task_number, service_type, status) VALUES ('$id', '$taskNumber', '$serviceType', '$status')
+INSERT INTO tasks (id, task_number, service_group, status, service_type, priority, assignee, file_id, date_added, date_access)
+VALUES ('$id', '$taskNumber', '$serviceGroup', '$status', '$serviceType', '$priority', '$assignee', '$fileId', '$dateAdded', '')
 ''';
   return database.rawQuery(query);
 }
 
-/// END BULK INSERT
+/// END TASK INSERT
 
 /// BEGIN DELETE RECORDS
 Future performDeleteRecords(
