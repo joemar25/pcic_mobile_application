@@ -8,7 +8,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'offline_tasks_list_model.dart';
 export 'offline_tasks_list_model.dart';
 
@@ -52,7 +51,7 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: Icon(
+            icon: const Icon(
               Icons.chevron_left,
               color: Colors.white,
               size: 30.0,
@@ -74,20 +73,20 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                       FlutterFlowTheme.of(context).headlineMediumFamily),
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 2.0,
         ),
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
             child: Container(
               width: MediaQuery.sizeOf(context).width * 1.0,
               height: MediaQuery.sizeOf(context).height * 1.0,
-              decoration: BoxDecoration(),
+              decoration: const BoxDecoration(),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -107,7 +106,7 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                                         .primaryText,
                                   ),
                                 ),
-                                duration: Duration(milliseconds: 4000),
+                                duration: const Duration(milliseconds: 4000),
                                 backgroundColor:
                                     FlutterFlowTheme.of(context).secondary,
                               ),
@@ -133,7 +132,7 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                                     _model.iteration,
                                     0,
                                   )]
-                                      ?.id,
+                                      .id,
                                   'id',
                                 ),
                                 taskNumber: valueOrDefault<String>(
@@ -142,7 +141,7 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                                     _model.iteration,
                                     0,
                                   )]
-                                      ?.taskNumber,
+                                      .taskNumber,
                                   'task number',
                                 ),
                                 serviceGroup: valueOrDefault<String>(
@@ -151,7 +150,7 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                                     _model.iteration,
                                     0,
                                   )]
-                                      ?.serviceGroup,
+                                      .serviceGroup,
                                   'task number',
                                 ),
                                 status: valueOrDefault<String>(
@@ -160,7 +159,7 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                                     _model.iteration,
                                     0,
                                   )]
-                                      ?.status,
+                                      .status,
                                   'task number',
                                 ),
                                 serviceType: valueOrDefault<String>(
@@ -169,7 +168,7 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                                     _model.iteration,
                                     0,
                                   )]
-                                      ?.serviceType,
+                                      .serviceType,
                                   'task number',
                                 ),
                                 priority: valueOrDefault<String>(
@@ -178,7 +177,7 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                                     _model.iteration,
                                     0,
                                   )]
-                                      ?.priority,
+                                      .priority,
                                   'task number',
                                 ),
                                 assignee: valueOrDefault<String>(
@@ -187,7 +186,7 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                                     _model.iteration,
                                     0,
                                   )]
-                                      ?.assignee,
+                                      .assignee,
                                   'task number',
                                 ),
                                 dateAdded: valueOrDefault<String>(
@@ -196,7 +195,7 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                                     _model.iteration,
                                     0,
                                   )]
-                                      ?.dateAdded
+                                      .dateAdded
                                       ?.toString(),
                                   'task number',
                                 ),
@@ -206,7 +205,7 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                                     _model.iteration,
                                     0,
                                   )]
-                                      ?.dateAccess
+                                      .dateAccess
                                       ?.toString(),
                                   'task number',
                                 ),
@@ -216,7 +215,7 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                                     _model.iteration,
                                     0,
                                   )]
-                                      ?.fileId,
+                                      .fileId,
                                   'task number',
                                 ),
                               );
@@ -230,7 +229,7 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                                         _model.iteration,
                                         0,
                                       )]
-                                          ?.taskNumber,
+                                          .taskNumber,
                                       'task number',
                                     )}',
                                     style: TextStyle(
@@ -238,7 +237,7 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                                           .primaryText,
                                     ),
                                   ),
-                                  duration: Duration(milliseconds: 4000),
+                                  duration: const Duration(milliseconds: 4000),
                                   backgroundColor: FlutterFlowTheme.of(context)
                                       .forDispatchColor,
                                 ),
@@ -257,7 +256,7 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                                         .primaryText,
                                   ),
                                 ),
-                                duration: Duration(milliseconds: 4000),
+                                duration: const Duration(milliseconds: 4000),
                                 backgroundColor:
                                     FlutterFlowTheme.of(context).secondary,
                               ),
@@ -270,9 +269,9 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                           ),
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -287,7 +286,7 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                                           .titleSmallFamily),
                                 ),
                             elevation: 3.0,
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -352,12 +351,12 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                               snapshot.data!;
 
                           return ListView.separated(
-                            padding: EdgeInsets.symmetric(vertical: 3.0),
+                            padding: const EdgeInsets.symmetric(vertical: 3.0),
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
                             itemCount:
                                 listViewSELECTTASKSBaseOnStatusRowList.length,
-                            separatorBuilder: (_, __) => SizedBox(height: 3.0),
+                            separatorBuilder: (_, __) => const SizedBox(height: 3.0),
                             itemBuilder: (context, listViewIndex) {
                               final listViewSELECTTASKSBaseOnStatusRow =
                                   listViewSELECTTASKSBaseOnStatusRowList[
@@ -385,8 +384,8 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                       ),
                     ),
                   ]
-                      .divide(SizedBox(height: 20.0))
-                      .around(SizedBox(height: 20.0)),
+                      .divide(const SizedBox(height: 20.0))
+                      .around(const SizedBox(height: 20.0)),
                 ),
               ),
             ),
