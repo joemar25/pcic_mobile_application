@@ -114,32 +114,17 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                         0,
                       );
                       setState(() {});
-                      while (_model.iteration != 0) {
-                        // Offline Tasks
-                        await SQLiteManager.instance.taskInsert(
-                          id: _model.onlineTasks?.first.id,
-                          taskNumber: _model.onlineTasks?.first.taskNumber,
-                          serviceGroup: _model.onlineTasks?.first.serviceGroup,
-                          status: _model.onlineTasks?.first.status,
-                          serviceType: _model.onlineTasks?.first.serviceType,
-                          priority: _model.onlineTasks?.first.priority,
-                          assignee: _model.onlineTasks?.first.assignee,
-                          fileId: _model.onlineTasks?.first.fileId,
-                          dateAdded:
-                              _model.onlineTasks?.first.dateAdded?.toString(),
-                          dateAccess:
-                              _model.onlineTasks?.first.dateAccess?.toString(),
-                        );
+                      while (_model.iteration! > 0) {
                         await Future.delayed(
                             const Duration(milliseconds: 2000));
                         ScaffoldMessenger.of(context).clearSnackBars();
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
-                              valueOrDefault<String>(
-                                _model.iteration?.toString(),
-                                '0',
-                              ),
+                              '${_model.iteration?.toString()} - ${valueOrDefault<String>(
+                                _model.onlineTasks?.first.taskNumber,
+                                'adsads',
+                              )}',
                               style: TextStyle(
                                 color: FlutterFlowTheme.of(context).primaryText,
                               ),
@@ -153,7 +138,6 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                         _model.iteration = _model.iteration! + -1;
                         setState(() {});
                       }
-                      ScaffoldMessenger.of(context).clearSnackBars();
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
