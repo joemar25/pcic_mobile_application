@@ -16,9 +16,12 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_map/src/layer/marker_layer/marker_layer.dart' as fmap;
 import 'package:latlong2/latlong.dart' as ll;
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter_map_tile_caching/flutter_map_tile_caching.dart' as FMTC;
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:lottie/lottie.dart';
 
 class SearchableMapWidget extends StatefulWidget {
   const SearchableMapWidget({
@@ -63,13 +66,80 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
         _updateBoundaryBox();
       }
     });
+    Connectivity().onConnectivityChanged.listen(_updateConnectionStatus);
   }
 
   Future<void> _checkInternetConnectivity() async {
     var connectivityResult = await (Connectivity().checkConnectivity());
-    setState(() {
-      _hasInternet = connectivityResult != ConnectivityResult.none;
-    });
+    _updateConnectionStatus(connectivityResult);
+  }
+
+  void _updateConnectionStatus(List<ConnectivityResult> results) {
+    if (results.isNotEmpty) {
+      setState(() {
+        _hasInternet =
+            results.any((result) => result != ConnectivityResult.none);
+      });
+    }
+  }
+
+  Widget _buildNoInternetMessage() {
+    return Center(
+      child: Container(
+        width: 300, // Reduced width for better containment
+        height: 300, // Reduced height for better containment
+        decoration: BoxDecoration(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: Offset(0, 3),
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.signal_wifi_off,
+                size: 60,
+                color: Colors.red,
+              ),
+              SizedBox(height: 20),
+              Text(
+                'No Internet Connection',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 10),
+              Text(
+                'Please check your network settings and try again.',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 14),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: _checkInternetConnectivity,
+                child: Text('Reconnect'),
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.red,
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   Future<void> _saveStoreRegion(String storeName, LatLngBounds bounds) async {
@@ -281,134 +351,119 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
   }
 
   @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: widget.width,
+      height: widget.height,
+      child: !_hasInternet
+          ? Center(child: _buildNoInternetMessage())
+          : Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TypeAheadField<Map<String, dynamic>>(
+                    controller: _typeAheadController,
+                    focusNode: _focusNode,
+                    builder: (context, controller, focusNode) {
+                      return TextField(
+                        controller: controller,
+                        focusNode: focusNode,
+                        decoration: InputDecoration(
+                          hintText: 'Search for a location',
+                          suffixIcon: IconButton(
+                            icon: Icon(Icons.save),
+                            onPressed: _saveMap,
+                          ),
+                        ),
+                      );
+                    },
+                    suggestionsCallback: (pattern) async {
+                      if (pattern.isEmpty) return [];
+                      return await forwardGeocoding(pattern);
+                    },
+                    itemBuilder: (context, suggestion) {
+                      return ListTile(title: Text(suggestion['place_name']));
+                    },
+                    onSelected: (suggestion) {
+                      setState(() {
+                        _selectedAddress = suggestion['place_name'];
+                        _typeAheadController.text = _selectedAddress;
+                      });
+                      final lon = suggestion['coordinates'][0];
+                      final lat = suggestion['coordinates'][1];
+                      _moveMap(ll.LatLng(lat, lon));
+                    },
+                  ),
+                ),
+                if (_isDownloading)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: LinearProgressIndicator(
+                      value: _downloadProgress,
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+                    ),
+                  ),
+                Expanded(
+                  child: _isLoading
+                      ? Center(child: CircularProgressIndicator())
+                      : FlutterMap(
+                          mapController: _mapController,
+                          options: MapOptions(
+                            initialCenter: _center,
+                            initialZoom: 17,
+                            maxZoom: 22,
+                          ),
+                          children: [
+                            TileLayer(
+                              urlTemplate:
+                                  'https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v12/tiles/{z}/{x}/{y}?access_token={accessToken}',
+                              additionalOptions: {
+                                'accessToken': widget.accessToken,
+                              },
+                            ),
+                            MarkerLayer(
+                              markers: [
+                                fmap.Marker(
+                                  width: 80.0,
+                                  height: 80.0,
+                                  point: _center,
+                                  child: Icon(
+                                    Icons.location_on,
+                                    color: Colors.red,
+                                    size: 40.0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            PolygonLayer(
+                              polygons: [
+                                if (_boundaryBox != null)
+                                  Polygon(
+                                    points: [
+                                      _boundaryBox!.northWest,
+                                      _boundaryBox!.northEast,
+                                      _boundaryBox!.southEast,
+                                      _boundaryBox!.southWest,
+                                    ],
+                                    color: Colors.blue.withOpacity(0.2),
+                                    borderColor: Colors.blue,
+                                    borderStrokeWidth: 2,
+                                  ),
+                              ],
+                            ),
+                          ],
+                        ),
+                ),
+              ],
+            ),
+    );
+  }
+
+  @override
   void dispose() {
     _mounted = false;
     _focusNode.dispose();
     _mapController.dispose();
     super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: widget.width,
-      height: widget.height,
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TypeAheadField<Map<String, dynamic>>(
-              controller: _typeAheadController,
-              focusNode: _focusNode,
-              builder: (context, controller, focusNode) {
-                return TextField(
-                  controller: controller,
-                  focusNode: focusNode,
-                  decoration: InputDecoration(
-                    hintText: 'Search for a location',
-                    suffixIcon: IconButton(
-                      icon: Icon(Icons.save),
-                      onPressed: _hasInternet ? _saveMap : null,
-                    ),
-                  ),
-                );
-              },
-              suggestionsCallback: (pattern) async {
-                if (pattern.isEmpty) return [];
-                return await forwardGeocoding(pattern);
-              },
-              itemBuilder: (context, suggestion) {
-                return ListTile(title: Text(suggestion['place_name']));
-              },
-              onSelected: (suggestion) {
-                setState(() {
-                  _selectedAddress = suggestion['place_name'];
-                  _typeAheadController.text = _selectedAddress;
-                });
-                final lon = suggestion['coordinates'][0];
-                final lat = suggestion['coordinates'][1];
-                _moveMap(ll.LatLng(lat, lon));
-              },
-            ),
-          ),
-          if (_isDownloading)
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: LinearProgressIndicator(
-                value: _downloadProgress,
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
-              ),
-            ),
-          if (!_hasInternet)
-            Container(
-              padding: EdgeInsets.all(16),
-              color: Colors.red[100],
-              child: Row(
-                children: [
-                  Icon(Icons.error_outline, color: Colors.red),
-                  SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      'No internet connection. Map download is not available.',
-                      style: TextStyle(color: Colors.red[900]),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          Expanded(
-            child: _isLoading
-                ? Center(child: CircularProgressIndicator())
-                : FlutterMap(
-                    mapController: _mapController,
-                    options: MapOptions(
-                      initialCenter: _center,
-                      initialZoom: 17,
-                      maxZoom: 22,
-                    ),
-                    children: [
-                      TileLayer(
-                        urlTemplate:
-                            'https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v12/tiles/{z}/{x}/{y}?access_token={accessToken}',
-                        additionalOptions: {
-                          'accessToken': widget.accessToken,
-                        },
-                      ),
-                      MarkerLayer(
-                        markers: [
-                          Marker(
-                            width: 80.0,
-                            height: 80.0,
-                            point: _center,
-                            child: Icon(
-                              Icons.location_on,
-                              color: Colors.red,
-                              size: 40.0,
-                            ),
-                          ),
-                        ],
-                      ),
-                      PolygonLayer(
-                        polygons: [
-                          if (_boundaryBox != null)
-                            Polygon(
-                              points: [
-                                _boundaryBox!.northWest,
-                                _boundaryBox!.northEast,
-                                _boundaryBox!.southEast,
-                                _boundaryBox!.southWest,
-                              ],
-                              color: Colors.blue.withOpacity(0.2),
-                              borderColor: Colors.blue,
-                              borderStrokeWidth: 2,
-                            ),
-                        ],
-                      ),
-                    ],
-                  ),
-          ),
-        ],
-      ),
-    );
   }
 }
