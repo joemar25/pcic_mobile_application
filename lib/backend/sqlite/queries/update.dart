@@ -324,8 +324,8 @@ Future performTaskInsert(
   String? dateAccess,
 }) {
   final query = '''
-INSERT INTO tasks (id, task_number, service_group, status, service_type, priority, assignee, file_id, date_added, date_access)
-VALUES ('$id', '$taskNumber', '$serviceGroup', '$status', '$serviceType', '$priority', '$assignee', '$fileId', '$dateAdded', '')
+INSERT OR REPLACE INTO tasks (id, task_number, service_group, status, service_type, priority, assignee, file_id, date_added, date_access)
+VALUES ('$id', '$taskNumber', '$serviceGroup', '$status', '$serviceType', '$priority', '$assignee', '$fileId', '$dateAdded', '$dateAccess')
 ''';
   return database.rawQuery(query);
 }
