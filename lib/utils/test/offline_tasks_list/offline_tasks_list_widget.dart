@@ -202,7 +202,7 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                   FutureBuilder<List<SELECTTASKSBaseOnStatusRow>>(
                     future: SQLiteManager.instance.sELECTTASKSBaseOnStatus(
                       status: 'ongoing',
-                      assignee: currentUserEmail,
+                      assignee: currentUserUid,
                     ),
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.
@@ -234,7 +234,7 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                           return Text(
                             valueOrDefault<String>(
                               listViewSELECTTASKSBaseOnStatusRow.taskNumber,
-                              'aa',
+                              'sdads',
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
