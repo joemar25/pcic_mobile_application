@@ -139,7 +139,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'frm09agp': {
+    'bxm1xv1h': {
       'en': '',
       'tl': '',
     },
@@ -178,35 +178,35 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // profile
   {
-    '7xbq1sje': {
+    'xqwyoxrh': {
       'en': 'Account',
       'tl': '',
     },
-    'crwnnuqi': {
+    '00if4ta7': {
       'en': 'Dark Mode',
       'tl': '',
     },
-    'a32n944v': {
+    '10h4gixp': {
       'en': 'Light Mode',
       'tl': '',
     },
-    'fr9mgbfc': {
+    'q6imwgsn': {
       'en': 'Edit Profile',
       'tl': '',
     },
-    'bl5bsc0f': {
+    'n0xjnlm2': {
       'en': 'Change Password',
       'tl': '',
     },
-    'qvfftd30': {
+    '3r8ompzr': {
       'en': 'Download Maps',
       'tl': '',
     },
-    'xyhadzea': {
+    'qkhyppx6': {
       'en': 'Sync Database',
       'tl': '',
     },
-    'qi3464p6': {
+    'yttqc4w2': {
       'en': 'Sign Out',
       'tl': '',
     },
@@ -253,7 +253,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'rrfwu74p': {
+    '902hr3hu': {
       'en': '',
       'tl': '',
     },
@@ -265,7 +265,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    '1cpvvxgm': {
+    'h81ukhuf': {
       'en': '',
       'tl': '',
     },
@@ -277,7 +277,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'nihha0bb': {
+    'nfoohlnd': {
       'en': '',
       'tl': '',
     },
@@ -300,7 +300,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    'qv7rjnyv': {
+    'plmed594': {
       'en': '',
       'tl': '',
     },
@@ -1021,13 +1021,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'trqe09c9': {
       'en': 'name@domainname.com',
-      'tl': '',
-    },
-  },
-  // savingMode
-  {
-    'whighhgr': {
-      'en': 'Loading',
       'tl': '',
     },
   },

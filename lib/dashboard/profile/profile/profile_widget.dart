@@ -4,14 +4,17 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/signout_dialog/signout_dialog_widget.dart';
-import '/utils/connectivity/connectivity_widget.dart';
+import 'dart:math';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'profile_model.dart';
@@ -50,6 +53,8 @@ class _ProfileWidgetState extends State<ProfileWidget>
         ),
       );
       _model.getProfilePic = await actions.getTheSavedLocalProfile();
+
+      setState(() {});
     });
 
     animationsMap.addAll({
@@ -60,8 +65,8 @@ class _ProfileWidgetState extends State<ProfileWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 100.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 100.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -91,14 +96,14 @@ class _ProfileWidgetState extends State<ProfileWidget>
             color: FlutterFlowTheme.of(context).primary,
           ),
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 60.0, 0.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 60.0, 0.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
+                      EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -118,7 +123,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                 ),
                                 Text(
                                   FFLocalizations.of(context).getText(
-                                    '7xbq1sje' /* Account */,
+                                    'xqwyoxrh' /* Account */,
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .headlineMedium
@@ -135,13 +140,13 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                     .headlineMediumFamily),
                                       ),
                                 ),
-                              ].divide(const SizedBox(width: 10.0)),
+                              ].divide(SizedBox(width: 10.0)),
                             ),
                           ),
                           wrapWithModel(
                             model: _model.connectivityModel,
                             updateCallback: () => setState(() {}),
-                            child: const ConnectivityWidget(),
+                            child: ConnectivityWidget(),
                           ),
                         ],
                       ),
@@ -151,12 +156,12 @@ class _ProfileWidgetState extends State<ProfileWidget>
                 Expanded(
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
                     child: Container(
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).primaryBackground,
-                        borderRadius: const BorderRadius.only(
+                        borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(0.0),
                           bottomRight: Radius.circular(0.0),
                           topLeft: Radius.circular(24.0),
@@ -164,7 +169,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                         ),
                       ),
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 20.0, 20.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -183,7 +188,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                     context.pushNamed(
                                       'editProfile',
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
+                                        kTransitionInfoKey: TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.scale,
@@ -200,7 +205,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(5.0),
+                                      padding: EdgeInsets.all(5.0),
                                       child: ClipRRect(
                                         borderRadius:
                                             BorderRadius.circular(6.0),
@@ -229,12 +234,12 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               functions.sentenceCaseWords(
                                                   FFAppState().ONLINE
                                                       ? _model.onlineUserProfile
-                                                          ?.first.inspectorName
+                                                          ?.first?.inspectorName
                                                       : valueOrDefault<String>(
                                                           _model
                                                               .offlineSelectUserProfile
                                                               ?.first
-                                                              .inspectorName,
+                                                              ?.inspectorName,
                                                           'Inspector Name',
                                                         )),
                                               'Agent',
@@ -266,12 +271,12 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               valueOrDefault<String>(
                                                 FFAppState().ONLINE
                                                     ? _model.onlineUserProfile
-                                                        ?.first.email
+                                                        ?.first?.email
                                                     : valueOrDefault<String>(
                                                         _model
                                                             .offlineSelectUserProfile
                                                             ?.first
-                                                            .email,
+                                                            ?.email,
                                                         'Inspector Name',
                                                       ),
                                                 'agent@yahoo.com',
@@ -301,7 +306,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                     ],
                                   ),
                                 ),
-                              ].divide(const SizedBox(width: 15.0)),
+                              ].divide(SizedBox(width: 15.0)),
                             ),
                             Divider(
                               height: 40.0,
@@ -309,7 +314,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                               color: FlutterFlowTheme.of(context).boarderForm,
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 20.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -359,7 +364,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                       FFLocalizations.of(
                                                               context)
                                                           .getText(
-                                                        'crwnnuqi' /* Dark Mode */,
+                                                        '00if4ta7' /* Dark Mode */,
                                                       ),
                                                       style:
                                                           FlutterFlowTheme.of(
@@ -383,7 +388,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                               ),
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(width: 10.0)),
+                                                      SizedBox(width: 10.0)),
                                                 ),
                                                 Container(
                                                   width: 80.0,
@@ -398,16 +403,16 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                   ),
                                                   child: Stack(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     children: [
                                                       Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 0.95, 0.0),
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -424,7 +429,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                       ),
                                                       Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 -0.85, 0.0),
                                                         child: Container(
                                                           width: 36.0,
@@ -434,7 +439,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                             color: FlutterFlowTheme
                                                                     .of(context)
                                                                 .secondaryBackground,
-                                                            boxShadow: const [
+                                                            boxShadow: [
                                                               BoxShadow(
                                                                 blurRadius: 4.0,
                                                                 color: Color(
@@ -501,7 +506,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                       FFLocalizations.of(
                                                               context)
                                                           .getText(
-                                                        'a32n944v' /* Light Mode */,
+                                                        '10h4gixp' /* Light Mode */,
                                                       ),
                                                       style:
                                                           FlutterFlowTheme.of(
@@ -525,7 +530,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                               ),
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(width: 10.0)),
+                                                      SizedBox(width: 10.0)),
                                                 ),
                                                 Container(
                                                   width: 80.0,
@@ -540,16 +545,16 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                   ),
                                                   child: Stack(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     children: [
                                                       Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 -0.9, 0.0),
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       8.0,
                                                                       2.0,
@@ -567,7 +572,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                       ),
                                                       Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 0.9, 0.0),
                                                         child: Container(
                                                           width: 36.0,
@@ -577,7 +582,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                             color: FlutterFlowTheme
                                                                     .of(context)
                                                                 .secondaryBackground,
-                                                            boxShadow: const [
+                                                            boxShadow: [
                                                               BoxShadow(
                                                                 blurRadius: 4.0,
                                                                 color: Color(
@@ -607,7 +612,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                     ],
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 10.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -618,7 +623,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         context.pushNamed(
                                           'editProfile',
                                           extra: <String, dynamic>{
-                                            kTransitionInfoKey: const TransitionInfo(
+                                            kTransitionInfoKey: TransitionInfo(
                                               hasTransition: true,
                                               transitionType: PageTransitionType
                                                   .rightToLeft,
@@ -646,7 +651,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               Text(
                                                 FFLocalizations.of(context)
                                                     .getText(
-                                                  'fr9mgbfc' /* Edit Profile */,
+                                                  'q6imwgsn' /* Edit Profile */,
                                                 ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -668,7 +673,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                       .bodyMediumFamily),
                                                         ),
                                               ),
-                                            ].divide(const SizedBox(width: 10.0)),
+                                            ].divide(SizedBox(width: 10.0)),
                                           ),
                                           Icon(
                                             Icons.chevron_right_rounded,
@@ -681,7 +686,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 10.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -692,7 +697,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         context.pushNamed(
                                           'editPassword',
                                           extra: <String, dynamic>{
-                                            kTransitionInfoKey: const TransitionInfo(
+                                            kTransitionInfoKey: TransitionInfo(
                                               hasTransition: true,
                                               transitionType: PageTransitionType
                                                   .rightToLeft,
@@ -720,7 +725,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               Text(
                                                 FFLocalizations.of(context)
                                                     .getText(
-                                                  'bl5bsc0f' /* Change Password */,
+                                                  'n0xjnlm2' /* Change Password */,
                                                 ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -742,7 +747,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                       .bodyMediumFamily),
                                                         ),
                                               ),
-                                            ].divide(const SizedBox(width: 10.0)),
+                                            ].divide(SizedBox(width: 10.0)),
                                           ),
                                           Icon(
                                             Icons.chevron_right_rounded,
@@ -755,7 +760,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 10.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -766,7 +771,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         context.pushNamed(
                                           'pcicMap',
                                           extra: <String, dynamic>{
-                                            kTransitionInfoKey: const TransitionInfo(
+                                            kTransitionInfoKey: TransitionInfo(
                                               hasTransition: true,
                                               transitionType: PageTransitionType
                                                   .rightToLeft,
@@ -794,7 +799,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               Text(
                                                 FFLocalizations.of(context)
                                                     .getText(
-                                                  'qvfftd30' /* Download Maps */,
+                                                  '3r8ompzr' /* Download Maps */,
                                                 ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -816,7 +821,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                       .bodyMediumFamily),
                                                         ),
                                               ),
-                                            ].divide(const SizedBox(width: 10.0)),
+                                            ].divide(SizedBox(width: 10.0)),
                                           ),
                                           Icon(
                                             Icons.chevron_right_rounded,
@@ -829,7 +834,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 10.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -837,46 +842,222 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              'Sync Started',
-                                              style: TextStyle(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
+                                        if (FFAppState().ONLINE) {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                'Sync Started',
+                                                style: TextStyle(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                ),
                                               ),
+                                              duration:
+                                                  Duration(milliseconds: 4000),
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondary,
                                             ),
-                                            duration:
-                                                const Duration(milliseconds: 4000),
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondary,
-                                          ),
-                                        );
-                                        _model.syncOutput =
-                                            await actions.syncData();
-                                        ScaffoldMessenger.of(context)
-                                            .clearSnackBars();
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              _model.syncOutput!,
-                                              style: TextStyle(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
+                                          );
+                                          // Online Tasks
+                                          _model.onlineTasks =
+                                              await TasksTable().queryRows(
+                                            queryFn: (q) => q,
+                                          );
+                                          // Number Iteration
+                                          _model.iteration = 0;
+                                          _model.limit = valueOrDefault<int>(
+                                            _model.onlineTasks?.length,
+                                            0,
+                                          );
+                                          setState(() {});
+                                          while (_model.iteration! <
+                                              _model.limit!) {
+                                            await Future.delayed(const Duration(
+                                                milliseconds: 2000));
+                                            await SQLiteManager.instance
+                                                .taskInsert(
+                                              id: valueOrDefault<String>(
+                                                _model
+                                                    .onlineTasks?[
+                                                        valueOrDefault<int>(
+                                                  _model.iteration,
+                                                  0,
+                                                )]
+                                                    ?.id,
+                                                'Value',
                                               ),
+                                              taskNumber:
+                                                  valueOrDefault<String>(
+                                                _model
+                                                    .onlineTasks?[
+                                                        valueOrDefault<int>(
+                                                  _model.iteration,
+                                                  0,
+                                                )]
+                                                    ?.taskNumber,
+                                                'Value',
+                                              ),
+                                              serviceGroup:
+                                                  valueOrDefault<String>(
+                                                _model
+                                                    .onlineTasks?[
+                                                        valueOrDefault<int>(
+                                                  _model.iteration,
+                                                  0,
+                                                )]
+                                                    ?.serviceGroup,
+                                                'Value',
+                                              ),
+                                              status: valueOrDefault<String>(
+                                                _model
+                                                    .onlineTasks?[
+                                                        valueOrDefault<int>(
+                                                  _model.iteration,
+                                                  0,
+                                                )]
+                                                    ?.status,
+                                                'Value',
+                                              ),
+                                              serviceType:
+                                                  valueOrDefault<String>(
+                                                _model
+                                                    .onlineTasks?[
+                                                        valueOrDefault<int>(
+                                                  _model.iteration,
+                                                  0,
+                                                )]
+                                                    ?.serviceType,
+                                                'Value',
+                                              ),
+                                              priority: valueOrDefault<String>(
+                                                _model
+                                                    .onlineTasks?[
+                                                        valueOrDefault<int>(
+                                                  _model.iteration,
+                                                  0,
+                                                )]
+                                                    ?.priority,
+                                                'Value',
+                                              ),
+                                              assignee: valueOrDefault<String>(
+                                                _model
+                                                    .onlineTasks?[
+                                                        valueOrDefault<int>(
+                                                  _model.iteration,
+                                                  0,
+                                                )]
+                                                    ?.assignee,
+                                                'Value',
+                                              ),
+                                              dateAdded: valueOrDefault<String>(
+                                                _model
+                                                    .onlineTasks?[
+                                                        valueOrDefault<int>(
+                                                  _model.iteration,
+                                                  0,
+                                                )]
+                                                    ?.dateAdded
+                                                    ?.toString(),
+                                                'Value',
+                                              ),
+                                              dateAccess:
+                                                  valueOrDefault<String>(
+                                                _model
+                                                    .onlineTasks?[
+                                                        valueOrDefault<int>(
+                                                  _model.iteration,
+                                                  0,
+                                                )]
+                                                    ?.dateAccess
+                                                    ?.toString(),
+                                                'Value',
+                                              ),
+                                              fileId: valueOrDefault<String>(
+                                                _model
+                                                    .onlineTasks?[
+                                                        valueOrDefault<int>(
+                                                  _model.iteration,
+                                                  0,
+                                                )]
+                                                    ?.fileId,
+                                                'Value',
+                                              ),
+                                            );
+                                            ScaffoldMessenger.of(context)
+                                                .clearSnackBars();
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  'Syncing (${_model.iteration?.toString()}) -> ${valueOrDefault<String>(
+                                                    _model
+                                                        .onlineTasks?[
+                                                            _model.iteration!]
+                                                        ?.taskNumber,
+                                                    'Value',
+                                                  )}',
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                  ),
+                                                ),
+                                                duration: Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .forDispatchColor,
+                                              ),
+                                            );
+                                            // Number Iteration
+                                            _model.iteration =
+                                                _model.iteration! + 1;
+                                            setState(() {});
+                                          }
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                'Sync done',
+                                                style: GoogleFonts.getFont(
+                                                  'Roboto',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                ),
+                                              ),
+                                              duration:
+                                                  Duration(milliseconds: 4000),
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondary,
                                             ),
-                                            duration:
-                                                const Duration(milliseconds: 4000),
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondary,
-                                          ),
-                                        );
+                                          );
+
+                                          setState(() {});
+                                        } else {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                'Must be online to sync',
+                                                style: TextStyle(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                ),
+                                              ),
+                                              duration:
+                                                  Duration(milliseconds: 4000),
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondary,
+                                            ),
+                                          );
+                                        }
 
                                         setState(() {});
                                       },
@@ -898,7 +1079,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               Text(
                                                 FFLocalizations.of(context)
                                                     .getText(
-                                                  'xyhadzea' /* Sync Database */,
+                                                  'qkhyppx6' /* Sync Database */,
                                                 ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -920,7 +1101,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                       .bodyMediumFamily),
                                                         ),
                                               ),
-                                            ].divide(const SizedBox(width: 10.0)),
+                                            ].divide(SizedBox(width: 10.0)),
                                           ),
                                           Icon(
                                             Icons.chevron_right_rounded,
@@ -932,7 +1113,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                       ),
                                     ),
                                   ),
-                                ].divide(const SizedBox(height: 20.0)),
+                                ].divide(SizedBox(height: 20.0)),
                               ),
                             ),
                             Divider(
@@ -942,7 +1123,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                             ),
                             Builder(
                               builder: (context) => Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 20.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -954,14 +1135,14 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                       context: context,
                                       isGlobal: false,
                                       avoidOverflow: false,
-                                      targetAnchor: const AlignmentDirectional(
+                                      targetAnchor: AlignmentDirectional(
                                               0.0, 0.0)
                                           .resolve(Directionality.of(context)),
-                                      followerAnchor: const AlignmentDirectional(
+                                      followerAnchor: AlignmentDirectional(
                                               0.0, 0.0)
                                           .resolve(Directionality.of(context)),
                                       builder: (dialogContext) {
-                                        return const Material(
+                                        return Material(
                                           color: Colors.transparent,
                                           child: SignoutDialogWidget(),
                                         );
@@ -982,7 +1163,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           ),
                                           Text(
                                             FFLocalizations.of(context).getText(
-                                              'qi3464p6' /* Sign Out */,
+                                              'yttqc4w2' /* Sign Out */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
@@ -1005,9 +1186,9 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                               .bodyMediumFamily),
                                                 ),
                                           ),
-                                        ].divide(const SizedBox(width: 10.0)),
+                                        ].divide(SizedBox(width: 10.0)),
                                       ),
-                                    ].divide(const SizedBox(width: 10.0)),
+                                    ].divide(SizedBox(width: 10.0)),
                                   ),
                                 ),
                               ),

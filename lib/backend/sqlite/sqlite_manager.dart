@@ -342,9 +342,9 @@ class SQLiteManager {
     String? serviceType,
     String? priority,
     String? assignee,
-    String? fileId,
     String? dateAdded,
     String? dateAccess,
+    String? fileId,
   }) =>
       performTaskInsert(
         _database,
@@ -355,9 +355,9 @@ class SQLiteManager {
         serviceType: serviceType,
         priority: priority,
         assignee: assignee,
-        fileId: fileId,
         dateAdded: dateAdded,
         dateAccess: dateAccess,
+        fileId: fileId,
       );
 
   Future deleteRecords({

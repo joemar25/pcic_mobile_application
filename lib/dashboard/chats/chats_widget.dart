@@ -3,14 +3,18 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/chat_list_container/chat_list_container_widget.dart';
+import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/empty_lists/empty_lists_widget.dart';
-import '/utils/connectivity/connectivity_widget.dart';
-import '/utils/user_chats/user_chats_widget.dart';
+import '/utils/components/user_chats/user_chats_widget.dart';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'chats_model.dart';
 export 'chats_model.dart';
 
@@ -49,8 +53,8 @@ class _ChatsWidgetState extends State<ChatsWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 100.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 100.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -85,9 +89,9 @@ class _ChatsWidgetState extends State<ChatsWidget>
                     onTap: () => FocusScope.of(context).unfocus(),
                     child: Padding(
                       padding: MediaQuery.viewInsetsOf(context),
-                      child: SizedBox(
+                      child: Container(
                         height: MediaQuery.sizeOf(context).height * 0.5,
-                        child: const UserChatsWidget(),
+                        child: UserChatsWidget(),
                       ),
                     ),
                   );
@@ -123,7 +127,7 @@ class _ChatsWidgetState extends State<ChatsWidget>
                     ),
                   ],
                 ),
-              ].divide(const SizedBox(width: 10.0)),
+              ].divide(SizedBox(width: 10.0)),
             ),
           ),
           body: Container(
@@ -133,14 +137,14 @@ class _ChatsWidgetState extends State<ChatsWidget>
               color: FlutterFlowTheme.of(context).primary,
             ),
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 60.0, 0.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 60.0, 0.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -179,13 +183,13 @@ class _ChatsWidgetState extends State<ChatsWidget>
                                                       .headlineMediumFamily),
                                         ),
                                   ),
-                                ].divide(const SizedBox(width: 10.0)),
+                                ].divide(SizedBox(width: 10.0)),
                               ),
                             ),
                             wrapWithModel(
                               model: _model.connectivityModel,
                               updateCallback: () => setState(() {}),
-                              child: const ConnectivityWidget(),
+                              child: ConnectivityWidget(),
                             ),
                           ],
                         ),
@@ -195,12 +199,12 @@ class _ChatsWidgetState extends State<ChatsWidget>
                   Expanded(
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
                       child: Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).primaryBackground,
-                          borderRadius: const BorderRadius.only(
+                          borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(0.0),
                             bottomRight: Radius.circular(0.0),
                             topLeft: Radius.circular(24.0),
@@ -208,7 +212,7 @@ class _ChatsWidgetState extends State<ChatsWidget>
                           ),
                         ),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 20.0, 20.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -245,21 +249,21 @@ class _ChatsWidgetState extends State<ChatsWidget>
                               Expanded(
                                 flex: 15,
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 15.0, 0.0, 0.0),
                                   child: Container(
-                                    decoration: const BoxDecoration(),
+                                    decoration: BoxDecoration(),
                                     child: Builder(
                                       builder: (context) {
                                         final msgQ =
                                             _model.messageQuery?.toList() ?? [];
                                         if (msgQ.isEmpty) {
                                           return Center(
-                                            child: SizedBox(
+                                            child: Container(
                                               height: MediaQuery.sizeOf(context)
                                                       .height *
                                                   0.6,
-                                              child: const EmptyListsWidget(
+                                              child: EmptyListsWidget(
                                                 type: 'Messages',
                                               ),
                                             ),
@@ -267,7 +271,7 @@ class _ChatsWidgetState extends State<ChatsWidget>
                                         }
 
                                         return ListView.separated(
-                                          padding: const EdgeInsets.fromLTRB(
+                                          padding: EdgeInsets.fromLTRB(
                                             0,
                                             0,
                                             0,
@@ -277,7 +281,7 @@ class _ChatsWidgetState extends State<ChatsWidget>
                                           scrollDirection: Axis.vertical,
                                           itemCount: msgQ.length,
                                           separatorBuilder: (_, __) =>
-                                              const SizedBox(height: 20.0),
+                                              SizedBox(height: 20.0),
                                           itemBuilder: (context, msgQIndex) {
                                             final msgQItem = msgQ[msgQIndex];
                                             return wrapWithModel(

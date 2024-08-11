@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'offline_tasks_list_model.dart';
 export 'offline_tasks_list_model.dart';
 
@@ -51,7 +52,7 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: const Icon(
+            icon: Icon(
               Icons.chevron_left,
               color: Colors.white,
               size: 30.0,
@@ -73,169 +74,320 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                       FlutterFlowTheme.of(context).headlineMediumFamily),
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 2.0,
         ),
         body: SafeArea(
           top: true,
-          child: Container(
-            width: MediaQuery.sizeOf(context).width * 1.0,
-            height: MediaQuery.sizeOf(context).height * 1.0,
-            decoration: const BoxDecoration(),
-            child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  FFButtonWidget(
-                    onPressed: () async {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            'Sync Started',
-                            style: TextStyle(
-                              color: FlutterFlowTheme.of(context).primaryText,
-                            ),
-                          ),
-                          duration: const Duration(milliseconds: 4000),
-                          backgroundColor:
-                              FlutterFlowTheme.of(context).secondary,
-                        ),
-                      );
-                      // Online Tasks
-                      _model.onlineTasks = await TasksTable().queryRows(
-                        queryFn: (q) => q,
-                      );
-                      // Number Iteration
-                      _model.iteration = valueOrDefault<int>(
-                        _model.onlineTasks?.length,
-                        0,
-                      );
-                      setState(() {});
-                      while (_model.iteration! > 0) {
-                        await Future.delayed(
-                            const Duration(milliseconds: 2000));
-                        ScaffoldMessenger.of(context).clearSnackBars();
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              '${_model.iteration?.toString()} - ${valueOrDefault<String>(
-                                _model.onlineTasks?.first.taskNumber,
-                                'adsads',
-                              )}',
-                              style: TextStyle(
-                                color: FlutterFlowTheme.of(context).primaryText,
+          child: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+            child: Container(
+              width: MediaQuery.sizeOf(context).width * 1.0,
+              height: MediaQuery.sizeOf(context).height * 1.0,
+              decoration: BoxDecoration(),
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        FFButtonWidget(
+                          onPressed: () async {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Sync Started',
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                                ),
+                                duration: Duration(milliseconds: 4000),
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).secondary,
                               ),
-                            ),
-                            duration: const Duration(milliseconds: 4000),
-                            backgroundColor:
-                                FlutterFlowTheme.of(context).forDispatchColor,
-                          ),
-                        );
-                        // Number Iteration
-                        _model.iteration = _model.iteration! + -1;
-                        setState(() {});
-                      }
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            'Sync done',
-                            style: GoogleFonts.getFont(
-                              'Roboto',
-                              color: FlutterFlowTheme.of(context).primaryText,
-                            ),
-                          ),
-                          duration: const Duration(milliseconds: 4000),
-                          backgroundColor:
-                              FlutterFlowTheme.of(context).secondary,
-                        ),
-                      );
+                            );
+                            // Online Tasks
+                            _model.onlineTasks = await TasksTable().queryRows(
+                              queryFn: (q) => q,
+                            );
+                            // Number Iteration
+                            _model.limit = valueOrDefault<int>(
+                              _model.onlineTasks?.length,
+                              0,
+                            );
+                            _model.iteration = 0;
+                            setState(() {});
+                            while (_model.iteration! < _model.limit!) {
+                              await Future.delayed(
+                                  const Duration(milliseconds: 2000));
+                              await SQLiteManager.instance.taskInsert(
+                                id: valueOrDefault<String>(
+                                  _model
+                                      .onlineTasks?[valueOrDefault<int>(
+                                    _model.iteration,
+                                    0,
+                                  )]
+                                      ?.id,
+                                  'id',
+                                ),
+                                taskNumber: valueOrDefault<String>(
+                                  _model
+                                      .onlineTasks?[valueOrDefault<int>(
+                                    _model.iteration,
+                                    0,
+                                  )]
+                                      ?.taskNumber,
+                                  'task number',
+                                ),
+                                serviceGroup: valueOrDefault<String>(
+                                  _model
+                                      .onlineTasks?[valueOrDefault<int>(
+                                    _model.iteration,
+                                    0,
+                                  )]
+                                      ?.serviceGroup,
+                                  'task number',
+                                ),
+                                status: valueOrDefault<String>(
+                                  _model
+                                      .onlineTasks?[valueOrDefault<int>(
+                                    _model.iteration,
+                                    0,
+                                  )]
+                                      ?.status,
+                                  'task number',
+                                ),
+                                serviceType: valueOrDefault<String>(
+                                  _model
+                                      .onlineTasks?[valueOrDefault<int>(
+                                    _model.iteration,
+                                    0,
+                                  )]
+                                      ?.serviceType,
+                                  'task number',
+                                ),
+                                priority: valueOrDefault<String>(
+                                  _model
+                                      .onlineTasks?[valueOrDefault<int>(
+                                    _model.iteration,
+                                    0,
+                                  )]
+                                      ?.priority,
+                                  'task number',
+                                ),
+                                assignee: valueOrDefault<String>(
+                                  _model
+                                      .onlineTasks?[valueOrDefault<int>(
+                                    _model.iteration,
+                                    0,
+                                  )]
+                                      ?.assignee,
+                                  'task number',
+                                ),
+                                dateAdded: valueOrDefault<String>(
+                                  _model
+                                      .onlineTasks?[valueOrDefault<int>(
+                                    _model.iteration,
+                                    0,
+                                  )]
+                                      ?.dateAdded
+                                      ?.toString(),
+                                  'task number',
+                                ),
+                                dateAccess: valueOrDefault<String>(
+                                  _model
+                                      .onlineTasks?[valueOrDefault<int>(
+                                    _model.iteration,
+                                    0,
+                                  )]
+                                      ?.dateAccess
+                                      ?.toString(),
+                                  'task number',
+                                ),
+                                fileId: valueOrDefault<String>(
+                                  _model
+                                      .onlineTasks?[valueOrDefault<int>(
+                                    _model.iteration,
+                                    0,
+                                  )]
+                                      ?.fileId,
+                                  'task number',
+                                ),
+                              );
+                              ScaffoldMessenger.of(context).clearSnackBars();
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    '${_model.iteration?.toString()} - ${valueOrDefault<String>(
+                                      _model
+                                          .onlineTasks?[valueOrDefault<int>(
+                                        _model.iteration,
+                                        0,
+                                      )]
+                                          ?.taskNumber,
+                                      'task number',
+                                    )}',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  duration: Duration(milliseconds: 4000),
+                                  backgroundColor: FlutterFlowTheme.of(context)
+                                      .forDispatchColor,
+                                ),
+                              );
+                              // Number Iteration
+                              _model.iteration = _model.iteration! + 1;
+                              setState(() {});
+                            }
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Sync done',
+                                  style: GoogleFonts.getFont(
+                                    'Roboto',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                                ),
+                                duration: Duration(milliseconds: 4000),
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).secondary,
+                              ),
+                            );
 
-                      setState(() {});
-                    },
-                    text: FFLocalizations.of(context).getText(
-                      'o7uaesf0' /* Add Task */,
-                    ),
-                    options: FFButtonOptions(
-                      height: 40.0,
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                      iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).primary,
-                      textStyle: FlutterFlowTheme.of(context)
-                          .titleSmall
-                          .override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).titleSmallFamily,
-                            color: Colors.white,
-                            letterSpacing: 0.0,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).titleSmallFamily),
+                            setState(() {});
+                          },
+                          text: FFLocalizations.of(context).getText(
+                            'o7uaesf0' /* Add Task */,
                           ),
-                      elevation: 3.0,
-                      borderSide: const BorderSide(
-                        color: Colors.transparent,
-                        width: 1.0,
-                      ),
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                  ),
-                  FutureBuilder<List<SELECTTASKSBaseOnStatusRow>>(
-                    future: SQLiteManager.instance.sELECTTASKSBaseOnStatus(
-                      status: 'ongoing',
-                      assignee: currentUserUid,
-                    ),
-                    builder: (context, snapshot) {
-                      // Customize what your widget looks like when it's loading.
-                      if (!snapshot.hasData) {
-                        return Center(
-                          child: SizedBox(
-                            width: 100.0,
-                            height: 100.0,
-                            child: SpinKitRipple(
-                              color: FlutterFlowTheme.of(context).primary,
-                              size: 100.0,
-                            ),
-                          ),
-                        );
-                      }
-                      final listViewSELECTTASKSBaseOnStatusRowList =
-                          snapshot.data!;
-
-                      return ListView.builder(
-                        padding: EdgeInsets.zero,
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        itemCount:
-                            listViewSELECTTASKSBaseOnStatusRowList.length,
-                        itemBuilder: (context, listViewIndex) {
-                          final listViewSELECTTASKSBaseOnStatusRow =
-                              listViewSELECTTASKSBaseOnStatusRowList[
-                                  listViewIndex];
-                          return Text(
-                            valueOrDefault<String>(
-                              listViewSELECTTASKSBaseOnStatusRow.taskNumber,
-                              'sdads',
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
+                          options: FFButtonOptions(
+                            height: 40.0,
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                24.0, 0.0, 24.0, 0.0),
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).primary,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily,
+                                      .titleSmallFamily,
+                                  color: Colors.white,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily),
+                                          .titleSmallFamily),
                                 ),
+                            elevation: 3.0,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        ),
+                        Text(
+                          'i=${valueOrDefault<String>(
+                            _model.iteration?.toString(),
+                            '0',
+                          )}',
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily),
+                              ),
+                        ),
+                        Text(
+                          'n=${valueOrDefault<String>(
+                            _model.limit?.toString(),
+                            '0',
+                          )}',
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily),
+                              ),
+                        ),
+                      ],
+                    ),
+                    Expanded(
+                      child: FutureBuilder<List<SELECTTASKSBaseOnStatusRow>>(
+                        future: SQLiteManager.instance.sELECTTASKSBaseOnStatus(
+                          status: 'ongoing',
+                          assignee: currentUserUid,
+                        ),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 100.0,
+                                height: 100.0,
+                                child: SpinKitRipple(
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  size: 100.0,
+                                ),
+                              ),
+                            );
+                          }
+                          final listViewSELECTTASKSBaseOnStatusRowList =
+                              snapshot.data!;
+
+                          return ListView.separated(
+                            padding: EdgeInsets.symmetric(vertical: 3.0),
+                            shrinkWrap: true,
+                            scrollDirection: Axis.vertical,
+                            itemCount:
+                                listViewSELECTTASKSBaseOnStatusRowList.length,
+                            separatorBuilder: (_, __) => SizedBox(height: 3.0),
+                            itemBuilder: (context, listViewIndex) {
+                              final listViewSELECTTASKSBaseOnStatusRow =
+                                  listViewSELECTTASKSBaseOnStatusRowList[
+                                      listViewIndex];
+                              return Text(
+                                valueOrDefault<String>(
+                                  listViewSELECTTASKSBaseOnStatusRow.taskNumber,
+                                  'sdads',
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
+                                    ),
+                              );
+                            },
                           );
                         },
-                      );
-                    },
-                  ),
-                ],
+                      ),
+                    ),
+                  ]
+                      .divide(SizedBox(height: 20.0))
+                      .around(SizedBox(height: 20.0)),
+                ),
               ),
             ),
           ),
