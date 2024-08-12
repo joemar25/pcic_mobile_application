@@ -23,4 +23,3 @@ export 'sync_data.dart' show syncData;
 export 'edit_password.dart' show editPassword;
 export 'check_password_strength.dart' show checkPasswordStrength;
 export 'compare_passwords.dart' show comparePasswords;
-export 'update_inspector_name.dart' show updateInspectorName;

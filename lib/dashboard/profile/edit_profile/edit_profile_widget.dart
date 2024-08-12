@@ -365,10 +365,6 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                               );
                               _model.savedLocalProfile =
                                   await actions.getTheSavedLocalProfile();
-                              await actions.updateInspectorName(
-                                editProfileUsersRow!.id,
-                                editProfileUsersRow.inspectorName,
-                              );
                               // success profile
 
                               context.pushNamed(
