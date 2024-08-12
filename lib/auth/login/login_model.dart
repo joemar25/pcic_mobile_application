@@ -10,7 +10,7 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
 
   int? limit = 0;
 
-  bool syncing = false;
+  bool syncing = true;
 
   ///  State fields for stateful widgets in this page.
 

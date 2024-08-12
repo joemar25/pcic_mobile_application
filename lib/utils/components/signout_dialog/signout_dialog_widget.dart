@@ -1,3 +1,4 @@
+import '/auth/supabase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -160,7 +161,21 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                 ),
                 FFButtonWidget(
                   onPressed: () async {
-                    Navigator.pop(context);
+                    GoRouter.of(context).prepareAuthEvent();
+                    await authManager.signOut();
+                    GoRouter.of(context).clearRedirectLocation();
+
+                    context.pushNamedAuth(
+                      'login',
+                      context.mounted,
+                      extra: <String, dynamic>{
+                        kTransitionInfoKey: const TransitionInfo(
+                          hasTransition: true,
+                          transitionType: PageTransitionType.fade,
+                          duration: Duration(milliseconds: 200),
+                        ),
+                      },
+                    );
                   },
                   text: FFLocalizations.of(context).getText(
                     'quqrp02y' /* Sign Out */,
