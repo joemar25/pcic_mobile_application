@@ -103,8 +103,8 @@ class _LoginWidgetState extends State<LoginWidget>
               color: FlutterFlowTheme.of(context).primary,
             ),
             child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Expanded(
                   child: Padding(
@@ -519,6 +519,8 @@ class _LoginWidgetState extends State<LoginWidget>
                                           Function() navigate = () {};
                                           if (await getPermissionStatus(
                                               locationPermission)) {
+                                            _model.syncing = true;
+                                            setState(() {});
                                             GoRouter.of(context)
                                                 .prepareAuthEvent();
 
@@ -598,6 +600,8 @@ class _LoginWidgetState extends State<LoginWidget>
                                                 );
                                               }
                                             }
+                                            _model.syncing = false;
+                                            setState(() {});
                                           } else {
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(

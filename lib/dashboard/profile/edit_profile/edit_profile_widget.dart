@@ -269,6 +269,12 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                         TextFormField(
                           controller: _model.displayNameTextController,
                           focusNode: _model.displayNameFocusNode,
+                          onFieldSubmitted: (_) async {
+                            _model.inspectorName =
+                                await actions.getTheSavedLocalProfile();
+
+                            setState(() {});
+                          },
                           autofocus: false,
                           obscureText: false,
                           decoration: InputDecoration(
