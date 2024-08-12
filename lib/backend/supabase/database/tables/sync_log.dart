@@ -9,7 +9,7 @@ class SyncLogTable extends SupabaseTable<SyncLogRow> {
 }
 
 class SyncLogRow extends SupabaseDataRow {
-  SyncLogRow(Map<String, dynamic> data) : super(data);
+  SyncLogRow(super.data);
 
   @override
   SupabaseTable get table => SyncLogTable();

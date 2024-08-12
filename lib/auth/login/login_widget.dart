@@ -1,20 +1,17 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/backend/sqlite/sqlite_manager.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
 import '/flutter_flow/permissions_util.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'login_model.dart';
 export 'login_model.dart';
 
@@ -64,8 +61,8 @@ class _LoginWidgetState extends State<LoginWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, -100.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, -100.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -89,8 +86,8 @@ class _LoginWidgetState extends State<LoginWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 100.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 100.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -126,10 +123,10 @@ class _LoginWidgetState extends State<LoginWidget>
                 Expanded(
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(40.0, 50.0, 40.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(40.0, 50.0, 40.0, 0.0),
                     child: Container(
                       width: double.infinity,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Color(0x00FFFFFF),
                       ),
                       child: Column(
@@ -140,7 +137,7 @@ class _LoginWidgetState extends State<LoginWidget>
                           Container(
                             width: 200.0,
                             height: 200.0,
-                            decoration: BoxDecoration(),
+                            decoration: const BoxDecoration(),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10.0),
                               child: SvgPicture.asset(
@@ -152,7 +149,7 @@ class _LoginWidgetState extends State<LoginWidget>
                           ),
                           Flexible(
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -193,14 +190,14 @@ class _LoginWidgetState extends State<LoginWidget>
                               color: FlutterFlowTheme.of(context).primary,
                               size: 25.0,
                             ),
-                            offIcon: Icon(
+                            offIcon: const Icon(
                               Icons.sync,
                               color: Colors.white,
                               size: 25.0,
                             ),
                           ).animateOnPageLoad(
                               animationsMap['toggleIconOnPageLoadAnimation']!),
-                        ].addToEnd(SizedBox(height: 20.0)),
+                        ].addToEnd(const SizedBox(height: 20.0)),
                       ).animateOnPageLoad(
                           animationsMap['columnOnPageLoadAnimation']!),
                     ).animateOnPageLoad(
@@ -212,7 +209,7 @@ class _LoginWidgetState extends State<LoginWidget>
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).primaryBackground,
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(0.0),
                         bottomRight: Radius.circular(0.0),
                         topLeft: Radius.circular(24.0),
@@ -220,7 +217,7 @@ class _LoginWidgetState extends State<LoginWidget>
                       ),
                     ),
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
                           40.0, 40.0, 40.0, 40.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
@@ -253,7 +250,7 @@ class _LoginWidgetState extends State<LoginWidget>
                             ],
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 5.0, 0.0, 40.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -281,8 +278,8 @@ class _LoginWidgetState extends State<LoginWidget>
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(0.0, 0.0),
-                            child: Container(
+                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            child: SizedBox(
                               width: double.infinity,
                               child: Form(
                                 key: _model.formKey,
@@ -293,7 +290,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                   crossAxisAlignment:
                                       CrossAxisAlignment.stretch,
                                   children: [
-                                    Container(
+                                    SizedBox(
                                       width: double.infinity,
                                       child: TextFormField(
                                         controller:
@@ -389,7 +386,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                               FlutterFlowTheme.of(context)
                                                   .secondaryBackground,
                                           contentPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   15.0, 10.0, 15.0, 10.0),
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -415,7 +412,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                             .asValidator(context),
                                       ),
                                     ),
-                                    Container(
+                                    SizedBox(
                                       width: double.infinity,
                                       child: TextFormField(
                                         controller:
@@ -513,7 +510,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                               FlutterFlowTheme.of(context)
                                                   .secondaryBackground,
                                           contentPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   15.0, 10.0, 15.0, 10.0),
                                           suffixIcon: InkWell(
                                             onTap: () => setState(
@@ -529,7 +526,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                   ? Icons.visibility_outlined
                                                   : Icons
                                                       .visibility_off_outlined,
-                                              color: Color(0xFF757575),
+                                              color: const Color(0xFF757575),
                                               size: 24.0,
                                             ),
                                           ),
@@ -558,7 +555,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                       ),
                                     ),
                                     Align(
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
                                           if (await getPermissionStatus(
@@ -589,7 +586,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                         .primaryText,
                                                   ),
                                                 ),
-                                                duration: Duration(
+                                                duration: const Duration(
                                                     milliseconds: 4000),
                                                 backgroundColor:
                                                     FlutterFlowTheme.of(context)
@@ -622,30 +619,180 @@ class _LoginWidgetState extends State<LoginWidget>
                                                   _model
                                                       .onlineTasks?[
                                                           _model.iteration!]
-                                                      ?.id,
+                                                      .id,
                                                 ),
                                               );
-                                              ScaffoldMessenger.of(context)
-                                                  .clearSnackBars();
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(
-                                                SnackBar(
-                                                  content: Text(
-                                                    '${_model.iteration?.toString()} - Task ID: (${_model.onlineTasks?[_model.iteration!]?.id}) PPIR Task ID: ( ${_model.ppirOutput?.first?.taskId})',
-                                                    style: TextStyle(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                    ),
-                                                  ),
-                                                  duration: Duration(
-                                                      milliseconds: 4000),
-                                                  backgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .forDispatchColor,
-                                                ),
+                                              await SQLiteManager.instance
+                                                  .insertOfflineTask(
+                                                id: _model
+                                                    .onlineTasks?[
+                                                        _model.iteration!]
+                                                    .id,
+                                                taskNumber: _model
+                                                    .onlineTasks?[
+                                                        _model.iteration!]
+                                                    .taskNumber,
+                                                serviceGroup: _model
+                                                    .onlineTasks?[
+                                                        _model.iteration!]
+                                                    .serviceGroup,
+                                                status: _model
+                                                    .onlineTasks?[
+                                                        _model.iteration!]
+                                                    .status,
+                                                serviceType: _model
+                                                    .onlineTasks?[
+                                                        _model.iteration!]
+                                                    .serviceType,
+                                                priority: _model
+                                                    .onlineTasks?[
+                                                        _model.iteration!]
+                                                    .priority,
+                                                assignee: _model
+                                                    .onlineTasks?[
+                                                        _model.iteration!]
+                                                    .assignee,
+                                                dateAdded: _model
+                                                    .onlineTasks?[
+                                                        _model.iteration!]
+                                                    .dateAdded
+                                                    ?.toString(),
+                                                dateAccess: _model
+                                                    .onlineTasks?[
+                                                        _model.iteration!]
+                                                    .dateAccess
+                                                    ?.toString(),
+                                                fileId: _model
+                                                    .onlineTasks?[
+                                                        _model.iteration!]
+                                                    .fileId,
+                                              );
+                                              await SQLiteManager.instance
+                                                  .insertOfflinePPIRForm(
+                                                taskId: _model
+                                                    .onlineTasks?[
+                                                        _model.iteration!]
+                                                    .id,
+                                                ppirAssignmentId: _model
+                                                    .ppirOutput
+                                                    ?.first
+                                                    .ppirAssignmentid,
+                                                gpx: _model
+                                                    .ppirOutput?.first.gpx,
+                                                ppirInsuranceId: _model
+                                                    .ppirOutput
+                                                    ?.first
+                                                    .ppirInsuranceid,
+                                                ppirFarmerName: _model
+                                                    .ppirOutput
+                                                    ?.first
+                                                    .ppirFarmername,
+                                                ppirAddress: _model.ppirOutput
+                                                    ?.first.ppirAddress,
+                                                ppirFarmerType: _model
+                                                    .ppirOutput
+                                                    ?.first
+                                                    .ppirFarmertype,
+                                                ppirMobileNo: _model.ppirOutput
+                                                    ?.first.ppirMobileno,
+                                                ppirGroupName: _model.ppirOutput
+                                                    ?.first.ppirGroupname,
+                                                ppirGroupAddress: _model
+                                                    .ppirOutput
+                                                    ?.first
+                                                    .ppirGroupaddress,
+                                                ppirLenderName: _model
+                                                    .ppirOutput
+                                                    ?.first
+                                                    .ppirLendername,
+                                                ppirLenderAddress: _model
+                                                    .ppirOutput
+                                                    ?.first
+                                                    .ppirAssignmentid,
+                                                ppirCICNo: _model.ppirOutput
+                                                    ?.first.ppirCicno,
+                                                ppirFarmLoc: _model.ppirOutput
+                                                    ?.first.ppirFarmloc,
+                                                ppirNorth: _model.ppirOutput
+                                                    ?.first.ppirNorth,
+                                                ppirSouth: _model.ppirOutput
+                                                    ?.first.ppirSouth,
+                                                ppirEast: _model.ppirOutput
+                                                    ?.first.ppirEast,
+                                                ppirWest: _model.ppirOutput
+                                                    ?.first.ppirWest,
+                                                ppirAtt1: _model.ppirOutput
+                                                    ?.first.ppirAtt1,
+                                                ppirAtt2: _model.ppirOutput
+                                                    ?.first.ppirAtt2,
+                                                ppirAtt3: _model.ppirOutput
+                                                    ?.first.ppirAtt3,
+                                                ppirAtt4: _model.ppirOutput
+                                                    ?.first.ppirAtt4,
+                                                ppirAreaAci: _model.ppirOutput
+                                                    ?.first.ppirAreaAci,
+                                                ppirAreaAct: _model.ppirOutput
+                                                    ?.first.ppirAreaAct,
+                                                ppirDopdsAci: _model.ppirOutput
+                                                    ?.first.ppirDopdsAci,
+                                                ppirDopdsAct: _model.ppirOutput
+                                                    ?.first.ppirDopdsAct,
+                                                ppirDoptpAci: _model.ppirOutput
+                                                    ?.first.ppirDoptpAci,
+                                                ppirDoptpAct: _model.ppirOutput
+                                                    ?.first.ppirDoptpAct,
+                                                ppirSvpAci: _model.ppirOutput
+                                                    ?.first.ppirSvpAci,
+                                                ppirSvpAct: _model.ppirOutput
+                                                    ?.first.ppirSvpAct,
+                                                ppirVariety: _model.ppirOutput
+                                                    ?.first.ppirVariety,
+                                                ppirStageCrop: _model.ppirOutput
+                                                    ?.first.ppirStagecrop,
+                                                ppirRemarks: _model.ppirOutput
+                                                    ?.first.ppirRemarks,
+                                                ppirNameInsured: _model
+                                                    .ppirOutput
+                                                    ?.first
+                                                    .ppirNameInsured,
+                                                ppirNameIUIA: _model.ppirOutput
+                                                    ?.first.ppirNameIuia,
+                                                ppirSigInsured: _model
+                                                    .ppirOutput
+                                                    ?.first
+                                                    .ppirSigInsured,
+                                                ppirSigIUIA: _model.ppirOutput
+                                                    ?.first.ppirSigIuia,
+                                                trackLastCoord: _model
+                                                    .ppirOutput
+                                                    ?.first
+                                                    .trackLastCoord,
+                                                trackDateTime: _model.ppirOutput
+                                                    ?.first.trackDateTime,
+                                                trackTotalArea: _model
+                                                    .ppirOutput
+                                                    ?.first
+                                                    .trackTotalArea,
+                                                trackTotalDistance: _model
+                                                    .ppirOutput
+                                                    ?.first
+                                                    .trackTotalDistance,
+                                                createdAt: _model.ppirOutput
+                                                    ?.first.createdAt
+                                                    ?.toString(),
+                                                updatedAt: _model.ppirOutput
+                                                    ?.first.updatedAt
+                                                    ?.toString(),
+                                                syncStatus: _model.ppirOutput
+                                                    ?.first.syncStatus,
+                                                lastSyncedAt: _model.ppirOutput
+                                                    ?.first.lastSyncedAt
+                                                    ?.toString(),
+                                                localId: _model
+                                                    .ppirOutput?.first.localId,
+                                                isDirty: _model
+                                                    .ppirOutput?.first.isDirty
+                                                    ?.toString(),
                                               );
                                               // Number Iteration
                                               _model.iteration =
@@ -664,7 +811,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                         .primaryText,
                                                   ),
                                                 ),
-                                                duration: Duration(
+                                                duration: const Duration(
                                                     milliseconds: 4000),
                                                 backgroundColor:
                                                     FlutterFlowTheme.of(context)
@@ -677,7 +824,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                               context.mounted,
                                               extra: <String, dynamic>{
                                                 kTransitionInfoKey:
-                                                    TransitionInfo(
+                                                    const TransitionInfo(
                                                   hasTransition: true,
                                                   transitionType:
                                                       PageTransitionType
@@ -699,7 +846,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                         .primaryText,
                                                   ),
                                                 ),
-                                                duration: Duration(
+                                                duration: const Duration(
                                                     milliseconds: 4000),
                                                 backgroundColor:
                                                     FlutterFlowTheme.of(context)
@@ -718,10 +865,10 @@ class _LoginWidgetState extends State<LoginWidget>
                                           width: double.infinity,
                                           height: 50.0,
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   24.0, 0.0, 24.0, 0.0),
                                           iconPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
@@ -743,7 +890,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                             .titleSmallFamily),
                                               ),
                                           elevation: 0.0,
-                                          borderSide: BorderSide(
+                                          borderSide: const BorderSide(
                                             color: Colors.transparent,
                                             width: 1.0,
                                           ),
@@ -760,7 +907,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                         children: [
                                           Align(
                                             alignment:
-                                                AlignmentDirectional(0.0, 0.0),
+                                                const AlignmentDirectional(0.0, 0.0),
                                             child: InkWell(
                                               splashColor: Colors.transparent,
                                               focusColor: Colors.transparent,
@@ -772,7 +919,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                   'forgotPassword',
                                                   extra: <String, dynamic>{
                                                     kTransitionInfoKey:
-                                                        TransitionInfo(
+                                                        const TransitionInfo(
                                                       hasTransition: true,
                                                       transitionType:
                                                           PageTransitionType
@@ -814,8 +961,8 @@ class _LoginWidgetState extends State<LoginWidget>
                                         ],
                                       ),
                                   ]
-                                      .divide(SizedBox(height: 20.0))
-                                      .around(SizedBox(height: 20.0)),
+                                      .divide(const SizedBox(height: 20.0))
+                                      .around(const SizedBox(height: 20.0)),
                                 ),
                               ),
                             ),
