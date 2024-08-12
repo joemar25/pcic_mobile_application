@@ -4,8 +4,10 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/signout_dialog/signout_dialog_widget.dart';
+import 'dart:math';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_dialog/aligned_dialog.dart';
@@ -22,7 +24,7 @@ class ProfileWidget extends StatefulWidget {
   const ProfileWidget({
     super.key,
     String? name,
-  }) : name = name ?? '[name]';
+  }) : this.name = name ?? '[name]';
 
   final String name;
 
@@ -68,8 +70,8 @@ class _ProfileWidgetState extends State<ProfileWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 100.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 100.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -99,14 +101,14 @@ class _ProfileWidgetState extends State<ProfileWidget>
             color: FlutterFlowTheme.of(context).primary,
           ),
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 60.0, 0.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 60.0, 0.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
+                      EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -143,13 +145,13 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                     .headlineMediumFamily),
                                       ),
                                 ),
-                              ].divide(const SizedBox(width: 10.0)),
+                              ].divide(SizedBox(width: 10.0)),
                             ),
                           ),
                           wrapWithModel(
                             model: _model.connectivityModel,
                             updateCallback: () => setState(() {}),
-                            child: const ConnectivityWidget(),
+                            child: ConnectivityWidget(),
                           ),
                         ],
                       ),
@@ -159,12 +161,12 @@ class _ProfileWidgetState extends State<ProfileWidget>
                 Expanded(
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
                     child: Container(
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).primaryBackground,
-                        borderRadius: const BorderRadius.only(
+                        borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(0.0),
                           bottomRight: Radius.circular(0.0),
                           topLeft: Radius.circular(24.0),
@@ -172,7 +174,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                         ),
                       ),
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 20.0, 20.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -191,7 +193,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                     context.pushNamed(
                                       'editProfile',
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
+                                        kTransitionInfoKey: TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.scale,
@@ -208,7 +210,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(5.0),
+                                      padding: EdgeInsets.all(5.0),
                                       child: ClipRRect(
                                         borderRadius:
                                             BorderRadius.circular(6.0),
@@ -234,7 +236,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         children: [
                                           FutureBuilder<List<UsersRow>>(
                                             future: FFAppState().appLevelName(
-                                              uniqueQueryKey: widget.name,
+                                              uniqueQueryKey: widget!.name,
                                               requestFn: () =>
                                                   UsersTable().querySingleRow(
                                                 queryFn: (q) => q.eq(
@@ -288,13 +290,13 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                             ? _model
                                                                 .onlineUserProfile
                                                                 ?.first
-                                                                .inspectorName
+                                                                ?.inspectorName
                                                             : valueOrDefault<
                                                                 String>(
                                                                 _model
                                                                     .offlineSelectUserProfile
                                                                     ?.first
-                                                                    .inspectorName,
+                                                                    ?.inspectorName,
                                                                 'Inspector Name',
                                                               )),
                                                     'Agent',
@@ -331,12 +333,12 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               valueOrDefault<String>(
                                                 FFAppState().ONLINE
                                                     ? _model.onlineUserProfile
-                                                        ?.first.email
+                                                        ?.first?.email
                                                     : valueOrDefault<String>(
                                                         _model
                                                             .offlineSelectUserProfile
                                                             ?.first
-                                                            .email,
+                                                            ?.email,
                                                         'Inspector Name',
                                                       ),
                                                 'agent@yahoo.com',
@@ -366,7 +368,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                     ],
                                   ),
                                 ),
-                              ].divide(const SizedBox(width: 15.0)),
+                              ].divide(SizedBox(width: 15.0)),
                             ),
                             Divider(
                               height: 40.0,
@@ -374,7 +376,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                               color: FlutterFlowTheme.of(context).boarderForm,
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 20.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -448,7 +450,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                               ),
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(width: 10.0)),
+                                                      SizedBox(width: 10.0)),
                                                 ),
                                                 Container(
                                                   width: 80.0,
@@ -463,16 +465,16 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                   ),
                                                   child: Stack(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     children: [
                                                       Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 0.95, 0.0),
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -489,7 +491,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                       ),
                                                       Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 -0.85, 0.0),
                                                         child: Container(
                                                           width: 36.0,
@@ -499,7 +501,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                             color: FlutterFlowTheme
                                                                     .of(context)
                                                                 .secondaryBackground,
-                                                            boxShadow: const [
+                                                            boxShadow: [
                                                               BoxShadow(
                                                                 blurRadius: 4.0,
                                                                 color: Color(
@@ -590,7 +592,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                               ),
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(width: 10.0)),
+                                                      SizedBox(width: 10.0)),
                                                 ),
                                                 Container(
                                                   width: 80.0,
@@ -605,16 +607,16 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                   ),
                                                   child: Stack(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     children: [
                                                       Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 -0.9, 0.0),
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       8.0,
                                                                       2.0,
@@ -632,7 +634,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                       ),
                                                       Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 0.9, 0.0),
                                                         child: Container(
                                                           width: 36.0,
@@ -642,7 +644,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                             color: FlutterFlowTheme
                                                                     .of(context)
                                                                 .secondaryBackground,
-                                                            boxShadow: const [
+                                                            boxShadow: [
                                                               BoxShadow(
                                                                 blurRadius: 4.0,
                                                                 color: Color(
@@ -672,7 +674,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                     ],
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 10.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -683,7 +685,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         context.pushNamed(
                                           'editProfile',
                                           extra: <String, dynamic>{
-                                            kTransitionInfoKey: const TransitionInfo(
+                                            kTransitionInfoKey: TransitionInfo(
                                               hasTransition: true,
                                               transitionType: PageTransitionType
                                                   .rightToLeft,
@@ -733,7 +735,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                       .bodyMediumFamily),
                                                         ),
                                               ),
-                                            ].divide(const SizedBox(width: 10.0)),
+                                            ].divide(SizedBox(width: 10.0)),
                                           ),
                                           Icon(
                                             Icons.chevron_right_rounded,
@@ -746,7 +748,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 10.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -757,7 +759,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         context.pushNamed(
                                           'editPassword',
                                           extra: <String, dynamic>{
-                                            kTransitionInfoKey: const TransitionInfo(
+                                            kTransitionInfoKey: TransitionInfo(
                                               hasTransition: true,
                                               transitionType: PageTransitionType
                                                   .rightToLeft,
@@ -807,7 +809,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                       .bodyMediumFamily),
                                                         ),
                                               ),
-                                            ].divide(const SizedBox(width: 10.0)),
+                                            ].divide(SizedBox(width: 10.0)),
                                           ),
                                           Icon(
                                             Icons.chevron_right_rounded,
@@ -820,7 +822,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 10.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -831,7 +833,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         context.pushNamed(
                                           'pcicMap',
                                           extra: <String, dynamic>{
-                                            kTransitionInfoKey: const TransitionInfo(
+                                            kTransitionInfoKey: TransitionInfo(
                                               hasTransition: true,
                                               transitionType: PageTransitionType
                                                   .rightToLeft,
@@ -881,7 +883,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                       .bodyMediumFamily),
                                                         ),
                                               ),
-                                            ].divide(const SizedBox(width: 10.0)),
+                                            ].divide(SizedBox(width: 10.0)),
                                           ),
                                           Icon(
                                             Icons.chevron_right_rounded,
@@ -894,7 +896,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 10.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -915,7 +917,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                 ),
                                               ),
                                               duration:
-                                                  const Duration(milliseconds: 4000),
+                                                  Duration(milliseconds: 4000),
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
                                                       .secondary,
@@ -946,7 +948,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                   _model.iteration,
                                                   0,
                                                 )]
-                                                    .id,
+                                                    ?.id,
                                                 'Value',
                                               ),
                                               taskNumber:
@@ -957,7 +959,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                   _model.iteration,
                                                   0,
                                                 )]
-                                                    .taskNumber,
+                                                    ?.taskNumber,
                                                 'Value',
                                               ),
                                               serviceGroup:
@@ -968,7 +970,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                   _model.iteration,
                                                   0,
                                                 )]
-                                                    .serviceGroup,
+                                                    ?.serviceGroup,
                                                 'Value',
                                               ),
                                               status: valueOrDefault<String>(
@@ -978,7 +980,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                   _model.iteration,
                                                   0,
                                                 )]
-                                                    .status,
+                                                    ?.status,
                                                 'Value',
                                               ),
                                               serviceType:
@@ -989,7 +991,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                   _model.iteration,
                                                   0,
                                                 )]
-                                                    .serviceType,
+                                                    ?.serviceType,
                                                 'Value',
                                               ),
                                               priority: valueOrDefault<String>(
@@ -999,7 +1001,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                   _model.iteration,
                                                   0,
                                                 )]
-                                                    .priority,
+                                                    ?.priority,
                                                 'Value',
                                               ),
                                               assignee: valueOrDefault<String>(
@@ -1009,7 +1011,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                   _model.iteration,
                                                   0,
                                                 )]
-                                                    .assignee,
+                                                    ?.assignee,
                                                 'Value',
                                               ),
                                               dateAdded: valueOrDefault<String>(
@@ -1019,7 +1021,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                   _model.iteration,
                                                   0,
                                                 )]
-                                                    .dateAdded
+                                                    ?.dateAdded
                                                     ?.toString(),
                                                 'Value',
                                               ),
@@ -1031,7 +1033,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                   _model.iteration,
                                                   0,
                                                 )]
-                                                    .dateAccess
+                                                    ?.dateAccess
                                                     ?.toString(),
                                                 'Value',
                                               ),
@@ -1042,7 +1044,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                   _model.iteration,
                                                   0,
                                                 )]
-                                                    .fileId,
+                                                    ?.fileId,
                                                 'Value',
                                               ),
                                             );
@@ -1056,7 +1058,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                     _model
                                                         .onlineTasks?[
                                                             _model.iteration!]
-                                                        .taskNumber,
+                                                        ?.taskNumber,
                                                     'Value',
                                                   )}',
                                                   style: TextStyle(
@@ -1065,7 +1067,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                         .primaryText,
                                                   ),
                                                 ),
-                                                duration: const Duration(
+                                                duration: Duration(
                                                     milliseconds: 4000),
                                                 backgroundColor:
                                                     FlutterFlowTheme.of(context)
@@ -1090,7 +1092,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                 ),
                                               ),
                                               duration:
-                                                  const Duration(milliseconds: 4000),
+                                                  Duration(milliseconds: 4000),
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
                                                       .secondary,
@@ -1111,7 +1113,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                 ),
                                               ),
                                               duration:
-                                                  const Duration(milliseconds: 4000),
+                                                  Duration(milliseconds: 4000),
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
                                                       .secondary,
@@ -1161,7 +1163,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                       .bodyMediumFamily),
                                                         ),
                                               ),
-                                            ].divide(const SizedBox(width: 10.0)),
+                                            ].divide(SizedBox(width: 10.0)),
                                           ),
                                           Icon(
                                             Icons.chevron_right_rounded,
@@ -1173,7 +1175,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                       ),
                                     ),
                                   ),
-                                ].divide(const SizedBox(height: 20.0)),
+                                ].divide(SizedBox(height: 20.0)),
                               ),
                             ),
                             Divider(
@@ -1183,7 +1185,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                             ),
                             Builder(
                               builder: (context) => Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 20.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -1195,14 +1197,14 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                       context: context,
                                       isGlobal: false,
                                       avoidOverflow: false,
-                                      targetAnchor: const AlignmentDirectional(
+                                      targetAnchor: AlignmentDirectional(
                                               0.0, 0.0)
                                           .resolve(Directionality.of(context)),
-                                      followerAnchor: const AlignmentDirectional(
+                                      followerAnchor: AlignmentDirectional(
                                               0.0, 0.0)
                                           .resolve(Directionality.of(context)),
                                       builder: (dialogContext) {
-                                        return const Material(
+                                        return Material(
                                           color: Colors.transparent,
                                           child: SignoutDialogWidget(),
                                         );
@@ -1246,9 +1248,9 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                               .bodyMediumFamily),
                                                 ),
                                           ),
-                                        ].divide(const SizedBox(width: 10.0)),
+                                        ].divide(SizedBox(width: 10.0)),
                                       ),
-                                    ].divide(const SizedBox(width: 10.0)),
+                                    ].divide(SizedBox(width: 10.0)),
                                   ),
                                 ),
                               ),

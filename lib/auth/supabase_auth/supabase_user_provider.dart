@@ -8,7 +8,6 @@ export '../base_auth_user_provider.dart';
 class PCICMobileAppSupabaseUser extends BaseAuthUser {
   PCICMobileAppSupabaseUser(this.user);
   User? user;
-  @override
   bool get loggedIn => user != null;
 
   @override
@@ -60,7 +59,7 @@ class PCICMobileAppSupabaseUser extends BaseAuthUser {
 Stream<BaseAuthUser> pCICMobileAppSupabaseUserStream() {
   final supabaseAuthStream = SupaFlow.client.auth.onAuthStateChange.debounce(
       (authState) => authState.event == AuthChangeEvent.tokenRefreshed
-          ? TimerStream(authState, const Duration(seconds: 1))
+          ? TimerStream(authState, Duration(seconds: 1))
           : Stream.value(authState));
   return (!loggedIn
           ? Stream<AuthState?>.value(null).concatWith([supabaseAuthStream])

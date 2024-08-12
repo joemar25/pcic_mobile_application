@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class ToggleIcon extends StatelessWidget {
   const ToggleIcon({
-    super.key,
+    Key? key,
     required this.value,
     required this.onPressed,
     required this.onIcon,
     required this.offIcon,
-  });
+  }) : super(key: key);
 
   final bool value;
   final Function() onPressed;

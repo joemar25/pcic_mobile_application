@@ -14,13 +14,13 @@ Future<List<SELECTUSERSInSameRegionRow>> performSELECTUSERSInSameRegion(
   String? regionId,
 }) {
   final query = '''
-SELECT * FROM users WHERE region_id='$regionId'
+SELECT * FROM users WHERE region_id='${regionId}'
 ''';
   return _readQuery(database, query, (d) => SELECTUSERSInSameRegionRow(d));
 }
 
 class SELECTUSERSInSameRegionRow extends SqliteRow {
-  SELECTUSERSInSameRegionRow(super.data);
+  SELECTUSERSInSameRegionRow(Map<String, dynamic> data) : super(data);
 
   String? get id => data['id'] as String?;
   String? get role => data['role'] as String?;
@@ -42,14 +42,14 @@ class SELECTUSERSInSameRegionRow extends SqliteRow {
 Future<List<SelectSeedsRow>> performSelectSeeds(
   Database database,
 ) {
-  const query = '''
+  final query = '''
 SELECT * FROM seeds
 ''';
   return _readQuery(database, query, (d) => SelectSeedsRow(d));
 }
 
 class SelectSeedsRow extends SqliteRow {
-  SelectSeedsRow(super.data);
+  SelectSeedsRow(Map<String, dynamic> data) : super(data);
 
   String? get id => data['id'] as String?;
   String? get seed => data['seed'] as String?;
@@ -68,13 +68,13 @@ Future<List<SelectPpirFormsRow>> performSelectPpirForms(
   String? taskId,
 }) {
   final query = '''
-SELECT * FROM ppir_forms WHERE task_id='$taskId'
+SELECT * FROM ppir_forms WHERE task_id='${taskId}'
 ''';
   return _readQuery(database, query, (d) => SelectPpirFormsRow(d));
 }
 
 class SelectPpirFormsRow extends SqliteRow {
-  SelectPpirFormsRow(super.data);
+  SelectPpirFormsRow(Map<String, dynamic> data) : super(data);
 
   String? get taskId => data['task_id'] as String?;
   String? get ppirAssignmentid => data['ppir_assignmentid'] as String?;
@@ -130,14 +130,14 @@ class SelectPpirFormsRow extends SqliteRow {
 Future<List<SelectMessagesRow>> performSelectMessages(
   Database database,
 ) {
-  const query = '''
+  final query = '''
 SELECT * FROM messages
 ''';
   return _readQuery(database, query, (d) => SelectMessagesRow(d));
 }
 
 class SelectMessagesRow extends SqliteRow {
-  SelectMessagesRow(super.data);
+  SelectMessagesRow(Map<String, dynamic> data) : super(data);
 
   String? get id => data['id'] as String?;
   String? get chatId => data['chat_id'] as String?;
@@ -159,14 +159,14 @@ class SelectMessagesRow extends SqliteRow {
 Future<List<SelectSyncLogsRow>> performSelectSyncLogs(
   Database database,
 ) {
-  const query = '''
+  final query = '''
 SELECT * FROM sync_log
 ''';
   return _readQuery(database, query, (d) => SelectSyncLogsRow(d));
 }
 
 class SelectSyncLogsRow extends SqliteRow {
-  SelectSyncLogsRow(super.data);
+  SelectSyncLogsRow(Map<String, dynamic> data) : super(data);
 
   String? get id => data['id'] as String?;
   DateTime? get syncStartTime => data['sync_start_time'] as DateTime?;
@@ -183,14 +183,14 @@ class SelectSyncLogsRow extends SqliteRow {
 Future<List<SelectAttemptsRow>> performSelectAttempts(
   Database database,
 ) {
-  const query = '''
+  final query = '''
 SELECT * FROM attempts
 ''';
   return _readQuery(database, query, (d) => SelectAttemptsRow(d));
 }
 
 class SelectAttemptsRow extends SqliteRow {
-  SelectAttemptsRow(super.data);
+  SelectAttemptsRow(Map<String, dynamic> data) : super(data);
 
   String? get id => data['id'] as String?;
   String? get taskId => data['task_id'] as String?;
@@ -215,14 +215,14 @@ Future<List<SelectProfileRow>> performSelectProfile(
   String? email,
 }) {
   final query = '''
-SELECT * FROM users WHERE email='$email'
+SELECT * FROM users WHERE email='${email}'
 
 ''';
   return _readQuery(database, query, (d) => SelectProfileRow(d));
 }
 
 class SelectProfileRow extends SqliteRow {
-  SelectProfileRow(super.data);
+  SelectProfileRow(Map<String, dynamic> data) : super(data);
 
   String? get id => data['id'] as String?;
   String? get role => data['role'] as String?;
@@ -244,14 +244,14 @@ class SelectProfileRow extends SqliteRow {
 Future<List<GetLastSyncTimestampRow>> performGetLastSyncTimestamp(
   Database database,
 ) {
-  const query = '''
+  final query = '''
 SELECT last_sync_timestamp FROM sync_status WHERE table_name = ?;
 ''';
   return _readQuery(database, query, (d) => GetLastSyncTimestampRow(d));
 }
 
 class GetLastSyncTimestampRow extends SqliteRow {
-  GetLastSyncTimestampRow(super.data);
+  GetLastSyncTimestampRow(Map<String, dynamic> data) : super(data);
 }
 
 /// END GET LAST SYNC TIMESTAMP
@@ -260,14 +260,14 @@ class GetLastSyncTimestampRow extends SqliteRow {
 Future<List<GetQueuedChangesRow>> performGetQueuedChanges(
   Database database,
 ) {
-  const query = '''
+  final query = '''
 SELECT * FROM sync_queue ORDER BY timestamp ASC;
 ''';
   return _readQuery(database, query, (d) => GetQueuedChangesRow(d));
 }
 
 class GetQueuedChangesRow extends SqliteRow {
-  GetQueuedChangesRow(super.data);
+  GetQueuedChangesRow(Map<String, dynamic> data) : super(data);
 
   String? get tableName => data['table_name'] as String?;
 }
@@ -278,14 +278,14 @@ class GetQueuedChangesRow extends SqliteRow {
 Future<List<GetModifiedRecordsRow>> performGetModifiedRecords(
   Database database,
 ) {
-  const query = '''
+  final query = '''
 SELECT * FROM tasks WHERE last_modified > ?;
 ''';
   return _readQuery(database, query, (d) => GetModifiedRecordsRow(d));
 }
 
 class GetModifiedRecordsRow extends SqliteRow {
-  GetModifiedRecordsRow(super.data);
+  GetModifiedRecordsRow(Map<String, dynamic> data) : super(data);
 
   DateTime? get lastModified => data['last_modified'] as DateTime?;
 }
@@ -299,14 +299,14 @@ Future<List<OFFLINESelectAllTasksByAssigneeRow>>
   String? assignee,
 }) {
   final query = '''
-SELECT * FROM tasks WHERE assignee='$assignee'
+SELECT * FROM tasks WHERE assignee='${assignee}'
 ''';
   return _readQuery(
       database, query, (d) => OFFLINESelectAllTasksByAssigneeRow(d));
 }
 
 class OFFLINESelectAllTasksByAssigneeRow extends SqliteRow {
-  OFFLINESelectAllTasksByAssigneeRow(super.data);
+  OFFLINESelectAllTasksByAssigneeRow(Map<String, dynamic> data) : super(data);
 
   String? get id => data['id'] as String?;
   String? get taskNumber => data['task_number'] as String?;
@@ -339,14 +339,14 @@ Future<List<OFFLINESelectForDispatchTasksRow>>
   String? assignee,
 }) {
   final query = '''
-SELECT * FROM tasks WHERE  status = 'for dispatch' AND assignee='$assignee'
+SELECT * FROM tasks WHERE  status = 'for dispatch' AND assignee='${assignee}'
 ''';
   return _readQuery(
       database, query, (d) => OFFLINESelectForDispatchTasksRow(d));
 }
 
 class OFFLINESelectForDispatchTasksRow extends SqliteRow {
-  OFFLINESelectForDispatchTasksRow(super.data);
+  OFFLINESelectForDispatchTasksRow(Map<String, dynamic> data) : super(data);
 
   String? get id => data['id'] as String?;
   String? get taskNumber => data['task_number'] as String?;
@@ -378,13 +378,13 @@ Future<List<OFFLINESelectOngoingTasksRow>> performOFFLINESelectOngoingTasks(
   String? assignee,
 }) {
   final query = '''
-SELECT * FROM tasks WHERE  status = 'ongoing' AND assignee='$assignee'
+SELECT * FROM tasks WHERE  status = 'ongoing' AND assignee='${assignee}'
 ''';
   return _readQuery(database, query, (d) => OFFLINESelectOngoingTasksRow(d));
 }
 
 class OFFLINESelectOngoingTasksRow extends SqliteRow {
-  OFFLINESelectOngoingTasksRow(super.data);
+  OFFLINESelectOngoingTasksRow(Map<String, dynamic> data) : super(data);
 
   String? get id => data['id'] as String?;
   String? get taskNumber => data['task_number'] as String?;
@@ -416,13 +416,13 @@ Future<List<OFFLINESelectCompletedTasksRow>> performOFFLINESelectCompletedTasks(
   String? assignee,
 }) {
   final query = '''
-SELECT * FROM tasks WHERE  status = 'completed' AND assignee='$assignee'
+SELECT * FROM tasks WHERE  status = 'completed' AND assignee='${assignee}'
 ''';
   return _readQuery(database, query, (d) => OFFLINESelectCompletedTasksRow(d));
 }
 
 class OFFLINESelectCompletedTasksRow extends SqliteRow {
-  OFFLINESelectCompletedTasksRow(super.data);
+  OFFLINESelectCompletedTasksRow(Map<String, dynamic> data) : super(data);
 
   String? get id => data['id'] as String?;
   String? get taskNumber => data['task_number'] as String?;
@@ -458,14 +458,14 @@ Future<List<OFFLINESelectCountForDispatchRow>>
 SELECT COUNT(*) 
 FROM tasks 
 WHERE status = 'for dispatch' 
-AND assignee = '$assignee';
+AND assignee = '${assignee}';
 ''';
   return _readQuery(
       database, query, (d) => OFFLINESelectCountForDispatchRow(d));
 }
 
 class OFFLINESelectCountForDispatchRow extends SqliteRow {
-  OFFLINESelectCountForDispatchRow(super.data);
+  OFFLINESelectCountForDispatchRow(Map<String, dynamic> data) : super(data);
 
   String? get id => data['id'] as String?;
 }
@@ -479,14 +479,14 @@ Future<List<OFFLINESelectOngoingTasksCopyRow>>
   String? assignee,
 }) {
   final query = '''
-SELECT * FROM tasks WHERE  status = 'ongoing' AND assignee='$assignee'
+SELECT * FROM tasks WHERE  status = 'ongoing' AND assignee='${assignee}'
 ''';
   return _readQuery(
       database, query, (d) => OFFLINESelectOngoingTasksCopyRow(d));
 }
 
 class OFFLINESelectOngoingTasksCopyRow extends SqliteRow {
-  OFFLINESelectOngoingTasksCopyRow(super.data);
+  OFFLINESelectOngoingTasksCopyRow(Map<String, dynamic> data) : super(data);
 
   String? get id => data['id'] as String?;
   String? get taskNumber => data['task_number'] as String?;
