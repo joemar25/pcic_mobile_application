@@ -1,24 +1,15 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:go_router/go_router.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import '/backend/schema/structs/index.dart';
 
-import '/backend/supabase/supabase.dart';
-import '/backend/sqlite/sqlite_manager.dart';
 import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
 import '/main.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/lat_lng.dart';
-import '/flutter_flow/place.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'serialization_util.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
@@ -83,7 +74,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) => RootPageContext.wrap(
-        appStateNotifier.loggedIn ? NavBarPage() : LoginWidget(),
+        appStateNotifier.loggedIn ? const NavBarPage() : const LoginWidget(),
         errorRoute: state.uri.toString(),
       ),
       routes: [
@@ -91,40 +82,40 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: '_initialize',
           path: '/',
           builder: (context, _) => RootPageContext.wrap(
-            appStateNotifier.loggedIn ? NavBarPage() : LoginWidget(),
+            appStateNotifier.loggedIn ? const NavBarPage() : const LoginWidget(),
           ),
         ),
         FFRoute(
           name: 'login',
           path: '/login',
-          builder: (context, params) => LoginWidget(),
+          builder: (context, params) => const LoginWidget(),
         ),
         FFRoute(
           name: 'profile',
           path: '/profile',
           requireAuth: true,
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'profile')
-              : ProfileWidget(),
+              ? const NavBarPage(initialPage: 'profile')
+              : const ProfileWidget(),
         ),
         FFRoute(
           name: 'chats',
           path: '/chats',
           requireAuth: true,
           builder: (context, params) =>
-              params.isEmpty ? NavBarPage(initialPage: 'chats') : ChatsWidget(),
+              params.isEmpty ? const NavBarPage(initialPage: 'chats') : const ChatsWidget(),
         ),
         FFRoute(
           name: 'editPassword',
           path: '/editPassword',
           requireAuth: true,
-          builder: (context, params) => EditPasswordWidget(),
+          builder: (context, params) => const EditPasswordWidget(),
         ),
         FFRoute(
           name: 'editProfile',
           path: '/editProfile',
           requireAuth: true,
-          builder: (context, params) => EditProfileWidget(),
+          builder: (context, params) => const EditProfileWidget(),
         ),
         FFRoute(
           name: 'messages',
@@ -197,8 +188,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/dashboard',
           requireAuth: true,
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'dashboard')
-              : DashboardWidget(),
+              ? const NavBarPage(initialPage: 'dashboard')
+              : const DashboardWidget(),
         ),
         FFRoute(
           name: 'successProfile',
@@ -214,7 +205,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'forgotPassword',
           path: '/forgotPassword',
-          builder: (context, params) => ForgotPasswordWidget(),
+          builder: (context, params) => const ForgotPasswordWidget(),
         ),
         FFRoute(
           name: 'geotagging',
@@ -238,22 +229,22 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'sss',
           path: '/sss',
-          builder: (context, params) => SssWidget(),
+          builder: (context, params) => const SssWidget(),
         ),
         FFRoute(
           name: 'pcicMap',
           path: '/pcicMap',
-          builder: (context, params) => PcicMapWidget(),
+          builder: (context, params) => const PcicMapWidget(),
         ),
         FFRoute(
           name: 'list1',
           path: '/list1',
-          builder: (context, params) => List1Widget(),
+          builder: (context, params) => const List1Widget(),
         ),
         FFRoute(
           name: 'offlineTasksList',
           path: '/offlineTasksList',
-          builder: (context, params) => OfflineTasksListWidget(),
+          builder: (context, params) => const OfflineTasksListWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -491,7 +482,7 @@ class TransitionInfo {
   final Duration duration;
   final Alignment? alignment;
 
-  static TransitionInfo appDefault() => TransitionInfo(hasTransition: false);
+  static TransitionInfo appDefault() => const TransitionInfo(hasTransition: false);
 }
 
 class RootPageContext {

@@ -1,13 +1,10 @@
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/empty_lists/empty_lists_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'pcic_map_model.dart';
@@ -62,7 +59,7 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: Icon(
+            icon: const Icon(
               Icons.chevron_left,
               color: Colors.white,
               size: 30.0,
@@ -84,7 +81,7 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                       FlutterFlowTheme.of(context).headlineMediumFamily),
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 2.0,
         ),
@@ -94,7 +91,7 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
               child: TabBarView(
                 controller: _model.tabBarController,
                 children: [
-                  Container(
+                  SizedBox(
                     width: double.infinity,
                     height: double.infinity,
                     child: custom_widgets.SearchableMapWidget(
@@ -110,7 +107,7 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                           .map((e) => e)
                           .toList();
                       if (listOfDownloads.isEmpty) {
-                        return Center(
+                        return const Center(
                           child: EmptyListsWidget(
                             type: 'downloaded maps',
                           ),
@@ -131,14 +128,14 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                             return Visibility(
                               visible: listOfDownloadsIndex != null,
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 16.0, 16.0, 16.0),
                                 child: Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
-                                    boxShadow: [
+                                    boxShadow: const [
                                       BoxShadow(
                                         blurRadius: 7.0,
                                         color: Color(0x2F1D2429),
@@ -151,7 +148,7 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         12.0, 8.0, 12.0, 8.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -159,7 +156,7 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                                         Expanded(
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     12.0, 0.0, 8.0, 0.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -188,7 +185,7 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                                                       ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 4.0, 0.0, 0.0),
                                                   child: Text(
@@ -212,7 +209,7 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 4.0, 0.0, 0.0),
                                                   child: Text(
@@ -241,7 +238,7 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 4.0, 0.0),
                                           child: FlutterFlowIconButton(
                                             borderColor:
@@ -285,12 +282,12 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
               ),
             ),
             Align(
-              alignment: Alignment(0.0, 0),
+              alignment: const Alignment(0.0, 0),
               child: TabBar(
                 labelColor: FlutterFlowTheme.of(context).primaryText,
                 unselectedLabelColor:
                     FlutterFlowTheme.of(context).secondaryText,
-                labelPadding: EdgeInsets.all(10.0),
+                labelPadding: const EdgeInsets.all(10.0),
                 labelStyle: FlutterFlowTheme.of(context).titleMedium.override(
                       fontFamily:
                           FlutterFlowTheme.of(context).titleMediumFamily,
@@ -298,9 +295,9 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                       useGoogleFonts: GoogleFonts.asMap().containsKey(
                           FlutterFlowTheme.of(context).titleMediumFamily),
                     ),
-                unselectedLabelStyle: TextStyle(),
+                unselectedLabelStyle: const TextStyle(),
                 indicatorColor: FlutterFlowTheme.of(context).primary,
-                padding: EdgeInsets.all(4.0),
+                padding: const EdgeInsets.all(4.0),
                 tabs: [
                   Tab(
                     text: FFLocalizations.of(context).getText(
