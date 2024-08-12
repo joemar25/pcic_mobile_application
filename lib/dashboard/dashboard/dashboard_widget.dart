@@ -10,10 +10,12 @@ import '/utils/components/empty_lists/empty_lists_widget.dart';
 import '/utils/components/page_loader/page_loader_widget.dart';
 import '/utils/components/sync/sync_widget.dart';
 import '/utils/components/tasks/tasks_widget.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
@@ -40,6 +42,14 @@ class _DashboardWidgetState extends State<DashboardWidget>
   void initState() {
     super.initState();
     _model = createModel(context, () => DashboardModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      if (RootPageContext.isInactiveRootPage(context)) {
+        return;
+      }
+      _model.loadLocalProfile = await actions.getTheSavedLocalProfile();
+    });
 
     _model.textController ??= TextEditingController();
 
@@ -486,9 +496,17 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                 decoration: const BoxDecoration(
                                                   shape: BoxShape.circle,
                                                 ),
-                                                child: Image.asset(
-                                                  'assets/images/pccc.gif',
+                                                child: Image.memory(
+                                                  _model.loadLocalProfile
+                                                          ?.bytes ??
+                                                      Uint8List.fromList([]),
                                                   fit: BoxFit.cover,
+                                                  errorBuilder: (context, error,
+                                                          stackTrace) =>
+                                                      Image.asset(
+                                                    'assets/images/error_image.gif',
+                                                    fit: BoxFit.cover,
+                                                  ),
                                                 ),
                                               ).animateOnPageLoad(animationsMap[
                                                   'circleImageOnPageLoadAnimation']!),

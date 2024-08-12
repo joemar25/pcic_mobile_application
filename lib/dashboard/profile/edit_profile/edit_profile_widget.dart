@@ -355,11 +355,11 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                               await UsersTable().update(
                                 data: {
                                   'inspector_name':
-                                      _model.displayNameTextController.text,
+                                      editProfileUsersRow?.inspectorName,
                                 },
                                 matchingRows: (rows) => rows.eq(
                                   'inspector_name',
-                                  editProfileUsersRow?.inspectorName,
+                                  _model.newUsername?.inspectorName,
                                 ),
                               );
                               _model.savedLocalProfile =
@@ -370,7 +370,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                 'successProfile',
                                 queryParameters: {
                                   'message': serializeParam(
-                                    'null',
+                                    null,
                                     ParamType.String,
                                   ),
                                 }.withoutNulls,

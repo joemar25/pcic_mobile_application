@@ -309,8 +309,8 @@ UPDATE tasks SET ..., last_modified = ? WHERE id = ?;
 
 /// END UPDATE LAST MODIFIED TIMESTAMP
 
-/// BEGIN TASK INSERT
-Future performTaskInsert(
+/// BEGIN INSERT OFFLINE TASK
+Future performInsertOfflineTask(
   Database database, {
   String? id,
   String? taskNumber,
@@ -330,7 +330,7 @@ VALUES ('$id', '$taskNumber', '$serviceGroup', '$status', '$serviceType', '$prio
   return database.rawQuery(query);
 }
 
-/// END TASK INSERT
+/// END INSERT OFFLINE TASK
 
 /// BEGIN DELETE RECORDS
 Future performDeleteRecords(
@@ -344,3 +344,85 @@ DELETE FROM tasks WHERE id = ?;
 }
 
 /// END DELETE RECORDS
+
+/// BEGIN INSERT OFFLINE PPIR FORM
+Future performInsertOfflinePPIRForm(
+  Database database, {
+  String? taskId,
+  String? ppirAssignmentId,
+  String? gpx,
+  String? ppirInsuranceId,
+  String? ppirFarmerName,
+  String? ppirAddress,
+  String? ppirFarmerType,
+  String? ppirMobileNo,
+  String? ppirGroupName,
+  String? ppirGroupAddress,
+  String? ppirLenderName,
+  String? ppirLenderAddress,
+  String? ppirCICNo,
+  String? ppirFarmLoc,
+  String? ppirNorth,
+  String? ppirSouth,
+  String? ppirEast,
+  String? ppirWest,
+  String? ppirAtt1,
+  String? ppirAtt2,
+  String? ppirAtt3,
+  String? ppirAtt4,
+  String? ppirAreaAci,
+  String? ppirAreaAct,
+  String? ppirDopdsAci,
+  String? ppirDopdsAct,
+  String? ppirDoptpAci,
+  String? ppirDoptpAct,
+  String? ppirSvpAci,
+  String? ppirSvpAct,
+  String? ppirVariety,
+  String? ppirStageCrop,
+  String? ppirRemarks,
+  String? ppirNameInsured,
+  String? ppirNameIUIA,
+  String? ppirSigInsured,
+  String? ppirSigIUIA,
+  String? trackLastCoord,
+  String? trackDateTime,
+  String? trackTotalArea,
+  String? trackTotalDistance,
+  String? createdAt,
+  String? updatedAt,
+  String? syncStatus,
+  String? lastSyncedAt,
+  String? localId,
+  String? isDirty,
+}) {
+  final query = '''
+INSERT OR REPLACE INTO ppir_forms (
+    task_id, ppir_assignmentid, gpx, ppir_insuranceid, ppir_farmername, 
+    ppir_address, ppir_farmertype, ppir_mobileno, ppir_groupname, 
+    ppir_groupaddress, ppir_lendername, ppir_lenderaddress, ppir_cicno, 
+    ppir_farmloc, ppir_north, ppir_south, ppir_east, ppir_west, ppir_att_1, 
+    ppir_att_2, ppir_att_3, ppir_att_4, ppir_area_aci, ppir_area_act, 
+    ppir_dopds_aci, ppir_dopds_act, ppir_doptp_aci, ppir_doptp_act, 
+    ppir_svp_aci, ppir_svp_act, ppir_variety, ppir_stagecrop, ppir_remarks, 
+    ppir_name_insured, ppir_name_iuia, ppir_sig_insured, ppir_sig_iuia, 
+    track_last_coord, track_date_time, track_total_area, track_total_distance, 
+    created_at, updated_at, sync_status, last_synced_at, local_id, is_dirty
+) VALUES (
+    '$taskId', '$ppirAssignmentId', '$gpx', '$ppirInsuranceId', '$ppirFarmerName', 
+    '$ppirAddress', '$ppirFarmerType', '$ppirMobileNo', '$ppirGroupName', 
+    '$ppirGroupAddress', '$ppirLenderName', '$ppirLenderAddress', '$ppirCICNo', 
+    '$ppirFarmLoc', '$ppirNorth', '$ppirSouth', '$ppirEast', '$ppirWest', 
+    '$ppirAtt1', '$ppirAtt2', '$ppirAtt3', '$ppirAtt4', '$ppirAreaAci', 
+    '$ppirAreaAct', '$ppirDopdsAci', '$ppirDopdsAct', '$ppirDoptpAci', 
+    '$ppirDoptpAct', '$ppirSvpAci', '$ppirSvpAct', '$ppirVariety', 
+    '$ppirStageCrop', '$ppirRemarks', '$ppirNameInsured', '$ppirNameIUIA', 
+    '$ppirSigInsured', '$ppirSigIUIA', '$trackLastCoord', '$trackDateTime', 
+    '$trackTotalArea', '$trackTotalDistance', '$createdAt', '$updatedAt', 
+    '$syncStatus', '$lastSyncedAt', '$localId', '$isDirty'
+);
+''';
+  return database.rawQuery(query);
+}
+
+/// END INSERT OFFLINE PPIR FORM

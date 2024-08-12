@@ -20,6 +20,8 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
 
   ///  State fields for stateful widgets in this page.
 
+  // Stores action output result for [Custom Action - getTheSavedLocalProfile] action in dashboard widget.
+  FFUploadedFile? loadLocalProfile;
   // Model for sync component.
   late SyncModel syncModel;
   // Model for connectivity component.

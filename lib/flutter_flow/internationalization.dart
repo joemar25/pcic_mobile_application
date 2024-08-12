@@ -139,7 +139,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    'b8823p7z': {
+    'ssuann59': {
       'en': '',
       'tl': '',
     },
@@ -253,7 +253,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'mmuf4tor': {
+    'cfozmwip': {
       'en': '',
       'tl': '',
     },
@@ -265,7 +265,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'cil44ljw': {
+    '1i3dx65v': {
       'en': '',
       'tl': '',
     },
@@ -277,7 +277,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'bqngxik7': {
+    'aey3vw0g': {
       'en': '',
       'tl': '',
     },
@@ -300,7 +300,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    'aanowf1t': {
+    'id7z83qt': {
       'en': '',
       'tl': '',
     },
@@ -878,11 +878,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // offlineTasksList
   {
     'o7uaesf0': {
-      'en': 'Add Task',
+      'en': 'Sync Task & PPIR',
       'tl': '',
     },
     'g6jjirj5': {
-      'en': 'Offline Tasks',
+      'en': 'Offline Tasks Sync Test',
       'tl': '',
     },
     'ua766qme': {

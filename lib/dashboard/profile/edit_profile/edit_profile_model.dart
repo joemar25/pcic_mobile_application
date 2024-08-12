@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
   ///  Local state fields for this page.
 
-  bool? updateResults;
+  UsersRow? newUsername;
 
   ///  State fields for stateful widgets in this page.
 

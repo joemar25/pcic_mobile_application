@@ -893,7 +893,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                             await Future.delayed(const Duration(
                                                 milliseconds: 2000));
                                             await SQLiteManager.instance
-                                                .taskInsert(
+                                                .insertOfflineTask(
                                               id: valueOrDefault<String>(
                                                 _model
                                                     .onlineTasks?[
