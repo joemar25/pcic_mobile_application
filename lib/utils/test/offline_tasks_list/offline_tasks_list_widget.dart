@@ -62,7 +62,7 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
           ),
           title: Text(
             FFLocalizations.of(context).getText(
-              '1dkidff6' /* Offline Tasks */,
+              'g6jjirj5' /* Offline Tasks */,
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: FlutterFlowTheme.of(context).headlineMediumFamily,
@@ -74,7 +74,7 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                 ),
           ),
           actions: const [],
-          centerTitle: true,
+          centerTitle: false,
           elevation: 2.0,
         ),
         body: SafeArea(
@@ -145,7 +145,7 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
-                                    '${_model.iteration?.toString()} - ${_model.ppirOutput?[_model.iteration!].ppirFarmername}',
+                                    '${_model.iteration?.toString()} - ${_model.ppirOutput?.first.taskId}',
                                     style: TextStyle(
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,

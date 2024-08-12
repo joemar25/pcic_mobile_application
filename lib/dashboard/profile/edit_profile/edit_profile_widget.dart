@@ -362,12 +362,18 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                   editProfileUsersRow?.inspectorName,
                                 ),
                               );
-                              _model.up =
+                              _model.savedLocalProfile =
                                   await actions.getTheSavedLocalProfile();
                               // success profile
 
                               context.pushNamed(
-                                'editProfile',
+                                'successProfile',
+                                queryParameters: {
+                                  'message': serializeParam(
+                                    'null',
+                                    ParamType.String,
+                                  ),
+                                }.withoutNulls,
                                 extra: <String, dynamic>{
                                   kTransitionInfoKey: const TransitionInfo(
                                     hasTransition: true,

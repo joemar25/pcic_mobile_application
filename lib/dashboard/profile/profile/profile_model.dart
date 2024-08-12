@@ -22,6 +22,8 @@ class ProfileModel extends FlutterFlowModel<ProfileWidget> {
   FFUploadedFile? getProfilePic;
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
+  // Stores action output result for [Custom Action - getTheSavedLocalProfile] action in Text widget.
+  FFUploadedFile? savedLocalProfile;
   // Stores action output result for [Backend Call - Query Rows] action in Row widget.
   List<TasksRow>? onlineTasks;
 

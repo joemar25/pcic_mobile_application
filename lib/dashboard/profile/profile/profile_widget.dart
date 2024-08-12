@@ -226,37 +226,55 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                       Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          Text(
-                                            valueOrDefault<String>(
-                                              functions.sentenceCaseWords(
-                                                  FFAppState().ONLINE
-                                                      ? _model.onlineUserProfile
-                                                          ?.first.inspectorName
-                                                      : valueOrDefault<String>(
-                                                          _model
-                                                              .offlineSelectUserProfile
-                                                              ?.first
-                                                              .inspectorName,
-                                                          'Inspector Name',
-                                                        )),
-                                              'Agent',
+                                          InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              _model.savedLocalProfile =
+                                                  await actions
+                                                      .getTheSavedLocalProfile();
+
+                                              setState(() {});
+                                            },
+                                            child: Text(
+                                              valueOrDefault<String>(
+                                                functions.sentenceCaseWords(
+                                                    FFAppState().ONLINE
+                                                        ? _model
+                                                            .onlineUserProfile
+                                                            ?.first
+                                                            .inspectorName
+                                                        : valueOrDefault<
+                                                            String>(
+                                                            _model
+                                                                .offlineSelectUserProfile
+                                                                ?.first
+                                                                .inspectorName,
+                                                            'Inspector Name',
+                                                          )),
+                                                'Agent',
+                                              ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleLargeFamily,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleLargeFamily),
+                                                      ),
                                             ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .titleLarge
-                                                .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleLargeFamily,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w600,
-                                                  useGoogleFonts: GoogleFonts
-                                                          .asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleLargeFamily),
-                                                ),
                                           ),
                                         ],
                                       ),

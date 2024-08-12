@@ -139,7 +139,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your password...',
       'tl': '',
     },
-    '43afqg99': {
+    'b8823p7z': {
       'en': '',
       'tl': '',
     },
@@ -253,7 +253,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'xur54hru': {
+    'mmuf4tor': {
       'en': '',
       'tl': '',
     },
@@ -265,7 +265,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'n2m2spl5': {
+    'cil44ljw': {
       'en': '',
       'tl': '',
     },
@@ -277,7 +277,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'deookid0': {
+    'bqngxik7': {
       'en': '',
       'tl': '',
     },
@@ -300,7 +300,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    'fvz474i1': {
+    'aanowf1t': {
       'en': '',
       'tl': '',
     },
@@ -877,12 +877,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // offlineTasksList
   {
-    '1dkidff6': {
-      'en': 'Offline Tasks',
-      'tl': '',
-    },
     'o7uaesf0': {
       'en': 'Add Task',
+      'tl': '',
+    },
+    'g6jjirj5': {
+      'en': 'Offline Tasks',
       'tl': '',
     },
     'ua766qme': {

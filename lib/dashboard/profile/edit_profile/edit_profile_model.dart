@@ -39,7 +39,7 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
   // Stores action output result for [Backend Call - Update Row(s)] action in Button widget.
   List<UsersRow>? updateResult;
   // Stores action output result for [Custom Action - getTheSavedLocalProfile] action in Button widget.
-  FFUploadedFile? up;
+  FFUploadedFile? savedLocalProfile;
 
   @override
   void initState(BuildContext context) {
