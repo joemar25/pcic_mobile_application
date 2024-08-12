@@ -575,10 +575,6 @@ class _LoginWidgetState extends State<LoginWidget>
                                               return;
                                             }
 
-                                            _model.syncing = true;
-                                            _model.iteration = 0;
-                                            _model.limit = 0;
-                                            setState(() {});
                                             _model.authUserQuery =
                                                 await UsersTable().queryRows(
                                               queryFn: (q) => q.eq(
@@ -615,6 +611,13 @@ class _LoginWidgetState extends State<LoginWidget>
                                                 await TasksTable().queryRows(
                                               queryFn: (q) => q,
                                             );
+                                            _model.syncing = true;
+                                            _model.iteration = 0;
+                                            _model.limit = valueOrDefault<int>(
+                                              _model.onlineTasks?.length,
+                                              0,
+                                            );
+                                            setState(() {});
                                             while (_model.iteration! <
                                                 _model.limit!) {
                                               await Future.delayed(

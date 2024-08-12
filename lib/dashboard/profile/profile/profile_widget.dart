@@ -12,6 +12,7 @@ import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'profile_model.dart';
@@ -226,38 +227,74 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                       Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          InkWell(
-                                            splashColor: Colors.transparent,
-                                            focusColor: Colors.transparent,
-                                            hoverColor: Colors.transparent,
-                                            highlightColor: Colors.transparent,
-                                            onTap: () async {
-                                              _model.savedLocalProfile =
-                                                  await actions
-                                                      .getTheSavedLocalProfile();
-
-                                              setState(() {});
-                                            },
-                                            child: Text(
-                                              valueOrDefault<String>(
-                                                functions.sentenceCaseWords(
-                                                    FFAppState().ONLINE
-                                                        ? _model
-                                                            .onlineUserProfile
-                                                            ?.first
-                                                            .inspectorName
-                                                        : valueOrDefault<
-                                                            String>(
-                                                            _model
-                                                                .offlineSelectUserProfile
-                                                                ?.first
-                                                                .inspectorName,
-                                                            'Inspector Name',
-                                                          )),
-                                                'Agent',
+                                          FutureBuilder<List<UsersRow>>(
+                                            future: FFAppState().appLevelName(
+                                              requestFn: () =>
+                                                  UsersTable().querySingleRow(
+                                                queryFn: (q) => q.eq(
+                                                  'inspector_name',
+                                                  '',
+                                                ),
                                               ),
-                                              style:
-                                                  FlutterFlowTheme.of(context)
+                                            ),
+                                            builder: (context, snapshot) {
+                                              // Customize what your widget looks like when it's loading.
+                                              if (!snapshot.hasData) {
+                                                return Center(
+                                                  child: SizedBox(
+                                                    width: 100.0,
+                                                    height: 100.0,
+                                                    child: SpinKitRipple(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      size: 100.0,
+                                                    ),
+                                                  ),
+                                                );
+                                              }
+                                              List<UsersRow> textUsersRowList =
+                                                  snapshot.data!;
+
+                                              final textUsersRow =
+                                                  textUsersRowList.isNotEmpty
+                                                      ? textUsersRowList.first
+                                                      : null;
+
+                                              return InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  _model.savedLocalProfile =
+                                                      await actions
+                                                          .getTheSavedLocalProfile();
+
+                                                  setState(() {});
+                                                },
+                                                child: Text(
+                                                  valueOrDefault<String>(
+                                                    functions.sentenceCaseWords(
+                                                        FFAppState().ONLINE
+                                                            ? _model
+                                                                .onlineUserProfile
+                                                                ?.first
+                                                                .inspectorName
+                                                            : valueOrDefault<
+                                                                String>(
+                                                                _model
+                                                                    .offlineSelectUserProfile
+                                                                    ?.first
+                                                                    .inspectorName,
+                                                                'Inspector Name',
+                                                              )),
+                                                    'Agent',
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
                                                       .titleLarge
                                                       .override(
                                                         fontFamily:
@@ -274,7 +311,9 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                         context)
                                                                     .titleLargeFamily),
                                                       ),
-                                            ),
+                                                ),
+                                              );
+                                            },
                                           ),
                                         ],
                                       ),
