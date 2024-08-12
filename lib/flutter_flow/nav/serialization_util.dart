@@ -254,8 +254,6 @@ dynamic deserializeParam<T>(
       case ParamType.SqliteRow:
         final data = json.decode(param) as Map<String, dynamic>;
         switch (T) {
-          case SELECTTASKSBaseOnStatusRow:
-            return SELECTTASKSBaseOnStatusRow(data);
           case SELECTUSERSInSameRegionRow:
             return SELECTUSERSInSameRegionRow(data);
           case SelectSeedsRow:
@@ -276,6 +274,18 @@ dynamic deserializeParam<T>(
             return GetQueuedChangesRow(data);
           case GetModifiedRecordsRow:
             return GetModifiedRecordsRow(data);
+          case OFFLINESelectAllTasksByAssigneeRow:
+            return OFFLINESelectAllTasksByAssigneeRow(data);
+          case OFFLINESelectForDispatchTasksRow:
+            return OFFLINESelectForDispatchTasksRow(data);
+          case OFFLINESelectOngoingTasksRow:
+            return OFFLINESelectOngoingTasksRow(data);
+          case OFFLINESelectCompletedTasksRow:
+            return OFFLINESelectCompletedTasksRow(data);
+          case OFFLINESelectCountForDispatchRow:
+            return OFFLINESelectCountForDispatchRow(data);
+          case OFFLINESelectOngoingTasksCopyRow:
+            return OFFLINESelectOngoingTasksCopyRow(data);
           default:
             return null;
         }

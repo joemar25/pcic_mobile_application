@@ -29,16 +29,6 @@ class SQLiteManager {
 
   /// START READ QUERY CALLS
 
-  Future<List<SELECTTASKSBaseOnStatusRow>> sELECTTASKSBaseOnStatus({
-    String? status,
-    String? assignee,
-  }) =>
-      performSELECTTASKSBaseOnStatus(
-        _database,
-        status: status,
-        assignee: assignee,
-      );
-
   Future<List<SELECTUSERSInSameRegionRow>> sELECTUSERSInSameRegion({
     String? regionId,
   }) =>
@@ -92,6 +82,55 @@ class SQLiteManager {
   Future<List<GetModifiedRecordsRow>> getModifiedRecords() =>
       performGetModifiedRecords(
         _database,
+      );
+
+  Future<List<OFFLINESelectAllTasksByAssigneeRow>>
+      oFFLINESelectAllTasksByAssignee({
+    String? assignee,
+  }) =>
+          performOFFLINESelectAllTasksByAssignee(
+            _database,
+            assignee: assignee,
+          );
+
+  Future<List<OFFLINESelectForDispatchTasksRow>> oFFLINESelectForDispatchTasks({
+    String? assignee,
+  }) =>
+      performOFFLINESelectForDispatchTasks(
+        _database,
+        assignee: assignee,
+      );
+
+  Future<List<OFFLINESelectOngoingTasksRow>> oFFLINESelectOngoingTasks({
+    String? assignee,
+  }) =>
+      performOFFLINESelectOngoingTasks(
+        _database,
+        assignee: assignee,
+      );
+
+  Future<List<OFFLINESelectCompletedTasksRow>> oFFLINESelectCompletedTasks({
+    String? assignee,
+  }) =>
+      performOFFLINESelectCompletedTasks(
+        _database,
+        assignee: assignee,
+      );
+
+  Future<List<OFFLINESelectCountForDispatchRow>> oFFLINESelectCountForDispatch({
+    String? assignee,
+  }) =>
+      performOFFLINESelectCountForDispatch(
+        _database,
+        assignee: assignee,
+      );
+
+  Future<List<OFFLINESelectOngoingTasksCopyRow>> oFFLINESelectOngoingTasksCopy({
+    String? assignee,
+  }) =>
+      performOFFLINESelectOngoingTasksCopy(
+        _database,
+        assignee: assignee,
       );
 
   /// END READ QUERY CALLS

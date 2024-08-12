@@ -125,113 +125,27 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                             while (_model.iteration! < _model.limit!) {
                               await Future.delayed(
                                   const Duration(milliseconds: 2000));
-                              await SQLiteManager.instance.taskInsert(
-                                id: valueOrDefault<String>(
-                                  _model
-                                      .onlineTasks?[valueOrDefault<int>(
-                                    _model.iteration,
-                                    0,
-                                  )]
-                                      .id,
-                                  'id',
-                                ),
-                                taskNumber: valueOrDefault<String>(
-                                  _model
-                                      .onlineTasks?[valueOrDefault<int>(
-                                    _model.iteration,
-                                    0,
-                                  )]
-                                      .taskNumber,
-                                  'task number',
-                                ),
-                                serviceGroup: valueOrDefault<String>(
-                                  _model
-                                      .onlineTasks?[valueOrDefault<int>(
-                                    _model.iteration,
-                                    0,
-                                  )]
-                                      .serviceGroup,
-                                  'task number',
-                                ),
-                                status: valueOrDefault<String>(
-                                  _model
-                                      .onlineTasks?[valueOrDefault<int>(
-                                    _model.iteration,
-                                    0,
-                                  )]
-                                      .status,
-                                  'task number',
-                                ),
-                                serviceType: valueOrDefault<String>(
-                                  _model
-                                      .onlineTasks?[valueOrDefault<int>(
-                                    _model.iteration,
-                                    0,
-                                  )]
-                                      .serviceType,
-                                  'task number',
-                                ),
-                                priority: valueOrDefault<String>(
-                                  _model
-                                      .onlineTasks?[valueOrDefault<int>(
-                                    _model.iteration,
-                                    0,
-                                  )]
-                                      .priority,
-                                  'task number',
-                                ),
-                                assignee: valueOrDefault<String>(
-                                  _model
-                                      .onlineTasks?[valueOrDefault<int>(
-                                    _model.iteration,
-                                    0,
-                                  )]
-                                      .assignee,
-                                  'task number',
-                                ),
-                                dateAdded: valueOrDefault<String>(
-                                  _model
-                                      .onlineTasks?[valueOrDefault<int>(
-                                    _model.iteration,
-                                    0,
-                                  )]
-                                      .dateAdded
-                                      ?.toString(),
-                                  'task number',
-                                ),
-                                dateAccess: valueOrDefault<String>(
-                                  _model
-                                      .onlineTasks?[valueOrDefault<int>(
-                                    _model.iteration,
-                                    0,
-                                  )]
-                                      .dateAccess
-                                      ?.toString(),
-                                  'task number',
-                                ),
-                                fileId: valueOrDefault<String>(
-                                  _model
-                                      .onlineTasks?[valueOrDefault<int>(
-                                    _model.iteration,
-                                    0,
-                                  )]
-                                      .fileId,
-                                  'task number',
+                              // Online Tasks
+                              _model.ppirOutput =
+                                  await PpirFormsTable().queryRows(
+                                queryFn: (q) => q.eq(
+                                  'task_id',
+                                  valueOrDefault<String>(
+                                    _model
+                                        .onlineTasks?[valueOrDefault<int>(
+                                      _model.iteration,
+                                      0,
+                                    )]
+                                        .id,
+                                    'id',
+                                  ),
                                 ),
                               );
                               ScaffoldMessenger.of(context).clearSnackBars();
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
-                                    '${_model.iteration?.toString()} - ${valueOrDefault<String>(
-                                      _model
-                                          .onlineTasks?[valueOrDefault<int>(
-                                        _model.iteration,
-                                        0,
-                                      )]
-                                          .taskNumber,
-                                      'task number',
-                                    )}',
+                                    '${_model.iteration?.toString()} - a',
                                     style: TextStyle(
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
@@ -328,9 +242,10 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                       ],
                     ),
                     Expanded(
-                      child: FutureBuilder<List<SELECTTASKSBaseOnStatusRow>>(
-                        future: SQLiteManager.instance.sELECTTASKSBaseOnStatus(
-                          status: 'ongoing',
+                      child: FutureBuilder<
+                          List<OFFLINESelectAllTasksByAssigneeRow>>(
+                        future: SQLiteManager.instance
+                            .oFFLINESelectAllTasksByAssignee(
                           assignee: currentUserUid,
                         ),
                         builder: (context, snapshot) {
@@ -347,7 +262,7 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                               ),
                             );
                           }
-                          final listViewSELECTTASKSBaseOnStatusRowList =
+                          final listViewOFFLINESelectAllTasksByAssigneeRowList =
                               snapshot.data!;
 
                           return ListView.separated(
@@ -355,15 +270,17 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
                             itemCount:
-                                listViewSELECTTASKSBaseOnStatusRowList.length,
+                                listViewOFFLINESelectAllTasksByAssigneeRowList
+                                    .length,
                             separatorBuilder: (_, __) => const SizedBox(height: 3.0),
                             itemBuilder: (context, listViewIndex) {
-                              final listViewSELECTTASKSBaseOnStatusRow =
-                                  listViewSELECTTASKSBaseOnStatusRowList[
+                              final listViewOFFLINESelectAllTasksByAssigneeRow =
+                                  listViewOFFLINESelectAllTasksByAssigneeRowList[
                                       listViewIndex];
                               return Text(
                                 valueOrDefault<String>(
-                                  listViewSELECTTASKSBaseOnStatusRow.taskNumber,
+                                  listViewOFFLINESelectAllTasksByAssigneeRow
+                                      .taskNumber,
                                   'sdads',
                                 ),
                                 style: FlutterFlowTheme.of(context)

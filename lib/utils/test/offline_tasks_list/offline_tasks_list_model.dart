@@ -14,6 +14,8 @@ class OfflineTasksListModel extends FlutterFlowModel<OfflineTasksListWidget> {
 
   // Stores action output result for [Backend Call - Query Rows] action in Button widget.
   List<TasksRow>? onlineTasks;
+  // Stores action output result for [Backend Call - Query Rows] action in Button widget.
+  List<PpirFormsRow>? ppirOutput;
 
   @override
   void initState(BuildContext context) {}

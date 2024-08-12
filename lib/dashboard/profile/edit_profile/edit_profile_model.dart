@@ -1,9 +1,14 @@
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import 'edit_profile_widget.dart' show EditProfileWidget;
 import 'package:flutter/material.dart';
 
 class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
+  ///  Local state fields for this page.
+
+  bool? updateResults;
+
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
@@ -30,6 +35,9 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
 
     return null;
   }
+
+  // Stores action output result for [Backend Call - Update Row(s)] action in Button widget.
+  List<UsersRow>? updateResult;
 
   @override
   void initState(BuildContext context) {

@@ -361,6 +361,43 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                   currentUserEmail,
                                 ),
                               );
+                              if (_model.updateResults!) {
+                                // profile updated successfully
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'profile updated successfully',
+                                      style: TextStyle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                      ),
+                                    ),
+                                    duration: const Duration(milliseconds: 4000),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).secondary,
+                                  ),
+                                );
+                                // get the saved local profile
+                                await actions.getTheSavedLocalProfile();
+                              } else {
+                                // update profile failed
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'update profile failed',
+                                      style: TextStyle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                      ),
+                                    ),
+                                    duration: const Duration(milliseconds: 4000),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).secondary,
+                                  ),
+                                );
+                              }
+
+                              // success profile
 
                               context.pushNamed(
                                 'successProfile',
@@ -378,6 +415,10 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                   ),
                                 },
                               );
+
+                              setState(() {});
+
+                              setState(() {});
                             },
                             text: FFLocalizations.of(context).getText(
                               'ntj2ozhk' /* Save Changes */,

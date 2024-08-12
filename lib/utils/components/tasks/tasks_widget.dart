@@ -3,10 +3,9 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'tasks_model.dart';
 export 'tasks_model.dart';
 
@@ -42,16 +41,6 @@ class _TasksWidgetState extends State<TasksWidget>
     super.initState();
     _model = createModel(context, () => TasksModel());
 
-    // On component load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.onlinePpirData = await PpirFormsTable().queryRows(
-        queryFn: (q) => q.eq(
-          'task_id',
-          widget.task,
-        ),
-      );
-    });
-
     animationsMap.addAll({
       'containerOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
@@ -77,8 +66,6 @@ class _TasksWidgetState extends State<TasksWidget>
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Padding(
       padding: const EdgeInsets.all(3.0),
       child: InkWell(
@@ -153,26 +140,55 @@ class _TasksWidgetState extends State<TasksWidget>
                           child: Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 20.0, 0.0),
-                            child: Text(
-                              valueOrDefault<String>(
-                                FFAppState().ONLINE
-                                    ? _model
-                                        .onlinePpirData?.first.ppirFarmername
-                                    : 'Offline Farmer',
-                                'Farmer Name',
+                            child: FutureBuilder<List<PpirFormsRow>>(
+                              future: PpirFormsTable().querySingleRow(
+                                queryFn: (q) => q.eq(
+                                  'task_id',
+                                  widget.task,
+                                ),
                               ),
-                              style: FlutterFlowTheme.of(context)
-                                  .titleLarge
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .titleLargeFamily,
-                                    fontSize: 18.0,
-                                    letterSpacing: 0.0,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .titleLargeFamily),
+                              builder: (context, snapshot) {
+                                // Customize what your widget looks like when it's loading.
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: SizedBox(
+                                      width: 100.0,
+                                      height: 100.0,
+                                      child: SpinKitRipple(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        size: 100.0,
+                                      ),
+                                    ),
+                                  );
+                                }
+                                List<PpirFormsRow> farmerNamePpirFormsRowList =
+                                    snapshot.data!;
+
+                                final farmerNamePpirFormsRow =
+                                    farmerNamePpirFormsRowList.isNotEmpty
+                                        ? farmerNamePpirFormsRowList.first
+                                        : null;
+
+                                return Text(
+                                  valueOrDefault<String>(
+                                    farmerNamePpirFormsRow?.ppirFarmername,
+                                    'Farmer Name',
                                   ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .titleLarge
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .titleLargeFamily,
+                                        fontSize: 18.0,
+                                        letterSpacing: 0.0,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .titleLargeFamily),
+                                      ),
+                                );
+                              },
                             ),
                           ),
                         ),
@@ -225,12 +241,8 @@ class _TasksWidgetState extends State<TasksWidget>
                                             ),
                                       ),
                                       Text(
-                                        valueOrDefault<String>(
-                                          FFAppState().ONLINE
-                                              ? _model.onlinePpirData?.first
-                                                  .ppirNorth
-                                              : 'Offline',
-                                          'Farmer Name',
+                                        FFLocalizations.of(context).getText(
+                                          'mb6k33q5' /* North */,
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
@@ -287,12 +299,8 @@ class _TasksWidgetState extends State<TasksWidget>
                                             ),
                                       ),
                                       Text(
-                                        valueOrDefault<String>(
-                                          FFAppState().ONLINE
-                                              ? _model.onlinePpirData?.first
-                                                  .ppirWest
-                                              : 'Offline',
-                                          'Farmer Name',
+                                        FFLocalizations.of(context).getText(
+                                          'z7ucbsis' /* West */,
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
@@ -365,12 +373,9 @@ class _TasksWidgetState extends State<TasksWidget>
                                                         ),
                                               ),
                                               Text(
-                                                valueOrDefault<String>(
-                                                  FFAppState().ONLINE
-                                                      ? _model.onlinePpirData
-                                                          ?.first.ppirSouth
-                                                      : 'Offline',
-                                                  'Farmer Name',
+                                                FFLocalizations.of(context)
+                                                    .getText(
+                                                  'c7r031r8' /* West */,
                                                 ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -427,12 +432,9 @@ class _TasksWidgetState extends State<TasksWidget>
                                                         ),
                                               ),
                                               Text(
-                                                valueOrDefault<String>(
-                                                  FFAppState().ONLINE
-                                                      ? _model.onlinePpirData
-                                                          ?.first.ppirEast
-                                                      : 'Offline',
-                                                  'Farmer Name',
+                                                FFLocalizations.of(context)
+                                                    .getText(
+                                                  'wacsxsa5' /* East */,
                                                 ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -506,12 +508,8 @@ class _TasksWidgetState extends State<TasksWidget>
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 0.0, 0.0),
                                   child: Text(
-                                    valueOrDefault<String>(
-                                      FFAppState().ONLINE
-                                          ? _model.onlinePpirData?.first
-                                              .ppirAssignmentid
-                                          : 'Offline',
-                                      'Farmer Name',
+                                    FFLocalizations.of(context).getText(
+                                      'jkdisus5' /* ID */,
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
@@ -559,12 +557,8 @@ class _TasksWidgetState extends State<TasksWidget>
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 0.0, 0.0),
                                   child: Text(
-                                    valueOrDefault<String>(
-                                      FFAppState().ONLINE
-                                          ? _model.onlinePpirData?.first
-                                              .ppirAddress
-                                          : 'Offline',
-                                      'Farmer Name',
+                                    FFLocalizations.of(context).getText(
+                                      '7wy8807n' /* Address */,
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium

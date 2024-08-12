@@ -8,45 +8,6 @@ Future<List<T>> _readQuery<T>(
 ) =>
     database.rawQuery(query).then((r) => r.map((e) => create(e)).toList());
 
-/// BEGIN SELECT TASKS BASE ON STATUS
-Future<List<SELECTTASKSBaseOnStatusRow>> performSELECTTASKSBaseOnStatus(
-  Database database, {
-  String? status,
-  String? assignee,
-}) {
-  final query = '''
-SELECT * FROM tasks WHERE status='$status' AND assignee='$assignee'
-''';
-  return _readQuery(database, query, (d) => SELECTTASKSBaseOnStatusRow(d));
-}
-
-class SELECTTASKSBaseOnStatusRow extends SqliteRow {
-  SELECTTASKSBaseOnStatusRow(super.data);
-
-  String? get id => data['id'] as String?;
-  String? get taskNumber => data['task_number'] as String?;
-  String? get serviceGroup => data['service_group'] as String?;
-  String? get serviceType => data['service_type'] as String?;
-  String? get priority => data['priority'] as String?;
-  String? get assignee => data['assignee'] as String?;
-  String? get fileId => data['file_id'] as String?;
-  DateTime? get dateAdded => data['date_added'] as DateTime?;
-  DateTime? get dateAccess => data['date_access'] as DateTime?;
-  String? get status => data['status'] as String?;
-  String? get taskType => data['task_type'] as String?;
-  String? get attemptCount => data['attempt_count'] as String?;
-  DateTime? get createdAt => data['created_at'] as DateTime?;
-  DateTime? get updatedAt => data['updated_at'] as DateTime?;
-  bool? get isDeleted => data['is_deleted'] as bool?;
-  String? get syncStatus => data['sync_status'] as String?;
-  DateTime? get lastSyncedAt => data['last_synced_at'] as DateTime?;
-  String? get localId => data['local_id'] as String?;
-  bool? get isDirty => data['is_dirty'] as bool?;
-  bool? get isUpdating => data['is_updating'] as bool?;
-}
-
-/// END SELECT TASKS BASE ON STATUS
-
 /// BEGIN SELECT USERS IN SAME REGION
 Future<List<SELECTUSERSInSameRegionRow>> performSELECTUSERSInSameRegion(
   Database database, {
@@ -330,3 +291,223 @@ class GetModifiedRecordsRow extends SqliteRow {
 }
 
 /// END GET MODIFIED RECORDS
+
+/// BEGIN OFFLINE SELECT ALL TASKS BY ASSIGNEE
+Future<List<OFFLINESelectAllTasksByAssigneeRow>>
+    performOFFLINESelectAllTasksByAssignee(
+  Database database, {
+  String? assignee,
+}) {
+  final query = '''
+SELECT * FROM tasks WHERE assignee='$assignee'
+''';
+  return _readQuery(
+      database, query, (d) => OFFLINESelectAllTasksByAssigneeRow(d));
+}
+
+class OFFLINESelectAllTasksByAssigneeRow extends SqliteRow {
+  OFFLINESelectAllTasksByAssigneeRow(super.data);
+
+  String? get id => data['id'] as String?;
+  String? get taskNumber => data['task_number'] as String?;
+  String? get serviceGroup => data['service_group'] as String?;
+  String? get serviceType => data['service_type'] as String?;
+  String? get priority => data['priority'] as String?;
+  String? get assignee => data['assignee'] as String?;
+  String? get fileId => data['file_id'] as String?;
+  DateTime? get dateAdded => data['date_added'] as DateTime?;
+  DateTime? get dateAccess => data['date_access'] as DateTime?;
+  String? get status => data['status'] as String?;
+  String? get taskType => data['task_type'] as String?;
+  String? get attemptCount => data['attempt_count'] as String?;
+  DateTime? get createdAt => data['created_at'] as DateTime?;
+  DateTime? get updatedAt => data['updated_at'] as DateTime?;
+  bool? get isDeleted => data['is_deleted'] as bool?;
+  String? get syncStatus => data['sync_status'] as String?;
+  DateTime? get lastSyncedAt => data['last_synced_at'] as DateTime?;
+  String? get localId => data['local_id'] as String?;
+  bool? get isDirty => data['is_dirty'] as bool?;
+  bool? get isUpdating => data['is_updating'] as bool?;
+}
+
+/// END OFFLINE SELECT ALL TASKS BY ASSIGNEE
+
+/// BEGIN OFFLINE SELECT FOR DISPATCH TASKS
+Future<List<OFFLINESelectForDispatchTasksRow>>
+    performOFFLINESelectForDispatchTasks(
+  Database database, {
+  String? assignee,
+}) {
+  final query = '''
+SELECT * FROM tasks WHERE  status = 'for dispatch' AND assignee='$assignee'
+''';
+  return _readQuery(
+      database, query, (d) => OFFLINESelectForDispatchTasksRow(d));
+}
+
+class OFFLINESelectForDispatchTasksRow extends SqliteRow {
+  OFFLINESelectForDispatchTasksRow(super.data);
+
+  String? get id => data['id'] as String?;
+  String? get taskNumber => data['task_number'] as String?;
+  String? get serviceGroup => data['service_group'] as String?;
+  String? get serviceType => data['service_type'] as String?;
+  String? get priority => data['priority'] as String?;
+  String? get assignee => data['assignee'] as String?;
+  String? get fileId => data['file_id'] as String?;
+  DateTime? get dateAdded => data['date_added'] as DateTime?;
+  DateTime? get dateAccess => data['date_access'] as DateTime?;
+  String? get status => data['status'] as String?;
+  String? get taskType => data['task_type'] as String?;
+  String? get attemptCount => data['attempt_count'] as String?;
+  DateTime? get createdAt => data['created_at'] as DateTime?;
+  DateTime? get updatedAt => data['updated_at'] as DateTime?;
+  bool? get isDeleted => data['is_deleted'] as bool?;
+  String? get syncStatus => data['sync_status'] as String?;
+  DateTime? get lastSyncedAt => data['last_synced_at'] as DateTime?;
+  String? get localId => data['local_id'] as String?;
+  bool? get isDirty => data['is_dirty'] as bool?;
+  bool? get isUpdating => data['is_updating'] as bool?;
+}
+
+/// END OFFLINE SELECT FOR DISPATCH TASKS
+
+/// BEGIN OFFLINE SELECT ONGOING TASKS
+Future<List<OFFLINESelectOngoingTasksRow>> performOFFLINESelectOngoingTasks(
+  Database database, {
+  String? assignee,
+}) {
+  final query = '''
+SELECT * FROM tasks WHERE  status = 'ongoing' AND assignee='$assignee'
+''';
+  return _readQuery(database, query, (d) => OFFLINESelectOngoingTasksRow(d));
+}
+
+class OFFLINESelectOngoingTasksRow extends SqliteRow {
+  OFFLINESelectOngoingTasksRow(super.data);
+
+  String? get id => data['id'] as String?;
+  String? get taskNumber => data['task_number'] as String?;
+  String? get serviceGroup => data['service_group'] as String?;
+  String? get serviceType => data['service_type'] as String?;
+  String? get priority => data['priority'] as String?;
+  String? get assignee => data['assignee'] as String?;
+  String? get fileId => data['file_id'] as String?;
+  DateTime? get dateAdded => data['date_added'] as DateTime?;
+  DateTime? get dateAccess => data['date_access'] as DateTime?;
+  String? get status => data['status'] as String?;
+  String? get taskType => data['task_type'] as String?;
+  String? get attemptCount => data['attempt_count'] as String?;
+  DateTime? get createdAt => data['created_at'] as DateTime?;
+  DateTime? get updatedAt => data['updated_at'] as DateTime?;
+  bool? get isDeleted => data['is_deleted'] as bool?;
+  String? get syncStatus => data['sync_status'] as String?;
+  DateTime? get lastSyncedAt => data['last_synced_at'] as DateTime?;
+  String? get localId => data['local_id'] as String?;
+  bool? get isDirty => data['is_dirty'] as bool?;
+  bool? get isUpdating => data['is_updating'] as bool?;
+}
+
+/// END OFFLINE SELECT ONGOING TASKS
+
+/// BEGIN OFFLINE SELECT COMPLETED TASKS
+Future<List<OFFLINESelectCompletedTasksRow>> performOFFLINESelectCompletedTasks(
+  Database database, {
+  String? assignee,
+}) {
+  final query = '''
+SELECT * FROM tasks WHERE  status = 'completed' AND assignee='$assignee'
+''';
+  return _readQuery(database, query, (d) => OFFLINESelectCompletedTasksRow(d));
+}
+
+class OFFLINESelectCompletedTasksRow extends SqliteRow {
+  OFFLINESelectCompletedTasksRow(super.data);
+
+  String? get id => data['id'] as String?;
+  String? get taskNumber => data['task_number'] as String?;
+  String? get serviceGroup => data['service_group'] as String?;
+  String? get serviceType => data['service_type'] as String?;
+  String? get priority => data['priority'] as String?;
+  String? get assignee => data['assignee'] as String?;
+  String? get fileId => data['file_id'] as String?;
+  DateTime? get dateAdded => data['date_added'] as DateTime?;
+  DateTime? get dateAccess => data['date_access'] as DateTime?;
+  String? get status => data['status'] as String?;
+  String? get taskType => data['task_type'] as String?;
+  String? get attemptCount => data['attempt_count'] as String?;
+  DateTime? get createdAt => data['created_at'] as DateTime?;
+  DateTime? get updatedAt => data['updated_at'] as DateTime?;
+  bool? get isDeleted => data['is_deleted'] as bool?;
+  String? get syncStatus => data['sync_status'] as String?;
+  DateTime? get lastSyncedAt => data['last_synced_at'] as DateTime?;
+  String? get localId => data['local_id'] as String?;
+  bool? get isDirty => data['is_dirty'] as bool?;
+  bool? get isUpdating => data['is_updating'] as bool?;
+}
+
+/// END OFFLINE SELECT COMPLETED TASKS
+
+/// BEGIN OFFLINE SELECT COUNT FOR DISPATCH
+Future<List<OFFLINESelectCountForDispatchRow>>
+    performOFFLINESelectCountForDispatch(
+  Database database, {
+  String? assignee,
+}) {
+  final query = '''
+SELECT COUNT(*) 
+FROM tasks 
+WHERE status = 'for dispatch' 
+AND assignee = '$assignee';
+''';
+  return _readQuery(
+      database, query, (d) => OFFLINESelectCountForDispatchRow(d));
+}
+
+class OFFLINESelectCountForDispatchRow extends SqliteRow {
+  OFFLINESelectCountForDispatchRow(super.data);
+
+  String? get id => data['id'] as String?;
+}
+
+/// END OFFLINE SELECT COUNT FOR DISPATCH
+
+/// BEGIN OFFLINE SELECT ONGOING TASKSCOPY
+Future<List<OFFLINESelectOngoingTasksCopyRow>>
+    performOFFLINESelectOngoingTasksCopy(
+  Database database, {
+  String? assignee,
+}) {
+  final query = '''
+SELECT * FROM tasks WHERE  status = 'ongoing' AND assignee='$assignee'
+''';
+  return _readQuery(
+      database, query, (d) => OFFLINESelectOngoingTasksCopyRow(d));
+}
+
+class OFFLINESelectOngoingTasksCopyRow extends SqliteRow {
+  OFFLINESelectOngoingTasksCopyRow(super.data);
+
+  String? get id => data['id'] as String?;
+  String? get taskNumber => data['task_number'] as String?;
+  String? get serviceGroup => data['service_group'] as String?;
+  String? get serviceType => data['service_type'] as String?;
+  String? get priority => data['priority'] as String?;
+  String? get assignee => data['assignee'] as String?;
+  String? get fileId => data['file_id'] as String?;
+  DateTime? get dateAdded => data['date_added'] as DateTime?;
+  DateTime? get dateAccess => data['date_access'] as DateTime?;
+  String? get status => data['status'] as String?;
+  String? get taskType => data['task_type'] as String?;
+  String? get attemptCount => data['attempt_count'] as String?;
+  DateTime? get createdAt => data['created_at'] as DateTime?;
+  DateTime? get updatedAt => data['updated_at'] as DateTime?;
+  bool? get isDeleted => data['is_deleted'] as bool?;
+  String? get syncStatus => data['sync_status'] as String?;
+  DateTime? get lastSyncedAt => data['last_synced_at'] as DateTime?;
+  String? get localId => data['local_id'] as String?;
+  bool? get isDirty => data['is_dirty'] as bool?;
+  bool? get isUpdating => data['is_updating'] as bool?;
+}
+
+/// END OFFLINE SELECT ONGOING TASKSCOPY
