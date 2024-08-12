@@ -351,6 +351,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           alignment: const AlignmentDirectional(0.0, 0.05),
                           child: FFButtonWidget(
                             onPressed: () async {
+                              // Update rows
                               await UsersTable().update(
                                 data: {
                                   'inspector_name':
@@ -361,42 +362,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                   currentUserEmail,
                                 ),
                               );
-                              if (_model.updateResults!) {
-                                // profile updated successfully
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      'profile updated successfully',
-                                      style: TextStyle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
-                                    ),
-                                    duration: const Duration(milliseconds: 4000),
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).secondary,
-                                  ),
-                                );
-                                // get the saved local profile
-                                await actions.getTheSavedLocalProfile();
-                              } else {
-                                // update profile failed
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      'update profile failed',
-                                      style: TextStyle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
-                                    ),
-                                    duration: const Duration(milliseconds: 4000),
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).secondary,
-                                  ),
-                                );
-                              }
-
+                              await actions.getTheSavedLocalProfile();
                               // success profile
 
                               context.pushNamed(
@@ -415,8 +381,6 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                   ),
                                 },
                               );
-
-                              setState(() {});
 
                               setState(() {});
                             },
