@@ -558,7 +558,6 @@ class _LoginWidgetState extends State<LoginWidget>
                                       alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
-                                          Function() navigate = () {};
                                           if (await getPermissionStatus(
                                               locationPermission)) {
                                             GoRouter.of(context)
@@ -576,9 +575,6 @@ class _LoginWidgetState extends State<LoginWidget>
                                               return;
                                             }
 
-                                            navigate = () =>
-                                                context.goNamedAuth('dashboard',
-                                                    context.mounted);
                                             _model.syncing = true;
                                             _model.iteration = 0;
                                             _model.limit = 0;
@@ -682,6 +678,22 @@ class _LoginWidgetState extends State<LoginWidget>
                                                         .secondary,
                                               ),
                                             );
+
+                                            context.pushNamedAuth(
+                                              'dashboard',
+                                              context.mounted,
+                                              extra: <String, dynamic>{
+                                                kTransitionInfoKey:
+                                                    const TransitionInfo(
+                                                  hasTransition: true,
+                                                  transitionType:
+                                                      PageTransitionType
+                                                          .bottomToTop,
+                                                  duration: Duration(
+                                                      milliseconds: 200),
+                                                ),
+                                              },
+                                            );
                                           } else {
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(
@@ -702,8 +714,6 @@ class _LoginWidgetState extends State<LoginWidget>
                                               ),
                                             );
                                           }
-
-                                          navigate();
 
                                           setState(() {});
                                         },

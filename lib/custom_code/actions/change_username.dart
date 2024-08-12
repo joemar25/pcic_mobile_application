@@ -11,27 +11,25 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'package:supabase/supabase.dart'; // Import necessary package
-
-Future<void> changeUsername(String newUsername) async {
-  // Get the current user's ID
-  final user = Supabase.instance.client.auth.currentUser;
-  final userId = user?.id;
-
-  // Ensure user ID is not null
-  if (userId == null) {
-    throw Exception('User is not authenticated');
-  }
-
-  // Update the user's username in the database
-  final response = await Supabase.instance.client
-      .from('users')
-      .update({'username': newUsername})
-      .eq('id', userId)
-      .execute();
-
-  // Check if the update was successful
-  if (response.error != null) {
-    throw response.error!;
+Future<bool> changeUsername(String newUsername) async {
+  // This action is for changing the user's username using Supabase. The placeholder for the username is inspector_name.
+  try {
+    final user = supabase.auth.currentUser;
+    if (user != null) {
+      final response = await supabase
+          .from('users')
+          .update({'inspector_name': newUsername})
+          .eq('id', user.id)
+          .execute();
+      if (response.error != null) {
+        throw response.error!;
+      }
+      return true;
+    } else {
+      throw Exception('User not authenticated');
+    }
+  } catch (e) {
+    print('Error changing username: $e');
+    return false;
   }
 }
