@@ -221,7 +221,7 @@ class _LoginWidgetState extends State<LoginWidget>
                           40.0, 40.0, 40.0, 40.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
@@ -556,210 +556,196 @@ class _LoginWidgetState extends State<LoginWidget>
                                     ),
                                     Align(
                                       alignment: const AlignmentDirectional(0.0, 0.0),
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 40.0, 0.0, 0.0),
-                                        child: FFButtonWidget(
-                                          onPressed: () async {
-                                            Function() navigate = () {};
-                                            if (await getPermissionStatus(
-                                                locationPermission)) {
-                                              GoRouter.of(context)
-                                                  .prepareAuthEvent();
+                                      child: FFButtonWidget(
+                                        onPressed: () async {
+                                          Function() navigate = () {};
+                                          if (await getPermissionStatus(
+                                              locationPermission)) {
+                                            GoRouter.of(context)
+                                                .prepareAuthEvent();
 
-                                              final user = await authManager
-                                                  .signInWithEmail(
-                                                context,
-                                                _model.emailFieldTextController
-                                                    .text,
-                                                _model
-                                                    .passwordFieldTextController
-                                                    .text,
-                                              );
-                                              if (user == null) {
-                                                return;
-                                              }
-
-                                              navigate = () =>
-                                                  context.goNamedAuth(
-                                                      'dashboard',
-                                                      context.mounted);
-                                              _model.syncing = true;
-                                              _model.iteration = 0;
-                                              _model.limit = 0;
-                                              setState(() {});
-                                              _model.authUserQuery =
-                                                  await UsersTable().queryRows(
-                                                queryFn: (q) => q.eq(
-                                                  'email',
-                                                  currentUserEmail,
-                                                ),
-                                              );
-                                              _model.isUploadedSuccess =
-                                                  await actions
-                                                      .uploadPhotoUrlToAsset(
-                                                _model.authUserQuery?.first
-                                                    .photoUrl,
-                                              );
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(
-                                                SnackBar(
-                                                  content: Text(
-                                                    'Sync Started',
-                                                    style: TextStyle(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                    ),
-                                                  ),
-                                                  duration: const Duration(
-                                                      milliseconds: 4000),
-                                                  backgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondary,
-                                                ),
-                                              );
-                                              // Online Tasks
-                                              _model.onlineTasks =
-                                                  await TasksTable().queryRows(
-                                                queryFn: (q) => q,
-                                              );
-                                              while (_model.iteration! <
-                                                  _model.limit!) {
-                                                await Future.delayed(
-                                                    const Duration(
-                                                        milliseconds: 2000));
-                                                // Online Tasks
-                                                _model.ppirOutput =
-                                                    await PpirFormsTable()
-                                                        .queryRows(
-                                                  queryFn: (q) => q.eq(
-                                                    'task_id',
-                                                    _model
-                                                        .onlineTasks?[
-                                                            _model.iteration!]
-                                                        .id,
-                                                  ),
-                                                );
-                                                ScaffoldMessenger.of(context)
-                                                    .clearSnackBars();
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(
-                                                  SnackBar(
-                                                    content: Text(
-                                                      '${_model.iteration?.toString()} - Task ID: (${_model.onlineTasks?[_model.iteration!].id}) PPIR Task ID: ( ${_model.ppirOutput?.first.taskId})',
-                                                      style: TextStyle(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                      ),
-                                                    ),
-                                                    duration: const Duration(
-                                                        milliseconds: 4000),
-                                                    backgroundColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .forDispatchColor,
-                                                  ),
-                                                );
-                                                // Number Iteration
-                                                _model.iteration =
-                                                    _model.iteration! + 1;
-                                                setState(() {});
-                                              }
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(
-                                                SnackBar(
-                                                  content: Text(
-                                                    'You have now the latest tasks in your account.',
-                                                    style: GoogleFonts.getFont(
-                                                      'Roboto',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                    ),
-                                                  ),
-                                                  duration: const Duration(
-                                                      milliseconds: 4000),
-                                                  backgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondary,
-                                                ),
-                                              );
-                                            } else {
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(
-                                                SnackBar(
-                                                  content: Text(
-                                                    'Location permission must be enabled.',
-                                                    style: TextStyle(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                    ),
-                                                  ),
-                                                  duration: const Duration(
-                                                      milliseconds: 4000),
-                                                  backgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondary,
-                                                ),
-                                              );
+                                            final user = await authManager
+                                                .signInWithEmail(
+                                              context,
+                                              _model.emailFieldTextController
+                                                  .text,
+                                              _model.passwordFieldTextController
+                                                  .text,
+                                            );
+                                            if (user == null) {
+                                              return;
                                             }
 
-                                            navigate();
-
+                                            navigate = () =>
+                                                context.goNamedAuth('dashboard',
+                                                    context.mounted);
+                                            _model.syncing = true;
+                                            _model.iteration = 0;
+                                            _model.limit = 0;
                                             setState(() {});
-                                          },
-                                          text: FFLocalizations.of(context)
-                                              .getText(
-                                            '32i6nk7l' /* Log in */,
-                                          ),
-                                          options: FFButtonOptions(
-                                            width: double.infinity,
-                                            height: 50.0,
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    24.0, 0.0, 24.0, 0.0),
-                                            iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmall
-                                                    .override(
-                                                      fontFamily:
+                                            _model.authUserQuery =
+                                                await UsersTable().queryRows(
+                                              queryFn: (q) => q.eq(
+                                                'email',
+                                                currentUserEmail,
+                                              ),
+                                            );
+                                            _model.isUploadedSuccess =
+                                                await actions
+                                                    .uploadPhotoUrlToAsset(
+                                              _model.authUserQuery?.first
+                                                  .photoUrl,
+                                            );
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  'Sync Started',
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                  ),
+                                                ),
+                                                duration: const Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondary,
+                                              ),
+                                            );
+                                            // Online Tasks
+                                            _model.onlineTasks =
+                                                await TasksTable().queryRows(
+                                              queryFn: (q) => q,
+                                            );
+                                            while (_model.iteration! <
+                                                _model.limit!) {
+                                              await Future.delayed(
+                                                  const Duration(
+                                                      milliseconds: 2000));
+                                              // Online Tasks
+                                              _model.ppirOutput =
+                                                  await PpirFormsTable()
+                                                      .queryRows(
+                                                queryFn: (q) => q.eq(
+                                                  'task_id',
+                                                  _model
+                                                      .onlineTasks?[
+                                                          _model.iteration!]
+                                                      .id,
+                                                ),
+                                              );
+                                              ScaffoldMessenger.of(context)
+                                                  .clearSnackBars();
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                SnackBar(
+                                                  content: Text(
+                                                    '${_model.iteration?.toString()} - Task ID: (${_model.onlineTasks?[_model.iteration!].id}) PPIR Task ID: ( ${_model.ppirOutput?.first.taskId})',
+                                                    style: TextStyle(
+                                                      color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .titleSmallFamily,
-                                                      color: Colors.white,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      useGoogleFonts: GoogleFonts
-                                                              .asMap()
-                                                          .containsKey(
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmallFamily),
+                                                              .primaryText,
                                                     ),
-                                            elevation: 0.0,
-                                            borderSide: const BorderSide(
-                                              color: Colors.transparent,
-                                              width: 1.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(12.0),
+                                                  ),
+                                                  duration: const Duration(
+                                                      milliseconds: 4000),
+                                                  backgroundColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .forDispatchColor,
+                                                ),
+                                              );
+                                              // Number Iteration
+                                              _model.iteration =
+                                                  _model.iteration! + 1;
+                                              setState(() {});
+                                            }
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  'You have now the latest tasks in your account.',
+                                                  style: GoogleFonts.getFont(
+                                                    'Roboto',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                  ),
+                                                ),
+                                                duration: const Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondary,
+                                              ),
+                                            );
+                                          } else {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  'Location permission must be enabled.',
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                  ),
+                                                ),
+                                                duration: const Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondary,
+                                              ),
+                                            );
+                                          }
+
+                                          navigate();
+
+                                          setState(() {});
+                                        },
+                                        text:
+                                            FFLocalizations.of(context).getText(
+                                          '32i6nk7l' /* Log in */,
+                                        ),
+                                        options: FFButtonOptions(
+                                          width: double.infinity,
+                                          height: 50.0,
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  24.0, 0.0, 24.0, 0.0),
+                                          iconPadding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          textStyle: FlutterFlowTheme.of(
+                                                  context)
+                                              .titleSmall
+                                              .override(
+                                                fontFamily:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmallFamily,
+                                                color: Colors.white,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .titleSmallFamily),
+                                              ),
+                                          elevation: 0.0,
+                                          borderSide: const BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1.0,
                                           ),
+                                          borderRadius:
+                                              BorderRadius.circular(12.0),
                                         ),
                                       ),
                                     ),
@@ -824,7 +810,9 @@ class _LoginWidgetState extends State<LoginWidget>
                                           ),
                                         ],
                                       ),
-                                  ].divide(const SizedBox(height: 20.0)),
+                                  ]
+                                      .divide(const SizedBox(height: 20.0))
+                                      .around(const SizedBox(height: 20.0)),
                                 ),
                               ),
                             ),
