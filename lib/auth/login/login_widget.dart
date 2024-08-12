@@ -564,8 +564,6 @@ class _LoginWidgetState extends State<LoginWidget>
                                             Function() navigate = () {};
                                             if (await getPermissionStatus(
                                                 locationPermission)) {
-                                              _model.syncing = true;
-                                              setState(() {});
                                               GoRouter.of(context)
                                                   .prepareAuthEvent();
 
@@ -586,6 +584,10 @@ class _LoginWidgetState extends State<LoginWidget>
                                                   context.goNamedAuth(
                                                       'dashboard',
                                                       context.mounted);
+                                              _model.syncing = true;
+                                              _model.iteration = 0;
+                                              _model.limit = 0;
+                                              setState(() {});
                                               _model.authUserQuery =
                                                   await UsersTable().queryRows(
                                                 queryFn: (q) => q.eq(
@@ -599,56 +601,96 @@ class _LoginWidgetState extends State<LoginWidget>
                                                 _model.authUserQuery?.first
                                                     .photoUrl,
                                               );
-                                              if (kDebugMode) {
-                                                if (_model.isUploadedSuccess !=
-                                                        null &&
-                                                    _model.isUploadedSuccess !=
-                                                        '') {
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(
-                                                    SnackBar(
-                                                      content: Text(
-                                                        _model
-                                                            .isUploadedSuccess!,
-                                                        style: TextStyle(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                        ),
-                                                      ),
-                                                      duration: const Duration(
-                                                          milliseconds: 4000),
-                                                      backgroundColor:
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                SnackBar(
+                                                  content: Text(
+                                                    'Sync Started',
+                                                    style: TextStyle(
+                                                      color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .warning,
-                                                    ),
-                                                  );
-                                                } else {
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(
-                                                    SnackBar(
-                                                      content: Text(
-                                                        _model
-                                                            .isUploadedSuccess!,
-                                                        style: TextStyle(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
                                                               .primaryText,
-                                                        ),
-                                                      ),
-                                                      duration: const Duration(
-                                                          milliseconds: 4000),
-                                                      backgroundColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .error,
                                                     ),
-                                                  );
-                                                }
+                                                  ),
+                                                  duration: const Duration(
+                                                      milliseconds: 4000),
+                                                  backgroundColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondary,
+                                                ),
+                                              );
+                                              // Online Tasks
+                                              _model.onlineTasks =
+                                                  await TasksTable().queryRows(
+                                                queryFn: (q) => q,
+                                              );
+                                              while (_model.iteration! <
+                                                  _model.limit!) {
+                                                await Future.delayed(
+                                                    const Duration(
+                                                        milliseconds: 2000));
+                                                // Online Tasks
+                                                _model.ppirOutput =
+                                                    await PpirFormsTable()
+                                                        .queryRows(
+                                                  queryFn: (q) => q.eq(
+                                                    'task_id',
+                                                    _model
+                                                        .onlineTasks?[
+                                                            _model.iteration!]
+                                                        .id,
+                                                  ),
+                                                );
+                                                ScaffoldMessenger.of(context)
+                                                    .clearSnackBars();
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                  SnackBar(
+                                                    content: Text(
+                                                      '${_model.iteration?.toString()} - Task ID: (${_model.onlineTasks?[_model.iteration!].id}) PPIR Task ID: ( ${_model.ppirOutput?.first.taskId})',
+                                                      style: TextStyle(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                      ),
+                                                    ),
+                                                    duration: const Duration(
+                                                        milliseconds: 4000),
+                                                    backgroundColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .forDispatchColor,
+                                                  ),
+                                                );
+                                                // Number Iteration
+                                                _model.iteration =
+                                                    _model.iteration! + 1;
+                                                setState(() {});
                                               }
-                                              _model.syncing = false;
-                                              setState(() {});
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                SnackBar(
+                                                  content: Text(
+                                                    'You have now the latest tasks in your account.',
+                                                    style: GoogleFonts.getFont(
+                                                      'Roboto',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                    ),
+                                                  ),
+                                                  duration: const Duration(
+                                                      milliseconds: 4000),
+                                                  backgroundColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondary,
+                                                ),
+                                              );
                                             } else {
                                               ScaffoldMessenger.of(context)
                                                   .showSnackBar(

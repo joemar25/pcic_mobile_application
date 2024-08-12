@@ -10,7 +10,7 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
 
   int? limit = 0;
 
-  bool syncing = true;
+  bool syncing = false;
 
   ///  State fields for stateful widgets in this page.
 
@@ -59,6 +59,10 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
   List<UsersRow>? authUserQuery;
   // Stores action output result for [Custom Action - uploadPhotoUrlToAsset] action in loginButton widget.
   String? isUploadedSuccess;
+  // Stores action output result for [Backend Call - Query Rows] action in loginButton widget.
+  List<TasksRow>? onlineTasks;
+  // Stores action output result for [Backend Call - Query Rows] action in loginButton widget.
+  List<PpirFormsRow>? ppirOutput;
 
   @override
   void initState(BuildContext context) {
