@@ -34,15 +34,6 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.getProfilePic = await actions.getTheSavedLocalProfile();
-      await UsersTable().update(
-        data: {
-          'inspector_name': _model.displayNameTextController.text,
-        },
-        matchingRows: (rows) => rows.eq(
-          'inspector_name',
-          _model.newUsername?.inspectorName,
-        ),
-      );
     });
 
     _model.displayNameTextController ??= TextEditingController();
@@ -278,12 +269,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                         TextFormField(
                           controller: _model.displayNameTextController,
                           focusNode: _model.displayNameFocusNode,
-                          onFieldSubmitted: (_) async {
-                            _model.inspectorName =
-                                await actions.getTheSavedLocalProfile();
-
-                            setState(() {});
-                          },
+                          onFieldSubmitted: (_) async {},
                           autofocus: false,
                           obscureText: false,
                           decoration: InputDecoration(
@@ -376,6 +362,9 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                   'inspector_name',
                                   _model.newUsername?.inspectorName,
                                 ),
+                              );
+                              await actions.changeUsername(
+                                _model.newUsername!.inspectorName,
                               );
                               _model.savedLocalProfile =
                                   await actions.getTheSavedLocalProfile();

@@ -322,6 +322,21 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                                 isDirty: _model.ppirOutput?.first.isDirty
                                     ?.toString(),
                               );
+                              ScaffoldMessenger.of(context).clearSnackBars();
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    '${_model.iteration?.toString()} - Task ID: (${_model.onlineTasks?[_model.iteration!].id}) PPIR Task ID: ( ${_model.ppirOutput?.first.taskId})',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor: FlutterFlowTheme.of(context)
+                                      .forDispatchColor,
+                                ),
+                              );
                               // Number Iteration
                               _model.iteration = _model.iteration! + 1;
                               setState(() {});

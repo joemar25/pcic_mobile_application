@@ -36,8 +36,6 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
     return null;
   }
 
-  // Stores action output result for [Custom Action - getTheSavedLocalProfile] action in display_name widget.
-  FFUploadedFile? inspectorName;
   // Stores action output result for [Backend Call - Update Row(s)] action in Button widget.
   List<UsersRow>? updateResult;
   // Stores action output result for [Custom Action - getTheSavedLocalProfile] action in Button widget.

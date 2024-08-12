@@ -253,7 +253,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'o5erevch': {
+    'rp5kj5wd': {
       'en': '',
       'tl': '',
     },
@@ -265,7 +265,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'tigmir7k': {
+    'nisk9z3m': {
       'en': '',
       'tl': '',
     },
@@ -277,7 +277,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    '8g07polz': {
+    'ag1ybdo2': {
       'en': '',
       'tl': '',
     },
@@ -300,7 +300,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    'km1gz5e9': {
+    'emszqn3z': {
       'en': '',
       'tl': '',
     },
@@ -892,37 +892,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // tasks
   {
-    'mb6k33q5': {
-      'en': 'North',
-      'tl': '',
-    },
-    'z7ucbsis': {
-      'en': 'West',
-      'tl': '',
-    },
-    'c7r031r8': {
-      'en': 'West',
-      'tl': '',
-    },
-    'wacsxsa5': {
-      'en': 'East',
-      'tl': '',
-    },
     '83q8pggh': {
       'en': 'Assignment Id',
       'tl': 'Assignment Id',
     },
-    'jkdisus5': {
-      'en': 'ID',
-      'tl': '',
-    },
     '0869xbo0': {
       'en': 'Address',
       'tl': 'Address',
-    },
-    '7wy8807n': {
-      'en': 'Address',
-      'tl': '',
     },
   },
   // chat
