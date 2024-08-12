@@ -145,7 +145,7 @@ class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
-                                    '${_model.iteration?.toString()} - a',
+                                    '${_model.iteration?.toString()} - ${_model.ppirOutput?[_model.iteration!].ppirFarmername}',
                                     style: TextStyle(
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,

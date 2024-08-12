@@ -358,21 +358,16 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                       _model.displayNameTextController.text,
                                 },
                                 matchingRows: (rows) => rows.eq(
-                                  'email',
-                                  currentUserEmail,
+                                  'inspector_name',
+                                  editProfileUsersRow?.inspectorName,
                                 ),
                               );
-                              await actions.getTheSavedLocalProfile();
+                              _model.up =
+                                  await actions.getTheSavedLocalProfile();
                               // success profile
 
                               context.pushNamed(
-                                'successProfile',
-                                queryParameters: {
-                                  'message': serializeParam(
-                                    'Profile is now updated.',
-                                    ParamType.String,
-                                  ),
-                                }.withoutNulls,
+                                'editProfile',
                                 extra: <String, dynamic>{
                                   kTransitionInfoKey: const TransitionInfo(
                                     hasTransition: true,
