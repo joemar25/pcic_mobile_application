@@ -11,29 +11,19 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'package:supaflow/supaflow.dart'; // Import SupaFlow here
-
 Future<bool> changeUsername(String newUsername) async {
-  // This custom action is for changing the inspector_name using SupaFlow
+  // Assuming the user is already authenticated
+  final response = await SupaFlow.client
+      .from('users')
+      .update({'inspector_name': newUsername})
+      .eq('id', SupaFlow.client.auth.currentUser?.id)
+      .execute();
 
-  final supabaseClient = SupaFlowClient();
-  final user = supabaseClient.auth.currentUser;
-
-  if (user != null) {
-    final response = await supabaseClient
-        .from('users')
-        .update({'inspector_name': newUsername})
-        .eq('id', user.id)
-        .execute();
-
-    if (response.hasError) {
-      print(response.error!.message);
-      return false;
-    }
-
-    return true;
+  // Check for errors in the response
+  if (response.error != null) {
+    print(response.error!.message);
+    return false;
   }
 
-  // Return false if the user is not authenticated
-  return false;
+  return true;
 }

@@ -574,13 +574,6 @@ class _LoginWidgetState extends State<LoginWidget>
                                               return;
                                             }
 
-                                            _model.authUserQuery =
-                                                await UsersTable().queryRows(
-                                              queryFn: (q) => q.eq(
-                                                'email',
-                                                currentUserEmail,
-                                              ),
-                                            );
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(
                                               SnackBar(
