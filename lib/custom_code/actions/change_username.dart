@@ -12,15 +12,17 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 Future<bool> changeUsername(String newUsername) async {
-  // This action is for changing the user's username using Supabase. The placeholder for the username is inspector_name.
+  // This action is for changing the user's username using Supabase.
   try {
-    final user = supabase.auth.currentUser;
+    final user = SupaFlow.client.auth.currentUser;
+
     if (user != null) {
-      final response = await supabase
+      final response = await SupaFlow.client
           .from('users')
           .update({'inspector_name': newUsername})
           .eq('id', user.id)
           .execute();
+
       if (response.error != null) {
         throw response.error!;
       }
