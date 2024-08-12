@@ -11,13 +11,13 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'package:supabase/supabase.dart'; // Import Supabase here
+import 'package:supaflow/supaflow.dart'; // Import SupaFlow here
 
 Future<bool> changeUsername(String newUsername) async {
-  // This custom action is for changing the inspector_name using Supabase
+  // This custom action is for changing the inspector_name using SupaFlow
 
-  final supabaseClient = SupabaseClient('SUPABASE_URL', 'SUPABASE_ANON_KEY');
-  final user = supabaseClient.auth.user();
+  final supabaseClient = SupaFlowClient();
+  final user = supabaseClient.auth.currentUser;
 
   if (user != null) {
     final response = await supabaseClient
@@ -26,7 +26,7 @@ Future<bool> changeUsername(String newUsername) async {
         .eq('id', user.id)
         .execute();
 
-    if (response.error != null) {
+    if (response.hasError) {
       print(response.error!.message);
       return false;
     }

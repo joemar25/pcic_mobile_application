@@ -19,7 +19,12 @@ import 'profile_model.dart';
 export 'profile_model.dart';
 
 class ProfileWidget extends StatefulWidget {
-  const ProfileWidget({super.key});
+  const ProfileWidget({
+    super.key,
+    String? name,
+  }) : name = name ?? '[name]';
+
+  final String name;
 
   @override
   State<ProfileWidget> createState() => _ProfileWidgetState();
@@ -229,6 +234,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         children: [
                                           FutureBuilder<List<UsersRow>>(
                                             future: FFAppState().appLevelName(
+                                              uniqueQueryKey: widget.name,
                                               requestFn: () =>
                                                   UsersTable().querySingleRow(
                                                 queryFn: (q) => q.eq(

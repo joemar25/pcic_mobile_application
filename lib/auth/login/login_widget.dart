@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/permissions_util.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -581,12 +580,6 @@ class _LoginWidgetState extends State<LoginWidget>
                                                 'email',
                                                 currentUserEmail,
                                               ),
-                                            );
-                                            _model.isUploadedSuccess =
-                                                await actions
-                                                    .uploadPhotoUrlToAsset(
-                                              _model.authUserQuery?.first
-                                                  .photoUrl,
                                             );
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(
