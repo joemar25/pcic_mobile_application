@@ -20,17 +20,17 @@ Future<void> updateInspectorName(String newName) async {
       throw Exception('No authenticated user found');
     }
 
-    // Assuming your table is named 'users' or 'agents'
-    final tableName = 'users'; // or 'agents', adjust as needed
-
     final response = await supabase
-        .from(tableName)
+        .from('users')
         .update({'inspector_name': newName}).eq('auth_user_id', user.id);
 
-    if (response.error != null) {
-      throw Exception(response.error!.message);
+    // The response might be null if the update was successful
+    if (response == null) {
+      print('Inspector name updated successfully');
+    } else {
+      // If there's an error, it will be in the response
+      throw Exception('Failed to update inspector name');
     }
-    print('Inspector name updated successfully');
   } catch (error) {
     print('Error updating inspector name: $error');
     // You might want to show an error message to the user here
