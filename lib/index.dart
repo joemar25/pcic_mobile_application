@@ -29,11 +29,15 @@ export '/utils/test/offline_tasks_and_ppir_list/offline_tasks_and_ppir_list_widg
 export '/dashboard/task_details_copyx/task_details_copyx_widget.dart'
     show TaskDetailsCopyxWidget;
 export '/auth/onboarding01/onboarding01_widget.dart' show Onboarding01Widget;
-export '/auth/sync_data/sync_data_widget.dart' show SyncDataWidget;
+export '/utils/sync_data/sync_data_widget.dart' show SyncDataWidget;
 export '/dashboard/forms/task_details_copyxx/task_details_copyxx_widget.dart'
     show TaskDetailsCopyxxWidget;
-export '/utils/test/sync_king/sync_king_widget.dart' show SyncKingWidget;
+export '/utils/sync_king/sync_king_widget.dart' show SyncKingWidget;
 export '/auth/login_original_copy/login_original_copy_widget.dart'
     show LoginOriginalCopyWidget;
 export '/auth/onboarding01_original_copy/onboarding01_original_copy_widget.dart'
     show Onboarding01OriginalCopyWidget;
+export '/utils/sync_king_copy/sync_king_copy_widget.dart'
+    show SyncKingCopyWidget;
+export '/dashboard/messages/chats_copy/chats_copy_widget.dart'
+    show ChatsCopyWidget;

@@ -257,7 +257,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'owi5t5y0': {
+    'ah27ax18': {
       'en': '',
       'tl': '',
     },
@@ -269,7 +269,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    '2xs8ytlr': {
+    'r13ptd6z': {
       'en': '',
       'tl': '',
     },
@@ -281,7 +281,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'fkeif4mc': {
+    '40rxuhpp': {
       'en': '',
       'tl': '',
     },
@@ -304,7 +304,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    'ceggeplc': {
+    '9940my0w': {
       'en': '',
       'tl': '',
     },
@@ -406,33 +406,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'North',
       'tl': 'Hilaga',
     },
-    '8hclpkqm': {
-      'en': '-',
-      'tl': '',
-    },
     'hytwamsl': {
       'en': 'East',
       'tl': 'Silangan',
-    },
-    '0low7psj': {
-      'en': '-',
-      'tl': '',
     },
     'qtzirwg5': {
       'en': 'South',
       'tl': 'Timog',
     },
-    '03a9045c': {
-      'en': '-',
-      'tl': '',
-    },
     'gmqdadav': {
       'en': 'West',
       'tl': 'Kanluran',
-    },
-    '5ohs3fsy': {
-      'en': '-',
-      'tl': '',
     },
     'tsu0lxo2': {
       'en': 'Location Sketch Plan',
@@ -558,25 +542,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Remarks',
       'tl': 'Remarks',
     },
-    '0m6zk42a': {
-      'en': '-',
-      'tl': '',
-    },
     '7ftdujb6': {
       'en': 'Confirmed By',
       'tl': 'Kinumpirma ni',
     },
-    'sg8dshub': {
-      'en': '-',
-      'tl': '',
-    },
     '8bdkh9n1': {
       'en': 'Prepared By',
       'tl': 'Inihanda ni',
-    },
-    'c148ed4e': {
-      'en': '-',
-      'tl': '',
     },
     'ahzx9d2y': {
       'en': 'Geotag',
@@ -595,7 +567,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     '0mkqs892': {
-      'en': 'Re-Submit',
+      'en': 'Geotag Again',
       'tl': '',
     },
     '4jnx5njc': {
@@ -1385,15 +1357,15 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // syncKing
   {
     'z1qajala': {
-      'en': 'Sync Task & PPIR',
+      'en': 'Sync Data',
       'tl': '',
     },
-    'rl620j3y': {
+    'bsm9tuxm': {
+      'en': 'Tap to Sync',
+      'tl': '',
+    },
+    'jnfy1f5x': {
       'en': 'Dashboard',
-      'tl': '',
-    },
-    'y16sy9zu': {
-      'en': 'Offline Tasks Sync Test',
       'tl': '',
     },
     '356odp6u': {
@@ -1508,6 +1480,48 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'j2zyyyh9': {
       'en': 'Home',
+      'tl': '',
+    },
+  },
+  // syncKingCopy
+  {
+    'kp6iy6vr': {
+      'en': 'Sync Task & PPIR',
+      'tl': '',
+    },
+    'ca55sy47': {
+      'en': 'Dashboard',
+      'tl': '',
+    },
+    '9gd2iyb3': {
+      'en': 'Offline Tasks Sync Test',
+      'tl': '',
+    },
+    's53wj8c8': {
+      'en': 'Home',
+      'tl': '',
+    },
+  },
+  // chatsCopy
+  {
+    'tmxlre7s': {
+      'en': 'Messages',
+      'tl': '',
+    },
+    '7fzgjx8b': {
+      'en': 'Conversations',
+      'tl': '',
+    },
+    '7vss9dpb': {
+      'en': 'You are offline.',
+      'tl': '',
+    },
+    '5lzgniqc': {
+      'en': 'Compose',
+      'tl': '',
+    },
+    'dl276486': {
+      'en': 'Messages',
       'tl': '',
     },
   },

@@ -65,6 +65,7 @@ class _MapTestWidgetState extends State<MapTestWidget> {
           top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
                 child: SizedBox(
@@ -74,7 +75,7 @@ class _MapTestWidgetState extends State<MapTestWidget> {
                     width: double.infinity,
                     height: double.infinity,
                     accessToken: FFAppState().accessToken,
-                    taskId: 'Lorem',
+                    taskId: '33fd8684-a9fd-4914-a28d-c879eff8604c',
                   ),
                 ),
               ),

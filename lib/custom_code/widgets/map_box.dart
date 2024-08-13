@@ -80,6 +80,19 @@ class _MapBoxState extends State<MapBox> {
     _setupSmoothHeadingStream();
   }
 
+  // --------------------------------------------//
+
+  void _toggleTracking() async {
+    if (_isTracking) {
+      _completeTracking();
+    } else {
+      await _startTracking();
+    }
+    // Update FFAppState
+    FFAppState().routeStarted = _isTracking;
+  }
+  // --------------------------------------------//
+
   void _setupSmoothHeadingStream() {
     FlutterCompass.events?.listen((event) {
       if (event.heading != null) {
@@ -567,6 +580,27 @@ class _MapBoxState extends State<MapBox> {
                     size: 24,
                   ),
                 ),
+              ),
+            ),
+          ),
+        ),
+        Positioned(
+          bottom: 20,
+          left: 0,
+          right: 0,
+          child: Center(
+            child: ElevatedButton(
+              onPressed: _toggleTracking,
+              style: ElevatedButton.styleFrom(
+                primary: _isTracking ? Colors.red : Colors.green,
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+              ),
+              child: Text(
+                _isTracking ? 'Stop Tracking' : 'Start Tracking',
+                style: TextStyle(fontSize: 16, color: Colors.white),
               ),
             ),
           ),

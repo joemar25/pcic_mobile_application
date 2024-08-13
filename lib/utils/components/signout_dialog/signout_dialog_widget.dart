@@ -125,7 +125,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                       ),
                     ],
                   ),
-                ].divide(const SizedBox(height: 5.0)),
+                ],
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
