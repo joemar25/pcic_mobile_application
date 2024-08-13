@@ -22,7 +22,8 @@ Future<void> updateInspectorName(String newName) async {
 
     final response = await supabase
         .from('users')
-        .update({'inspector_name': newName}).eq('auth_user_id', user.id);
+        .update({'inspector_name': newName}).eq(
+            'id', user.id); //changed auth_user_id to id
 
     // The response might be null if the update was successful
     if (response == null) {

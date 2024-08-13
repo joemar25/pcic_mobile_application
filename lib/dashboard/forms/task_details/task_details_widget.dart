@@ -431,9 +431,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    'ld4fzlai' /* - */,
+                                                  valueOrDefault<String>(
+                                                    functions.removePpirOnString(
+                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                            .first.serviceType),
+                                                    'Insurance Id',
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -490,9 +492,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    '9aydp8un' /* - */,
+                                                  valueOrDefault<String>(
+                                                    functions.removePpirOnString(
+                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                            .first.serviceType),
+                                                    'Mobile Number',
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -549,9 +553,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    '4ltcm64a' /* - */,
+                                                  valueOrDefault<String>(
+                                                    functions.removePpirOnString(
+                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                            .first.serviceType),
+                                                    'Farmer Type',
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -608,9 +614,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    '92blrk04' /* - */,
+                                                  valueOrDefault<String>(
+                                                    functions.removePpirOnString(
+                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                            .first.serviceType),
+                                                    'Group Name',
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -667,9 +675,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    '6xs82b56' /* - */,
+                                                  valueOrDefault<String>(
+                                                    functions.removePpirOnString(
+                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                            .first.serviceType),
+                                                    'Group Address',
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -726,9 +736,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    'yexmpzwz' /* - */,
+                                                  valueOrDefault<String>(
+                                                    functions.removePpirOnString(
+                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                            .first.serviceType),
+                                                    'Lender Name',
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -785,9 +797,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    'msmjq3c1' /* - */,
+                                                  valueOrDefault<String>(
+                                                    functions.removePpirOnString(
+                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                            .first.serviceType),
+                                                    'Lender Address',
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -905,9 +919,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    'qhvztmpv' /* - */,
+                                                  valueOrDefault<String>(
+                                                    functions.removePpirOnString(
+                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                            .first.serviceType),
+                                                    'CIC Number',
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -964,9 +980,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    'drw0h32n' /* - */,
+                                                  valueOrDefault<String>(
+                                                    functions.removePpirOnString(
+                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                            .first.serviceType),
+                                                    'Farm Location',
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)

@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'login_widget.dart' show LoginWidget;
+import 'login_original_copy_widget.dart' show LoginOriginalCopyWidget;
 import 'package:flutter/material.dart';
 
-class LoginModel extends FlutterFlowModel<LoginWidget> {
+class LoginOriginalCopyModel extends FlutterFlowModel<LoginOriginalCopyWidget> {
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
@@ -14,7 +14,7 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
       BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
-        'ze2n4vlq' /* Field is required */,
+        '2dw7rcft' /* Field is required */,
       );
     }
 
@@ -33,13 +33,13 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
       BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
-        'bi8ton4q' /* Field is required */,
+        'mghqg6la' /* Field is required */,
       );
     }
 
     if (val.length < 8) {
       return FFLocalizations.of(context).getText(
-        'j7dhgc8q' /* Password must be atleast 8 cha... */,
+        'dd07lbtn' /* Password must be atleast 8 cha... */,
       );
     }
 

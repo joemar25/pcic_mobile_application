@@ -107,67 +107,67 @@ Locale createLocale(String language) => language.contains('_')
 final kTranslationsMap = <Map<String, Map<String, String>>>[
   // login
   {
-    'py6ovdt7': {
+    'loe9uree': {
       'en': 'PCIC Geotagging ',
       'tl': '',
     },
-    'm6ts5v8u': {
+    '4okdmfv6': {
       'en': 'Welcome Back',
       'tl': '',
     },
-    'vtpwtki1': {
+    'wd51ceym': {
       'en': 'Please sign in to continue',
       'tl': '',
     },
-    '71199j9k': {
+    'dfm6pibp': {
       'en': 'Email Address',
       'tl': '',
     },
-    'vy1wtl5k': {
+    'ie3newb4': {
       'en': 'Enter your email address...',
       'tl': '',
     },
-    'f0cvuzcg': {
+    's13svqys': {
       'en': '',
       'tl': '',
     },
-    's11m4d5b': {
+    'ates91zw': {
       'en': 'Password',
       'tl': '',
     },
-    '617sxtmo': {
+    '0vxezk07': {
       'en': 'Enter your password...',
       'tl': '',
     },
-    'w242n4tp': {
+    'twjqjyyn': {
       'en': '',
       'tl': '',
     },
-    '32i6nk7l': {
+    'lvomy5y7': {
       'en': 'Log in',
       'tl': '',
     },
-    '3ztauu8v': {
+    'p48qx3c2': {
       'en': 'Forgot Password ?',
       'tl': '',
     },
-    'kyyyy0az': {
+    'ze2n4vlq': {
       'en': 'Field is required',
       'tl': '',
     },
-    'm0y1kdcw': {
+    'bzdqtdr8': {
       'en': 'Please choose an option from the dropdown',
       'tl': '',
     },
-    'xv20uueg': {
+    'bi8ton4q': {
       'en': 'Field is required',
       'tl': '',
     },
-    'jte1qgob': {
+    'j7dhgc8q': {
       'en': 'Password must be atleast 8 characters',
       'tl': '',
     },
-    'xbwo0ppz': {
+    '9aqb52if': {
       'en': 'Please choose an option from the dropdown',
       'tl': '',
     },
@@ -257,7 +257,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'o1dqlz2d': {
+    'owi5t5y0': {
       'en': '',
       'tl': '',
     },
@@ -269,7 +269,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'd8avydqy': {
+    '2xs8ytlr': {
       'en': '',
       'tl': '',
     },
@@ -281,7 +281,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'a7yef8uv': {
+    'fkeif4mc': {
       'en': '',
       'tl': '',
     },
@@ -304,7 +304,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    's8hyf77k': {
+    'ceggeplc': {
       'en': '',
       'tl': '',
     },
@@ -362,57 +362,29 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Insurance Id',
       'tl': 'Insurance Id',
     },
-    'ld4fzlai': {
-      'en': '-',
-      'tl': '',
-    },
     'ezx6meo9': {
       'en': 'Mobile Number',
       'tl': 'Numero ng Mobile',
-    },
-    '9aydp8un': {
-      'en': '-',
-      'tl': '',
     },
     'gvdbo0h6': {
       'en': 'Farmer Type',
       'tl': 'Uri ng Magsasaka',
     },
-    '4ltcm64a': {
-      'en': '-',
-      'tl': '',
-    },
     '0blfogwv': {
       'en': 'Group Name',
       'tl': 'Pangalan ng grupo',
-    },
-    '92blrk04': {
-      'en': '-',
-      'tl': '',
     },
     'lst6ktx6': {
       'en': 'Group Address',
       'tl': 'Address ng Grupo',
     },
-    '6xs82b56': {
-      'en': '-',
-      'tl': '',
-    },
     'zv71woqo': {
       'en': 'Lender Name',
       'tl': 'Pangalan ng nagpapahiram',
     },
-    'yexmpzwz': {
-      'en': '-',
-      'tl': '',
-    },
     'jl733wsk': {
       'en': 'Lender Address',
       'tl': 'Address ng nagpapahiram',
-    },
-    'msmjq3c1': {
-      'en': '-',
-      'tl': '',
     },
     'zop5kb93': {
       'en': 'Region',
@@ -422,17 +394,9 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'CIC Number',
       'tl': 'Numero ng CIC',
     },
-    'qhvztmpv': {
-      'en': '-',
-      'tl': '',
-    },
     'p1282pce': {
       'en': 'Farm Location',
       'tl': 'Lokasyon ng Bukid',
-    },
-    'drw0h32n': {
-      'en': '-',
-      'tl': '',
     },
     'hvb7985g': {
       'en': 'Location Sketch Plan',
@@ -1195,22 +1159,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // onboarding01
   {
-    '2hf8uvq6': {
-      'en': 'Welcome!',
-      'tl': '',
-    },
-    '5lzr6222': {
-      'en': 'Welcome Agent in the PCIC Geotagging Application!',
-      'tl': '',
-    },
-    'byq4vn69': {
-      'en': 'Get Started',
-      'tl': '',
-    },
-    '3ckpvaqt': {
-      'en': 'My Account',
-      'tl': '',
-    },
     'e5zj0r88': {
       'en': 'Welcome!',
       'tl': '',
@@ -1449,6 +1397,116 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     '356odp6u': {
+      'en': 'Home',
+      'tl': '',
+    },
+  },
+  // loginOriginalCopy
+  {
+    '57zaxsj8': {
+      'en': 'PCIC Geotagging ',
+      'tl': '',
+    },
+    '05ulgw2f': {
+      'en': 'Welcome Back',
+      'tl': '',
+    },
+    'nag5ke10': {
+      'en': 'Please sign in to continue',
+      'tl': '',
+    },
+    'y1z141rp': {
+      'en': 'Email Address',
+      'tl': '',
+    },
+    'sj6vsz71': {
+      'en': 'Enter your email address...',
+      'tl': '',
+    },
+    'xlbctbk0': {
+      'en': '',
+      'tl': '',
+    },
+    'jb8g5qku': {
+      'en': 'Password',
+      'tl': '',
+    },
+    'd6c8swbq': {
+      'en': 'Enter your password...',
+      'tl': '',
+    },
+    'jr8iwpo9': {
+      'en': '',
+      'tl': '',
+    },
+    'euned5zw': {
+      'en': 'Log in',
+      'tl': '',
+    },
+    'tvgiw5oi': {
+      'en': 'Forgot Password ?',
+      'tl': '',
+    },
+    '2dw7rcft': {
+      'en': 'Field is required',
+      'tl': '',
+    },
+    'eawrlfti': {
+      'en': 'Please choose an option from the dropdown',
+      'tl': '',
+    },
+    'mghqg6la': {
+      'en': 'Field is required',
+      'tl': '',
+    },
+    'dd07lbtn': {
+      'en': 'Password must be atleast 8 characters',
+      'tl': '',
+    },
+    'zegrahdq': {
+      'en': 'Please choose an option from the dropdown',
+      'tl': '',
+    },
+    'egf7o911': {
+      'en': 'Home',
+      'tl': '',
+    },
+  },
+  // onboarding01OriginalCopy
+  {
+    '2grvnw3v': {
+      'en': 'Welcome!',
+      'tl': '',
+    },
+    'xahmkk4o': {
+      'en': 'Welcome Agent in the PCIC Geotagging Application!',
+      'tl': '',
+    },
+    'mzijvexf': {
+      'en': 'Get Started',
+      'tl': '',
+    },
+    'xlercfoh': {
+      'en': 'My Account',
+      'tl': '',
+    },
+    'o3rlw29a': {
+      'en': 'Welcome!',
+      'tl': '',
+    },
+    'v6c3moob': {
+      'en': 'Welcome Agent in the PCIC Geotagging Application!',
+      'tl': '',
+    },
+    '6zeto6je': {
+      'en': 'Get Started',
+      'tl': '',
+    },
+    '1in1mox2': {
+      'en': 'My Account',
+      'tl': '',
+    },
+    'j2zyyyh9': {
       'en': 'Home',
       'tl': '',
     },

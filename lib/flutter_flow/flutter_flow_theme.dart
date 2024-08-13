@@ -81,6 +81,7 @@ abstract class FlutterFlowTheme {
   late Color wifiBars;
   late Color altText1;
   late Color alternate2;
+  late Color bg3;
 
   @Deprecated('Use displaySmallFamily instead')
   String get title1Family => displaySmallFamily;
@@ -203,6 +204,7 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color wifiBars = const Color(0xFF336A4A);
   late Color altText1 = const Color(0x7F818485);
   late Color alternate2 = const Color(0xFFAEBCC7);
+  late Color bg3 = const Color(0xFFF1F4F8);
 }
 
 abstract class Typography {
@@ -617,6 +619,7 @@ class DarkModeTheme extends FlutterFlowTheme {
   late Color wifiBars = const Color(0xFF228B22);
   late Color altText1 = const Color(0x7FD8DCDE);
   late Color alternate2 = const Color(0xFF252831);
+  late Color bg3 = const Color(0xFF222A2D);
 }
 
 extension TextStyleHelper on TextStyle {

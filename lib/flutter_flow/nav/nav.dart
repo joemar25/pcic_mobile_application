@@ -297,6 +297,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/syncKing',
           requireAuth: true,
           builder: (context, params) => const SyncKingWidget(),
+        ),
+        FFRoute(
+          name: 'loginOriginalCopy',
+          path: '/loginOriginal',
+          builder: (context, params) => const LoginOriginalCopyWidget(),
+        ),
+        FFRoute(
+          name: 'onboarding01OriginalCopy',
+          path: '/onboarding01OriginalCopy',
+          builder: (context, params) => const Onboarding01OriginalCopyWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
