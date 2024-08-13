@@ -274,6 +274,9 @@ class _SyncDataWidgetState extends State<SyncDataWidget>
                                   status:
                                       syncDataTasksRowList[_model.iteration!]
                                           .status,
+                                  serviceType:
+                                      syncDataTasksRowList[_model.iteration!]
+                                          .serviceType,
                                   priority:
                                       syncDataTasksRowList[_model.iteration!]
                                           .priority,
@@ -291,9 +294,6 @@ class _SyncDataWidgetState extends State<SyncDataWidget>
                                   fileId:
                                       syncDataTasksRowList[_model.iteration!]
                                           .fileId,
-                                  serviceType:
-                                      syncDataTasksRowList[_model.iteration!]
-                                          .serviceType,
                                 );
                                 await SQLiteManager.instance
                                     .insertOfflinePPIRForm(

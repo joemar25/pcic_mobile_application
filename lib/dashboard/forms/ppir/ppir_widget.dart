@@ -355,161 +355,90 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                     MainAxisAlignment.center,
                                                 children: [
                                                   Flexible(
-                                                    child: FFButtonWidget(
-                                                      onPressed: () async {
-                                                        var confirmDialogResponse =
-                                                            await showDialog<
-                                                                    bool>(
-                                                                  context:
-                                                                      context,
-                                                                  builder:
-                                                                      (alertDialogContext) {
-                                                                    return AlertDialog(
-                                                                      title: const Text(
-                                                                          'Info'),
-                                                                      content: const Text(
-                                                                          'The current gpx file will be deleted. Are you sure?'),
-                                                                      actions: [
-                                                                        TextButton(
-                                                                          onPressed: () => Navigator.pop(
-                                                                              alertDialogContext,
-                                                                              false),
-                                                                          child:
-                                                                              const Text('Cancel'),
-                                                                        ),
-                                                                        TextButton(
-                                                                          onPressed: () => Navigator.pop(
-                                                                              alertDialogContext,
-                                                                              true),
-                                                                          child:
-                                                                              const Text('Confirm'),
-                                                                        ),
-                                                                      ],
-                                                                    );
-                                                                  },
-                                                                ) ??
-                                                                false;
-                                                        if (confirmDialogResponse) {
-                                                          await PpirFormsTable()
-                                                              .update(
-                                                            data: {
-                                                              'gpx': '',
-                                                            },
-                                                            matchingRows:
-                                                                (rows) =>
-                                                                    rows.eq(
-                                                              'task_id',
-                                                              widget.taskId,
-                                                            ),
-                                                          );
-
-                                                          context.pushNamed(
-                                                            'geotagging',
-                                                            queryParameters: {
-                                                              'taskId':
-                                                                  serializeParam(
-                                                                widget.taskId,
-                                                                ParamType
-                                                                    .String,
-                                                              ),
-                                                              'taskType':
-                                                                  serializeParam(
-                                                                'ppir',
-                                                                ParamType
-                                                                    .String,
-                                                              ),
-                                                              'taskStatus':
-                                                                  serializeParam(
-                                                                'ongoing',
-                                                                ParamType
-                                                                    .String,
-                                                              ),
-                                                            }.withoutNulls,
-                                                          );
-                                                        }
-                                                      },
-                                                      text: FFLocalizations.of(
-                                                              context)
-                                                          .getText(
-                                                        '3veba0qh' /* Repeat Geotag */,
-                                                      ),
-                                                      icon: const Icon(
-                                                        Icons.map_outlined,
-                                                        size: 15.0,
-                                                      ),
-                                                      options: FFButtonOptions(
-                                                        height: 40.0,
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    24.0,
-                                                                    0.0,
-                                                                    24.0,
-                                                                    0.0),
-                                                        iconPadding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .tertiary,
-                                                        textStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmallFamily,
-                                                                  color: Colors
-                                                                      .white,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .titleSmallFamily),
-                                                                ),
-                                                        elevation: 3.0,
-                                                        borderSide: const BorderSide(
-                                                          color: Colors
-                                                              .transparent,
-                                                          width: 1.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  if (kDebugMode)
-                                                    Flexible(
+                                                    child: Align(
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                              0.0, 0.0),
                                                       child: FFButtonWidget(
                                                         onPressed: () async {
-                                                          _model.gpxLink =
-                                                              await actions
-                                                                  .getGpxLink(
-                                                            widget.taskId,
-                                                          );
-                                                          await launchURL(
-                                                              _model.gpxLink!);
+                                                          var confirmDialogResponse =
+                                                              await showDialog<
+                                                                      bool>(
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (alertDialogContext) {
+                                                                      return AlertDialog(
+                                                                        title: const Text(
+                                                                            'Info'),
+                                                                        content:
+                                                                            const Text('The current gpx file will be deleted. Are you sure?'),
+                                                                        actions: [
+                                                                          TextButton(
+                                                                            onPressed: () =>
+                                                                                Navigator.pop(alertDialogContext, false),
+                                                                            child:
+                                                                                const Text('Cancel'),
+                                                                          ),
+                                                                          TextButton(
+                                                                            onPressed: () =>
+                                                                                Navigator.pop(alertDialogContext, true),
+                                                                            child:
+                                                                                const Text('Confirm'),
+                                                                          ),
+                                                                        ],
+                                                                      );
+                                                                    },
+                                                                  ) ??
+                                                                  false;
+                                                          if (confirmDialogResponse) {
+                                                            await PpirFormsTable()
+                                                                .update(
+                                                              data: {
+                                                                'gpx': '',
+                                                              },
+                                                              matchingRows:
+                                                                  (rows) =>
+                                                                      rows.eq(
+                                                                'task_id',
+                                                                widget.taskId,
+                                                              ),
+                                                            );
 
-                                                          setState(() {});
+                                                            context.pushNamed(
+                                                              'geotagging',
+                                                              queryParameters: {
+                                                                'taskId':
+                                                                    serializeParam(
+                                                                  widget
+                                                                      .taskId,
+                                                                  ParamType
+                                                                      .String,
+                                                                ),
+                                                                'taskType':
+                                                                    serializeParam(
+                                                                  'ppir',
+                                                                  ParamType
+                                                                      .String,
+                                                                ),
+                                                                'taskStatus':
+                                                                    serializeParam(
+                                                                  'ongoing',
+                                                                  ParamType
+                                                                      .String,
+                                                                ),
+                                                              }.withoutNulls,
+                                                            );
+                                                          }
                                                         },
                                                         text:
                                                             FFLocalizations.of(
                                                                     context)
                                                                 .getText(
-                                                          '57upt8rw' /* Download */,
+                                                          '3veba0qh' /* Repeat Geotag */,
                                                         ),
                                                         icon: const Icon(
-                                                          Icons
-                                                              .download_outlined,
+                                                          Icons.map_outlined,
                                                           size: 15.0,
                                                         ),
                                                         options:
@@ -531,7 +460,7 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                                       0.0),
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .success,
+                                                              .tertiary,
                                                           textStyle:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -563,11 +492,93 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                                                         ),
                                                       ),
                                                     ),
-                                                ]
-                                                    .divide(
-                                                        const SizedBox(width: 20.0))
-                                                    .around(
-                                                        const SizedBox(width: 20.0)),
+                                                  ),
+                                                  if (kDebugMode)
+                                                    Flexible(
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    20.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: FFButtonWidget(
+                                                          onPressed: () async {
+                                                            _model.gpxLink =
+                                                                await actions
+                                                                    .getGpxLink(
+                                                              widget.taskId,
+                                                            );
+                                                            await launchURL(
+                                                                _model
+                                                                    .gpxLink!);
+
+                                                            setState(() {});
+                                                          },
+                                                          text: FFLocalizations
+                                                                  .of(context)
+                                                              .getText(
+                                                            '57upt8rw' /* Download */,
+                                                          ),
+                                                          icon: const Icon(
+                                                            Icons
+                                                                .download_outlined,
+                                                            size: 15.0,
+                                                          ),
+                                                          options:
+                                                              FFButtonOptions(
+                                                            height: 40.0,
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        24.0,
+                                                                        0.0,
+                                                                        24.0,
+                                                                        0.0),
+                                                            iconPadding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .success,
+                                                            textStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .titleSmallFamily,
+                                                                      color: Colors
+                                                                          .white,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).titleSmallFamily),
+                                                                    ),
+                                                            elevation: 3.0,
+                                                            borderSide:
+                                                                const BorderSide(
+                                                              color: Colors
+                                                                  .transparent,
+                                                              width: 1.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                ],
                                               ),
                                             ),
                                           ],
@@ -3082,410 +3093,414 @@ class _PpirWidgetState extends State<PpirWidget> with TickerProviderStateMixin {
                         ),
                       ),
                     ),
-                    Container(
-                      width: MediaQuery.sizeOf(context).width * 1.0,
-                      height: MediaQuery.sizeOf(context).height * 0.05,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).alternate,
-                        boxShadow: const [
-                          BoxShadow(
-                            blurRadius: 4.0,
-                            color: Color(0x33000000),
-                            offset: Offset(
-                              0.0,
-                              2.0,
-                            ),
-                          )
-                        ],
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          FFButtonWidget(
-                            onPressed: () async {
-                              var confirmDialogResponse =
-                                  await showDialog<bool>(
-                                        context: context,
-                                        builder: (alertDialogContext) {
-                                          return AlertDialog(
-                                            title: const Text('Info'),
-                                            content: const Text(
-                                                'This will cancel your current progress in the tasks. Are you sure to cancel?'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext, false),
-                                                child: const Text('Cancel'),
-                                              ),
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext, true),
-                                                child: const Text('Confirm'),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      ) ??
-                                      false;
-                              if (confirmDialogResponse) {
-                                context.pushNamed(
-                                  'dashboard',
-                                  extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
-                                      hasTransition: true,
-                                      transitionType: PageTransitionType.fade,
-                                      duration: Duration(milliseconds: 0),
-                                    ),
-                                  },
-                                );
-                              }
-                            },
-                            text: FFLocalizations.of(context).getText(
-                              'qhfraqcp' /* Cancel */,
-                            ),
-                            icon: const Icon(
-                              Icons.cancel_presentation_sharp,
-                              size: 15.0,
-                            ),
-                            options: FFButtonOptions(
-                              height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).error,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .titleSmallFamily,
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .titleSmallFamily),
-                                  ),
-                              elevation: 3.0,
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                      child: Container(
+                        width: MediaQuery.sizeOf(context).width * 1.0,
+                        height: MediaQuery.sizeOf(context).height * 0.05,
+                        decoration: const BoxDecoration(),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            FFButtonWidget(
+                              onPressed: () async {
+                                var confirmDialogResponse =
+                                    await showDialog<bool>(
+                                          context: context,
+                                          builder: (alertDialogContext) {
+                                            return AlertDialog(
+                                              title: const Text('Info'),
+                                              content: const Text(
+                                                  'This will cancel your current progress in the tasks. Are you sure to cancel?'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext,
+                                                          false),
+                                                  child: const Text('Cancel'),
+                                                ),
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext,
+                                                          true),
+                                                  child: const Text('Confirm'),
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        ) ??
+                                        false;
+                                if (confirmDialogResponse) {
+                                  context.pushNamed(
+                                    'dashboard',
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: const TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
+                                      ),
+                                    },
+                                  );
+                                }
+                              },
+                              text: FFLocalizations.of(context).getText(
+                                'qhfraqcp' /* Cancel */,
                               ),
-                              borderRadius: BorderRadius.circular(8.0),
+                              icon: const Icon(
+                                Icons.cancel_presentation_sharp,
+                                size: 15.0,
+                              ),
+                              options: FFButtonOptions(
+                                height: 40.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).error,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .titleSmallFamily,
+                                      color: Colors.white,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmallFamily),
+                                    ),
+                                elevation: 3.0,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
                             ),
-                          ),
-                          FFButtonWidget(
-                            onPressed: () async {
-                              var confirmDialogResponse =
-                                  await showDialog<bool>(
-                                        context: context,
-                                        builder: (alertDialogContext) {
-                                          return AlertDialog(
-                                            title: const Text('Info'),
-                                            content: const Text(
-                                                'Do you want to save the data above?'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext, false),
-                                                child: const Text('Cancel'),
-                                              ),
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext, true),
-                                                child: const Text('Confirm'),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      ) ??
-                                      false;
-                              if (confirmDialogResponse) {
-                                await PpirFormsTable().update(
-                                  data: {
-                                    'ppir_svp_act':
-                                        _model.ppirSvpActSelectionValue,
-                                    'ppir_dopds_act': _model
-                                        .ppirAreaDopDsFieldTextController.text,
-                                    'ppir_doptp_act': _model
-                                        .ppirAreaDopTpFieldTextController.text,
-                                    'ppir_remarks': _model
-                                        .ppirRemarksFieldTextController.text,
-                                    'ppir_name_insured': _model
-                                        .ppirConfirmedByNameFieldTextController
-                                        .text,
-                                    'ppir_name_iuia': _model
-                                        .ppirPreparedByNameFieldTextController
-                                        .text,
-                                    'ppir_farmloc': _model
-                                        .ppirTrackFarmlocTextController.text,
-                                    'ppir_area_act': _model
-                                        .ppirAreaActFieldTextController.text,
-                                  },
-                                  matchingRows: (rows) => rows.eq(
-                                    'task_id',
-                                    widget.taskId,
-                                  ),
-                                );
-                                if (_model.ppirSvpActSelectionValue == 'rice') {
+                            FFButtonWidget(
+                              onPressed: () async {
+                                var confirmDialogResponse =
+                                    await showDialog<bool>(
+                                          context: context,
+                                          builder: (alertDialogContext) {
+                                            return AlertDialog(
+                                              title: const Text('Info'),
+                                              content: const Text(
+                                                  'Do you want to save the data above?'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext,
+                                                          false),
+                                                  child: const Text('Cancel'),
+                                                ),
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext,
+                                                          true),
+                                                  child: const Text('Confirm'),
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        ) ??
+                                        false;
+                                if (confirmDialogResponse) {
                                   await PpirFormsTable().update(
                                     data: {
-                                      'ppir_variety':
-                                          _model.ppirSeedVarRiceDropdownValue,
+                                      'ppir_svp_act':
+                                          _model.ppirSvpActSelectionValue,
+                                      'ppir_dopds_act': _model
+                                          .ppirAreaDopDsFieldTextController
+                                          .text,
+                                      'ppir_doptp_act': _model
+                                          .ppirAreaDopTpFieldTextController
+                                          .text,
+                                      'ppir_remarks': _model
+                                          .ppirRemarksFieldTextController.text,
+                                      'ppir_name_insured': _model
+                                          .ppirConfirmedByNameFieldTextController
+                                          .text,
+                                      'ppir_name_iuia': _model
+                                          .ppirPreparedByNameFieldTextController
+                                          .text,
+                                      'ppir_farmloc': _model
+                                          .ppirTrackFarmlocTextController.text,
+                                      'ppir_area_act': _model
+                                          .ppirAreaActFieldTextController.text,
                                     },
                                     matchingRows: (rows) => rows.eq(
                                       'task_id',
                                       widget.taskId,
                                     ),
                                   );
-                                } else {
-                                  await PpirFormsTable().update(
+                                  if (_model.ppirSvpActSelectionValue ==
+                                      'rice') {
+                                    await PpirFormsTable().update(
+                                      data: {
+                                        'ppir_variety':
+                                            _model.ppirSeedVarRiceDropdownValue,
+                                      },
+                                      matchingRows: (rows) => rows.eq(
+                                        'task_id',
+                                        widget.taskId,
+                                      ),
+                                    );
+                                  } else {
+                                    await PpirFormsTable().update(
+                                      data: {
+                                        'ppir_variety':
+                                            _model.ppirSeedVarCornDropdownValue,
+                                      },
+                                      matchingRows: (rows) => rows.eq(
+                                        'task_id',
+                                        widget.taskId,
+                                      ),
+                                    );
+                                  }
+
+                                  await TasksTable().update(
                                     data: {
-                                      'ppir_variety':
-                                          _model.ppirSeedVarCornDropdownValue,
+                                      'status': 'ongoing',
                                     },
                                     matchingRows: (rows) => rows.eq(
-                                      'task_id',
+                                      'id',
                                       widget.taskId,
                                     ),
+                                  );
+
+                                  context.pushNamed(
+                                    'formSuccess',
+                                    queryParameters: {
+                                      'taskId': serializeParam(
+                                        ppirPpirFormsRow?.taskId,
+                                        ParamType.String,
+                                      ),
+                                      'type': serializeParam(
+                                        'save',
+                                        ParamType.String,
+                                      ),
+                                    }.withoutNulls,
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: const TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType:
+                                            PageTransitionType.scale,
+                                        alignment: Alignment.bottomCenter,
+                                        duration: Duration(milliseconds: 200),
+                                      ),
+                                    },
                                   );
                                 }
 
-                                await TasksTable().update(
-                                  data: {
-                                    'status': 'ongoing',
-                                  },
-                                  matchingRows: (rows) => rows.eq(
-                                    'id',
-                                    widget.taskId,
-                                  ),
-                                );
-
-                                context.pushNamed(
-                                  'formSuccess',
-                                  queryParameters: {
-                                    'taskId': serializeParam(
-                                      ppirPpirFormsRow?.taskId,
-                                      ParamType.String,
-                                    ),
-                                    'type': serializeParam(
-                                      'save',
-                                      ParamType.String,
-                                    ),
-                                  }.withoutNulls,
-                                  extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
-                                      hasTransition: true,
-                                      transitionType: PageTransitionType.scale,
-                                      alignment: Alignment.bottomCenter,
-                                      duration: Duration(milliseconds: 200),
-                                    ),
-                                  },
-                                );
-                              }
-
-                              setState(() {});
-                            },
-                            text: FFLocalizations.of(context).getText(
-                              '85i1pnil' /* Save */,
-                            ),
-                            icon: const Icon(
-                              Icons.save,
-                              size: 15.0,
-                            ),
-                            options: FFButtonOptions(
-                              height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).earthYellow,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .titleSmallFamily,
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .titleSmallFamily),
-                                  ),
-                              elevation: 3.0,
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
+                                setState(() {});
+                              },
+                              text: FFLocalizations.of(context).getText(
+                                '85i1pnil' /* Save */,
                               ),
-                              borderRadius: BorderRadius.circular(8.0),
+                              icon: const Icon(
+                                Icons.save,
+                                size: 15.0,
+                              ),
+                              options: FFButtonOptions(
+                                height: 40.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).earthYellow,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .titleSmallFamily,
+                                      color: Colors.white,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmallFamily),
+                                    ),
+                                elevation: 3.0,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
                             ),
-                          ),
-                          FFButtonWidget(
-                            onPressed: !FFAppState().ONLINE
-                                ? null
-                                : () async {
-                                    var confirmDialogResponse =
-                                        await showDialog<bool>(
-                                              context: context,
-                                              builder: (alertDialogContext) {
-                                                return AlertDialog(
-                                                  title: const Text('Info'),
-                                                  content: const Text(
-                                                      'Are you sure to that the above data is correct?'),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext,
-                                                              false),
-                                                      child: const Text('Cancel'),
-                                                    ),
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext,
-                                                              true),
-                                                      child: const Text('Confirm'),
-                                                    ),
-                                                  ],
-                                                );
-                                              },
-                                            ) ??
-                                            false;
-                                    if (confirmDialogResponse) {
-                                      await PpirFormsTable().update(
-                                        data: {
-                                          'ppir_svp_act':
-                                              _model.ppirSvpActSelectionValue,
-                                          'ppir_dopds_act': _model
-                                              .ppirAreaDopDsFieldTextController
-                                              .text,
-                                          'ppir_doptp_act': _model
-                                              .ppirAreaDopTpFieldTextController
-                                              .text,
-                                          'ppir_remarks': _model
-                                              .ppirRemarksFieldTextController
-                                              .text,
-                                          'ppir_name_insured': _model
-                                              .ppirConfirmedByNameFieldTextController
-                                              .text,
-                                          'ppir_name_iuia': _model
-                                              .ppirPreparedByNameFieldTextController
-                                              .text,
-                                          'ppir_farmloc': _model
-                                              .ppirTrackFarmlocTextController
-                                              .text,
-                                          'ppir_area_act': _model
-                                              .ppirAreaActFieldTextController
-                                              .text,
-                                        },
-                                        matchingRows: (rows) => rows.eq(
-                                          'task_id',
-                                          widget.taskId,
-                                        ),
-                                      );
-                                      if (_model.ppirSvpActSelectionValue ==
-                                          'rice') {
+                            FFButtonWidget(
+                              onPressed: !FFAppState().ONLINE
+                                  ? null
+                                  : () async {
+                                      var confirmDialogResponse =
+                                          await showDialog<bool>(
+                                                context: context,
+                                                builder: (alertDialogContext) {
+                                                  return AlertDialog(
+                                                    title: const Text('Info'),
+                                                    content: const Text(
+                                                        'Are you sure to that the above data is correct?'),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext,
+                                                                false),
+                                                        child: const Text('Cancel'),
+                                                      ),
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext,
+                                                                true),
+                                                        child: const Text('Confirm'),
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              ) ??
+                                              false;
+                                      if (confirmDialogResponse) {
                                         await PpirFormsTable().update(
                                           data: {
-                                            'ppir_variety': _model
-                                                .ppirSeedVarRiceDropdownValue,
+                                            'ppir_svp_act':
+                                                _model.ppirSvpActSelectionValue,
+                                            'ppir_dopds_act': _model
+                                                .ppirAreaDopDsFieldTextController
+                                                .text,
+                                            'ppir_doptp_act': _model
+                                                .ppirAreaDopTpFieldTextController
+                                                .text,
+                                            'ppir_remarks': _model
+                                                .ppirRemarksFieldTextController
+                                                .text,
+                                            'ppir_name_insured': _model
+                                                .ppirConfirmedByNameFieldTextController
+                                                .text,
+                                            'ppir_name_iuia': _model
+                                                .ppirPreparedByNameFieldTextController
+                                                .text,
+                                            'ppir_farmloc': _model
+                                                .ppirTrackFarmlocTextController
+                                                .text,
+                                            'ppir_area_act': _model
+                                                .ppirAreaActFieldTextController
+                                                .text,
                                           },
                                           matchingRows: (rows) => rows.eq(
                                             'task_id',
                                             widget.taskId,
                                           ),
                                         );
-                                      } else {
-                                        await PpirFormsTable().update(
+                                        if (_model.ppirSvpActSelectionValue ==
+                                            'rice') {
+                                          await PpirFormsTable().update(
+                                            data: {
+                                              'ppir_variety': _model
+                                                  .ppirSeedVarRiceDropdownValue,
+                                            },
+                                            matchingRows: (rows) => rows.eq(
+                                              'task_id',
+                                              widget.taskId,
+                                            ),
+                                          );
+                                        } else {
+                                          await PpirFormsTable().update(
+                                            data: {
+                                              'ppir_variety': _model
+                                                  .ppirSeedVarCornDropdownValue,
+                                            },
+                                            matchingRows: (rows) => rows.eq(
+                                              'task_id',
+                                              widget.taskId,
+                                            ),
+                                          );
+                                        }
+
+                                        await TasksTable().update(
                                           data: {
-                                            'ppir_variety': _model
-                                                .ppirSeedVarCornDropdownValue,
+                                            'status': 'completed',
                                           },
                                           matchingRows: (rows) => rows.eq(
-                                            'task_id',
+                                            'id',
                                             widget.taskId,
                                           ),
+                                        );
+
+                                        context.pushNamed(
+                                          'formSuccess',
+                                          queryParameters: {
+                                            'taskId': serializeParam(
+                                              ppirPpirFormsRow?.taskId,
+                                              ParamType.String,
+                                            ),
+                                            'type': serializeParam(
+                                              'submit',
+                                              ParamType.String,
+                                            ),
+                                          }.withoutNulls,
+                                          extra: <String, dynamic>{
+                                            kTransitionInfoKey: const TransitionInfo(
+                                              hasTransition: true,
+                                              transitionType:
+                                                  PageTransitionType.fade,
+                                              duration:
+                                                  Duration(milliseconds: 200),
+                                            ),
+                                          },
                                         );
                                       }
 
-                                      await TasksTable().update(
-                                        data: {
-                                          'status': 'completed',
-                                        },
-                                        matchingRows: (rows) => rows.eq(
-                                          'id',
-                                          widget.taskId,
-                                        ),
-                                      );
-
-                                      context.pushNamed(
-                                        'formSuccess',
-                                        queryParameters: {
-                                          'taskId': serializeParam(
-                                            ppirPpirFormsRow?.taskId,
-                                            ParamType.String,
-                                          ),
-                                          'type': serializeParam(
-                                            'submit',
-                                            ParamType.String,
-                                          ),
-                                        }.withoutNulls,
-                                        extra: <String, dynamic>{
-                                          kTransitionInfoKey: const TransitionInfo(
-                                            hasTransition: true,
-                                            transitionType:
-                                                PageTransitionType.fade,
-                                            duration:
-                                                Duration(milliseconds: 200),
-                                          ),
-                                        },
-                                      );
-                                    }
-
-                                    setState(() {});
-                                  },
-                            text: FFLocalizations.of(context).getText(
-                              'n9o7a192' /* Submit */,
-                            ),
-                            icon: const Icon(
-                              Icons.check_sharp,
-                              size: 15.0,
-                            ),
-                            options: FFButtonOptions(
-                              height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).primary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .titleSmallFamily,
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .titleSmallFamily),
-                                  ),
-                              elevation: 3.0,
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
+                                      setState(() {});
+                                    },
+                              text: FFLocalizations.of(context).getText(
+                                'n9o7a192' /* Submit */,
                               ),
-                              borderRadius: BorderRadius.circular(8.0),
-                              disabledColor:
-                                  FlutterFlowTheme.of(context).accent1,
-                              disabledTextColor:
-                                  FlutterFlowTheme.of(context).lineColor,
+                              icon: const Icon(
+                                Icons.check_sharp,
+                                size: 15.0,
+                              ),
+                              options: FFButtonOptions(
+                                height: 40.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).primary,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .titleSmallFamily,
+                                      color: Colors.white,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmallFamily),
+                                    ),
+                                elevation: 3.0,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                                disabledColor:
+                                    FlutterFlowTheme.of(context).accent1,
+                                disabledTextColor:
+                                    FlutterFlowTheme.of(context).lineColor,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ],
