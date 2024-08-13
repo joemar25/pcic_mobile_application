@@ -6,25 +6,25 @@ import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'list1_model.dart';
-export 'list1_model.dart';
+import 'offline_db_test_model.dart';
+export 'offline_db_test_model.dart';
 
-class List1Widget extends StatefulWidget {
-  const List1Widget({super.key});
+class OfflineDbTestWidget extends StatefulWidget {
+  const OfflineDbTestWidget({super.key});
 
   @override
-  State<List1Widget> createState() => _List1WidgetState();
+  State<OfflineDbTestWidget> createState() => _OfflineDbTestWidgetState();
 }
 
-class _List1WidgetState extends State<List1Widget> {
-  late List1Model _model;
+class _OfflineDbTestWidgetState extends State<OfflineDbTestWidget> {
+  late OfflineDbTestModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => List1Model());
+    _model = createModel(context, () => OfflineDbTestModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -109,7 +109,7 @@ class _List1WidgetState extends State<List1Widget> {
                 FFButtonWidget(
                   onPressed: () async {
                     context.pushNamed(
-                      'offlineTasksList',
+                      'offlineTasksAndPpirList',
                       extra: <String, dynamic>{
                         kTransitionInfoKey: const TransitionInfo(
                           hasTransition: true,

@@ -1,9 +1,11 @@
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'offline_tasks_list_widget.dart' show OfflineTasksListWidget;
+import 'offline_tasks_and_ppir_list_widget.dart'
+    show OfflineTasksAndPpirListWidget;
 import 'package:flutter/material.dart';
 
-class OfflineTasksListModel extends FlutterFlowModel<OfflineTasksListWidget> {
+class OfflineTasksAndPpirListModel
+    extends FlutterFlowModel<OfflineTasksAndPpirListWidget> {
   ///  Local state fields for this page.
 
   int? limit = 0;

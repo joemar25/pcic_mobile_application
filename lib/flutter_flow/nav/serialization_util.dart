@@ -284,8 +284,8 @@ dynamic deserializeParam<T>(
             return OFFLINESelectCompletedTasksRow(data);
           case OFFLINESelectCountForDispatchRow:
             return OFFLINESelectCountForDispatchRow(data);
-          case OFFLINESelectOngoingTasksCopyRow:
-            return OFFLINESelectOngoingTasksCopyRow(data);
+          case OFFLINESelectTaskByIDRow:
+            return OFFLINESelectTaskByIDRow(data);
           default:
             return null;
         }

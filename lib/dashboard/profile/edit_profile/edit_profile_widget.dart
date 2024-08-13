@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -269,6 +270,15 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                         TextFormField(
                           controller: _model.displayNameTextController,
                           focusNode: _model.displayNameFocusNode,
+                          onChanged: (_) => EasyDebounce.debounce(
+                            '_model.displayNameTextController',
+                            const Duration(milliseconds: 2000),
+                            () async {
+                              await actions.updateInspectorName(
+                                editProfileUsersRow!.inspectorName,
+                              );
+                            },
+                          ),
                           onFieldSubmitted: (_) async {},
                           autofocus: false,
                           obscureText: false,
@@ -352,11 +362,14 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           alignment: const AlignmentDirectional(0.0, 0.05),
                           child: FFButtonWidget(
                             onPressed: () async {
+                              await actions.updateInspectorName(
+                                editProfileUsersRow!.inspectorName,
+                              );
                               // Update rows
                               await UsersTable().update(
                                 data: {
                                   'inspector_name':
-                                      editProfileUsersRow?.inspectorName,
+                                      editProfileUsersRow.inspectorName,
                                 },
                                 matchingRows: (rows) => rows.eq(
                                   'inspector_name',

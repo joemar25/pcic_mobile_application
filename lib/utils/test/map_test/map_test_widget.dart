@@ -4,25 +4,25 @@ import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'sss_model.dart';
-export 'sss_model.dart';
+import 'map_test_model.dart';
+export 'map_test_model.dart';
 
-class SssWidget extends StatefulWidget {
-  const SssWidget({super.key});
+class MapTestWidget extends StatefulWidget {
+  const MapTestWidget({super.key});
 
   @override
-  State<SssWidget> createState() => _SssWidgetState();
+  State<MapTestWidget> createState() => _MapTestWidgetState();
 }
 
-class _SssWidgetState extends State<SssWidget> {
-  late SssModel _model;
+class _MapTestWidgetState extends State<MapTestWidget> {
+  late MapTestModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => SssModel());
+    _model = createModel(context, () => MapTestModel());
   }
 
   @override

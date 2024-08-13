@@ -122,6 +122,7 @@ class SelectPpirFormsRow extends SqliteRow {
   bool? get isDirty => data['is_dirty'] as bool?;
   String? get syncStatus => data['sync_status'] as String?;
   String? get ppirSigIuia => data['ppir_sig_iuia'] as String?;
+  String? get gpx => data['gpx'] as String?;
 }
 
 /// END SELECT PPIR FORMS
@@ -472,21 +473,19 @@ class OFFLINESelectCountForDispatchRow extends SqliteRow {
 
 /// END OFFLINE SELECT COUNT FOR DISPATCH
 
-/// BEGIN OFFLINE SELECT ONGOING TASKSCOPY
-Future<List<OFFLINESelectOngoingTasksCopyRow>>
-    performOFFLINESelectOngoingTasksCopy(
+/// BEGIN OFFLINE SELECT TASK BY ID
+Future<List<OFFLINESelectTaskByIDRow>> performOFFLINESelectTaskByID(
   Database database, {
-  String? assignee,
+  String? taskId,
 }) {
   final query = '''
-SELECT * FROM tasks WHERE  status = 'ongoing' AND assignee='$assignee'
+SELECT * FROM tasks WHERE  id = '$taskId'
 ''';
-  return _readQuery(
-      database, query, (d) => OFFLINESelectOngoingTasksCopyRow(d));
+  return _readQuery(database, query, (d) => OFFLINESelectTaskByIDRow(d));
 }
 
-class OFFLINESelectOngoingTasksCopyRow extends SqliteRow {
-  OFFLINESelectOngoingTasksCopyRow(super.data);
+class OFFLINESelectTaskByIDRow extends SqliteRow {
+  OFFLINESelectTaskByIDRow(super.data);
 
   String? get id => data['id'] as String?;
   String? get taskNumber => data['task_number'] as String?;
@@ -510,4 +509,4 @@ class OFFLINESelectOngoingTasksCopyRow extends SqliteRow {
   bool? get isUpdating => data['is_updating'] as bool?;
 }
 
-/// END OFFLINE SELECT ONGOING TASKSCOPY
+/// END OFFLINE SELECT TASK BY ID

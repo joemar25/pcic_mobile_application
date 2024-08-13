@@ -220,7 +220,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                   onTap: () async {
                                     if (FFAppState().ONLINE && kDebugMode) {
                                       context.pushNamed(
-                                        'list1',
+                                        'offlineDbTest',
                                         extra: <String, dynamic>{
                                           kTransitionInfoKey: const TransitionInfo(
                                             hasTransition: true,

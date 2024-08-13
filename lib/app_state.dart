@@ -144,6 +144,21 @@ class FFAppState extends ChangeNotifier {
   void clearAppLevelNameCache() => _appLevelNameManager.clear();
   void clearAppLevelNameCacheKey(String? uniqueKey) =>
       _appLevelNameManager.clearRequest(uniqueKey);
+
+  final _applevelEmailManager = FutureRequestManager<List<UsersRow>>();
+  Future<List<UsersRow>> applevelEmail({
+    String? uniqueQueryKey,
+    bool? overrideCache,
+    required Future<List<UsersRow>> Function() requestFn,
+  }) =>
+      _applevelEmailManager.performRequest(
+        uniqueQueryKey: uniqueQueryKey,
+        overrideCache: overrideCache,
+        requestFn: requestFn,
+      );
+  void clearApplevelEmailCache() => _applevelEmailManager.clear();
+  void clearApplevelEmailCacheKey(String? uniqueKey) =>
+      _applevelEmailManager.clearRequest(uniqueKey);
 }
 
 void _safeInit(Function() initializeField) {

@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'sss_widget.dart' show SssWidget;
+import 'onboarding01_widget.dart' show Onboarding01Widget;
 import 'package:flutter/material.dart';
 
-class SssModel extends FlutterFlowModel<SssWidget> {
+class Onboarding01Model extends FlutterFlowModel<Onboarding01Widget> {
   @override
   void initState(BuildContext context) {}
 

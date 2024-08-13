@@ -189,7 +189,8 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
                                 await authManager.signOut();
                                 GoRouter.of(context).clearRedirectLocation();
 
-                                context.goNamedAuth('login', context.mounted);
+                                context.goNamedAuth(
+                                    'onboarding01', context.mounted);
                               },
                               child: Text(
                                 FFLocalizations.of(context).getText(

@@ -1,21 +1,21 @@
-import '/backend/sqlite/sqlite_manager.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/saving_mode/saving_mode_widget.dart';
-import 'task_details_widget.dart' show TaskDetailsWidget;
+import 'task_details_copyx_widget.dart' show TaskDetailsCopyxWidget;
 import 'package:flutter/material.dart';
 
-class TaskDetailsModel extends FlutterFlowModel<TaskDetailsWidget> {
+class TaskDetailsCopyxModel extends FlutterFlowModel<TaskDetailsCopyxWidget> {
   ///  Local state fields for this page.
+
+  bool? isEditing = true;
 
   bool? isReFTPClicked = true;
 
   ///  State fields for stateful widgets in this page.
 
-  // Stores action output result for [Backend Call - SQLite (OFFLINE select Task by ID)] action in taskDetails widget.
-  List<OFFLINESelectTaskByIDRow>? offlineTask;
-  // Model for connectivity component.
-  late ConnectivityModel connectivityModel;
+  // State field(s) for farm_loc_input widget.
+  FocusNode? farmLocInputFocusNode;
+  TextEditingController? farmLocInputTextController;
+  String? Function(BuildContext, String?)? farmLocInputTextControllerValidator;
   // Stores action output result for [Custom Action - saveToFTP] action in reFTP widget.
   bool? isFtpSaved;
   // Model for savingMode component.
@@ -23,13 +23,14 @@ class TaskDetailsModel extends FlutterFlowModel<TaskDetailsWidget> {
 
   @override
   void initState(BuildContext context) {
-    connectivityModel = createModel(context, () => ConnectivityModel());
     savingModeModel = createModel(context, () => SavingModeModel());
   }
 
   @override
   void dispose() {
-    connectivityModel.dispose();
+    farmLocInputFocusNode?.dispose();
+    farmLocInputTextController?.dispose();
+
     savingModeModel.dispose();
   }
 }

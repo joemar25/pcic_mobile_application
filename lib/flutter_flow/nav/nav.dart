@@ -74,7 +74,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) => RootPageContext.wrap(
-        appStateNotifier.loggedIn ? const NavBarPage() : const LoginWidget(),
+        appStateNotifier.loggedIn ? const NavBarPage() : const Onboarding01Widget(),
         errorRoute: state.uri.toString(),
       ),
       routes: [
@@ -82,7 +82,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: '_initialize',
           path: '/',
           builder: (context, _) => RootPageContext.wrap(
-            appStateNotifier.loggedIn ? const NavBarPage() : const LoginWidget(),
+            appStateNotifier.loggedIn ? const NavBarPage() : const Onboarding01Widget(),
           ),
         ),
         FFRoute(
@@ -232,9 +232,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'sss',
-          path: '/sss',
-          builder: (context, params) => const SssWidget(),
+          name: 'mapTest',
+          path: '/mapTest',
+          builder: (context, params) => const MapTestWidget(),
         ),
         FFRoute(
           name: 'pcicMap',
@@ -242,14 +242,40 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const PcicMapWidget(),
         ),
         FFRoute(
-          name: 'list1',
-          path: '/list1',
-          builder: (context, params) => const List1Widget(),
+          name: 'offlineDbTest',
+          path: '/offlineDbTest',
+          builder: (context, params) => const OfflineDbTestWidget(),
         ),
         FFRoute(
-          name: 'offlineTasksList',
-          path: '/offlineTasksList',
-          builder: (context, params) => const OfflineTasksListWidget(),
+          name: 'offlineTasksAndPpirList',
+          path: '/offlineTasksAndPpirList',
+          builder: (context, params) => const OfflineTasksAndPpirListWidget(),
+        ),
+        FFRoute(
+          name: 'taskDetailsCopyx',
+          path: '/task_detailsx',
+          requireAuth: true,
+          builder: (context, params) => TaskDetailsCopyxWidget(
+            taskId: params.getParam(
+              'taskId',
+              ParamType.String,
+            ),
+            taskStatus: params.getParam(
+              'taskStatus',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'onboarding01',
+          path: '/onboarding01',
+          builder: (context, params) => const Onboarding01Widget(),
+        ),
+        FFRoute(
+          name: 'syncData',
+          path: '/syncData',
+          requireAuth: true,
+          builder: (context, params) => const SyncDataWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -420,7 +446,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/login';
+            return '/onboarding01';
           }
           return null;
         },

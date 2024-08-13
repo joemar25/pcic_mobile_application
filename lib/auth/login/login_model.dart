@@ -1,17 +1,8 @@
-import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'login_widget.dart' show LoginWidget;
 import 'package:flutter/material.dart';
 
 class LoginModel extends FlutterFlowModel<LoginWidget> {
-  ///  Local state fields for this page.
-
-  int? iteration = 0;
-
-  int? limit = 0;
-
-  bool syncing = false;
-
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
@@ -54,11 +45,6 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
 
     return null;
   }
-
-  // Stores action output result for [Backend Call - Query Rows] action in loginButton widget.
-  List<TasksRow>? onlineTasks;
-  // Stores action output result for [Backend Call - Query Rows] action in loginButton widget.
-  List<PpirFormsRow>? ppirOutput;
 
   @override
   void initState(BuildContext context) {

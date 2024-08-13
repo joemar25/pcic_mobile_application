@@ -125,12 +125,12 @@ class SQLiteManager {
         assignee: assignee,
       );
 
-  Future<List<OFFLINESelectOngoingTasksCopyRow>> oFFLINESelectOngoingTasksCopy({
-    String? assignee,
+  Future<List<OFFLINESelectTaskByIDRow>> oFFLINESelectTaskByID({
+    String? taskId,
   }) =>
-      performOFFLINESelectOngoingTasksCopy(
+      performOFFLINESelectTaskByID(
         _database,
-        assignee: assignee,
+        taskId: taskId,
       );
 
   /// END READ QUERY CALLS

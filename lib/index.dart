@@ -1,8 +1,8 @@
 // Export pages
 export '/auth/login/login_widget.dart' show LoginWidget;
 export '/dashboard/profile/profile/profile_widget.dart' show ProfileWidget;
-export '/dashboard/chats/chats_widget.dart' show ChatsWidget;
-export '/dashboard/edit_password/edit_password_widget.dart'
+export '/dashboard/messages/chats/chats_widget.dart' show ChatsWidget;
+export '/dashboard/profile/edit_password/edit_password_widget.dart'
     show EditPasswordWidget;
 export '/dashboard/profile/edit_profile/edit_profile_widget.dart'
     show EditProfileWidget;
@@ -20,8 +20,13 @@ export '/auth/forgot_password/forgot_password_widget.dart'
     show ForgotPasswordWidget;
 export '/dashboard/geotag/geotagging/geotagging_widget.dart'
     show GeotaggingWidget;
-export '/utils/test/sss/sss_widget.dart' show SssWidget;
+export '/utils/test/map_test/map_test_widget.dart' show MapTestWidget;
 export '/dashboard/offlinemap/pcic_map/pcic_map_widget.dart' show PcicMapWidget;
-export '/utils/test/list1/list1_widget.dart' show List1Widget;
-export '/utils/test/offline_tasks_list/offline_tasks_list_widget.dart'
-    show OfflineTasksListWidget;
+export '/utils/test/offline_db_test/offline_db_test_widget.dart'
+    show OfflineDbTestWidget;
+export '/utils/test/offline_tasks_and_ppir_list/offline_tasks_and_ppir_list_widget.dart'
+    show OfflineTasksAndPpirListWidget;
+export '/dashboard/forms/task_details_copyx/task_details_copyx_widget.dart'
+    show TaskDetailsCopyxWidget;
+export '/auth/onboarding01/onboarding01_widget.dart' show Onboarding01Widget;
+export '/auth/sync_data/sync_data_widget.dart' show SyncDataWidget;

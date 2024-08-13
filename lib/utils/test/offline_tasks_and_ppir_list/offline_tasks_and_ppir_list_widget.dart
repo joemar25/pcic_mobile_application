@@ -8,25 +8,27 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'offline_tasks_list_model.dart';
-export 'offline_tasks_list_model.dart';
+import 'offline_tasks_and_ppir_list_model.dart';
+export 'offline_tasks_and_ppir_list_model.dart';
 
-class OfflineTasksListWidget extends StatefulWidget {
-  const OfflineTasksListWidget({super.key});
+class OfflineTasksAndPpirListWidget extends StatefulWidget {
+  const OfflineTasksAndPpirListWidget({super.key});
 
   @override
-  State<OfflineTasksListWidget> createState() => _OfflineTasksListWidgetState();
+  State<OfflineTasksAndPpirListWidget> createState() =>
+      _OfflineTasksAndPpirListWidgetState();
 }
 
-class _OfflineTasksListWidgetState extends State<OfflineTasksListWidget> {
-  late OfflineTasksListModel _model;
+class _OfflineTasksAndPpirListWidgetState
+    extends State<OfflineTasksAndPpirListWidget> {
+  late OfflineTasksAndPpirListModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => OfflineTasksListModel());
+    _model = createModel(context, () => OfflineTasksAndPpirListModel());
   }
 
   @override

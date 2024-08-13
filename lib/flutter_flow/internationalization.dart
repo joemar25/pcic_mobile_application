@@ -225,6 +225,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Conversations',
       'tl': '',
     },
+    'i2p6e78d': {
+      'en': 'You are offline.',
+      'tl': '',
+    },
     'ks6c14gr': {
       'en': 'Compose',
       'tl': '',
@@ -253,7 +257,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'h04ppkmz': {
+    'ep5yapxh': {
       'en': '',
       'tl': '',
     },
@@ -265,7 +269,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'k4ek8kzd': {
+    'exwcqmx9': {
       'en': '',
       'tl': '',
     },
@@ -277,7 +281,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'q1336804': {
+    'bn5w6rs1': {
       'en': '',
       'tl': '',
     },
@@ -300,7 +304,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    'mtfmci4c': {
+    'ixkso3j4': {
       'en': '',
       'tl': '',
     },
@@ -393,10 +397,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'p1282pce': {
       'en': 'Farm Location',
       'tl': 'Lokasyon ng Bukid',
-    },
-    'zm252mzp': {
-      'en': '',
-      'tl': '',
     },
     'hvb7985g': {
       'en': 'Location Sketch Plan',
@@ -506,19 +506,19 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Geotag',
       'tl': 'Geotag',
     },
-    'g06chmkk': {
-      'en': 'Continue Form',
-      'tl': 'Ipagpatuloy ang Form',
-    },
-    '63201k0m': {
+    '65kky15n': {
       'en': 'Geotag',
-      'tl': 'Geotag',
+      'tl': '',
     },
-    'kfsvnfnl': {
+    '7qj8fid9': {
+      'en': 'Continue Form',
+      'tl': '',
+    },
+    'auvo0ea6': {
       'en': 'Resubmit',
       'tl': '',
     },
-    'cwddpguo': {
+    '0mkqs892': {
       'en': 'Re-Submit',
       'tl': '',
     },
@@ -830,7 +830,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Bahay',
     },
   },
-  // sss
+  // mapTest
   {
     'yigfujp5': {
       'en': 'Offline Map',
@@ -857,10 +857,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '8n2rvzxw': {
       'en': 'Home',
-      'tl': 'Bahay',
+      'tl': '',
     },
   },
-  // list1
+  // offlineDbTest
   {
     'tcs90efh': {
       'en': 'Area 69',
@@ -875,7 +875,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Bahay',
     },
   },
-  // offlineTasksList
+  // offlineTasksAndPpirList
   {
     'o7uaesf0': {
       'en': 'Sync Task & PPIR',
@@ -886,6 +886,235 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     'ua766qme': {
+      'en': 'Home',
+      'tl': '',
+    },
+  },
+  // taskDetailsCopyx
+  {
+    'oskk6d39': {
+      'en': 'Form Details',
+      'tl': '',
+    },
+    'jgp1qdzg': {
+      'en': 'Assignment Id',
+      'tl': '',
+    },
+    'ua2ed6p2': {
+      'en': 'Farmer Name',
+      'tl': '',
+    },
+    'gxay60s8': {
+      'en': 'Address',
+      'tl': '',
+    },
+    'g90uj4i5': {
+      'en': 'Insurance Id',
+      'tl': '',
+    },
+    '8e842nqx': {
+      'en': 'Mobile Number',
+      'tl': '',
+    },
+    'g7rnel3m': {
+      'en': 'Farmer Type',
+      'tl': '',
+    },
+    '9jazarr0': {
+      'en': 'Group Name',
+      'tl': '',
+    },
+    'behrff99': {
+      'en': 'Group Address',
+      'tl': '',
+    },
+    'q2xm4uqc': {
+      'en': 'Lender Name',
+      'tl': '',
+    },
+    'nrx7s8s0': {
+      'en': 'Lender Address',
+      'tl': '',
+    },
+    'zelz7qj7': {
+      'en': 'Region',
+      'tl': '',
+    },
+    'okl9uy72': {
+      'en': 'CIC Number',
+      'tl': '',
+    },
+    'cft4el2i': {
+      'en': 'Farm Location',
+      'tl': '',
+    },
+    '93dpnvby': {
+      'en': '',
+      'tl': '',
+    },
+    'k8lxsltp': {
+      'en': 'Location Sketch Plan',
+      'tl': '',
+    },
+    '06hp4i6n': {
+      'en': 'North',
+      'tl': '',
+    },
+    'w4y1p2tj': {
+      'en': 'East',
+      'tl': '',
+    },
+    'vckq82bc': {
+      'en': 'South',
+      'tl': '',
+    },
+    'o0rqnyb3': {
+      'en': 'West',
+      'tl': '',
+    },
+    'tol4nxo3': {
+      'en': 'Location Sketch Plan',
+      'tl': '',
+    },
+    'rw0sh80k': {
+      'en': 'Area Planted',
+      'tl': '',
+    },
+    'lnpo3wrz': {
+      'en': 'Date of Planting (DS)',
+      'tl': '',
+    },
+    'lpjly72a': {
+      'en': 'Datee of Planting (TP)',
+      'tl': '',
+    },
+    'k3if5czh': {
+      'en': 'Seed Variety Planted',
+      'tl': '',
+    },
+    '08kgdns5': {
+      'en': 'Completed Task  Details',
+      'tl': '',
+    },
+    '3dmm4vvn': {
+      'en': 'Tracking Details',
+      'tl': '',
+    },
+    'y8nfprqq': {
+      'en': 'Last Coordinates',
+      'tl': '',
+    },
+    'k33o4ljv': {
+      'en': 'Track Date',
+      'tl': '',
+    },
+    'thqeur7g': {
+      'en': 'Total Area (ha)',
+      'tl': '',
+    },
+    '8tjfp8ru': {
+      'en': 'Total Distance',
+      'tl': '',
+    },
+    'h8d78nen': {
+      'en': 'Seed Details',
+      'tl': '',
+    },
+    'xy41gm52': {
+      'en': 'Type',
+      'tl': '',
+    },
+    'yzp4hxop': {
+      'en': 'Variety',
+      'tl': '',
+    },
+    'ub3h3340': {
+      'en': 'Date Details',
+      'tl': '',
+    },
+    '4loop0tv': {
+      'en': 'Date of Planting (DS)',
+      'tl': '',
+    },
+    'kb0lp36o': {
+      'en': 'Date of Planting (TP)',
+      'tl': '',
+    },
+    '5owl6nia': {
+      'en': 'Agent Confirmation',
+      'tl': '',
+    },
+    'teqhks3p': {
+      'en': 'Remarks',
+      'tl': '',
+    },
+    'ah35yr12': {
+      'en': 'Confirmed By',
+      'tl': '',
+    },
+    '3jldlj7l': {
+      'en': 'Prepared By',
+      'tl': '',
+    },
+    'whebqhau': {
+      'en': 'Geotag',
+      'tl': '',
+    },
+    '1a6n1vqa': {
+      'en': 'Continue Form',
+      'tl': '',
+    },
+    '50098527': {
+      'en': 'Geotag',
+      'tl': '',
+    },
+    'd4ieef23': {
+      'en': 'Resubmit',
+      'tl': '',
+    },
+    'sdd0mquj': {
+      'en': 'Re-Submit',
+      'tl': '',
+    },
+    'a5mnvgzd': {
+      'en': 'Home',
+      'tl': '',
+    },
+  },
+  // onboarding01
+  {
+    '2hf8uvq6': {
+      'en': 'Welcome!',
+      'tl': '',
+    },
+    '5lzr6222': {
+      'en': 'Welcome Agent in the PCIC Geotagging Application!',
+      'tl': '',
+    },
+    'byq4vn69': {
+      'en': 'Get Started',
+      'tl': '',
+    },
+    '3ckpvaqt': {
+      'en': 'My Account',
+      'tl': '',
+    },
+    's10teuws': {
+      'en': 'Home',
+      'tl': '',
+    },
+  },
+  // syncData
+  {
+    '2suywt94': {
+      'en': 'Tap to Sync',
+      'tl': '',
+    },
+    'mh2af94v': {
+      'en': 'Dashboard',
+      'tl': '',
+    },
+    '2nf0agys': {
       'en': 'Home',
       'tl': '',
     },

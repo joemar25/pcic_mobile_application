@@ -260,12 +260,15 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                   ),
                                                 );
                                               }
-                                              List<UsersRow> textUsersRowList =
+                                              List<UsersRow>
+                                                  inspectorNameTextUsersRowList =
                                                   snapshot.data!;
 
-                                              final textUsersRow =
-                                                  textUsersRowList.isNotEmpty
-                                                      ? textUsersRowList.first
+                                              final inspectorNameTextUsersRow =
+                                                  inspectorNameTextUsersRowList
+                                                          .isNotEmpty
+                                                      ? inspectorNameTextUsersRowList
+                                                          .first
                                                       : null;
 
                                               return InkWell(
@@ -327,22 +330,60 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Expanded(
-                                            child: Text(
-                                              valueOrDefault<String>(
-                                                FFAppState().ONLINE
-                                                    ? _model.onlineUserProfile
-                                                        ?.first.email
-                                                    : valueOrDefault<String>(
-                                                        _model
-                                                            .offlineSelectUserProfile
-                                                            ?.first
-                                                            .email,
-                                                        'Inspector Name',
-                                                      ),
-                                                'agent@yahoo.com',
+                                            child:
+                                                FutureBuilder<List<UsersRow>>(
+                                              future:
+                                                  FFAppState().applevelEmail(
+                                                uniqueQueryKey:
+                                                    currentUserEmail,
+                                                requestFn: () =>
+                                                    UsersTable().queryRows(
+                                                  queryFn: (q) => q.eq(
+                                                    'email',
+                                                    currentUserEmail,
+                                                  ),
+                                                ),
                                               ),
-                                              style:
-                                                  FlutterFlowTheme.of(context)
+                                              builder: (context, snapshot) {
+                                                // Customize what your widget looks like when it's loading.
+                                                if (!snapshot.hasData) {
+                                                  return Center(
+                                                    child: SizedBox(
+                                                      width: 100.0,
+                                                      height: 100.0,
+                                                      child: SpinKitRipple(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        size: 100.0,
+                                                      ),
+                                                    ),
+                                                  );
+                                                }
+                                                List<UsersRow>
+                                                    userEmailTextUsersRowList =
+                                                    snapshot.data!;
+
+                                                return Text(
+                                                  valueOrDefault<String>(
+                                                    FFAppState().ONLINE
+                                                        ? _model
+                                                            .onlineUserProfile
+                                                            ?.first
+                                                            .email
+                                                        : valueOrDefault<
+                                                            String>(
+                                                            _model
+                                                                .offlineSelectUserProfile
+                                                                ?.first
+                                                                .email,
+                                                            'Inspector Name',
+                                                          ),
+                                                    'agent@yahoo.com',
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
                                                       .bodySmall
                                                       .override(
                                                         fontFamily: 'Outfit',
@@ -359,6 +400,8 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                 .containsKey(
                                                                     'Outfit'),
                                                       ),
+                                                );
+                                              },
                                             ),
                                           ),
                                         ],
