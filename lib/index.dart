@@ -36,6 +36,9 @@ export '/auth/login_original_copy/login_original_copy_widget.dart'
     show LoginOriginalCopyWidget;
 export '/auth/onboarding01_original_copy/onboarding01_original_copy_widget.dart'
     show Onboarding01OriginalCopyWidget;
-export '/utils/sync_king/sync_king_widget.dart' show SyncKingWidget;
 export '/dashboard/messages/chats_copy/chats_copy_widget.dart'
     show ChatsCopyWidget;
+export '/utils/sync_king_copy/sync_king_copy_widget.dart'
+    show SyncKingCopyWidget;
+export '/utils/sync_king_copy_copy/sync_king_copy_copy_widget.dart'
+    show SyncKingCopyCopyWidget;

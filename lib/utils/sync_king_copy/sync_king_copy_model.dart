@@ -1,9 +1,9 @@
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'sync_king_widget.dart' show SyncKingWidget;
+import 'sync_king_copy_widget.dart' show SyncKingCopyWidget;
 import 'package:flutter/material.dart';
 
-class SyncKingModel extends FlutterFlowModel<SyncKingWidget> {
+class SyncKingCopyModel extends FlutterFlowModel<SyncKingCopyWidget> {
   ///  Local state fields for this page.
 
   int? limit = 0;

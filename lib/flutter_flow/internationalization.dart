@@ -111,10 +111,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'PCIC Geotagging ',
       'tl': '',
     },
-    '8ycidgoc': {
-      'en': 'DON\"T DELETE SCOTT IS TESTING HERE',
-      'tl': '',
-    },
     '4okdmfv6': {
       'en': 'Welcome Back',
       'tl': '',
@@ -261,7 +257,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'z0gaip4i': {
+    'nldnlcic': {
       'en': '',
       'tl': '',
     },
@@ -273,7 +269,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    '4negc7l5': {
+    'u2ut6v20': {
       'en': '',
       'tl': '',
     },
@@ -285,7 +281,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'o7s1xep5': {
+    'owegovcz': {
       'en': '',
       'tl': '',
     },
@@ -308,7 +304,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    'mry2ma2g': {
+    '635525nx': {
       'en': '',
       'tl': '',
     },
@@ -430,33 +426,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Area Planted',
       'tl': 'Lugar na Nakatanim',
     },
-    'ftsdowzw': {
-      'en': '-',
-      'tl': '',
-    },
     'zxmreuh1': {
       'en': 'Date of Planting (DS)',
       'tl': 'Petsa ng Pagtanim (DS)',
     },
-    'nt3syuhh': {
-      'en': '-',
-      'tl': '',
-    },
     'ncrtgoe1': {
-      'en': 'Datee of Planting (TP)',
+      'en': 'Date of Planting (TP)',
       'tl': 'Petsa ng Pagtatanim (TP)',
-    },
-    'ltmuyine': {
-      'en': '-',
-      'tl': '',
     },
     'nzua63mv': {
       'en': 'Seed Variety Planted',
       'tl': 'Iba\'t-ibang Binhi na Nakatanim',
-    },
-    'xsqheqcj': {
-      'en': '-',
-      'tl': '',
     },
     'dgbzqn0h': {
       'en': 'Completed Task  Details',
@@ -490,17 +470,9 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Type',
       'tl': 'Uri',
     },
-    'b1c50rc1': {
-      'en': '-',
-      'tl': '',
-    },
     'veh8acpl': {
       'en': 'Variety',
       'tl': 'Iba\'t-ibang',
-    },
-    '9gr8ck19': {
-      'en': '-',
-      'tl': '',
     },
     'anco0w5m': {
       'en': 'Date Details',
@@ -510,17 +482,9 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Date of Planting (DS)',
       'tl': 'Petsa ng Pagtanim (DS)',
     },
-    'fp05g6sc': {
-      'en': '-',
-      'tl': '',
-    },
     '3zj0x11r': {
       'en': 'Date of Planting (TP)',
       'tl': 'Petsa ng Pagtatanim (TP)',
-    },
-    'ipmw8aq2': {
-      'en': '-',
-      'tl': '',
     },
     'lnj6pjl7': {
       'en': 'Agent Confirmation',
@@ -1456,25 +1420,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
-  // syncKing
-  {
-    'kp6iy6vr': {
-      'en': 'Sync Task & PPIR',
-      'tl': '',
-    },
-    'ca55sy47': {
-      'en': 'Dashboard',
-      'tl': '',
-    },
-    '9gd2iyb3': {
-      'en': 'Offline Tasks Sync Test',
-      'tl': '',
-    },
-    's53wj8c8': {
-      'en': 'Home',
-      'tl': '',
-    },
-  },
   // chatsCopy
   {
     'tmxlre7s': {
@@ -1495,6 +1440,48 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'dl276486': {
       'en': 'Messages',
+      'tl': '',
+    },
+  },
+  // syncKingCopy
+  {
+    'e3h43o18': {
+      'en': 'Sync Task & PPIR',
+      'tl': '',
+    },
+    '3i8noo2z': {
+      'en': 'Dashboard',
+      'tl': '',
+    },
+    'nm7pj9jt': {
+      'en': 'Offline Tasks Sync Test',
+      'tl': '',
+    },
+    '5fh27y4l': {
+      'en': 'Home',
+      'tl': '',
+    },
+  },
+  // syncKingCopyCopy
+  {
+    'ggxulbhf': {
+      'en': 'Sync Task & PPIR',
+      'tl': '',
+    },
+    '244c6ypd': {
+      'en': 'Tap to Sync',
+      'tl': '',
+    },
+    'pen88gd9': {
+      'en': 'Dashboard',
+      'tl': '',
+    },
+    'o3uabjgq': {
+      'en': 'Offline Tasks Sync Test',
+      'tl': '',
+    },
+    'v3jq6q5p': {
+      'en': 'Home',
       'tl': '',
     },
   },

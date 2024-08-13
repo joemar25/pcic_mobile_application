@@ -1,6 +1,5 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/chat_list_container/chat_list_container_widget.dart';
@@ -9,7 +8,6 @@ import '/utils/components/empty_lists/empty_lists_widget.dart';
 import '/utils/components/user_chats/user_chats_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'chats_copy_model.dart';
@@ -22,13 +20,10 @@ class ChatsCopyWidget extends StatefulWidget {
   State<ChatsCopyWidget> createState() => _ChatsCopyWidgetState();
 }
 
-class _ChatsCopyWidgetState extends State<ChatsCopyWidget>
-    with TickerProviderStateMixin {
+class _ChatsCopyWidgetState extends State<ChatsCopyWidget> {
   late ChatsCopyModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
@@ -40,21 +35,6 @@ class _ChatsCopyWidgetState extends State<ChatsCopyWidget>
       _model.messageQuery = await ChatsTable().queryRows(
         queryFn: (q) => q,
       );
-    });
-
-    animationsMap.addAll({
-      'containerOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: const Offset(0.0, 100.0),
-            end: const Offset(0.0, 0.0),
-          ),
-        ],
-      ),
     });
   }
 
@@ -330,8 +310,7 @@ class _ChatsCopyWidgetState extends State<ChatsCopyWidget>
                                   ],
                                 ),
                               ),
-                            ).animateOnPageLoad(
-                                animationsMap['containerOnPageLoadAnimation']!),
+                            ),
                           ),
                         if (!FFAppState().ONLINE)
                           Align(

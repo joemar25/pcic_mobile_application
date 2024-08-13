@@ -501,7 +501,7 @@ class _LoginOriginalCopyWidgetState extends State<LoginOriginalCopyWidget>
                                         context.pop();
                                       }
                                       context.pushNamedAuth(
-                                        'syncKing',
+                                        'syncKingCopy',
                                         context.mounted,
                                         extra: <String, dynamic>{
                                           kTransitionInfoKey: const TransitionInfo(

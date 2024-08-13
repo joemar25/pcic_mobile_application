@@ -7,25 +7,25 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'sync_king_model.dart';
-export 'sync_king_model.dart';
+import 'sync_king_copy_model.dart';
+export 'sync_king_copy_model.dart';
 
-class SyncKingWidget extends StatefulWidget {
-  const SyncKingWidget({super.key});
+class SyncKingCopyWidget extends StatefulWidget {
+  const SyncKingCopyWidget({super.key});
 
   @override
-  State<SyncKingWidget> createState() => _SyncKingWidgetState();
+  State<SyncKingCopyWidget> createState() => _SyncKingCopyWidgetState();
 }
 
-class _SyncKingWidgetState extends State<SyncKingWidget> {
-  late SyncKingModel _model;
+class _SyncKingCopyWidgetState extends State<SyncKingCopyWidget> {
+  late SyncKingCopyModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => SyncKingModel());
+    _model = createModel(context, () => SyncKingCopyModel());
   }
 
   @override
@@ -47,7 +47,7 @@ class _SyncKingWidgetState extends State<SyncKingWidget> {
           automaticallyImplyLeading: false,
           title: Text(
             FFLocalizations.of(context).getText(
-              '9gd2iyb3' /* Offline Tasks Sync Test */,
+              'nm7pj9jt' /* Offline Tasks Sync Test */,
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: FlutterFlowTheme.of(context).headlineMediumFamily,
@@ -326,6 +326,8 @@ class _SyncKingWidgetState extends State<SyncKingWidget> {
                               _model.iteration = _model.iteration! + 1;
                               setState(() {});
                             }
+                            _model.limit = 0;
+                            _model.iteration = 0;
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
@@ -345,7 +347,7 @@ class _SyncKingWidgetState extends State<SyncKingWidget> {
                             setState(() {});
                           },
                           text: FFLocalizations.of(context).getText(
-                            'kp6iy6vr' /* Sync Task & PPIR */,
+                            'e3h43o18' /* Sync Task & PPIR */,
                           ),
                           options: FFButtonOptions(
                             height: 40.0,
@@ -535,7 +537,7 @@ class _SyncKingWidgetState extends State<SyncKingWidget> {
                         );
                       },
                       text: FFLocalizations.of(context).getText(
-                        'ca55sy47' /* Dashboard */,
+                        '3i8noo2z' /* Dashboard */,
                       ),
                       options: FFButtonOptions(
                         height: 40.0,

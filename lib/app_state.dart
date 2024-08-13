@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'flutter_flow/request_manager.dart';
 import '/backend/schema/structs/index.dart';
-import 'backend/supabase/supabase.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:csv/csv.dart';
 import 'package:synchronized/synchronized.dart';
@@ -129,36 +127,6 @@ class FFAppState extends ChangeNotifier {
   set mapBoxKeyString(String value) {
     _mapBoxKeyString = value;
   }
-
-  final _appLevelNameManager = FutureRequestManager<List<UsersRow>>();
-  Future<List<UsersRow>> appLevelName({
-    String? uniqueQueryKey,
-    bool? overrideCache,
-    required Future<List<UsersRow>> Function() requestFn,
-  }) =>
-      _appLevelNameManager.performRequest(
-        uniqueQueryKey: uniqueQueryKey,
-        overrideCache: overrideCache,
-        requestFn: requestFn,
-      );
-  void clearAppLevelNameCache() => _appLevelNameManager.clear();
-  void clearAppLevelNameCacheKey(String? uniqueKey) =>
-      _appLevelNameManager.clearRequest(uniqueKey);
-
-  final _applevelEmailManager = FutureRequestManager<List<UsersRow>>();
-  Future<List<UsersRow>> applevelEmail({
-    String? uniqueQueryKey,
-    bool? overrideCache,
-    required Future<List<UsersRow>> Function() requestFn,
-  }) =>
-      _applevelEmailManager.performRequest(
-        uniqueQueryKey: uniqueQueryKey,
-        overrideCache: overrideCache,
-        requestFn: requestFn,
-      );
-  void clearApplevelEmailCache() => _applevelEmailManager.clear();
-  void clearApplevelEmailCacheKey(String? uniqueKey) =>
-      _applevelEmailManager.clearRequest(uniqueKey);
 }
 
 void _safeInit(Function() initializeField) {

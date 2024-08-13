@@ -303,16 +303,22 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const Onboarding01OriginalCopyWidget(),
         ),
         FFRoute(
-          name: 'syncKing',
-          path: '/syncKing',
-          requireAuth: true,
-          builder: (context, params) => const SyncKingWidget(),
-        ),
-        FFRoute(
           name: 'chatsCopy',
           path: '/chatsCopy',
           requireAuth: true,
           builder: (context, params) => const ChatsCopyWidget(),
+        ),
+        FFRoute(
+          name: 'syncKingCopy',
+          path: '/syncKingCopy',
+          requireAuth: true,
+          builder: (context, params) => const SyncKingCopyWidget(),
+        ),
+        FFRoute(
+          name: 'syncKingCopyCopy',
+          path: '/syncKingCopyCopy',
+          requireAuth: true,
+          builder: (context, params) => const SyncKingCopyCopyWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
