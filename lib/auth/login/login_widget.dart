@@ -175,8 +175,8 @@ class _LoginWidgetState extends State<LoginWidget>
                             ),
                           ),
                           FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
+                            onPressed: () async {
+                              context.pushNamed('mapTest');
                             },
                             text: FFLocalizations.of(context).getText(
                               '8ycidgoc' /* DON"T DELETE SCOTT IS TESTING ... */,
@@ -187,7 +187,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                   24.0, 0.0, 24.0, 0.0),
                               iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).primary,
+                              color: FlutterFlowTheme.of(context).alternate,
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(

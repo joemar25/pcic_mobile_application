@@ -17,6 +17,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
@@ -582,19 +583,90 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                       MainAxisSize.max,
                                                   children: [
                                                     Flexible(
-                                                      child: RichText(
-                                                        textScaler:
-                                                            MediaQuery.of(
-                                                                    context)
-                                                                .textScaler,
-                                                        text: TextSpan(
-                                                          children: [
-                                                            TextSpan(
-                                                              text: FFLocalizations
-                                                                      .of(context)
-                                                                  .getText(
-                                                                'xfwf34si' /* Good morning  */,
+                                                      child: FutureBuilder<
+                                                          List<
+                                                              SelectProfileRow>>(
+                                                        future: SQLiteManager
+                                                            .instance
+                                                            .selectProfile(
+                                                          email:
+                                                              currentUserEmail,
+                                                        ),
+                                                        builder: (context,
+                                                            snapshot) {
+                                                          // Customize what your widget looks like when it's loading.
+                                                          if (!snapshot
+                                                              .hasData) {
+                                                            return Center(
+                                                              child: SizedBox(
+                                                                width: 100.0,
+                                                                height: 100.0,
+                                                                child:
+                                                                    SpinKitRipple(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                                  size: 100.0,
+                                                                ),
                                                               ),
+                                                            );
+                                                          }
+                                                          final richTextSelectProfileRowList =
+                                                              snapshot.data!;
+
+                                                          return RichText(
+                                                            textScaler:
+                                                                MediaQuery.of(
+                                                                        context)
+                                                                    .textScaler,
+                                                            text: TextSpan(
+                                                              children: [
+                                                                TextSpan(
+                                                                  text: FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                    'xfwf34si' /* Good morning  */,
+                                                                  ),
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.normal,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                      ),
+                                                                ),
+                                                                TextSpan(
+                                                                  text: valueOrDefault<
+                                                                      String>(
+                                                                    functions.sentenceCaseWords(
+                                                                        richTextSelectProfileRowList
+                                                                            .first
+                                                                            .inspectorName),
+                                                                    'Inspector Name',
+                                                                  ),
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                  ),
+                                                                ),
+                                                                TextSpan(
+                                                                  text: FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                    'lx95ug5f' /* ! */,
+                                                                  ),
+                                                                  style:
+                                                                      const TextStyle(),
+                                                                )
+                                                              ],
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
@@ -604,56 +676,14 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                             .bodyMediumFamily,
                                                                     letterSpacing:
                                                                         0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .normal,
                                                                     useGoogleFonts: GoogleFonts
                                                                             .asMap()
                                                                         .containsKey(
                                                                             FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                   ),
                                                             ),
-                                                            TextSpan(
-                                                              text:
-                                                                  valueOrDefault<
-                                                                      String>(
-                                                                functions
-                                                                    .sentenceCaseWords(
-                                                                        'AAAA'),
-                                                                'Inspector Name',
-                                                              ),
-                                                              style: TextStyle(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primary,
-                                                              ),
-                                                            ),
-                                                            TextSpan(
-                                                              text: FFLocalizations
-                                                                      .of(context)
-                                                                  .getText(
-                                                                'lx95ug5f' /* ! */,
-                                                              ),
-                                                              style:
-                                                                  const TextStyle(),
-                                                            )
-                                                          ],
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily),
-                                                              ),
-                                                        ),
+                                                          );
+                                                        },
                                                       ),
                                                     ),
                                                   ],
