@@ -2,8 +2,10 @@ import '/auth/supabase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 import 'alert_dialog_model.dart';
 export 'alert_dialog_model.dart';
 
@@ -39,7 +41,7 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Container(
         width: 338.0,
         height: 392.0,
@@ -48,7 +50,7 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
           borderRadius: BorderRadius.circular(24.0),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: EdgeInsets.all(20.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -71,7 +73,7 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
                         children: [
                           Expanded(
                             child: Align(
-                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
                                   '4poy7kn4' /* Info */,
@@ -101,7 +103,7 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
                     children: [
                       Expanded(
                         child: Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
                               '5w0hrwzw' /* The current gpx file will be d... */,
@@ -123,10 +125,10 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
                       ),
                     ],
                   ),
-                ].divide(const SizedBox(height: 15.0)),
+                ].divide(SizedBox(height: 15.0)),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -141,7 +143,7 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
                             borderRadius: BorderRadius.circular(50.0),
                           ),
                           child: Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
                               focusColor: Colors.transparent,
@@ -178,7 +180,7 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
                             borderRadius: BorderRadius.circular(50.0),
                           ),
                           child: Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
                               focusColor: Colors.transparent,
@@ -213,12 +215,12 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
                             ),
                           ),
                         ),
-                      ].divide(const SizedBox(width: 25.0)),
+                      ].divide(SizedBox(width: 25.0)),
                     ),
                   ],
                 ),
               ),
-            ].divide(const SizedBox(height: 20.0)),
+            ].divide(SizedBox(height: 20.0)),
           ),
         ),
       ),

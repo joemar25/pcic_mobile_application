@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'offline_tasks_and_ppir_list_model.dart';
 export 'offline_tasks_and_ppir_list_model.dart';
 
@@ -53,7 +54,7 @@ class _OfflineTasksAndPpirListWidgetState
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: const Icon(
+            icon: Icon(
               Icons.chevron_left,
               color: Colors.white,
               size: 30.0,
@@ -75,20 +76,20 @@ class _OfflineTasksAndPpirListWidgetState
                       FlutterFlowTheme.of(context).headlineMediumFamily),
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 2.0,
         ),
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
             child: Container(
               width: MediaQuery.sizeOf(context).width * 1.0,
               height: MediaQuery.sizeOf(context).height * 1.0,
-              decoration: const BoxDecoration(),
+              decoration: BoxDecoration(),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -108,7 +109,7 @@ class _OfflineTasksAndPpirListWidgetState
                                         .primaryText,
                                   ),
                                 ),
-                                duration: const Duration(milliseconds: 4000),
+                                duration: Duration(milliseconds: 4000),
                                 backgroundColor:
                                     FlutterFlowTheme.of(context).secondary,
                               ),
@@ -138,7 +139,7 @@ class _OfflineTasksAndPpirListWidgetState
                                       _model.iteration,
                                       0,
                                     )]
-                                        .id,
+                                        ?.id,
                                     'id',
                                   ),
                                 ),
@@ -150,7 +151,7 @@ class _OfflineTasksAndPpirListWidgetState
                                     _model.iteration,
                                     0,
                                   )]
-                                      .id,
+                                      ?.id,
                                   'id',
                                 ),
                                 taskNumber: valueOrDefault<String>(
@@ -159,7 +160,7 @@ class _OfflineTasksAndPpirListWidgetState
                                     _model.iteration,
                                     0,
                                   )]
-                                      .taskNumber,
+                                      ?.taskNumber,
                                   'task number',
                                 ),
                                 serviceGroup: valueOrDefault<String>(
@@ -168,7 +169,7 @@ class _OfflineTasksAndPpirListWidgetState
                                     _model.iteration,
                                     0,
                                   )]
-                                      .serviceGroup,
+                                      ?.serviceGroup,
                                   'task number',
                                 ),
                                 status: valueOrDefault<String>(
@@ -177,7 +178,7 @@ class _OfflineTasksAndPpirListWidgetState
                                     _model.iteration,
                                     0,
                                   )]
-                                      .status,
+                                      ?.status,
                                   'task number',
                                 ),
                                 serviceType: valueOrDefault<String>(
@@ -186,7 +187,7 @@ class _OfflineTasksAndPpirListWidgetState
                                     _model.iteration,
                                     0,
                                   )]
-                                      .serviceType,
+                                      ?.serviceType,
                                   'task number',
                                 ),
                                 priority: valueOrDefault<String>(
@@ -195,7 +196,7 @@ class _OfflineTasksAndPpirListWidgetState
                                     _model.iteration,
                                     0,
                                   )]
-                                      .priority,
+                                      ?.priority,
                                   'task number',
                                 ),
                                 assignee: valueOrDefault<String>(
@@ -204,7 +205,7 @@ class _OfflineTasksAndPpirListWidgetState
                                     _model.iteration,
                                     0,
                                   )]
-                                      .assignee,
+                                      ?.assignee,
                                   'task number',
                                 ),
                                 dateAdded: valueOrDefault<String>(
@@ -213,7 +214,7 @@ class _OfflineTasksAndPpirListWidgetState
                                     _model.iteration,
                                     0,
                                   )]
-                                      .dateAdded
+                                      ?.dateAdded
                                       ?.toString(),
                                   'task number',
                                 ),
@@ -223,7 +224,7 @@ class _OfflineTasksAndPpirListWidgetState
                                     _model.iteration,
                                     0,
                                   )]
-                                      .dateAccess
+                                      ?.dateAccess
                                       ?.toString(),
                                   'task number',
                                 ),
@@ -233,108 +234,108 @@ class _OfflineTasksAndPpirListWidgetState
                                     _model.iteration,
                                     0,
                                   )]
-                                      .fileId,
+                                      ?.fileId,
                                   'task number',
                                 ),
                               );
                               await SQLiteManager.instance
                                   .insertOfflinePPIRForm(
                                 taskId:
-                                    _model.onlineTasks?[_model.iteration!].id,
+                                    _model.onlineTasks?[_model.iteration!]?.id,
                                 ppirAssignmentId:
-                                    _model.ppirOutput?.first.ppirAssignmentid,
-                                gpx: _model.ppirOutput?.first.gpx,
+                                    _model.ppirOutput?.first?.ppirAssignmentid,
+                                gpx: _model.ppirOutput?.first?.gpx,
                                 ppirInsuranceId:
-                                    _model.ppirOutput?.first.ppirInsuranceid,
+                                    _model.ppirOutput?.first?.ppirInsuranceid,
                                 ppirFarmerName:
-                                    _model.ppirOutput?.first.ppirFarmername,
+                                    _model.ppirOutput?.first?.ppirFarmername,
                                 ppirAddress:
-                                    _model.ppirOutput?.first.ppirAddress,
+                                    _model.ppirOutput?.first?.ppirAddress,
                                 ppirFarmerType:
-                                    _model.ppirOutput?.first.ppirFarmertype,
+                                    _model.ppirOutput?.first?.ppirFarmertype,
                                 ppirMobileNo:
-                                    _model.ppirOutput?.first.ppirMobileno,
+                                    _model.ppirOutput?.first?.ppirMobileno,
                                 ppirGroupName:
-                                    _model.ppirOutput?.first.ppirGroupname,
+                                    _model.ppirOutput?.first?.ppirGroupname,
                                 ppirGroupAddress:
-                                    _model.ppirOutput?.first.ppirGroupaddress,
+                                    _model.ppirOutput?.first?.ppirGroupaddress,
                                 ppirLenderName:
-                                    _model.ppirOutput?.first.ppirLendername,
+                                    _model.ppirOutput?.first?.ppirLendername,
                                 ppirLenderAddress:
-                                    _model.ppirOutput?.first.ppirLenderaddress,
-                                ppirCICNo: _model.ppirOutput?.first.ppirCicno,
+                                    _model.ppirOutput?.first?.ppirLenderaddress,
+                                ppirCICNo: _model.ppirOutput?.first?.ppirCicno,
                                 ppirFarmLoc:
-                                    _model.ppirOutput?.first.ppirFarmloc,
-                                ppirNorth: _model.ppirOutput?.first.ppirNorth,
-                                ppirSouth: _model.ppirOutput?.first.ppirSouth,
-                                ppirEast: _model.ppirOutput?.first.ppirEast,
-                                ppirWest: _model.ppirOutput?.first.ppirWest,
-                                ppirAtt1: _model.ppirOutput?.first.ppirAtt1,
-                                ppirAtt2: _model.ppirOutput?.first.ppirAtt2,
-                                ppirAtt3: _model.ppirOutput?.first.ppirAtt3,
-                                ppirAtt4: _model.ppirOutput?.first.ppirAtt4,
+                                    _model.ppirOutput?.first?.ppirFarmloc,
+                                ppirNorth: _model.ppirOutput?.first?.ppirNorth,
+                                ppirSouth: _model.ppirOutput?.first?.ppirSouth,
+                                ppirEast: _model.ppirOutput?.first?.ppirEast,
+                                ppirWest: _model.ppirOutput?.first?.ppirWest,
+                                ppirAtt1: _model.ppirOutput?.first?.ppirAtt1,
+                                ppirAtt2: _model.ppirOutput?.first?.ppirAtt2,
+                                ppirAtt3: _model.ppirOutput?.first?.ppirAtt3,
+                                ppirAtt4: _model.ppirOutput?.first?.ppirAtt4,
                                 ppirAreaAci:
-                                    _model.ppirOutput?.first.ppirAreaAci,
+                                    _model.ppirOutput?.first?.ppirAreaAci,
                                 ppirAreaAct:
-                                    _model.ppirOutput?.first.ppirAreaAct,
+                                    _model.ppirOutput?.first?.ppirAreaAct,
                                 ppirDopdsAci:
-                                    _model.ppirOutput?.first.ppirDopdsAci,
+                                    _model.ppirOutput?.first?.ppirDopdsAci,
                                 ppirDopdsAct:
-                                    _model.ppirOutput?.first.ppirDopdsAct,
+                                    _model.ppirOutput?.first?.ppirDopdsAct,
                                 ppirDoptpAci:
-                                    _model.ppirOutput?.first.ppirDoptpAci,
+                                    _model.ppirOutput?.first?.ppirDoptpAci,
                                 ppirDoptpAct:
-                                    _model.ppirOutput?.first.ppirDoptpAct,
+                                    _model.ppirOutput?.first?.ppirDoptpAct,
                                 ppirSvpAci:
-                                    _model.ppirOutput?.first.ppirSvpAci,
+                                    _model.ppirOutput?.first?.ppirSvpAci,
                                 ppirSvpAct:
-                                    _model.ppirOutput?.first.ppirSvpAct,
+                                    _model.ppirOutput?.first?.ppirSvpAct,
                                 ppirVariety:
-                                    _model.ppirOutput?.first.ppirVariety,
+                                    _model.ppirOutput?.first?.ppirVariety,
                                 ppirStageCrop:
-                                    _model.ppirOutput?.first.ppirStagecrop,
+                                    _model.ppirOutput?.first?.ppirStagecrop,
                                 ppirRemarks:
-                                    _model.ppirOutput?.first.ppirRemarks,
+                                    _model.ppirOutput?.first?.ppirRemarks,
                                 ppirNameInsured:
-                                    _model.ppirOutput?.first.ppirNameInsured,
+                                    _model.ppirOutput?.first?.ppirNameInsured,
                                 ppirNameIUIA:
-                                    _model.ppirOutput?.first.ppirNameIuia,
+                                    _model.ppirOutput?.first?.ppirNameIuia,
                                 ppirSigInsured:
-                                    _model.ppirOutput?.first.ppirSigInsured,
+                                    _model.ppirOutput?.first?.ppirSigInsured,
                                 ppirSigIUIA:
-                                    _model.ppirOutput?.first.ppirSigIuia,
+                                    _model.ppirOutput?.first?.ppirSigIuia,
                                 trackLastCoord:
-                                    _model.ppirOutput?.first.trackLastCoord,
+                                    _model.ppirOutput?.first?.trackLastCoord,
                                 trackDateTime:
-                                    _model.ppirOutput?.first.trackDateTime,
+                                    _model.ppirOutput?.first?.trackDateTime,
                                 trackTotalArea:
-                                    _model.ppirOutput?.first.trackTotalArea,
+                                    _model.ppirOutput?.first?.trackTotalArea,
                                 trackTotalDistance: _model
-                                    .ppirOutput?.first.trackTotalDistance,
-                                createdAt: _model.ppirOutput?.first.createdAt
+                                    .ppirOutput?.first?.trackTotalDistance,
+                                createdAt: _model.ppirOutput?.first?.createdAt
                                     ?.toString(),
-                                updatedAt: _model.ppirOutput?.first.updatedAt
+                                updatedAt: _model.ppirOutput?.first?.updatedAt
                                     ?.toString(),
                                 syncStatus:
-                                    _model.ppirOutput?.first.syncStatus,
+                                    _model.ppirOutput?.first?.syncStatus,
                                 lastSyncedAt: _model
-                                    .ppirOutput?.first.lastSyncedAt
+                                    .ppirOutput?.first?.lastSyncedAt
                                     ?.toString(),
-                                localId: _model.ppirOutput?.first.localId,
-                                isDirty: _model.ppirOutput?.first.isDirty
+                                localId: _model.ppirOutput?.first?.localId,
+                                isDirty: _model.ppirOutput?.first?.isDirty
                                     ?.toString(),
                               );
                               ScaffoldMessenger.of(context).clearSnackBars();
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
-                                    '${_model.iteration?.toString()} - Task ID: (${_model.onlineTasks?[_model.iteration!].id}) PPIR Task ID: ( ${_model.ppirOutput?.first.taskId})',
+                                    '${_model.iteration?.toString()} - Task ID: (${_model.onlineTasks?[_model.iteration!]?.id}) PPIR Task ID: ( ${_model.ppirOutput?.first?.taskId})',
                                     style: TextStyle(
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
                                     ),
                                   ),
-                                  duration: const Duration(milliseconds: 4000),
+                                  duration: Duration(milliseconds: 4000),
                                   backgroundColor: FlutterFlowTheme.of(context)
                                       .forDispatchColor,
                                 ),
@@ -353,7 +354,7 @@ class _OfflineTasksAndPpirListWidgetState
                                         .primaryText,
                                   ),
                                 ),
-                                duration: const Duration(milliseconds: 4000),
+                                duration: Duration(milliseconds: 4000),
                                 backgroundColor:
                                     FlutterFlowTheme.of(context).secondary,
                               ),
@@ -366,9 +367,9 @@ class _OfflineTasksAndPpirListWidgetState
                           ),
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -383,7 +384,7 @@ class _OfflineTasksAndPpirListWidgetState
                                           .titleSmallFamily),
                                 ),
                             elevation: 3.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -449,13 +450,13 @@ class _OfflineTasksAndPpirListWidgetState
                               snapshot.data!;
 
                           return ListView.separated(
-                            padding: const EdgeInsets.symmetric(vertical: 3.0),
+                            padding: EdgeInsets.symmetric(vertical: 3.0),
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
                             itemCount:
                                 listViewOFFLINESelectAllTasksByAssigneeRowList
                                     .length,
-                            separatorBuilder: (_, __) => const SizedBox(height: 3.0),
+                            separatorBuilder: (_, __) => SizedBox(height: 3.0),
                             itemBuilder: (context, listViewIndex) {
                               final listViewOFFLINESelectAllTasksByAssigneeRow =
                                   listViewOFFLINESelectAllTasksByAssigneeRowList[
@@ -539,8 +540,8 @@ class _OfflineTasksAndPpirListWidgetState
                       ),
                     ),
                   ]
-                      .divide(const SizedBox(height: 20.0))
-                      .around(const SizedBox(height: 20.0)),
+                      .divide(SizedBox(height: 20.0))
+                      .around(SizedBox(height: 20.0)),
                 ),
               ),
             ),

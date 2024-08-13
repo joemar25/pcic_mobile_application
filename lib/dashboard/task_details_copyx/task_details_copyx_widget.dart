@@ -70,7 +70,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
       future: PpirFormsTable().querySingleRow(
         queryFn: (q) => q.eq(
           'task_id',
-          widget.taskId,
+          widget!.taskId,
         ),
       ),
       builder: (context, snapshot) {
@@ -78,7 +78,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
         if (!snapshot.hasData) {
           return Scaffold(
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            body: const PageLoaderWidget(),
+            body: PageLoaderWidget(),
           );
         }
         List<PpirFormsRow> taskDetailsCopyxPpirFormsRowList = snapshot.data!;
@@ -107,7 +107,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                   borderRadius: 30.0,
                   borderWidth: 1.0,
                   buttonSize: 60.0,
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.chevron_left,
                     color: Colors.white,
                     size: 30.0,
@@ -116,7 +116,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                     context.pushNamed(
                       'dashboard',
                       extra: <String, dynamic>{
-                        kTransitionInfoKey: const TransitionInfo(
+                        kTransitionInfoKey: TransitionInfo(
                           hasTransition: true,
                           transitionType: PageTransitionType.leftToRight,
                           duration: Duration(milliseconds: 200),
@@ -131,9 +131,9 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
                       child: Text(
-                        '${functions.capitalizeWords(widget.taskStatus)} Task Details',
+                        '${functions.capitalizeWords(widget!.taskStatus)} Task Details',
                         style:
                             FlutterFlowTheme.of(context).displaySmall.override(
                                   fontFamily: FlutterFlowTheme.of(context)
@@ -150,7 +150,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                     Stack(
                       children: [
                         if ((_model.isEditing == false) &&
-                            (widget.taskStatus != 'completed'))
+                            (widget!.taskStatus != 'completed'))
                           InkWell(
                             splashColor: Colors.transparent,
                             focusColor: Colors.transparent,
@@ -160,7 +160,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                               _model.isEditing = !(_model.isEditing ?? true);
                               setState(() {});
                             },
-                            child: const Icon(
+                            child: Icon(
                               Icons.edit,
                               color: Colors.white,
                               size: 24.0,
@@ -182,7 +182,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                 },
                                 matchingRows: (rows) => rows.eq(
                                   'task_id',
-                                  widget.taskId,
+                                  widget!.taskId,
                                 ),
                               );
                               await actions.successToast(
@@ -193,7 +193,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                 3000,
                               );
                             },
-                            child: const FaIcon(
+                            child: FaIcon(
                               FontAwesomeIcons.save,
                               color: Colors.white,
                               size: 24.0,
@@ -203,7 +203,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                     ),
                   ],
                 ),
-                actions: const [],
+                actions: [],
                 centerTitle: false,
                 elevation: 0.0,
               ),
@@ -213,7 +213,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                   future: TasksTable().querySingleRow(
                     queryFn: (q) => q.eq(
                       'id',
-                      widget.taskId,
+                      widget!.taskId,
                     ),
                   ),
                   builder: (context, snapshot) {
@@ -262,11 +262,11 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                         CrossAxisAlignment.stretch,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             20.0, 20.0, 20.0, 0.0),
                                         child: Container(
                                           width: 600.0,
-                                          constraints: const BoxConstraints(
+                                          constraints: BoxConstraints(
                                             maxWidth: 570.0,
                                           ),
                                           decoration: BoxDecoration(
@@ -276,7 +276,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                 BorderRadius.circular(12.0),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
+                                            padding: EdgeInsets.all(10.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -285,7 +285,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 12.0),
                                                   child: Text(
@@ -312,7 +312,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 8.0, 0.0, 0.0),
                                                   child: Row(
@@ -372,7 +372,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 8.0, 0.0, 0.0),
                                                   child: Row(
@@ -432,7 +432,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 8.0, 0.0, 0.0),
                                                   child: Row(
@@ -495,7 +495,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 8.0, 0.0, 0.0),
                                                   child: Row(
@@ -558,7 +558,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 8.0, 0.0, 0.0),
                                                   child: Row(
@@ -621,7 +621,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 8.0, 0.0, 0.0),
                                                   child: Row(
@@ -684,7 +684,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 8.0, 0.0, 0.0),
                                                   child: Row(
@@ -747,7 +747,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 8.0, 0.0, 0.0),
                                                   child: Row(
@@ -810,7 +810,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 8.0, 0.0, 0.0),
                                                   child: Row(
@@ -873,7 +873,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 8.0, 0.0, 0.0),
                                                   child: Row(
@@ -936,7 +936,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 8.0, 0.0, 0.0),
                                                   child: Row(
@@ -1000,7 +1000,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 8.0, 0.0, 0.0),
                                                   child: Row(
@@ -1063,7 +1063,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 8.0, 0.0, 0.0),
                                                   child: Row(
@@ -1111,7 +1111,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                       Expanded(
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       8.0,
                                                                       0.0,
@@ -1137,7 +1137,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                                 false,
                                                             obscureText: false,
                                                             decoration:
-                                                                const InputDecoration(
+                                                                InputDecoration(
                                                               enabledBorder:
                                                                   InputBorder
                                                                       .none,
@@ -1179,7 +1179,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 16.0, 0.0, 16.0),
                                                   child: Divider(
@@ -1190,7 +1190,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 12.0),
                                                   child: Text(
@@ -1217,7 +1217,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 8.0, 0.0, 0.0),
                                                   child: Row(
@@ -1280,7 +1280,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 8.0, 0.0, 0.0),
                                                   child: Row(
@@ -1343,7 +1343,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 8.0, 0.0, 0.0),
                                                   child: Row(
@@ -1405,7 +1405,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 8.0, 0.0, 0.0),
                                                   child: Row(
@@ -1467,7 +1467,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 16.0, 0.0, 16.0),
                                                   child: Divider(
@@ -1478,7 +1478,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 12.0),
                                                   child: Text(
@@ -1505,7 +1505,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 8.0, 0.0, 0.0),
                                                   child: Row(
@@ -1568,7 +1568,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 8.0, 0.0, 0.0),
                                                   child: Row(
@@ -1631,7 +1631,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 8.0, 0.0, 0.0),
                                                   child: Row(
@@ -1694,7 +1694,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 8.0, 0.0, 0.0),
                                                   child: Row(
@@ -1757,7 +1757,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 16.0, 0.0, 16.0),
                                                   child: Divider(
@@ -1767,7 +1767,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                         .boarderForm,
                                                   ),
                                                 ),
-                                                if (widget.taskStatus ==
+                                                if (widget!.taskStatus ==
                                                     'completed')
                                                   SingleChildScrollView(
                                                     child: Column(
@@ -1786,7 +1786,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -1821,7 +1821,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       8.0,
@@ -1864,7 +1864,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       20.0,
                                                                       8.0,
@@ -1929,7 +1929,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       20.0,
                                                                       8.0,
@@ -1994,7 +1994,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       20.0,
                                                                       8.0,
@@ -2059,7 +2059,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       20.0,
                                                                       8.0,
@@ -2124,7 +2124,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       16.0,
@@ -2139,7 +2139,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       8.0,
@@ -2182,7 +2182,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       20.0,
                                                                       8.0,
@@ -2247,7 +2247,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       20.0,
                                                                       8.0,
@@ -2312,7 +2312,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       16.0,
@@ -2327,7 +2327,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       8.0,
@@ -2370,7 +2370,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       20.0,
                                                                       8.0,
@@ -2435,7 +2435,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       20.0,
                                                                       8.0,
@@ -2500,7 +2500,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       16.0,
@@ -2515,7 +2515,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       8.0,
@@ -2558,7 +2558,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       20.0,
                                                                       8.0,
@@ -2623,7 +2623,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       20.0,
                                                                       8.0,
@@ -2688,7 +2688,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       20.0,
                                                                       8.0,
@@ -2705,11 +2705,11 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                               Expanded(
                                                                 child: Align(
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           0.0,
                                                                           0.0),
                                                                   child:
-                                                                      SizedBox(
+                                                                      Container(
                                                                     width: MediaQuery.sizeOf(context)
                                                                             .width *
                                                                         0.8,
@@ -2724,7 +2724,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                                       height:
                                                                           MediaQuery.sizeOf(context).height *
                                                                               0.2,
-                                                                      taskId: widget
+                                                                      taskId: widget!
                                                                           .taskId,
                                                                       signatureFor:
                                                                           'insured',
@@ -2737,7 +2737,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       20.0,
                                                                       8.0,
@@ -2802,7 +2802,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       20.0,
                                                                       8.0,
@@ -2819,11 +2819,11 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                               Expanded(
                                                                 child: Align(
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           0.0,
                                                                           0.0),
                                                                   child:
-                                                                      SizedBox(
+                                                                      Container(
                                                                     width: MediaQuery.sizeOf(context)
                                                                             .width *
                                                                         0.8,
@@ -2836,7 +2836,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                                           0.8,
                                                                       height:
                                                                           230.0,
-                                                                      taskId: widget
+                                                                      taskId: widget!
                                                                           .taskId,
                                                                       signatureFor:
                                                                           'iuia',
@@ -2849,7 +2849,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       16.0,
@@ -2864,7 +2864,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       8.0,
@@ -2907,8 +2907,8 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                         ),
                                                         Container(
                                                           decoration:
-                                                              const BoxDecoration(),
-                                                          child: SizedBox(
+                                                              BoxDecoration(),
+                                                          child: Container(
                                                             width: MediaQuery
                                                                         .sizeOf(
                                                                             context)
@@ -2943,7 +2943,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       16.0,
@@ -2959,7 +2959,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                       ],
                                                     ),
                                                   ),
-                                              ].divide(const SizedBox(height: 10.0)),
+                                              ].divide(SizedBox(height: 10.0)),
                                             ),
                                           ),
                                         ),
@@ -2971,9 +2971,9 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                               if ((taskDetailsCopyxPpirFormsRow?.gpx != null &&
                                       taskDetailsCopyxPpirFormsRow?.gpx !=
                                           '') &&
-                                  (widget.taskStatus == 'ongoing'))
+                                  (widget!.taskStatus == 'ongoing'))
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       16.0, 8.0, 16.0, 12.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -2997,12 +2997,12 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                 padding:
                                                     MediaQuery.viewInsetsOf(
                                                         context),
-                                                child: SizedBox(
+                                                child: Container(
                                                   height:
                                                       MediaQuery.sizeOf(context)
                                                               .height *
                                                           0.1,
-                                                  child: const ToastWidget(
+                                                  child: ToastWidget(
                                                     notificationTitle: 'Fail',
                                                     notificationMessage:
                                                         'You are still editing the farm location. Please finishi it first.',
@@ -3017,12 +3017,12 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                           'ppir',
                                           queryParameters: {
                                             'taskId': serializeParam(
-                                              widget.taskId,
+                                              widget!.taskId,
                                               ParamType.String,
                                             ),
                                           }.withoutNulls,
                                           extra: <String, dynamic>{
-                                            kTransitionInfoKey: const TransitionInfo(
+                                            kTransitionInfoKey: TransitionInfo(
                                               hasTransition: true,
                                               transitionType:
                                                   PageTransitionType.scale,
@@ -3040,7 +3040,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
-                                        boxShadow: const [
+                                        boxShadow: [
                                           BoxShadow(
                                             blurRadius: 4.0,
                                             color: Color(0x33000000),
@@ -3058,14 +3058,14 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                           width: 2.0,
                                         ),
                                       ),
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
                                           Padding(
-                                            padding: const EdgeInsets.all(6.0),
+                                            padding: EdgeInsets.all(6.0),
                                             child: Icon(
                                               Icons.task_outlined,
                                               color:
@@ -3102,11 +3102,11 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                     ),
                                   ),
                                 ),
-                              if ((widget.taskStatus != 'completed') &&
+                              if ((widget!.taskStatus != 'completed') &&
                                   (taskDetailsCopyxPpirFormsRow?.gpx == null ||
                                       taskDetailsCopyxPpirFormsRow?.gpx == ''))
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       16.0, 8.0, 16.0, 12.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -3117,9 +3117,9 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                       currentUserLocationValue =
                                           await getCurrentUserLocation(
                                               defaultLocation:
-                                                  const LatLng(0.0, 0.0));
+                                                  LatLng(0.0, 0.0));
                                       await AttemptsTable().insert({
-                                        'task_id': widget.taskId,
+                                        'task_id': widget!.taskId,
                                       });
                                       if (_model.isEditing!) {
                                         await showModalBottomSheet(
@@ -3137,12 +3137,12 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                 padding:
                                                     MediaQuery.viewInsetsOf(
                                                         context),
-                                                child: SizedBox(
+                                                child: Container(
                                                   height:
                                                       MediaQuery.sizeOf(context)
                                                               .height *
                                                           0.1,
-                                                  child: const ToastWidget(
+                                                  child: ToastWidget(
                                                     notificationTitle: 'Fail',
                                                     notificationMessage:
                                                         'You are still editing the farm location. Please finishi it first.',
@@ -3157,7 +3157,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                           'geotagging',
                                           queryParameters: {
                                             'taskId': serializeParam(
-                                              widget.taskId,
+                                              widget!.taskId,
                                               ParamType.String,
                                             ),
                                             'taskType': serializeParam(
@@ -3165,12 +3165,12 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                               ParamType.String,
                                             ),
                                             'taskStatus': serializeParam(
-                                              widget.taskStatus,
+                                              widget!.taskStatus,
                                               ParamType.String,
                                             ),
                                           }.withoutNulls,
                                           extra: <String, dynamic>{
-                                            kTransitionInfoKey: const TransitionInfo(
+                                            kTransitionInfoKey: TransitionInfo(
                                               hasTransition: true,
                                               transitionType:
                                                   PageTransitionType.scale,
@@ -3188,7 +3188,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
-                                        boxShadow: const [
+                                        boxShadow: [
                                           BoxShadow(
                                             blurRadius: 4.0,
                                             color: Color(0x33000000),
@@ -3206,14 +3206,14 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                           width: 2.0,
                                         ),
                                       ),
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
                                           Padding(
-                                            padding: const EdgeInsets.all(6.0),
+                                            padding: EdgeInsets.all(6.0),
                                             child: Icon(
                                               Icons.map_outlined,
                                               color:
@@ -3254,10 +3254,10 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  if (widget.taskStatus == 'completed')
+                                  if (widget!.taskStatus == 'completed')
                                     Flexible(
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             16.0, 8.0, 16.0, 12.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
@@ -3265,7 +3265,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                             setState(() {});
                                             _model.isFtpSaved =
                                                 await actions.saveToFTP(
-                                              widget.taskId,
+                                              widget!.taskId,
                                             );
                                             _model.isReFTPClicked = false;
                                             setState(() {});
@@ -3292,7 +3292,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                               .primaryText,
                                                     ),
                                                   ),
-                                                  duration: const Duration(
+                                                  duration: Duration(
                                                       milliseconds: 4000),
                                                   backgroundColor:
                                                       FlutterFlowTheme.of(
@@ -3308,7 +3308,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                               .getText(
                                             'd4ieef23' /* Resubmit */,
                                           ),
-                                          icon: const Icon(
+                                          icon: Icon(
                                             Icons.swap_vert_sharp,
                                             size: 15.0,
                                           ),
@@ -3318,10 +3318,10 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                 0.35,
                                             height: 50.0,
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     24.0, 0.0, 24.0, 0.0),
                                             iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             color: FlutterFlowTheme.of(context)
                                                 .warning,
@@ -3343,7 +3343,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                                   .titleSmallFamily),
                                                     ),
                                             elevation: 3.0,
-                                            borderSide: const BorderSide(
+                                            borderSide: BorderSide(
                                               color: Colors.transparent,
                                               width: 1.0,
                                             ),
@@ -3353,11 +3353,11 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                         ),
                                       ),
                                     ),
-                                  if ((widget.taskStatus == 'completed') &&
+                                  if ((widget!.taskStatus == 'completed') &&
                                       kDebugMode)
                                     Flexible(
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             16.0, 8.0, 16.0, 12.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
@@ -3367,18 +3367,18 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                               },
                                               matchingRows: (rows) => rows.eq(
                                                 'id',
-                                                widget.taskId,
+                                                widget!.taskId,
                                               ),
                                             );
                                             await AttemptsTable().insert({
-                                              'task_id': widget.taskId,
+                                              'task_id': widget!.taskId,
                                             });
 
                                             context.pushNamed(
                                               'geotagging',
                                               queryParameters: {
                                                 'taskId': serializeParam(
-                                                  widget.taskId,
+                                                  widget!.taskId,
                                                   ParamType.String,
                                                 ),
                                                 'taskType': serializeParam(
@@ -3392,7 +3392,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                               }.withoutNulls,
                                               extra: <String, dynamic>{
                                                 kTransitionInfoKey:
-                                                    const TransitionInfo(
+                                                    TransitionInfo(
                                                   hasTransition: true,
                                                   transitionType:
                                                       PageTransitionType.scale,
@@ -3408,7 +3408,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                               .getText(
                                             'sdd0mquj' /* Re-Submit */,
                                           ),
-                                          icon: const Icon(
+                                          icon: Icon(
                                             Icons.swap_vert_sharp,
                                             size: 15.0,
                                           ),
@@ -3418,10 +3418,10 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                 0.35,
                                             height: 50.0,
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     24.0, 0.0, 24.0, 0.0),
                                             iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
@@ -3443,7 +3443,7 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                                                                   .titleSmallFamily),
                                                     ),
                                             elevation: 3.0,
-                                            borderSide: const BorderSide(
+                                            borderSide: BorderSide(
                                               color: Colors.transparent,
                                               width: 1.0,
                                             ),
@@ -3459,11 +3459,11 @@ class _TaskDetailsCopyxWidgetState extends State<TaskDetailsCopyxWidget> {
                           ),
                           if (_model.isReFTPClicked == true)
                             Align(
-                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: wrapWithModel(
                                 model: _model.savingModeModel,
                                 updateCallback: () => setState(() {}),
-                                child: const SavingModeWidget(
+                                child: SavingModeWidget(
                                   savingWhat: 'Resubmitting FTP',
                                 ),
                               ),

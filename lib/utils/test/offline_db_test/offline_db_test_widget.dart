@@ -5,7 +5,9 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'offline_db_test_model.dart';
 export 'offline_db_test_model.dart';
 
@@ -56,7 +58,7 @@ class _OfflineDbTestWidgetState extends State<OfflineDbTestWidget> {
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: const Icon(
+            icon: Icon(
               Icons.chevron_left,
               color: Colors.white,
               size: 30.0,
@@ -78,7 +80,7 @@ class _OfflineDbTestWidgetState extends State<OfflineDbTestWidget> {
                       FlutterFlowTheme.of(context).headlineMediumFamily),
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 2.0,
         ),
@@ -86,7 +88,7 @@ class _OfflineDbTestWidgetState extends State<OfflineDbTestWidget> {
           top: true,
           child: Container(
             width: MediaQuery.sizeOf(context).width * 1.0,
-            decoration: const BoxDecoration(),
+            decoration: BoxDecoration(),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -111,7 +113,7 @@ class _OfflineDbTestWidgetState extends State<OfflineDbTestWidget> {
                     context.pushNamed(
                       'offlineTasksAndPpirList',
                       extra: <String, dynamic>{
-                        kTransitionInfoKey: const TransitionInfo(
+                        kTransitionInfoKey: TransitionInfo(
                           hasTransition: true,
                           transitionType: PageTransitionType.fade,
                           duration: Duration(milliseconds: 0),
@@ -125,9 +127,9 @@ class _OfflineDbTestWidgetState extends State<OfflineDbTestWidget> {
                   options: FFButtonOptions(
                     height: 40.0,
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                     iconPadding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily:
@@ -138,7 +140,7 @@ class _OfflineDbTestWidgetState extends State<OfflineDbTestWidget> {
                               FlutterFlowTheme.of(context).titleSmallFamily),
                         ),
                     elevation: 3.0,
-                    borderSide: const BorderSide(
+                    borderSide: BorderSide(
                       color: Colors.transparent,
                       width: 1.0,
                     ),

@@ -5,10 +5,14 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/page_loader/page_loader_widget.dart';
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'sync_data_model.dart';
 export 'sync_data_model.dart';
 
@@ -61,22 +65,22 @@ class _SyncDataWidgetState extends State<SyncDataWidget>
             curve: Curves.easeInOut,
             delay: 150.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0.8, 0.8),
-            end: const Offset(1.0, 1.0),
+            begin: Offset(0.8, 0.8),
+            end: Offset(1.0, 1.0),
           ),
           TiltEffect(
             curve: Curves.easeInOut,
             delay: 150.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0, 1.396),
-            end: const Offset(0, 0),
+            begin: Offset(0, 1.396),
+            end: Offset(0, 0),
           ),
           MoveEffect(
             curve: Curves.easeInOut,
             delay: 150.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0.0, 40.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 40.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -95,22 +99,22 @@ class _SyncDataWidgetState extends State<SyncDataWidget>
             curve: Curves.easeInOut,
             delay: 100.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0.8, 0.8),
-            end: const Offset(1.0, 1.0),
+            begin: Offset(0.8, 0.8),
+            end: Offset(1.0, 1.0),
           ),
           TiltEffect(
             curve: Curves.easeInOut,
             delay: 100.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0, 1.396),
-            end: const Offset(0, 0),
+            begin: Offset(0, 1.396),
+            end: Offset(0, 0),
           ),
           MoveEffect(
             curve: Curves.easeInOut,
             delay: 100.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0.0, 40.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 40.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -129,22 +133,22 @@ class _SyncDataWidgetState extends State<SyncDataWidget>
             curve: Curves.easeInOut,
             delay: 150.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0.8, 0.8),
-            end: const Offset(1.0, 1.0),
+            begin: Offset(0.8, 0.8),
+            end: Offset(1.0, 1.0),
           ),
           TiltEffect(
             curve: Curves.easeInOut,
             delay: 150.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0, 1.396),
-            end: const Offset(0, 0),
+            begin: Offset(0, 1.396),
+            end: Offset(0, 0),
           ),
           MoveEffect(
             curve: Curves.easeInOut,
             delay: 150.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0.0, 40.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 40.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -163,22 +167,22 @@ class _SyncDataWidgetState extends State<SyncDataWidget>
             curve: Curves.easeInOut,
             delay: 150.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0.8, 0.8),
-            end: const Offset(1.0, 1.0),
+            begin: Offset(0.8, 0.8),
+            end: Offset(1.0, 1.0),
           ),
           TiltEffect(
             curve: Curves.easeInOut,
             delay: 150.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0, 1.396),
-            end: const Offset(0, 0),
+            begin: Offset(0, 1.396),
+            end: Offset(0, 0),
           ),
           MoveEffect(
             curve: Curves.easeInOut,
             delay: 150.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0.0, 40.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 40.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -203,7 +207,7 @@ class _SyncDataWidgetState extends State<SyncDataWidget>
         if (!snapshot.hasData) {
           return Scaffold(
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            body: const PageLoaderWidget(),
+            body: PageLoaderWidget(),
           );
         }
         List<TasksRow> syncDataTasksRowList = snapshot.data!;
@@ -216,7 +220,7 @@ class _SyncDataWidgetState extends State<SyncDataWidget>
               key: scaffoldKey,
               backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
               body: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 12.0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 12.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -248,7 +252,7 @@ class _SyncDataWidgetState extends State<SyncDataWidget>
                                           .primaryText,
                                     ),
                                   ),
-                                  duration: const Duration(milliseconds: 4000),
+                                  duration: Duration(milliseconds: 4000),
                                   backgroundColor:
                                       FlutterFlowTheme.of(context).secondary,
                                 ),
@@ -297,91 +301,91 @@ class _SyncDataWidgetState extends State<SyncDataWidget>
                                 );
                                 await SQLiteManager.instance
                                     .insertOfflinePPIRForm(
-                                  taskId: _model.ppirOutput?.first.taskId,
+                                  taskId: _model.ppirOutput?.first?.taskId,
                                   ppirAssignmentId: _model
-                                      .ppirOutput?.first.ppirAssignmentid,
-                                  gpx: _model.ppirOutput?.first.gpx,
+                                      .ppirOutput?.first?.ppirAssignmentid,
+                                  gpx: _model.ppirOutput?.first?.gpx,
                                   ppirInsuranceId:
-                                      _model.ppirOutput?.first.ppirInsuranceid,
+                                      _model.ppirOutput?.first?.ppirInsuranceid,
                                   ppirFarmerName:
-                                      _model.ppirOutput?.first.ppirFarmername,
+                                      _model.ppirOutput?.first?.ppirFarmername,
                                   ppirAddress:
-                                      _model.ppirOutput?.first.ppirAddress,
+                                      _model.ppirOutput?.first?.ppirAddress,
                                   ppirFarmerType:
-                                      _model.ppirOutput?.first.ppirFarmertype,
+                                      _model.ppirOutput?.first?.ppirFarmertype,
                                   ppirMobileNo:
-                                      _model.ppirOutput?.first.ppirMobileno,
+                                      _model.ppirOutput?.first?.ppirMobileno,
                                   ppirGroupName:
-                                      _model.ppirOutput?.first.ppirGroupname,
+                                      _model.ppirOutput?.first?.ppirGroupname,
                                   ppirGroupAddress: _model
-                                      .ppirOutput?.first.ppirGroupaddress,
+                                      .ppirOutput?.first?.ppirGroupaddress,
                                   ppirLenderName:
-                                      _model.ppirOutput?.first.ppirLendername,
+                                      _model.ppirOutput?.first?.ppirLendername,
                                   ppirLenderAddress:
-                                      _model.ppirOutput?.first.ppirLendername,
+                                      _model.ppirOutput?.first?.ppirLendername,
                                   ppirCICNo:
-                                      _model.ppirOutput?.first.ppirCicno,
+                                      _model.ppirOutput?.first?.ppirCicno,
                                   ppirFarmLoc:
-                                      _model.ppirOutput?.first.ppirFarmloc,
+                                      _model.ppirOutput?.first?.ppirFarmloc,
                                   ppirNorth:
-                                      _model.ppirOutput?.first.ppirNorth,
+                                      _model.ppirOutput?.first?.ppirNorth,
                                   ppirSouth:
-                                      _model.ppirOutput?.first.ppirSouth,
-                                  ppirEast: _model.ppirOutput?.first.ppirEast,
-                                  ppirWest: _model.ppirOutput?.first.ppirWest,
-                                  ppirAtt1: _model.ppirOutput?.first.ppirAtt1,
-                                  ppirAtt2: _model.ppirOutput?.first.ppirAtt2,
-                                  ppirAtt3: _model.ppirOutput?.first.ppirAtt3,
-                                  ppirAtt4: _model.ppirOutput?.first.ppirAtt4,
+                                      _model.ppirOutput?.first?.ppirSouth,
+                                  ppirEast: _model.ppirOutput?.first?.ppirEast,
+                                  ppirWest: _model.ppirOutput?.first?.ppirWest,
+                                  ppirAtt1: _model.ppirOutput?.first?.ppirAtt1,
+                                  ppirAtt2: _model.ppirOutput?.first?.ppirAtt2,
+                                  ppirAtt3: _model.ppirOutput?.first?.ppirAtt3,
+                                  ppirAtt4: _model.ppirOutput?.first?.ppirAtt4,
                                   ppirAreaAci:
-                                      _model.ppirOutput?.first.ppirAreaAci,
+                                      _model.ppirOutput?.first?.ppirAreaAci,
                                   ppirAreaAct:
-                                      _model.ppirOutput?.first.ppirAreaAct,
+                                      _model.ppirOutput?.first?.ppirAreaAct,
                                   ppirDopdsAci:
-                                      _model.ppirOutput?.first.ppirDoptpAci,
+                                      _model.ppirOutput?.first?.ppirDoptpAci,
                                   ppirDopdsAct:
-                                      _model.ppirOutput?.first.ppirDopdsAct,
+                                      _model.ppirOutput?.first?.ppirDopdsAct,
                                   ppirDoptpAci:
-                                      _model.ppirOutput?.first.ppirDoptpAci,
+                                      _model.ppirOutput?.first?.ppirDoptpAci,
                                   ppirDoptpAct:
-                                      _model.ppirOutput?.first.ppirDoptpAct,
+                                      _model.ppirOutput?.first?.ppirDoptpAct,
                                   ppirSvpAci:
-                                      _model.ppirOutput?.first.ppirSvpAci,
+                                      _model.ppirOutput?.first?.ppirSvpAci,
                                   ppirSvpAct:
-                                      _model.ppirOutput?.first.ppirSvpAct,
+                                      _model.ppirOutput?.first?.ppirSvpAct,
                                   ppirVariety:
-                                      _model.ppirOutput?.first.ppirVariety,
+                                      _model.ppirOutput?.first?.ppirVariety,
                                   ppirStageCrop:
-                                      _model.ppirOutput?.first.ppirStagecrop,
+                                      _model.ppirOutput?.first?.ppirStagecrop,
                                   ppirRemarks:
-                                      _model.ppirOutput?.first.ppirRemarks,
+                                      _model.ppirOutput?.first?.ppirRemarks,
                                   ppirNameInsured:
-                                      _model.ppirOutput?.first.ppirNameInsured,
+                                      _model.ppirOutput?.first?.ppirNameInsured,
                                   ppirNameIUIA:
-                                      _model.ppirOutput?.first.ppirSigIuia,
+                                      _model.ppirOutput?.first?.ppirSigIuia,
                                   ppirSigInsured:
-                                      _model.ppirOutput?.first.ppirSigInsured,
+                                      _model.ppirOutput?.first?.ppirSigInsured,
                                   ppirSigIUIA:
-                                      _model.ppirOutput?.first.ppirSigIuia,
+                                      _model.ppirOutput?.first?.ppirSigIuia,
                                   trackLastCoord:
-                                      _model.ppirOutput?.first.trackLastCoord,
+                                      _model.ppirOutput?.first?.trackLastCoord,
                                   trackDateTime:
-                                      _model.ppirOutput?.first.trackDateTime,
+                                      _model.ppirOutput?.first?.trackDateTime,
                                   trackTotalArea:
-                                      _model.ppirOutput?.first.trackTotalArea,
+                                      _model.ppirOutput?.first?.trackTotalArea,
                                   trackTotalDistance: _model
-                                      .ppirOutput?.first.trackTotalDistance,
-                                  createdAt: _model.ppirOutput?.first.createdAt
+                                      .ppirOutput?.first?.trackTotalDistance,
+                                  createdAt: _model.ppirOutput?.first?.createdAt
                                       ?.toString(),
-                                  updatedAt: _model.ppirOutput?.first.updatedAt
+                                  updatedAt: _model.ppirOutput?.first?.updatedAt
                                       ?.toString(),
                                   syncStatus:
-                                      _model.ppirOutput?.first.syncStatus,
+                                      _model.ppirOutput?.first?.syncStatus,
                                   lastSyncedAt: _model
-                                      .ppirOutput?.first.lastSyncedAt
+                                      .ppirOutput?.first?.lastSyncedAt
                                       ?.toString(),
-                                  localId: _model.ppirOutput?.first.localId,
-                                  isDirty: _model.ppirOutput?.first.isDirty
+                                  localId: _model.ppirOutput?.first?.localId,
+                                  isDirty: _model.ppirOutput?.first?.isDirty
                                       ?.toString(),
                                 );
                                 // Number Iteration
@@ -399,7 +403,7 @@ class _SyncDataWidgetState extends State<SyncDataWidget>
                                           .primaryText,
                                     ),
                                   ),
-                                  duration: const Duration(milliseconds: 4000),
+                                  duration: Duration(milliseconds: 4000),
                                   backgroundColor:
                                       FlutterFlowTheme.of(context).secondary,
                                 ),
@@ -432,7 +436,7 @@ class _SyncDataWidgetState extends State<SyncDataWidget>
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Align(
-                            alignment: const AlignmentDirectional(0.0, -1.0),
+                            alignment: AlignmentDirectional(0.0, -1.0),
                             child: Text(
                               FFLocalizations.of(context).getText(
                                 '2suywt94' /* Tap to Sync */,
@@ -459,7 +463,7 @@ class _SyncDataWidgetState extends State<SyncDataWidget>
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Align(
-                            alignment: const AlignmentDirectional(0.0, -1.0),
+                            alignment: AlignmentDirectional(0.0, -1.0),
                             child: Text(
                               !_model.isSync ? 'Sync Done' : 'Syncing',
                               textAlign: TextAlign.center,
@@ -478,7 +482,7 @@ class _SyncDataWidgetState extends State<SyncDataWidget>
                                 animationsMap['textOnPageLoadAnimation2']!),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(0.0, -1.0),
+                            alignment: AlignmentDirectional(0.0, -1.0),
                             child: Text(
                               !_model.isSync
                                   ? 'Please click the button to continue.'
@@ -499,7 +503,7 @@ class _SyncDataWidgetState extends State<SyncDataWidget>
                                 animationsMap['textOnPageLoadAnimation3']!),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(0.0, -1.0),
+                            alignment: AlignmentDirectional(0.0, -1.0),
                             child: Text(
                               'i=${valueOrDefault<String>(
                                 _model.iteration?.toString(),
@@ -529,7 +533,7 @@ class _SyncDataWidgetState extends State<SyncDataWidget>
                                 context.pushNamed(
                                   'dashboard',
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
+                                    kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
                                       transitionType:
                                           PageTransitionType.bottomToTop,
@@ -541,15 +545,15 @@ class _SyncDataWidgetState extends State<SyncDataWidget>
                               text: FFLocalizations.of(context).getText(
                                 'mh2af94v' /* Dashboard */,
                               ),
-                              icon: const Icon(
+                              icon: Icon(
                                 Icons.dashboard,
                                 size: 15.0,
                               ),
                               options: FFButtonOptions(
                                 height: 40.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).success,
                                 textStyle: FlutterFlowTheme.of(context)
@@ -565,7 +569,7 @@ class _SyncDataWidgetState extends State<SyncDataWidget>
                                                   .titleSmallFamily),
                                     ),
                                 elevation: 3.0,
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
@@ -573,12 +577,12 @@ class _SyncDataWidgetState extends State<SyncDataWidget>
                               ),
                             ),
                         ]
-                            .divide(const SizedBox(height: 10.0))
-                            .around(const SizedBox(height: 10.0)),
+                            .divide(SizedBox(height: 10.0))
+                            .around(SizedBox(height: 10.0)),
                       ),
                   ]
-                      .divide(const SizedBox(height: 10.0))
-                      .around(const SizedBox(height: 10.0)),
+                      .divide(SizedBox(height: 10.0))
+                      .around(SizedBox(height: 10.0)),
                 ),
               ),
             ),
