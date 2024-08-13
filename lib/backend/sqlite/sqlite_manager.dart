@@ -93,30 +93,6 @@ class SQLiteManager {
             assignee: assignee,
           );
 
-  Future<List<OFFLINESelectForDispatchTasksRow>> oFFLINESelectForDispatchTasks({
-    String? assignee,
-  }) =>
-      performOFFLINESelectForDispatchTasks(
-        _database,
-        assignee: assignee,
-      );
-
-  Future<List<OFFLINESelectOngoingTasksRow>> oFFLINESelectOngoingTasks({
-    String? assignee,
-  }) =>
-      performOFFLINESelectOngoingTasks(
-        _database,
-        assignee: assignee,
-      );
-
-  Future<List<OFFLINESelectCompletedTasksRow>> oFFLINESelectCompletedTasks({
-    String? assignee,
-  }) =>
-      performOFFLINESelectCompletedTasks(
-        _database,
-        assignee: assignee,
-      );
-
   Future<List<OFFLINESelectCountForDispatchRow>> oFFLINESelectCountForDispatch({
     String? assignee,
   }) =>
@@ -131,6 +107,16 @@ class SQLiteManager {
       performOFFLINESelectTaskByID(
         _database,
         taskId: taskId,
+      );
+
+  Future<List<SELECTTASKSAndPPIRByAssigneeRow>> sELECTTASKSAndPPIRByAssignee({
+    String? taskId,
+    String? assignee,
+  }) =>
+      performSELECTTASKSAndPPIRByAssignee(
+        _database,
+        taskId: taskId,
+        assignee: assignee,
       );
 
   /// END READ QUERY CALLS

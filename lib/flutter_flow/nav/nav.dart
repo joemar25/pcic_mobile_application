@@ -276,6 +276,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/syncData',
           requireAuth: true,
           builder: (context, params) => const SyncDataWidget(),
+        ),
+        FFRoute(
+          name: 'taskDetailsCopyxx',
+          path: '/task_detailsxx',
+          requireAuth: true,
+          builder: (context, params) => TaskDetailsCopyxxWidget(
+            taskId: params.getParam(
+              'taskId',
+              ParamType.String,
+            ),
+            taskStatus: params.getParam(
+              'taskStatus',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

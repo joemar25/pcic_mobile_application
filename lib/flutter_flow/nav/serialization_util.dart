@@ -276,16 +276,12 @@ dynamic deserializeParam<T>(
             return GetModifiedRecordsRow(data);
           case OFFLINESelectAllTasksByAssigneeRow:
             return OFFLINESelectAllTasksByAssigneeRow(data);
-          case OFFLINESelectForDispatchTasksRow:
-            return OFFLINESelectForDispatchTasksRow(data);
-          case OFFLINESelectOngoingTasksRow:
-            return OFFLINESelectOngoingTasksRow(data);
-          case OFFLINESelectCompletedTasksRow:
-            return OFFLINESelectCompletedTasksRow(data);
           case OFFLINESelectCountForDispatchRow:
             return OFFLINESelectCountForDispatchRow(data);
           case OFFLINESelectTaskByIDRow:
             return OFFLINESelectTaskByIDRow(data);
+          case SELECTTASKSAndPPIRByAssigneeRow:
+            return SELECTTASKSAndPPIRByAssigneeRow(data);
           default:
             return null;
         }

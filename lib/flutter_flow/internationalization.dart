@@ -257,7 +257,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    '4reep8xi': {
+    'id2ychq6': {
       'en': '',
       'tl': '',
     },
@@ -269,7 +269,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'aah6wpi9': {
+    'jgsocl3u': {
       'en': '',
       'tl': '',
     },
@@ -281,7 +281,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'b5bsibxe': {
+    'ylm4jljk': {
       'en': '',
       'tl': '',
     },
@@ -304,7 +304,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    'vnghhx61': {
+    'q8xcmmtl': {
       'en': '',
       'tl': '',
     },
@@ -1106,7 +1106,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // syncData
   {
-    '2suywt94': {
+    '5l39d1ob': {
       'en': 'Tap to Sync',
       'tl': '',
     },
@@ -1115,6 +1115,193 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     '2nf0agys': {
+      'en': 'Home',
+      'tl': '',
+    },
+  },
+  // taskDetailsCopyxx
+  {
+    '0oy9ifrt': {
+      'en': 'Form Details',
+      'tl': '',
+    },
+    'k9mlejzv': {
+      'en': 'Assignment Id',
+      'tl': '',
+    },
+    'be37kfpd': {
+      'en': 'Farmer Name',
+      'tl': '',
+    },
+    'qpvdw1xo': {
+      'en': 'Address',
+      'tl': '',
+    },
+    'idrwqmhk': {
+      'en': 'Insurance Id',
+      'tl': '',
+    },
+    'al80eo7h': {
+      'en': 'Mobile Number',
+      'tl': '',
+    },
+    'tdjrym3l': {
+      'en': 'Farmer Type',
+      'tl': '',
+    },
+    '5k0kgydt': {
+      'en': 'Group Name',
+      'tl': '',
+    },
+    '0eqe1guh': {
+      'en': 'Group Address',
+      'tl': '',
+    },
+    'd63lvet6': {
+      'en': 'Lender Name',
+      'tl': '',
+    },
+    'jf76re1s': {
+      'en': 'Lender Address',
+      'tl': '',
+    },
+    'l1sklwon': {
+      'en': 'Region',
+      'tl': '',
+    },
+    '1490o35z': {
+      'en': 'CIC Number',
+      'tl': '',
+    },
+    'nvxfegvp': {
+      'en': 'Farm Location',
+      'tl': '',
+    },
+    'ri4glm1o': {
+      'en': 'Location Sketch Plan',
+      'tl': '',
+    },
+    '8ori52ax': {
+      'en': 'North',
+      'tl': '',
+    },
+    '6jencldj': {
+      'en': 'East',
+      'tl': '',
+    },
+    'cxqx741q': {
+      'en': 'South',
+      'tl': '',
+    },
+    'ja725isb': {
+      'en': 'West',
+      'tl': '',
+    },
+    '3103u0dm': {
+      'en': 'Location Sketch Plan',
+      'tl': '',
+    },
+    '2xkh8w0a': {
+      'en': 'Area Planted',
+      'tl': '',
+    },
+    'ygnc5zns': {
+      'en': 'Date of Planting (DS)',
+      'tl': '',
+    },
+    'cx9ye2yt': {
+      'en': 'Datee of Planting (TP)',
+      'tl': '',
+    },
+    'guwa56fo': {
+      'en': 'Seed Variety Planted',
+      'tl': '',
+    },
+    'lfrxhmef': {
+      'en': 'Completed Task  Details',
+      'tl': '',
+    },
+    '569fwwjg': {
+      'en': 'Tracking Details',
+      'tl': '',
+    },
+    '6prx1iyn': {
+      'en': 'Last Coordinates',
+      'tl': '',
+    },
+    '8629sgox': {
+      'en': 'Track Date',
+      'tl': '',
+    },
+    'g1masszs': {
+      'en': 'Total Area (ha)',
+      'tl': '',
+    },
+    'sdjoxl4t': {
+      'en': 'Total Distance',
+      'tl': '',
+    },
+    'axrnlqyl': {
+      'en': 'Seed Details',
+      'tl': '',
+    },
+    'v9j94qyn': {
+      'en': 'Type',
+      'tl': '',
+    },
+    '49imppnf': {
+      'en': 'Variety',
+      'tl': '',
+    },
+    '03ju80eo': {
+      'en': 'Date Details',
+      'tl': '',
+    },
+    '6gwgytpe': {
+      'en': 'Date of Planting (DS)',
+      'tl': '',
+    },
+    'kc1kkytp': {
+      'en': 'Date of Planting (TP)',
+      'tl': '',
+    },
+    'bsc4g0yq': {
+      'en': 'Agent Confirmation',
+      'tl': '',
+    },
+    'fcisshvt': {
+      'en': 'Remarks',
+      'tl': '',
+    },
+    'uap105un': {
+      'en': 'Confirmed By',
+      'tl': '',
+    },
+    'rlo83szj': {
+      'en': 'Prepared By',
+      'tl': '',
+    },
+    '6key2kle': {
+      'en': 'Geotag',
+      'tl': '',
+    },
+    '1cv0g8k6': {
+      'en': 'Geotag',
+      'tl': '',
+    },
+    '13wgcmqb': {
+      'en': 'Continue Form',
+      'tl': '',
+    },
+    'rlzcpz01': {
+      'en': 'Resubmit',
+      'tl': '',
+    },
+    'wmv2zwgj': {
+      'en': 'Re-Submit',
+      'tl': '',
+    },
+    '9by11dqq': {
       'en': 'Home',
       'tl': '',
     },

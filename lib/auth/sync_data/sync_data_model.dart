@@ -16,7 +16,7 @@ class SyncDataModel extends FlutterFlowModel<SyncDataWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  // Stores action output result for [Backend Call - Query Rows] action in Icon widget.
+  // Stores action output result for [Backend Call - Query Rows] action in Container widget.
   List<PpirFormsRow>? ppirOutput;
 
   @override

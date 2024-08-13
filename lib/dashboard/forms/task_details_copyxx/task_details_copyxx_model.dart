@@ -1,16 +1,19 @@
+import '/backend/sqlite/sqlite_manager.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/saving_mode/saving_mode_widget.dart';
-import 'task_details_widget.dart' show TaskDetailsWidget;
+import 'task_details_copyxx_widget.dart' show TaskDetailsCopyxxWidget;
 import 'package:flutter/material.dart';
 
-class TaskDetailsModel extends FlutterFlowModel<TaskDetailsWidget> {
+class TaskDetailsCopyxxModel extends FlutterFlowModel<TaskDetailsCopyxxWidget> {
   ///  Local state fields for this page.
 
   bool? isReFTPClicked = false;
 
   ///  State fields for stateful widgets in this page.
 
+  // Stores action output result for [Backend Call - SQLite (OFFLINE select Task by ID)] action in taskDetailsCopyxx widget.
+  List<OFFLINESelectTaskByIDRow>? offlineTask;
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
   // Stores action output result for [Custom Action - saveToFTP] action in reFTP widget.

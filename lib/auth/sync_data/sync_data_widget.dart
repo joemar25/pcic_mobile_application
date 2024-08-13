@@ -222,238 +222,222 @@ class _SyncDataWidgetState extends State<SyncDataWidget>
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Stack(
-                      children: [
-                        if (!_model.isSync)
-                          InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              _model.iteration = 0;
-                              _model.limit = valueOrDefault<int>(
-                                syncDataTasksRowList.length,
-                                0,
-                              );
-                              _model.isSync = true;
-                              _model.startSync = true;
-                              setState(() {});
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    'Sync Started',
-                                    style: TextStyle(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                    ),
-                                  ),
-                                  duration: const Duration(milliseconds: 4000),
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).secondary,
-                                ),
-                              );
-                              while (_model.iteration! < _model.limit!) {
-                                // Online Tasks
-                                _model.ppirOutput =
-                                    await PpirFormsTable().queryRows(
-                                  queryFn: (q) => q.eq(
-                                    'task_id',
-                                    syncDataTasksRowList[_model.iteration!].id,
-                                  ),
-                                );
-                                await SQLiteManager.instance.insertOfflineTask(
-                                  id: syncDataTasksRowList[_model.iteration!]
-                                      .id,
-                                  taskNumber:
-                                      syncDataTasksRowList[_model.iteration!]
-                                          .taskNumber,
-                                  serviceGroup:
-                                      syncDataTasksRowList[_model.iteration!]
-                                          .serviceGroup,
-                                  status:
-                                      syncDataTasksRowList[_model.iteration!]
-                                          .status,
-                                  serviceType:
-                                      syncDataTasksRowList[_model.iteration!]
-                                          .serviceType,
-                                  priority:
-                                      syncDataTasksRowList[_model.iteration!]
-                                          .priority,
-                                  assignee:
-                                      syncDataTasksRowList[_model.iteration!]
-                                          .assignee,
-                                  dateAdded:
-                                      syncDataTasksRowList[_model.iteration!]
-                                          .dateAdded
-                                          ?.toString(),
-                                  dateAccess:
-                                      syncDataTasksRowList[_model.iteration!]
-                                          .dateAccess
-                                          ?.toString(),
-                                  fileId:
-                                      syncDataTasksRowList[_model.iteration!]
-                                          .fileId,
-                                );
-                                await SQLiteManager.instance
-                                    .insertOfflinePPIRForm(
-                                  taskId: _model.ppirOutput?.first.taskId,
-                                  ppirAssignmentId: _model
-                                      .ppirOutput?.first.ppirAssignmentid,
-                                  gpx: _model.ppirOutput?.first.gpx,
-                                  ppirInsuranceId:
-                                      _model.ppirOutput?.first.ppirInsuranceid,
-                                  ppirFarmerName:
-                                      _model.ppirOutput?.first.ppirFarmername,
-                                  ppirAddress:
-                                      _model.ppirOutput?.first.ppirAddress,
-                                  ppirFarmerType:
-                                      _model.ppirOutput?.first.ppirFarmertype,
-                                  ppirMobileNo:
-                                      _model.ppirOutput?.first.ppirMobileno,
-                                  ppirGroupName:
-                                      _model.ppirOutput?.first.ppirGroupname,
-                                  ppirGroupAddress: _model
-                                      .ppirOutput?.first.ppirGroupaddress,
-                                  ppirLenderName:
-                                      _model.ppirOutput?.first.ppirLendername,
-                                  ppirLenderAddress:
-                                      _model.ppirOutput?.first.ppirLendername,
-                                  ppirCICNo:
-                                      _model.ppirOutput?.first.ppirCicno,
-                                  ppirFarmLoc:
-                                      _model.ppirOutput?.first.ppirFarmloc,
-                                  ppirNorth:
-                                      _model.ppirOutput?.first.ppirNorth,
-                                  ppirSouth:
-                                      _model.ppirOutput?.first.ppirSouth,
-                                  ppirEast: _model.ppirOutput?.first.ppirEast,
-                                  ppirWest: _model.ppirOutput?.first.ppirWest,
-                                  ppirAtt1: _model.ppirOutput?.first.ppirAtt1,
-                                  ppirAtt2: _model.ppirOutput?.first.ppirAtt2,
-                                  ppirAtt3: _model.ppirOutput?.first.ppirAtt3,
-                                  ppirAtt4: _model.ppirOutput?.first.ppirAtt4,
-                                  ppirAreaAci:
-                                      _model.ppirOutput?.first.ppirAreaAci,
-                                  ppirAreaAct:
-                                      _model.ppirOutput?.first.ppirAreaAct,
-                                  ppirDopdsAci:
-                                      _model.ppirOutput?.first.ppirDoptpAci,
-                                  ppirDopdsAct:
-                                      _model.ppirOutput?.first.ppirDopdsAct,
-                                  ppirDoptpAci:
-                                      _model.ppirOutput?.first.ppirDoptpAci,
-                                  ppirDoptpAct:
-                                      _model.ppirOutput?.first.ppirDoptpAct,
-                                  ppirSvpAci:
-                                      _model.ppirOutput?.first.ppirSvpAci,
-                                  ppirSvpAct:
-                                      _model.ppirOutput?.first.ppirSvpAct,
-                                  ppirVariety:
-                                      _model.ppirOutput?.first.ppirVariety,
-                                  ppirStageCrop:
-                                      _model.ppirOutput?.first.ppirStagecrop,
-                                  ppirRemarks:
-                                      _model.ppirOutput?.first.ppirRemarks,
-                                  ppirNameInsured:
-                                      _model.ppirOutput?.first.ppirNameInsured,
-                                  ppirNameIUIA:
-                                      _model.ppirOutput?.first.ppirSigIuia,
-                                  ppirSigInsured:
-                                      _model.ppirOutput?.first.ppirSigInsured,
-                                  ppirSigIUIA:
-                                      _model.ppirOutput?.first.ppirSigIuia,
-                                  trackLastCoord:
-                                      _model.ppirOutput?.first.trackLastCoord,
-                                  trackDateTime:
-                                      _model.ppirOutput?.first.trackDateTime,
-                                  trackTotalArea:
-                                      _model.ppirOutput?.first.trackTotalArea,
-                                  trackTotalDistance: _model
-                                      .ppirOutput?.first.trackTotalDistance,
-                                  createdAt: _model.ppirOutput?.first.createdAt
-                                      ?.toString(),
-                                  updatedAt: _model.ppirOutput?.first.updatedAt
-                                      ?.toString(),
-                                  syncStatus:
-                                      _model.ppirOutput?.first.syncStatus,
-                                  lastSyncedAt: _model
-                                      .ppirOutput?.first.lastSyncedAt
-                                      ?.toString(),
-                                  localId: _model.ppirOutput?.first.localId,
-                                  isDirty: _model.ppirOutput?.first.isDirty
-                                      ?.toString(),
-                                );
-                                // Number Iteration
-                                _model.iteration = _model.iteration! + 1;
-                                setState(() {});
-                              }
-                              ScaffoldMessenger.of(context).clearSnackBars();
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    'Successfully sync!',
-                                    style: GoogleFonts.getFont(
-                                      'Roboto',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                    ),
-                                  ),
-                                  duration: const Duration(milliseconds: 4000),
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).secondary,
-                                ),
-                              );
-                              _model.iteration = 0;
-                              _model.limit = 0;
-                              _model.isSync = false;
-                              setState(() {});
-
-                              setState(() {});
-                            },
-                            child: FaIcon(
-                              FontAwesomeIcons.sync,
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 200.0,
-                            ),
-                          ),
-                        if (_model.isSync)
-                          FaIcon(
-                            FontAwesomeIcons.sync,
-                            color: FlutterFlowTheme.of(context).secondary,
-                            size: 200.0,
-                          ).animateOnPageLoad(
-                              animationsMap['iconOnPageLoadAnimation']!),
-                      ],
-                    ),
-                    if (!_model.isSync)
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Align(
-                            alignment: const AlignmentDirectional(0.0, -1.0),
-                            child: Text(
-                              FFLocalizations.of(context).getText(
-                                '2suywt94' /* Tap to Sync */,
+                    InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        _model.iteration = 0;
+                        _model.limit = valueOrDefault<int>(
+                          syncDataTasksRowList.length,
+                          0,
+                        );
+                        _model.isSync = true;
+                        _model.startSync = true;
+                        setState(() {});
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'Sync Started',
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context).primaryText,
                               ),
-                              textAlign: TextAlign.center,
-                              style: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .labelMediumFamily,
-                                    letterSpacing: 0.0,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .labelMediumFamily),
-                                  ),
-                            ).animateOnPageLoad(
-                                animationsMap['textOnPageLoadAnimation1']!),
+                            ),
+                            duration: const Duration(milliseconds: 4000),
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).secondary,
                           ),
-                        ],
+                        );
+                        while (_model.iteration! < _model.limit!) {
+                          // Online Tasks
+                          _model.ppirOutput = await PpirFormsTable().queryRows(
+                            queryFn: (q) => q.eq(
+                              'task_id',
+                              syncDataTasksRowList[_model.iteration!].id,
+                            ),
+                          );
+                          await SQLiteManager.instance.insertOfflineTask(
+                            id: syncDataTasksRowList[_model.iteration!].id,
+                            taskNumber: syncDataTasksRowList[_model.iteration!]
+                                .taskNumber,
+                            serviceGroup:
+                                syncDataTasksRowList[_model.iteration!]
+                                    .serviceGroup,
+                            status:
+                                syncDataTasksRowList[_model.iteration!].status,
+                            serviceType: syncDataTasksRowList[_model.iteration!]
+                                .serviceType,
+                            priority: syncDataTasksRowList[_model.iteration!]
+                                .priority,
+                            assignee: syncDataTasksRowList[_model.iteration!]
+                                .assignee,
+                            dateAdded: syncDataTasksRowList[_model.iteration!]
+                                .dateAdded
+                                ?.toString(),
+                            dateAccess: syncDataTasksRowList[_model.iteration!]
+                                .dateAccess
+                                ?.toString(),
+                            fileId:
+                                syncDataTasksRowList[_model.iteration!].fileId,
+                          );
+                          await SQLiteManager.instance.insertOfflinePPIRForm(
+                            taskId: _model.ppirOutput?.first.taskId,
+                            ppirAssignmentId:
+                                _model.ppirOutput?.first.ppirAssignmentid,
+                            gpx: _model.ppirOutput?.first.gpx,
+                            ppirInsuranceId:
+                                _model.ppirOutput?.first.ppirInsuranceid,
+                            ppirFarmerName:
+                                _model.ppirOutput?.first.ppirFarmername,
+                            ppirAddress: _model.ppirOutput?.first.ppirAddress,
+                            ppirFarmerType:
+                                _model.ppirOutput?.first.ppirFarmertype,
+                            ppirMobileNo:
+                                _model.ppirOutput?.first.ppirMobileno,
+                            ppirGroupName:
+                                _model.ppirOutput?.first.ppirGroupname,
+                            ppirGroupAddress:
+                                _model.ppirOutput?.first.ppirGroupaddress,
+                            ppirLenderName:
+                                _model.ppirOutput?.first.ppirLendername,
+                            ppirLenderAddress:
+                                _model.ppirOutput?.first.ppirLenderaddress,
+                            ppirCICNo: _model.ppirOutput?.first.ppirCicno,
+                            ppirFarmLoc: _model.ppirOutput?.first.ppirFarmloc,
+                            ppirNorth: _model.ppirOutput?.first.ppirNorth,
+                            ppirSouth: _model.ppirOutput?.first.ppirSouth,
+                            ppirWest: _model.ppirOutput?.first.ppirWest,
+                            ppirAtt2: _model.ppirOutput?.first.ppirAtt2,
+                            ppirAtt3: _model.ppirOutput?.first.ppirAtt3,
+                            ppirAtt4: _model.ppirOutput?.first.ppirAtt4,
+                            ppirAreaAci: _model.ppirOutput?.first.ppirAreaAci,
+                            ppirAreaAct: _model.ppirOutput?.first.ppirAreaAct,
+                            ppirDopdsAci:
+                                _model.ppirOutput?.first.ppirDopdsAci,
+                            ppirDopdsAct:
+                                _model.ppirOutput?.first.ppirDopdsAct,
+                            ppirDoptpAci:
+                                _model.ppirOutput?.first.ppirDoptpAci,
+                            ppirDoptpAct:
+                                _model.ppirOutput?.first.ppirDoptpAct,
+                            ppirSvpAci: _model.ppirOutput?.first.ppirSvpAci,
+                            ppirSvpAct: _model.ppirOutput?.first.ppirSvpAct,
+                            ppirVariety: _model.ppirOutput?.first.ppirVariety,
+                            ppirStageCrop:
+                                _model.ppirOutput?.first.ppirStagecrop,
+                            ppirRemarks: _model.ppirOutput?.first.ppirRemarks,
+                            ppirNameInsured:
+                                _model.ppirOutput?.first.ppirNameInsured,
+                            ppirNameIUIA:
+                                _model.ppirOutput?.first.ppirNameIuia,
+                            ppirSigInsured:
+                                _model.ppirOutput?.first.ppirSigInsured,
+                            ppirSigIUIA: _model.ppirOutput?.first.ppirSigIuia,
+                            trackLastCoord:
+                                _model.ppirOutput?.first.trackLastCoord,
+                            trackDateTime:
+                                _model.ppirOutput?.first.trackDateTime,
+                            trackTotalArea:
+                                _model.ppirOutput?.first.trackTotalArea,
+                            trackTotalDistance:
+                                _model.ppirOutput?.first.trackTotalDistance,
+                            createdAt:
+                                _model.ppirOutput?.first.createdAt?.toString(),
+                            updatedAt:
+                                _model.ppirOutput?.first.updatedAt?.toString(),
+                            syncStatus: _model.ppirOutput?.first.syncStatus,
+                            lastSyncedAt: _model.ppirOutput?.first.lastSyncedAt
+                                ?.toString(),
+                            localId: _model.ppirOutput?.first.localId,
+                            isDirty:
+                                _model.ppirOutput?.first.isDirty?.toString(),
+                            ppirEast: _model.ppirOutput?.first.ppirEast,
+                            ppirAtt1: _model.ppirOutput?.first.ppirAtt1,
+                          );
+                          // Number Iteration
+                          _model.iteration = _model.iteration! + 1;
+                          setState(() {});
+                        }
+                        ScaffoldMessenger.of(context).clearSnackBars();
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'Successfully sync!',
+                              style: GoogleFonts.getFont(
+                                'Roboto',
+                                color: FlutterFlowTheme.of(context).primaryText,
+                              ),
+                            ),
+                            duration: const Duration(milliseconds: 4000),
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).secondary,
+                          ),
+                        );
+                        _model.iteration = 0;
+                        _model.limit = 0;
+                        _model.isSync = false;
+                        setState(() {});
+
+                        setState(() {});
+                      },
+                      child: Container(
+                        decoration: const BoxDecoration(),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Stack(
+                              children: [
+                                if (!_model.isSync)
+                                  FaIcon(
+                                    FontAwesomeIcons.sync,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    size: 200.0,
+                                  ),
+                                if (_model.isSync)
+                                  FaIcon(
+                                    FontAwesomeIcons.sync,
+                                    color:
+                                        FlutterFlowTheme.of(context).secondary,
+                                    size: 200.0,
+                                  ).animateOnPageLoad(animationsMap[
+                                      'iconOnPageLoadAnimation']!),
+                              ],
+                            ),
+                            if (!_model.isSync)
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Align(
+                                    alignment: const AlignmentDirectional(0.0, -1.0),
+                                    child: Text(
+                                      FFLocalizations.of(context).getText(
+                                        '5l39d1ob' /* Tap to Sync */,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                      style: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMediumFamily,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelMediumFamily),
+                                          ),
+                                    ).animateOnPageLoad(animationsMap[
+                                        'textOnPageLoadAnimation1']!),
+                                  ),
+                                ],
+                              ),
+                          ],
+                        ),
                       ),
+                    ),
                     if (_model.startSync)
                       Column(
                         mainAxisSize: MainAxisSize.max,

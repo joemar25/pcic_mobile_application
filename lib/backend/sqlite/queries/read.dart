@@ -333,122 +333,6 @@ class OFFLINESelectAllTasksByAssigneeRow extends SqliteRow {
 
 /// END OFFLINE SELECT ALL TASKS BY ASSIGNEE
 
-/// BEGIN OFFLINE SELECT FOR DISPATCH TASKS
-Future<List<OFFLINESelectForDispatchTasksRow>>
-    performOFFLINESelectForDispatchTasks(
-  Database database, {
-  String? assignee,
-}) {
-  final query = '''
-SELECT * FROM tasks WHERE  status = 'for dispatch' AND assignee='$assignee'
-''';
-  return _readQuery(
-      database, query, (d) => OFFLINESelectForDispatchTasksRow(d));
-}
-
-class OFFLINESelectForDispatchTasksRow extends SqliteRow {
-  OFFLINESelectForDispatchTasksRow(super.data);
-
-  String? get id => data['id'] as String?;
-  String? get taskNumber => data['task_number'] as String?;
-  String? get serviceGroup => data['service_group'] as String?;
-  String? get serviceType => data['service_type'] as String?;
-  String? get priority => data['priority'] as String?;
-  String? get assignee => data['assignee'] as String?;
-  String? get fileId => data['file_id'] as String?;
-  DateTime? get dateAdded => data['date_added'] as DateTime?;
-  DateTime? get dateAccess => data['date_access'] as DateTime?;
-  String? get status => data['status'] as String?;
-  String? get taskType => data['task_type'] as String?;
-  String? get attemptCount => data['attempt_count'] as String?;
-  DateTime? get createdAt => data['created_at'] as DateTime?;
-  DateTime? get updatedAt => data['updated_at'] as DateTime?;
-  bool? get isDeleted => data['is_deleted'] as bool?;
-  String? get syncStatus => data['sync_status'] as String?;
-  DateTime? get lastSyncedAt => data['last_synced_at'] as DateTime?;
-  String? get localId => data['local_id'] as String?;
-  bool? get isDirty => data['is_dirty'] as bool?;
-  bool? get isUpdating => data['is_updating'] as bool?;
-}
-
-/// END OFFLINE SELECT FOR DISPATCH TASKS
-
-/// BEGIN OFFLINE SELECT ONGOING TASKS
-Future<List<OFFLINESelectOngoingTasksRow>> performOFFLINESelectOngoingTasks(
-  Database database, {
-  String? assignee,
-}) {
-  final query = '''
-SELECT * FROM tasks WHERE  status = 'ongoing' AND assignee='$assignee'
-''';
-  return _readQuery(database, query, (d) => OFFLINESelectOngoingTasksRow(d));
-}
-
-class OFFLINESelectOngoingTasksRow extends SqliteRow {
-  OFFLINESelectOngoingTasksRow(super.data);
-
-  String? get id => data['id'] as String?;
-  String? get taskNumber => data['task_number'] as String?;
-  String? get serviceGroup => data['service_group'] as String?;
-  String? get serviceType => data['service_type'] as String?;
-  String? get priority => data['priority'] as String?;
-  String? get assignee => data['assignee'] as String?;
-  String? get fileId => data['file_id'] as String?;
-  DateTime? get dateAdded => data['date_added'] as DateTime?;
-  DateTime? get dateAccess => data['date_access'] as DateTime?;
-  String? get status => data['status'] as String?;
-  String? get taskType => data['task_type'] as String?;
-  String? get attemptCount => data['attempt_count'] as String?;
-  DateTime? get createdAt => data['created_at'] as DateTime?;
-  DateTime? get updatedAt => data['updated_at'] as DateTime?;
-  bool? get isDeleted => data['is_deleted'] as bool?;
-  String? get syncStatus => data['sync_status'] as String?;
-  DateTime? get lastSyncedAt => data['last_synced_at'] as DateTime?;
-  String? get localId => data['local_id'] as String?;
-  bool? get isDirty => data['is_dirty'] as bool?;
-  bool? get isUpdating => data['is_updating'] as bool?;
-}
-
-/// END OFFLINE SELECT ONGOING TASKS
-
-/// BEGIN OFFLINE SELECT COMPLETED TASKS
-Future<List<OFFLINESelectCompletedTasksRow>> performOFFLINESelectCompletedTasks(
-  Database database, {
-  String? assignee,
-}) {
-  final query = '''
-SELECT * FROM tasks WHERE  status = 'completed' AND assignee='$assignee'
-''';
-  return _readQuery(database, query, (d) => OFFLINESelectCompletedTasksRow(d));
-}
-
-class OFFLINESelectCompletedTasksRow extends SqliteRow {
-  OFFLINESelectCompletedTasksRow(super.data);
-
-  String? get id => data['id'] as String?;
-  String? get taskNumber => data['task_number'] as String?;
-  String? get serviceGroup => data['service_group'] as String?;
-  String? get serviceType => data['service_type'] as String?;
-  String? get priority => data['priority'] as String?;
-  String? get assignee => data['assignee'] as String?;
-  String? get fileId => data['file_id'] as String?;
-  DateTime? get dateAdded => data['date_added'] as DateTime?;
-  DateTime? get dateAccess => data['date_access'] as DateTime?;
-  String? get status => data['status'] as String?;
-  String? get taskType => data['task_type'] as String?;
-  String? get attemptCount => data['attempt_count'] as String?;
-  DateTime? get createdAt => data['created_at'] as DateTime?;
-  DateTime? get updatedAt => data['updated_at'] as DateTime?;
-  bool? get isDeleted => data['is_deleted'] as bool?;
-  String? get syncStatus => data['sync_status'] as String?;
-  DateTime? get lastSyncedAt => data['last_synced_at'] as DateTime?;
-  String? get localId => data['local_id'] as String?;
-  bool? get isDirty => data['is_dirty'] as bool?;
-  bool? get isUpdating => data['is_updating'] as bool?;
-}
-
-/// END OFFLINE SELECT COMPLETED TASKS
-
 /// BEGIN OFFLINE SELECT COUNT FOR DISPATCH
 Future<List<OFFLINESelectCountForDispatchRow>>
     performOFFLINESelectCountForDispatch(
@@ -510,3 +394,116 @@ class OFFLINESelectTaskByIDRow extends SqliteRow {
 }
 
 /// END OFFLINE SELECT TASK BY ID
+
+/// BEGIN SELECT TASKS AND PPIR BY ASSIGNEE
+Future<List<SELECTTASKSAndPPIRByAssigneeRow>>
+    performSELECTTASKSAndPPIRByAssignee(
+  Database database, {
+  String? taskId,
+  String? assignee,
+}) {
+  final query = '''
+SELECT 
+    COALESCE(t.id, '') AS task_id,
+    COALESCE(t.task_number, '') AS task_number,
+    COALESCE(t.service_type, '') AS service_type,
+    COALESCE(t.priority, '') AS priority,
+    COALESCE(t.assignee, '') AS assignee,
+    COALESCE(t.status, '') AS status,
+    COALESCE(p.ppir_assignmentid, '') AS ppir_assignmentid,
+    COALESCE(p.ppir_insuranceid, '') AS ppir_insuranceid,
+    COALESCE(p.ppir_farmername, '') AS ppir_farmername,
+    COALESCE(p.ppir_address, '') AS ppir_address,
+    COALESCE(p.ppir_farmertype, '') AS ppir_farmertype,
+    COALESCE(p.ppir_mobileno, '') AS ppir_mobileno,
+    COALESCE(p.ppir_groupname, '') AS ppir_groupname,
+    COALESCE(p.ppir_groupaddress, '') AS ppir_groupaddress,
+    COALESCE(p.ppir_lendername, '') AS ppir_lendername,
+    COALESCE(p.ppir_lenderaddress, '') AS ppir_lenderaddress,
+    COALESCE(p.ppir_cicno, '') AS ppir_cicno,
+    COALESCE(p.ppir_farmloc, '') AS ppir_farmloc,
+    COALESCE(p.ppir_north, '') AS ppir_north,
+    COALESCE(p.ppir_south, '') AS ppir_south,
+    COALESCE(p.ppir_east, '') AS ppir_east,
+    COALESCE(p.ppir_west, '') AS ppir_west,
+    COALESCE(p.ppir_area_aci, '') AS ppir_area_aci,
+    COALESCE(p.ppir_area_act, '') AS ppir_area_act,
+    COALESCE(p.ppir_dopds_aci, '') AS ppir_dopds_aci,
+    COALESCE(p.ppir_dopds_act, '') AS ppir_dopds_act,
+    COALESCE(p.ppir_doptp_aci, '') AS ppir_doptp_aci,
+    COALESCE(p.ppir_doptp_act, '') AS ppir_doptp_act,
+    COALESCE(p.ppir_svp_aci, '') AS ppir_svp_aci,
+    COALESCE(p.ppir_svp_act, '') AS ppir_svp_act,
+    COALESCE(p.ppir_variety, '') AS ppir_variety,
+    COALESCE(p.ppir_stagecrop, '') AS ppir_stagecrop,
+    COALESCE(p.ppir_remarks, '') AS ppir_remarks,
+    COALESCE(p.ppir_name_insured, '') AS ppir_name_insured,
+    COALESCE(p.ppir_name_iuia, '') AS ppir_name_iuia,
+    COALESCE(p.ppir_sig_insured, '') AS ppir_sig_insured,
+    COALESCE(p.ppir_sig_iuia, '') AS ppir_sig_iuia,
+    COALESCE(p.track_last_coord, '') AS track_last_coord,
+    COALESCE(p.track_date_time, '') AS track_date_time,
+    COALESCE(p.track_total_area, '') AS track_total_area,
+    COALESCE(p.track_total_distance, '') AS track_total_distance,
+    COALESCE(p.gpx, '') AS gpx,
+    COALESCE(t.task_type, '') AS task_type
+FROM 
+    tasks t
+LEFT JOIN 
+    ppir_forms p ON t.id = p.task_id
+WHERE 
+    t.assignee = $assignee
+    AND t.id = $taskId;
+''';
+  return _readQuery(database, query, (d) => SELECTTASKSAndPPIRByAssigneeRow(d));
+}
+
+class SELECTTASKSAndPPIRByAssigneeRow extends SqliteRow {
+  SELECTTASKSAndPPIRByAssigneeRow(super.data);
+
+  String? get taskId => data['task_id'] as String?;
+  String? get ppirAssignmentid => data['ppir_assignmentid'] as String?;
+  String? get ppirInsuranceid => data['ppir_insuranceid'] as String?;
+  String? get ppirFarmername => data['ppir_farmername'] as String?;
+  String? get ppirAddress => data['ppir_address'] as String?;
+  String? get ppirFarmertype => data['ppir_farmertype'] as String?;
+  String? get ppirMobileno => data['ppir_mobileno'] as String?;
+  String? get ppirGroupname => data['ppir_groupname'] as String?;
+  String? get ppirGroupadress => data['ppir_groupadress'] as String?;
+  String? get ppirLendername => data['ppir_lendername'] as String?;
+  String? get ppirLenderaddress => data['ppir_lenderaddress'] as String?;
+  String? get ppirCicno => data['ppir_cicno'] as String?;
+  String? get ppirFarmloc => data['ppir_farmloc'] as String?;
+  String? get ppirNorth => data['ppir_north'] as String?;
+  String? get ppirSouth => data['ppir_south'] as String?;
+  String? get ppirEast => data['ppir_east'] as String?;
+  String? get ppirWest => data['ppir_west'] as String?;
+  String? get ppirAreaAci => data['ppir_area_aci'] as String?;
+  String? get ppirAreaAct => data['ppir_area_act'] as String?;
+  String? get ppirDopdsAci => data['ppir_dopds_aci'] as String?;
+  String? get ppirDopdsAct => data['ppir_dopds_act'] as String?;
+  String? get ppirDoptpAci => data['ppir_doptp_aci'] as String?;
+  String? get ppirDoptpAct => data['ppir_doptp_act'] as String?;
+  String? get ppirSvpAci => data['ppir_svp_aci'] as String?;
+  String? get ppirSvpAct => data['ppir_svp_act'] as String?;
+  String? get ppirVariety => data['ppir_variety'] as String?;
+  String? get ppirStagecrop => data['ppir_stagecrop'] as String?;
+  String? get ppirRemarks => data['ppir_remarks'] as String?;
+  String? get ppirNameInsured => data['ppir_name_insured'] as String?;
+  String? get ppirNameIuia => data['ppir_name_iuia'] as String?;
+  String? get ppirSigInsured => data['ppir_sig_insured'] as String?;
+  String? get trackLastCoord => data['track_last_coord'] as String?;
+  String? get trackDateTime => data['track_date_time'] as String?;
+  String? get trackTotalArea => data['track_total_area'] as String?;
+  String? get trackTotalDistance => data['track_total_distance'] as String?;
+  String? get ppirSigIuia => data['ppir_sig_iuia'] as String?;
+  String? get gpx => data['gpx'] as String?;
+  String? get taskNumber => data['task_number'] as String?;
+  String? get serviceType => data['service_type'] as String?;
+  String? get priority => data['priority'] as String?;
+  String? get assignee => data['assignee'] as String?;
+  String? get status => data['status'] as String?;
+  String? get taskType => data['task_type'] as String?;
+}
+
+/// END SELECT TASKS AND PPIR BY ASSIGNEE

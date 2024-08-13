@@ -1251,7 +1251,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                               context)),
                                               child: const SizedBox(
                                                 height: 343.0,
-                                                width: 50.0,
+                                                width: 300.0,
                                                 child: SignoutDialogWidget(),
                                               ),
                                             );
