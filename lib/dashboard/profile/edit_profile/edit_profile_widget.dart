@@ -35,6 +35,9 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.getProfilePic = await actions.getTheSavedLocalProfile();
+      await actions.updateInspectorName(
+        _model.displayNameTextController.text,
+      );
     });
 
     _model.displayNameTextController ??= TextEditingController();
@@ -279,7 +282,12 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                               );
                             },
                           ),
-                          onFieldSubmitted: (_) async {},
+                          onFieldSubmitted: (_) async {
+                            _model.inspectorName =
+                                await actions.getTheSavedLocalProfile();
+
+                            setState(() {});
+                          },
                           autofocus: false,
                           obscureText: false,
                           decoration: InputDecoration(

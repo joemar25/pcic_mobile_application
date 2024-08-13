@@ -2720,7 +2720,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                         Padding(
                           padding: const EdgeInsets.all(12.0),
                           child: Container(
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0.0),
+                            ),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -2733,79 +2735,87 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             '') &&
                                     (_model.offlineTask?.first.status !=
                                         'complete'))
-                                  FFButtonWidget(
-                                    onPressed: () async {
-                                      currentUserLocationValue =
-                                          await getCurrentUserLocation(
-                                              defaultLocation:
-                                                  const LatLng(0.0, 0.0));
-                                      await AttemptsTable().insert({
-                                        'task_id': widget.taskId,
-                                      });
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 8.0, 16.0, 8.0),
+                                    child: FFButtonWidget(
+                                      onPressed: () async {
+                                        currentUserLocationValue =
+                                            await getCurrentUserLocation(
+                                                defaultLocation:
+                                                    const LatLng(0.0, 0.0));
+                                        await AttemptsTable().insert({
+                                          'task_id': widget.taskId,
+                                        });
 
-                                      context.pushNamed(
-                                        'geotagging',
-                                        queryParameters: {
-                                          'taskId': serializeParam(
-                                            widget.taskId,
-                                            ParamType.String,
-                                          ),
-                                          'taskType': serializeParam(
-                                            _model.offlineTask?.first.taskType,
-                                            ParamType.String,
-                                          ),
-                                          'taskStatus': serializeParam(
-                                            widget.taskStatus,
-                                            ParamType.String,
-                                          ),
-                                        }.withoutNulls,
-                                        extra: <String, dynamic>{
-                                          kTransitionInfoKey: const TransitionInfo(
-                                            hasTransition: true,
-                                            transitionType:
-                                                PageTransitionType.scale,
-                                            alignment: Alignment.bottomCenter,
-                                            duration:
-                                                Duration(milliseconds: 200),
-                                          ),
-                                        },
-                                      );
-                                    },
-                                    text: FFLocalizations.of(context).getText(
-                                      '65kky15n' /* Geotag */,
-                                    ),
-                                    icon: const Icon(
-                                      Icons.map_outlined,
-                                      size: 15.0,
-                                    ),
-                                    options: FFButtonOptions(
-                                      height: 40.0,
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          24.0, 0.0, 24.0, 0.0),
-                                      iconPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            fontFamily:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmallFamily,
-                                            color: Colors.white,
-                                            letterSpacing: 0.0,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmallFamily),
-                                          ),
-                                      elevation: 3.0,
-                                      borderSide: const BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1.0,
+                                        context.pushNamed(
+                                          'geotagging',
+                                          queryParameters: {
+                                            'taskId': serializeParam(
+                                              widget.taskId,
+                                              ParamType.String,
+                                            ),
+                                            'taskType': serializeParam(
+                                              _model
+                                                  .offlineTask?.first.taskType,
+                                              ParamType.String,
+                                            ),
+                                            'taskStatus': serializeParam(
+                                              widget.taskStatus,
+                                              ParamType.String,
+                                            ),
+                                          }.withoutNulls,
+                                          extra: <String, dynamic>{
+                                            kTransitionInfoKey: const TransitionInfo(
+                                              hasTransition: true,
+                                              transitionType:
+                                                  PageTransitionType.scale,
+                                              alignment: Alignment.bottomCenter,
+                                              duration:
+                                                  Duration(milliseconds: 200),
+                                            ),
+                                          },
+                                        );
+                                      },
+                                      text: FFLocalizations.of(context).getText(
+                                        '65kky15n' /* Geotag */,
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
+                                      icon: const Icon(
+                                        Icons.map_outlined,
+                                        size: 15.0,
+                                      ),
+                                      options: FFButtonOptions(
+                                        height: 40.0,
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 0.0, 24.0, 0.0),
+                                        iconPadding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmallFamily,
+                                              color: Colors.white,
+                                              letterSpacing: 0.0,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmallFamily),
+                                            ),
+                                        elevation: 3.0,
+                                        borderSide: const BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
                                     ),
                                   ),
                                 if ((valueOrDefault<String>(
@@ -2818,7 +2828,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         'ongoing'))
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 8.0, 0.0, 0.0),
+                                        16.0, 8.0, 16.0, 8.0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
                                         context.pushNamed(
@@ -2892,7 +2902,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         child: Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 8.0, 16.0, 12.0),
+                                                  16.0, 8.0, 16.0, 8.0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
                                               _model.isReFTPClicked = true;
@@ -2994,7 +3004,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         child: Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 8.0, 16.0, 12.0),
+                                                  16.0, 8.0, 16.0, 8.0),
                                           child: FFButtonWidget(
                                             onPressed: () {
                                               print('reGeotag pressed ...');
