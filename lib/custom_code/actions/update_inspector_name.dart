@@ -21,16 +21,18 @@ Future<void> updateInspectorName(String newName) async {
       throw Exception('No authenticated user found');
     }
 
-    await supabase
-        .from('your_table_name') // Replace with your actual table name
+    final response = await supabase
+        .from('inspectors') // Make sure this matches your table name exactly
         .update({'inspector_name': newName}).eq('auth_user_id', user.id);
 
-    // Optionally handle success
+    if (response.error != null) {
+      throw Exception(response.error!.message);
+    }
+
     print('Inspector name updated successfully');
   } catch (error) {
-    // Handle any errors
     print('Error updating inspector name: $error');
-    // You might want to rethrow the error or handle it in a way that's appropriate for your app
+    // You might want to show an error message to the user here
   }
 }
 // Set your action name, define your arguments and return parameter,

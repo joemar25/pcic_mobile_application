@@ -1224,38 +1224,43 @@ class _ProfileWidgetState extends State<ProfileWidget>
                               thickness: 1.0,
                               color: FlutterFlowTheme.of(context).boarderForm,
                             ),
-                            Builder(
-                              builder: (context) => Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 20.0),
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    await showAlignedDialog(
-                                      context: context,
-                                      isGlobal: false,
-                                      avoidOverflow: false,
-                                      targetAnchor: const AlignmentDirectional(
-                                              0.0, 0.0)
-                                          .resolve(Directionality.of(context)),
-                                      followerAnchor: const AlignmentDirectional(
-                                              0.0, 0.0)
-                                          .resolve(Directionality.of(context)),
-                                      builder: (dialogContext) {
-                                        return const Material(
-                                          color: Colors.transparent,
-                                          child: SignoutDialogWidget(),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 20.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Builder(
+                                    builder: (context) => InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        await showAlignedDialog(
+                                          context: context,
+                                          isGlobal: false,
+                                          avoidOverflow: false,
+                                          targetAnchor: const AlignmentDirectional(
+                                                  0.0, 0.0)
+                                              .resolve(
+                                                  Directionality.of(context)),
+                                          followerAnchor: const AlignmentDirectional(
+                                                  0.0, 0.0)
+                                              .resolve(
+                                                  Directionality.of(context)),
+                                          builder: (dialogContext) {
+                                            return const Material(
+                                              color: Colors.transparent,
+                                              child: SizedBox(
+                                                width: 130.0,
+                                                child: SignoutDialogWidget(),
+                                              ),
+                                            );
+                                          },
                                         );
                                       },
-                                    );
-                                  },
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Row(
+                                      child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Icon(
@@ -1291,9 +1296,9 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           ),
                                         ].divide(const SizedBox(width: 10.0)),
                                       ),
-                                    ].divide(const SizedBox(width: 10.0)),
+                                    ),
                                   ),
-                                ),
+                                ].divide(const SizedBox(width: 10.0)),
                               ),
                             ),
                           ],
