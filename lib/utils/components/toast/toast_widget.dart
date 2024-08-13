@@ -2,13 +2,10 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'toast_model.dart';
 export 'toast_model.dart';
 
@@ -57,8 +54,8 @@ class _ToastWidgetState extends State<ToastWidget>
             curve: Curves.easeInOut,
             delay: 500.0.ms,
             duration: 200.0.ms,
-            begin: Offset(500.0, -780.0),
-            end: Offset(100.0, -780.0),
+            begin: const Offset(500.0, -780.0),
+            end: const Offset(100.0, -780.0),
           ),
           FadeEffect(
             curve: Curves.easeInOut,
@@ -82,20 +79,20 @@ class _ToastWidgetState extends State<ToastWidget>
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
         child: Container(
           width: 250.0,
           height: MediaQuery.sizeOf(context).height * 0.5,
           decoration: BoxDecoration(
             color: valueOrDefault<Color>(
-              widget!.notificationTitle == 'Success'
+              widget.notificationTitle == 'Success'
                   ? FlutterFlowTheme.of(context).success
                   : FlutterFlowTheme.of(context).warning,
               FlutterFlowTheme.of(context).success,
             ),
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 blurRadius: 5.0,
                 color: Color(0x33000000),
@@ -111,7 +108,7 @@ class _ToastWidgetState extends State<ToastWidget>
             ),
           ),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 12.0, 8.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 12.0, 8.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -126,7 +123,7 @@ class _ToastWidgetState extends State<ToastWidget>
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: EdgeInsets.all(4.0),
+                            padding: const EdgeInsets.all(4.0),
                             child: Icon(
                               Icons.add_task_rounded,
                               color: FlutterFlowTheme.of(context).info,
@@ -135,7 +132,7 @@ class _ToastWidgetState extends State<ToastWidget>
                           ),
                           Text(
                             valueOrDefault<String>(
-                              widget!.notificationTitle,
+                              widget.notificationTitle,
                               'Notification Title',
                             ),
                             style: FlutterFlowTheme.of(context)
@@ -150,12 +147,12 @@ class _ToastWidgetState extends State<ToastWidget>
                                           .titleSmallFamily),
                                 ),
                           ),
-                        ].divide(SizedBox(width: 8.0)),
+                        ].divide(const SizedBox(width: 8.0)),
                       ),
                       Expanded(
                         child: Text(
                           valueOrDefault<String>(
-                            widget!.notificationMessage,
+                            widget.notificationMessage,
                             'Some body copy that is present in this small notification.',
                           ),
                           style: FlutterFlowTheme.of(context)
@@ -172,7 +169,7 @@ class _ToastWidgetState extends State<ToastWidget>
                               ),
                         ),
                       ),
-                    ].divide(SizedBox(height: 2.0)),
+                    ].divide(const SizedBox(height: 2.0)),
                   ),
                 ),
                 FlutterFlowIconButton(
@@ -190,7 +187,7 @@ class _ToastWidgetState extends State<ToastWidget>
                     context.safePop();
                   },
                 ),
-              ].divide(SizedBox(width: 8.0)),
+              ].divide(const SizedBox(width: 8.0)),
             ),
           ),
         ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation']!),

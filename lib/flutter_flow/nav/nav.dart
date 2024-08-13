@@ -1,24 +1,15 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:go_router/go_router.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import '/backend/schema/structs/index.dart';
 
-import '/backend/supabase/supabase.dart';
-import '/backend/sqlite/sqlite_manager.dart';
 import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
 import '/main.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/lat_lng.dart';
-import '/flutter_flow/place.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'serialization_util.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
@@ -83,7 +74,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) => RootPageContext.wrap(
-        appStateNotifier.loggedIn ? NavBarPage() : Onboarding01Widget(),
+        appStateNotifier.loggedIn ? const NavBarPage() : const Onboarding01Widget(),
         errorRoute: state.uri.toString(),
       ),
       routes: [
@@ -91,20 +82,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: '_initialize',
           path: '/',
           builder: (context, _) => RootPageContext.wrap(
-            appStateNotifier.loggedIn ? NavBarPage() : Onboarding01Widget(),
+            appStateNotifier.loggedIn ? const NavBarPage() : const Onboarding01Widget(),
           ),
         ),
         FFRoute(
           name: 'login',
           path: '/login',
-          builder: (context, params) => LoginWidget(),
+          builder: (context, params) => const LoginWidget(),
         ),
         FFRoute(
           name: 'profile',
           path: '/profile',
           requireAuth: true,
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'profile')
+              ? const NavBarPage(initialPage: 'profile')
               : ProfileWidget(
                   name: params.getParam(
                     'name',
@@ -117,19 +108,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/chats',
           requireAuth: true,
           builder: (context, params) =>
-              params.isEmpty ? NavBarPage(initialPage: 'chats') : ChatsWidget(),
+              params.isEmpty ? const NavBarPage(initialPage: 'chats') : const ChatsWidget(),
         ),
         FFRoute(
           name: 'editPassword',
           path: '/editPassword',
           requireAuth: true,
-          builder: (context, params) => EditPasswordWidget(),
+          builder: (context, params) => const EditPasswordWidget(),
         ),
         FFRoute(
           name: 'editProfile',
           path: '/editProfile',
           requireAuth: true,
-          builder: (context, params) => EditProfileWidget(),
+          builder: (context, params) => const EditProfileWidget(),
         ),
         FFRoute(
           name: 'messages',
@@ -202,8 +193,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/dashboard',
           requireAuth: true,
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'dashboard')
-              : DashboardWidget(),
+              ? const NavBarPage(initialPage: 'dashboard')
+              : const DashboardWidget(),
         ),
         FFRoute(
           name: 'successProfile',
@@ -219,7 +210,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'forgotPassword',
           path: '/forgotPassword',
-          builder: (context, params) => ForgotPasswordWidget(),
+          builder: (context, params) => const ForgotPasswordWidget(),
         ),
         FFRoute(
           name: 'geotagging',
@@ -243,22 +234,22 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'mapTest',
           path: '/mapTest',
-          builder: (context, params) => MapTestWidget(),
+          builder: (context, params) => const MapTestWidget(),
         ),
         FFRoute(
           name: 'pcicMap',
           path: '/pcicMap',
-          builder: (context, params) => PcicMapWidget(),
+          builder: (context, params) => const PcicMapWidget(),
         ),
         FFRoute(
           name: 'offlineDbTest',
           path: '/offlineDbTest',
-          builder: (context, params) => OfflineDbTestWidget(),
+          builder: (context, params) => const OfflineDbTestWidget(),
         ),
         FFRoute(
           name: 'offlineTasksAndPpirList',
           path: '/offlineTasksAndPpirList',
-          builder: (context, params) => OfflineTasksAndPpirListWidget(),
+          builder: (context, params) => const OfflineTasksAndPpirListWidget(),
         ),
         FFRoute(
           name: 'taskDetailsCopyx',
@@ -278,13 +269,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'onboarding01',
           path: '/onboarding01',
-          builder: (context, params) => Onboarding01Widget(),
+          builder: (context, params) => const Onboarding01Widget(),
         ),
         FFRoute(
           name: 'syncData',
           path: '/syncData',
           requireAuth: true,
-          builder: (context, params) => SyncDataWidget(),
+          builder: (context, params) => const SyncDataWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -522,7 +513,7 @@ class TransitionInfo {
   final Duration duration;
   final Alignment? alignment;
 
-  static TransitionInfo appDefault() => TransitionInfo(hasTransition: false);
+  static TransitionInfo appDefault() => const TransitionInfo(hasTransition: false);
 }
 
 class RootPageContext {
