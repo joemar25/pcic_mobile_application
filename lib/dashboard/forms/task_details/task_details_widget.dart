@@ -2691,8 +2691,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             true,
                                           ) &&
                                           valueOrDefault<bool>(
-                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                    .first.status !=
+                                            valueOrDefault<String>(
+                                                  taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                      .first.status,
+                                                  'Value',
+                                                ) !=
                                                 'complete',
                                             true,
                                           ),
@@ -2794,8 +2797,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             true,
                                           ) &&
                                           valueOrDefault<bool>(
-                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                    .first.status ==
+                                            valueOrDefault<String>(
+                                                  taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                      .first.status,
+                                                  'Value',
+                                                ) ==
                                                 'ongoing',
                                             true,
                                           ),
@@ -2993,8 +2999,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         ),
                                       ),
                                     if (kDebugMode &&
-                                        (taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                .first.status ==
+                                        (valueOrDefault<String>(
+                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                  .first.status,
+                                              'Value',
+                                            ) ==
                                             'completed'))
                                       Flexible(
                                         child: Padding(

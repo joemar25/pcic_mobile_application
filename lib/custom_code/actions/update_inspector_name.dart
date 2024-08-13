@@ -14,26 +14,22 @@ import 'package:flutter/material.dart';
 Future<void> updateInspectorName(String newName) async {
   final supabase = Supabase.instance.client;
   try {
-    // Get the current user's ID
     final user = supabase.auth.currentUser;
-    if (user == null) {
-      throw Exception('No authenticated user found');
-    }
+    if (user == null) throw Exception('No authenticated user found');
 
     final response = await supabase
         .from('users')
-        .update({'inspector_name': newName}).eq('auth_user_id', user.id);
+        .update({'inspector_name': newName})
+        .eq('auth_user_id', user.id)
+        .select();
 
-    // The response might be null if the update was successful
-    if (response == null) {
-      print('Inspector name updated successfully');
-    } else {
-      // If there's an error, it will be in the response
-      throw Exception('Failed to update inspector name');
+    if (response == null || response.isEmpty) {
+      throw Exception('Update failed: No rows affected');
     }
+
+    print('Inspector name updated successfully: $response');
   } catch (error) {
     print('Error updating inspector name: $error');
-    // You might want to show an error message to the user here
   }
 }
 // Set your action name, define your arguments and return parameter,

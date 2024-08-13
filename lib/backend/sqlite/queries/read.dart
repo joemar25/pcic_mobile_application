@@ -440,10 +440,6 @@ SELECT
     p.ppir_south,
     p.ppir_east,
     p.ppir_west,
-    p.ppir_att_1,
-    p.ppir_att_2,
-    p.ppir_att_3,
-    p.ppir_att_4,
     p.ppir_area_aci,
     p.ppir_area_act,
     p.ppir_dopds_aci,
@@ -484,14 +480,33 @@ class SELECTTASKSAndPPIRByAssigneeRow extends SqliteRow {
   SELECTTASKSAndPPIRByAssigneeRow(super.data);
 
   String? get taskId => data['task_id'] as String?;
+  String? get taskNumber => data['task_number'] as String?;
+  String? get serviceGroup => data['service_group'] as String?;
+  String? get serviceType => data['service_type'] as String?;
+  String? get priority => data['priority'] as String?;
+  String? get assignee => data['assignee'] as String?;
+  String? get fileId => data['file_id'] as String?;
+  String? get dateAdded => data['date_added'] as String?;
+  String? get dateAccess => data['date_access'] as String?;
+  String? get status => data['status'] as String?;
+  String? get taskType => data['task_type'] as String?;
+  String? get attemptCount => data['attempt_count'] as String?;
+  String? get taskCreatedAt => data['task_created_at'] as String?;
+  String? get taskUpdatedAt => data['task_updated_at'] as String?;
+  String? get isDeleted => data['is_deleted'] as String?;
+  String? get taskSyncStatus => data['task_sync_status'] as String?;
+  String? get taskLastSyncedAt => data['task_last_synced_at'] as String?;
+  String? get taskLocalId => data['task_local_id'] as String?;
+  String? get taskIsDirty => data['task_is_dirty'] as String?;
   String? get ppirAssignmentid => data['ppir_assignmentid'] as String?;
+  String? get gpx => data['gpx'] as String?;
   String? get ppirInsuranceid => data['ppir_insuranceid'] as String?;
   String? get ppirFarmername => data['ppir_farmername'] as String?;
   String? get ppirAddress => data['ppir_address'] as String?;
   String? get ppirFarmertype => data['ppir_farmertype'] as String?;
   String? get ppirMobileno => data['ppir_mobileno'] as String?;
   String? get ppirGroupname => data['ppir_groupname'] as String?;
-  String? get ppirGroupadress => data['ppir_groupadress'] as String?;
+  String? get ppirGroupaddress => data['ppir_groupaddress'] as String?;
   String? get ppirLendername => data['ppir_lendername'] as String?;
   String? get ppirLenderaddress => data['ppir_lenderaddress'] as String?;
   String? get ppirCicno => data['ppir_cicno'] as String?;
@@ -514,18 +529,17 @@ class SELECTTASKSAndPPIRByAssigneeRow extends SqliteRow {
   String? get ppirNameInsured => data['ppir_name_insured'] as String?;
   String? get ppirNameIuia => data['ppir_name_iuia'] as String?;
   String? get ppirSigInsured => data['ppir_sig_insured'] as String?;
+  String? get ppirSigIuia => data['ppir_sig_iuia'] as String?;
   String? get trackLastCoord => data['track_last_coord'] as String?;
   String? get trackDateTime => data['track_date_time'] as String?;
   String? get trackTotalArea => data['track_total_area'] as String?;
   String? get trackTotalDistance => data['track_total_distance'] as String?;
-  String? get ppirSigIuia => data['ppir_sig_iuia'] as String?;
-  String? get gpx => data['gpx'] as String?;
-  String? get taskNumber => data['task_number'] as String?;
-  String? get serviceType => data['service_type'] as String?;
-  String? get priority => data['priority'] as String?;
-  String? get assignee => data['assignee'] as String?;
-  String? get status => data['status'] as String?;
-  String? get taskType => data['task_type'] as String?;
+  String? get ppirCreatedAt => data['ppir_created_at'] as String?;
+  String? get ppirUpdatedAt => data['ppir_updated_at'] as String?;
+  String? get ppirSyncStatus => data['ppir_sync_status'] as String?;
+  String? get ppirLastSyncedAt => data['ppir_last_synced_at'] as String?;
+  String? get ppirLocalId => data['ppir_local_id'] as String?;
+  String? get ppirIsDirty => data['ppir_is_dirty'] as String?;
 }
 
 /// END SELECT TASKS AND PPIR BY ASSIGNEE

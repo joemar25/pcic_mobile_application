@@ -257,7 +257,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'osp1l3iq': {
+    'pcadzwjk': {
       'en': '',
       'tl': '',
     },
@@ -269,7 +269,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    '0iruke67': {
+    'ya71asqp': {
       'en': '',
       'tl': '',
     },
@@ -281,7 +281,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'y3psy9g8': {
+    'akyji6al': {
       'en': '',
       'tl': '',
     },
@@ -304,7 +304,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    'cbwt049i': {
+    'z81uggv4': {
       'en': '',
       'tl': '',
     },
@@ -1220,6 +1220,22 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     '3ckpvaqt': {
+      'en': 'My Account',
+      'tl': '',
+    },
+    'e5zj0r88': {
+      'en': 'Welcome!',
+      'tl': '',
+    },
+    'sdylopj4': {
+      'en': 'Welcome Agent in the PCIC Geotagging Application!',
+      'tl': '',
+    },
+    'ult64d5q': {
+      'en': 'Get Started',
+      'tl': '',
+    },
+    'ywz684yl': {
       'en': 'My Account',
       'tl': '',
     },

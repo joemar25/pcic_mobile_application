@@ -251,6 +251,14 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                           return;
                                         }
                                       }
+
+                                      await UsersTable().update(
+                                        data: {
+                                          'photo_url':
+                                              editProfileUsersRow?.photoUrl,
+                                        },
+                                        matchingRows: (rows) => rows,
+                                      );
                                     },
                                   ),
                                 ),
@@ -363,7 +371,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           child: FFButtonWidget(
                             onPressed: () async {
                               await actions.updateInspectorName(
-                                editProfileUsersRow!.inspectorName,
+                                editProfileUsersRow!.authUserId!,
                               );
                               // Update rows
                               await UsersTable().update(
@@ -378,8 +386,6 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                               );
                               _model.savedLocalProfile =
                                   await actions.getTheSavedLocalProfile();
-
-                              setState(() {});
                               // success profile
 
                               context.pushNamed(
