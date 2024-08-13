@@ -49,6 +49,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
       _model.offlineTask = await SQLiteManager.instance.oFFLINESelectTaskByID(
         taskId: widget.taskId,
       );
+      _model.isReFTPClicked = false;
+      setState(() {});
     });
   }
 
@@ -2724,167 +2726,203 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                if ((valueOrDefault<String>(
-                                              taskDetailsSelectPpirFormsRowList
-                                                  .first.gpx,
-                                              'Value',
-                                            ) ==
-                                            '') &&
-                                    (_model.offlineTask?.first.status !=
-                                        'complete'))
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 8.0, 16.0, 8.0),
-                                    child: FFButtonWidget(
-                                      onPressed: () async {
-                                        await AttemptsTable().insert({
-                                          'task_id': widget.taskId,
-                                        });
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    if (valueOrDefault<bool>(
+                                      valueOrDefault<bool>(
+                                            valueOrDefault<String>(
+                                                      taskDetailsSelectPpirFormsRowList
+                                                          .first.gpx,
+                                                      'Value',
+                                                    ) ==
+                                                    '',
+                                            true,
+                                          ) &&
+                                          valueOrDefault<bool>(
+                                            _model.offlineTask?.first.status !=
+                                                'complete',
+                                            true,
+                                          ),
+                                      true,
+                                    ))
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 8.0, 16.0, 8.0),
+                                        child: FFButtonWidget(
+                                          onPressed: () async {
+                                            await AttemptsTable().insert({
+                                              'task_id': widget.taskId,
+                                            });
 
-                                        context.pushNamed(
-                                          'geotagging',
-                                          queryParameters: {
-                                            'taskId': serializeParam(
-                                              widget.taskId,
-                                              ParamType.String,
-                                            ),
-                                            'taskType': serializeParam(
-                                              _model
-                                                  .offlineTask?.first.taskType,
-                                              ParamType.String,
-                                            ),
-                                            'taskStatus': serializeParam(
-                                              widget.taskStatus,
-                                              ParamType.String,
-                                            ),
-                                          }.withoutNulls,
-                                          extra: <String, dynamic>{
-                                            kTransitionInfoKey: const TransitionInfo(
-                                              hasTransition: true,
-                                              transitionType:
-                                                  PageTransitionType.scale,
-                                              alignment: Alignment.bottomCenter,
-                                              duration:
-                                                  Duration(milliseconds: 200),
-                                            ),
+                                            context.pushNamed(
+                                              'geotagging',
+                                              queryParameters: {
+                                                'taskId': serializeParam(
+                                                  widget.taskId,
+                                                  ParamType.String,
+                                                ),
+                                                'taskType': serializeParam(
+                                                  _model.offlineTask?.first
+                                                      .taskType,
+                                                  ParamType.String,
+                                                ),
+                                                'taskStatus': serializeParam(
+                                                  widget.taskStatus,
+                                                  ParamType.String,
+                                                ),
+                                              }.withoutNulls,
+                                              extra: <String, dynamic>{
+                                                kTransitionInfoKey:
+                                                    const TransitionInfo(
+                                                  hasTransition: true,
+                                                  transitionType:
+                                                      PageTransitionType.scale,
+                                                  alignment:
+                                                      Alignment.bottomCenter,
+                                                  duration: Duration(
+                                                      milliseconds: 200),
+                                                ),
+                                              },
+                                            );
                                           },
-                                        );
-                                      },
-                                      text: FFLocalizations.of(context).getText(
-                                        '65kky15n' /* Geotag */,
-                                      ),
-                                      icon: const Icon(
-                                        Icons.map_outlined,
-                                        size: 15.0,
-                                      ),
-                                      options: FFButtonOptions(
-                                        height: 40.0,
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            24.0, 0.0, 24.0, 0.0),
-                                        iconPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
-                                                0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmallFamily,
-                                              color: Colors.white,
-                                              letterSpacing: 0.0,
-                                              useGoogleFonts: GoogleFonts
-                                                      .asMap()
-                                                  .containsKey(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmallFamily),
+                                          text: FFLocalizations.of(context)
+                                              .getText(
+                                            '65kky15n' /* Geotag */,
+                                          ),
+                                          icon: const Icon(
+                                            Icons.map_outlined,
+                                            size: 15.0,
+                                          ),
+                                          options: FFButtonOptions(
+                                            height: 40.0,
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    24.0, 0.0, 24.0, 0.0),
+                                            iconPadding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmall
+                                                    .override(
+                                                      fontFamily:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmallFamily,
+                                                      color: Colors.white,
+                                                      letterSpacing: 0.0,
+                                                      useGoogleFonts: GoogleFonts
+                                                              .asMap()
+                                                          .containsKey(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmallFamily),
+                                                    ),
+                                            elevation: 3.0,
+                                            borderSide: const BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1.0,
                                             ),
-                                        elevation: 3.0,
-                                        borderSide: const BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1.0,
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
                                         ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
                                       ),
-                                    ),
-                                  ),
-                                if ((valueOrDefault<String>(
-                                              taskDetailsSelectPpirFormsRowList
-                                                  .first.gpx,
-                                              'Value',
-                                            ) !=
-                                            '') &&
-                                    (_model.offlineTask?.first.status ==
-                                        'ongoing'))
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 8.0, 16.0, 8.0),
-                                    child: FFButtonWidget(
-                                      onPressed: () async {
-                                        context.pushNamed(
-                                          'ppir',
-                                          queryParameters: {
-                                            'taskId': serializeParam(
-                                              widget.taskId,
-                                              ParamType.String,
-                                            ),
-                                          }.withoutNulls,
-                                          extra: <String, dynamic>{
-                                            kTransitionInfoKey: const TransitionInfo(
-                                              hasTransition: true,
-                                              transitionType:
-                                                  PageTransitionType.scale,
-                                              alignment: Alignment.bottomCenter,
-                                              duration:
-                                                  Duration(milliseconds: 200),
-                                            ),
+                                    if (valueOrDefault<bool>(
+                                      valueOrDefault<bool>(
+                                            valueOrDefault<String>(
+                                                      taskDetailsSelectPpirFormsRowList
+                                                          .first.gpx,
+                                                      'Value',
+                                                    ) !=
+                                                    '',
+                                            true,
+                                          ) &&
+                                          valueOrDefault<bool>(
+                                            _model.offlineTask?.first.status ==
+                                                'ongoing',
+                                            true,
+                                          ),
+                                      true,
+                                    ))
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 8.0, 16.0, 8.0),
+                                        child: FFButtonWidget(
+                                          onPressed: () async {
+                                            context.pushNamed(
+                                              'ppir',
+                                              queryParameters: {
+                                                'taskId': serializeParam(
+                                                  widget.taskId,
+                                                  ParamType.String,
+                                                ),
+                                              }.withoutNulls,
+                                              extra: <String, dynamic>{
+                                                kTransitionInfoKey:
+                                                    const TransitionInfo(
+                                                  hasTransition: true,
+                                                  transitionType:
+                                                      PageTransitionType.scale,
+                                                  alignment:
+                                                      Alignment.bottomCenter,
+                                                  duration: Duration(
+                                                      milliseconds: 200),
+                                                ),
+                                              },
+                                            );
                                           },
-                                        );
-                                      },
-                                      text: FFLocalizations.of(context).getText(
-                                        '7qj8fid9' /* Continue Form */,
-                                      ),
-                                      icon: const FaIcon(
-                                        FontAwesomeIcons.fileAlt,
-                                        size: 15.0,
-                                      ),
-                                      options: FFButtonOptions(
-                                        height: 40.0,
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            24.0, 0.0, 24.0, 0.0),
-                                        iconPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
-                                                0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmallFamily,
-                                              color: Colors.white,
-                                              letterSpacing: 0.0,
-                                              useGoogleFonts: GoogleFonts
-                                                      .asMap()
-                                                  .containsKey(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmallFamily),
+                                          text: FFLocalizations.of(context)
+                                              .getText(
+                                            '7qj8fid9' /* Continue Form */,
+                                          ),
+                                          icon: const FaIcon(
+                                            FontAwesomeIcons.fileAlt,
+                                            size: 15.0,
+                                          ),
+                                          options: FFButtonOptions(
+                                            height: 40.0,
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    24.0, 0.0, 24.0, 0.0),
+                                            iconPadding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmall
+                                                    .override(
+                                                      fontFamily:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmallFamily,
+                                                      color: Colors.white,
+                                                      letterSpacing: 0.0,
+                                                      useGoogleFonts: GoogleFonts
+                                                              .asMap()
+                                                          .containsKey(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmallFamily),
+                                                    ),
+                                            elevation: 3.0,
+                                            borderSide: const BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1.0,
                                             ),
-                                        elevation: 3.0,
-                                        borderSide: const BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1.0,
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
                                         ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
                                       ),
-                                    ),
-                                  ),
+                                  ],
+                                ),
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -3010,8 +3048,52 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 8.0, 16.0, 8.0),
                                           child: FFButtonWidget(
-                                            onPressed: () {
-                                              print('reGeotag pressed ...');
+                                            onPressed: () async {
+                                              await TasksTable().update(
+                                                data: {
+                                                  'status': 'ongoing',
+                                                },
+                                                matchingRows: (rows) => rows.eq(
+                                                  'id',
+                                                  widget.taskId,
+                                                ),
+                                              );
+                                              await AttemptsTable().insert({
+                                                'task_id': widget.taskId,
+                                              });
+
+                                              context.pushNamed(
+                                                'geotagging',
+                                                queryParameters: {
+                                                  'taskId': serializeParam(
+                                                    widget.taskId,
+                                                    ParamType.String,
+                                                  ),
+                                                  'taskType': serializeParam(
+                                                    _model.offlineTask?.first
+                                                        .taskType,
+                                                    ParamType.String,
+                                                  ),
+                                                  'taskStatus': serializeParam(
+                                                    _model.offlineTask?.first
+                                                        .status,
+                                                    ParamType.String,
+                                                  ),
+                                                }.withoutNulls,
+                                                extra: <String, dynamic>{
+                                                  kTransitionInfoKey:
+                                                      const TransitionInfo(
+                                                    hasTransition: true,
+                                                    transitionType:
+                                                        PageTransitionType
+                                                            .scale,
+                                                    alignment:
+                                                        Alignment.bottomCenter,
+                                                    duration: Duration(
+                                                        milliseconds: 200),
+                                                  ),
+                                                },
+                                              );
                                             },
                                             text: FFLocalizations.of(context)
                                                 .getText(
@@ -3079,7 +3161,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                           model: _model.savingModeModel,
                           updateCallback: () => setState(() {}),
                           child: const SavingModeWidget(
-                            savingWhat: 'Resubmitting FTP',
+                            savingWhat: 'Loading...',
                           ),
                         ),
                       ),

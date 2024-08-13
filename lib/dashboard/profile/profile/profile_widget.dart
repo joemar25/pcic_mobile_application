@@ -8,7 +8,6 @@ import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/signout_dialog/signout_dialog_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -1237,25 +1236,25 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        await showAlignedDialog(
+                                        await showDialog(
                                           context: context,
-                                          isGlobal: false,
-                                          avoidOverflow: false,
-                                          targetAnchor: const AlignmentDirectional(
-                                                  0.0, 0.0)
-                                              .resolve(
-                                                  Directionality.of(context)),
-                                          followerAnchor: const AlignmentDirectional(
-                                                  0.0, 0.0)
-                                              .resolve(
-                                                  Directionality.of(context)),
                                           builder: (dialogContext) {
-                                            return const Material(
-                                              color: Colors.transparent,
+                                            return Dialog(
+                                              elevation: 0,
+                                              insetPadding: EdgeInsets.zero,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              alignment:
+                                                  const AlignmentDirectional(0.0, 0.0)
+                                                      .resolve(
+                                                          Directionality.of(
+                                                              context)),
                                               child: SizedBox(
-                                                height: 80.0,
-                                                width: 300.0,
-                                                child: SignoutDialogWidget(),
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        0.5,
+                                                child: const SignoutDialogWidget(),
                                               ),
                                             );
                                           },

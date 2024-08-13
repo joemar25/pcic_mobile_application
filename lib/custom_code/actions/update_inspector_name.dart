@@ -13,7 +13,6 @@ import 'package:flutter/material.dart';
 
 Future<void> updateInspectorName(String newName) async {
   final supabase = Supabase.instance.client;
-
   try {
     // Get the current user's ID
     final user = supabase.auth.currentUser;
@@ -21,15 +20,16 @@ Future<void> updateInspectorName(String newName) async {
       throw Exception('No authenticated user found');
     }
 
+    // Assuming your table is named 'users' or 'agents'
+    final tableName = 'users'; // or 'agents', adjust as needed
+
     final response = await supabase
-        .from(
-            'inspector_name') // Make sure this matches your table name exactly
+        .from(tableName)
         .update({'inspector_name': newName}).eq('auth_user_id', user.id);
 
     if (response.error != null) {
       throw Exception(response.error!.message);
     }
-
     print('Inspector name updated successfully');
   } catch (error) {
     print('Error updating inspector name: $error');
