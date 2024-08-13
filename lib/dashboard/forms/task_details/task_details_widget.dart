@@ -195,9 +195,160 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 12.0),
                                             child: Text(
-                                              FFLocalizations.of(context)
-                                                  .getText(
-                                                'j9rxgs8h' /* Form Details */,
+                                              valueOrDefault<String>(
+                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                            .first.gpx,
+                                                        'null',
+                                                      ) ==
+                                                      'null'
+                                                  ? 'it is null'
+                                                  : 'not null',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyLargeFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLargeFamily),
+                                                      ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 12.0),
+                                            child: Text(
+                                              valueOrDefault<String>(
+                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                    .first.status,
+                                                'Value',
+                                              ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyLargeFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLargeFamily),
+                                                      ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 12.0),
+                                            child: Text(
+                                              (valueOrDefault<String>(
+                                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                .first.gpx,
+                                                            'Value',
+                                                          ) !=
+                                                          '')
+                                                  .toString(),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyLargeFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLargeFamily),
+                                                      ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 12.0),
+                                            child: Text(
+                                              (valueOrDefault<String>(
+                                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                .first.gpx,
+                                                            'Value',
+                                                          ) ==
+                                                          '')
+                                                  .toString(),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyLargeFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLargeFamily),
+                                                      ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 12.0),
+                                            child: Text(
+                                              valueOrDefault<String>(
+                                                functions
+                                                    .checkIfNull(
+                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                            .first.gpx)
+                                                    ?.toString(),
+                                                'fk',
+                                              ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyLargeFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLargeFamily),
+                                                      ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 12.0),
+                                            child: Text(
+                                              valueOrDefault<String>(
+                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                    .first.gpx,
+                                                'Assignment Id',
                                               ),
                                               style:
                                                   FlutterFlowTheme.of(context)
@@ -2737,27 +2888,18 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    if (valueOrDefault<bool>(
-                                      valueOrDefault<bool>(
-                                            valueOrDefault<String>(
-                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                          .first.gpx,
-                                                      'Value',
-                                                    ) ==
-                                                    '',
-                                            true,
-                                          ) &&
-                                          valueOrDefault<bool>(
-                                            valueOrDefault<String>(
+                                    if ((valueOrDefault<String>(
                                                   taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                      .first.status,
+                                                      .first.gpx,
                                                   'Value',
-                                                ) !=
-                                                'complete',
-                                            true,
-                                          ),
-                                      true,
-                                    ))
+                                                ) ==
+                                                '') &&
+                                        (valueOrDefault<String>(
+                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                  .first.status,
+                                              'Value',
+                                            ) !=
+                                            'complete'))
                                       Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             16.0, 8.0, 16.0, 8.0),
@@ -2843,27 +2985,18 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           ),
                                         ),
                                       ),
-                                    if (valueOrDefault<bool>(
-                                      valueOrDefault<bool>(
-                                            valueOrDefault<String>(
-                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                          .first.gpx,
-                                                      'Value',
-                                                    ) !=
-                                                    '',
-                                            true,
-                                          ) &&
-                                          valueOrDefault<bool>(
-                                            valueOrDefault<String>(
+                                    if ((valueOrDefault<String>(
                                                   taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                      .first.status,
+                                                      .first.gpx,
                                                   'Value',
-                                                ) ==
-                                                'ongoing',
-                                            true,
-                                          ),
-                                      true,
-                                    ))
+                                                ) !=
+                                                '') &&
+                                        (valueOrDefault<String>(
+                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                  .first.status,
+                                              'Value',
+                                            ) ==
+                                            'ongoing'))
                                       Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             16.0, 8.0, 16.0, 8.0),

@@ -125,3 +125,12 @@ String? capitalizeWords(String? text) {
 String sanitizeStoreName(String storeName) {
   return storeName.replaceAll(RegExp(r'[^a-zA-Z0-9_]'), '_').toLowerCase();
 }
+
+bool? checkIfNull(String? attribute) {
+  // check If the value given is Null
+  if (attribute == null) {
+    return true;
+  } else {
+    return false;
+  }
+}
