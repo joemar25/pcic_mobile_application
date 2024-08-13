@@ -250,10 +250,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirAssignmentid,
-                                                    'Value',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'gjgpol8f' /* - */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -308,10 +307,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirFarmername,
-                                                    'Value',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'no1n8b9w' /* - */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -368,10 +366,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirAddress,
-                                                    'Value',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'unwimurv' /* - */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -428,10 +425,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirInsuranceid,
-                                                    'Value',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'ld4fzlai' /* - */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -488,10 +484,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirMobileno,
-                                                    'Value',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    '9aydp8un' /* - */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -548,10 +543,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirFarmertype,
-                                                    'Value',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    '4ltcm64a' /* - */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -608,10 +602,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirGroupname,
-                                                    'Value',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    '92blrk04' /* - */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -668,10 +661,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirGroupname,
-                                                    'Value',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    '6xs82b56' /* - */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -728,10 +720,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirLendername,
-                                                    'Value',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'yexmpzwz' /* - */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -788,10 +779,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirLendername,
-                                                    'Value',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'msmjq3c1' /* - */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -909,10 +899,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirCicno,
-                                                    'Value',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'qhvztmpv' /* - */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -969,10 +958,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirFarmloc,
-                                                    'Value',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'drw0h32n' /* - */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -1067,10 +1055,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirNorth,
-                                                    'Value',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    '8hclpkqm' /* - */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -1127,10 +1114,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirEast,
-                                                    'Value',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    '0low7psj' /* - */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -1186,10 +1172,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirSouth,
-                                                    'Value',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    '03a9045c' /* - */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -1245,10 +1230,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirWest,
-                                                    'Value',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    '5ohs3fsy' /* - */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -1343,10 +1327,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirAreaAci,
-                                                    'Value',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'ftsdowzw' /* - */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -1403,10 +1386,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirDopdsAci,
-                                                    'Value',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'nt3syuhh' /* - */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -1463,10 +1445,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirDoptpAci,
-                                                    'Value',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'ltmuyine' /* - */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -1523,10 +1504,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirSvpAci,
-                                                    'Value',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'xsqheqcj' /* - */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -1686,12 +1666,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               ),
                                                         ),
                                                         Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                .first
-                                                                .trackLastCoord,
-                                                            'Value',
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                            'yyhjt5l3' /* - */,
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -1750,12 +1728,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               ),
                                                         ),
                                                         Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                .first
-                                                                .trackDateTime,
-                                                            'Value',
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                            'usxs21ur' /* - */,
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -1814,12 +1790,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               ),
                                                         ),
                                                         Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                .first
-                                                                .trackTotalArea,
-                                                            'Value',
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                            'zrkc0xc5' /* - */,
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -1878,12 +1852,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               ),
                                                         ),
                                                         Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                .first
-                                                                .trackTotalDistance,
-                                                            'Value',
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                            'q7ree8kc' /* - */,
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -1995,12 +1967,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               ),
                                                         ),
                                                         Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                .first
-                                                                .ppirVariety,
-                                                            'Value',
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                            'b1c50rc1' /* - */,
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -2059,12 +2029,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               ),
                                                         ),
                                                         Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                .first
-                                                                .ppirSvpAct,
-                                                            'Value',
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                            '9gr8ck19' /* - */,
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -2176,12 +2144,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               ),
                                                         ),
                                                         Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                .first
-                                                                .ppirDopdsAct,
-                                                            'Value',
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                            'fp05g6sc' /* - */,
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -2240,12 +2206,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               ),
                                                         ),
                                                         Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                .first
-                                                                .ppirDoptpAct,
-                                                            'Value',
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                            'ipmw8aq2' /* - */,
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -2357,12 +2321,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               ),
                                                         ),
                                                         AutoSizeText(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                .first
-                                                                .ppirRemarks,
-                                                            'Value',
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                            '0m6zk42a' /* - */,
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -2421,12 +2383,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               ),
                                                         ),
                                                         Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                .first
-                                                                .ppirNameInsured,
-                                                            'Value',
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                            'sg8dshub' /* - */,
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -2485,8 +2445,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                             context)
                                                                         .height *
                                                                     0.2,
-                                                                taskId: widget
-                                                                    .taskId,
+                                                                taskId: 'A',
                                                                 signatureFor:
                                                                     'insured',
                                                               ),
@@ -2534,12 +2493,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               ),
                                                         ),
                                                         Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                .first
-                                                                .ppirNameIuia,
-                                                            'Value',
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                            'c148ed4e' /* - */,
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -2591,8 +2548,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         .width *
                                                                     0.8,
                                                                 height: 230.0,
-                                                                taskId: widget
-                                                                    .taskId,
+                                                                taskId: 'A',
                                                                 signatureFor:
                                                                     'iuia',
                                                               ),
@@ -2678,12 +2634,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .height *
                                                                 0.2,
-                                                        blob: valueOrDefault<
-                                                            String>(
-                                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                              .first.gpx,
-                                                          'Value',
-                                                        ),
+                                                        blob: 'A',
                                                         accessToken:
                                                             FFAppState()
                                                                 .accessToken,

@@ -257,7 +257,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'bxsorfos': {
+    '8616vjsl': {
       'en': '',
       'tl': '',
     },
@@ -269,7 +269,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    '072i8c72': {
+    'hbqlfgey': {
       'en': '',
       'tl': '',
     },
@@ -281,7 +281,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'fc7p9f5g': {
+    'g06pfd6a': {
       'en': '',
       'tl': '',
     },
@@ -304,7 +304,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    'fetyw7qx': {
+    '04r2ld46': {
       'en': '',
       'tl': '',
     },
@@ -350,41 +350,81 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Assignment Id',
       'tl': 'Assignment Id',
     },
+    'gjgpol8f': {
+      'en': '-',
+      'tl': '',
+    },
     'x8d6g468': {
       'en': 'Farmer Name',
       'tl': 'Pangalan ng Magsasaka',
+    },
+    'no1n8b9w': {
+      'en': '-',
+      'tl': '',
     },
     'webbx3lh': {
       'en': 'Address',
       'tl': 'Address',
     },
+    'unwimurv': {
+      'en': '-',
+      'tl': '',
+    },
     'qfage2ic': {
       'en': 'Insurance Id',
       'tl': 'Insurance Id',
+    },
+    'ld4fzlai': {
+      'en': '-',
+      'tl': '',
     },
     'ezx6meo9': {
       'en': 'Mobile Number',
       'tl': 'Numero ng Mobile',
     },
+    '9aydp8un': {
+      'en': '-',
+      'tl': '',
+    },
     'gvdbo0h6': {
       'en': 'Farmer Type',
       'tl': 'Uri ng Magsasaka',
+    },
+    '4ltcm64a': {
+      'en': '-',
+      'tl': '',
     },
     '0blfogwv': {
       'en': 'Group Name',
       'tl': 'Pangalan ng grupo',
     },
+    '92blrk04': {
+      'en': '-',
+      'tl': '',
+    },
     'lst6ktx6': {
       'en': 'Group Address',
       'tl': 'Address ng Grupo',
+    },
+    '6xs82b56': {
+      'en': '-',
+      'tl': '',
     },
     'zv71woqo': {
       'en': 'Lender Name',
       'tl': 'Pangalan ng nagpapahiram',
     },
+    'yexmpzwz': {
+      'en': '-',
+      'tl': '',
+    },
     'jl733wsk': {
       'en': 'Lender Address',
       'tl': 'Address ng nagpapahiram',
+    },
+    'msmjq3c1': {
+      'en': '-',
+      'tl': '',
     },
     'zop5kb93': {
       'en': 'Region',
@@ -394,9 +434,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'CIC Number',
       'tl': 'Numero ng CIC',
     },
+    'qhvztmpv': {
+      'en': '-',
+      'tl': '',
+    },
     'p1282pce': {
       'en': 'Farm Location',
       'tl': 'Lokasyon ng Bukid',
+    },
+    'drw0h32n': {
+      'en': '-',
+      'tl': '',
     },
     'hvb7985g': {
       'en': 'Location Sketch Plan',
@@ -406,17 +454,33 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'North',
       'tl': 'Hilaga',
     },
+    '8hclpkqm': {
+      'en': '-',
+      'tl': '',
+    },
     'hytwamsl': {
       'en': 'East',
       'tl': 'Silangan',
+    },
+    '0low7psj': {
+      'en': '-',
+      'tl': '',
     },
     'qtzirwg5': {
       'en': 'South',
       'tl': 'Timog',
     },
+    '03a9045c': {
+      'en': '-',
+      'tl': '',
+    },
     'gmqdadav': {
       'en': 'West',
       'tl': 'Kanluran',
+    },
+    '5ohs3fsy': {
+      'en': '-',
+      'tl': '',
     },
     'tsu0lxo2': {
       'en': 'Location Sketch Plan',
@@ -426,17 +490,33 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Area Planted',
       'tl': 'Lugar na Nakatanim',
     },
+    'ftsdowzw': {
+      'en': '-',
+      'tl': '',
+    },
     'zxmreuh1': {
       'en': 'Date of Planting (DS)',
       'tl': 'Petsa ng Pagtanim (DS)',
+    },
+    'nt3syuhh': {
+      'en': '-',
+      'tl': '',
     },
     'ncrtgoe1': {
       'en': 'Datee of Planting (TP)',
       'tl': 'Petsa ng Pagtatanim (TP)',
     },
+    'ltmuyine': {
+      'en': '-',
+      'tl': '',
+    },
     'nzua63mv': {
       'en': 'Seed Variety Planted',
       'tl': 'Iba\'t-ibang Binhi na Nakatanim',
+    },
+    'xsqheqcj': {
+      'en': '-',
+      'tl': '',
     },
     'dgbzqn0h': {
       'en': 'Completed Task  Details',
@@ -450,17 +530,33 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Last Coordinates',
       'tl': 'Mga Huling Coordinate',
     },
+    'yyhjt5l3': {
+      'en': '-',
+      'tl': '',
+    },
     'or3srkkk': {
       'en': 'Track Date',
       'tl': 'Petsa ng Pagsubaybay',
+    },
+    'usxs21ur': {
+      'en': '-',
+      'tl': '',
     },
     '01tvwwxt': {
       'en': 'Total Area (ha)',
       'tl': 'Kabuuang Lugar (ha)',
     },
+    'zrkc0xc5': {
+      'en': '-',
+      'tl': '',
+    },
     'vp2u9vxf': {
       'en': 'Total Distance',
       'tl': 'Kabuuang distansya',
+    },
+    'q7ree8kc': {
+      'en': '-',
+      'tl': '',
     },
     'v9d4i47l': {
       'en': 'Seed Details',
@@ -470,9 +566,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Type',
       'tl': 'Uri',
     },
+    'b1c50rc1': {
+      'en': '-',
+      'tl': '',
+    },
     'veh8acpl': {
       'en': 'Variety',
       'tl': 'Iba\'t-ibang',
+    },
+    '9gr8ck19': {
+      'en': '-',
+      'tl': '',
     },
     'anco0w5m': {
       'en': 'Date Details',
@@ -482,9 +586,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Date of Planting (DS)',
       'tl': 'Petsa ng Pagtanim (DS)',
     },
+    'fp05g6sc': {
+      'en': '-',
+      'tl': '',
+    },
     '3zj0x11r': {
       'en': 'Date of Planting (TP)',
       'tl': 'Petsa ng Pagtatanim (TP)',
+    },
+    'ipmw8aq2': {
+      'en': '-',
+      'tl': '',
     },
     'lnj6pjl7': {
       'en': 'Agent Confirmation',
@@ -494,13 +606,25 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Remarks',
       'tl': 'Remarks',
     },
+    '0m6zk42a': {
+      'en': '-',
+      'tl': '',
+    },
     '7ftdujb6': {
       'en': 'Confirmed By',
       'tl': 'Kinumpirma ni',
     },
+    'sg8dshub': {
+      'en': '-',
+      'tl': '',
+    },
     '8bdkh9n1': {
       'en': 'Prepared By',
       'tl': 'Inihanda ni',
+    },
+    'c148ed4e': {
+      'en': '-',
+      'tl': '',
     },
     'ahzx9d2y': {
       'en': 'Geotag',

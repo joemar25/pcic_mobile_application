@@ -376,6 +376,10 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                   _model.newUsername?.inspectorName,
                                 ),
                               );
+                              _model.savedLocalProfile =
+                                  await actions.getTheSavedLocalProfile();
+
+                              setState(() {});
                               // success profile
 
                               context.pushNamed(

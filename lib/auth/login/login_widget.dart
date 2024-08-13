@@ -90,59 +90,66 @@ class _LoginWidgetState extends State<LoginWidget>
             Expanded(
               child: Align(
                 alignment: const AlignmentDirectional(0.0, 0.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 200.0,
-                      height: 200.0,
-                      decoration: const BoxDecoration(),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10.0),
-                        child: SvgPicture.asset(
-                          'assets/images/PCIC-Logo.svg',
-                          width: double.infinity,
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                    ),
-                    Flexible(
-                      child: Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              FFLocalizations.of(context).getText(
-                                'py6ovdt7' /* PCIC Geotagging  */,
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 80.0, 0.0, 0.0),
+                  child: Container(
+                    decoration: const BoxDecoration(),
+                    child: SingleChildScrollView(
+                      primary: false,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: 200.0,
+                            height: 200.0,
+                            decoration: const BoxDecoration(),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10.0),
+                              child: SvgPicture.asset(
+                                'assets/images/PCIC-Logo.svg',
+                                width: double.infinity,
+                                fit: BoxFit.contain,
                               ),
-                              textAlign: TextAlign.center,
-                              style: FlutterFlowTheme.of(context)
-                                  .headlineMedium
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .headlineMediumFamily,
-                                    color: Colors.white,
-                                    fontSize: 30.0,
-                                    letterSpacing: 0.0,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .headlineMediumFamily),
-                                  ),
                             ),
-                          ],
-                        ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 10.0, 0.0, 0.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  FFLocalizations.of(context).getText(
+                                    'py6ovdt7' /* PCIC Geotagging  */,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                  style: FlutterFlowTheme.of(context)
+                                      .headlineMedium
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .headlineMediumFamily,
+                                        color: Colors.white,
+                                        fontSize: 30.0,
+                                        letterSpacing: 0.0,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .headlineMediumFamily),
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
-                ).animateOnPageLoad(
-                    animationsMap['columnOnPageLoadAnimation']!),
+                    ).animateOnPageLoad(
+                        animationsMap['columnOnPageLoadAnimation']!),
+                  ),
+                ),
               ),
             ),
             Container(
