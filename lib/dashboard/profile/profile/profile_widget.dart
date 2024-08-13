@@ -1253,7 +1253,8 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                             return const Material(
                                               color: Colors.transparent,
                                               child: SizedBox(
-                                                width: 130.0,
+                                                height: 80.0,
+                                                width: 300.0,
                                                 child: SignoutDialogWidget(),
                                               ),
                                             );

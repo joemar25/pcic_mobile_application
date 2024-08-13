@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 class TaskDetailsModel extends FlutterFlowModel<TaskDetailsWidget> {
   ///  Local state fields for this page.
 
-  bool? isReFTPClicked = true;
+  bool? isReFTPClicked = false;
 
   ///  State fields for stateful widgets in this page.
 

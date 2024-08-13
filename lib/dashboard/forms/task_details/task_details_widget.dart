@@ -38,7 +38,6 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
   late TaskDetailsModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  LatLng? currentUserLocationValue;
 
   @override
   void initState() {
@@ -47,8 +46,6 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.isReFTPClicked = false;
-      setState(() {});
       _model.offlineTask = await SQLiteManager.instance.oFFLINESelectTaskByID(
         taskId: widget.taskId,
       );
@@ -2740,10 +2737,6 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         16.0, 8.0, 16.0, 8.0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
-                                        currentUserLocationValue =
-                                            await getCurrentUserLocation(
-                                                defaultLocation:
-                                                    const LatLng(0.0, 0.0));
                                         await AttemptsTable().insert({
                                           'task_id': widget.taskId,
                                         });
@@ -2922,6 +2915,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ParamType.String,
                                                     ),
                                                   }.withoutNulls,
+                                                  extra: <String, dynamic>{
+                                                    kTransitionInfoKey:
+                                                        const TransitionInfo(
+                                                      hasTransition: true,
+                                                      transitionType:
+                                                          PageTransitionType
+                                                              .fade,
+                                                      duration: Duration(
+                                                          milliseconds: 200),
+                                                    ),
+                                                  },
                                                 );
                                               } else {
                                                 ScaffoldMessenger.of(context)

@@ -148,7 +148,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
                             const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).alternate,
+                        color: FlutterFlowTheme.of(context).alternate2,
                         textStyle: FlutterFlowTheme.of(context)
                             .titleSmall
                             .override(

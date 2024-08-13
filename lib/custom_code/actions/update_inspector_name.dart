@@ -22,7 +22,8 @@ Future<void> updateInspectorName(String newName) async {
     }
 
     final response = await supabase
-        .from('inspectors') // Make sure this matches your table name exactly
+        .from(
+            'inspector_name') // Make sure this matches your table name exactly
         .update({'inspector_name': newName}).eq('auth_user_id', user.id);
 
     if (response.error != null) {
