@@ -250,9 +250,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    'gjgpol8f' /* - */,
+                                                  valueOrDefault<String>(
+                                                    functions.removePpirOnString(
+                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                            .first.serviceType),
+                                                    'Assignment Id',
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -307,9 +309,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    'no1n8b9w' /* - */,
+                                                  valueOrDefault<String>(
+                                                    functions.removePpirOnString(
+                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                            .first.serviceType),
+                                                    'Farmer Name',
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -366,9 +370,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    'unwimurv' /* - */,
+                                                  valueOrDefault<String>(
+                                                    functions.removePpirOnString(
+                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                            .first.serviceType),
+                                                    'Address',
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)

@@ -291,6 +291,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'syncKing',
+          path: '/syncKing',
+          requireAuth: true,
+          builder: (context, params) => const SyncKingWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

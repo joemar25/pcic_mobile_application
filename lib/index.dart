@@ -32,3 +32,4 @@ export '/auth/onboarding01/onboarding01_widget.dart' show Onboarding01Widget;
 export '/auth/sync_data/sync_data_widget.dart' show SyncDataWidget;
 export '/dashboard/forms/task_details_copyxx/task_details_copyxx_widget.dart'
     show TaskDetailsCopyxxWidget;
+export '/utils/test/sync_king/sync_king_widget.dart' show SyncKingWidget;

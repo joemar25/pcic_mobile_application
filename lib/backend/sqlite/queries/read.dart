@@ -470,8 +470,8 @@ FROM
 LEFT JOIN 
     ppir_forms p ON t.id = p.task_id
 WHERE 
-    t.assignee = $assignee
-    AND t.id = $taskId;
+    t.assignee = '$assignee'
+    AND t.id = '$taskId';
 ''';
   return _readQuery(database, query, (d) => SELECTTASKSAndPPIRByAssigneeRow(d));
 }

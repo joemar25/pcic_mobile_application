@@ -257,7 +257,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'smaqwno7': {
+    'o1dqlz2d': {
       'en': '',
       'tl': '',
     },
@@ -269,7 +269,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'ohmnwbis': {
+    'd8avydqy': {
       'en': '',
       'tl': '',
     },
@@ -281,7 +281,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'zkkhivvd': {
+    'a7yef8uv': {
       'en': '',
       'tl': '',
     },
@@ -304,7 +304,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    'e0gy432x': {
+    's8hyf77k': {
       'en': '',
       'tl': '',
     },
@@ -350,25 +350,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Assignment Id',
       'tl': 'Assignment Id',
     },
-    'gjgpol8f': {
-      'en': '-',
-      'tl': '',
-    },
     'x8d6g468': {
       'en': 'Farmer Name',
       'tl': 'Pangalan ng Magsasaka',
     },
-    'no1n8b9w': {
-      'en': '-',
-      'tl': '',
-    },
     'webbx3lh': {
       'en': 'Address',
       'tl': 'Address',
-    },
-    'unwimurv': {
-      'en': '-',
-      'tl': '',
     },
     'qfage2ic': {
       'en': 'Insurance Id',
@@ -1442,6 +1430,25 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     '9by11dqq': {
+      'en': 'Home',
+      'tl': '',
+    },
+  },
+  // syncKing
+  {
+    'z1qajala': {
+      'en': 'Sync Task & PPIR',
+      'tl': '',
+    },
+    'rl620j3y': {
+      'en': 'Dashboard',
+      'tl': '',
+    },
+    'y16sy9zu': {
+      'en': 'Offline Tasks Sync Test',
+      'tl': '',
+    },
+    '356odp6u': {
       'en': 'Home',
       'tl': '',
     },
