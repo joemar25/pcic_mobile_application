@@ -257,7 +257,10 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                           'photo_url':
                                               editProfileUsersRow?.photoUrl,
                                         },
-                                        matchingRows: (rows) => rows,
+                                        matchingRows: (rows) => rows.eq(
+                                          'id',
+                                          '',
+                                        ),
                                       );
                                     },
                                   ),
@@ -371,7 +374,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           child: FFButtonWidget(
                             onPressed: () async {
                               await actions.updateInspectorName(
-                                editProfileUsersRow!.authUserId!,
+                                editProfileUsersRow!.inspectorName,
                               );
                               // Update rows
                               await UsersTable().update(
