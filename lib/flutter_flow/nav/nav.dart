@@ -293,12 +293,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'syncKing',
-          path: '/syncKing',
-          requireAuth: true,
-          builder: (context, params) => const SyncKingWidget(),
-        ),
-        FFRoute(
           name: 'loginOriginalCopy',
           path: '/loginOriginal',
           builder: (context, params) => const LoginOriginalCopyWidget(),
@@ -309,18 +303,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const Onboarding01OriginalCopyWidget(),
         ),
         FFRoute(
-          name: 'syncKingCopy',
-          path: '/syncKingCopy',
+          name: 'syncKing',
+          path: '/syncKing',
           requireAuth: true,
-          builder: (context, params) => const SyncKingCopyWidget(),
+          builder: (context, params) => const SyncKingWidget(),
         ),
         FFRoute(
           name: 'chatsCopy',
           path: '/chatsCopy',
           requireAuth: true,
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'chatsCopy')
-              : const ChatsCopyWidget(),
+          builder: (context, params) => const ChatsCopyWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

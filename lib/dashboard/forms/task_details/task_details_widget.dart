@@ -1683,10 +1683,12 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               ),
                                                         ),
                                                         Text(
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                            'yyhjt5l3' /* - */,
+                                                          valueOrDefault<
+                                                              String>(
+                                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                .first
+                                                                .trackLastCoord,
+                                                            'Last Coordinates',
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -1745,10 +1747,12 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               ),
                                                         ),
                                                         Text(
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                            'usxs21ur' /* - */,
+                                                          valueOrDefault<
+                                                              String>(
+                                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                .first
+                                                                .trackDateTime,
+                                                            'Track Date',
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -1807,10 +1811,12 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               ),
                                                         ),
                                                         Text(
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                            'zrkc0xc5' /* - */,
+                                                          valueOrDefault<
+                                                              String>(
+                                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                .first
+                                                                .trackTotalArea,
+                                                            'Track Area',
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -1869,10 +1875,12 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               ),
                                                         ),
                                                         Text(
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                            'q7ree8kc' /* - */,
+                                                          valueOrDefault<
+                                                              String>(
+                                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                .first
+                                                                .trackTotalDistance,
+                                                            'Total Distance',
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)

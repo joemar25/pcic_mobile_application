@@ -32,12 +32,10 @@ export '/auth/onboarding01/onboarding01_widget.dart' show Onboarding01Widget;
 export '/utils/sync_data/sync_data_widget.dart' show SyncDataWidget;
 export '/dashboard/forms/task_details_copyxx/task_details_copyxx_widget.dart'
     show TaskDetailsCopyxxWidget;
-export '/utils/sync_king/sync_king_widget.dart' show SyncKingWidget;
 export '/auth/login_original_copy/login_original_copy_widget.dart'
     show LoginOriginalCopyWidget;
 export '/auth/onboarding01_original_copy/onboarding01_original_copy_widget.dart'
     show Onboarding01OriginalCopyWidget;
-export '/utils/sync_king_copy/sync_king_copy_widget.dart'
-    show SyncKingCopyWidget;
+export '/utils/sync_king/sync_king_widget.dart' show SyncKingWidget;
 export '/dashboard/messages/chats_copy/chats_copy_widget.dart'
     show ChatsCopyWidget;

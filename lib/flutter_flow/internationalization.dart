@@ -111,6 +111,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'PCIC Geotagging ',
       'tl': '',
     },
+    '8ycidgoc': {
+      'en': 'DON\"T DELETE SCOTT IS TESTING HERE',
+      'tl': '',
+    },
     '4okdmfv6': {
       'en': 'Welcome Back',
       'tl': '',
@@ -257,7 +261,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'ah27ax18': {
+    'pu8wvain': {
       'en': '',
       'tl': '',
     },
@@ -269,7 +273,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'r13ptd6z': {
+    'yfytzpuj': {
       'en': '',
       'tl': '',
     },
@@ -281,7 +285,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    '40rxuhpp': {
+    'g2og5bm9': {
       'en': '',
       'tl': '',
     },
@@ -304,7 +308,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'tl': '',
     },
-    '9940my0w': {
+    'sqcd22ra': {
       'en': '',
       'tl': '',
     },
@@ -466,33 +470,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Last Coordinates',
       'tl': 'Mga Huling Coordinate',
     },
-    'yyhjt5l3': {
-      'en': '-',
-      'tl': '',
-    },
     'or3srkkk': {
       'en': 'Track Date',
       'tl': 'Petsa ng Pagsubaybay',
-    },
-    'usxs21ur': {
-      'en': '-',
-      'tl': '',
     },
     '01tvwwxt': {
       'en': 'Total Area (ha)',
       'tl': 'Kabuuang Lugar (ha)',
     },
-    'zrkc0xc5': {
-      'en': '-',
-      'tl': '',
-    },
     'vp2u9vxf': {
       'en': 'Total Distance',
       'tl': 'Kabuuang distansya',
-    },
-    'q7ree8kc': {
-      'en': '-',
-      'tl': '',
     },
     'v9d4i47l': {
       'en': 'Seed Details',
@@ -1354,29 +1342,14 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
-  // syncKing
-  {
-    'z1qajala': {
-      'en': 'Sync Data',
-      'tl': '',
-    },
-    'bsm9tuxm': {
-      'en': 'Tap to Sync',
-      'tl': '',
-    },
-    'jnfy1f5x': {
-      'en': 'Dashboard',
-      'tl': '',
-    },
-    '356odp6u': {
-      'en': 'Home',
-      'tl': '',
-    },
-  },
   // loginOriginalCopy
   {
     '57zaxsj8': {
       'en': 'PCIC Geotagging ',
+      'tl': '',
+    },
+    '87wz8uvo': {
+      'en': 'DON\"T DELETE SCOTT IS TESTING HERE',
       'tl': '',
     },
     '05ulgw2f': {
@@ -1483,7 +1456,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
-  // syncKingCopy
+  // syncKing
   {
     'kp6iy6vr': {
       'en': 'Sync Task & PPIR',

@@ -586,23 +586,10 @@ class _MapBoxState extends State<MapBox> {
         ),
         Positioned(
           bottom: 20,
-          left: 0,
-          right: 0,
-          child: Center(
-            child: ElevatedButton(
-              onPressed: _toggleTracking,
-              style: ElevatedButton.styleFrom(
-                primary: _isTracking ? Colors.red : Colors.green,
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-              ),
-              child: Text(
-                _isTracking ? 'Stop Tracking' : 'Start Tracking',
-                style: TextStyle(fontSize: 16, color: Colors.white),
-              ),
-            ),
+          right: 20,
+          child: FloatingActionButton(
+            onPressed: _toggleTracking,
+            child: Icon(_isTracking ? Icons.stop : Icons.play_arrow),
           ),
         ),
       ],
