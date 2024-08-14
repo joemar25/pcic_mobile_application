@@ -109,6 +109,7 @@ class _SyncKingCopyWidgetState extends State<SyncKingCopyWidget> {
                                 0,
                               );
                               _model.iteration = 0;
+                              _model.isDone = false;
                               setState(() {});
                               while (_model.iteration! < _model.limit!) {
                                 await Future.delayed(
@@ -335,6 +336,7 @@ class _SyncKingCopyWidgetState extends State<SyncKingCopyWidget> {
                               }
                               _model.limit = 0;
                               _model.iteration = 0;
+                              _model.isDone = true;
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(

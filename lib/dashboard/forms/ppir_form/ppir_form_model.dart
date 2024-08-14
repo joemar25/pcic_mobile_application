@@ -81,10 +81,6 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
   List<PpirFormsRow>? savePPIR;
   // Stores action output result for [Backend Call - Update Row(s)] action in saveButton widget.
   List<TasksRow>? updatedStatus;
-  // Stores action output result for [Backend Call - Update Row(s)] action in submitButton widget.
-  List<PpirFormsRow>? savePPIRCopy;
-  // Stores action output result for [Backend Call - Update Row(s)] action in submitButton widget.
-  List<TasksRow>? updatedStatusCopy;
 
   @override
   void initState(BuildContext context) {

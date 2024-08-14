@@ -32,6 +32,7 @@ dependencies:
   collection: 1.18.0
   connectivity_plus: ^6.0.4
   csv: 6.0.0
+  dart_ipify: ^1.1.1
   dartssh2: ^2.8.2
   dropdown_button2: 2.3.9
   easy_debounce: 2.0.1

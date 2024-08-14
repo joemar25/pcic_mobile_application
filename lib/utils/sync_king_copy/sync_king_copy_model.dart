@@ -10,6 +10,8 @@ class SyncKingCopyModel extends FlutterFlowModel<SyncKingCopyWidget> {
 
   int? iteration = 0;
 
+  bool isDone = false;
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Backend Call - Query Rows] action in Button widget.
