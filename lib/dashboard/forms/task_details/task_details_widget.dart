@@ -14,6 +14,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -43,6 +44,27 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => TaskDetailsModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      if (FFAppState().ONLINE) {
+        _model.onlineTask = await TasksTable().queryRows(
+          queryFn: (q) => q.eq(
+            'id',
+            widget.taskId,
+          ),
+        );
+        _model.offlineTask =
+            await SQLiteManager.instance.sELECTTASKSAndPPIRByAssignee(
+          taskId: widget.taskId,
+          assignee: currentUserUid,
+        );
+        if (_model.offlineTask?.first.taskIsDirty == '1') {
+          _model.statusOutput = 'Not Sync';
+          setState(() {});
+        }
+      }
+    });
   }
 
   @override

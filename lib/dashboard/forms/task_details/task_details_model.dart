@@ -1,3 +1,5 @@
+import '/backend/sqlite/sqlite_manager.dart';
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/saving_mode/saving_mode_widget.dart';
@@ -15,6 +17,10 @@ class TaskDetailsModel extends FlutterFlowModel<TaskDetailsWidget> {
 
   ///  State fields for stateful widgets in this page.
 
+  // Stores action output result for [Backend Call - Query Rows] action in taskDetails widget.
+  List<TasksRow>? onlineTask;
+  // Stores action output result for [Backend Call - SQLite (SELECT TASKS and PPIR by Assignee)] action in taskDetails widget.
+  List<SELECTTASKSAndPPIRByAssigneeRow>? offlineTask;
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
   // Stores action output result for [Custom Action - saveToFTP] action in reFTP widget.
