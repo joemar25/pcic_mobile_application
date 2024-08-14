@@ -182,20 +182,54 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Text(
-                            FFLocalizations.of(context).getText(
-                              '6l645u7j' /* Sync */,
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .titleSmallFamily,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .titleSmallFamily),
+                          Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text(
+                                FFAppState().ONLINE
+                                    ? valueOrDefault<String>(
+                                        _model.statusOutput,
+                                        'No status shown',
+                                      )
+                                    : 'Cannot check sync status.',
+                                style: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .titleSmallFamily,
+                                      fontSize: 12.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w200,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmallFamily),
+                                    ),
+                              ),
+                              Text(
+                                valueOrDefault<String>(
+                                  ppirFormSelectPpirFormsRowList.first.updatedAt
+                                      ?.toString(),
+                                  '-',
                                 ),
+                                style: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .titleSmallFamily,
+                                      color:
+                                          FlutterFlowTheme.of(context).accent4,
+                                      fontSize: 12.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w200,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmallFamily),
+                                    ),
+                              ),
+                            ],
                           ),
                           wrapWithModel(
                             model: _model.connectivityModel,
@@ -3727,7 +3761,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   return AlertDialog(
                                                     title: const Text('Info'),
                                                     content: const Text(
-                                                        'Do you want to save the data above?'),
+                                                        'Do you want to Submit all the data above?'),
                                                     actions: [
                                                       TextButton(
                                                         onPressed: () =>

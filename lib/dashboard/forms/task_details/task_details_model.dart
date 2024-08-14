@@ -9,6 +9,10 @@ class TaskDetailsModel extends FlutterFlowModel<TaskDetailsWidget> {
 
   bool? isReFTPClicked = false;
 
+  bool checkingUpdate = true;
+
+  String statusOutput = 'This task is upto date';
+
   ///  State fields for stateful widgets in this page.
 
   // Model for connectivity component.
