@@ -13,7 +13,7 @@ class TaskDetailsModel extends FlutterFlowModel<TaskDetailsWidget> {
 
   bool checkingUpdate = true;
 
-  String statusOutput = 'This task is upto date';
+  String statusOutput = 'Up to date';
 
   ///  State fields for stateful widgets in this page.
 

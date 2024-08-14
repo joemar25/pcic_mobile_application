@@ -62,6 +62,31 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
         if (_model.offlineTask?.first.taskIsDirty == '1') {
           _model.statusOutput = 'Not Sync';
           setState(() {});
+          await PpirFormsTable().update(
+            data: {
+              'ppir_att_1': 'xxxxxxxxxxxxxxxxxxxxxxxxxx',
+            },
+            matchingRows: (rows) => rows.eq(
+              'task_id',
+              widget.taskId,
+            ),
+          );
+          await SQLiteManager.instance.updateTaskStatus(
+            taskId: widget.taskId,
+            status: widget.taskStatus,
+            isDirty: false,
+          );
+          await TasksTable().update(
+            data: {
+              'is_dirty': false,
+            },
+            matchingRows: (rows) => rows.eq(
+              'id',
+              widget.taskId,
+            ),
+          );
+          _model.statusOutput = 'Up to date';
+          setState(() {});
         }
       }
     });
@@ -163,7 +188,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         _model.statusOutput,
                                         'No status shown',
                                       )
-                                    : 'Cannot check sync status.',
+                                    : 'Offline, unable to check',
                                 style: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
@@ -267,9 +292,66 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 12.0),
                                             child: Text(
+                                              valueOrDefault<String>(
+                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                    .first.taskIsDirty,
+                                                '-',
+                                              ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyLargeFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLargeFamily),
+                                                      ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 12.0),
+                                            child: Text(
+                                              valueOrDefault<String>(
+                                                _model
+                                                    .onlineTask?.first.isDirty
+                                                    ?.toString(),
+                                                '-',
+                                              ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyLargeFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLargeFamily),
+                                                      ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 12.0),
+                                            child: Text(
                                               FFLocalizations.of(context)
                                                   .getText(
-                                                'eytqt296' /* Form Details */,
+                                                '7l5eyyx5' /* Form Details */,
                                               ),
                                               style:
                                                   FlutterFlowTheme.of(context)
