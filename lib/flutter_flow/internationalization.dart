@@ -261,7 +261,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    '51pq4n2e': {
+    '72mpnvi3': {
       'en': '',
       'tl': '',
     },
@@ -273,7 +273,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    '8y4dawwv': {
+    'keipv9sf': {
       'en': '',
       'tl': '',
     },
@@ -285,7 +285,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    '8b0otoex': {
+    '6n3b107w': {
       'en': '',
       'tl': '',
     },
@@ -1023,6 +1023,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // ppirForm
   {
+    '6l645u7j': {
+      'en': 'Sync',
+      'tl': '',
+    },
     'oco9wa86': {
       'en': 'Geotag',
       'tl': '',

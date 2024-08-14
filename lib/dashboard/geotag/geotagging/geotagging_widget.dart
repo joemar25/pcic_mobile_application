@@ -1,3 +1,4 @@
+import '/backend/sqlite/sqlite_manager.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -531,15 +532,29 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                     _model.isGeotagStart = false;
                     _model.isFinished = true;
                     setState(() {});
-                    await TasksTable().update(
-                      data: {
-                        'status': 'ongoing',
-                      },
-                      matchingRows: (rows) => rows.eq(
-                        'id',
-                        widget.taskId,
-                      ),
-                    );
+                    if (FFAppState().ONLINE) {
+                      await TasksTable().update(
+                        data: {
+                          'status': 'ongoing',
+                        },
+                        matchingRows: (rows) => rows.eq(
+                          'id',
+                          widget.taskId,
+                        ),
+                      );
+                      await SQLiteManager.instance.updateTaskStatus(
+                        taskId: widget.taskId,
+                        status: 'ongoing',
+                        isDirty: false,
+                      );
+                    } else {
+                      await SQLiteManager.instance.updateTaskStatus(
+                        taskId: widget.taskId,
+                        status: 'ongoing',
+                        isDirty: true,
+                      );
+                    }
+
                     await Future.delayed(const Duration(milliseconds: 5000));
 
                     context.pushNamed(
