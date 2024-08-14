@@ -534,12 +534,20 @@ class SQLiteManager {
   Future updateTaskStatus({
     String? taskId,
     String? status,
-    bool? isDirty,
   }) =>
       performUpdateTaskStatus(
         _database,
         taskId: taskId,
         status: status,
+      );
+
+  Future updatePPIRFormValidity({
+    String? taskId,
+    bool? isDirty,
+  }) =>
+      performUpdatePPIRFormValidity(
+        _database,
+        taskId: taskId,
         isDirty: isDirty,
       );
 

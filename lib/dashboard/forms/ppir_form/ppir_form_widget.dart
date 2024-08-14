@@ -177,67 +177,10 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                 FlutterFlowTheme.of(context).titleSmallFamily),
                           ),
                     ),
-                    Container(
-                      decoration: const BoxDecoration(),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text(
-                                FFAppState().ONLINE
-                                    ? valueOrDefault<String>(
-                                        _model.statusOutput,
-                                        'No status shown',
-                                      )
-                                    : 'Cannot check sync status.',
-                                style: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .titleSmallFamily,
-                                      fontSize: 12.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w200,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmallFamily),
-                                    ),
-                              ),
-                              Text(
-                                valueOrDefault<String>(
-                                  ppirFormSelectPpirFormsRowList.first.updatedAt
-                                      ?.toString(),
-                                  '-',
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .titleSmallFamily,
-                                      color:
-                                          FlutterFlowTheme.of(context).accent4,
-                                      fontSize: 12.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w200,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmallFamily),
-                                    ),
-                              ),
-                            ],
-                          ),
-                          wrapWithModel(
-                            model: _model.connectivityModel,
-                            updateCallback: () => setState(() {}),
-                            child: const ConnectivityWidget(),
-                          ),
-                        ].divide(const SizedBox(width: 5.0)),
-                      ),
+                    wrapWithModel(
+                      model: _model.connectivityModel,
+                      updateCallback: () => setState(() {}),
+                      child: const ConnectivityWidget(),
                     ),
                   ],
                 ),
@@ -3685,7 +3628,6 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
 
                                 await SQLiteManager.instance.updateTaskStatus(
                                   taskId: widget.taskId,
-                                  isDirty: true,
                                   status: 'ongoing',
                                 );
 
@@ -3864,7 +3806,6 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                         await SQLiteManager.instance
                                             .updateTaskStatus(
                                           taskId: widget.taskId,
-                                          isDirty: true,
                                           status: 'completed',
                                         );
 

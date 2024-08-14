@@ -545,13 +545,11 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                       await SQLiteManager.instance.updateTaskStatus(
                         taskId: widget.taskId,
                         status: 'ongoing',
-                        isDirty: false,
                       );
                     } else {
                       await SQLiteManager.instance.updateTaskStatus(
                         taskId: widget.taskId,
                         status: 'ongoing',
-                        isDirty: true,
                       );
                     }
 

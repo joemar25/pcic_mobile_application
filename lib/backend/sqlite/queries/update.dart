@@ -470,16 +470,29 @@ Future performUpdateTaskStatus(
   Database database, {
   String? taskId,
   String? status,
-  bool? isDirty,
 }) {
   final query = '''
 UPDATE tasks
-SET 
-  status = '$status',
-  is_dirty = $isDirty
+SET status = '$status'
 WHERE id = '$taskId';
 ''';
   return database.rawQuery(query);
 }
 
 /// END UPDATE TASK STATUS
+
+/// BEGIN UPDATE PPIR FORM VALIDITY
+Future performUpdatePPIRFormValidity(
+  Database database, {
+  String? taskId,
+  bool? isDirty,
+}) {
+  final query = '''
+UPDATE ppir_forms
+SET is_dirty = $isDirty
+WHERE task_id = '$taskId';
+''';
+  return database.rawQuery(query);
+}
+
+/// END UPDATE PPIR FORM VALIDITY

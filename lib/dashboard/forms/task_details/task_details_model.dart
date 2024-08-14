@@ -11,16 +11,14 @@ class TaskDetailsModel extends FlutterFlowModel<TaskDetailsWidget> {
 
   bool? isReFTPClicked = false;
 
-  bool checkingUpdate = true;
-
   String statusOutput = 'Up to date';
 
   ///  State fields for stateful widgets in this page.
 
-  // Stores action output result for [Backend Call - Query Rows] action in taskDetails widget.
-  List<TasksRow>? onlineTask;
-  // Stores action output result for [Backend Call - SQLite (SELECT TASKS and PPIR by Assignee)] action in taskDetails widget.
-  List<SELECTTASKSAndPPIRByAssigneeRow>? offlineTask;
+  // Stores action output result for [Backend Call - SQLite (SELECT PPIR FORMS)] action in taskDetails widget.
+  List<SelectPpirFormsRow>? offlinePPIR;
+  // Stores action output result for [Backend Call - Update Row(s)] action in Text widget.
+  List<PpirFormsRow>? savePPIR;
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
   // Stores action output result for [Custom Action - saveToFTP] action in reFTP widget.

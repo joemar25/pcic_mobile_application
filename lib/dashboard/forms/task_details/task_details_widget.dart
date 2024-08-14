@@ -47,47 +47,40 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.offlinePPIR = await SQLiteManager.instance.selectPpirForms(
+        taskId: widget.taskId,
+      );
       if (FFAppState().ONLINE) {
-        _model.onlineTask = await TasksTable().queryRows(
-          queryFn: (q) => q.eq(
-            'id',
+        _model.statusOutput = 'Syncing...';
+        setState(() {});
+        await PpirFormsTable().update(
+          data: {
+            'ppir_svp_act': _model.offlinePPIR?.first.ppirSvpAct,
+            'ppir_dopds_act': _model.offlinePPIR?.first.ppirDopdsAct,
+            'ppir_doptp_act': _model.offlinePPIR?.first.ppirDoptpAct,
+            'ppir_remarks': _model.offlinePPIR?.first.ppirRemarks,
+            'ppir_name_insured': _model.offlinePPIR?.first.ppirNameInsured,
+            'ppir_name_iuia': _model.offlinePPIR?.first.ppirNameIuia,
+            'ppir_farmloc': _model.offlinePPIR?.first.ppirFarmloc,
+            'ppir_area_act': _model.offlinePPIR?.first.ppirAreaAct,
+            'ppir_variety': _model.offlinePPIR?.first.ppirVariety,
+            'sync_status': 'synced',
+            'is_dirty': false,
+          },
+          matchingRows: (rows) => rows.eq(
+            'task_id',
             widget.taskId,
           ),
         );
-        _model.offlineTask =
-            await SQLiteManager.instance.sELECTTASKSAndPPIRByAssignee(
+        await SQLiteManager.instance.updatePPIRFormValidity(
           taskId: widget.taskId,
-          assignee: currentUserUid,
+          isDirty: false,
         );
-        if (_model.offlineTask?.first.taskIsDirty == '1') {
-          _model.statusOutput = 'Not Sync';
-          setState(() {});
-          await PpirFormsTable().update(
-            data: {
-              'ppir_att_1': 'xxxxxxxxxxxxxxxxxxxxxxxxxx',
-            },
-            matchingRows: (rows) => rows.eq(
-              'task_id',
-              widget.taskId,
-            ),
-          );
-          await SQLiteManager.instance.updateTaskStatus(
-            taskId: widget.taskId,
-            status: widget.taskStatus,
-            isDirty: false,
-          );
-          await TasksTable().update(
-            data: {
-              'is_dirty': false,
-            },
-            matchingRows: (rows) => rows.eq(
-              'id',
-              widget.taskId,
-            ),
-          );
-          _model.statusOutput = 'Up to date';
-          setState(() {});
-        }
+        _model.statusOutput = 'Up to date';
+        setState(() {});
+      } else {
+        _model.statusOutput = 'Already Synced';
+        setState(() {});
       }
     });
   }
@@ -178,17 +171,68 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text(
-                                FFAppState().ONLINE
-                                    ? valueOrDefault<String>(
-                                        _model.statusOutput,
-                                        'No status shown',
-                                      )
-                                    : 'Offline, unable to check',
+                          if (FFAppState().ONLINE)
+                            InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                if (taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                        .first.ppirIsDirty ==
+                                    '1') {
+                                  _model.statusOutput = 'Syncing...';
+                                  setState(() {});
+                                  await PpirFormsTable().update(
+                                    data: {
+                                      'ppir_svp_act':
+                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                              .first.ppirSvpAct,
+                                      'ppir_dopds_act':
+                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                              .first.ppirDopdsAct,
+                                      'ppir_doptp_act':
+                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                              .first.ppirDoptpAci,
+                                      'ppir_remarks':
+                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                              .first.ppirRemarks,
+                                      'ppir_name_insured':
+                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                              .first.ppirNameInsured,
+                                      'ppir_name_iuia':
+                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                              .first.ppirNameIuia,
+                                      'ppir_farmloc':
+                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                              .first.ppirFarmloc,
+                                      'ppir_area_act':
+                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                              .first.ppirAreaAct,
+                                      'ppir_variety':
+                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                              .first.ppirVariety,
+                                      'sync_status': 'synced',
+                                      'is_dirty': false,
+                                    },
+                                    matchingRows: (rows) => rows.eq(
+                                      'task_id',
+                                      widget.taskId,
+                                    ),
+                                  );
+                                  await SQLiteManager.instance
+                                      .updatePPIRFormValidity(
+                                    taskId: widget.taskId,
+                                    isDirty: false,
+                                  );
+                                  _model.statusOutput = 'Up to date';
+                                  setState(() {});
+                                }
+
+                                setState(() {});
+                              },
+                              child: Text(
+                                '[ ${taskDetailsSELECTTASKSAndPPIRByAssigneeRowList.first.ppirIsDirty == '1' ? 'Outdated. Tap to sync' : _model.statusOutput} ]',
                                 style: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
@@ -203,30 +247,25 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   .titleSmallFamily),
                                     ),
                               ),
-                              Text(
-                                valueOrDefault<String>(
-                                  taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                      .first.ppirUpdatedAt,
-                                  '-',
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .titleSmallFamily,
-                                      color:
-                                          FlutterFlowTheme.of(context).accent4,
-                                      fontSize: 12.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w200,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmallFamily),
-                                    ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          if (!FFAppState().ONLINE)
+                            Text(
+                              '[ No internet for sync ]',
+                              style: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .titleSmallFamily,
+                                    color: FlutterFlowTheme.of(context).error,
+                                    fontSize: 12.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w200,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .titleSmallFamily),
+                                  ),
+                            ),
                           wrapWithModel(
                             model: _model.connectivityModel,
                             updateCallback: () => setState(() {}),
@@ -287,63 +326,6 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 12.0),
-                                            child: Text(
-                                              valueOrDefault<String>(
-                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                    .first.taskIsDirty,
-                                                '-',
-                                              ),
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyLargeFamily,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyLargeFamily),
-                                                      ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 12.0),
-                                            child: Text(
-                                              valueOrDefault<String>(
-                                                _model
-                                                    .onlineTask?.first.isDirty
-                                                    ?.toString(),
-                                                '-',
-                                              ),
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyLargeFamily,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyLargeFamily),
-                                                      ),
-                                            ),
-                                          ),
                                           Padding(
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(

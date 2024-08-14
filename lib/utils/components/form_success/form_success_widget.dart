@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'form_success_model.dart';
@@ -693,8 +694,8 @@ class _FormSuccessWidgetState extends State<FormSuccessWidget>
                                               child: ClipRRect(
                                                 borderRadius:
                                                     BorderRadius.circular(40.0),
-                                                child: Image.network(
-                                                  'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/p-c-i-c-mobile-app-kgs3ra/assets/y6bax6zmso0x/pcic_logo.png',
+                                                child: SvgPicture.asset(
+                                                  'assets/images/PCIC-Logo.svg',
                                                   width: 60.0,
                                                   height: 60.0,
                                                   fit: BoxFit.cover,
