@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'package:supabase_flutter/supabase_flutter.dart';
+
 Future<void> updateInspectorName(String newName) async {
   final supabase = Supabase.instance.client;
 
@@ -24,27 +26,13 @@ Future<void> updateInspectorName(String newName) async {
     // Update the inspector_name in the users table
     final response = await supabase
         .from('users')
-        .update({'inspector_name': newName})
-        .eq('id', user.id)
-        .execute();
-
-    if (response.error != null) {
-      throw response.error!;
-    }
+        .update({'inspector_name': newName}).eq('id', user.id);
 
     // Fetch the updated user data to confirm the change
-    final updatedUser = await supabase
-        .from('users')
-        .select()
-        .eq('id', user.id)
-        .single()
-        .execute();
+    final updatedUser =
+        await supabase.from('users').select().eq('id', user.id).single();
 
-    if (updatedUser.error != null) {
-      throw updatedUser.error!;
-    }
-
-    print('Updated user data: ${updatedUser.data}');
+    print('Updated user data: $updatedUser');
     print('Inspector name updated successfully');
   } catch (error) {
     print('Error updating inspector name: $error');
