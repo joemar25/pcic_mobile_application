@@ -9,7 +9,6 @@ export '/dashboard/profile/edit_profile/edit_profile_widget.dart'
 export '/dashboard/messages/messages/messages_widget.dart' show MessagesWidget;
 export '/dashboard/forms/task_details/task_details_widget.dart'
     show TaskDetailsWidget;
-export '/dashboard/forms/ppir/ppir_widget.dart' show PpirWidget;
 export '/utils/components/form_success/form_success_widget.dart'
     show FormSuccessWidget;
 export '/utils/components/fail/fail_widget.dart' show FailWidget;
@@ -20,25 +19,20 @@ export '/auth/forgot_password/forgot_password_widget.dart'
     show ForgotPasswordWidget;
 export '/dashboard/geotag/geotagging/geotagging_widget.dart'
     show GeotaggingWidget;
-export '/utils/test/map_test/map_test_widget.dart' show MapTestWidget;
-export '/dashboard/offlinemap/pcic_map/pcic_map_widget.dart' show PcicMapWidget;
+export '/utils/map_test/map_test_widget.dart' show MapTestWidget;
+export '/dashboard/geotag/pcic_map/pcic_map_widget.dart' show PcicMapWidget;
 export '/utils/test/offline_db_test/offline_db_test_widget.dart'
     show OfflineDbTestWidget;
 export '/utils/test/offline_tasks_and_ppir_list/offline_tasks_and_ppir_list_widget.dart'
     show OfflineTasksAndPpirListWidget;
-export '/dashboard/task_details_copyx/task_details_copyx_widget.dart'
-    show TaskDetailsCopyxWidget;
 export '/auth/onboarding01/onboarding01_widget.dart' show Onboarding01Widget;
 export '/utils/sync_data/sync_data_widget.dart' show SyncDataWidget;
-export '/dashboard/forms/task_details_copyxx/task_details_copyxx_widget.dart'
-    show TaskDetailsCopyxxWidget;
-export '/auth/login_original_copy/login_original_copy_widget.dart'
-    show LoginOriginalCopyWidget;
 export '/auth/onboarding01_original_copy/onboarding01_original_copy_widget.dart'
     show Onboarding01OriginalCopyWidget;
-export '/dashboard/messages/chats_copy/chats_copy_widget.dart'
-    show ChatsCopyWidget;
 export '/utils/sync_king_copy/sync_king_copy_widget.dart'
     show SyncKingCopyWidget;
 export '/utils/sync_king_copy_copy/sync_king_copy_copy_widget.dart'
     show SyncKingCopyCopyWidget;
+export '/dashboard/forms/ppir_original/ppir_original_widget.dart'
+    show PpirOriginalWidget;
+export '/dashboard/forms/ppir_form/ppir_form_widget.dart' show PpirFormWidget;

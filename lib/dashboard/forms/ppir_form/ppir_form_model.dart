@@ -1,22 +1,15 @@
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
-import 'ppir_widget.dart' show PpirWidget;
+import '/utils/components/connectivity/connectivity_widget.dart';
+import 'ppir_form_widget.dart' show PpirFormWidget;
 import 'package:flutter/material.dart';
 
-class PpirModel extends FlutterFlowModel<PpirWidget> {
-  ///  Local state fields for this page.
-
-  bool isRice = true;
-
-  String? riceSelectedValue;
-
-  String? cornSelectedValue;
-
+class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
   ///  State fields for stateful widgets in this page.
 
-  // Stores action output result for [Backend Call - Query Rows] action in ppir widget.
-  List<PpirFormsRow>? ppirData;
+  // Model for connectivity component.
+  late ConnectivityModel connectivityModel;
   // Stores action output result for [Custom Action - getGpxLink] action in repeatGeotagButtonT widget.
   String? gpxLink;
   // State field(s) for ppir_track_coordinates widget.
@@ -46,12 +39,12 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
       ppirTrackFarmlocTextControllerValidator;
   // State field(s) for ppir_svp_act_selection widget.
   FormFieldController<String>? ppirSvpActSelectionValueController;
-  // State field(s) for ppir_seed_var_rice_dropdown widget.
-  String? ppirSeedVarRiceDropdownValue;
-  FormFieldController<String>? ppirSeedVarRiceDropdownValueController;
-  // State field(s) for ppir_seed_var_corn_dropdown widget.
-  String? ppirSeedVarCornDropdownValue;
-  FormFieldController<String>? ppirSeedVarCornDropdownValueController;
+  // State field(s) for riceDropdown widget.
+  String? riceDropdownValue;
+  FormFieldController<String>? riceDropdownValueController;
+  // State field(s) for cornDropdown widget.
+  String? cornDropdownValue;
+  FormFieldController<String>? cornDropdownValueController;
   // State field(s) for ppir_area_act_field widget.
   FocusNode? ppirAreaActFieldFocusNode;
   TextEditingController? ppirAreaActFieldTextController;
@@ -87,23 +80,20 @@ class PpirModel extends FlutterFlowModel<PpirWidget> {
   // Stores action output result for [Backend Call - Update Row(s)] action in saveButton widget.
   List<PpirFormsRow>? savePPIR;
   // Stores action output result for [Backend Call - Update Row(s)] action in saveButton widget.
-  List<PpirFormsRow>? saveRiceVariety;
-  // Stores action output result for [Backend Call - Update Row(s)] action in saveButton widget.
-  List<PpirFormsRow>? saveCornVariety;
-  // Stores action output result for [Backend Call - Update Row(s)] action in saveButton widget.
   List<TasksRow>? updatedStatus;
   // Stores action output result for [Backend Call - Update Row(s)] action in submitButton widget.
-  List<PpirFormsRow>? updatedPPIR;
+  List<PpirFormsRow>? savePPIRCopy;
   // Stores action output result for [Backend Call - Update Row(s)] action in submitButton widget.
-  List<PpirFormsRow>? riceVariety;
-  // Stores action output result for [Backend Call - Update Row(s)] action in submitButton widget.
-  List<PpirFormsRow>? cornVariety;
+  List<TasksRow>? updatedStatusCopy;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    connectivityModel = createModel(context, () => ConnectivityModel());
+  }
 
   @override
   void dispose() {
+    connectivityModel.dispose();
     ppirTrackCoordinatesFocusNode?.dispose();
     ppirTrackCoordinatesTextController?.dispose();
 

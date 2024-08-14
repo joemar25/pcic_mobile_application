@@ -60,18 +60,6 @@ class _DashboardWidgetState extends State<DashboardWidget>
       initialIndex: 1,
     )..addListener(() => setState(() {}));
     animationsMap.addAll({
-      'containerOnPageLoadAnimation1': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: const Offset(0.0, 100.0),
-            end: const Offset(0.0, 0.0),
-          ),
-        ],
-      ),
       'circleImageOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
@@ -85,7 +73,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
           ),
         ],
       ),
-      'containerOnPageLoadAnimation2': AnimationInfo(
+      'containerOnPageLoadAnimation1': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
           MoveEffect(
@@ -97,7 +85,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
           ),
         ],
       ),
-      'containerOnPageLoadAnimation4': AnimationInfo(
+      'containerOnPageLoadAnimation3': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
           MoveEffect(
@@ -158,9 +146,9 @@ class _DashboardWidgetState extends State<DashboardWidget>
                     children: [
                       Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(
-                            20.0, 20.0, 20.0, 0.0),
+                            20.0, 0.0, 20.0, 0.0),
                         child: Column(
-                          mainAxisSize: MainAxisSize.max,
+                          mainAxisSize: MainAxisSize.min,
                           children: [
                             Row(
                               mainAxisSize: MainAxisSize.max,
@@ -864,7 +852,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                 ),
                                               ),
                                             ).animateOnPageLoad(animationsMap[
-                                                'containerOnPageLoadAnimation2']!),
+                                                'containerOnPageLoadAnimation1']!),
                                           ),
                                           Expanded(
                                             child: Material(
@@ -1123,7 +1111,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                 ),
                                               ),
                                             ).animateOnPageLoad(animationsMap[
-                                                'containerOnPageLoadAnimation4']!),
+                                                'containerOnPageLoadAnimation3']!),
                                           ),
                                         ].divide(SizedBox(
                                             width: valueOrDefault<double>(
@@ -1150,9 +1138,6 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                 labelColor:
                                                     FlutterFlowTheme.of(context)
                                                         .primary,
-                                                unselectedLabelColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
                                                 labelStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
@@ -1161,6 +1146,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                               FlutterFlowTheme.of(
                                                                       context)
                                                                   .bodyMediumFamily,
+                                                          fontSize: 12.0,
                                                           letterSpacing: 0.0,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
@@ -1518,8 +1504,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                 ],
                               ),
                             ),
-                          ).animateOnPageLoad(
-                              animationsMap['containerOnPageLoadAnimation1']!),
+                          ),
                         ),
                       ),
                     ],

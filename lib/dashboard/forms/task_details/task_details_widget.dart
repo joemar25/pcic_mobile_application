@@ -371,6 +371,30 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           Padding(
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 12.0),
+                                            child: Text(
+                                              'isDirty${taskDetailsSELECTTASKSAndPPIRByAssigneeRowList.first.ppirIsDirty}',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyLargeFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLargeFamily),
+                                                      ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -2612,37 +2636,85 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               .spaceBetween,
                                                       children: [
                                                         Expanded(
-                                                          child: Align(
-                                                            alignment:
-                                                                const AlignmentDirectional(
-                                                                    0.0, 0.0),
-                                                            child: SizedBox(
-                                                              width: MediaQuery
-                                                                          .sizeOf(
+                                                          child: Stack(
+                                                            children: [
+                                                              if (FFAppState()
+                                                                  .ONLINE)
+                                                                Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      SizedBox(
+                                                                    width: MediaQuery.sizeOf(context)
+                                                                            .width *
+                                                                        0.8,
+                                                                    height:
+                                                                        MediaQuery.sizeOf(context).height *
+                                                                            0.2,
+                                                                    child: custom_widgets
+                                                                        .Signaturebase64(
+                                                                      width: MediaQuery.sizeOf(context)
+                                                                              .width *
+                                                                          0.8,
+                                                                      height:
+                                                                          MediaQuery.sizeOf(context).height *
+                                                                              0.2,
+                                                                      taskId: widget
+                                                                          .taskId,
+                                                                      signatureFor:
+                                                                          'insured',
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              if (!FFAppState()
+                                                                  .ONLINE)
+                                                                Container(
+                                                                  width: MediaQuery.sizeOf(
                                                                               context)
-                                                                      .width *
-                                                                  0.8,
-                                                              height: MediaQuery
-                                                                          .sizeOf(
+                                                                          .width *
+                                                                      1.0,
+                                                                  height: MediaQuery.sizeOf(
                                                                               context)
-                                                                      .height *
-                                                                  0.2,
-                                                              child: custom_widgets
-                                                                  .Signaturebase64(
-                                                                width: MediaQuery.sizeOf(
+                                                                          .height *
+                                                                      0.2,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .width *
-                                                                    0.8,
-                                                                height: MediaQuery.sizeOf(
-                                                                            context)
-                                                                        .height *
-                                                                    0.2,
-                                                                taskId: widget
-                                                                    .taskId,
-                                                                signatureFor:
-                                                                    'insured',
-                                                              ),
-                                                            ),
+                                                                        .secondaryBackground,
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            0.0),
+                                                                  ),
+                                                                  child: Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .center,
+                                                                    children: [
+                                                                      Text(
+                                                                        FFLocalizations.of(context)
+                                                                            .getText(
+                                                                          'ldu99qtk' /* Cannot view GPX because you ar... */,
+                                                                        ),
+                                                                        textAlign:
+                                                                            TextAlign.center,
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                              letterSpacing: 0.0,
+                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                            ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                            ],
                                                           ),
                                                         ),
                                                       ],
@@ -2725,37 +2797,85 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               .spaceBetween,
                                                       children: [
                                                         Expanded(
-                                                          child: Align(
-                                                            alignment:
-                                                                const AlignmentDirectional(
-                                                                    0.0, 0.0),
-                                                            child: SizedBox(
-                                                              width: MediaQuery
-                                                                          .sizeOf(
+                                                          child: Stack(
+                                                            children: [
+                                                              if (FFAppState()
+                                                                  .ONLINE)
+                                                                Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      SizedBox(
+                                                                    width: MediaQuery.sizeOf(context)
+                                                                            .width *
+                                                                        0.8,
+                                                                    height:
+                                                                        MediaQuery.sizeOf(context).height *
+                                                                            0.2,
+                                                                    child: custom_widgets
+                                                                        .Signaturebase64(
+                                                                      width: MediaQuery.sizeOf(context)
+                                                                              .width *
+                                                                          0.8,
+                                                                      height:
+                                                                          MediaQuery.sizeOf(context).height *
+                                                                              0.2,
+                                                                      taskId: widget
+                                                                          .taskId,
+                                                                      signatureFor:
+                                                                          'iuia',
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              if (!FFAppState()
+                                                                  .ONLINE)
+                                                                Container(
+                                                                  width: MediaQuery.sizeOf(
                                                                               context)
-                                                                      .width *
-                                                                  0.8,
-                                                              height: MediaQuery
-                                                                          .sizeOf(
+                                                                          .width *
+                                                                      1.0,
+                                                                  height: MediaQuery.sizeOf(
                                                                               context)
-                                                                      .height *
-                                                                  0.2,
-                                                              child: custom_widgets
-                                                                  .Signaturebase64(
-                                                                width: MediaQuery.sizeOf(
+                                                                          .height *
+                                                                      0.2,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .width *
-                                                                    0.8,
-                                                                height: MediaQuery.sizeOf(
-                                                                            context)
-                                                                        .height *
-                                                                    0.2,
-                                                                taskId: widget
-                                                                    .taskId,
-                                                                signatureFor:
-                                                                    'iuia',
-                                                              ),
-                                                            ),
+                                                                        .secondaryBackground,
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            0.0),
+                                                                  ),
+                                                                  child: Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .center,
+                                                                    children: [
+                                                                      Text(
+                                                                        FFLocalizations.of(context)
+                                                                            .getText(
+                                                                          '43s11dio' /* Cannot view signature because ... */,
+                                                                        ),
+                                                                        textAlign:
+                                                                            TextAlign.center,
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                              letterSpacing: 0.0,
+                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                            ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                            ],
                                                           ),
                                                         ),
                                                       ],
@@ -2816,37 +2936,106 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Container(
                                                     decoration: const BoxDecoration(),
-                                                    child: SizedBox(
-                                                      width: MediaQuery.sizeOf(
-                                                                  context)
-                                                              .width *
-                                                          1.0,
-                                                      height: MediaQuery.sizeOf(
-                                                                  context)
-                                                              .height *
-                                                          0.2,
-                                                      child: custom_widgets
-                                                          .MapBase64(
-                                                        width:
-                                                            MediaQuery.sizeOf(
-                                                                        context)
+                                                    child: Stack(
+                                                      children: [
+                                                        if (FFAppState().ONLINE)
+                                                          SizedBox(
+                                                            width: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
                                                                     .width *
                                                                 1.0,
-                                                        height:
-                                                            MediaQuery.sizeOf(
-                                                                        context)
+                                                            height: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
                                                                     .height *
                                                                 0.2,
-                                                        blob: valueOrDefault<
-                                                            String>(
-                                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                              .first.gpx,
-                                                          'Address',
-                                                        ),
-                                                        accessToken:
-                                                            FFAppState()
-                                                                .accessToken,
-                                                      ),
+                                                            child:
+                                                                custom_widgets
+                                                                    .MapBase64(
+                                                              width: MediaQuery
+                                                                          .sizeOf(
+                                                                              context)
+                                                                      .width *
+                                                                  1.0,
+                                                              height: MediaQuery
+                                                                          .sizeOf(
+                                                                              context)
+                                                                      .height *
+                                                                  0.2,
+                                                              blob: valueOrDefault<
+                                                                          String>(
+                                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                            .first
+                                                                            .gpx,
+                                                                        'null',
+                                                                      ) ==
+                                                                      'null'
+                                                                  ? 'PD94bWwgdmVyc2lvbj0iMS4wIj8+DQo8Z3B4IHZlcnNpb249IjEuMCIgeG1sbnM9Imh0dHA6Ly93d3cudG9wb2dyYWZpeC5jb20vR1BYLzEvMCI+DQogIDx0cms+DQogICAgPHRya3NlZz4NCiAgICAgIDx0cmtwdCBsYXQ9IjU1Ljc1MzU3MiIgbG9uPSIzNy44MDgyNTAiPg0KICAgICAgICA8ZWxlPjEzNS4wMDwvZWxlPg0KICAgICAgICA8dGltZT4yMDA5LTA1LTE5VDA0OjAwOjMwWjwvdGltZT4NCiAgICAgIDwvdHJrcHQ+DQogICAgICA8dHJrcHQgbGF0PSI1NS43NTM2MjIiIGxvbj0iMzcuODA4MjU1Ij4NCiAgICAgICAgPGVsZT4xMzUuMDA8L2VsZT4NCiAgICAgICAgPHRpbWU+MjAwOS0wNS0xOVQwNDowMDozMVo8L3RpbWU+DQogICAgICA8L3Rya3B0Pg0KICAgICAgPHRya3B0IGxhdD0iNTUuNzUzNTkzIiBsb249IjM3LjgwODE1OCI+DQogICAgICAgIDxlbGU+MTM1LjAwPC9lbGU+DQogICAgICAgIDx0aW1lPjIwMDktMDUtMTlUMDQ6MDA6MzJaPC90aW1lPg0KICAgICAgPC90cmtwdD4NCiAgICAgIDx0cmtwdCBsYXQ9IjU1Ljc1ODE3NyIgbG9uPSIzNy42Nzc4MDIiPg0KICAgICAgICA8ZWxlPjE1Mi4wMDwvZWxlPg0KICAgICAgICA8dGltZT4yMDA5LTA1LTE5VDA0OjQ2OjI3WjwvdGltZT4NCiAgICAgIDwvdHJrcHQ+DQogICAgPC90cmtzZWc+DQogIDwvdHJrPg0KPC9ncHg+'
+                                                                  : taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                      .first
+                                                                      .gpx,
+                                                              accessToken:
+                                                                  FFAppState()
+                                                                      .accessToken,
+                                                            ),
+                                                          ),
+                                                        if (!FFAppState()
+                                                            .ONLINE)
+                                                          Container(
+                                                            width: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
+                                                                    .width *
+                                                                1.0,
+                                                            height: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
+                                                                    .height *
+                                                                0.2,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryBackground,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          0.0),
+                                                            ),
+                                                            child: Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                Text(
+                                                                  FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                    '1ndvql8q' /* Cannot view GPX because you ar... */,
+                                                                  ),
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                      ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                      ],
                                                     ),
                                                   ),
                                                   Padding(
@@ -2884,262 +3073,289 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    if ((valueOrDefault<String>(
-                                                  taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                      .first.gpx,
-                                                  'Value',
-                                                ) ==
-                                                '') &&
-                                        (valueOrDefault<String>(
-                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                  .first.status,
-                                              'Value',
-                                            ) !=
-                                            'complete'))
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 8.0, 16.0, 8.0),
-                                        child: FFButtonWidget(
-                                          onPressed: () async {
-                                            await AttemptsTable().insert({
-                                              'task_id': widget.taskId,
-                                            });
+                                if (valueOrDefault<String>(
+                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                          .first.status,
+                                      'Value',
+                                    ) !=
+                                    'completed')
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      if ((valueOrDefault<String>(
+                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                    .first.gpx,
+                                                'null',
+                                              ) ==
+                                              'null') &&
+                                          (valueOrDefault<String>(
+                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                    .first.status,
+                                                'Value',
+                                              ) !=
+                                              'complete'))
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  16.0, 8.0, 16.0, 8.0),
+                                          child: FFButtonWidget(
+                                            onPressed: () async {
+                                              await AttemptsTable().insert({
+                                                'task_id': widget.taskId,
+                                              });
 
-                                            context.pushNamed(
-                                              'geotagging',
-                                              queryParameters: {
-                                                'taskId': serializeParam(
-                                                  widget.taskId,
-                                                  ParamType.String,
-                                                ),
-                                                'taskType': serializeParam(
-                                                  taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                      .first.taskType,
-                                                  ParamType.String,
-                                                ),
-                                                'taskStatus': serializeParam(
-                                                  widget.taskStatus,
-                                                  ParamType.String,
-                                                ),
-                                              }.withoutNulls,
-                                              extra: <String, dynamic>{
-                                                kTransitionInfoKey:
-                                                    const TransitionInfo(
-                                                  hasTransition: true,
-                                                  transitionType:
-                                                      PageTransitionType.scale,
-                                                  alignment:
-                                                      Alignment.bottomCenter,
-                                                  duration: Duration(
-                                                      milliseconds: 200),
-                                                ),
-                                              },
-                                            );
-                                          },
-                                          text: FFLocalizations.of(context)
-                                              .getText(
-                                            '65kky15n' /* Geotag */,
-                                          ),
-                                          icon: const Icon(
-                                            Icons.map_outlined,
-                                            size: 15.0,
-                                          ),
-                                          options: FFButtonOptions(
-                                            height: 40.0,
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    24.0, 0.0, 24.0, 0.0),
-                                            iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmall
-                                                    .override(
-                                                      fontFamily:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmallFamily,
-                                                      color: Colors.white,
-                                                      letterSpacing: 0.0,
-                                                      useGoogleFonts: GoogleFonts
-                                                              .asMap()
-                                                          .containsKey(
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmallFamily),
-                                                    ),
-                                            elevation: 3.0,
-                                            borderSide: const BorderSide(
-                                              color: Colors.transparent,
-                                              width: 1.0,
+                                              context.pushNamed(
+                                                'geotagging',
+                                                queryParameters: {
+                                                  'taskId': serializeParam(
+                                                    widget.taskId,
+                                                    ParamType.String,
+                                                  ),
+                                                  'taskType': serializeParam(
+                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                        .first.taskType,
+                                                    ParamType.String,
+                                                  ),
+                                                  'taskStatus': serializeParam(
+                                                    widget.taskStatus,
+                                                    ParamType.String,
+                                                  ),
+                                                  'assignmentId':
+                                                      serializeParam(
+                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                        .first.ppirAssignmentid,
+                                                    ParamType.String,
+                                                  ),
+                                                }.withoutNulls,
+                                                extra: <String, dynamic>{
+                                                  kTransitionInfoKey:
+                                                      const TransitionInfo(
+                                                    hasTransition: true,
+                                                    transitionType:
+                                                        PageTransitionType
+                                                            .scale,
+                                                    alignment:
+                                                        Alignment.bottomCenter,
+                                                    duration: Duration(
+                                                        milliseconds: 200),
+                                                  ),
+                                                },
+                                              );
+                                            },
+                                            text: FFLocalizations.of(context)
+                                                .getText(
+                                              '65kky15n' /* Geotag */,
                                             ),
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
+                                            icon: const Icon(
+                                              Icons.map_outlined,
+                                              size: 15.0,
+                                            ),
+                                            options: FFButtonOptions(
+                                              height: 40.0,
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      24.0, 0.0, 24.0, 0.0),
+                                              iconPadding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmallFamily,
+                                                        color: Colors.white,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmallFamily),
+                                                      ),
+                                              elevation: 3.0,
+                                              borderSide: const BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    if ((valueOrDefault<String>(
-                                                  taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                      .first.gpx,
-                                                  'Value',
-                                                ) !=
-                                                '') &&
-                                        (valueOrDefault<String>(
-                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                  .first.status,
-                                              'Value',
-                                            ) ==
-                                            'ongoing'))
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 8.0, 16.0, 8.0),
-                                        child: FFButtonWidget(
-                                          onPressed: () async {
-                                            context.pushNamed(
-                                              'ppir',
-                                              queryParameters: {
-                                                'taskId': serializeParam(
-                                                  widget.taskId,
-                                                  ParamType.String,
-                                                ),
-                                              }.withoutNulls,
-                                              extra: <String, dynamic>{
-                                                kTransitionInfoKey:
-                                                    const TransitionInfo(
-                                                  hasTransition: true,
-                                                  transitionType:
-                                                      PageTransitionType.scale,
-                                                  alignment:
-                                                      Alignment.bottomCenter,
-                                                  duration: Duration(
-                                                      milliseconds: 200),
-                                                ),
-                                              },
-                                            );
-                                          },
-                                          text: FFLocalizations.of(context)
-                                              .getText(
-                                            '7qj8fid9' /* Continue Form */,
-                                          ),
-                                          icon: const FaIcon(
-                                            FontAwesomeIcons.fileAlt,
-                                            size: 15.0,
-                                          ),
-                                          options: FFButtonOptions(
-                                            height: 40.0,
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    24.0, 0.0, 24.0, 0.0),
-                                            iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmall
-                                                    .override(
-                                                      fontFamily:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmallFamily,
-                                                      color: Colors.white,
-                                                      letterSpacing: 0.0,
-                                                      useGoogleFonts: GoogleFonts
-                                                              .asMap()
-                                                          .containsKey(
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmallFamily),
-                                                    ),
-                                            elevation: 3.0,
-                                            borderSide: const BorderSide(
-                                              color: Colors.transparent,
-                                              width: 1.0,
+                                      if ((valueOrDefault<String>(
+                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                    .first.gpx,
+                                                'null',
+                                              ) !=
+                                              'null') &&
+                                          (valueOrDefault<String>(
+                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                    .first.status,
+                                                'Value',
+                                              ) ==
+                                              'ongoing'))
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  16.0, 8.0, 16.0, 8.0),
+                                          child: FFButtonWidget(
+                                            onPressed: () async {
+                                              context.pushNamed(
+                                                'ppirForm',
+                                                queryParameters: {
+                                                  'taskId': serializeParam(
+                                                    widget.taskId,
+                                                    ParamType.String,
+                                                  ),
+                                                }.withoutNulls,
+                                                extra: <String, dynamic>{
+                                                  kTransitionInfoKey:
+                                                      const TransitionInfo(
+                                                    hasTransition: true,
+                                                    transitionType:
+                                                        PageTransitionType
+                                                            .scale,
+                                                    alignment:
+                                                        Alignment.bottomCenter,
+                                                    duration: Duration(
+                                                        milliseconds: 200),
+                                                  ),
+                                                },
+                                              );
+                                            },
+                                            text: FFLocalizations.of(context)
+                                                .getText(
+                                              '7qj8fid9' /* Continue Form */,
                                             ),
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
+                                            icon: const FaIcon(
+                                              FontAwesomeIcons.fileAlt,
+                                              size: 15.0,
+                                            ),
+                                            options: FFButtonOptions(
+                                              height: 40.0,
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      24.0, 0.0, 24.0, 0.0),
+                                              iconPadding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmallFamily,
+                                                        color: Colors.white,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmallFamily),
+                                                      ),
+                                              elevation: 3.0,
+                                              borderSide: const BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    // FTP Resubmission
-                                    if (taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                            .first.status ==
-                                        'completed')
+                                    ],
+                                  ),
+                                if (valueOrDefault<String>(
+                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                          .first.status,
+                                      'Value',
+                                    ) ==
+                                    'completed')
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      // FTP Resubmission
                                       Flexible(
                                         child: Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 8.0, 16.0, 8.0),
                                           child: FFButtonWidget(
-                                            onPressed: () async {
-                                              _model.isReFTPClicked = true;
-                                              setState(() {});
-                                              _model.isFtpSaved =
-                                                  await actions.saveToFTP(
-                                                widget.taskId,
-                                              );
-                                              _model.isReFTPClicked = false;
-                                              setState(() {});
-                                              if (_model.isFtpSaved!) {
-                                                context.pushNamed(
-                                                  'successProfile',
-                                                  queryParameters: {
-                                                    'message': serializeParam(
-                                                      'FTP Successfully saved.',
-                                                      ParamType.String,
-                                                    ),
-                                                  }.withoutNulls,
-                                                  extra: <String, dynamic>{
-                                                    kTransitionInfoKey:
-                                                        const TransitionInfo(
-                                                      hasTransition: true,
-                                                      transitionType:
-                                                          PageTransitionType
-                                                              .fade,
-                                                      duration: Duration(
-                                                          milliseconds: 200),
-                                                    ),
-                                                  },
-                                                );
-                                              } else {
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(
-                                                  SnackBar(
-                                                    content: Text(
-                                                      'Fail to upload to FTP.',
-                                                      style: TextStyle(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                      ),
-                                                    ),
-                                                    duration: const Duration(
-                                                        milliseconds: 4000),
-                                                    backgroundColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .tertiary,
-                                                  ),
-                                                );
-                                              }
+                                            onPressed: !FFAppState().ONLINE
+                                                ? null
+                                                : () async {
+                                                    _model.isReFTPClicked =
+                                                        true;
+                                                    setState(() {});
+                                                    _model.isFtpSaved =
+                                                        await actions.saveToFTP(
+                                                      widget.taskId,
+                                                    );
+                                                    _model.isReFTPClicked =
+                                                        false;
+                                                    setState(() {});
+                                                    if (_model.isFtpSaved!) {
+                                                      context.pushNamed(
+                                                        'successProfile',
+                                                        queryParameters: {
+                                                          'message':
+                                                              serializeParam(
+                                                            'FTP Successfully saved.',
+                                                            ParamType.String,
+                                                          ),
+                                                        }.withoutNulls,
+                                                        extra: <String,
+                                                            dynamic>{
+                                                          kTransitionInfoKey:
+                                                              const TransitionInfo(
+                                                            hasTransition: true,
+                                                            transitionType:
+                                                                PageTransitionType
+                                                                    .fade,
+                                                            duration: Duration(
+                                                                milliseconds:
+                                                                    200),
+                                                          ),
+                                                        },
+                                                      );
+                                                    } else {
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .showSnackBar(
+                                                        SnackBar(
+                                                          content: Text(
+                                                            'Fail to upload to FTP.',
+                                                            style: TextStyle(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryText,
+                                                            ),
+                                                          ),
+                                                          duration: const Duration(
+                                                              milliseconds:
+                                                                  4000),
+                                                          backgroundColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .tertiary,
+                                                        ),
+                                                      );
+                                                    }
 
-                                              setState(() {});
-                                            },
+                                                    setState(() {});
+                                                  },
                                             text: FFLocalizations.of(context)
                                                 .getText(
                                               'auvo0ea6' /* Resubmit */,
@@ -3185,121 +3401,130 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ),
                                               borderRadius:
                                                   BorderRadius.circular(8.0),
+                                              disabledColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .error,
                                             ),
                                           ),
                                         ),
                                       ),
-                                    if (kDebugMode &&
-                                        (valueOrDefault<String>(
-                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                  .first.status,
-                                              'Value',
-                                            ) ==
-                                            'completed'))
-                                      Flexible(
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 8.0, 16.0, 8.0),
-                                          child: FFButtonWidget(
-                                            onPressed: () async {
-                                              await TasksTable().update(
-                                                data: {
-                                                  'status': 'ongoing',
-                                                },
-                                                matchingRows: (rows) => rows.eq(
-                                                  'id',
-                                                  widget.taskId,
-                                                ),
-                                              );
-                                              await AttemptsTable().insert({
-                                                'task_id': widget.taskId,
-                                              });
-
-                                              context.pushNamed(
-                                                'geotagging',
-                                                queryParameters: {
-                                                  'taskId': serializeParam(
+                                      if (kDebugMode)
+                                        Flexible(
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    16.0, 8.0, 16.0, 8.0),
+                                            child: FFButtonWidget(
+                                              onPressed: () async {
+                                                await TasksTable().update(
+                                                  data: {
+                                                    'status': 'ongoing',
+                                                  },
+                                                  matchingRows: (rows) =>
+                                                      rows.eq(
+                                                    'id',
                                                     widget.taskId,
-                                                    ParamType.String,
                                                   ),
-                                                  'taskType': serializeParam(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.taskType,
-                                                    ParamType.String,
-                                                  ),
-                                                  'taskStatus': serializeParam(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.status,
-                                                    ParamType.String,
-                                                  ),
-                                                }.withoutNulls,
-                                                extra: <String, dynamic>{
-                                                  kTransitionInfoKey:
-                                                      const TransitionInfo(
-                                                    hasTransition: true,
-                                                    transitionType:
-                                                        PageTransitionType
-                                                            .scale,
-                                                    alignment:
-                                                        Alignment.bottomCenter,
-                                                    duration: Duration(
-                                                        milliseconds: 200),
-                                                  ),
-                                                },
-                                              );
-                                            },
-                                            text: FFLocalizations.of(context)
-                                                .getText(
-                                              '0mkqs892' /* Geotag Again */,
-                                            ),
-                                            icon: const Icon(
-                                              Icons.swap_vert_sharp,
-                                              size: 15.0,
-                                            ),
-                                            options: FFButtonOptions(
-                                              width: MediaQuery.sizeOf(context)
-                                                      .width *
-                                                  0.35,
-                                              height: 50.0,
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              textStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmall
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmallFamily,
-                                                        color: Colors.white,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmallFamily),
-                                                      ),
-                                              elevation: 3.0,
-                                              borderSide: const BorderSide(
-                                                color: Colors.transparent,
-                                                width: 1.0,
+                                                );
+                                                await AttemptsTable().insert({
+                                                  'task_id': widget.taskId,
+                                                });
+
+                                                context.pushNamed(
+                                                  'geotagging',
+                                                  queryParameters: {
+                                                    'taskId': serializeParam(
+                                                      widget.taskId,
+                                                      ParamType.String,
+                                                    ),
+                                                    'taskType': serializeParam(
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                          .first.taskType,
+                                                      ParamType.String,
+                                                    ),
+                                                    'taskStatus':
+                                                        serializeParam(
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                          .first.status,
+                                                      ParamType.String,
+                                                    ),
+                                                    'assignmentId':
+                                                        serializeParam(
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                          .first
+                                                          .ppirAssignmentid,
+                                                      ParamType.String,
+                                                    ),
+                                                  }.withoutNulls,
+                                                  extra: <String, dynamic>{
+                                                    kTransitionInfoKey:
+                                                        const TransitionInfo(
+                                                      hasTransition: true,
+                                                      transitionType:
+                                                          PageTransitionType
+                                                              .scale,
+                                                      alignment: Alignment
+                                                          .bottomCenter,
+                                                      duration: Duration(
+                                                          milliseconds: 200),
+                                                    ),
+                                                  },
+                                                );
+                                              },
+                                              text: FFLocalizations.of(context)
+                                                  .getText(
+                                                '0mkqs892' /* Geotag Again */,
                                               ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
+                                              icon: const Icon(
+                                                Icons.swap_vert_sharp,
+                                                size: 15.0,
+                                              ),
+                                              options: FFButtonOptions(
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        0.35,
+                                                height: 50.0,
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        24.0, 0.0, 24.0, 0.0),
+                                                iconPadding:
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmallFamily,
+                                                          color: Colors.white,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmallFamily),
+                                                        ),
+                                                elevation: 3.0,
+                                                borderSide: const BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                  ],
-                                ),
+                                    ],
+                                  ),
                               ]
                                   .divide(const SizedBox(height: 10.0))
                                   .around(const SizedBox(height: 10.0)),

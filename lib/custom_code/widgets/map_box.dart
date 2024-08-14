@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+//SIOMAI MAPV2
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter_map/flutter_map.dart';
@@ -20,23 +21,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
 import 'package:flutter_map_tile_caching/flutter_map_tile_caching.dart' as FMTC;
 import 'package:connectivity_plus/connectivity_plus.dart';
-
-class KalmanFilter {
-  double _estimate;
-  double _errorEstimate;
-  double _q;
-  double _r;
-
-  KalmanFilter(this._estimate, this._errorEstimate, this._q, this._r);
-
-  double update(double measurement) {
-    double kalmanGain = _errorEstimate / (_errorEstimate + _r);
-    _estimate = _estimate + kalmanGain * (measurement - _estimate);
-    _errorEstimate = (1 - kalmanGain) * _errorEstimate +
-        (measurement - _estimate).abs() * _q;
-    return _estimate;
-  }
-}
 
 class MapBox extends StatefulWidget {
   const MapBox({
@@ -73,30 +57,31 @@ class _MapBoxState extends State<MapBox> {
 
   String? _errorMessage;
 
-  static const double _currentZoom = 18.5;
-  static const double _movementThreshold = 1.5;
-  static const double _minAccuracy = 10.0;
-  static const int _positionStreamIntervalMs = 1000;
-
-  static const int _initialPositionSamples = 75;
-  static const double _highAccuracyThreshold = 10.0;
+  static const double _currentZoom = 19.0;
+  static const int _positionStreamIntervalMs = 100;
+  static const int _initialPositionSamples = 50;
+  static const double _highAccuracyThreshold = 5.0;
   static const double _stationarySpeedThreshold = 0.1;
-  static const double _significantMovementThreshold = 0.5;
-  static const int _stationaryWindowSize = 15;
+  static const double _significantMovementThreshold = 0.1;
+  static const int _stationaryWindowSize = 20;
 
-  KalmanFilter? _latitudeFilter;
-  KalmanFilter? _longitudeFilter;
+  late SimpleKalmanFilter _latFilter;
+  late SimpleKalmanFilter _lonFilter;
 
   List<Position> _recentPositions = [];
+
   ll.LatLng _averagePosition = ll.LatLng(0, 0);
   bool _isStationary = true;
 
   DateTime _lastUpdateTime = DateTime.now();
   double? _currentHeading;
+  ll.LatLng? _lastFilteredLocation;
 
   @override
   void initState() {
     super.initState();
+    _latFilter = SimpleKalmanFilter(e: 3, q: 0.02);
+    _lonFilter = SimpleKalmanFilter(e: 3, q: 0.02);
     _checkConnectivity();
     _initializeTileProvider();
     _initializeLocation();
@@ -144,7 +129,7 @@ class _MapBoxState extends State<MapBox> {
     for (int i = 0; i < _initialPositionSamples; i++) {
       Position position = await _getCurrentPositionWithRetry();
       samples.add(position);
-      await Future.delayed(Duration(milliseconds: 250));
+      await Future.delayed(Duration(milliseconds: 100));
     }
 
     double sumLat = 0, sumLon = 0, sumAcc = 0;
@@ -158,8 +143,8 @@ class _MapBoxState extends State<MapBox> {
     double avgLon = sumLon / _initialPositionSamples;
     double avgAcc = sumAcc / _initialPositionSamples;
 
-    _latitudeFilter = KalmanFilter(avgLat, avgAcc, 0.0002, avgAcc);
-    _longitudeFilter = KalmanFilter(avgLon, avgAcc, 0.0002, avgAcc);
+    _latFilter = SimpleKalmanFilter(e: avgAcc, q: 0.001);
+    _lonFilter = SimpleKalmanFilter(e: avgAcc, q: 0.001);
 
     return Position(
       latitude: avgLat,
@@ -296,9 +281,9 @@ class _MapBoxState extends State<MapBox> {
 
   void _startLocationStream() {
     final LocationSettings locationSettings = AndroidSettings(
-      accuracy: LocationAccuracy.best,
+      accuracy: LocationAccuracy.bestForNavigation,
       distanceFilter: 0,
-      forceLocationManager: true,
+      forceLocationManager: false,
       intervalDuration: Duration(milliseconds: _positionStreamIntervalMs),
     );
 
@@ -323,109 +308,46 @@ class _MapBoxState extends State<MapBox> {
   }
 
   void _processNewPosition(Position position) {
-    print('Current position accuracy: ${position.accuracy} meters');
-
     if (position.accuracy > _highAccuracyThreshold) {
       return;
     }
 
-    // Apply the Kalman filter to the position data
-    double filteredLat = _latitudeFilter!.update(position.latitude);
-    double filteredLon = _longitudeFilter!.update(position.longitude);
-    // Apply a slight offset to move the marker to the left and bottom
-    double adjustedLat =
-        filteredLat - 0.00002; // Small adjustment to move the marker down
-    double adjustedLon =
-        filteredLon - 0.00002; // Small adjustment to move the marker left
-    ll.LatLng newLocation = ll.LatLng(filteredLat, filteredLon);
+    double filteredLat = _latFilter.filter(position.latitude);
+    double filteredLon = _lonFilter.filter(position.longitude);
+    ll.LatLng filteredLocation = ll.LatLng(filteredLat, filteredLon);
 
-    // Add the position to the recent positions list
-    _recentPositions.add(position);
-    if (_recentPositions.length > _stationaryWindowSize) {
-      _recentPositions.removeAt(0);
-    }
-
-    _isStationary = _checkIfStationary();
-
-    // Directly update the position using the filtered location
-    _updatePosition(newLocation, position.heading);
+    _updatePosition(filteredLocation, position.heading, position.speed);
   }
 
-  void _updatePositionStationary(ll.LatLng newLocation) {
-    if (_averagePosition.latitude == 0 && _averagePosition.longitude == 0) {
-      _averagePosition = newLocation;
-    } else {
-      const weight = 0.02;
-      _averagePosition = ll.LatLng(
-        _averagePosition.latitude * (1 - weight) +
-            newLocation.latitude * weight,
-        _averagePosition.longitude * (1 - weight) +
-            newLocation.longitude * weight,
-      );
-    }
+  void _updatePosition(ll.LatLng newLocation, double heading, double speed) {
+    setState(() {
+      _currentLocation = newLocation;
+      _currentHeading = heading;
+      _lastFilteredLocation = newLocation;
+      _lastUpdateTime = DateTime.now();
 
-    if (_distance.as(ll.LengthUnit.Meter, _currentLocation!, _averagePosition) >
-        _significantMovementThreshold) {
-      _updatePosition(_averagePosition, _currentHeading ?? 0);
-    }
-  }
+      if (_isMapReady && _shouldRecenterMap()) {
+        _mapController.move(_currentLocation!, _currentZoom);
+        if (speed > _stationarySpeedThreshold) {
+          _mapController.rotate(heading);
+        }
+      }
 
-  void _updatePositionMoving(
-      ll.LatLng newLocation, double heading, double speed) {
-    // Use the filtered location directly
-    _updatePosition(newLocation, heading);
-  }
-
-  bool _checkIfStationary() {
-    if (_recentPositions.length < 2) return true;
-
-    double avgSpeed =
-        _recentPositions.map((p) => p.speed).reduce((a, b) => a + b) /
-            _recentPositions.length;
-    double maxDistance = 0;
-    ll.LatLng firstPos = ll.LatLng(
-        _recentPositions.first.latitude, _recentPositions.first.longitude);
-
-    for (var pos in _recentPositions.skip(1)) {
-      double dist = _distance.as(ll.LengthUnit.Meter, firstPos,
-          ll.LatLng(pos.latitude, pos.longitude));
-      if (dist > maxDistance) maxDistance = dist;
-    }
-
-    return avgSpeed < _stationarySpeedThreshold &&
-        maxDistance < _significantMovementThreshold;
+      if (_isTracking) {
+        _addToRoute(newLocation);
+      }
+    });
   }
 
   void _addToRoute(ll.LatLng newLocation) {
-    if (_routeCoordinates.isEmpty) {
-      _routeCoordinates.add(newLocation);
-      return;
-    }
-
-    double distance = _distance.as(
-      ll.LengthUnit.Meter,
-      _routeCoordinates.last,
-      newLocation,
-    );
-
-    if (distance >= _significantMovementThreshold) {
+    if (_routeCoordinates.isEmpty ||
+        _distance.as(
+                ll.LengthUnit.Meter, _routeCoordinates.last, newLocation) >=
+            _significantMovementThreshold) {
       setState(() {
         _routeCoordinates.add(newLocation);
       });
     }
-  }
-
-  void _updatePosition(ll.LatLng location, double heading) {
-    setState(() {
-      _currentLocation = location;
-      _currentHeading = heading;
-      if (_isMapReady && _shouldRecenterMap()) {
-        _mapController.move(_currentLocation!, _currentZoom);
-        if (!_isStationary) {
-          _mapController.rotate(heading);
-        }
-      }
-    });
   }
 
   Future<void> _startTracking() async {
@@ -666,6 +588,31 @@ class _MapBoxState extends State<MapBox> {
   }
 }
 
+class SimpleKalmanFilter {
+  double _e;
+  double _q;
+  double? _lastEstimate;
+
+  SimpleKalmanFilter({required double e, required double q})
+      : _e = e,
+        _q = q;
+
+  double filter(double measurement) {
+    if (_lastEstimate == null) {
+      _lastEstimate = measurement;
+      return measurement;
+    }
+
+    double prediction = _lastEstimate!;
+    double kalmanGain = _e / (_e + _q);
+    double estimate = prediction + kalmanGain * (measurement - prediction);
+
+    _e = (1 - kalmanGain) * _e + ((_lastEstimate! - estimate).abs()) * _q;
+    _lastEstimate = estimate;
+
+    return estimate;
+  }
+}
 // -----------------------------FOR BACK UP -------------------------------//
 
 // void _processNewPosition(Position position) {

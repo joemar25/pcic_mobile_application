@@ -119,6 +119,14 @@ class SQLiteManager {
         assignee: assignee,
       );
 
+  Future<List<SELECTRiceSEEDSRow>> sELECTRiceSEEDS() => performSELECTRiceSEEDS(
+        _database,
+      );
+
+  Future<List<SELECTCornSEEDSRow>> sELECTCornSEEDS() => performSELECTCornSEEDS(
+        _database,
+      );
+
   /// END READ QUERY CALLS
 
   /// START UPDATE QUERY CALLS
@@ -385,14 +393,6 @@ class SQLiteManager {
         fileId: fileId,
       );
 
-  Future deleteRecords({
-    String? id,
-  }) =>
-      performDeleteRecords(
-        _database,
-        id: id,
-      );
-
   Future insertOfflinePPIRForm({
     String? taskId,
     String? ppirAssignmentId,
@@ -490,6 +490,56 @@ class SQLiteManager {
         syncStatus: syncStatus,
         lastSyncedAt: lastSyncedAt,
         localId: localId,
+        isDirty: isDirty,
+      );
+
+  Future updatePPIRSetABlankGpx({
+    String? taskId,
+    bool? isDirty,
+  }) =>
+      performUpdatePPIRSetABlankGpx(
+        _database,
+        taskId: taskId,
+        isDirty: isDirty,
+      );
+
+  Future updatePPIRForm({
+    String? taskId,
+    String? ppirSvpAct,
+    String? ppirDopdsAct,
+    String? ppirDoptpAct,
+    String? ppirRemarks,
+    String? ppirNameInsured,
+    String? ppirNameIuia,
+    String? ppirFarmloc,
+    String? ppirAreaAct,
+    String? ppirVariety,
+    bool? isDirty,
+  }) =>
+      performUpdatePPIRForm(
+        _database,
+        taskId: taskId,
+        ppirSvpAct: ppirSvpAct,
+        ppirDopdsAct: ppirDopdsAct,
+        ppirDoptpAct: ppirDoptpAct,
+        ppirRemarks: ppirRemarks,
+        ppirNameInsured: ppirNameInsured,
+        ppirNameIuia: ppirNameIuia,
+        ppirFarmloc: ppirFarmloc,
+        ppirAreaAct: ppirAreaAct,
+        ppirVariety: ppirVariety,
+        isDirty: isDirty,
+      );
+
+  Future updateTaskStatus({
+    String? taskId,
+    String? status,
+    bool? isDirty,
+  }) =>
+      performUpdateTaskStatus(
+        _database,
+        taskId: taskId,
+        status: status,
         isDirty: isDirty,
       );
 

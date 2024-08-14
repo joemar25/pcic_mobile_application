@@ -104,35 +104,39 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                       Expanded(
                         child: Align(
                           alignment: const AlignmentDirectional(0.0, 0.0),
-                          child: Text(
-                            FFLocalizations.of(context).getText(
-                              'q15wq9be' /* Are you sure you want to sign ... */,
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 8.0, 0.0, 0.0),
+                            child: Text(
+                              FFLocalizations.of(context).getText(
+                                'q15wq9be' /* Are you sure you want to sign ... */,
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily,
+                                    color: const Color(0xFFB4B4B4),
+                                    fontSize: 12.0,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyMediumFamily),
+                                  ),
                             ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily,
-                                  color: const Color(0xFFB4B4B4),
-                                  fontSize: 12.0,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily),
-                                ),
                           ),
                         ),
                       ),
                     ],
                   ),
-                ],
+                ].divide(const SizedBox(height: 5.0)).around(const SizedBox(height: 5.0)),
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
+                  Expanded(
                     child: FFButtonWidget(
                       onPressed: () async {
                         Navigator.pop(context);
@@ -142,33 +146,32 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                       ),
                       options: FFButtonOptions(
                         height: 40.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            24.0, 0.0, 24.0, 0.0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         iconPadding:
                             const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).alternate2,
+                        color: FlutterFlowTheme.of(context).primaryBackground,
                         textStyle: FlutterFlowTheme.of(context)
                             .titleSmall
                             .override(
                               fontFamily:
                                   FlutterFlowTheme.of(context).titleSmallFamily,
-                              color: Colors.white,
+                              color: FlutterFlowTheme.of(context).primaryText,
                               letterSpacing: 0.0,
+                              fontWeight: FontWeight.w500,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
                                   FlutterFlowTheme.of(context)
                                       .titleSmallFamily),
                             ),
-                        elevation: 3.0,
+                        elevation: 0.0,
                         borderSide: const BorderSide(
-                          color: Colors.transparent,
-                          width: 1.0,
+                          width: 0.0,
                         ),
-                        borderRadius: BorderRadius.circular(8.0),
+                        borderRadius: BorderRadius.circular(12.0),
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
+                  Expanded(
                     child: FFButtonWidget(
                       onPressed: () async {
                         GoRouter.of(context).prepareAuthEvent();
@@ -192,8 +195,8 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                       ),
                       options: FFButtonOptions(
                         height: 40.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            24.0, 0.0, 24.0, 0.0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         iconPadding:
                             const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).error,
@@ -204,20 +207,21 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                                   FlutterFlowTheme.of(context).titleSmallFamily,
                               color: Colors.white,
                               letterSpacing: 0.0,
+                              fontWeight: FontWeight.w500,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
                                   FlutterFlowTheme.of(context)
                                       .titleSmallFamily),
                             ),
-                        elevation: 3.0,
+                        elevation: 0.0,
                         borderSide: const BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),
-                        borderRadius: BorderRadius.circular(8.0),
+                        borderRadius: BorderRadius.circular(12.0),
                       ),
                     ),
                   ),
-                ].divide(const SizedBox(width: 10.0)),
+                ].divide(const SizedBox(width: 10.0)).around(const SizedBox(width: 10.0)),
               ),
             ].divide(const SizedBox(height: 20.0)).around(const SizedBox(height: 20.0)),
           ),

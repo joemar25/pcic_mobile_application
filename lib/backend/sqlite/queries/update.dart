@@ -332,19 +332,6 @@ VALUES ('$id', '$taskNumber', '$serviceGroup', '$status', '$serviceType', '$prio
 
 /// END INSERT OFFLINE TASK
 
-/// BEGIN DELETE RECORDS
-Future performDeleteRecords(
-  Database database, {
-  String? id,
-}) {
-  const query = '''
-DELETE FROM tasks WHERE id = ?;
-''';
-  return database.rawQuery(query);
-}
-
-/// END DELETE RECORDS
-
 /// BEGIN INSERT OFFLINE PPIR FORM
 Future performInsertOfflinePPIRForm(
   Database database, {
@@ -426,3 +413,73 @@ INSERT OR REPLACE INTO ppir_forms (
 }
 
 /// END INSERT OFFLINE PPIR FORM
+
+/// BEGIN UPDATE PPIR SET A BLANK GPX
+Future performUpdatePPIRSetABlankGpx(
+  Database database, {
+  String? taskId,
+  bool? isDirty,
+}) {
+  final query = '''
+UPDATE ppir_forms
+SET gpx =  ''
+WHERE task_id = '$taskId';
+''';
+  return database.rawQuery(query);
+}
+
+/// END UPDATE PPIR SET A BLANK GPX
+
+/// BEGIN UPDATE PPIR FORM
+Future performUpdatePPIRForm(
+  Database database, {
+  String? taskId,
+  String? ppirSvpAct,
+  String? ppirDopdsAct,
+  String? ppirDoptpAct,
+  String? ppirRemarks,
+  String? ppirNameInsured,
+  String? ppirNameIuia,
+  String? ppirFarmloc,
+  String? ppirAreaAct,
+  String? ppirVariety,
+  bool? isDirty,
+}) {
+  final query = '''
+UPDATE ppir_forms
+SET 
+  ppir_svp_act = '$ppirSvpAct',
+  ppir_dopds_act = '$ppirDopdsAct',
+  ppir_doptp_act = '$ppirDoptpAct',
+  ppir_remarks = '$ppirRemarks',
+  ppir_name_insured = '$ppirNameInsured',
+  ppir_name_iuia = '$ppirNameIuia',
+  ppir_farmloc = '$ppirFarmloc',
+  ppir_area_act = '$ppirAreaAct',
+  ppir_variety = '$ppirVariety',
+  is_dirty = $isDirty
+WHERE task_id = '$taskId';
+''';
+  return database.rawQuery(query);
+}
+
+/// END UPDATE PPIR FORM
+
+/// BEGIN UPDATE TASK STATUS
+Future performUpdateTaskStatus(
+  Database database, {
+  String? taskId,
+  String? status,
+  bool? isDirty,
+}) {
+  final query = '''
+UPDATE tasks
+SET 
+  status = '$status',
+  is_dirty = $isDirty
+WHERE id = '$taskId';
+''';
+  return database.rawQuery(query);
+}
+
+/// END UPDATE TASK STATUS

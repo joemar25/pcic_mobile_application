@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'messages_model.dart';
 export 'messages_model.dart';
 
@@ -59,6 +60,8 @@ class _MessagesWidgetState extends State<MessagesWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return FutureBuilder<List<MessagesRow>>(
       future: MessagesTable().querySingleRow(
         queryFn: (q) => q.eq(
@@ -180,90 +183,132 @@ class _MessagesWidgetState extends State<MessagesWidget> {
               centerTitle: false,
               elevation: 0.0,
             ),
-            body: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: FutureBuilder<List<MessagesRow>>(
-                    future: (_model.requestCompleter ??=
-                            Completer<List<MessagesRow>>()
-                              ..complete(MessagesTable().queryRows(
-                                queryFn: (q) => q
-                                    .eq(
-                                      'chat_id',
-                                      widget.chatId,
-                                    )
-                                    .order('timestamp', ascending: true),
-                              )))
-                        .future,
-                    builder: (context, snapshot) {
-                      // Customize what your widget looks like when it's loading.
-                      if (!snapshot.hasData) {
-                        return Center(
-                          child: SizedBox(
-                            width: 100.0,
-                            height: 100.0,
-                            child: SpinKitRipple(
-                              color: FlutterFlowTheme.of(context).primary,
-                              size: 100.0,
+            body: Visibility(
+              visible: FFAppState().ONLINE,
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: FutureBuilder<List<MessagesRow>>(
+                      future: (_model.requestCompleter ??=
+                              Completer<List<MessagesRow>>()
+                                ..complete(MessagesTable().queryRows(
+                                  queryFn: (q) => q
+                                      .eq(
+                                        'chat_id',
+                                        widget.chatId,
+                                      )
+                                      .order('timestamp', ascending: true),
+                                )))
+                          .future,
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 100.0,
+                              height: 100.0,
+                              child: SpinKitRipple(
+                                color: FlutterFlowTheme.of(context).primary,
+                                size: 100.0,
+                              ),
                             ),
-                          ),
-                        );
-                      }
-                      List<MessagesRow> listViewMessagesRowList =
-                          snapshot.data!;
+                          );
+                        }
+                        List<MessagesRow> listViewMessagesRowList =
+                            snapshot.data!;
 
-                      return ListView.builder(
-                        padding: EdgeInsets.zero,
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        itemCount: listViewMessagesRowList.length,
-                        itemBuilder: (context, listViewIndex) {
-                          final listViewMessagesRow =
-                              listViewMessagesRowList[listViewIndex];
-                          return Stack(
-                            children: [
-                              if (listViewMessagesRow.senderName !=
-                                  currentUserUid)
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 10.0, 10.0, 10.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Container(
-                                        constraints: const BoxConstraints(
-                                          maxWidth: 300.0,
-                                        ),
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .accent1,
-                                          borderRadius: const BorderRadius.only(
-                                            bottomLeft: Radius.circular(6.0),
-                                            bottomRight: Radius.circular(24.0),
-                                            topLeft: Radius.circular(24.0),
-                                            topRight: Radius.circular(24.0),
+                        return ListView.builder(
+                          padding: EdgeInsets.zero,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.vertical,
+                          itemCount: listViewMessagesRowList.length,
+                          itemBuilder: (context, listViewIndex) {
+                            final listViewMessagesRow =
+                                listViewMessagesRowList[listViewIndex];
+                            return Stack(
+                              children: [
+                                if (listViewMessagesRow.senderName !=
+                                    currentUserUid)
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        10.0, 10.0, 10.0, 10.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Container(
+                                          constraints: const BoxConstraints(
+                                            maxWidth: 300.0,
                                           ),
-                                        ),
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  20.0, 20.0, 20.0, 20.0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Align(
-                                                alignment: const AlignmentDirectional(
-                                                    -1.0, 0.0),
-                                                child: Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 4.0, 10.0, 4.0),
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .accent1,
+                                            borderRadius: const BorderRadius.only(
+                                              bottomLeft: Radius.circular(6.0),
+                                              bottomRight:
+                                                  Radius.circular(24.0),
+                                              topLeft: Radius.circular(24.0),
+                                              topRight: Radius.circular(24.0),
+                                            ),
+                                          ),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    20.0, 20.0, 20.0, 20.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Align(
+                                                  alignment:
+                                                      const AlignmentDirectional(
+                                                          -1.0, 0.0),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 4.0,
+                                                                10.0, 4.0),
+                                                    child: Text(
+                                                      listViewMessagesRow
+                                                          .content,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyMediumFamily),
+                                                              ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Align(
+                                                  alignment:
+                                                      const AlignmentDirectional(
+                                                          -1.0, 0.0),
                                                   child: Text(
-                                                    listViewMessagesRow.content,
+                                                    valueOrDefault<String>(
+                                                      dateTimeFormat(
+                                                        "M/d h:mm a",
+                                                        messagesMessagesRow
+                                                            ?.timestamp,
+                                                        locale:
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .languageCode,
+                                                      ),
+                                                      '8/7 5:12 PM',
+                                                    ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
@@ -282,22 +327,90 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                                         ),
                                                   ),
                                                 ),
-                                              ),
-                                              Align(
-                                                alignment: const AlignmentDirectional(
-                                                    -1.0, 0.0),
-                                                child: Text(
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                if (listViewMessagesRow.senderName ==
+                                    currentUserUid)
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        10.0, 10.0, 10.0, 10.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Container(
+                                          constraints: const BoxConstraints(
+                                            maxWidth: 300.0,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            borderRadius: const BorderRadius.only(
+                                              bottomLeft: Radius.circular(24.0),
+                                              bottomRight: Radius.circular(6.0),
+                                              topLeft: Radius.circular(24.0),
+                                              topRight: Radius.circular(24.0),
+                                            ),
+                                          ),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    20.0, 20.0, 20.0, 20.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.end,
+                                              children: [
+                                                Align(
+                                                  alignment:
+                                                      const AlignmentDirectional(
+                                                          1.0, 0.0),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(10.0, 4.0,
+                                                                0.0, 4.0),
+                                                    child: Text(
+                                                      listViewMessagesRow
+                                                          .content,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyMediumFamily),
+                                                              ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Text(
                                                   valueOrDefault<String>(
                                                     dateTimeFormat(
                                                       "M/d h:mm a",
-                                                      messagesMessagesRow
-                                                          ?.timestamp,
+                                                      listViewMessagesRow
+                                                          .timestamp,
                                                       locale:
                                                           FFLocalizations.of(
                                                                   context)
                                                               .languageCode,
                                                     ),
-                                                    '8/7 5:12 PM',
+                                                    '8/7  5:13 PM',
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -316,279 +429,187 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                                                     .bodyMediumFamily),
                                                       ),
                                                 ),
-                                              ),
-                                            ],
+                                              ],
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              if (listViewMessagesRow.senderName ==
-                                  currentUserUid)
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 10.0, 10.0, 10.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Container(
-                                        constraints: const BoxConstraints(
-                                          maxWidth: 300.0,
-                                        ),
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          borderRadius: const BorderRadius.only(
-                                            bottomLeft: Radius.circular(24.0),
-                                            bottomRight: Radius.circular(6.0),
-                                            topLeft: Radius.circular(24.0),
-                                            topRight: Radius.circular(24.0),
-                                          ),
-                                        ),
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  20.0, 20.0, 20.0, 20.0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.end,
-                                            children: [
-                                              Align(
-                                                alignment: const AlignmentDirectional(
-                                                    1.0, 0.0),
-                                                child: Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          10.0, 4.0, 0.0, 4.0),
-                                                  child: Text(
-                                                    listViewMessagesRow.content,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
-                                                        ),
-                                                  ),
-                                                ),
-                                              ),
-                                              Text(
-                                                valueOrDefault<String>(
-                                                  dateTimeFormat(
-                                                    "M/d h:mm a",
-                                                    listViewMessagesRow
-                                                        .timestamp,
-                                                    locale: FFLocalizations.of(
-                                                            context)
-                                                        .languageCode,
-                                                  ),
-                                                  '8/7  5:13 PM',
-                                                ),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
-                                                        ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                            ],
-                          );
-                        },
-                      );
-                    },
+                              ],
+                            );
+                          },
+                        );
+                      },
+                    ),
                   ),
-                ),
-                Container(
-                  width: MediaQuery.sizeOf(context).width * 1.0,
-                  height: 80.0,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                8.0, 0.0, 8.0, 0.0),
-                            child: SizedBox(
-                              width: MediaQuery.sizeOf(context).width * 1.0,
-                              child: TextFormField(
-                                controller: _model.inputChatTextController,
-                                focusNode: _model.inputChatFocusNode,
-                                onChanged: (_) => EasyDebounce.debounce(
-                                  '_model.inputChatTextController',
-                                  const Duration(milliseconds: 0),
-                                  () => setState(() {}),
-                                ),
-                                autofocus: false,
-                                textInputAction: TextInputAction.send,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  labelText:
-                                      FFLocalizations.of(context).getText(
-                                    'of52etyq' /* Message.. */,
+                  Container(
+                    width: MediaQuery.sizeOf(context).width * 1.0,
+                    height: 80.0,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  8.0, 0.0, 8.0, 0.0),
+                              child: SizedBox(
+                                width: MediaQuery.sizeOf(context).width * 1.0,
+                                child: TextFormField(
+                                  controller: _model.inputChatTextController,
+                                  focusNode: _model.inputChatFocusNode,
+                                  onChanged: (_) => EasyDebounce.debounce(
+                                    '_model.inputChatTextController',
+                                    const Duration(milliseconds: 0),
+                                    () => setState(() {}),
                                   ),
-                                  labelStyle: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        fontFamily: FlutterFlowTheme.of(context)
-                                            .labelMediumFamily,
-                                        letterSpacing: 0.0,
-                                        useGoogleFonts: GoogleFonts.asMap()
-                                            .containsKey(
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMediumFamily),
-                                      ),
-                                  hintText: FFLocalizations.of(context).getText(
-                                    'wjgzxgkw' /* Type your message here */,
-                                  ),
-                                  hintStyle: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        fontFamily: FlutterFlowTheme.of(context)
-                                            .labelMediumFamily,
-                                        letterSpacing: 0.0,
-                                        useGoogleFonts: GoogleFonts.asMap()
-                                            .containsKey(
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMediumFamily),
-                                      ),
-                                  enabledBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                      width: 2.0,
+                                  autofocus: false,
+                                  textInputAction: TextInputAction.send,
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                    labelText:
+                                        FFLocalizations.of(context).getText(
+                                      'of52etyq' /* Message.. */,
                                     ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  focusedBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      width: 2.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  errorBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 2.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  focusedErrorBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 2.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  contentPadding: const EdgeInsets.all(10.0),
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily,
-                                      letterSpacing: 0.0,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
+                                    labelStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .override(
+                                          fontFamily:
                                               FlutterFlowTheme.of(context)
-                                                  .bodyMediumFamily),
+                                                  .labelMediumFamily,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMediumFamily),
+                                        ),
+                                    hintText:
+                                        FFLocalizations.of(context).getText(
+                                      'wjgzxgkw' /* Type your message here */,
                                     ),
-                                validator: _model
-                                    .inputChatTextControllerValidator
-                                    .asValidator(context),
+                                    hintStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMediumFamily,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMediumFamily),
+                                        ),
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context)
+                                            .alternate,
+                                        width: 2.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        width: 2.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    errorBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        width: 2.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    focusedErrorBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        width: 2.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    contentPadding: const EdgeInsets.all(10.0),
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .bodyMediumFamily,
+                                        letterSpacing: 0.0,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily),
+                                      ),
+                                  validator: _model
+                                      .inputChatTextControllerValidator
+                                      .asValidator(context),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        FFButtonWidget(
-                          onPressed: () async {
-                            await MessagesTable().insert({
-                              'chat_id': widget.chatId,
-                              'content': _model.inputChatTextController.text,
-                              'sender_name': currentUserUid,
-                              'receiver_name':
-                                  messagesMessagesRow?.receiverName,
-                              'timestamp':
-                                  supaSerialize<DateTime>(getCurrentTimestamp),
-                            });
-                            setState(() {
-                              _model.inputChatTextController?.clear();
-                            });
-                            setState(() => _model.requestCompleter = null);
-                            await _model.waitForRequestCompleted();
-                          },
-                          text: FFLocalizations.of(context).getText(
-                            'f9pdwlqc' /* Send */,
-                          ),
-                          options: FFButtonOptions(
-                            width: 100.0,
-                            height: 50.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).primary,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .titleSmallFamily,
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .titleSmallFamily),
-                                ),
-                            elevation: 3.0,
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
+                          FFButtonWidget(
+                            onPressed: () async {
+                              await MessagesTable().insert({
+                                'chat_id': widget.chatId,
+                                'content': _model.inputChatTextController.text,
+                                'sender_name': currentUserUid,
+                                'receiver_name':
+                                    messagesMessagesRow?.receiverName,
+                                'timestamp': supaSerialize<DateTime>(
+                                    getCurrentTimestamp),
+                              });
+                              setState(() {
+                                _model.inputChatTextController?.clear();
+                              });
+                              setState(() => _model.requestCompleter = null);
+                              await _model.waitForRequestCompleted();
+                            },
+                            text: FFLocalizations.of(context).getText(
+                              'f9pdwlqc' /* Send */,
                             ),
-                            borderRadius: BorderRadius.circular(8.0),
+                            options: FFButtonOptions(
+                              width: 100.0,
+                              height: 50.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 24.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).primary,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .titleSmallFamily,
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .titleSmallFamily),
+                                  ),
+                              elevation: 3.0,
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         );

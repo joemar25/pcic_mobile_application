@@ -153,17 +153,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'ppir',
-          path: '/ppir',
-          requireAuth: true,
-          builder: (context, params) => PpirWidget(
-            taskId: params.getParam(
-              'taskId',
-              ParamType.String,
-            ),
-          ),
-        ),
-        FFRoute(
           name: 'formSuccess',
           path: '/formSuccess',
           requireAuth: true,
@@ -229,6 +218,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'taskStatus',
               ParamType.String,
             ),
+            assignmentId: params.getParam(
+              'assignmentId',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(
@@ -252,21 +245,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const OfflineTasksAndPpirListWidget(),
         ),
         FFRoute(
-          name: 'taskDetailsCopyx',
-          path: '/task_detailsx',
-          requireAuth: true,
-          builder: (context, params) => TaskDetailsCopyxWidget(
-            taskId: params.getParam(
-              'taskId',
-              ParamType.String,
-            ),
-            taskStatus: params.getParam(
-              'taskStatus',
-              ParamType.String,
-            ),
-          ),
-        ),
-        FFRoute(
           name: 'onboarding01',
           path: '/onboarding01',
           builder: (context, params) => const Onboarding01Widget(),
@@ -278,35 +256,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const SyncDataWidget(),
         ),
         FFRoute(
-          name: 'taskDetailsCopyxx',
-          path: '/task_detailsxx',
-          requireAuth: true,
-          builder: (context, params) => TaskDetailsCopyxxWidget(
-            taskId: params.getParam(
-              'taskId',
-              ParamType.String,
-            ),
-            taskStatus: params.getParam(
-              'taskStatus',
-              ParamType.String,
-            ),
-          ),
-        ),
-        FFRoute(
-          name: 'loginOriginalCopy',
-          path: '/loginOriginal',
-          builder: (context, params) => const LoginOriginalCopyWidget(),
-        ),
-        FFRoute(
           name: 'onboarding01OriginalCopy',
           path: '/onboarding01OriginalCopy',
           builder: (context, params) => const Onboarding01OriginalCopyWidget(),
-        ),
-        FFRoute(
-          name: 'chatsCopy',
-          path: '/chatsCopy',
-          requireAuth: true,
-          builder: (context, params) => const ChatsCopyWidget(),
         ),
         FFRoute(
           name: 'syncKingCopy',
@@ -319,6 +271,27 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/syncKingCopyCopy',
           requireAuth: true,
           builder: (context, params) => const SyncKingCopyCopyWidget(),
+        ),
+        FFRoute(
+          name: 'ppirOriginal',
+          path: '/ppirOriginal',
+          requireAuth: true,
+          builder: (context, params) => PpirOriginalWidget(
+            taskId: params.getParam(
+              'taskId',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'ppirForm',
+          path: '/ppirForm',
+          builder: (context, params) => PpirFormWidget(
+            taskId: params.getParam(
+              'taskId',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

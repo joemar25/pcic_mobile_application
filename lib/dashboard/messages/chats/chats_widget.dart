@@ -276,7 +276,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                     height: MediaQuery.sizeOf(
                                                                 context)
                                                             .height *
-                                                        0.6,
+                                                        0.5,
                                                     child: const EmptyListsWidget(
                                                       type: 'Messages',
                                                     ),

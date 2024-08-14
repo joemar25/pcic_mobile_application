@@ -282,6 +282,10 @@ dynamic deserializeParam<T>(
             return OFFLINESelectTaskByIDRow(data);
           case SELECTTASKSAndPPIRByAssigneeRow:
             return SELECTTASKSAndPPIRByAssigneeRow(data);
+          case SELECTRiceSEEDSRow:
+            return SELECTRiceSEEDSRow(data);
+          case SELECTCornSEEDSRow:
+            return SELECTCornSEEDSRow(data);
           default:
             return null;
         }

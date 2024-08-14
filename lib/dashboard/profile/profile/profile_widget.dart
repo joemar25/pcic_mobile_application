@@ -85,8 +85,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -1168,10 +1167,13 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
-                                              child: const SizedBox(
-                                                height: 349.0,
-                                                width: 300.0,
-                                                child: SignoutDialogWidget(),
+                                              child: SizedBox(
+                                                height:
+                                                    MediaQuery.sizeOf(context)
+                                                            .height *
+                                                        0.3,
+                                                width: 400.0,
+                                                child: const SignoutDialogWidget(),
                                               ),
                                             );
                                           },

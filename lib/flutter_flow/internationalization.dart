@@ -111,6 +111,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'PCIC Geotagging ',
       'tl': '',
     },
+    'b8fosx2l': {
+      'en': 'DON\"T DELETE SCOTT IS TESTING HERE',
+      'tl': '',
+    },
     '4okdmfv6': {
       'en': 'Welcome Back',
       'tl': '',
@@ -257,7 +261,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'v9wu5kh6': {
+    'v4r8sckf': {
       'en': '',
       'tl': '',
     },
@@ -269,7 +273,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'p39wpz6y': {
+    '1hy8rx8m': {
       'en': '',
       'tl': '',
     },
@@ -281,7 +285,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'wlskf26i': {
+    'vb00f1r4': {
       'en': '',
       'tl': '',
     },
@@ -300,11 +304,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Edit Profile',
       'tl': '',
     },
-    '8kwpczkh': {
-      'en': '',
-      'tl': '',
+    'r9vm5mt1': {
+      'en': 'Name',
+      'tl': 'Ang pangalan mo',
     },
-    'fzci7zj1': {
+    '8kwpczkh': {
       'en': '',
       'tl': '',
     },
@@ -494,13 +498,25 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirmed By',
       'tl': 'Kinumpirma ni',
     },
+    'ldu99qtk': {
+      'en': 'Cannot view GPX because you are offline.',
+      'tl': '',
+    },
     '8bdkh9n1': {
       'en': 'Prepared By',
       'tl': 'Inihanda ni',
     },
+    '43s11dio': {
+      'en': 'Cannot view signature because you are offline.',
+      'tl': '',
+    },
     'ahzx9d2y': {
       'en': 'Geotag',
       'tl': 'Geotag',
+    },
+    '1ndvql8q': {
+      'en': 'Cannot view GPX because you are offline.',
+      'tl': '',
     },
     '65kky15n': {
       'en': 'Geotag',
@@ -519,141 +535,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     '4jnx5njc': {
-      'en': 'Home',
-      'tl': 'Bahay',
-    },
-  },
-  // ppir
-  {
-    'k6qjt4aw': {
-      'en': 'Geotag',
-      'tl': '',
-    },
-    '3veba0qh': {
-      'en': 'Repeat Geotag',
-      'tl': '',
-    },
-    '57upt8rw': {
-      'en': 'Download',
-      'tl': '',
-    },
-    'ze2pl4ye': {
-      'en': 'Geotag Information',
-      'tl': '',
-    },
-    'n95y5s6i': {
-      'en': 'Last Coordinates',
-      'tl': '',
-    },
-    'hae09rgg': {
-      'en': 'Total Area',
-      'tl': '',
-    },
-    'tqztw6m9': {
-      'en': 'Date Time',
-      'tl': '',
-    },
-    'be7rp1bl': {
-      'en': 'Total Hectares',
-      'tl': '',
-    },
-    'y2s7hj5w': {
-      'en': 'Farm Location',
-      'tl': '',
-    },
-    'gmc39std': {
-      'en': 'Seed Variety',
-      'tl': '',
-    },
-    'jn43drww': {
-      'en': 'rice',
-      'tl': '',
-    },
-    'lbxujdxy': {
-      'en': 'corn',
-      'tl': '',
-    },
-    '9mikx6ak': {
-      'en': 'Select the Type of Rice ',
-      'tl': '',
-    },
-    'o5fvkvth': {
-      'en': 'this is the rice',
-      'tl': '',
-    },
-    'nd5lsz8y': {
-      'en': 'Please select...',
-      'tl': '',
-    },
-    'uorchiy2': {
-      'en': 'Search for an item...',
-      'tl': '',
-    },
-    'lyts6olw': {
-      'en': 'Select the Type of Corn ',
-      'tl': '',
-    },
-    '9nnzotiz': {
-      'en': 'this is the rice',
-      'tl': '',
-    },
-    'muwach4e': {
-      'en': 'Please select...',
-      'tl': '',
-    },
-    'pvvdbdwh': {
-      'en': 'Search for an item...',
-      'tl': '',
-    },
-    'hw506fw0': {
-      'en': 'Actual Area Planted',
-      'tl': '',
-    },
-    'ult8jtry': {
-      'en': 'Actual Date of Planting (DS)',
-      'tl': '',
-    },
-    '5xaja5pg': {
-      'en': 'Actual Date of Planting (TP)',
-      'tl': '',
-    },
-    '80o0gacf': {
-      'en': 'Remarks',
-      'tl': '',
-    },
-    'lxsn39s5': {
-      'en': 'Prepared by',
-      'tl': '',
-    },
-    'p2htj2ad': {
-      'en': 'Tap to Signature',
-      'tl': '',
-    },
-    'bf0l7x1o': {
-      'en': 'Confirm by',
-      'tl': '',
-    },
-    'wyigefcb': {
-      'en': 'Tap to Signature',
-      'tl': '',
-    },
-    'b7688dq2': {
-      'en': 'DON\'T DELETE TAT IS TESTING HERE',
-      'tl': '',
-    },
-    'qhfraqcp': {
-      'en': 'Cancel',
-      'tl': '',
-    },
-    '85i1pnil': {
-      'en': 'Save',
-      'tl': '',
-    },
-    'n9o7a192': {
-      'en': 'Submit',
-      'tl': '',
-    },
-    '4ho4omqk': {
       'en': 'Home',
       'tl': 'Bahay',
     },
@@ -886,197 +767,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
-  // taskDetailsCopyx
-  {
-    'oskk6d39': {
-      'en': 'Form Details',
-      'tl': '',
-    },
-    'jgp1qdzg': {
-      'en': 'Assignment Id',
-      'tl': '',
-    },
-    'ua2ed6p2': {
-      'en': 'Farmer Name',
-      'tl': '',
-    },
-    'gxay60s8': {
-      'en': 'Address',
-      'tl': '',
-    },
-    'g90uj4i5': {
-      'en': 'Insurance Id',
-      'tl': '',
-    },
-    '8e842nqx': {
-      'en': 'Mobile Number',
-      'tl': '',
-    },
-    'g7rnel3m': {
-      'en': 'Farmer Type',
-      'tl': '',
-    },
-    '9jazarr0': {
-      'en': 'Group Name',
-      'tl': '',
-    },
-    'behrff99': {
-      'en': 'Group Address',
-      'tl': '',
-    },
-    'q2xm4uqc': {
-      'en': 'Lender Name',
-      'tl': '',
-    },
-    'nrx7s8s0': {
-      'en': 'Lender Address',
-      'tl': '',
-    },
-    'zelz7qj7': {
-      'en': 'Region',
-      'tl': '',
-    },
-    'okl9uy72': {
-      'en': 'CIC Number',
-      'tl': '',
-    },
-    'cft4el2i': {
-      'en': 'Farm Location',
-      'tl': '',
-    },
-    '93dpnvby': {
-      'en': '',
-      'tl': '',
-    },
-    'k8lxsltp': {
-      'en': 'Location Sketch Plan',
-      'tl': '',
-    },
-    '06hp4i6n': {
-      'en': 'North',
-      'tl': '',
-    },
-    'w4y1p2tj': {
-      'en': 'East',
-      'tl': '',
-    },
-    'vckq82bc': {
-      'en': 'South',
-      'tl': '',
-    },
-    'o0rqnyb3': {
-      'en': 'West',
-      'tl': '',
-    },
-    'tol4nxo3': {
-      'en': 'Location Sketch Plan',
-      'tl': '',
-    },
-    'rw0sh80k': {
-      'en': 'Area Planted',
-      'tl': '',
-    },
-    'lnpo3wrz': {
-      'en': 'Date of Planting (DS)',
-      'tl': '',
-    },
-    'lpjly72a': {
-      'en': 'Datee of Planting (TP)',
-      'tl': '',
-    },
-    'k3if5czh': {
-      'en': 'Seed Variety Planted',
-      'tl': '',
-    },
-    '08kgdns5': {
-      'en': 'Completed Task  Details',
-      'tl': '',
-    },
-    '3dmm4vvn': {
-      'en': 'Tracking Details',
-      'tl': '',
-    },
-    'y8nfprqq': {
-      'en': 'Last Coordinates',
-      'tl': '',
-    },
-    'k33o4ljv': {
-      'en': 'Track Date',
-      'tl': '',
-    },
-    'thqeur7g': {
-      'en': 'Total Area (ha)',
-      'tl': '',
-    },
-    '8tjfp8ru': {
-      'en': 'Total Distance',
-      'tl': '',
-    },
-    'h8d78nen': {
-      'en': 'Seed Details',
-      'tl': '',
-    },
-    'xy41gm52': {
-      'en': 'Type',
-      'tl': '',
-    },
-    'yzp4hxop': {
-      'en': 'Variety',
-      'tl': '',
-    },
-    'ub3h3340': {
-      'en': 'Date Details',
-      'tl': '',
-    },
-    '4loop0tv': {
-      'en': 'Date of Planting (DS)',
-      'tl': '',
-    },
-    'kb0lp36o': {
-      'en': 'Date of Planting (TP)',
-      'tl': '',
-    },
-    '5owl6nia': {
-      'en': 'Agent Confirmation',
-      'tl': '',
-    },
-    'teqhks3p': {
-      'en': 'Remarks',
-      'tl': '',
-    },
-    'ah35yr12': {
-      'en': 'Confirmed By',
-      'tl': '',
-    },
-    '3jldlj7l': {
-      'en': 'Prepared By',
-      'tl': '',
-    },
-    'whebqhau': {
-      'en': 'Geotag',
-      'tl': '',
-    },
-    '1a6n1vqa': {
-      'en': 'Continue Form',
-      'tl': '',
-    },
-    '50098527': {
-      'en': 'Geotag',
-      'tl': '',
-    },
-    'd4ieef23': {
-      'en': 'Resubmit',
-      'tl': '',
-    },
-    'sdd0mquj': {
-      'en': 'Re-Submit',
-      'tl': '',
-    },
-    'a5mnvgzd': {
-      'en': 'Home',
-      'tl': '',
-    },
-  },
   // onboarding01
   {
     'e5zj0r88': {
@@ -1084,7 +774,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     'sdylopj4': {
-      'en': 'Welcome Agent in the PCIC Geotagging Application!',
+      'en': 'Welcome, Agent, to the PCIC Geotagging Application!',
       'tl': '',
     },
     'ult64d5q': {
@@ -1111,268 +801,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     '2nf0agys': {
-      'en': 'Home',
-      'tl': '',
-    },
-  },
-  // taskDetailsCopyxx
-  {
-    '0oy9ifrt': {
-      'en': 'Form Details',
-      'tl': '',
-    },
-    'k9mlejzv': {
-      'en': 'Assignment Id',
-      'tl': '',
-    },
-    'be37kfpd': {
-      'en': 'Farmer Name',
-      'tl': '',
-    },
-    'qpvdw1xo': {
-      'en': 'Address',
-      'tl': '',
-    },
-    'idrwqmhk': {
-      'en': 'Insurance Id',
-      'tl': '',
-    },
-    'al80eo7h': {
-      'en': 'Mobile Number',
-      'tl': '',
-    },
-    'tdjrym3l': {
-      'en': 'Farmer Type',
-      'tl': '',
-    },
-    '5k0kgydt': {
-      'en': 'Group Name',
-      'tl': '',
-    },
-    '0eqe1guh': {
-      'en': 'Group Address',
-      'tl': '',
-    },
-    'd63lvet6': {
-      'en': 'Lender Name',
-      'tl': '',
-    },
-    'jf76re1s': {
-      'en': 'Lender Address',
-      'tl': '',
-    },
-    'l1sklwon': {
-      'en': 'Region',
-      'tl': '',
-    },
-    '1490o35z': {
-      'en': 'CIC Number',
-      'tl': '',
-    },
-    'nvxfegvp': {
-      'en': 'Farm Location',
-      'tl': '',
-    },
-    'ri4glm1o': {
-      'en': 'Location Sketch Plan',
-      'tl': '',
-    },
-    '8ori52ax': {
-      'en': 'North',
-      'tl': '',
-    },
-    '6jencldj': {
-      'en': 'East',
-      'tl': '',
-    },
-    'cxqx741q': {
-      'en': 'South',
-      'tl': '',
-    },
-    'ja725isb': {
-      'en': 'West',
-      'tl': '',
-    },
-    '3103u0dm': {
-      'en': 'Location Sketch Plan',
-      'tl': '',
-    },
-    '2xkh8w0a': {
-      'en': 'Area Planted',
-      'tl': '',
-    },
-    'ygnc5zns': {
-      'en': 'Date of Planting (DS)',
-      'tl': '',
-    },
-    'cx9ye2yt': {
-      'en': 'Datee of Planting (TP)',
-      'tl': '',
-    },
-    'guwa56fo': {
-      'en': 'Seed Variety Planted',
-      'tl': '',
-    },
-    'lfrxhmef': {
-      'en': 'Completed Task  Details',
-      'tl': '',
-    },
-    '569fwwjg': {
-      'en': 'Tracking Details',
-      'tl': '',
-    },
-    '6prx1iyn': {
-      'en': 'Last Coordinates',
-      'tl': '',
-    },
-    '8629sgox': {
-      'en': 'Track Date',
-      'tl': '',
-    },
-    'g1masszs': {
-      'en': 'Total Area (ha)',
-      'tl': '',
-    },
-    'sdjoxl4t': {
-      'en': 'Total Distance',
-      'tl': '',
-    },
-    'axrnlqyl': {
-      'en': 'Seed Details',
-      'tl': '',
-    },
-    'v9j94qyn': {
-      'en': 'Type',
-      'tl': '',
-    },
-    '49imppnf': {
-      'en': 'Variety',
-      'tl': '',
-    },
-    '03ju80eo': {
-      'en': 'Date Details',
-      'tl': '',
-    },
-    '6gwgytpe': {
-      'en': 'Date of Planting (DS)',
-      'tl': '',
-    },
-    'kc1kkytp': {
-      'en': 'Date of Planting (TP)',
-      'tl': '',
-    },
-    'bsc4g0yq': {
-      'en': 'Agent Confirmation',
-      'tl': '',
-    },
-    'fcisshvt': {
-      'en': 'Remarks',
-      'tl': '',
-    },
-    'uap105un': {
-      'en': 'Confirmed By',
-      'tl': '',
-    },
-    'rlo83szj': {
-      'en': 'Prepared By',
-      'tl': '',
-    },
-    '6key2kle': {
-      'en': 'Geotag',
-      'tl': '',
-    },
-    '1cv0g8k6': {
-      'en': 'Geotag',
-      'tl': '',
-    },
-    '13wgcmqb': {
-      'en': 'Continue Form',
-      'tl': '',
-    },
-    'rlzcpz01': {
-      'en': 'Resubmit',
-      'tl': '',
-    },
-    'wmv2zwgj': {
-      'en': 'Re-Submit',
-      'tl': '',
-    },
-    '9by11dqq': {
-      'en': 'Home',
-      'tl': '',
-    },
-  },
-  // loginOriginalCopy
-  {
-    '57zaxsj8': {
-      'en': 'PCIC Geotagging ',
-      'tl': '',
-    },
-    '87wz8uvo': {
-      'en': 'DON\"T DELETE SCOTT IS TESTING HERE',
-      'tl': '',
-    },
-    '05ulgw2f': {
-      'en': 'Welcome Back',
-      'tl': '',
-    },
-    'nag5ke10': {
-      'en': 'Please sign in to continue',
-      'tl': '',
-    },
-    'y1z141rp': {
-      'en': 'Email Address',
-      'tl': '',
-    },
-    'sj6vsz71': {
-      'en': 'Enter your email address...',
-      'tl': '',
-    },
-    'xlbctbk0': {
-      'en': '',
-      'tl': '',
-    },
-    'jb8g5qku': {
-      'en': 'Password',
-      'tl': '',
-    },
-    'd6c8swbq': {
-      'en': 'Enter your password...',
-      'tl': '',
-    },
-    'jr8iwpo9': {
-      'en': '',
-      'tl': '',
-    },
-    'euned5zw': {
-      'en': 'Log in',
-      'tl': '',
-    },
-    'tvgiw5oi': {
-      'en': 'Forgot Password ?',
-      'tl': '',
-    },
-    '2dw7rcft': {
-      'en': 'Field is required',
-      'tl': '',
-    },
-    'eawrlfti': {
-      'en': 'Please choose an option from the dropdown',
-      'tl': '',
-    },
-    'mghqg6la': {
-      'en': 'Field is required',
-      'tl': '',
-    },
-    'dd07lbtn': {
-      'en': 'Password must be atleast 8 characters',
-      'tl': '',
-    },
-    'zegrahdq': {
-      'en': 'Please choose an option from the dropdown',
-      'tl': '',
-    },
-    'egf7o911': {
       'en': 'Home',
       'tl': '',
     },
@@ -1416,29 +844,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
-  // chatsCopy
-  {
-    'tmxlre7s': {
-      'en': 'Messages',
-      'tl': '',
-    },
-    '7fzgjx8b': {
-      'en': 'Conversations',
-      'tl': '',
-    },
-    '7vss9dpb': {
-      'en': 'You are offline.',
-      'tl': '',
-    },
-    '5lzgniqc': {
-      'en': 'Compose',
-      'tl': '',
-    },
-    'dl276486': {
-      'en': 'Messages',
-      'tl': '',
-    },
-  },
   // syncKingCopy
   {
     'e3h43o18': {
@@ -1477,6 +882,284 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     'v3jq6q5p': {
+      'en': 'Home',
+      'tl': '',
+    },
+  },
+  // ppirOriginal
+  {
+    'tco3mv0u': {
+      'en': 'Geotag',
+      'tl': '',
+    },
+    'pl0bknfl': {
+      'en': 'Repeat Geotag',
+      'tl': '',
+    },
+    'iq7q8449': {
+      'en': 'Download',
+      'tl': '',
+    },
+    'uppjlms9': {
+      'en': 'Geotag Information',
+      'tl': '',
+    },
+    'a55axski': {
+      'en': 'Last Coordinates',
+      'tl': '',
+    },
+    'r3wvkqyk': {
+      'en': 'Total Area',
+      'tl': '',
+    },
+    'bfaij5b1': {
+      'en': 'Date Time',
+      'tl': '',
+    },
+    '5zp9vjkt': {
+      'en': 'Total Hectares',
+      'tl': '',
+    },
+    'vq2cm9il': {
+      'en': 'Farm Location',
+      'tl': '',
+    },
+    'xrreq4co': {
+      'en': 'Seed Variety',
+      'tl': '',
+    },
+    'qulvvnue': {
+      'en': 'rice',
+      'tl': '',
+    },
+    'sn6svdc9': {
+      'en': 'corn',
+      'tl': '',
+    },
+    'dfgdkb4d': {
+      'en': 'Select the Type of Rice ',
+      'tl': '',
+    },
+    't8xxmhl2': {
+      'en': 'this is the rice',
+      'tl': '',
+    },
+    'ac08a04t': {
+      'en': 'Please select...',
+      'tl': '',
+    },
+    '5x5ymky9': {
+      'en': 'Search for an item...',
+      'tl': '',
+    },
+    'kyb2cgz2': {
+      'en': 'Select the Type of Corn ',
+      'tl': '',
+    },
+    '2w8dn1ey': {
+      'en': 'this is the rice',
+      'tl': '',
+    },
+    't0ahaio1': {
+      'en': 'Please select...',
+      'tl': '',
+    },
+    'z3wfg5ul': {
+      'en': 'Search for an item...',
+      'tl': '',
+    },
+    'zo56xkjl': {
+      'en': 'Actual Area Planted',
+      'tl': '',
+    },
+    '1z02oonb': {
+      'en': 'Actual Date of Planting (DS)',
+      'tl': '',
+    },
+    'xkkk715e': {
+      'en': 'Actual Date of Planting (TP)',
+      'tl': '',
+    },
+    'gsi8opij': {
+      'en': 'Remarks',
+      'tl': '',
+    },
+    '85syyh2d': {
+      'en': 'Prepared by',
+      'tl': '',
+    },
+    'fq19omfm': {
+      'en': 'Tap to Signature',
+      'tl': '',
+    },
+    '3lyz63el': {
+      'en': 'Confirm by',
+      'tl': '',
+    },
+    'j5ip59u5': {
+      'en': 'Tap to Signature',
+      'tl': '',
+    },
+    '7tkizeet': {
+      'en': 'DON\'T DELETE TAT IS TESTING HERE',
+      'tl': '',
+    },
+    'z6gf245p': {
+      'en': 'Cancel',
+      'tl': '',
+    },
+    '7458l6gv': {
+      'en': 'Save',
+      'tl': '',
+    },
+    'umnf3lm8': {
+      'en': 'Submit',
+      'tl': '',
+    },
+    'sb9iji3v': {
+      'en': 'Home',
+      'tl': '',
+    },
+  },
+  // ppirForm
+  {
+    'oco9wa86': {
+      'en': 'Geotag',
+      'tl': '',
+    },
+    '8bwk8let': {
+      'en': 'Cannot view GPX because you are offline.',
+      'tl': '',
+    },
+    'vlpe8yky': {
+      'en': 'Repeat Geotag',
+      'tl': '',
+    },
+    '0er41e9i': {
+      'en': 'Download',
+      'tl': '',
+    },
+    'w83q21s1': {
+      'en': 'Geotag Information',
+      'tl': '',
+    },
+    'g8oor25r': {
+      'en': 'Last Coordinates',
+      'tl': '',
+    },
+    'j4k9ydv4': {
+      'en': 'Total Area',
+      'tl': '',
+    },
+    'bcn0bfjf': {
+      'en': 'Date Time',
+      'tl': '',
+    },
+    'wr9xhmty': {
+      'en': 'Total Hectares',
+      'tl': '',
+    },
+    'opc4bpk1': {
+      'en': 'Farm Location',
+      'tl': '',
+    },
+    'l6pbtiio': {
+      'en': 'Seed Variety',
+      'tl': '',
+    },
+    'n2eymfb9': {
+      'en': 'rice',
+      'tl': '',
+    },
+    '2fy8z531': {
+      'en': 'corn',
+      'tl': '',
+    },
+    'fd5vtp4q': {
+      'en': 'Select the Type of Corn ',
+      'tl': '',
+    },
+    '9vpclvfb': {
+      'en': 'Option 1',
+      'tl': '',
+    },
+    'svwg4lfn': {
+      'en': 'Please select...',
+      'tl': '',
+    },
+    'wx9ezblr': {
+      'en': 'Search for an item...',
+      'tl': '',
+    },
+    'aqzhnbj5': {
+      'en': 'Select the Type of Rice ',
+      'tl': '',
+    },
+    'kyt3fdec': {
+      'en': 'Option 1',
+      'tl': '',
+    },
+    'frfbun0t': {
+      'en': 'Please select...',
+      'tl': '',
+    },
+    'vkwu56pa': {
+      'en': 'Search for an item...',
+      'tl': '',
+    },
+    'n872ktx2': {
+      'en': 'Area',
+      'tl': '',
+    },
+    'nuiqbq4u': {
+      'en': 'Actual Area Planted',
+      'tl': '',
+    },
+    'of9zu2fh': {
+      'en': 'Actual Date of Planting (DS)',
+      'tl': '',
+    },
+    'a0a2mg8u': {
+      'en': 'Actual Date of Planting (TP)',
+      'tl': '',
+    },
+    'f5is9k8s': {
+      'en': 'Report Confirmation',
+      'tl': '',
+    },
+    'xd5quvbx': {
+      'en': 'Remarks',
+      'tl': '',
+    },
+    '2slf6a8t': {
+      'en': 'Prepared by',
+      'tl': '',
+    },
+    'd6o99v59': {
+      'en': 'Tap to Signature',
+      'tl': '',
+    },
+    '8r38llaf': {
+      'en': 'Confirm by',
+      'tl': '',
+    },
+    '7ozi615f': {
+      'en': 'Tap to Signature',
+      'tl': '',
+    },
+    'aae0jxzm': {
+      'en': 'Cancel',
+      'tl': '',
+    },
+    'lgxphrlo': {
+      'en': 'Save',
+      'tl': '',
+    },
+    'wrod6how': {
+      'en': 'Submit',
+      'tl': '',
+    },
+    '6k4ph13p': {
       'en': 'Home',
       'tl': '',
     },
@@ -1626,12 +1309,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'The current gpx file will be deleted. \nAre you sure you want to continue?',
       'tl': '',
     },
-    'ma51aika': {
-      'en': 'CANCEL',
+    '9nbvgmc2': {
+      'en': 'Cancel',
       'tl': '',
     },
-    'z8ore9hv': {
-      'en': 'CONTINUE',
+    '6qtpudw1': {
+      'en': 'Sign Out',
       'tl': '',
     },
   },

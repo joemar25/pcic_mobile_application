@@ -46,12 +46,25 @@ class _EmptyListsWidgetState extends State<EmptyListsWidget> {
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Lottie.asset(
-          'assets/lottie_animations/Animation_-_1721726542727.json',
-          width: 150.0,
-          height: 130.0,
-          fit: BoxFit.cover,
-          animate: true,
+        Flexible(
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Flexible(
+                child: Container(
+                  decoration: const BoxDecoration(),
+                  child: Lottie.asset(
+                    'assets/lottie_animations/Animation_-_1721726542727.json',
+                    width: 150.0,
+                    height: 130.0,
+                    fit: BoxFit.contain,
+                    animate: true,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
         Row(
           mainAxisSize: MainAxisSize.max,

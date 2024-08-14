@@ -216,7 +216,7 @@ class _Onboarding01WidgetState extends State<Onboarding01Widget>
                             44.0, 8.0, 44.0, 0.0),
                         child: Text(
                           FFLocalizations.of(context).getText(
-                            'sdylopj4' /* Welcome Agent in the PCIC Geot... */,
+                            'sdylopj4' /* Welcome, Agent, to the PCIC Ge... */,
                           ),
                           textAlign: TextAlign.center,
                           style: FlutterFlowTheme.of(context)

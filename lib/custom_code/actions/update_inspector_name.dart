@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 
 Future<void> updateInspectorName(String newName) async {
   final supabase = Supabase.instance.client;
+
   try {
     // Get the current user's ID
     final user = supabase.auth.currentUser;
@@ -20,21 +21,35 @@ Future<void> updateInspectorName(String newName) async {
       throw Exception('No authenticated user found');
     }
 
+    // Update the inspector_name in the users table
     final response = await supabase
         .from('users')
-        .update({'inspector_name': newName}).eq(
-            'id', user.id); //changed auth_user_id to id
+        .update({'inspector_name': newName})
+        .eq('id', user.id)
+        .execute();
 
-    // The response might be null if the update was successful
-    if (response == null) {
-      print('Inspector name updated successfully');
-    } else {
-      // If there's an error, it will be in the response
-      throw Exception('Failed to update inspector name');
+    if (response.error != null) {
+      throw response.error!;
     }
+
+    // Fetch the updated user data to confirm the change
+    final updatedUser = await supabase
+        .from('users')
+        .select()
+        .eq('id', user.id)
+        .single()
+        .execute();
+
+    if (updatedUser.error != null) {
+      throw updatedUser.error!;
+    }
+
+    print('Updated user data: ${updatedUser.data}');
+    print('Inspector name updated successfully');
   } catch (error) {
     print('Error updating inspector name: $error');
     // You might want to show an error message to the user here
+    rethrow; // Rethrow the error so it can be handled by the caller if needed
   }
 }
 // Set your action name, define your arguments and return parameter,

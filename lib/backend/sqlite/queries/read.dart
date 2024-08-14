@@ -411,16 +411,16 @@ SELECT
     COALESCE(t.priority, 'No Value') AS priority,
     COALESCE(t.assignee, 'No Value') AS assignee,
     COALESCE(t.file_id, 'No Value') AS file_id,
-    COALESCE(t.date_added, 'No Value') AS date_added,
-    COALESCE(t.date_access, 'No Value') AS date_access,
+    COALESCE(CAST(t.date_added AS TEXT), '1970-01-01 00:00:00') AS date_added,
+    COALESCE(CAST(t.date_access AS TEXT), '1970-01-01 00:00:00') AS date_access,
     COALESCE(t.status, 'No Value') AS status,
     COALESCE(t.task_type, 'No Value') AS task_type,
-    COALESCE(t.attempt_count, 'No Value') AS attempt_count,
-    COALESCE(t.created_at, 'No Value') AS task_created_at,
-    COALESCE(t.updated_at, 'No Value') AS task_updated_at,
+    COALESCE(t.attempt_count, 0) AS attempt_count,
+    COALESCE(CAST(t.created_at AS TEXT), '1970-01-01 00:00:00') AS task_created_at,
+    COALESCE(CAST(t.updated_at AS TEXT), '1970-01-01 00:00:00') AS task_updated_at,
     COALESCE(CAST(t.is_deleted AS TEXT), 'No Value') AS is_deleted,
     COALESCE(t.sync_status, 'No Value') AS task_sync_status,
-    COALESCE(t.last_synced_at, 'No Value') AS task_last_synced_at,
+    COALESCE(CAST(t.last_synced_at AS TEXT), '1970-01-01 00:00:00') AS task_last_synced_at,
     COALESCE(t.local_id, 'No Value') AS task_local_id,
     COALESCE(CAST(t.is_dirty AS TEXT), 'No Value') AS task_is_dirty,
     COALESCE(p.ppir_assignmentid, 'No Value') AS ppir_assignmentid,
@@ -447,7 +447,7 @@ SELECT
     COALESCE(p.ppir_doptp_aci, 'No Value') AS ppir_doptp_aci,
     COALESCE(p.ppir_doptp_act, 'No Value') AS ppir_doptp_act,
     COALESCE(p.ppir_svp_aci, 'No Value') AS ppir_svp_aci,
-    COALESCE(p.ppir_svp_act, 'No Value') AS ppir_svp_act,
+    COALESCE(p.ppir_svp_act, 'rice') AS ppir_svp_act, -- Default from schema
     COALESCE(p.ppir_variety, 'No Value') AS ppir_variety,
     COALESCE(p.ppir_stagecrop, 'No Value') AS ppir_stagecrop,
     COALESCE(p.ppir_remarks, 'No Value') AS ppir_remarks,
@@ -456,13 +456,13 @@ SELECT
     COALESCE(p.ppir_sig_insured, 'No Value') AS ppir_sig_insured,
     COALESCE(p.ppir_sig_iuia, 'No Value') AS ppir_sig_iuia,
     COALESCE(p.track_last_coord, 'No Value') AS track_last_coord,
-    COALESCE(p.track_date_time, 'No Value') AS track_date_time,
+    COALESCE(p.track_date_time, '1970-01-01 00:00:00') AS track_date_time,
     COALESCE(p.track_total_area, 'No Value') AS track_total_area,
     COALESCE(p.track_total_distance, 'No Value') AS track_total_distance,
-    COALESCE(p.created_at, 'No Value') AS ppir_created_at,
-    COALESCE(p.updated_at, 'No Value') AS ppir_updated_at,
+    COALESCE(CAST(p.created_at AS TEXT), '1970-01-01 00:00:00') AS ppir_created_at,
+    COALESCE(CAST(p.updated_at AS TEXT), '1970-01-01 00:00:00') AS ppir_updated_at,
     COALESCE(p.sync_status, 'No Value') AS ppir_sync_status,
-    COALESCE(p.last_synced_at, 'No Value') AS ppir_last_synced_at,
+    COALESCE(CAST(p.last_synced_at AS TEXT), '1970-01-01 00:00:00') AS ppir_last_synced_at,
     COALESCE(p.local_id, 'No Value') AS ppir_local_id,
     COALESCE(CAST(p.is_dirty AS TEXT), 'No Value') AS ppir_is_dirty
 FROM 
@@ -543,3 +543,41 @@ class SELECTTASKSAndPPIRByAssigneeRow extends SqliteRow {
 }
 
 /// END SELECT TASKS AND PPIR BY ASSIGNEE
+
+/// BEGIN SELECT RICE SEEDS
+Future<List<SELECTRiceSEEDSRow>> performSELECTRiceSEEDS(
+  Database database,
+) {
+  const query = '''
+SELECT * FROM seeds WHERE seed_type = 'rice';
+''';
+  return _readQuery(database, query, (d) => SELECTRiceSEEDSRow(d));
+}
+
+class SELECTRiceSEEDSRow extends SqliteRow {
+  SELECTRiceSEEDSRow(super.data);
+
+  String? get seed => data['seed'] as String?;
+  String? get seedType => data['seed_type'] as String?;
+}
+
+/// END SELECT RICE SEEDS
+
+/// BEGIN SELECT CORN SEEDS
+Future<List<SELECTCornSEEDSRow>> performSELECTCornSEEDS(
+  Database database,
+) {
+  const query = '''
+SELECT * FROM seeds WHERE seed_type = 'corn';
+''';
+  return _readQuery(database, query, (d) => SELECTCornSEEDSRow(d));
+}
+
+class SELECTCornSEEDSRow extends SqliteRow {
+  SELECTCornSEEDSRow(super.data);
+
+  String? get seed => data['seed'] as String?;
+  String? get seedType => data['seed_type'] as String?;
+}
+
+/// END SELECT CORN SEEDS
