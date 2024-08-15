@@ -469,6 +469,10 @@ class _MapBoxState extends State<MapBox> {
       _startTracking();
     }
 
+    if (!appState.routeStarted && _isTracking) {
+      _completeTracking();
+    }
+
     if (_errorMessage != null) {
       return Center(
         child: Column(
