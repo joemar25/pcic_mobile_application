@@ -49,7 +49,7 @@ class _MapBoxState extends State<MapBox> {
   ll.LatLng? _currentLocation;
   List<ll.LatLng> _routePoints = [];
 
-  static const double _initialZoom = 19.0;
+  static const double _initialZoom = 20.0;
   double _currentZoom = _initialZoom;
 
   @override
@@ -147,26 +147,6 @@ class _MapBoxState extends State<MapBox> {
     _mapController.move(currentCenter, zoom);
   }
 
-  double calculateZoomLevel(double totalDistance) {
-    double zoomLevel = 18.0 - (totalDistance / 10000.0);
-    return zoomLevel.clamp(10.0, 20.0);
-  }
-
-  ll.LatLng calculateCenterPoint(List<ll.LatLng> points) {
-    double latSum = 0.0;
-    double lngSum = 0.0;
-
-    for (var point in points) {
-      latSum += point.latitude;
-      lngSum += point.longitude;
-    }
-
-    double centerLat = latSum / points.length;
-    double centerLng = lngSum / points.length;
-
-    return ll.LatLng(centerLat, centerLng);
-  }
-
   double calculateAreaOfPolygon(List<ll.LatLng> points) {
     if (points.length < 3) {
       return 0.0;
@@ -219,20 +199,49 @@ class _MapBoxState extends State<MapBox> {
     if (_routePoints.isEmpty) return;
 
     print('Route completed. Total points: ${_routePoints.length}');
-    print('Total distance: ${calculateTotalDistance(_routePoints)} meters');
+
+    // Calculate total distance
+    double totalDistance = calculateTotalDistance(_routePoints);
+    print('Total distance: $totalDistance meters');
+
+    // Calculate area if we have at least 3 points
+    double area = 0.0;
     if (_routePoints.length >= 3) {
-      print('Area: ${calculateAreaOfPolygon(_routePoints)} square meters');
+      area = calculateAreaOfPolygon(_routePoints);
+      print('Area: $area square meters');
     }
 
-    List<LatLng> convertedCoordinates = _routePoints
-        .map((point) => LatLng(point.latitude, point.longitude))
-        .toList();
+    // Prepare route coordinates string
+    String routeCoordinatesString = _routePoints
+        .map((point) => '${point.latitude},${point.longitude}')
+        .join(' ');
 
-    saveGpx(widget.taskId ?? 'default_task_id', convertedCoordinates);
+    // Get last coordinate
+    String lastCoord =
+        '${_routePoints.last.latitude},${_routePoints.last.longitude}';
 
-    setState(() {
-      _routePoints.clear();
-    });
+    // Get current date time
+    String currentDateTime = DateTime.now().toIso8601String();
+
+    // Convert area to hectares
+    String areaInHectares = (area / 10000).toStringAsFixed(4);
+
+    // Convert distance to hectares (assuming 1m wide path)
+    String distanceInHectares = (totalDistance / 10000).toStringAsFixed(4);
+
+    // Call saveGpx with the new parameter structure
+    saveGpx(
+      widget.taskId ?? 'default_task_id',
+      routeCoordinatesString,
+      lastCoord,
+      currentDateTime,
+      areaInHectares,
+      distanceInHectares,
+    );
+
+    // setState(() {
+    //   _routePoints.clear();
+    // });
   }
 
   @override
