@@ -489,7 +489,7 @@ Future performUpdatePPIRFormValidity(
 }) {
   final query = '''
 UPDATE ppir_forms
-SET is_dirty = $isDirty
+SET is_dirty = '$isDirty'
 WHERE task_id = '$taskId';
 ''';
   return database.rawQuery(query);
@@ -502,13 +502,11 @@ Future performUpdatePPIRFormGpx(
   Database database, {
   String? taskId,
   String? gpx,
-  bool? isDirty,
 }) {
   final query = '''
 UPDATE ppir_forms
 SET 
-  gpx = '$gpx',
-  is_dirty = $isDirty
+  gpx = '$gpx'
 WHERE task_id = '$taskId';
 ''';
   return database.rawQuery(query);

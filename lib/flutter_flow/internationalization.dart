@@ -257,7 +257,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'yfwgpfee': {
+    'q5wkuq32': {
       'en': '',
       'tl': '',
     },
@@ -269,7 +269,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    '3zhw7tsi': {
+    'u3fpb7wx': {
       'en': '',
       'tl': '',
     },
@@ -281,7 +281,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'rn2dvysn': {
+    '68xhbm26': {
       'en': '',
       'tl': '',
     },
@@ -698,6 +698,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Lat: ',
       'tl': '',
     },
+    '4tjmx9xx': {
+      'en': 'Data: ',
+      'tl': '',
+    },
     'cmxtd6yw': {
       'en': 'Finish',
       'tl': '',
@@ -1039,7 +1043,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Download',
       'tl': '',
     },
-    'w83q21s1': {
+    'kjo3rf9g': {
       'en': 'Geotag Information',
       'tl': '',
     },
@@ -1061,6 +1065,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'opc4bpk1': {
       'en': 'Farm Location',
+      'tl': '',
+    },
+    'l6pbtiio': {
+      'en': 'Seed Variety',
       'tl': '',
     },
     'n2eymfb9': {

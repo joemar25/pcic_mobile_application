@@ -98,6 +98,7 @@ Future saveGpx(
 
       // Encode GPX content as base64
       final String base64Gpx = base64Encode(gpxBytes);
+      FFAppState().gpxBlob = base64Gpx;
 
       // Update the ppir_forms table with the calculated values
       print('Updating ppir_forms table with calculated values');

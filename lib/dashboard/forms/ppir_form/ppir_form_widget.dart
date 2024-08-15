@@ -681,9 +681,61 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 12.0),
                                                 child: Text(
+                                                  FFAppState().gpxBlob,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyLargeFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLargeFamily),
+                                                      ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 12.0),
+                                                child: Text(
+                                                  valueOrDefault<String>(
+                                                    ppirFormSelectPpirFormsRowList
+                                                        .first.gpx,
+                                                    'x',
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyLargeFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLargeFamily),
+                                                      ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 12.0),
+                                                child: Text(
                                                   FFLocalizations.of(context)
                                                       .getText(
-                                                    'w83q21s1' /* Geotag Information */,
+                                                    'kjo3rf9g' /* Geotag Information */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -1492,10 +1544,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 12.0),
                                                 child: Text(
-                                                  valueOrDefault<String>(
-                                                    ppirFormSelectPpirFormsRowList
-                                                        .first.ppirSvpAct,
-                                                    '[[',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'l6pbtiio' /* Seed Variety */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)

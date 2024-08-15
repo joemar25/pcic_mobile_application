@@ -414,6 +414,48 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                   ),
                                 ],
                               ),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    FFLocalizations.of(context).getText(
+                                      '4tjmx9xx' /* Data:  */,
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .labelSmall
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelSmallFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelSmallFamily),
+                                        ),
+                                  ),
+                                  Text(
+                                    FFAppState().gpxBlob,
+                                    style: FlutterFlowTheme.of(context)
+                                        .labelSmall
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelSmallFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelSmallFamily),
+                                        ),
+                                  ),
+                                ],
+                              ),
                             ]
                                 .divide(const SizedBox(height: 5.0))
                                 .around(const SizedBox(height: 5.0)),
@@ -546,24 +588,18 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                         taskId: widget.taskId,
                         status: 'ongoing',
                       );
-                      await SQLiteManager.instance.updatePPIRFormGpx(
-                        taskId: widget.taskId,
-                        gpx: FFAppState().gpxBlob,
-                        isDirty: false,
-                      );
                     } else {
                       await SQLiteManager.instance.updateTaskStatus(
                         taskId: widget.taskId,
                         status: 'ongoing',
                       );
-                      await SQLiteManager.instance.updatePPIRFormGpx(
-                        taskId: widget.taskId,
-                        gpx: FFAppState().gpxBlob,
-                        isDirty: true,
-                      );
                     }
 
                     await Future.delayed(const Duration(milliseconds: 5000));
+                    await SQLiteManager.instance.updatePPIRFormGpx(
+                      taskId: widget.taskId,
+                      gpx: FFAppState().gpxBlob,
+                    );
 
                     context.pushNamed(
                       'ppirForm',

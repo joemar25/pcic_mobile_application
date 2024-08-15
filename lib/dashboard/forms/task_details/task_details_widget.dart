@@ -3062,10 +3062,6 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   16.0, 8.0, 16.0, 8.0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
-                                              await AttemptsTable().insert({
-                                                'task_id': widget.taskId,
-                                              });
-
                                               context.pushNamed(
                                                 'geotagging',
                                                 queryParameters: {

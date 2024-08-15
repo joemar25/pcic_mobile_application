@@ -286,6 +286,21 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                 );
                               },
                             ),
+                            onFieldSubmitted: (_) async {
+                              await actions.updateInspectorName(
+                                editProfileUsersRow!.inspectorName,
+                              );
+                              await UsersTable().update(
+                                data: {
+                                  'inspector_name':
+                                      editProfileUsersRow.inspectorName,
+                                },
+                                matchingRows: (rows) => rows.eq(
+                                  'inspector_name',
+                                  editProfileUsersRow.inspectorName,
+                                ),
+                              );
+                            },
                             autofocus: false,
                             obscureText: false,
                             decoration: InputDecoration(
