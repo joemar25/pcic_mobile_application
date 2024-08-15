@@ -496,3 +496,22 @@ WHERE task_id = '$taskId';
 }
 
 /// END UPDATE PPIR FORM VALIDITY
+
+/// BEGIN UPDATE PPIR FORM GPX
+Future performUpdatePPIRFormGpx(
+  Database database, {
+  String? taskId,
+  String? gpx,
+  bool? isDirty,
+}) {
+  final query = '''
+UPDATE ppir_forms
+SET 
+  ppir_svp_act = '$gpx',
+  is_dirty = $isDirty
+WHERE task_id = '$taskId';
+''';
+  return database.rawQuery(query);
+}
+
+/// END UPDATE PPIR FORM GPX

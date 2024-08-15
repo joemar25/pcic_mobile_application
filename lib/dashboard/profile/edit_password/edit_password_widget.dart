@@ -36,6 +36,56 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
         _model.oldPasswordTextController.text,
         _model.newPasswordTextController.text,
       );
+      // CHECK PASSWORD
+      await actions.verifyPassword(
+        '0',
+      );
+      if (_model.isPasswordVerified) {
+        // Compare Password
+        await actions.comparePasswords(
+          _model.newPasswordTextController.text,
+          _model.confirmNewPasswordTextController.text,
+        );
+        // Update Password
+        await actions.updatePassword(
+          _model.newPasswordTextController.text,
+        );
+        // Password changed
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Password changed',
+              style: FlutterFlowTheme.of(context).titleMedium.override(
+                    fontFamily: FlutterFlowTheme.of(context).titleMediumFamily,
+                    color: FlutterFlowTheme.of(context).primaryText,
+                    letterSpacing: 0.0,
+                    useGoogleFonts: GoogleFonts.asMap().containsKey(
+                        FlutterFlowTheme.of(context).titleMediumFamily),
+                  ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).secondary,
+          ),
+        );
+      } else {
+        // Password change failed
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Password change failed',
+              style: FlutterFlowTheme.of(context).titleSmall.override(
+                    fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
+                    color: FlutterFlowTheme.of(context).primaryText,
+                    letterSpacing: 0.0,
+                    useGoogleFonts: GoogleFonts.asMap().containsKey(
+                        FlutterFlowTheme.of(context).titleSmallFamily),
+                  ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).secondary,
+          ),
+        );
+      }
     });
 
     _model.oldPasswordTextController ??= TextEditingController();
@@ -500,6 +550,20 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                               0.0, 20.0, 0.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
+                              if (currentUserEmail.isEmpty) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text(
+                                      'Email required!',
+                                    ),
+                                  ),
+                                );
+                                return;
+                              }
+                              await authManager.resetPassword(
+                                email: currentUserEmail,
+                                context: context,
+                              );
                               await actions.verifyPassword(
                                 '0',
                               );

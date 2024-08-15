@@ -267,10 +267,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const SyncKingCopyWidget(),
         ),
         FFRoute(
-          name: 'syncKingCopyCopy',
-          path: '/syncKingCopyCopy',
+          name: 'syncKing',
+          path: '/syncKing',
           requireAuth: true,
-          builder: (context, params) => const SyncKingCopyCopyWidget(),
+          builder: (context, params) => const SyncKingWidget(),
         ),
         FFRoute(
           name: 'ppirOriginal',
@@ -292,6 +292,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'onboarding01Copy',
+          path: '/onboarding01Copy',
+          builder: (context, params) => const Onboarding01CopyWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

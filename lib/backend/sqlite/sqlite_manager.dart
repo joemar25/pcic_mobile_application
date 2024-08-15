@@ -551,5 +551,17 @@ class SQLiteManager {
         isDirty: isDirty,
       );
 
+  Future updatePPIRFormGpx({
+    String? taskId,
+    String? gpx,
+    bool? isDirty,
+  }) =>
+      performUpdatePPIRFormGpx(
+        _database,
+        taskId: taskId,
+        gpx: gpx,
+        isDirty: isDirty,
+      );
+
   /// END UPDATE QUERY CALLS
 }

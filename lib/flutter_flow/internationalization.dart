@@ -261,7 +261,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'cyla2oia': {
+    'wa6eqnbr': {
       'en': '',
       'tl': '',
     },
@@ -273,7 +273,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'r72mdrot': {
+    'jdkynmyn': {
       'en': '',
       'tl': '',
     },
@@ -285,7 +285,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'w5h04yyw': {
+    'mk3y7cal': {
       'en': '',
       'tl': '',
     },
@@ -867,22 +867,26 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
-  // syncKingCopyCopy
+  // syncKing
   {
-    'ggxulbhf': {
+    'o3uabjgq': {
+      'en': 'Offline Tasks Sync Test',
+      'tl': '',
+    },
+    'yv1vln63': {
+      'en': 'Tap the button to sync',
+      'tl': '',
+    },
+    'hhy7zu7j': {
+      'en': 'Tap the button to sync again',
+      'tl': '',
+    },
+    'cvvy6ah5': {
       'en': 'Sync Task & PPIR',
       'tl': '',
     },
-    '244c6ypd': {
-      'en': 'Tap to Sync',
-      'tl': '',
-    },
-    'pen88gd9': {
-      'en': 'Dashboard',
-      'tl': '',
-    },
-    'o3uabjgq': {
-      'en': 'Offline Tasks Sync Test',
+    'nzwziy9t': {
+      'en': 'Go to Dashboard',
       'tl': '',
     },
     'v3jq6q5p': {
@@ -1164,6 +1168,29 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     '6k4ph13p': {
+      'en': 'Home',
+      'tl': '',
+    },
+  },
+  // onboarding01Copy
+  {
+    'hj9vlptg': {
+      'en': 'Welcome!',
+      'tl': '',
+    },
+    '9uxv733t': {
+      'en': 'Welcome, Agent, to the PCIC Geotagging Application!',
+      'tl': '',
+    },
+    'jr643if6': {
+      'en': 'Get Started',
+      'tl': '',
+    },
+    'l4jtfx2g': {
+      'en': 'My Account',
+      'tl': '',
+    },
+    'puzywc2l': {
       'en': 'Home',
       'tl': '',
     },

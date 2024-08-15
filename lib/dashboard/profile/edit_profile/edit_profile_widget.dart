@@ -35,6 +35,9 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.getProfilePic = await actions.getTheSavedLocalProfile();
+      await actions.updateInspectorName(
+        _model.displayNameTextController.text,
+      );
     });
 
     _model.displayNameFocusNode ??= FocusNode();
@@ -201,7 +204,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                       ),
                                       onPressed: () async {
                                         final selectedMedia = await selectMedia(
-                                          storageFolderPath: currentUserUid,
+                                          storageFolderPath:
+                                              editProfileUsersRow?.photoUrl,
                                           mediaSource: MediaSource.photoGallery,
                                           multiImage: false,
                                         );
@@ -254,17 +258,6 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                             return;
                                           }
                                         }
-
-                                        await UsersTable().update(
-                                          data: {
-                                            'photo_url':
-                                                editProfileUsersRow?.photoUrl,
-                                          },
-                                          matchingRows: (rows) => rows.eq(
-                                            'id',
-                                            '',
-                                          ),
-                                        );
                                       },
                                     ),
                                   ),
@@ -296,7 +289,6 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                 );
                               },
                             ),
-                            onFieldSubmitted: (_) async {},
                             autofocus: false,
                             obscureText: false,
                             decoration: InputDecoration(

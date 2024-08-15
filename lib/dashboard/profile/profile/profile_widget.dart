@@ -1171,7 +1171,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                 height:
                                                     MediaQuery.sizeOf(context)
                                                             .height *
-                                                        0.3,
+                                                        0.5,
                                                 width: 400.0,
                                                 child: const SignoutDialogWidget(),
                                               ),

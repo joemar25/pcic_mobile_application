@@ -6,19 +6,19 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'onboarding01_model.dart';
-export 'onboarding01_model.dart';
+import 'onboarding01_copy_model.dart';
+export 'onboarding01_copy_model.dart';
 
-class Onboarding01Widget extends StatefulWidget {
-  const Onboarding01Widget({super.key});
+class Onboarding01CopyWidget extends StatefulWidget {
+  const Onboarding01CopyWidget({super.key});
 
   @override
-  State<Onboarding01Widget> createState() => _Onboarding01WidgetState();
+  State<Onboarding01CopyWidget> createState() => _Onboarding01CopyWidgetState();
 }
 
-class _Onboarding01WidgetState extends State<Onboarding01Widget>
+class _Onboarding01CopyWidgetState extends State<Onboarding01CopyWidget>
     with TickerProviderStateMixin {
-  late Onboarding01Model _model;
+  late Onboarding01CopyModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -27,7 +27,7 @@ class _Onboarding01WidgetState extends State<Onboarding01Widget>
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => Onboarding01Model());
+    _model = createModel(context, () => Onboarding01CopyModel());
 
     animationsMap.addAll({
       'containerOnPageLoadAnimation1': AnimationInfo(
@@ -148,13 +148,23 @@ class _Onboarding01WidgetState extends State<Onboarding01Widget>
         onWillPop: () async => false,
         child: Scaffold(
           key: scaffoldKey,
-          backgroundColor: FlutterFlowTheme.of(context).primary,
+          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
           body: Stack(
             children: [
               Container(
                 width: double.infinity,
                 height: double.infinity,
-                decoration: const BoxDecoration(),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      FlutterFlowTheme.of(context).bg3,
+                      FlutterFlowTheme.of(context).primary
+                    ],
+                    stops: const [0.0, 1.0],
+                    begin: const AlignmentDirectional(0.0, -1.0),
+                    end: const AlignmentDirectional(0, 1.0),
+                  ),
+                ),
                 child: Container(
                   width: 100.0,
                   height: 100.0,
@@ -186,14 +196,13 @@ class _Onboarding01WidgetState extends State<Onboarding01Widget>
                             const EdgeInsetsDirectional.fromSTEB(0.0, 44.0, 0.0, 0.0),
                         child: Text(
                           FFLocalizations.of(context).getText(
-                            'e5zj0r88' /* Welcome! */,
+                            'hj9vlptg' /* Welcome! */,
                           ),
                           style: FlutterFlowTheme.of(context)
                               .displaySmall
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .displaySmallFamily,
-                                color: Colors.white,
                                 letterSpacing: 0.0,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
@@ -207,7 +216,7 @@ class _Onboarding01WidgetState extends State<Onboarding01Widget>
                             44.0, 8.0, 44.0, 0.0),
                         child: Text(
                           FFLocalizations.of(context).getText(
-                            'sdylopj4' /* Welcome, Agent, to the PCIC Ge... */,
+                            '9uxv733t' /* Welcome, Agent, to the PCIC Ge... */,
                           ),
                           textAlign: TextAlign.center,
                           style: FlutterFlowTheme.of(context)
@@ -215,7 +224,7 @@ class _Onboarding01WidgetState extends State<Onboarding01Widget>
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .labelMediumFamily,
-                                color: Colors.white,
+                                color: FlutterFlowTheme.of(context).primaryText,
                                 letterSpacing: 0.0,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
@@ -267,7 +276,7 @@ class _Onboarding01WidgetState extends State<Onboarding01Widget>
                                       );
                                     },
                                     text: FFLocalizations.of(context).getText(
-                                      'ult64d5q' /* Get Started */,
+                                      'jr643if6' /* Get Started */,
                                     ),
                                     options: FFButtonOptions(
                                       width: 230.0,
@@ -291,7 +300,7 @@ class _Onboarding01WidgetState extends State<Onboarding01Widget>
                                                     FlutterFlowTheme.of(context)
                                                         .bodyLargeFamily),
                                           ),
-                                      elevation: 15.0,
+                                      elevation: 1.0,
                                       borderSide: const BorderSide(
                                         color: Colors.transparent,
                                         width: 1.0,
@@ -327,7 +336,7 @@ class _Onboarding01WidgetState extends State<Onboarding01Widget>
                                       }
                                     },
                                     text: FFLocalizations.of(context).getText(
-                                      'ywz684yl' /* My Account */,
+                                      'l4jtfx2g' /* My Account */,
                                     ),
                                     options: FFButtonOptions(
                                       width: 230.0,
@@ -351,7 +360,7 @@ class _Onboarding01WidgetState extends State<Onboarding01Widget>
                                                     FlutterFlowTheme.of(context)
                                                         .bodyLargeFamily),
                                           ),
-                                      elevation: 15.0,
+                                      elevation: 1.0,
                                       borderSide: const BorderSide(
                                         color: Colors.transparent,
                                         width: 1.0,

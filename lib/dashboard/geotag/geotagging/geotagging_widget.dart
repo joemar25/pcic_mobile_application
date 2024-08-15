@@ -54,6 +54,9 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       currentUserLocationValue =
           await getCurrentUserLocation(defaultLocation: const LatLng(0.0, 0.0));
+      _model.isGeotagStart = false;
+      _model.isFinished = false;
+      setState(() {});
       await requestPermission(locationPermission);
       if (await getPermissionStatus(locationPermission)) {
         _model.getCurrentLocationAddress =
@@ -61,9 +64,6 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
           functions.getLng(currentUserLocationValue),
           functions.getLat(currentUserLocationValue),
         );
-        _model.isGeotagStart = false;
-        _model.isFinished = false;
-        setState(() {});
       }
     });
 
@@ -546,10 +546,20 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                         taskId: widget.taskId,
                         status: 'ongoing',
                       );
+                      await SQLiteManager.instance.updatePPIRFormGpx(
+                        taskId: widget.taskId,
+                        gpx: 'blob',
+                        isDirty: false,
+                      );
                     } else {
                       await SQLiteManager.instance.updateTaskStatus(
                         taskId: widget.taskId,
                         status: 'ongoing',
+                      );
+                      await SQLiteManager.instance.updatePPIRFormGpx(
+                        taskId: widget.taskId,
+                        gpx: 'blob',
+                        isDirty: true,
                       );
                     }
 

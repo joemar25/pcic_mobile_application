@@ -10,6 +10,8 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
 
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
+  // Stores action output result for [Custom Action - generateTaskXml] action in Text widget.
+  String? generatedTaskXmlFile;
   // Stores action output result for [Custom Action - getGpxLink] action in repeatGeotagButtonT widget.
   String? gpxLink;
   // State field(s) for ppir_track_coordinates widget.
@@ -81,6 +83,10 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
   List<PpirFormsRow>? savePPIR;
   // Stores action output result for [Backend Call - Update Row(s)] action in saveButton widget.
   List<TasksRow>? updatedStatus;
+  // Stores action output result for [Backend Call - Update Row(s)] action in submitButton widget.
+  List<PpirFormsRow>? savePPIRCopy;
+  // Stores action output result for [Backend Call - Update Row(s)] action in submitButton widget.
+  List<TasksRow>? updatedStatusCopy;
 
   @override
   void initState(BuildContext context) {

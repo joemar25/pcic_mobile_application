@@ -231,27 +231,96 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                 padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 12.0),
-                                                child: Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    'oco9wa86' /* Geotag */,
+                                                child: InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    // Generation of XML
+                                                    _model.generatedTaskXmlFile =
+                                                        await actions
+                                                            .generateTaskXml(
+                                                      widget.taskId,
+                                                    );
+                                                    if (_model.generatedTaskXmlFile !=
+                                                            null &&
+                                                        _model.generatedTaskXmlFile !=
+                                                            '') {
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .showSnackBar(
+                                                        SnackBar(
+                                                          content: Text(
+                                                            ' no value',
+                                                            style: TextStyle(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryText,
+                                                            ),
+                                                          ),
+                                                          duration: const Duration(
+                                                              milliseconds:
+                                                                  4000),
+                                                          backgroundColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .secondary,
+                                                        ),
+                                                      );
+                                                    } else {
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .showSnackBar(
+                                                        SnackBar(
+                                                          content: Text(
+                                                            _model
+                                                                .generatedTaskXmlFile!,
+                                                            style: TextStyle(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryText,
+                                                            ),
+                                                          ),
+                                                          duration: const Duration(
+                                                              milliseconds:
+                                                                  4000),
+                                                          backgroundColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .secondary,
+                                                        ),
+                                                      );
+                                                    }
+
+                                                    setState(() {});
+                                                  },
+                                                  child: Text(
+                                                    FFLocalizations.of(context)
+                                                        .getText(
+                                                      'oco9wa86' /* Geotag */,
+                                                    ),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyLarge
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyLargeFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyLargeFamily),
+                                                        ),
                                                   ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyLargeFamily,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyLargeFamily),
-                                                      ),
                                                 ),
                                               ),
                                               Stack(
@@ -3695,8 +3764,200 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                             FFButtonWidget(
                               onPressed: !FFAppState().ONLINE
                                   ? null
-                                  : () {
-                                      print('submitButton pressed ...');
+                                  : () async {
+                                      if ((_model.ppirTrackCoordinatesTextController.text != '') &&
+                                          (_model.ppirTrackTotalAreaTextController1.text !=
+                                                  '') &&
+                                          (_model.ppirTrackDateTimeTextController.text !=
+                                                  '') &&
+                                          (_model.ppirTrackTotalAreaTextController2.text !=
+                                                  '') &&
+                                          (_model.ppirTrackFarmlocTextController.text !=
+                                                  '') &&
+                                          (_model.ppirSvpActSelectionValue != null &&
+                                              _model.ppirSvpActSelectionValue !=
+                                                  '') &&
+                                          (_model.riceDropdownValue != null &&
+                                              _model.riceDropdownValue != '') &&
+                                          (_model.cornDropdownValue != null &&
+                                              _model.cornDropdownValue != '') &&
+                                          (_model.ppirAreaActFieldTextController.text !=
+                                                  '') &&
+                                          (_model.ppirAreaDopDsFieldTextController.text !=
+                                                  '') &&
+                                          (_model.datePicked1 != null) &&
+                                          (_model.ppirAreaDopTpFieldTextController.text !=
+                                                  '') &&
+                                          (_model.datePicked2 != null) &&
+                                          (_model.ppirRemarksFieldTextController.text !=
+                                                  '') &&
+                                          (_model.ppirPreparedByNameFieldTextController.text !=
+                                                  '') &&
+                                          (_model.ppirConfirmedByNameFieldTextController.text != '')) {
+                                        var confirmDialogResponse =
+                                            await showDialog<bool>(
+                                                  context: context,
+                                                  builder:
+                                                      (alertDialogContext) {
+                                                    return AlertDialog(
+                                                      title: const Text('Info'),
+                                                      content: const Text(
+                                                          'Do you want to Submit all the data above?'),
+                                                      actions: [
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext,
+                                                                  false),
+                                                          child: const Text('Cancel'),
+                                                        ),
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext,
+                                                                  true),
+                                                          child:
+                                                              const Text('Confirm'),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                ) ??
+                                                false;
+                                        if (confirmDialogResponse) {
+                                          await SQLiteManager.instance
+                                              .updatePPIRForm(
+                                            taskId: widget.taskId,
+                                            ppirSvpAct:
+                                                _model.ppirSvpActSelectionValue,
+                                            ppirDopdsAct: _model
+                                                .ppirAreaDopDsFieldTextController
+                                                .text,
+                                            ppirDoptpAct: _model
+                                                .ppirAreaDopTpFieldTextController
+                                                .text,
+                                            ppirRemarks: _model
+                                                .ppirRemarksFieldTextController
+                                                .text,
+                                            ppirNameInsured: _model
+                                                .ppirPreparedByNameFieldTextController
+                                                .text,
+                                            ppirNameIuia: _model
+                                                .ppirConfirmedByNameFieldTextController
+                                                .text,
+                                            ppirFarmloc: _model
+                                                .ppirTrackFarmlocTextController
+                                                .text,
+                                            ppirAreaAct: _model
+                                                .ppirAreaActFieldTextController
+                                                .text,
+                                            ppirVariety:
+                                                _model.ppirSvpActSelectionValue ==
+                                                        'rice'
+                                                    ? _model.riceDropdownValue
+                                                    : _model.cornDropdownValue,
+                                            isDirty: false,
+                                          );
+                                          await PpirFormsTable().update(
+                                            data: {
+                                              'ppir_svp_act': _model
+                                                  .ppirSvpActSelectionValue,
+                                              'ppir_dopds_act': _model
+                                                  .ppirAreaDopDsFieldTextController
+                                                  .text,
+                                              'ppir_doptp_act': _model
+                                                  .ppirAreaDopTpFieldTextController
+                                                  .text,
+                                              'ppir_remarks': _model
+                                                  .ppirRemarksFieldTextController
+                                                  .text,
+                                              'ppir_name_insured': _model
+                                                  .ppirPreparedByNameFieldTextController
+                                                  .text,
+                                              'ppir_name_iuia': _model
+                                                  .ppirConfirmedByNameFieldTextController
+                                                  .text,
+                                              'ppir_farmloc': _model
+                                                  .ppirTrackFarmlocTextController
+                                                  .text,
+                                              'ppir_area_act': _model
+                                                  .ppirAreaActFieldTextController
+                                                  .text,
+                                              'ppir_variety':
+                                                  _model.ppirSvpActSelectionValue ==
+                                                          'rice'
+                                                      ? _model.riceDropdownValue
+                                                      : _model
+                                                          .cornDropdownValue,
+                                            },
+                                            matchingRows: (rows) => rows.eq(
+                                              'task_id',
+                                              widget.taskId,
+                                            ),
+                                          );
+                                          await TasksTable().update(
+                                            data: {
+                                              'status': 'completed',
+                                            },
+                                            matchingRows: (rows) => rows.eq(
+                                              'id',
+                                              widget.taskId,
+                                            ),
+                                          );
+                                          await SQLiteManager.instance
+                                              .updateTaskStatus(
+                                            taskId: widget.taskId,
+                                            status: 'completed',
+                                          );
+
+                                          context.pushNamed(
+                                            'formSuccess',
+                                            queryParameters: {
+                                              'taskId': serializeParam(
+                                                widget.taskId,
+                                                ParamType.String,
+                                              ),
+                                              'type': serializeParam(
+                                                'save',
+                                                ParamType.String,
+                                              ),
+                                            }.withoutNulls,
+                                            extra: <String, dynamic>{
+                                              kTransitionInfoKey:
+                                                  const TransitionInfo(
+                                                hasTransition: true,
+                                                transitionType:
+                                                    PageTransitionType.scale,
+                                                alignment:
+                                                    Alignment.bottomCenter,
+                                                duration:
+                                                    Duration(milliseconds: 200),
+                                              ),
+                                            },
+                                          );
+                                        }
+                                      } else {
+                                        await showDialog(
+                                          context: context,
+                                          builder: (alertDialogContext) {
+                                            return AlertDialog(
+                                              title: const Text('Alert'),
+                                              content:
+                                                  const Text('Fill out all fields.'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext),
+                                                  child: const Text('Ok'),
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        );
+                                      }
+
+                                      setState(() {});
                                     },
                               text: FFLocalizations.of(context).getText(
                                 'wrod6how' /* Submit */,
