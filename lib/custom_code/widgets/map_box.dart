@@ -545,7 +545,7 @@ class _MapBoxState extends State<MapBox> {
                   polylines: [
                     Polyline(
                       points: _routeCoordinates,
-                      strokeWidth: 4.0,
+                      strokeWidth: 3.0,
                       color: Colors.blue,
                     ),
                   ],
@@ -555,7 +555,11 @@ class _MapBoxState extends State<MapBox> {
                     ? [
                         Marker(
                           point: _startingPosition!,
-                          child: Icon(Icons.star, color: Colors.red),
+                          child: Icon(
+                            Icons.pin_drop,
+                            color: Colors.red,
+                            size: 6.0,
+                          ),
                         ),
                       ]
                     : [],

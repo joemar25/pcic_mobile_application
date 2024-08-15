@@ -6,6 +6,10 @@ import 'ppir_form_widget.dart' show PpirFormWidget;
 import 'package:flutter/material.dart';
 
 class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
+  ///  Local state fields for this page.
+
+  bool isMapDownloaded = false;
+
   ///  State fields for stateful widgets in this page.
 
   // Model for connectivity component.

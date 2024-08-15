@@ -325,7 +325,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                               ),
                                               Stack(
                                                 children: [
-                                                  if (FFAppState().ONLINE)
+                                                  if (FFAppState().ONLINE ||
+                                                      _model.isMapDownloaded)
                                                     Padding(
                                                       padding:
                                                           const EdgeInsets.all(2.0),
@@ -361,7 +362,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         ),
                                                       ),
                                                     ),
-                                                  if (!FFAppState().ONLINE)
+                                                  if (!FFAppState().ONLINE &&
+                                                      (_model.isMapDownloaded ==
+                                                          false))
                                                     Container(
                                                       width: MediaQuery.sizeOf(
                                                                   context)
@@ -409,6 +412,129 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                           FlutterFlowTheme.of(context)
                                                                               .bodyMediumFamily),
                                                                 ),
+                                                          ),
+                                                          Text(
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .getText(
+                                                              'tmnposi8' /* or */,
+                                                            ),
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily),
+                                                                ),
+                                                          ),
+                                                          Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Text(
+                                                                FFLocalizations.of(
+                                                                        context)
+                                                                    .getText(
+                                                                  '2mqikph7' /* If you download the map,  */,
+                                                                ),
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                    ),
+                                                              ),
+                                                              InkWell(
+                                                                splashColor: Colors
+                                                                    .transparent,
+                                                                focusColor: Colors
+                                                                    .transparent,
+                                                                hoverColor: Colors
+                                                                    .transparent,
+                                                                highlightColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                                onTap:
+                                                                    () async {
+                                                                  _model.isMapDownloaded =
+                                                                      true;
+                                                                  setState(
+                                                                      () {});
+                                                                },
+                                                                child: Text(
+                                                                  FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                    'frbq9zj2' /* TAP HERE */,
+                                                                  ),
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .secondary,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                      ),
+                                                                ),
+                                                              ),
+                                                              Text(
+                                                                FFLocalizations.of(
+                                                                        context)
+                                                                    .getText(
+                                                                  '3wv9swhr' /* . */,
+                                                                ),
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                    ),
+                                                              ),
+                                                            ],
                                                           ),
                                                         ],
                                                       ),
@@ -460,17 +586,28 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   ) ??
                                                                   false;
                                                           if (confirmDialogResponse) {
-                                                            await PpirFormsTable()
-                                                                .update(
-                                                              data: {
-                                                                'gpx': '',
-                                                              },
-                                                              matchingRows:
-                                                                  (rows) =>
-                                                                      rows.eq(
-                                                                'task_id',
-                                                                widget.taskId,
-                                                              ),
+                                                            if (FFAppState()
+                                                                .ONLINE) {
+                                                              await PpirFormsTable()
+                                                                  .update(
+                                                                data: {
+                                                                  'gpx': '',
+                                                                },
+                                                                matchingRows:
+                                                                    (rows) =>
+                                                                        rows.eq(
+                                                                  'task_id',
+                                                                  widget
+                                                                      .taskId,
+                                                                ),
+                                                              );
+                                                            }
+                                                            await SQLiteManager
+                                                                .instance
+                                                                .updatePPIRFormGpx(
+                                                              taskId: widget
+                                                                  .taskId,
+                                                              gpx: ' ',
                                                             );
 
                                                             context.pushNamed(
@@ -676,58 +813,35 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 0.0, 12.0),
-                                                child: Text(
-                                                  FFAppState().gpxBlob,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyLargeFamily,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyLargeFamily),
-                                                      ),
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 0.0, 12.0),
-                                                child: Text(
-                                                  valueOrDefault<String>(
-                                                    ppirFormSelectPpirFormsRowList
-                                                        .first.gpx,
-                                                    'x',
+                                              if (kDebugMode)
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 0.0, 12.0),
+                                                  child: Text(
+                                                    valueOrDefault<String>(
+                                                      ppirFormSelectPpirFormsRowList
+                                                          .first.gpx,
+                                                      'x',
+                                                    ),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyLarge
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyLargeFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyLargeFamily),
+                                                        ),
                                                   ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyLargeFamily,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyLargeFamily),
-                                                      ),
                                                 ),
-                                              ),
                                               Padding(
                                                 padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
@@ -3829,21 +3943,16 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                           (_model.ppirSvpActSelectionValue != null &&
                                               _model.ppirSvpActSelectionValue !=
                                                   '') &&
-                                          (_model.riceDropdownValue != null &&
-                                              _model.riceDropdownValue != '') &&
-                                          (_model.cornDropdownValue != null &&
-                                              _model.cornDropdownValue != '') &&
                                           (_model.ppirAreaActFieldTextController.text !=
                                                   '') &&
                                           (_model.ppirAreaDopDsFieldTextController.text !=
                                                   '') &&
-                                          (_model.datePicked1 != null) &&
                                           (_model.ppirAreaDopTpFieldTextController.text !=
                                                   '') &&
-                                          (_model.datePicked2 != null) &&
                                           (_model.ppirRemarksFieldTextController.text !=
                                                   '') &&
-                                          (_model.ppirPreparedByNameFieldTextController.text !=
+                                          (_model.ppirPreparedByNameFieldTextController
+                                                      .text !=
                                                   '') &&
                                           (_model.ppirConfirmedByNameFieldTextController.text != '')) {
                                         var confirmDialogResponse =

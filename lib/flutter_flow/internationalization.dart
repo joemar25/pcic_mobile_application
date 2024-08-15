@@ -257,7 +257,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'q5wkuq32': {
+    '88zgsnf9': {
       'en': '',
       'tl': '',
     },
@@ -269,7 +269,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'u3fpb7wx': {
+    'e6s3e71o': {
       'en': '',
       'tl': '',
     },
@@ -281,7 +281,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    '68xhbm26': {
+    'lirdfqdl': {
       'en': '',
       'tl': '',
     },
@@ -698,10 +698,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Lat: ',
       'tl': '',
     },
-    '4tjmx9xx': {
-      'en': 'Data: ',
-      'tl': '',
-    },
     'cmxtd6yw': {
       'en': 'Finish',
       'tl': '',
@@ -1033,6 +1029,22 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '8bwk8let': {
       'en': 'Cannot view GPX because you are offline.',
+      'tl': '',
+    },
+    'tmnposi8': {
+      'en': 'or',
+      'tl': '',
+    },
+    '2mqikph7': {
+      'en': 'If you download the map, ',
+      'tl': '',
+    },
+    'frbq9zj2': {
+      'en': 'TAP HERE',
+      'tl': '',
+    },
+    '3wv9swhr': {
+      'en': '.',
       'tl': '',
     },
     'vlpe8yky': {
