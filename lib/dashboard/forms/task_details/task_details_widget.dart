@@ -3373,19 +3373,23 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     16.0, 8.0, 16.0, 8.0),
                                             child: FFButtonWidget(
                                               onPressed: () async {
-                                                await TasksTable().update(
-                                                  data: {
-                                                    'status': 'ongoing',
-                                                  },
-                                                  matchingRows: (rows) =>
-                                                      rows.eq(
-                                                    'id',
-                                                    widget.taskId,
-                                                  ),
+                                                if (FFAppState().ONLINE) {
+                                                  await TasksTable().update(
+                                                    data: {
+                                                      'status': 'ongoing',
+                                                    },
+                                                    matchingRows: (rows) =>
+                                                        rows.eq(
+                                                      'id',
+                                                      widget.taskId,
+                                                    ),
+                                                  );
+                                                }
+                                                await SQLiteManager.instance
+                                                    .updateTaskStatus(
+                                                  taskId: widget.taskId,
+                                                  status: 'ongoing',
                                                 );
-                                                await AttemptsTable().insert({
-                                                  'task_id': widget.taskId,
-                                                });
 
                                                 context.pushNamed(
                                                   'geotagging',
