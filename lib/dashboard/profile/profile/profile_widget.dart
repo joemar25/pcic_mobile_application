@@ -199,6 +199,14 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                               width: 70.0,
                                               height: 70.0,
                                               fit: BoxFit.cover,
+                                              errorBuilder: (context, error,
+                                                      stackTrace) =>
+                                                  Image.asset(
+                                                'assets/images/error_image.gif',
+                                                width: 70.0,
+                                                height: 70.0,
+                                                fit: BoxFit.cover,
+                                              ),
                                             ),
                                           ),
                                         ),

@@ -548,7 +548,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                       );
                       await SQLiteManager.instance.updatePPIRFormGpx(
                         taskId: widget.taskId,
-                        gpx: 'blob',
+                        gpx: FFAppState().gpxBlob,
                         isDirty: false,
                       );
                     } else {
@@ -558,7 +558,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                       );
                       await SQLiteManager.instance.updatePPIRFormGpx(
                         taskId: widget.taskId,
-                        gpx: 'blob',
+                        gpx: FFAppState().gpxBlob,
                         isDirty: true,
                       );
                     }

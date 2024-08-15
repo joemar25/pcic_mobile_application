@@ -414,8 +414,293 @@ class _OfflineTasksSyncWidgetState extends State<OfflineTasksSyncWidget>
                               ),
                             if (!_model.isSync)
                               FFButtonWidget(
-                                onPressed: () {
-                                  print('Button pressed ...');
+                                onPressed: () async {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Sync Started',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                        ),
+                                      ),
+                                      duration: const Duration(milliseconds: 4000),
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context)
+                                              .secondary,
+                                    ),
+                                  );
+                                  // Online Tasks
+                                  _model.onlineTasks =
+                                      await TasksTable().queryRows(
+                                    queryFn: (q) => q,
+                                  );
+                                  // Number Iteration
+                                  _model.limit = valueOrDefault<int>(
+                                    _model.onlineTasks?.length,
+                                    0,
+                                  );
+                                  _model.iteration = 0;
+                                  _model.startSync = true;
+                                  _model.isSync = true;
+                                  _model.isSynced = false;
+                                  setState(() {});
+                                  while (_model.iteration! < _model.limit!) {
+                                    await Future.delayed(
+                                        const Duration(milliseconds: 2000));
+                                    // Online Tasks
+                                    _model.ppirOutput =
+                                        await PpirFormsTable().queryRows(
+                                      queryFn: (q) => q.eq(
+                                        'task_id',
+                                        valueOrDefault<String>(
+                                          _model
+                                              .onlineTasks?[valueOrDefault<int>(
+                                            _model.iteration,
+                                            0,
+                                          )]
+                                              .id,
+                                          'id',
+                                        ),
+                                      ),
+                                    );
+                                    await SQLiteManager.instance
+                                        .insertOfflineTask(
+                                      id: valueOrDefault<String>(
+                                        _model
+                                            .onlineTasks?[valueOrDefault<int>(
+                                          _model.iteration,
+                                          0,
+                                        )]
+                                            .id,
+                                        'id',
+                                      ),
+                                      taskNumber: valueOrDefault<String>(
+                                        _model
+                                            .onlineTasks?[valueOrDefault<int>(
+                                          _model.iteration,
+                                          0,
+                                        )]
+                                            .taskNumber,
+                                        'task number',
+                                      ),
+                                      serviceGroup: valueOrDefault<String>(
+                                        _model
+                                            .onlineTasks?[valueOrDefault<int>(
+                                          _model.iteration,
+                                          0,
+                                        )]
+                                            .serviceGroup,
+                                        'task number',
+                                      ),
+                                      status: valueOrDefault<String>(
+                                        _model
+                                            .onlineTasks?[valueOrDefault<int>(
+                                          _model.iteration,
+                                          0,
+                                        )]
+                                            .status,
+                                        'task number',
+                                      ),
+                                      serviceType: valueOrDefault<String>(
+                                        _model
+                                            .onlineTasks?[valueOrDefault<int>(
+                                          _model.iteration,
+                                          0,
+                                        )]
+                                            .serviceType,
+                                        'task number',
+                                      ),
+                                      priority: valueOrDefault<String>(
+                                        _model
+                                            .onlineTasks?[valueOrDefault<int>(
+                                          _model.iteration,
+                                          0,
+                                        )]
+                                            .priority,
+                                        'task number',
+                                      ),
+                                      assignee: valueOrDefault<String>(
+                                        _model
+                                            .onlineTasks?[valueOrDefault<int>(
+                                          _model.iteration,
+                                          0,
+                                        )]
+                                            .assignee,
+                                        'task number',
+                                      ),
+                                      dateAdded: valueOrDefault<String>(
+                                        _model
+                                            .onlineTasks?[valueOrDefault<int>(
+                                          _model.iteration,
+                                          0,
+                                        )]
+                                            .dateAdded
+                                            ?.toString(),
+                                        'task number',
+                                      ),
+                                      dateAccess: valueOrDefault<String>(
+                                        _model
+                                            .onlineTasks?[valueOrDefault<int>(
+                                          _model.iteration,
+                                          0,
+                                        )]
+                                            .dateAccess
+                                            ?.toString(),
+                                        'task number',
+                                      ),
+                                      fileId: valueOrDefault<String>(
+                                        _model
+                                            .onlineTasks?[valueOrDefault<int>(
+                                          _model.iteration,
+                                          0,
+                                        )]
+                                            .fileId,
+                                        'task number',
+                                      ),
+                                    );
+                                    await SQLiteManager.instance
+                                        .insertOfflinePPIRForm(
+                                      taskId: _model
+                                          .onlineTasks?[_model.iteration!].id,
+                                      ppirAssignmentId: _model
+                                          .ppirOutput?.first.ppirAssignmentid,
+                                      gpx: _model.ppirOutput?.first.gpx,
+                                      ppirInsuranceId: _model
+                                          .ppirOutput?.first.ppirInsuranceid,
+                                      ppirFarmerName: _model
+                                          .ppirOutput?.first.ppirFarmername,
+                                      ppirAddress:
+                                          _model.ppirOutput?.first.ppirAddress,
+                                      ppirFarmerType: _model
+                                          .ppirOutput?.first.ppirFarmertype,
+                                      ppirMobileNo: _model
+                                          .ppirOutput?.first.ppirMobileno,
+                                      ppirGroupName: _model
+                                          .ppirOutput?.first.ppirGroupname,
+                                      ppirGroupAddress: _model
+                                          .ppirOutput?.first.ppirGroupaddress,
+                                      ppirLenderName: _model
+                                          .ppirOutput?.first.ppirLendername,
+                                      ppirLenderAddress: _model
+                                          .ppirOutput?.first.ppirLenderaddress,
+                                      ppirCICNo:
+                                          _model.ppirOutput?.first.ppirCicno,
+                                      ppirFarmLoc:
+                                          _model.ppirOutput?.first.ppirFarmloc,
+                                      ppirNorth:
+                                          _model.ppirOutput?.first.ppirNorth,
+                                      ppirSouth:
+                                          _model.ppirOutput?.first.ppirSouth,
+                                      ppirEast:
+                                          _model.ppirOutput?.first.ppirEast,
+                                      ppirWest:
+                                          _model.ppirOutput?.first.ppirWest,
+                                      ppirAtt1:
+                                          _model.ppirOutput?.first.ppirAtt1,
+                                      ppirAtt2:
+                                          _model.ppirOutput?.first.ppirAtt2,
+                                      ppirAtt3:
+                                          _model.ppirOutput?.first.ppirAtt3,
+                                      ppirAtt4:
+                                          _model.ppirOutput?.first.ppirAtt4,
+                                      ppirAreaAci:
+                                          _model.ppirOutput?.first.ppirAreaAci,
+                                      ppirAreaAct:
+                                          _model.ppirOutput?.first.ppirAreaAct,
+                                      ppirDopdsAci: _model
+                                          .ppirOutput?.first.ppirDopdsAct,
+                                      ppirDopdsAct: _model
+                                          .ppirOutput?.first.ppirDopdsAct,
+                                      ppirDoptpAci: _model
+                                          .ppirOutput?.first.ppirDoptpAci,
+                                      ppirDoptpAct: _model
+                                          .ppirOutput?.first.ppirDoptpAct,
+                                      ppirSvpAci:
+                                          _model.ppirOutput?.first.ppirSvpAci,
+                                      ppirSvpAct:
+                                          _model.ppirOutput?.first.ppirSvpAct,
+                                      ppirVariety:
+                                          _model.ppirOutput?.first.ppirVariety,
+                                      ppirStageCrop: _model
+                                          .ppirOutput?.first.ppirStagecrop,
+                                      ppirRemarks:
+                                          _model.ppirOutput?.first.ppirRemarks,
+                                      ppirNameInsured: _model
+                                          .ppirOutput?.first.ppirNameInsured,
+                                      ppirNameIUIA: _model
+                                          .ppirOutput?.first.ppirNameIuia,
+                                      ppirSigInsured: _model
+                                          .ppirOutput?.first.ppirSigInsured,
+                                      ppirSigIUIA:
+                                          _model.ppirOutput?.first.ppirSigIuia,
+                                      trackLastCoord: _model
+                                          .ppirOutput?.first.trackLastCoord,
+                                      trackDateTime: _model
+                                          .ppirOutput?.first.trackDateTime,
+                                      trackTotalArea: _model
+                                          .ppirOutput?.first.trackTotalArea,
+                                      trackTotalDistance: _model.ppirOutput
+                                          ?.first.trackTotalDistance,
+                                      createdAt: _model
+                                          .ppirOutput?.first.createdAt
+                                          ?.toString(),
+                                      updatedAt: _model
+                                          .ppirOutput?.first.ppirAssignmentid,
+                                      syncStatus:
+                                          _model.ppirOutput?.first.syncStatus,
+                                      lastSyncedAt: _model
+                                          .ppirOutput?.first.lastSyncedAt
+                                          ?.toString(),
+                                      localId:
+                                          _model.ppirOutput?.first.localId,
+                                      isDirty: _model.ppirOutput?.first.isDirty
+                                          ?.toString(),
+                                    );
+                                    ScaffoldMessenger.of(context)
+                                        .clearSnackBars();
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          '${_model.iteration?.toString()} - Task ID: (${_model.onlineTasks?[_model.iteration!].id}) PPIR Task ID: ( ${_model.ppirOutput?.first.taskId})',
+                                          style: TextStyle(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                          ),
+                                        ),
+                                        duration: const Duration(milliseconds: 4000),
+                                        backgroundColor:
+                                            FlutterFlowTheme.of(context)
+                                                .forDispatchColor,
+                                      ),
+                                    );
+                                    // Number Iteration
+                                    _model.iteration = _model.iteration! + 1;
+                                    setState(() {});
+                                  }
+                                  _model.limit = 0;
+                                  _model.iteration = 0;
+                                  _model.isSync = false;
+                                  _model.startSync = false;
+                                  _model.isSynced = true;
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Sync done',
+                                        style: GoogleFonts.getFont(
+                                          'Roboto',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                        ),
+                                      ),
+                                      duration: const Duration(milliseconds: 4000),
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context)
+                                              .secondary,
+                                    ),
+                                  );
+
+                                  setState(() {});
                                 },
                                 text: FFLocalizations.of(context).getText(
                                   'cvvy6ah5' /* Sync Task & PPIR */,

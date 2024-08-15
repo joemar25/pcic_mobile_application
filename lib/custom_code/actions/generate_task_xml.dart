@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'index.dart'; // Imports other custom actions
+
 import 'package:xml/xml.dart';
 import 'package:dart_ipify/dart_ipify.dart';
 
@@ -26,7 +28,8 @@ Future<String> generateTaskXml(String? taskId) async {
       .execute();
 
   if (response.status != 200 || response.data == null) {
-    throw Exception('No matching data found for task ID: $taskId');
+    throw Exception(
+        'Error executing Supabase RPC: ${response.error?.message}, Details: ${response.error?.details}');
   }
 
   final data = response.data as Map<String, dynamic>;

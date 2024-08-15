@@ -127,6 +127,12 @@ class FFAppState extends ChangeNotifier {
   set mapBoxKeyString(String value) {
     _mapBoxKeyString = value;
   }
+
+  String _gpxBlob = '';
+  String get gpxBlob => _gpxBlob;
+  set gpxBlob(String value) {
+    _gpxBlob = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {
