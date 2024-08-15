@@ -1047,7 +1047,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         FFLocalizations.of(
                                                                 context)
                                                             .getText(
-                                                      'j4k9ydv4' /* Total Area */,
+                                                      'j4k9ydv4' /* Total Area (ha) */,
                                                     ),
                                                     labelStyle: FlutterFlowTheme
                                                             .of(context)
@@ -1347,7 +1347,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         FFLocalizations.of(
                                                                 context)
                                                             .getText(
-                                                      'wr9xhmty' /* Total Hectares */,
+                                                      'wr9xhmty' /* Total Distance (sq) */,
                                                     ),
                                                     labelStyle: FlutterFlowTheme
                                                             .of(context)

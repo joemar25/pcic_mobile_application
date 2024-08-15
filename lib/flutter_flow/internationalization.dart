@@ -257,7 +257,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    '7tq0i22u': {
+    'k3lguorp': {
       'en': '',
       'tl': '',
     },
@@ -269,7 +269,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    's47z6cqr': {
+    'ir3nxsgk': {
       'en': '',
       'tl': '',
     },
@@ -281,7 +281,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'swauk232': {
+    '688mugu3': {
       'en': '',
       'tl': '',
     },
@@ -1064,7 +1064,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     'j4k9ydv4': {
-      'en': 'Total Area',
+      'en': 'Total Area (ha)',
       'tl': '',
     },
     'bcn0bfjf': {
@@ -1072,7 +1072,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     'wr9xhmty': {
-      'en': 'Total Hectares',
+      'en': 'Total Distance (sq)',
       'tl': '',
     },
     'opc4bpk1': {

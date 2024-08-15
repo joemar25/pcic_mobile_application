@@ -105,16 +105,24 @@ class _MapBase64State extends State<MapBase64> {
     const WORLD_PX_HEIGHT = 256.0;
     const WORLD_PX_WIDTH = 256.0;
     const ZOOM_MAX = 21.0;
+    const ZOOM_MIN = 0.0;
 
     final latFraction = (bounds[2] - bounds[0]) / 360.0;
     final lonFraction = (bounds[3] - bounds[1]) / 360.0;
 
-    final latZoom =
-        (math.log(WORLD_PX_HEIGHT / latFraction) / math.ln2).round() - 1;
-    final lonZoom =
-        (math.log(WORLD_PX_WIDTH / lonFraction) / math.ln2).round() - 1;
+    if (latFraction <= 0 || lonFraction <= 0) {
+      return ZOOM_MIN;
+    }
 
-    return math.min(latZoom, lonZoom).toDouble().clamp(0.0, ZOOM_MAX);
+    final latZoom = _safeLn(WORLD_PX_HEIGHT / latFraction) / math.ln2;
+    final lonZoom = _safeLn(WORLD_PX_WIDTH / lonFraction) / math.ln2;
+
+    return math.min(latZoom, lonZoom).clamp(ZOOM_MIN, ZOOM_MAX);
+  }
+
+  double _safeLn(double value) {
+    if (value <= 0) return 0;
+    return math.log(value);
   }
 
   @override
