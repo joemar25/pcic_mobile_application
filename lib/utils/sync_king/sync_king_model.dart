@@ -10,11 +10,7 @@ class SyncKingModel extends FlutterFlowModel<SyncKingWidget> {
 
   int? iteration = 0;
 
-  bool isSync = false;
-
-  bool startSync = false;
-
-  bool isSynced = false;
+  bool isDone = false;
 
   ///  State fields for stateful widgets in this page.
 

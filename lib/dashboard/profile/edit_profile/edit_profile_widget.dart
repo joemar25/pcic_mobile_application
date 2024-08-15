@@ -374,21 +374,22 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                             child: FFButtonWidget(
                               onPressed: () async {
                                 await actions.updateInspectorName(
-                                  editProfileUsersRow!.inspectorName,
+                                  valueOrDefault<String>(
+                                    editProfileUsersRow?.inspectorName,
+                                    'inspector_name',
+                                  ),
                                 );
                                 // Update rows
                                 await UsersTable().update(
                                   data: {
                                     'inspector_name':
-                                        editProfileUsersRow.inspectorName,
+                                        editProfileUsersRow?.inspectorName,
                                   },
                                   matchingRows: (rows) => rows.eq(
                                     'inspector_name',
                                     _model.newUsername?.inspectorName,
                                   ),
                                 );
-                                _model.savedLocalProfile =
-                                    await actions.getTheSavedLocalProfile();
                                 // success profile
 
                                 context.pushNamed(

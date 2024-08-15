@@ -29,9 +29,9 @@ export '/auth/onboarding01/onboarding01_widget.dart' show Onboarding01Widget;
 export '/utils/sync_data/sync_data_widget.dart' show SyncDataWidget;
 export '/auth/onboarding01_original_copy/onboarding01_original_copy_widget.dart'
     show Onboarding01OriginalCopyWidget;
-export '/utils/sync_king_copy/sync_king_copy_widget.dart'
-    show SyncKingCopyWidget;
 export '/utils/sync_king/sync_king_widget.dart' show SyncKingWidget;
+export '/utils/offline_tasks_sync/offline_tasks_sync_widget.dart'
+    show OfflineTasksSyncWidget;
 export '/dashboard/forms/ppir_original/ppir_original_widget.dart'
     show PpirOriginalWidget;
 export '/dashboard/forms/ppir_form/ppir_form_widget.dart' show PpirFormWidget;

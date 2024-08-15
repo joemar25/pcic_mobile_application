@@ -206,10 +206,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Download Maps',
       'tl': '',
     },
-    'qkhyppx6': {
-      'en': 'Sync Database',
-      'tl': '',
-    },
     'yttqc4w2': {
       'en': 'Sign Out',
       'tl': '',
@@ -261,7 +257,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'wa6eqnbr': {
+    '5ay3en2s': {
       'en': '',
       'tl': '',
     },
@@ -273,7 +269,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'jdkynmyn': {
+    'rhwoe2q2': {
       'en': '',
       'tl': '',
     },
@@ -285,7 +281,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'mk3y7cal': {
+    'm6iylcca': {
       'en': '',
       'tl': '',
     },
@@ -848,7 +844,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
-  // syncKingCopy
+  // syncKing
   {
     'e3h43o18': {
       'en': 'Sync Task & PPIR',
@@ -867,13 +863,9 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
-  // syncKing
+  // offlineTasksSync
   {
-    'o3uabjgq': {
-      'en': 'Offline Tasks Sync Test',
-      'tl': '',
-    },
-    'yv1vln63': {
+    'ozahk9cp': {
       'en': 'Tap the button to sync',
       'tl': '',
     },
@@ -1071,10 +1063,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Farm Location',
       'tl': '',
     },
-    'l6pbtiio': {
-      'en': 'Seed Variety',
-      'tl': '',
-    },
     'n2eymfb9': {
       'en': 'rice',
       'tl': '',
@@ -1084,7 +1072,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     'fd5vtp4q': {
-      'en': 'Select the Type of Corn ',
+      'en': 'Select the Type of Rice ',
       'tl': '',
     },
     '9vpclvfb': {
@@ -1100,7 +1088,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     'aqzhnbj5': {
-      'en': 'Select the Type of Rice ',
+      'en': 'Select the Type of Corn ',
       'tl': '',
     },
     'kyt3fdec': {

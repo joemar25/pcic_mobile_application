@@ -507,7 +507,7 @@ Future performUpdatePPIRFormGpx(
   final query = '''
 UPDATE ppir_forms
 SET 
-  ppir_svp_act = '$gpx',
+  gpx = '$gpx',
   is_dirty = $isDirty
 WHERE task_id = '$taskId';
 ''';

@@ -652,7 +652,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                 context.pop();
                                               }
                                               context.pushNamedAuth(
-                                                'syncKing',
+                                                'offlineTasksSync',
                                                 context.mounted,
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:

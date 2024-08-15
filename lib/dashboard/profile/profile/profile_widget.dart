@@ -1,18 +1,15 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/sqlite/sqlite_manager.dart';
-import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
+import '/utils/components/page_loader/page_loader_widget.dart';
 import '/utils/components/signout_dialog/signout_dialog_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'profile_model.dart';
 export 'profile_model.dart';
 
@@ -40,19 +37,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.offlineSelectUserProfile =
-          await SQLiteManager.instance.selectProfile(
-        email: currentUserEmail,
-      );
-      _model.onlineUserProfile = await UsersTable().queryRows(
-        queryFn: (q) => q.eq(
-          'email',
-          currentUserEmail,
-        ),
-      );
       _model.getProfilePic = await actions.getTheSavedLocalProfile();
-
-      setState(() {});
     });
   }
 
@@ -65,101 +50,95 @@ class _ProfileWidgetState extends State<ProfileWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
+    return FutureBuilder<List<SelectProfileRow>>(
+      future: SQLiteManager.instance.selectProfile(
+        email: currentUserEmail,
+      ),
+      builder: (context, snapshot) {
+        // Customize what your widget looks like when it's loading.
+        if (!snapshot.hasData) {
+          return Scaffold(
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            body: const PageLoaderWidget(),
+          );
+        }
+        final profileSelectProfileRowList = snapshot.data!;
 
-    return WillPopScope(
-      onWillPop: () async => false,
-      child: Scaffold(
-        key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        body: Container(
-          width: double.infinity,
-          height: double.infinity,
-          decoration: BoxDecoration(
-            color: FlutterFlowTheme.of(context).primary,
-          ),
-          child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 60.0, 0.0, 0.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Row(
+        return WillPopScope(
+          onWillPop: () async => false,
+          child: Scaffold(
+            key: scaffoldKey,
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            body: Container(
+              width: double.infinity,
+              height: double.infinity,
+              decoration: BoxDecoration(
+                color: FlutterFlowTheme.of(context).primary,
+              ),
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 60.0, 0.0, 0.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                      child: Column(
                         mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Expanded(
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Icon(
-                                  Icons.account_circle,
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  size: 35.0,
-                                ),
-                                Text(
-                                  FFLocalizations.of(context).getText(
-                                    'xqwyoxrh' /* Account */,
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .headlineMedium
-                                      .override(
-                                        fontFamily: FlutterFlowTheme.of(context)
-                                            .headlineMediumFamily,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                        fontSize: 28.0,
-                                        letterSpacing: 0.0,
-                                        useGoogleFonts: GoogleFonts.asMap()
-                                            .containsKey(
-                                                FlutterFlowTheme.of(context)
-                                                    .headlineMediumFamily),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Icon(
+                                      Icons.account_circle,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      size: 35.0,
+                                    ),
+                                    Text(
+                                      FFLocalizations.of(context).getText(
+                                        'xqwyoxrh' /* Account */,
                                       ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .headlineMedium
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .headlineMediumFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBackground,
+                                            fontSize: 28.0,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .headlineMediumFamily),
+                                          ),
+                                    ),
+                                  ].divide(const SizedBox(width: 10.0)),
                                 ),
-                              ].divide(const SizedBox(width: 10.0)),
-                            ),
-                          ),
-                          wrapWithModel(
-                            model: _model.connectivityModel,
-                            updateCallback: () => setState(() {}),
-                            child: const ConnectivityWidget(),
+                              ),
+                              wrapWithModel(
+                                model: _model.connectivityModel,
+                                updateCallback: () => setState(() {}),
+                                child: const ConnectivityWidget(),
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
-                    child: FutureBuilder<List<SelectProfileRow>>(
-                      future: SQLiteManager.instance.selectProfile(
-                        email: currentUserEmail,
-                      ),
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 100.0,
-                              height: 100.0,
-                              child: SpinKitRipple(
-                                color: FlutterFlowTheme.of(context).primary,
-                                size: 100.0,
-                              ),
-                            ),
-                          );
-                        }
-                        final containerSelectProfileRowList = snapshot.data!;
-
-                        return Container(
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                        child: Container(
                           width: double.infinity,
                           decoration: BoxDecoration(
                             color:
@@ -237,7 +216,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                               Text(
                                                 valueOrDefault<String>(
                                                   functions.sentenceCaseWords(
-                                                      containerSelectProfileRowList
+                                                      profileSelectProfileRowList
                                                           .first.inspectorName),
                                                   'Agent',
                                                 ),
@@ -267,11 +246,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                             children: [
                                               Expanded(
                                                 child: Text(
-                                                  valueOrDefault<String>(
-                                                    containerSelectProfileRowList
-                                                        .first.email,
-                                                    'Email',
-                                                  ),
+                                                  currentUserEmail,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodySmall
@@ -839,303 +814,6 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                         ),
                                       ),
                                     ),
-                                    if (kDebugMode)
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 10.0, 0.0, 10.0),
-                                        child: InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            if (FFAppState().ONLINE) {
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(
-                                                SnackBar(
-                                                  content: Text(
-                                                    'Sync Started',
-                                                    style: TextStyle(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                    ),
-                                                  ),
-                                                  duration: const Duration(
-                                                      milliseconds: 4000),
-                                                  backgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondary,
-                                                ),
-                                              );
-                                              // Online Tasks
-                                              _model.onlineTasks =
-                                                  await TasksTable().queryRows(
-                                                queryFn: (q) => q,
-                                              );
-                                              // Number Iteration
-                                              _model.iteration = 0;
-                                              _model.limit =
-                                                  valueOrDefault<int>(
-                                                _model.onlineTasks?.length,
-                                                0,
-                                              );
-                                              setState(() {});
-                                              while (_model.iteration! <
-                                                  _model.limit!) {
-                                                await Future.delayed(
-                                                    const Duration(
-                                                        milliseconds: 2000));
-                                                await SQLiteManager.instance
-                                                    .insertOfflineTask(
-                                                  id: valueOrDefault<String>(
-                                                    _model
-                                                        .onlineTasks?[
-                                                            valueOrDefault<int>(
-                                                      _model.iteration,
-                                                      0,
-                                                    )]
-                                                        .id,
-                                                    'Value',
-                                                  ),
-                                                  taskNumber:
-                                                      valueOrDefault<String>(
-                                                    _model
-                                                        .onlineTasks?[
-                                                            valueOrDefault<int>(
-                                                      _model.iteration,
-                                                      0,
-                                                    )]
-                                                        .taskNumber,
-                                                    'Value',
-                                                  ),
-                                                  serviceGroup:
-                                                      valueOrDefault<String>(
-                                                    _model
-                                                        .onlineTasks?[
-                                                            valueOrDefault<int>(
-                                                      _model.iteration,
-                                                      0,
-                                                    )]
-                                                        .serviceGroup,
-                                                    'Value',
-                                                  ),
-                                                  status:
-                                                      valueOrDefault<String>(
-                                                    _model
-                                                        .onlineTasks?[
-                                                            valueOrDefault<int>(
-                                                      _model.iteration,
-                                                      0,
-                                                    )]
-                                                        .status,
-                                                    'Value',
-                                                  ),
-                                                  serviceType:
-                                                      valueOrDefault<String>(
-                                                    _model
-                                                        .onlineTasks?[
-                                                            valueOrDefault<int>(
-                                                      _model.iteration,
-                                                      0,
-                                                    )]
-                                                        .serviceType,
-                                                    'Value',
-                                                  ),
-                                                  priority:
-                                                      valueOrDefault<String>(
-                                                    _model
-                                                        .onlineTasks?[
-                                                            valueOrDefault<int>(
-                                                      _model.iteration,
-                                                      0,
-                                                    )]
-                                                        .priority,
-                                                    'Value',
-                                                  ),
-                                                  assignee:
-                                                      valueOrDefault<String>(
-                                                    _model
-                                                        .onlineTasks?[
-                                                            valueOrDefault<int>(
-                                                      _model.iteration,
-                                                      0,
-                                                    )]
-                                                        .assignee,
-                                                    'Value',
-                                                  ),
-                                                  dateAdded:
-                                                      valueOrDefault<String>(
-                                                    _model
-                                                        .onlineTasks?[
-                                                            valueOrDefault<int>(
-                                                      _model.iteration,
-                                                      0,
-                                                    )]
-                                                        .dateAdded
-                                                        ?.toString(),
-                                                    'Value',
-                                                  ),
-                                                  dateAccess:
-                                                      valueOrDefault<String>(
-                                                    _model
-                                                        .onlineTasks?[
-                                                            valueOrDefault<int>(
-                                                      _model.iteration,
-                                                      0,
-                                                    )]
-                                                        .dateAccess
-                                                        ?.toString(),
-                                                    'Value',
-                                                  ),
-                                                  fileId:
-                                                      valueOrDefault<String>(
-                                                    _model
-                                                        .onlineTasks?[
-                                                            valueOrDefault<int>(
-                                                      _model.iteration,
-                                                      0,
-                                                    )]
-                                                        .fileId,
-                                                    'Value',
-                                                  ),
-                                                );
-                                                ScaffoldMessenger.of(context)
-                                                    .clearSnackBars();
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(
-                                                  SnackBar(
-                                                    content: Text(
-                                                      'Syncing (${_model.iteration?.toString()}) -> ${valueOrDefault<String>(
-                                                        _model
-                                                            .onlineTasks?[_model
-                                                                .iteration!]
-                                                            .taskNumber,
-                                                        'Value',
-                                                      )}',
-                                                      style: TextStyle(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                      ),
-                                                    ),
-                                                    duration: const Duration(
-                                                        milliseconds: 4000),
-                                                    backgroundColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .forDispatchColor,
-                                                  ),
-                                                );
-                                                // Number Iteration
-                                                _model.iteration =
-                                                    _model.iteration! + 1;
-                                                setState(() {});
-                                              }
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(
-                                                SnackBar(
-                                                  content: Text(
-                                                    'Sync done',
-                                                    style: GoogleFonts.getFont(
-                                                      'Roboto',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                    ),
-                                                  ),
-                                                  duration: const Duration(
-                                                      milliseconds: 4000),
-                                                  backgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondary,
-                                                ),
-                                              );
-
-                                              setState(() {});
-                                            } else {
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(
-                                                SnackBar(
-                                                  content: Text(
-                                                    'Must be online to sync',
-                                                    style: TextStyle(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                    ),
-                                                  ),
-                                                  duration: const Duration(
-                                                      milliseconds: 4000),
-                                                  backgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondary,
-                                                ),
-                                              );
-                                            }
-
-                                            setState(() {});
-                                          },
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Icon(
-                                                    Icons.sync,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                    size: 30.0,
-                                                  ),
-                                                  Text(
-                                                    FFLocalizations.of(context)
-                                                        .getText(
-                                                      'qkhyppx6' /* Sync Database */,
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
-                                                        ),
-                                                  ),
-                                                ].divide(const SizedBox(width: 10.0)),
-                                              ),
-                                              Icon(
-                                                Icons.chevron_right_rounded,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                size: 24.0,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
                                   ].divide(const SizedBox(height: 20.0)),
                                 ),
                                 Divider(
@@ -1172,7 +850,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                     MediaQuery.sizeOf(context)
                                                             .height *
                                                         0.5,
-                                                width: 400.0,
+                                                width: 300.0,
                                                 child: const SignoutDialogWidget(),
                                               ),
                                             );
@@ -1230,16 +908,16 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               ],
                             ),
                           ),
-                        );
-                      },
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

@@ -1492,9 +1492,10 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 12.0),
                                                 child: Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    'l6pbtiio' /* Seed Variety */,
+                                                  valueOrDefault<String>(
+                                                    ppirFormSelectPpirFormsRowList
+                                                        .first.ppirSvpAct,
+                                                    '[[',
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -1594,7 +1595,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                           FFLocalizations.of(
                                                                   context)
                                                               .getText(
-                                                            'fd5vtp4q' /* Select the Type of Corn  */,
+                                                            'fd5vtp4q' /* Select the Type of Rice  */,
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -1614,7 +1615,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         ),
                                                         Text(
                                                           _model.ppirSvpActSelectionValue ==
-                                                                  'corn'
+                                                                  'rice'
                                                               ? '(enabled)'
                                                               : '(disabled)',
                                                           style: FlutterFlowTheme
@@ -1626,7 +1627,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     .labelSmallFamily,
                                                                 color: _model
                                                                             .ppirSvpActSelectionValue ==
-                                                                        'corn'
+                                                                        'rice'
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
                                                                         .primary
@@ -1817,7 +1818,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                           FFLocalizations.of(
                                                                   context)
                                                               .getText(
-                                                            'aqzhnbj5' /* Select the Type of Rice  */,
+                                                            'aqzhnbj5' /* Select the Type of Corn  */,
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -1837,7 +1838,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         ),
                                                         Text(
                                                           _model.ppirSvpActSelectionValue ==
-                                                                  'rice'
+                                                                  'corn'
                                                               ? '(enabled)'
                                                               : '(disabled)',
                                                           style: FlutterFlowTheme
@@ -1849,7 +1850,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     .labelSmallFamily,
                                                                 color: _model
                                                                             .ppirSvpActSelectionValue ==
-                                                                        'rice'
+                                                                        'corn'
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
                                                                         .primary

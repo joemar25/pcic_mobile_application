@@ -261,16 +261,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const Onboarding01OriginalCopyWidget(),
         ),
         FFRoute(
-          name: 'syncKingCopy',
-          path: '/syncKingCopy',
-          requireAuth: true,
-          builder: (context, params) => const SyncKingCopyWidget(),
-        ),
-        FFRoute(
           name: 'syncKing',
           path: '/syncKing',
           requireAuth: true,
           builder: (context, params) => const SyncKingWidget(),
+        ),
+        FFRoute(
+          name: 'offlineTasksSync',
+          path: '/offlineTasksSync',
+          requireAuth: true,
+          builder: (context, params) => const OfflineTasksSyncWidget(),
         ),
         FFRoute(
           name: 'ppirOriginal',
