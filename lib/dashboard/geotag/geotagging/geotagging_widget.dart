@@ -7,7 +7,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
-import '/flutter_flow/permissions_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -54,17 +53,14 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       currentUserLocationValue =
           await getCurrentUserLocation(defaultLocation: const LatLng(0.0, 0.0));
+      _model.getCurrentLocationAddress =
+          await actions.fetchAddressFromCoordinates(
+        functions.getLng(currentUserLocationValue),
+        functions.getLat(currentUserLocationValue),
+      );
       _model.isGeotagStart = false;
       _model.isFinished = false;
       setState(() {});
-      await requestPermission(locationPermission);
-      if (await getPermissionStatus(locationPermission)) {
-        _model.getCurrentLocationAddress =
-            await actions.fetchAddressFromCoordinates(
-          functions.getLng(currentUserLocationValue),
-          functions.getLat(currentUserLocationValue),
-        );
-      }
     });
 
     getCurrentUserLocation(defaultLocation: const LatLng(0.0, 0.0), cached: true)
