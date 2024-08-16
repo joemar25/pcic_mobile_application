@@ -192,9 +192,9 @@ class _OfflineTasksSyncWidgetState extends State<OfflineTasksSyncWidget>
                                 Align(
                                   alignment: const AlignmentDirectional(0.0, -1.0),
                                   child: Text(
-                                    FFLocalizations.of(context).getText(
-                                      'ozahk9cp' /* Tap the button to sync */,
-                                    ),
+                                    _model.isSync
+                                        ? 'Syncing'
+                                        : 'Tap the button to sync',
                                     textAlign: TextAlign.center,
                                     style: FlutterFlowTheme.of(context)
                                         .labelMedium

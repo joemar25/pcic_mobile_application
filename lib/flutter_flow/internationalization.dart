@@ -257,7 +257,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'bbvdjvdi': {
+    'z47fac1c': {
       'en': '',
       'tl': '',
     },
@@ -269,7 +269,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    '5bvny9xx': {
+    'k1ui9gal': {
       'en': '',
       'tl': '',
     },
@@ -281,7 +281,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'a1ucyipk': {
+    'y54mxc86': {
       'en': '',
       'tl': '',
     },
@@ -865,10 +865,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // offlineTasksSync
   {
-    'ozahk9cp': {
-      'en': 'Tap the button to sync',
-      'tl': '',
-    },
     'hhy7zu7j': {
       'en': 'Tap the button to sync again',
       'tl': '',

@@ -281,12 +281,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                   child: Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         12.0, 0.0, 12.0, 0.0),
-                                    child: Text(
-                                      _model.isGeotagStart != true
-                                          ? (_model.isFinished
-                                              ? 'Saving'
-                                              : 'Geotagging')
-                                          : 'Waiting',
+                                    child: AnimatedDefaultTextStyle(
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -299,6 +294,16 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMediumFamily),
                                           ),
+                                      duration: const Duration(milliseconds: 600),
+                                      curve: Curves.easeIn,
+                                      child: Text(
+                                        _model.isGeotagStart != true
+                                            ? (_model.isFinished
+                                                ? 'Saving'
+                                                : 'Geotagging')
+                                            : 'Waiting',
+                                        textAlign: TextAlign.start,
+                                      ),
                                     ),
                                   ),
                                 ),

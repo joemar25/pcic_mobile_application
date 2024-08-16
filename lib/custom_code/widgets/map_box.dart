@@ -243,9 +243,9 @@ class _MapBoxState extends State<MapBox> {
       distanceInHectares,
     );
 
-    // setState(() {
-    //   _routePoints.clear();
-    // });
+    setState(() {
+      _routePoints.clear();
+    });
   }
 
   @override
