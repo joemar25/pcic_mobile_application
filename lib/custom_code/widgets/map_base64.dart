@@ -39,6 +39,7 @@ class MapBase64 extends StatefulWidget {
 class _MapBase64State extends State<MapBase64> {
   List<latlong.LatLng> _coordinates = [];
   late final MapController _mapController;
+  double _currentZoom = 18.0;
 
   @override
   void initState() {
@@ -51,24 +52,15 @@ class _MapBase64State extends State<MapBase64> {
 
   void _parseGPX(String base64Data) {
     try {
-      final decodedBytes = base64Decode(base64Data);
-      final gpxString = utf8.decode(decodedBytes);
+      final document = XmlDocument.parse(utf8.decode(base64Decode(base64Data)));
+      _coordinates = document.findAllElements('trkpt').map((trkpt) {
+        return latlong.LatLng(
+          double.parse(trkpt.getAttribute('lat')!),
+          double.parse(trkpt.getAttribute('lon')!),
+        );
+      }).toList();
 
-      final document = XmlDocument.parse(gpxString);
-      final trkpts = document.findAllElements('trkpt');
-
-      List<latlong.LatLng> coordinates = [];
-
-      for (var trkpt in trkpts) {
-        final lat = double.parse(trkpt.getAttribute('lat')!);
-        final lon = double.parse(trkpt.getAttribute('lon')!);
-        coordinates.add(latlong.LatLng(lat, lon));
-      }
-
-      setState(() {
-        _coordinates = coordinates;
-      });
-
+      setState(() {});
       WidgetsBinding.instance.addPostFrameCallback((_) => _centerMap());
     } catch (e) {
       print('Error parsing GPX data: $e');
@@ -80,86 +72,104 @@ class _MapBase64State extends State<MapBase64> {
       final bounds = _calculateBounds(_coordinates);
       final centerLat = (bounds[0] + bounds[2]) / 2;
       final centerLon = (bounds[1] + bounds[3]) / 2;
-      final zoom = _calculateZoom(bounds);
-      _mapController.move(latlong.LatLng(centerLat, centerLon), zoom);
+      _currentZoom = _calculateZoom(bounds);
+      _mapController.move(latlong.LatLng(centerLat, centerLon), _currentZoom);
     }
   }
 
   List<double> _calculateBounds(List<latlong.LatLng> points) {
-    double minLat = double.infinity;
-    double maxLat = -double.infinity;
-    double minLon = double.infinity;
-    double maxLon = -double.infinity;
-
-    for (var point in points) {
-      minLat = math.min(minLat, point.latitude);
-      maxLat = math.max(maxLat, point.latitude);
-      minLon = math.min(minLon, point.longitude);
-      maxLon = math.max(maxLon, point.longitude);
-    }
-
-    return [minLat, minLon, maxLat, maxLon];
+    return points.fold(
+        [double.infinity, double.infinity, -double.infinity, -double.infinity],
+        (List<double> bounds, latlong.LatLng point) {
+      return [
+        math.min(bounds[0], point.latitude),
+        math.min(bounds[1], point.longitude),
+        math.max(bounds[2], point.latitude),
+        math.max(bounds[3], point.longitude),
+      ];
+    });
   }
 
   double _calculateZoom(List<double> bounds) {
-    const WORLD_PX_HEIGHT = 256.0;
-    const WORLD_PX_WIDTH = 256.0;
+    const WORLD_PX = 256.0;
     const ZOOM_MAX = 21.0;
     const ZOOM_MIN = 0.0;
 
     final latFraction = (bounds[2] - bounds[0]) / 360.0;
     final lonFraction = (bounds[3] - bounds[1]) / 360.0;
 
-    if (latFraction <= 0 || lonFraction <= 0) {
-      return ZOOM_MIN;
-    }
-
-    final latZoom = _safeLn(WORLD_PX_HEIGHT / latFraction) / math.ln2;
-    final lonZoom = _safeLn(WORLD_PX_WIDTH / lonFraction) / math.ln2;
+    final latZoom = math.log(WORLD_PX / latFraction) / math.ln2;
+    final lonZoom = math.log(WORLD_PX / lonFraction) / math.ln2;
 
     return math.min(latZoom, lonZoom).clamp(ZOOM_MIN, ZOOM_MAX);
   }
 
-  double _safeLn(double value) {
-    if (value <= 0) return 0;
-    return math.log(value);
+  void _zoomIn() {
+    _currentZoom = math.min(_currentZoom + 1, 21);
+    _mapController.move(_mapController.camera.center, _currentZoom);
+  }
+
+  void _zoomOut() {
+    _currentZoom = math.max(_currentZoom - 1, 0);
+    _mapController.move(_mapController.camera.center, _currentZoom);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: widget.width,
-      height: widget.height,
-      child: FlutterMap(
-        mapController: _mapController,
-        options: MapOptions(
-          initialCenter: _coordinates.isNotEmpty
-              ? _coordinates.first
-              : latlong.LatLng(0, 0),
-          initialZoom: 18.0,
-          interactionOptions: InteractionOptions(
-            flags: InteractiveFlag.all & ~InteractiveFlag.rotate,
-          ),
-        ),
-        children: [
-          TileLayer(
-            urlTemplate:
-                'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}@2x?access_token=${widget.accessToken}',
-            additionalOptions: {
-              'accessToken': widget.accessToken,
-            },
-          ),
-          PolylineLayer(
-            polylines: [
-              Polyline(
-                points: _coordinates,
-                strokeWidth: 4.0,
-                color: Colors.blue,
+    return Stack(
+      children: [
+        Container(
+          width: widget.width,
+          height: widget.height,
+          child: FlutterMap(
+            mapController: _mapController,
+            options: MapOptions(
+              initialCenter: _coordinates.isNotEmpty
+                  ? _coordinates.first
+                  : latlong.LatLng(0, 0),
+              initialZoom: _currentZoom,
+              interactionOptions: const InteractionOptions(
+                flags: InteractiveFlag.all & ~InteractiveFlag.rotate,
+              ),
+            ),
+            children: [
+              TileLayer(
+                urlTemplate:
+                    'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}@2x?access_token=${widget.accessToken}',
+                additionalOptions: {'accessToken': widget.accessToken},
+              ),
+              PolylineLayer(
+                polylines: [
+                  Polyline(
+                    points: _coordinates,
+                    strokeWidth: 4.0,
+                    color: Colors.blue,
+                  ),
+                ],
               ),
             ],
           ),
-        ],
-      ),
+        ),
+        Positioned(
+          right: 16,
+          bottom: 16,
+          child: Column(
+            children: [
+              FloatingActionButton(
+                mini: true,
+                child: Icon(Icons.add),
+                onPressed: _zoomIn,
+              ),
+              SizedBox(height: 8),
+              FloatingActionButton(
+                mini: true,
+                child: Icon(Icons.remove),
+                onPressed: _zoomOut,
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
