@@ -1347,7 +1347,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         FFLocalizations.of(
                                                                 context)
                                                             .getText(
-                                                      'wr9xhmty' /* Total Distance (sq) */,
+                                                      'wr9xhmty' /* Total Distance */,
                                                     ),
                                                     labelStyle: FlutterFlowTheme
                                                             .of(context)

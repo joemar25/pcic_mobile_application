@@ -42,72 +42,92 @@ Future saveGpx(
     final Uint8List gpxBytes = Uint8List.fromList(utf8.encode(gpx));
     print('GPX converted to Uint8List successfully');
 
-    // Query the tasks table to get service_group and task_number
-    print('Querying tasks table for service_group and task_number');
-    final taskResponse = await SupaFlow.client
-        .from('tasks')
-        .select('service_group, task_number, assignee')
-        .eq('id', taskId)
-        .single()
-        .execute();
+    // Encode GPX content as base64
+    final String base64Gpx = base64Encode(gpxBytes);
 
-    if (taskResponse.status != 200 || taskResponse.data == null) {
-      throw Exception('Error querying tasks table: ${taskResponse.status}');
-    }
+    // Check if the app is online
+    bool isOnline = FFAppState().ONLINE;
 
-    final taskData = taskResponse.data as Map<String, dynamic>;
-    final String serviceGroup = taskData['service_group'] ?? '';
-    final String taskNumber = taskData['task_number'] ?? '';
+    // Save to local SQLite database
+    print('Saving to local SQLite database');
+    await SQLiteManager.instance.updatePPIRFormAfterGeotag(
+      taskId: taskId,
+      trackLastCoord: trackLastCoord,
+      trackDateTime: trackDateTime,
+      trackTotalArea: trackTotalArea,
+      trackTotalDistance: trackTotalDistance,
+      gpx: base64Gpx,
+      isDirty: !isOnline, // Set isDirty to true if offline
+    );
+    print('Saved to local SQLite database successfully');
 
-    // Get the current user's email
-    final currentUser = SupaFlow.client.auth.currentUser;
-    final String userEmail = currentUser?.email ?? taskData['assignee'] ?? '';
+    // Only proceed with online saving if the app is online
+    if (isOnline) {
+      print('App is online. Proceeding with online saving');
 
-    if (userEmail.isEmpty) {
-      throw Exception('Unable to get user email');
-    }
+      // Query the tasks table to get service_group and task_number
+      print('Querying tasks table for service_group and task_number');
+      final taskResponse = await SupaFlow.client
+          .from('tasks')
+          .select('service_group, task_number, assignee')
+          .eq('id', taskId)
+          .single()
+          .execute();
 
-    // Define the file path in the bucket
-    final filePath =
-        '$serviceGroup/$userEmail/$taskNumber/attachments/geotag.gpx';
-    print('Supabase file path: $filePath');
+      if (taskResponse.status != 200 || taskResponse.data == null) {
+        throw Exception('Error querying tasks table: ${taskResponse.status}');
+      }
 
-    // Upload or update the GPX file in Supabase storage
-    print('Uploading GPX to Supabase');
-    final response = await SupaFlow.client.storage.from('for_ftp').uploadBinary(
-          filePath,
-          gpxBytes,
-          fileOptions: FileOptions(
-            contentType: 'application/gpx+xml',
-            upsert: true,
-          ),
-        );
+      final taskData = taskResponse.data as Map<String, dynamic>;
+      final String serviceGroup = taskData['service_group'] ?? '';
+      final String taskNumber = taskData['task_number'] ?? '';
 
-    // Check if the upload was successful
-    if (response != null) {
-      print('GPX file uploaded/updated successfully to Supabase');
+      // Get the current user's email
+      final currentUser = SupaFlow.client.auth.currentUser;
+      final String userEmail = currentUser?.email ?? taskData['assignee'] ?? '';
 
-      // Encode GPX content as base64
-      final String base64Gpx = base64Encode(gpxBytes);
+      if (userEmail.isEmpty) {
+        throw Exception('Unable to get user email');
+      }
 
-      await SQLiteManager.instance.updatePPIRFormGpx(
-        taskId: taskId,
-        gpx: base64Gpx,
-      );
+      // Define the file path in the bucket
+      final filePath =
+          '$serviceGroup/$userEmail/$taskNumber/attachments/geotag.gpx';
+      print('Supabase file path: $filePath');
 
-      // Update the ppir_forms table with the provided values
-      print('Updating ppir_forms table with provided values');
-      await SupaFlow.client.from('ppir_forms').update({
-        'gpx': base64Gpx,
-        'track_last_coord': trackLastCoord,
-        'track_date_time': trackDateTime,
-        'track_total_area': trackTotalArea,
-        'track_total_distance': trackTotalDistance,
-      }).eq('task_id', taskId);
+      // Upload or update the GPX file in Supabase storage
+      print('Uploading GPX to Supabase');
+      final response =
+          await SupaFlow.client.storage.from('for_ftp').uploadBinary(
+                filePath,
+                gpxBytes,
+                fileOptions: FileOptions(
+                  contentType: 'application/gpx+xml',
+                  upsert: true,
+                ),
+              );
 
-      print('ppir_forms table updated successfully with provided values');
+      // Check if the upload was successful
+      if (response != null) {
+        print('GPX file uploaded/updated successfully to Supabase');
+
+        // Update the ppir_forms table with the provided values
+        print('Updating ppir_forms table with provided values');
+        await SupaFlow.client.from('ppir_forms').update({
+          'gpx': base64Gpx,
+          'track_last_coord': trackLastCoord,
+          'track_date_time': trackDateTime,
+          'track_total_area': trackTotalArea,
+          'track_total_distance': trackTotalDistance,
+        }).eq('task_id', taskId);
+
+        print('ppir_forms table updated successfully with provided values');
+      } else {
+        print(
+            'Error uploading/updating GPX file to Supabase: Operation failed');
+      }
     } else {
-      print('Error uploading/updating GPX file to Supabase: Operation failed');
+      print('App is offline. Skipping online saving.');
     }
   } catch (e) {
     print('Error in saveGpx function: $e');
