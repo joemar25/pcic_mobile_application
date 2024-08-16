@@ -547,9 +547,16 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                         taskId: widget.taskId,
                         status: 'ongoing',
                       );
+                      await SQLiteManager.instance.updatePPIRFormAfterGeotag(
+                        taskId: widget.taskId,
+                        trackLastCoord: 'a',
+                        trackDateTime: 'b',
+                        trackTotalArea: 'c',
+                        trackTotalDistance: 'd',
+                        gpx: 'e',
+                        isDirty: true,
+                      );
                     }
-
-                    await Future.delayed(const Duration(milliseconds: 5000));
 
                     context.pushNamed(
                       'ppirForm',

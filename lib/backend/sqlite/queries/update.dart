@@ -513,3 +513,30 @@ WHERE task_id = '$taskId';
 }
 
 /// END UPDATE PPIR FORM GPX
+
+/// BEGIN UPDATE PPIR FORM AFTER GEOTAG
+Future performUpdatePPIRFormAfterGeotag(
+  Database database, {
+  String? taskId,
+  String? trackLastCoord,
+  String? trackDateTime,
+  String? trackTotalArea,
+  String? trackTotalDistance,
+  String? gpx,
+  bool? isDirty,
+}) {
+  final query = '''
+UPDATE ppir_forms
+SET 
+  gpx = '$gpx',
+  track_last_coord = '$trackLastCoord',
+  track_date_time = '$trackDateTime',
+  track_total_area = '$trackTotalArea',
+  track_total_distance = '$trackTotalDistance',
+  is_dirty = '$isDirty'
+WHERE task_id = '$taskId';
+''';
+  return database.rawQuery(query);
+}
+
+/// END UPDATE PPIR FORM AFTER GEOTAG

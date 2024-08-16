@@ -561,5 +561,25 @@ class SQLiteManager {
         gpx: gpx,
       );
 
+  Future updatePPIRFormAfterGeotag({
+    String? taskId,
+    String? trackLastCoord,
+    String? trackDateTime,
+    String? trackTotalArea,
+    String? trackTotalDistance,
+    String? gpx,
+    bool? isDirty,
+  }) =>
+      performUpdatePPIRFormAfterGeotag(
+        _database,
+        taskId: taskId,
+        trackLastCoord: trackLastCoord,
+        trackDateTime: trackDateTime,
+        trackTotalArea: trackTotalArea,
+        trackTotalDistance: trackTotalDistance,
+        gpx: gpx,
+        isDirty: isDirty,
+      );
+
   /// END UPDATE QUERY CALLS
 }
