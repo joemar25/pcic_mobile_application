@@ -257,7 +257,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    '233x7ypb': {
+    'bbvdjvdi': {
       'en': '',
       'tl': '',
     },
@@ -269,7 +269,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    '26abeiaq': {
+    '5bvny9xx': {
       'en': '',
       'tl': '',
     },
@@ -281,7 +281,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'ajajfusp': {
+    'a1ucyipk': {
       'en': '',
       'tl': '',
     },

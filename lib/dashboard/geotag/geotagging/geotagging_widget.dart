@@ -170,30 +170,65 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                               size: 20.0,
                                             ),
                                             onPressed: () async {
-                                              context.pushNamed(
-                                                'taskDetails',
-                                                queryParameters: {
-                                                  'taskId': serializeParam(
-                                                    widget.taskId,
-                                                    ParamType.String,
-                                                  ),
-                                                  'taskStatus': serializeParam(
-                                                    widget.taskStatus,
-                                                    ParamType.String,
-                                                  ),
-                                                }.withoutNulls,
-                                                extra: <String, dynamic>{
-                                                  kTransitionInfoKey:
-                                                      const TransitionInfo(
-                                                    hasTransition: true,
-                                                    transitionType:
-                                                        PageTransitionType
-                                                            .bottomToTop,
-                                                    duration: Duration(
-                                                        milliseconds: 200),
-                                                  ),
-                                                },
-                                              );
+                                              var confirmDialogResponse =
+                                                  await showDialog<bool>(
+                                                        context: context,
+                                                        builder:
+                                                            (alertDialogContext) {
+                                                          return AlertDialog(
+                                                            title:
+                                                                const Text('Alert'),
+                                                            content: const Text(
+                                                                'This will cancel the current progress of geotagging, are you sure?'),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext,
+                                                                        false),
+                                                                child: const Text(
+                                                                    'Cancel'),
+                                                              ),
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext,
+                                                                        true),
+                                                                child: const Text(
+                                                                    'Confirm'),
+                                                              ),
+                                                            ],
+                                                          );
+                                                        },
+                                                      ) ??
+                                                      false;
+                                              if (confirmDialogResponse) {
+                                                context.pushNamed(
+                                                  'taskDetails',
+                                                  queryParameters: {
+                                                    'taskId': serializeParam(
+                                                      widget.taskId,
+                                                      ParamType.String,
+                                                    ),
+                                                    'taskStatus':
+                                                        serializeParam(
+                                                      widget.taskStatus,
+                                                      ParamType.String,
+                                                    ),
+                                                  }.withoutNulls,
+                                                  extra: <String, dynamic>{
+                                                    kTransitionInfoKey:
+                                                        const TransitionInfo(
+                                                      hasTransition: true,
+                                                      transitionType:
+                                                          PageTransitionType
+                                                              .bottomToTop,
+                                                      duration: Duration(
+                                                          milliseconds: 200),
+                                                    ),
+                                                  },
+                                                );
+                                              }
                                             },
                                           ),
                                         ),
@@ -251,7 +286,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                           ? (_model.isFinished
                                               ? 'Saving'
                                               : 'Geotagging')
-                                          : 'Initializing',
+                                          : 'Waiting',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
