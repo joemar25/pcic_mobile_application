@@ -17,6 +17,7 @@ import 'package:latlong2/latlong.dart' as latlong;
 import 'package:xml/xml.dart';
 import 'dart:convert';
 import 'dart:math' as math;
+import 'package:flutter_map_tile_caching/flutter_map_tile_caching.dart' as FMTC;
 
 class MapBase64 extends StatefulWidget {
   const MapBase64({
@@ -41,14 +42,88 @@ class _MapBase64State extends State<MapBase64> {
   late final MapController _mapController;
   double _currentZoom = 18.0;
   bool _isLoading = true;
+  TileProvider? _tileProvider;
+  String? _storeName;
+  String? _errorMessage;
 
   @override
   void initState() {
     super.initState();
     _mapController = MapController();
-    if (widget.blob != null) {
-      _parseGPX(widget.blob!);
+    _initializeMap();
+  }
+
+  Future<void> _initializeMap() async {
+    try {
+      await _initializeTileProvider();
+      if (widget.blob != null) {
+        _parseGPX(widget.blob!);
+      }
+    } catch (e) {
+      setState(() {
+        _errorMessage = e.toString();
+      });
     }
+  }
+
+  Future<void> _initializeTileProvider() async {
+    final stats = FMTC.FMTCRoot.stats;
+    final stores = await stats.storesAvailable;
+
+    if (_coordinates.isEmpty) {
+      print('No coordinates available');
+      return;
+    }
+
+    latlong.LatLng currentLocation = _coordinates.first;
+
+    for (var store in stores) {
+      final md = FMTC.FMTCStore(store.storeName).metadata;
+      final metadata = await md.read;
+
+      if (metadata != null) {
+        try {
+          Map<String, num> regionData = {
+            'region_south': _parseNum(metadata['region_south']),
+            'region_north': _parseNum(metadata['region_north']),
+            'region_west': _parseNum(metadata['region_west']),
+            'region_east': _parseNum(metadata['region_east']),
+          };
+
+          if (_isLocationInRegion(currentLocation, regionData)) {
+            _storeName = store.storeName;
+            break;
+          }
+        } catch (e) {
+          print('Error processing metadata for ${store.storeName}: $e');
+        }
+      }
+    }
+
+    if (_storeName != null) {
+      setState(() {
+        _tileProvider = FMTC.FMTCStore(_storeName!).getTileProvider(
+          settings: FMTC.FMTCTileProviderSettings(
+            behavior: FMTC.CacheBehavior.cacheFirst,
+          ),
+        );
+      });
+    } else {
+      print('No store available to initialize tile provider');
+    }
+  }
+
+  bool _isLocationInRegion(latlong.LatLng location, Map<String, num> region) {
+    return location.latitude >= region['region_south']! &&
+        location.latitude <= region['region_north']! &&
+        location.longitude >= region['region_west']! &&
+        location.longitude <= region['region_east']!;
+  }
+
+  num _parseNum(dynamic value) {
+    if (value is num) return value;
+    if (value is String) return num.parse(value);
+    throw FormatException('Cannot parse $value to num');
   }
 
   void _parseGPX(String base64Data) {
@@ -124,6 +199,14 @@ class _MapBase64State extends State<MapBase64> {
       return Center(child: CircularProgressIndicator());
     }
 
+    if (_errorMessage != null) {
+      return Center(child: Text('Error: $_errorMessage'));
+    }
+
+    if (!FFAppState().ONLINE && (_tileProvider == null || _storeName == null)) {
+      return _buildOfflineMessageBox(context);
+    }
+
     return Stack(
       children: [
         Container(
@@ -145,6 +228,7 @@ class _MapBase64State extends State<MapBase64> {
                 urlTemplate:
                     'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}@2x?access_token=${widget.accessToken}',
                 additionalOptions: {'accessToken': widget.accessToken},
+                tileProvider: _tileProvider,
               ),
               PolylineLayer(
                 polylines: [
@@ -178,6 +262,53 @@ class _MapBase64State extends State<MapBase64> {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildOfflineMessageBox(BuildContext context) {
+    return Center(
+      child: Container(
+        width: MediaQuery.of(context).size.width * 0.8,
+        constraints: BoxConstraints(maxWidth: 300),
+        padding: EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: Colors.green,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: Offset(0, 3),
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.map_outlined, size: 50, color: Colors.white),
+            SizedBox(height: 15),
+            Text(
+              'Map for this location is not downloaded yet',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+            SizedBox(height: 10),
+            Text(
+              'Please download the map to view this area offline',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
