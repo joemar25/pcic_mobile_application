@@ -224,13 +224,18 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                               _model.statusOutput =
                                                   'Syncing...';
                                               setState(() {});
-                                              await Future.delayed(
-                                                  const Duration(
-                                                      milliseconds: 2000));
+                                              _model.onlineTask =
+                                                  await TasksTable().queryRows(
+                                                queryFn: (q) => q,
+                                              );
+                                              _model.message =
+                                                  await actions.syncData();
                                               _model.statusOutput =
-                                                  'Tasks are updated';
+                                                  _model.message;
                                               setState(() {});
                                             }
+
+                                            setState(() {});
                                           },
                                           child: Text(
                                             '[ ${_model.statusOutput} ]',
