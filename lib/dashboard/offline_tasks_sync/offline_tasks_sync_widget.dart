@@ -366,6 +366,7 @@ class _OfflineTasksSyncWidgetState extends State<OfflineTasksSyncWidget>
                           setState(() {});
                         },
                         child: Container(
+                          width: 300.0,
                           decoration: const BoxDecoration(),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -561,11 +562,11 @@ class _OfflineTasksSyncWidgetState extends State<OfflineTasksSyncWidget>
                                                 const Duration(milliseconds: 600),
                                             curve: Curves.elasticOut,
                                             child: Text(
-                                              '(${valueOrDefault<String>(
+                                              ' ${valueOrDefault<String>(
                                                 textSelectPpirFormsRowList
-                                                    .first.ppirFarmername,
+                                                    .first.ppirInsuranceid,
                                                 'asdasd',
-                                              )})',
+                                              )}',
                                             ),
                                           );
                                         },

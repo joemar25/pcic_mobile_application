@@ -50,21 +50,19 @@ class _DashboardWidgetState extends State<DashboardWidget>
         return;
       }
       _model.loadLocalProfile = await actions.getTheSavedLocalProfile();
+      _model.offlineTasks =
+          await SQLiteManager.instance.oFFLINESelectAllTasksByAssignee(
+        assignee: currentUserUid,
+      );
       if (FFAppState().ONLINE) {
-        _model.offlineTasks =
-            await SQLiteManager.instance.oFFLINESelectAllTasksByAssignee(
-          assignee: currentUserUid,
-        );
         _model.onlineTasks = await TasksTable().queryRows(
           queryFn: (q) => q,
         );
-        if (_model.onlineTasks?.length != 0) {
-          _model.statusOutput = 'Tap here to update';
-          setState(() {});
-        } else {
-          _model.statusOutput = 'Tasks are updated';
-          setState(() {});
-        }
+        _model.statusOutput =
+            _model.offlineTasks?.length != _model.onlineTasks?.length
+                ? 'Tap to update'
+                : 'Tasks are updated';
+        setState(() {});
       }
     });
 
@@ -219,17 +217,13 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            if (_model.onlineTasks?.length !=
-                                                0) {
-                                              _model.statusOutput =
-                                                  'Syncing...';
-                                              setState(() {});
-                                              _model.message =
-                                                  await actions.syncData();
-                                              _model.statusOutput =
-                                                  _model.message;
-                                              setState(() {});
-                                            }
+                                            _model.statusOutput = 'Syncing...';
+                                            setState(() {});
+                                            _model.message =
+                                                await actions.syncData();
+                                            _model.statusOutput =
+                                                _model.message;
+                                            setState(() {});
 
                                             setState(() {});
                                           },
