@@ -2622,8 +2622,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     0.2,
                                                                 taskId: widget
                                                                     .taskId,
-                                                                signatureFor:
-                                                                    'insured',
+                                                                signatureBlob:
+                                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                        .first
+                                                                        .ppirSigInsured,
                                                               ),
                                                             ),
                                                           ),
@@ -2734,8 +2736,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     0.2,
                                                                 taskId: widget
                                                                     .taskId,
-                                                                signatureFor:
-                                                                    'iuia',
+                                                                signatureBlob:
+                                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                        .first
+                                                                        .ppirSigIuia,
                                                               ),
                                                             ),
                                                           ),
@@ -2815,7 +2819,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         .sizeOf(
                                                                             context)
                                                                     .height *
-                                                                0.2,
+                                                                0.3,
                                                             child:
                                                                 custom_widgets
                                                                     .MapBase64(
@@ -2828,7 +2832,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                           .sizeOf(
                                                                               context)
                                                                       .height *
-                                                                  0.2,
+                                                                  0.3,
                                                               blob: valueOrDefault<
                                                                           String>(
                                                                         taskDetailsSELECTTASKSAndPPIRByAssigneeRowList

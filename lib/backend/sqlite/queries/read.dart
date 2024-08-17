@@ -581,3 +581,24 @@ class SELECTCornSEEDSRow extends SqliteRow {
 }
 
 /// END SELECT CORN SEEDS
+
+/// BEGIN SELECT PPIR FORMS SIGNATURES
+Future<List<SELECTPPIRFORMSSignaturesRow>> performSELECTPPIRFORMSSignatures(
+  Database database, {
+  String? taskId,
+}) {
+  final query = '''
+SELECT * FROM ppir_forms WHERE task_id='$taskId'
+''';
+  return _readQuery(database, query, (d) => SELECTPPIRFORMSSignaturesRow(d));
+}
+
+class SELECTPPIRFORMSSignaturesRow extends SqliteRow {
+  SELECTPPIRFORMSSignaturesRow(super.data);
+
+  String? get taskId => data['task_id'] as String?;
+  String? get ppirSigInsured => data['ppir_sig_insured'] as String?;
+  String? get ppirSigIuia => data['ppir_sig_iuia'] as String?;
+}
+
+/// END SELECT PPIR FORMS SIGNATURES

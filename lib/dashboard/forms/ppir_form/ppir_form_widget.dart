@@ -389,7 +389,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                       .transparent,
                                                               onTap: () async {
                                                                 _model.isMapDownloaded =
-                                                                    true;
+                                                                    false;
                                                                 setState(() {});
                                                               },
                                                               child: Text(

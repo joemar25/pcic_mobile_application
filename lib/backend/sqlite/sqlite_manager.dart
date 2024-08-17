@@ -127,6 +127,14 @@ class SQLiteManager {
         _database,
       );
 
+  Future<List<SELECTPPIRFORMSSignaturesRow>> sELECTPPIRFORMSSignatures({
+    String? taskId,
+  }) =>
+      performSELECTPPIRFORMSSignatures(
+        _database,
+        taskId: taskId,
+      );
+
   /// END READ QUERY CALLS
 
   /// START UPDATE QUERY CALLS
