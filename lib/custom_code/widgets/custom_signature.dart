@@ -12,14 +12,11 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'index.dart'; // Imports other custom widgets
-
 import 'dart:convert';
 import 'package:signature/signature.dart';
 import 'dart:typed_data';
-import 'package:intl/intl.dart';
-import 'dart:ui' as ui;
 import 'package:image_picker/image_picker.dart';
+import '/backend/supabase/database/tables/ppir_forms.dart';
 
 class CustomSignature extends StatefulWidget {
   const CustomSignature({
@@ -43,7 +40,6 @@ class _CustomSignatureState extends State<CustomSignature>
     with AutomaticKeepAliveClientMixin {
   late SignatureController _controller;
   Uint8List? _signatureData;
-  String? _fileName;
   final ImagePicker _picker = ImagePicker();
   String _statusMessage = '';
   bool _isLoading = false;
@@ -61,7 +57,6 @@ class _CustomSignatureState extends State<CustomSignature>
       penColor: Colors.black,
       exportBackgroundColor: Colors.white,
     );
-    _fileName = widget.signatureFor == 'insured' ? 'insured.png' : 'iuia.png';
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
         _loadExistingSignature();
@@ -78,25 +73,16 @@ class _CustomSignatureState extends State<CustomSignature>
     if (_isDisposed) return;
     setStateIfMounted(() => _isLoading = true);
     try {
-      if (!FFAppState().ONLINE) {
-        throw Exception('No internet connection');
-      }
+      List<SelectPpirFormsRow> ppirForms =
+          await SQLiteManager.instance.selectPpirForms(
+        taskId: widget.taskId,
+      );
 
-      final response = await SupaFlow.client
-          .from('ppir_forms')
-          .select(widget.signatureFor == 'insured'
-              ? 'ppir_sig_insured'
-              : 'ppir_sig_iuia')
-          .eq('task_id', widget.taskId)
-          .single()
-          .execute();
+      if (ppirForms.isNotEmpty) {
+        String? signatureBlob = widget.signatureFor == 'insured'
+            ? ppirForms.first.ppirSigInsured
+            : ppirForms.first.ppirSigIuia;
 
-      if (_isDisposed) return;
-
-      if (response.status == 200 && response.data != null) {
-        final signatureBlob = response.data[widget.signatureFor == 'insured'
-            ? 'ppir_sig_insured'
-            : 'ppir_sig_iuia'] as String?;
         if (signatureBlob != null) {
           setStateIfMounted(() {
             _signatureData = base64.decode(signatureBlob);
@@ -111,6 +97,99 @@ class _CustomSignatureState extends State<CustomSignature>
       });
     } finally {
       setStateIfMounted(() => _isLoading = false);
+    }
+  }
+
+  Future<void> _saveSignatureToDatabase(String base64Signature) async {
+    debugPrint('CustomSignature: Saving signature to database');
+    if (_isDisposed) return;
+    try {
+      // Update SQLite
+      if (widget.signatureFor == 'insured') {
+        await SQLiteManager.instance.updatePPIRFormINSUREDSignatureBlob(
+          taskId: widget.taskId,
+          signatureBlob: base64Signature,
+        );
+      } else {
+        await SQLiteManager.instance.updatePPIRFormIUIASignatureBlob(
+          taskId: widget.taskId,
+          signatureBlob: base64Signature,
+        );
+      }
+
+      // Update Supabase if online
+      if (FFAppState().ONLINE) {
+        await PpirFormsTable().update(
+          data: {
+            widget.signatureFor == 'insured'
+                ? 'ppir_sig_insured'
+                : 'ppir_sig_iuia': base64Signature,
+            'updated_at': DateTime.now().toIso8601String(),
+            'is_dirty': false,
+          },
+          matchingRows: (rows) => rows.eq(
+            'task_id',
+            widget.taskId,
+          ),
+        );
+      }
+
+      setStateIfMounted(() {
+        _statusMessage = 'Signature saved successfully';
+      });
+    } catch (e) {
+      debugPrint('Error saving signature: $e');
+      setStateIfMounted(() {
+        _statusMessage = 'Failed to save signature: ${e.toString()}';
+      });
+    }
+  }
+
+  Future<void> _clearSignature() async {
+    debugPrint('CustomSignature: Clearing signature');
+    if (_isDisposed) return;
+    _controller.clear();
+    setStateIfMounted(() {
+      _signatureData = null;
+      _statusMessage = 'Signature cleared';
+    });
+
+    try {
+      // Clear SQLite
+      if (widget.signatureFor == 'insured') {
+        await SQLiteManager.instance.updatePPIRFormINSUREDSignatureBlob(
+          taskId: widget.taskId,
+          signatureBlob: null,
+        );
+      } else {
+        await SQLiteManager.instance.updatePPIRFormIUIASignatureBlob(
+          taskId: widget.taskId,
+          signatureBlob: null,
+        );
+      }
+
+      // Clear Supabase if online
+      if (FFAppState().ONLINE) {
+        await PpirFormsTable().update(
+          data: {
+            widget.signatureFor == 'insured'
+                ? 'ppir_sig_insured'
+                : 'ppir_sig_iuia': null,
+            'updated_at': DateTime.now().toIso8601String(),
+            'is_dirty': false,
+          },
+          matchingRows: (rows) => rows.eq(
+            'task_id',
+            widget.taskId,
+          ),
+        );
+      }
+    } catch (e) {
+      debugPrint('Error clearing signature: $e');
+      setStateIfMounted(() {
+        _statusMessage =
+            'Failed to clear signature from database: ${e.toString()}';
+      });
     }
   }
 
@@ -142,66 +221,6 @@ class _CustomSignatureState extends State<CustomSignature>
       });
     } finally {
       setStateIfMounted(() => _isLoading = false);
-    }
-  }
-
-  Future<void> _saveSignatureToDatabase(String base64Signature) async {
-    debugPrint('CustomSignature: Saving signature to database');
-    if (_isDisposed) return;
-    try {
-      if (!FFAppState().ONLINE) {
-        throw Exception('No internet connection');
-      }
-
-      final updateField = widget.signatureFor == 'insured'
-          ? 'ppir_sig_insured'
-          : 'ppir_sig_iuia';
-
-      final response = await SupaFlow.client.from('ppir_forms').update({
-        updateField: base64Signature,
-      }).eq('task_id', widget.taskId);
-
-      debugPrint('Update response: $response');
-      setStateIfMounted(() {
-        _statusMessage = 'Signature saved successfully';
-      });
-    } catch (e) {
-      debugPrint('Error updating ppir_forms: $e');
-      setStateIfMounted(() {
-        _statusMessage = 'Failed to save signature: ${e.toString()}';
-      });
-    }
-  }
-
-  Future<void> _clearSignature() async {
-    debugPrint('CustomSignature: Clearing signature');
-    if (_isDisposed) return;
-    _controller.clear();
-    setStateIfMounted(() {
-      _signatureData = null;
-      _statusMessage = 'Signature cleared';
-    });
-
-    try {
-      if (!FFAppState().ONLINE) {
-        throw Exception('No internet connection');
-      }
-
-      final updateField = widget.signatureFor == 'insured'
-          ? 'ppir_sig_insured'
-          : 'ppir_sig_iuia';
-
-      final response = await SupaFlow.client.from('ppir_forms').update({
-        updateField: null,
-      }).eq('task_id', widget.taskId);
-
-      debugPrint('Clear signature response: $response');
-    } catch (e) {
-      debugPrint('Error clearing signature: $e');
-      setStateIfMounted(() {
-        _statusMessage =
-            'Failed to clear signature from database: ${e.toString()}';
-      });
     }
   }
 
@@ -265,9 +284,7 @@ class _CustomSignatureState extends State<CustomSignature>
               child: const Text('Clear'),
             ),
             ElevatedButton(
-              onPressed: (_isLoading || !FFAppState().ONLINE)
-                  ? null
-                  : _pickImageAndConvertToBase64,
+              onPressed: _isLoading ? null : _pickImageAndConvertToBase64,
               child: const Text('Upload Signature'),
             ),
             ElevatedButton(
@@ -277,9 +294,6 @@ class _CustomSignatureState extends State<CustomSignature>
                       if (_controller.isNotEmpty) {
                         setStateIfMounted(() => _isLoading = true);
                         try {
-                          if (!FFAppState().ONLINE) {
-                            throw Exception('No internet connection');
-                          }
                           final Uint8List? data =
                               await _controller.toPngBytes();
                           if (data != null && !_isDisposed) {
