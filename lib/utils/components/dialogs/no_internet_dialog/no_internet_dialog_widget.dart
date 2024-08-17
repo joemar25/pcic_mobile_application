@@ -51,9 +51,10 @@ class _NoInternetDialogWidgetState extends State<NoInternetDialogWidget> {
           padding: const EdgeInsets.all(20.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Lottie.asset(
-                'assets/lottie_animations/Alert_lottie_(2).json',
+                'assets/lottie_animations/tZsu2uNXgs.json',
                 width: 150.0,
                 height: 150.0,
                 fit: BoxFit.cover,
@@ -168,7 +169,7 @@ class _NoInternetDialogWidgetState extends State<NoInternetDialogWidget> {
                   ],
                 ),
               ),
-            ].divide(const SizedBox(height: 20.0)),
+            ].divide(const SizedBox(height: 15.0)),
           ),
         ),
       ),

@@ -253,7 +253,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'ay1160sk': {
+    '8vk3ex6k': {
       'en': '',
       'tl': '',
     },
@@ -265,7 +265,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    '7yqv09ub': {
+    'am8acpof': {
       'en': '',
       'tl': '',
     },
@@ -277,7 +277,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'mlvjm6m3': {
+    'wiibt9qp': {
       'en': '',
       'tl': '',
     },
@@ -1127,7 +1127,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // aleartContinueDialog
   {
     '4poy7kn4': {
-      'en': 'Info',
+      'en': 'Alert',
       'tl': '',
     },
     '5w0hrwzw': {
@@ -1163,7 +1163,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // noticePermissionDialog
   {
     'vsbe3eji': {
-      'en': 'Warning',
+      'en': 'Notice',
       'tl': '',
     },
     'bsqylrb4': {

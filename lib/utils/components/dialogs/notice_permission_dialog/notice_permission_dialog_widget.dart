@@ -91,7 +91,7 @@ class _NoticePermissionDialogWidgetState
                               alignment: const AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  'vsbe3eji' /* Warning */,
+                                  'vsbe3eji' /* Notice */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .headlineLarge

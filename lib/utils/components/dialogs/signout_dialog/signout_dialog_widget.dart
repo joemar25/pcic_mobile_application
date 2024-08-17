@@ -52,7 +52,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
           padding: const EdgeInsets.all(20.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Lottie.asset(
                 'assets/lottie_animations/Logout_lottie_red.json',
@@ -223,7 +223,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                   ),
                 ].divide(const SizedBox(width: 10.0)).around(const SizedBox(width: 10.0)),
               ),
-            ].divide(const SizedBox(height: 20.0)).around(const SizedBox(height: 20.0)),
+            ].divide(const SizedBox(height: 15.0)),
           ),
         ),
       ),

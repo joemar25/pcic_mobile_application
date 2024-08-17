@@ -77,7 +77,7 @@ class _AleartContinueDialogWidgetState
                               alignment: const AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  '4poy7kn4' /* Info */,
+                                  '4poy7kn4' /* Alert */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .headlineLarge
