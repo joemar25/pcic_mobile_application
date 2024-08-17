@@ -11,8 +11,6 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'index.dart'; // Imports other custom actions
-
 import 'package:xml/xml.dart';
 import 'package:dart_ipify/dart_ipify.dart';
 import 'dart:convert';
@@ -23,6 +21,8 @@ Future<String> generateTaskXml(String? taskId) async {
   }
 
   try {
+    print('Starting XML generation for Task ID: $taskId');
+
     final response = await Supabase.instance.client
         .from('tasks')
         .select('*, users!inner(*), ppir_forms(*)')
@@ -30,12 +30,17 @@ Future<String> generateTaskXml(String? taskId) async {
         .single()
         .execute();
 
+    print('Supabase response status: ${response.status}');
+    print('Supabase response data: ${response.data}');
+
     if (response.status != 200 || response.data == null) {
       throw Exception('No matching data found for task ID: $taskId');
     }
 
     final data = response.data as Map<String, dynamic>;
-    final ppirForm = data['ppir_forms'][0] as Map<String, dynamic>;
+    final ppirForm = data['ppir_forms'] as Map<String, dynamic>;
+
+    print('PPIR form data: $ppirForm');
 
     String serviceType = data['service_type']?.toString() ?? '';
     String regionName = serviceType.replaceAll(' PPIR', '');
@@ -44,37 +49,69 @@ Future<String> generateTaskXml(String? taskId) async {
     String userEmail = data['users']['email']?.toString() ?? '';
     String taskNumber = data['task_number']?.toString() ?? '';
 
-    // Fetch file paths
+    print('Service Type: $serviceType');
+    print('Track Last Coord: $trackLastcoord');
+    print('Service Group: $serviceGroup');
+    print('User Email: $userEmail');
+    print('Task Number: $taskNumber');
+
     final bucketPath = '$serviceGroup/$userEmail/$taskNumber';
     final fileList = await listAllFiles(bucketPath);
 
-    // Variables for specific files
+    print('File list from bucket path: $fileList');
+
     String? signatureInsured;
     String? signatureIuia;
     String? gpxFile;
 
-    // Find the specific files
+    // Updated logic for matching specific files
     for (final filePath in fileList) {
       final fileName = filePath.split('/').last.toLowerCase();
-      if (fileName.contains('ppir_signature_insured')) {
+      print('Processing file: $fileName');
+
+      if (fileName.contains('ppir_sig_insured')) {
+        print('Matched signature insured file: $fileName');
         signatureInsured = fileName;
-      } else if (fileName.contains('ppir_signature_iuia')) {
+      } else if (fileName.contains('ppir_sig_iuia')) {
+        print('Matched signature IUIA file: $fileName');
         signatureIuia = fileName;
       } else if (fileName.endsWith('.gpx')) {
+        print('Matched GPX file: $fileName');
         gpxFile = fileName;
       }
     }
 
+    print('Final Signature Insured: $signatureInsured');
+    print('Final Signature IUIA: $signatureIuia');
+    print('Final GPX File: $gpxFile');
+
     final ipv4 = await Ipify.ipv4();
+    print('Fetched IPv4: $ipv4');
+
     final coords = trackLastcoord.split(',');
     final latitude = coords.isNotEmpty ? double.tryParse(coords[0]) : null;
     final longitude = coords.length > 1 ? double.tryParse(coords[1]) : null;
+
+    print('Latitude: $latitude, Longitude: $longitude');
+
     final timestamp = DateTime.now().toIso8601String();
     final date = DateTime.now().toIso8601String().split('T').first;
 
     Map<String, dynamic> address = {};
     if (latitude != null && longitude != null) {
-      address = await fetchAddressFromCoordinates(latitude, longitude);
+      print('Fetching address for coordinates: ($latitude, $longitude)');
+      try {
+        final fetchedAddress =
+            await fetchAddressFromCoordinates(latitude, longitude);
+        if (fetchedAddress != null) {
+          print('Fetched address: $fetchedAddress');
+          address = fetchedAddress;
+        } else {
+          print('No address found for coordinates: ($latitude, $longitude)');
+        }
+      } catch (fetchError) {
+        print('Error fetching address: $fetchError');
+      }
     }
 
     final locationJson = jsonEncode({
@@ -91,6 +128,8 @@ Future<String> generateTaskXml(String? taskId) async {
       "unitLotNo": address["unitLotNo"],
       "zipCode": address["zipCode"]
     });
+
+    print('Location JSON: $locationJson');
 
     final builder = XmlBuilder();
 
@@ -4148,7 +4187,9 @@ Future<String> generateTaskXml(String? taskId) async {
           nest: '2024-04-08T13:31:01.1555203+08:00');
     });
 
-    return builder.buildDocument().toXmlString(pretty: true);
+    final xmlString = builder.buildDocument().toXmlString(pretty: true);
+    print('Generated XML: $xmlString');
+    return xmlString;
   } catch (e) {
     print('Error in generateTaskXml: $e');
     return '<ERROR>Failed to generate XML: $e</ERROR>';
