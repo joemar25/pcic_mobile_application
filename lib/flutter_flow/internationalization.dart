@@ -253,7 +253,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'cyeerv6d': {
+    'ay1160sk': {
       'en': '',
       'tl': '',
     },
@@ -265,7 +265,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'ngifk3ng': {
+    '7yqv09ub': {
       'en': '',
       'tl': '',
     },
@@ -277,7 +277,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'e9bdnwn8': {
+    'mlvjm6m3': {
       'en': '',
       'tl': '',
     },
@@ -1124,7 +1124,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
-  // alertDialogContinue
+  // aleartContinueDialog
   {
     '4poy7kn4': {
       'en': 'Info',
@@ -1160,14 +1160,15 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
-  // alertDialogPermission
+  // noticePermissionDialog
   {
     'vsbe3eji': {
       'en': 'Warning',
       'tl': '',
     },
     'bsqylrb4': {
-      'en': 'You must be Online and the Location permission must be enabled.',
+      'en':
+          'You must be Online and the Location permission must be enabled to proceed.',
       'tl': '',
     },
     'ighw54es': {

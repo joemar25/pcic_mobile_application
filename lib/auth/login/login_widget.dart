@@ -4,7 +4,7 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/utils/components/alert_dialog_permission/alert_dialog_permission_widget.dart';
+import '/utils/components/dialogs/notice_permission_dialog/notice_permission_dialog_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/permissions_util.dart';
 import 'package:flutter/foundation.dart';
@@ -789,7 +789,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                                     dialogContext)
                                                                 .unfocus(),
                                                         child:
-                                                            const AlertDialogPermissionWidget(),
+                                                            const NoticePermissionDialogWidget(),
                                                       ),
                                                     );
                                                   },

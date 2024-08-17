@@ -4,20 +4,20 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'alert_dialog_permission_model.dart';
-export 'alert_dialog_permission_model.dart';
+import 'notice_permission_dialog_model.dart';
+export 'notice_permission_dialog_model.dart';
 
-class AlertDialogPermissionWidget extends StatefulWidget {
-  const AlertDialogPermissionWidget({super.key});
+class NoticePermissionDialogWidget extends StatefulWidget {
+  const NoticePermissionDialogWidget({super.key});
 
   @override
-  State<AlertDialogPermissionWidget> createState() =>
-      _AlertDialogPermissionWidgetState();
+  State<NoticePermissionDialogWidget> createState() =>
+      _NoticePermissionDialogWidgetState();
 }
 
-class _AlertDialogPermissionWidgetState
-    extends State<AlertDialogPermissionWidget> {
-  late AlertDialogPermissionModel _model;
+class _NoticePermissionDialogWidgetState
+    extends State<NoticePermissionDialogWidget> {
+  late NoticePermissionDialogModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -28,7 +28,7 @@ class _AlertDialogPermissionWidgetState
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => AlertDialogPermissionModel());
+    _model = createModel(context, () => NoticePermissionDialogModel());
   }
 
   @override
@@ -43,7 +43,7 @@ class _AlertDialogPermissionWidgetState
     return Align(
       alignment: const AlignmentDirectional(0.0, 0.0),
       child: Container(
-        width: 320.0,
+        width: 330.0,
         height: 350.0,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).primaryBackground,
@@ -53,6 +53,7 @@ class _AlertDialogPermissionWidgetState
           padding: const EdgeInsets.all(20.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Row(
                 mainAxisSize: MainAxisSize.min,

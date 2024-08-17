@@ -5,19 +5,20 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'alert_dialog_continue_model.dart';
-export 'alert_dialog_continue_model.dart';
+import 'aleart_continue_dialog_model.dart';
+export 'aleart_continue_dialog_model.dart';
 
-class AlertDialogContinueWidget extends StatefulWidget {
-  const AlertDialogContinueWidget({super.key});
+class AleartContinueDialogWidget extends StatefulWidget {
+  const AleartContinueDialogWidget({super.key});
 
   @override
-  State<AlertDialogContinueWidget> createState() =>
-      _AlertDialogContinueWidgetState();
+  State<AleartContinueDialogWidget> createState() =>
+      _AleartContinueDialogWidgetState();
 }
 
-class _AlertDialogContinueWidgetState extends State<AlertDialogContinueWidget> {
-  late AlertDialogContinueModel _model;
+class _AleartContinueDialogWidgetState
+    extends State<AleartContinueDialogWidget> {
+  late AleartContinueDialogModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -28,7 +29,7 @@ class _AlertDialogContinueWidgetState extends State<AlertDialogContinueWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => AlertDialogContinueModel());
+    _model = createModel(context, () => AleartContinueDialogModel());
   }
 
   @override
