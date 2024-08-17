@@ -179,7 +179,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                         GoRouter.of(context).clearRedirectLocation();
 
                         context.pushNamedAuth(
-                          'onboarding01',
+                          'onboarding',
                           context.mounted,
                           extra: <String, dynamic>{
                             kTransitionInfoKey: const TransitionInfo(

@@ -5,19 +5,19 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'onboarding01_model.dart';
-export 'onboarding01_model.dart';
+import 'onboarding_model.dart';
+export 'onboarding_model.dart';
 
-class Onboarding01Widget extends StatefulWidget {
-  const Onboarding01Widget({super.key});
+class OnboardingWidget extends StatefulWidget {
+  const OnboardingWidget({super.key});
 
   @override
-  State<Onboarding01Widget> createState() => _Onboarding01WidgetState();
+  State<OnboardingWidget> createState() => _OnboardingWidgetState();
 }
 
-class _Onboarding01WidgetState extends State<Onboarding01Widget>
+class _OnboardingWidgetState extends State<OnboardingWidget>
     with TickerProviderStateMixin {
-  late Onboarding01Model _model;
+  late OnboardingModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -26,7 +26,7 @@ class _Onboarding01WidgetState extends State<Onboarding01Widget>
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => Onboarding01Model());
+    _model = createModel(context, () => OnboardingModel());
 
     animationsMap.addAll({
       'containerOnPageLoadAnimation1': AnimationInfo(

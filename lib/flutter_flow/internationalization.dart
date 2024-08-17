@@ -253,7 +253,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    '5cgr7ynn': {
+    'djtcx24m': {
       'en': '',
       'tl': '',
     },
@@ -265,7 +265,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'l040of0o': {
+    'aawgcsca': {
       'en': '',
       'tl': '',
     },
@@ -277,7 +277,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'ns74qo4k': {
+    'rjr5dnpq': {
       'en': '',
       'tl': '',
     },
@@ -763,7 +763,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
-  // onboarding01
+  // onboarding
   {
     'e5zj0r88': {
       'en': 'Welcome Agent!',
@@ -797,45 +797,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
-  // onboarding01OriginalCopy
-  {
-    '2grvnw3v': {
-      'en': 'Welcome!',
-      'tl': '',
-    },
-    'xahmkk4o': {
-      'en': 'Welcome Agent in the PCIC Geotagging Application!',
-      'tl': '',
-    },
-    'mzijvexf': {
-      'en': 'Get Started',
-      'tl': '',
-    },
-    'xlercfoh': {
-      'en': 'My Account',
-      'tl': '',
-    },
-    'o3rlw29a': {
-      'en': 'Welcome!',
-      'tl': '',
-    },
-    'v6c3moob': {
-      'en': 'Welcome Agent in the PCIC Geotagging Application!',
-      'tl': '',
-    },
-    '6zeto6je': {
-      'en': 'Get Started',
-      'tl': '',
-    },
-    '1in1mox2': {
-      'en': 'My Account',
-      'tl': '',
-    },
-    'j2zyyyh9': {
-      'en': 'Home',
-      'tl': '',
-    },
-  },
   // syncKing
   {
     'e3h43o18': {
@@ -862,141 +823,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     'v3jq6q5p': {
-      'en': 'Home',
-      'tl': '',
-    },
-  },
-  // ppirOriginal
-  {
-    'tco3mv0u': {
-      'en': 'Geotag',
-      'tl': '',
-    },
-    'pl0bknfl': {
-      'en': 'Repeat Geotag',
-      'tl': '',
-    },
-    'iq7q8449': {
-      'en': 'Download',
-      'tl': '',
-    },
-    'uppjlms9': {
-      'en': 'Geotag Information',
-      'tl': '',
-    },
-    'a55axski': {
-      'en': 'Last Coordinates',
-      'tl': '',
-    },
-    'r3wvkqyk': {
-      'en': 'Total Area',
-      'tl': '',
-    },
-    'bfaij5b1': {
-      'en': 'Date Time',
-      'tl': '',
-    },
-    '5zp9vjkt': {
-      'en': 'Total Hectares',
-      'tl': '',
-    },
-    'vq2cm9il': {
-      'en': 'Farm Location',
-      'tl': '',
-    },
-    'xrreq4co': {
-      'en': 'Seed Variety',
-      'tl': '',
-    },
-    'qulvvnue': {
-      'en': 'rice',
-      'tl': '',
-    },
-    'sn6svdc9': {
-      'en': 'corn',
-      'tl': '',
-    },
-    'dfgdkb4d': {
-      'en': 'Select the Type of Rice ',
-      'tl': '',
-    },
-    't8xxmhl2': {
-      'en': 'this is the rice',
-      'tl': '',
-    },
-    'ac08a04t': {
-      'en': 'Please select...',
-      'tl': '',
-    },
-    '5x5ymky9': {
-      'en': 'Search for an item...',
-      'tl': '',
-    },
-    'kyb2cgz2': {
-      'en': 'Select the Type of Corn ',
-      'tl': '',
-    },
-    '2w8dn1ey': {
-      'en': 'this is the rice',
-      'tl': '',
-    },
-    't0ahaio1': {
-      'en': 'Please select...',
-      'tl': '',
-    },
-    'z3wfg5ul': {
-      'en': 'Search for an item...',
-      'tl': '',
-    },
-    'zo56xkjl': {
-      'en': 'Actual Area Planted',
-      'tl': '',
-    },
-    '1z02oonb': {
-      'en': 'Actual Date of Planting (DS)',
-      'tl': '',
-    },
-    'xkkk715e': {
-      'en': 'Actual Date of Planting (TP)',
-      'tl': '',
-    },
-    'gsi8opij': {
-      'en': 'Remarks',
-      'tl': '',
-    },
-    '85syyh2d': {
-      'en': 'Prepared by',
-      'tl': '',
-    },
-    'fq19omfm': {
-      'en': 'Tap to Signature',
-      'tl': '',
-    },
-    '3lyz63el': {
-      'en': 'Confirm by',
-      'tl': '',
-    },
-    'j5ip59u5': {
-      'en': 'Tap to Signature',
-      'tl': '',
-    },
-    '7tkizeet': {
-      'en': 'DON\'T DELETE TAT IS TESTING HERE',
-      'tl': '',
-    },
-    'z6gf245p': {
-      'en': 'Cancel',
-      'tl': '',
-    },
-    '7458l6gv': {
-      'en': 'Save',
-      'tl': '',
-    },
-    'umnf3lm8': {
-      'en': 'Submit',
-      'tl': '',
-    },
-    'sb9iji3v': {
       'en': 'Home',
       'tl': '',
     },
@@ -1160,29 +986,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     '6k4ph13p': {
-      'en': 'Home',
-      'tl': '',
-    },
-  },
-  // onboarding01Copy
-  {
-    'hj9vlptg': {
-      'en': 'Welcome!',
-      'tl': '',
-    },
-    '9uxv733t': {
-      'en': 'Welcome, Agent, to the PCIC Geotagging Application!',
-      'tl': '',
-    },
-    'jr643if6': {
-      'en': 'Get Started',
-      'tl': '',
-    },
-    'l4jtfx2g': {
-      'en': 'My Account',
-      'tl': '',
-    },
-    'puzywc2l': {
       'en': 'Home',
       'tl': '',
     },

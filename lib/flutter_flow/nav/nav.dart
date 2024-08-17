@@ -74,7 +74,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) => RootPageContext.wrap(
-        appStateNotifier.loggedIn ? const NavBarPage() : const Onboarding01Widget(),
+        appStateNotifier.loggedIn ? const NavBarPage() : const OnboardingWidget(),
         errorRoute: state.uri.toString(),
       ),
       routes: [
@@ -82,7 +82,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: '_initialize',
           path: '/',
           builder: (context, _) => RootPageContext.wrap(
-            appStateNotifier.loggedIn ? const NavBarPage() : const Onboarding01Widget(),
+            appStateNotifier.loggedIn ? const NavBarPage() : const OnboardingWidget(),
           ),
         ),
         FFRoute(
@@ -245,20 +245,15 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const OfflineTasksAndPpirListWidget(),
         ),
         FFRoute(
-          name: 'onboarding01',
-          path: '/onboarding01',
-          builder: (context, params) => const Onboarding01Widget(),
+          name: 'onboarding',
+          path: '/onboarding',
+          builder: (context, params) => const OnboardingWidget(),
         ),
         FFRoute(
           name: 'syncData',
           path: '/syncData',
           requireAuth: true,
           builder: (context, params) => const SyncDataWidget(),
-        ),
-        FFRoute(
-          name: 'onboarding01OriginalCopy',
-          path: '/onboarding01OriginalCopy',
-          builder: (context, params) => const Onboarding01OriginalCopyWidget(),
         ),
         FFRoute(
           name: 'syncKing',
@@ -273,17 +268,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const OfflineTasksSyncWidget(),
         ),
         FFRoute(
-          name: 'ppirOriginal',
-          path: '/ppirOriginal',
-          requireAuth: true,
-          builder: (context, params) => PpirOriginalWidget(
-            taskId: params.getParam(
-              'taskId',
-              ParamType.String,
-            ),
-          ),
-        ),
-        FFRoute(
           name: 'ppirForm',
           path: '/ppirForm',
           builder: (context, params) => PpirFormWidget(
@@ -292,11 +276,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
             ),
           ),
-        ),
-        FFRoute(
-          name: 'onboarding01Copy',
-          path: '/onboarding01Copy',
-          builder: (context, params) => const Onboarding01CopyWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -467,7 +446,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/onboarding01';
+            return '/onboarding';
           }
           return null;
         },

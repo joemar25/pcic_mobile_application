@@ -685,6 +685,8 @@ class _LoginWidgetState extends State<LoginWidget>
                                             const AlignmentDirectional(0.0, 0.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
+                                            await requestPermission(
+                                                locationPermission);
                                             if ((await getPermissionStatus(
                                                     locationPermission)) &&
                                                 FFAppState().ONLINE) {
@@ -711,32 +713,57 @@ class _LoginWidgetState extends State<LoginWidget>
                                                   currentUserEmail,
                                                 ),
                                               );
-                                              _model.save = await actions
-                                                  .uploadPhotoUrlToAsset(
-                                                _model.authUserQuery?.first
-                                                    .photoUrl,
-                                              );
-                                              if (Navigator.of(context)
-                                                  .canPop()) {
-                                                context.pop();
-                                              }
-                                              context.pushNamedAuth(
-                                                'offlineTasksSync',
-                                                context.mounted,
-                                                extra: <String, dynamic>{
-                                                  kTransitionInfoKey:
-                                                      const TransitionInfo(
-                                                    hasTransition: true,
-                                                    transitionType:
-                                                        PageTransitionType
-                                                            .scale,
-                                                    alignment:
-                                                        Alignment.bottomCenter,
-                                                    duration: Duration(
-                                                        milliseconds: 200),
+                                              if (_model.authUserQuery?.first
+                                                      .role ==
+                                                  'Agent') {
+                                                _model.save = await actions
+                                                    .uploadPhotoUrlToAsset(
+                                                  _model.authUserQuery?.first
+                                                      .photoUrl,
+                                                );
+                                                if (Navigator.of(context)
+                                                    .canPop()) {
+                                                  context.pop();
+                                                }
+                                                context.pushNamedAuth(
+                                                  'offlineTasksSync',
+                                                  context.mounted,
+                                                  extra: <String, dynamic>{
+                                                    kTransitionInfoKey:
+                                                        const TransitionInfo(
+                                                      hasTransition: true,
+                                                      transitionType:
+                                                          PageTransitionType
+                                                              .scale,
+                                                      alignment: Alignment
+                                                          .bottomCenter,
+                                                      duration: Duration(
+                                                          milliseconds: 200),
+                                                    ),
+                                                  },
+                                                );
+                                              } else {
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                  SnackBar(
+                                                    content: Text(
+                                                      'You must be an Agent.',
+                                                      style: TextStyle(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                      ),
+                                                    ),
+                                                    duration: const Duration(
+                                                        milliseconds: 4000),
+                                                    backgroundColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .secondary,
                                                   ),
-                                                },
-                                              );
+                                                );
+                                              }
                                             } else {
                                               ScaffoldMessenger.of(context)
                                                   .showSnackBar(
