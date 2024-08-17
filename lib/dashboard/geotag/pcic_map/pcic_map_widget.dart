@@ -75,7 +75,7 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
             children: [
               Text(
                 FFLocalizations.of(context).getText(
-                  'idur2ho8' /* Offline Map */,
+                  'idur2ho8' /* Map Download */,
                 ),
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
                       fontFamily:

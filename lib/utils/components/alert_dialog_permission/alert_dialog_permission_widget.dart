@@ -5,18 +5,20 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'alert_dialog_model.dart';
-export 'alert_dialog_model.dart';
+import 'alert_dialog_permission_model.dart';
+export 'alert_dialog_permission_model.dart';
 
-class AlertDialogWidget extends StatefulWidget {
-  const AlertDialogWidget({super.key});
+class AlertDialogPermissionWidget extends StatefulWidget {
+  const AlertDialogPermissionWidget({super.key});
 
   @override
-  State<AlertDialogWidget> createState() => _AlertDialogWidgetState();
+  State<AlertDialogPermissionWidget> createState() =>
+      _AlertDialogPermissionWidgetState();
 }
 
-class _AlertDialogWidgetState extends State<AlertDialogWidget> {
-  late AlertDialogModel _model;
+class _AlertDialogPermissionWidgetState
+    extends State<AlertDialogPermissionWidget> {
+  late AlertDialogPermissionModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -27,7 +29,7 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => AlertDialogModel());
+    _model = createModel(context, () => AlertDialogPermissionModel());
   }
 
   @override
@@ -53,13 +55,26 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Lottie.asset(
-                'assets/lottie_animations/Alert_lottie_(2).json',
-                width: 150.0,
-                height: 150.0,
-                fit: BoxFit.cover,
-                frameRate: FrameRate(120.0),
-                animate: true,
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Lottie.asset(
+                    'assets/lottie_animations/Animation_-_1723884066152.json',
+                    width: 150.0,
+                    height: 150.0,
+                    fit: BoxFit.contain,
+                    frameRate: FrameRate(120.0),
+                    animate: true,
+                  ),
+                  Lottie.asset(
+                    'assets/lottie_animations/Alert_lottie_(2).json',
+                    width: 150.0,
+                    height: 150.0,
+                    fit: BoxFit.cover,
+                    frameRate: FrameRate(120.0),
+                    animate: true,
+                  ),
+                ],
               ),
               Column(
                 mainAxisSize: MainAxisSize.max,
@@ -75,7 +90,7 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
                               alignment: const AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  '4poy7kn4' /* Info */,
+                                  'vsbe3eji' /* Info */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .headlineLarge
@@ -105,7 +120,7 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
                           alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
-                              '5w0hrwzw' /* The current gpx file will be d... */,
+                              'bsqylrb4' /* The current gpx file will be d... */,
                             ),
                             textAlign: TextAlign.center,
                             style: FlutterFlowTheme.of(context)
@@ -136,7 +151,7 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
                         Navigator.pop(context);
                       },
                       text: FFLocalizations.of(context).getText(
-                        '9nbvgmc2' /* Cancel */,
+                        'ffrkbibp' /* Cancel */,
                       ),
                       options: FFButtonOptions(
                         height: 40.0,
@@ -173,7 +188,7 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
                         GoRouter.of(context).clearRedirectLocation();
                       },
                       text: FFLocalizations.of(context).getText(
-                        '6qtpudw1' /* Sign Out */,
+                        'ighw54es' /* Sign Out */,
                       ),
                       options: FFButtonOptions(
                         height: 40.0,

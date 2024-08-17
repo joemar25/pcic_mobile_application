@@ -253,7 +253,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'ivb6g9wv': {
+    'f7fmsu5w': {
       'en': '',
       'tl': '',
     },
@@ -265,7 +265,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    '7i333oze': {
+    'by5241pp': {
       'en': '',
       'tl': '',
     },
@@ -277,7 +277,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    '0wrhemsz': {
+    '0a7f4zg6': {
       'en': '',
       'tl': '',
     },
@@ -725,7 +725,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     'idur2ho8': {
-      'en': 'Offline Map',
+      'en': 'Map Download',
       'tl': '',
     },
     '8n2rvzxw': {
@@ -1124,7 +1124,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
-  // alertDialog
+  // alertDialogContinue
   {
     '4poy7kn4': {
       'en': 'Info',
@@ -1157,6 +1157,26 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'o9ko1105': {
       'en': 'Reconnect',
+      'tl': '',
+    },
+  },
+  // alertDialogPermission
+  {
+    'vsbe3eji': {
+      'en': 'Info',
+      'tl': '',
+    },
+    'bsqylrb4': {
+      'en':
+          'The current gpx file will be deleted. \nAre you sure you want to continue?',
+      'tl': '',
+    },
+    'ffrkbibp': {
+      'en': 'Cancel',
+      'tl': '',
+    },
+    'ighw54es': {
+      'en': 'Sign Out',
       'tl': '',
     },
   },

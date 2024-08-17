@@ -1,8 +1,9 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'alert_dialog_widget.dart' show AlertDialogWidget;
+import 'alert_dialog_continue_widget.dart' show AlertDialogContinueWidget;
 import 'package:flutter/material.dart';
 
-class AlertDialogModel extends FlutterFlowModel<AlertDialogWidget> {
+class AlertDialogContinueModel
+    extends FlutterFlowModel<AlertDialogContinueWidget> {
   @override
   void initState(BuildContext context) {}
 
