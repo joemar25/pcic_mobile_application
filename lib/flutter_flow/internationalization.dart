@@ -253,7 +253,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'f7fmsu5w': {
+    'qnnbo56n': {
       'en': '',
       'tl': '',
     },
@@ -265,7 +265,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'by5241pp': {
+    'kye9smxp': {
       'en': '',
       'tl': '',
     },
@@ -277,7 +277,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    '0a7f4zg6': {
+    'll3xvgr9': {
       'en': '',
       'tl': '',
     },
@@ -1163,20 +1163,15 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // alertDialogPermission
   {
     'vsbe3eji': {
-      'en': 'Info',
+      'en': 'Warning',
       'tl': '',
     },
     'bsqylrb4': {
-      'en':
-          'The current gpx file will be deleted. \nAre you sure you want to continue?',
-      'tl': '',
-    },
-    'ffrkbibp': {
-      'en': 'Cancel',
+      'en': 'You must be Online and the Location permission must be enabled.',
       'tl': '',
     },
     'ighw54es': {
-      'en': 'Sign Out',
+      'en': 'Okay',
       'tl': '',
     },
   },

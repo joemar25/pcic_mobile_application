@@ -4104,12 +4104,12 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                             taskId: widget.taskId,
                                             status: 'completed',
                                           );
-                                          _model.generatedTaQDskXmlFile =
+                                          _model.generatedXML =
                                               await actions.generateTaskXml(
                                             widget.taskId,
                                           );
                                           await actions.saveTaskXml(
-                                            _model.generatedTaskXmlFile,
+                                            _model.generatedXML,
                                             widget.taskId,
                                           );
                                           _model.isFtpSaved =

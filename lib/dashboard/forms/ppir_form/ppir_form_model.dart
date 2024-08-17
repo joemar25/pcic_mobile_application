@@ -86,7 +86,7 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
   // Stores action output result for [Backend Call - Update Row(s)] action in submitButton widget.
   List<PpirFormsRow>? savePPIRCopy;
   // Stores action output result for [Custom Action - generateTaskXml] action in submitButton widget.
-  String? generatedTaQDskXmlFile;
+  String? generatedXML;
   // Stores action output result for [Custom Action - saveToFTP] action in submitButton widget.
   bool? isFtpSaved;
 

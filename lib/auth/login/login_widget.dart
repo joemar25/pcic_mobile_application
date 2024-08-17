@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/utils/components/alert_dialog_permission/alert_dialog_permission_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/permissions_util.dart';
 import 'package:flutter/foundation.dart';
@@ -683,153 +684,162 @@ class _LoginWidgetState extends State<LoginWidget>
                                       Align(
                                         alignment:
                                             const AlignmentDirectional(0.0, 0.0),
-                                        child: FFButtonWidget(
-                                          onPressed: () async {
-                                            await requestPermission(
-                                                locationPermission);
-                                            if ((await getPermissionStatus(
-                                                    locationPermission)) &&
-                                                FFAppState().ONLINE) {
-                                              GoRouter.of(context)
-                                                  .prepareAuthEvent();
+                                        child: Builder(
+                                          builder: (context) => FFButtonWidget(
+                                            onPressed: () async {
+                                              await requestPermission(
+                                                  locationPermission);
+                                              if ((await getPermissionStatus(
+                                                      locationPermission)) &&
+                                                  FFAppState().ONLINE) {
+                                                GoRouter.of(context)
+                                                    .prepareAuthEvent();
 
-                                              final user = await authManager
-                                                  .signInWithEmail(
-                                                context,
-                                                _model.emailFieldTextController
-                                                    .text,
-                                                _model
-                                                    .passwordFieldTextController
-                                                    .text,
-                                              );
-                                              if (user == null) {
-                                                return;
-                                              }
-
-                                              _model.authUserQuery =
-                                                  await UsersTable().queryRows(
-                                                queryFn: (q) => q.eq(
-                                                  'email',
-                                                  currentUserEmail,
-                                                ),
-                                              );
-                                              if (_model.authUserQuery?.first
-                                                      .role ==
-                                                  'Agent') {
-                                                _model.save = await actions
-                                                    .uploadPhotoUrlToAsset(
-                                                  _model.authUserQuery?.first
-                                                      .photoUrl,
+                                                final user = await authManager
+                                                    .signInWithEmail(
+                                                  context,
+                                                  _model
+                                                      .emailFieldTextController
+                                                      .text,
+                                                  _model
+                                                      .passwordFieldTextController
+                                                      .text,
                                                 );
-                                                if (Navigator.of(context)
-                                                    .canPop()) {
-                                                  context.pop();
+                                                if (user == null) {
+                                                  return;
                                                 }
-                                                context.pushNamedAuth(
-                                                  'offlineTasksSync',
-                                                  context.mounted,
-                                                  extra: <String, dynamic>{
-                                                    kTransitionInfoKey:
-                                                        const TransitionInfo(
-                                                      hasTransition: true,
-                                                      transitionType:
-                                                          PageTransitionType
-                                                              .scale,
-                                                      alignment: Alignment
-                                                          .bottomCenter,
-                                                      duration: Duration(
-                                                          milliseconds: 200),
+
+                                                _model.authUserQuery =
+                                                    await UsersTable()
+                                                        .queryRows(
+                                                  queryFn: (q) => q.eq(
+                                                    'email',
+                                                    currentUserEmail,
+                                                  ),
+                                                );
+                                                if (_model.authUserQuery?.first
+                                                        .role ==
+                                                    'Agent') {
+                                                  _model.save = await actions
+                                                      .uploadPhotoUrlToAsset(
+                                                    _model.authUserQuery?.first
+                                                        .photoUrl,
+                                                  );
+                                                  if (Navigator.of(context)
+                                                      .canPop()) {
+                                                    context.pop();
+                                                  }
+                                                  context.pushNamedAuth(
+                                                    'offlineTasksSync',
+                                                    context.mounted,
+                                                    extra: <String, dynamic>{
+                                                      kTransitionInfoKey:
+                                                          const TransitionInfo(
+                                                        hasTransition: true,
+                                                        transitionType:
+                                                            PageTransitionType
+                                                                .scale,
+                                                        alignment: Alignment
+                                                            .bottomCenter,
+                                                        duration: Duration(
+                                                            milliseconds: 200),
+                                                      ),
+                                                    },
+                                                  );
+                                                } else {
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(
+                                                    SnackBar(
+                                                      content: Text(
+                                                        'You must be an Agent.',
+                                                        style: TextStyle(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                        ),
+                                                      ),
+                                                      duration: const Duration(
+                                                          milliseconds: 4000),
+                                                      backgroundColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondary,
                                                     ),
+                                                  );
+                                                }
+                                              } else {
+                                                await showDialog(
+                                                  context: context,
+                                                  builder: (dialogContext) {
+                                                    return Dialog(
+                                                      elevation: 0,
+                                                      insetPadding:
+                                                          EdgeInsets.zero,
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                                  0.0, 0.0)
+                                                              .resolve(
+                                                                  Directionality.of(
+                                                                      context)),
+                                                      child: GestureDetector(
+                                                        onTap: () =>
+                                                            FocusScope.of(
+                                                                    dialogContext)
+                                                                .unfocus(),
+                                                        child:
+                                                            const AlertDialogPermissionWidget(),
+                                                      ),
+                                                    );
                                                   },
                                                 );
-                                              } else {
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(
-                                                  SnackBar(
-                                                    content: Text(
-                                                      'You must be an Agent.',
-                                                      style: TextStyle(
-                                                        color:
+                                              }
+
+                                              setState(() {});
+                                            },
+                                            text: FFLocalizations.of(context)
+                                                .getText(
+                                              'lvomy5y7' /* Log in */,
+                                            ),
+                                            options: FFButtonOptions(
+                                              width: double.infinity,
+                                              height: 50.0,
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      24.0, 0.0, 24.0, 0.0),
+                                              iconPadding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmall
+                                                      .override(
+                                                        fontFamily:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .primaryText,
+                                                                .titleSmallFamily,
+                                                        color: Colors.white,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmallFamily),
                                                       ),
-                                                    ),
-                                                    duration: const Duration(
-                                                        milliseconds: 4000),
-                                                    backgroundColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .secondary,
-                                                  ),
-                                                );
-                                              }
-                                            } else {
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(
-                                                SnackBar(
-                                                  content: Text(
-                                                    'You must be Online and the Location permission must be enabled.',
-                                                    style: TextStyle(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                    ),
-                                                  ),
-                                                  duration: const Duration(
-                                                      milliseconds: 4000),
-                                                  backgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondary,
-                                                ),
-                                              );
-                                            }
-
-                                            setState(() {});
-                                          },
-                                          text: FFLocalizations.of(context)
-                                              .getText(
-                                            'lvomy5y7' /* Log in */,
-                                          ),
-                                          options: FFButtonOptions(
-                                            width: double.infinity,
-                                            height: 50.0,
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    24.0, 0.0, 24.0, 0.0),
-                                            iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmall
-                                                    .override(
-                                                      fontFamily:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmallFamily,
-                                                      color: Colors.white,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      useGoogleFonts: GoogleFonts
-                                                              .asMap()
-                                                          .containsKey(
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmallFamily),
-                                                    ),
-                                            elevation: 0.0,
-                                            borderSide: const BorderSide(
-                                              color: Colors.transparent,
-                                              width: 1.0,
+                                              elevation: 0.0,
+                                              borderSide: const BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(12.0),
                                             ),
-                                            borderRadius:
-                                                BorderRadius.circular(12.0),
                                           ),
                                         ),
                                       ),

@@ -1,4 +1,3 @@
-import '/auth/supabase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -59,7 +58,7 @@ class _AlertDialogPermissionWidgetState
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Lottie.asset(
-                    'assets/lottie_animations/Animation_-_1723884066152.json',
+                    'assets/lottie_animations/xZO2U5ItRT.json',
                     width: 150.0,
                     height: 150.0,
                     fit: BoxFit.contain,
@@ -67,7 +66,7 @@ class _AlertDialogPermissionWidgetState
                     animate: true,
                   ),
                   Lottie.asset(
-                    'assets/lottie_animations/Alert_lottie_(2).json',
+                    'assets/lottie_animations/sev9ruk9ef.json',
                     width: 150.0,
                     height: 150.0,
                     fit: BoxFit.cover,
@@ -90,7 +89,7 @@ class _AlertDialogPermissionWidgetState
                               alignment: const AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  'vsbe3eji' /* Info */,
+                                  'vsbe3eji' /* Warning */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .headlineLarge
@@ -120,7 +119,7 @@ class _AlertDialogPermissionWidgetState
                           alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
-                              'bsqylrb4' /* The current gpx file will be d... */,
+                              'bsqylrb4' /* You must be Online and the Loc... */,
                             ),
                             textAlign: TextAlign.center,
                             style: FlutterFlowTheme.of(context)
@@ -151,7 +150,7 @@ class _AlertDialogPermissionWidgetState
                         Navigator.pop(context);
                       },
                       text: FFLocalizations.of(context).getText(
-                        'ffrkbibp' /* Cancel */,
+                        'ighw54es' /* Okay */,
                       ),
                       options: FFButtonOptions(
                         height: 40.0,
@@ -159,44 +158,7 @@ class _AlertDialogPermissionWidgetState
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
                             const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).primaryBackground,
-                        textStyle: FlutterFlowTheme.of(context)
-                            .titleSmall
-                            .override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).titleSmallFamily,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.w500,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context)
-                                      .titleSmallFamily),
-                            ),
-                        elevation: 0.0,
-                        borderSide: const BorderSide(
-                          width: 0.0,
-                        ),
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: FFButtonWidget(
-                      onPressed: () async {
-                        GoRouter.of(context).prepareAuthEvent();
-                        await authManager.signOut();
-                        GoRouter.of(context).clearRedirectLocation();
-                      },
-                      text: FFLocalizations.of(context).getText(
-                        'ighw54es' /* Sign Out */,
-                      ),
-                      options: FFButtonOptions(
-                        height: 40.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            24.0, 0.0, 24.0, 0.0),
-                        iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).warning,
+                        color: FlutterFlowTheme.of(context).primary,
                         textStyle: FlutterFlowTheme.of(context)
                             .titleSmall
                             .override(
