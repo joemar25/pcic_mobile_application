@@ -58,7 +58,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
         _model.onlineTasks = await TasksTable().queryRows(
           queryFn: (q) => q,
         );
-        if (_model.onlineTasks?.length != _model.onlineTasks?.length) {
+        if (_model.onlineTasks?.length != 0) {
           _model.statusOutput = 'Tap here to update';
           setState(() {});
         } else {
@@ -220,7 +220,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             if (_model.onlineTasks?.length !=
-                                                _model.onlineTasks?.length) {
+                                                0) {
                                               _model.statusOutput =
                                                   'Syncing...';
                                               setState(() {});
