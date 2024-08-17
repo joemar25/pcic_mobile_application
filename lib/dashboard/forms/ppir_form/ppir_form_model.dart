@@ -87,6 +87,8 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
   List<PpirFormsRow>? savePPIRCopy;
   // Stores action output result for [Custom Action - generateTaskXml] action in submitButton widget.
   String? generatedXML;
+  // Stores action output result for [Custom Action - saveBlobToBucket] action in submitButton widget.
+  String? cat;
 
   @override
   void initState(BuildContext context) {
