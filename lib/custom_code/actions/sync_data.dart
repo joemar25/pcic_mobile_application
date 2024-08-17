@@ -12,5 +12,7 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 Future<String> syncData() async {
-  return 'test';
+  // kindly read the tasks offline to be compare if those already exist so that the tasks online to the offline db would not be override
+  // then add the tasks and ppir from online if it does not exist in the tasks offline tasks row and return a message
+  return 'Tasks are updated';
 }
