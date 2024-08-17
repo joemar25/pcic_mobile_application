@@ -253,7 +253,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    '8vk3ex6k': {
+    'gk36evzi': {
       'en': '',
       'tl': '',
     },
@@ -265,7 +265,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'am8acpof': {
+    'sagxt97z': {
       'en': '',
       'tl': '',
     },
@@ -277,7 +277,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'wiibt9qp': {
+    '248jep9r': {
       'en': '',
       'tl': '',
     },
@@ -1045,6 +1045,14 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     's03qmvgh': {
       'en': 'Retry signature',
       'tl': 'Subukang muli ang lagda',
+    },
+    'wkzgpd7l': {
+      'en': 'save insured',
+      'tl': '',
+    },
+    'kszmwndy': {
+      'en': 'save iuia',
+      'tl': '',
     },
   },
   // backupTasks

@@ -1,3 +1,4 @@
+import '/backend/sqlite/sqlite_manager.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -211,6 +212,78 @@ class _SignatureWidgetState extends State<SignatureWidget>
                                                                     .labelMediumFamily),
                                                       ),
                                                 ),
+                                              ),
+                                            ),
+                                            InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                await SQLiteManager.instance
+                                                    .updatePPIRFormINSUREDSignatureBlob(
+                                                  taskId: widget.taskId,
+                                                  signatureBlob: 'blob here',
+                                                );
+                                              },
+                                              child: Text(
+                                                FFLocalizations.of(context)
+                                                    .getText(
+                                                  'wkzgpd7l' /* save insured */,
+                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
+                                                        ),
+                                              ),
+                                            ),
+                                            InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                await SQLiteManager.instance
+                                                    .updatePPIRFormIUIASignatureBlob(
+                                                  taskId: widget.taskId,
+                                                  signatureBlob: 'blob here',
+                                                );
+                                              },
+                                              child: Text(
+                                                FFLocalizations.of(context)
+                                                    .getText(
+                                                  'kszmwndy' /* save iuia */,
+                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
+                                                        ),
                                               ),
                                             ),
                                           ],

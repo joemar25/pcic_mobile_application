@@ -540,3 +540,35 @@ WHERE task_id = '$taskId';
 }
 
 /// END UPDATE PPIR FORM AFTER GEOTAG
+
+/// BEGIN UPDATE PPIR FORM IUIA SIGNATURE BLOB
+Future performUpdatePPIRFormIUIASignatureBlob(
+  Database database, {
+  String? taskId,
+  String? signatureBlob,
+}) {
+  final query = '''
+UPDATE ppir_forms
+SET  ppir_sig_iuia = '$signatureBlob'
+WHERE task_id = '$taskId';
+''';
+  return database.rawQuery(query);
+}
+
+/// END UPDATE PPIR FORM IUIA SIGNATURE BLOB
+
+/// BEGIN UPDATE PPIR FORM INSURED SIGNATURE BLOB
+Future performUpdatePPIRFormINSUREDSignatureBlob(
+  Database database, {
+  String? taskId,
+  String? signatureBlob,
+}) {
+  final query = '''
+UPDATE ppir_forms
+SET  ppir_sig_insured = '$signatureBlob'
+WHERE task_id = '$taskId';
+''';
+  return database.rawQuery(query);
+}
+
+/// END UPDATE PPIR FORM INSURED SIGNATURE BLOB

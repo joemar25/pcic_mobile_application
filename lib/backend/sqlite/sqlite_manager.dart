@@ -581,5 +581,25 @@ class SQLiteManager {
         isDirty: isDirty,
       );
 
+  Future updatePPIRFormIUIASignatureBlob({
+    String? taskId,
+    String? signatureBlob,
+  }) =>
+      performUpdatePPIRFormIUIASignatureBlob(
+        _database,
+        taskId: taskId,
+        signatureBlob: signatureBlob,
+      );
+
+  Future updatePPIRFormINSUREDSignatureBlob({
+    String? taskId,
+    String? signatureBlob,
+  }) =>
+      performUpdatePPIRFormINSUREDSignatureBlob(
+        _database,
+        taskId: taskId,
+        signatureBlob: signatureBlob,
+      );
+
   /// END UPDATE QUERY CALLS
 }
