@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   ///  Local state fields for this page.
 
-  String? statusOutput;
+  String? statusOutput = 'Loading..';
 
   ///  State fields for stateful widgets in this page.
 
