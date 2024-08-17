@@ -40,6 +40,7 @@ class _MapBase64State extends State<MapBase64> {
   List<latlong.LatLng> _coordinates = [];
   late final MapController _mapController;
   double _currentZoom = 18.0;
+  bool _isLoading = true;
 
   @override
   void initState() {
@@ -60,10 +61,15 @@ class _MapBase64State extends State<MapBase64> {
         );
       }).toList();
 
-      setState(() {});
+      setState(() {
+        _isLoading = false;
+      });
       WidgetsBinding.instance.addPostFrameCallback((_) => _centerMap());
     } catch (e) {
       print('Error parsing GPX data: $e');
+      setState(() {
+        _isLoading = false;
+      });
     }
   }
 
@@ -78,30 +84,28 @@ class _MapBase64State extends State<MapBase64> {
   }
 
   List<double> _calculateBounds(List<latlong.LatLng> points) {
-    return points.fold(
-        [double.infinity, double.infinity, -double.infinity, -double.infinity],
-        (List<double> bounds, latlong.LatLng point) {
-      return [
-        math.min(bounds[0], point.latitude),
-        math.min(bounds[1], point.longitude),
-        math.max(bounds[2], point.latitude),
-        math.max(bounds[3], point.longitude),
-      ];
-    });
+    double minLat = 90, maxLat = -90, minLon = 180, maxLon = -180;
+    for (var point in points) {
+      minLat = math.min(minLat, point.latitude);
+      maxLat = math.max(maxLat, point.latitude);
+      minLon = math.min(minLon, point.longitude);
+      maxLon = math.max(maxLon, point.longitude);
+    }
+    return [minLat, minLon, maxLat, maxLon];
   }
 
   double _calculateZoom(List<double> bounds) {
     const WORLD_PX = 256.0;
     const ZOOM_MAX = 21.0;
-    const ZOOM_MIN = 0.0;
+    const ZOOM_MIN = 1.0;
 
-    final latFraction = (bounds[2] - bounds[0]) / 360.0;
+    final latFraction = (bounds[2] - bounds[0]) / 180.0;
     final lonFraction = (bounds[3] - bounds[1]) / 360.0;
 
     final latZoom = math.log(WORLD_PX / latFraction) / math.ln2;
     final lonZoom = math.log(WORLD_PX / lonFraction) / math.ln2;
 
-    return math.min(latZoom, lonZoom).clamp(ZOOM_MIN, ZOOM_MAX);
+    return math.min(latZoom, lonZoom).clamp(ZOOM_MIN, ZOOM_MAX) - 1;
   }
 
   void _zoomIn() {
@@ -110,12 +114,16 @@ class _MapBase64State extends State<MapBase64> {
   }
 
   void _zoomOut() {
-    _currentZoom = math.max(_currentZoom - 1, 0);
+    _currentZoom = math.max(_currentZoom - 1, 1);
     _mapController.move(_mapController.camera.center, _currentZoom);
   }
 
   @override
   Widget build(BuildContext context) {
+    if (_isLoading) {
+      return Center(child: CircularProgressIndicator());
+    }
+
     return Stack(
       children: [
         Container(

@@ -1,8 +1,10 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/permissions_util.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -35,23 +37,22 @@ class _LoginWidgetState extends State<LoginWidget>
 
     _model.emailFieldTextController ??= TextEditingController();
     _model.emailFieldFocusNode ??= FocusNode();
-    _model.emailFieldFocusNode!.addListener(
-      () async {
-        setState(() {});
-        if (animationsMap['columnOnActionTriggerAnimation'] != null) {
-          await animationsMap['columnOnActionTriggerAnimation']!
-              .controller
-              .forward(from: 0.0);
-        }
-      },
-    );
+
     _model.passwordFieldTextController ??= TextEditingController();
     _model.passwordFieldFocusNode ??= FocusNode();
 
     animationsMap.addAll({
       'containerOnPageLoadAnimation1': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
+        applyInitialState: true,
         effectsBuilder: () => [
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: const Offset(0.0, -500.0),
+            end: const Offset(0.0, 0.0),
+          ),
           FadeEffect(
             curve: Curves.easeInOut,
             delay: 0.0.ms,
@@ -61,37 +62,16 @@ class _LoginWidgetState extends State<LoginWidget>
           ),
         ],
       ),
-      'columnOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        applyInitialState: true,
-        effectsBuilder: () => [
-          VisibilityEffect(duration: 1.ms),
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: const Offset(0.0, -100.0),
-            end: const Offset(0.0, 0.0),
-          ),
-        ],
-      ),
-      'columnOnActionTriggerAnimation': AnimationInfo(
+      'containerOnActionTriggerAnimation': AnimationInfo(
         trigger: AnimationTrigger.onActionTrigger,
         applyInitialState: true,
         effectsBuilder: () => [
-          FadeEffect(
+          ScaleEffect(
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: 1.0,
-            end: 0.0,
-          ),
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: const Offset(0.0, 0.0),
-            end: const Offset(0.0, -100.0),
+            begin: const Offset(1.0, 1.0),
+            end: const Offset(-5.0, -5.0),
           ),
         ],
       ),
@@ -142,10 +122,7 @@ class _LoginWidgetState extends State<LoginWidget>
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                if (((_model.emailFieldFocusNode?.hasFocus ?? false) ==
-                        false) &&
-                    ((_model.passwordFieldFocusNode?.hasFocus ?? false) ==
-                        false))
+                if (_model.onFocus == false)
                   Expanded(
                     child: Padding(
                       padding:
@@ -158,7 +135,7 @@ class _LoginWidgetState extends State<LoginWidget>
                         ),
                         alignment: const AlignmentDirectional(0.0, 0.0),
                         child: Column(
-                          mainAxisSize: MainAxisSize.max,
+                          mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
@@ -171,7 +148,8 @@ class _LoginWidgetState extends State<LoginWidget>
                                 child: SvgPicture.asset(
                                   'assets/images/PCIC-Logo.svg',
                                   width: double.infinity,
-                                  fit: BoxFit.contain,
+                                  height: double.infinity,
+                                  fit: BoxFit.cover,
                                 ),
                               ),
                             ),
@@ -208,50 +186,14 @@ class _LoginWidgetState extends State<LoginWidget>
                                 ),
                               ),
                             ),
-                            if (kDebugMode)
-                              FFButtonWidget(
-                                onPressed: () async {
-                                  context.pushNamed('mapTest');
-                                },
-                                text: FFLocalizations.of(context).getText(
-                                  'b8fosx2l' /* DON"T DELETE SCOTT IS TESTING ... */,
-                                ),
-                                options: FFButtonOptions(
-                                  height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: FlutterFlowTheme.of(context)
-                                            .titleSmallFamily,
-                                        color: Colors.white,
-                                        letterSpacing: 0.0,
-                                        useGoogleFonts: GoogleFonts.asMap()
-                                            .containsKey(
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmallFamily),
-                                      ),
-                                  elevation: 3.0,
-                                  borderSide: const BorderSide(
-                                    color: Colors.transparent,
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                              ),
-                          ].addToEnd(const SizedBox(height: 20.0)),
-                        )
-                            .animateOnPageLoad(
-                                animationsMap['columnOnPageLoadAnimation']!)
-                            .animateOnActionTrigger(
-                              animationsMap['columnOnActionTriggerAnimation']!,
-                            ),
-                      ).animateOnPageLoad(
-                          animationsMap['containerOnPageLoadAnimation1']!),
+                          ],
+                        ),
+                      )
+                          .animateOnPageLoad(
+                              animationsMap['containerOnPageLoadAnimation1']!)
+                          .animateOnActionTrigger(
+                            animationsMap['containerOnActionTriggerAnimation']!,
+                          ),
                     ),
                   ),
                 Column(
@@ -534,14 +476,6 @@ class _LoginWidgetState extends State<LoginWidget>
                                           focusNode:
                                               _model.passwordFieldFocusNode,
                                           onFieldSubmitted: (_) async {
-                                            if (animationsMap[
-                                                    'columnOnActionTriggerAnimation'] !=
-                                                null) {
-                                              await animationsMap[
-                                                      'columnOnActionTriggerAnimation']!
-                                                  .controller
-                                                  .forward(from: 0.0);
-                                            }
                                             if ((await getPermissionStatus(
                                                     locationPermission)) &&
                                                 FFAppState().ONLINE) {
@@ -770,6 +704,18 @@ class _LoginWidgetState extends State<LoginWidget>
                                                 return;
                                               }
 
+                                              _model.authUserQuery =
+                                                  await UsersTable().queryRows(
+                                                queryFn: (q) => q.eq(
+                                                  'email',
+                                                  currentUserEmail,
+                                                ),
+                                              );
+                                              _model.save = await actions
+                                                  .uploadPhotoUrlToAsset(
+                                                _model.authUserQuery?.first
+                                                    .photoUrl,
+                                              );
                                               if (Navigator.of(context)
                                                   .canPop()) {
                                                 context.pop();
@@ -813,6 +759,8 @@ class _LoginWidgetState extends State<LoginWidget>
                                                 ),
                                               );
                                             }
+
+                                            setState(() {});
                                           },
                                           text: FFLocalizations.of(context)
                                               .getText(

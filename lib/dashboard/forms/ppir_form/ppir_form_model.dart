@@ -83,14 +83,12 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
   TextEditingController? ppirConfirmedByNameFieldTextController;
   String? Function(BuildContext, String?)?
       ppirConfirmedByNameFieldTextControllerValidator;
-  // Stores action output result for [Backend Call - Update Row(s)] action in saveButton widget.
-  List<PpirFormsRow>? savePPIR;
-  // Stores action output result for [Backend Call - Update Row(s)] action in saveButton widget.
-  List<TasksRow>? updatedStatus;
   // Stores action output result for [Backend Call - Update Row(s)] action in submitButton widget.
   List<PpirFormsRow>? savePPIRCopy;
-  // Stores action output result for [Backend Call - Update Row(s)] action in submitButton widget.
-  List<TasksRow>? updatedStatusCopy;
+  // Stores action output result for [Custom Action - generateTaskXml] action in submitButton widget.
+  String? generatedTaQDskXmlFile;
+  // Stores action output result for [Custom Action - saveToFTP] action in submitButton widget.
+  bool? isFtpSaved;
 
   @override
   void initState(BuildContext context) {

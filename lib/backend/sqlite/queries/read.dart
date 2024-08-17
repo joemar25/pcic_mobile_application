@@ -327,7 +327,7 @@ class OFFLINESelectAllTasksByAssigneeRow extends SqliteRow {
   String? get syncStatus => data['sync_status'] as String?;
   DateTime? get lastSyncedAt => data['last_synced_at'] as DateTime?;
   String? get localId => data['local_id'] as String?;
-  bool? get isDirty => data['is_dirty'] as bool?;
+  int? get isDirty => data['is_dirty'] as int?;
   bool? get isUpdating => data['is_updating'] as bool?;
 }
 

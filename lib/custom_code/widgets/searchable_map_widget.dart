@@ -21,7 +21,6 @@ import 'package:latlong2/latlong.dart' as ll;
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter_map_tile_caching/flutter_map_tile_caching.dart' as FMTC;
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:lottie/lottie.dart';
 
 class SearchableMapWidget extends StatefulWidget {
   const SearchableMapWidget({
@@ -86,8 +85,8 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
   Widget _buildNoInternetMessage() {
     return Center(
       child: Container(
-        width: 300, // Reduced width for better containment
-        height: 300, // Reduced height for better containment
+        width: 300,
+        height: 300,
         decoration: BoxDecoration(
           color: Theme.of(context).scaffoldBackgroundColor,
           borderRadius: BorderRadius.circular(20),
@@ -211,21 +210,98 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
         desiredAccuracy: LocationAccuracy.best,
         forceAndroidLocationManager: true,
       );
+
       if (_mounted) {
         setState(() {
           _center = ll.LatLng(position.latitude, position.longitude);
           _isLoading = false;
         });
-        _mapController.move(_center, 17);
+
+        Map<String, dynamic> addressInfo = await fetchAddressFromCoordinates(
+          position.longitude,
+          position.latitude,
+        );
+
+        if (_mounted) {
+          String formattedAddress = _formatAddress(addressInfo);
+          setState(() {
+            _selectedAddress = formattedAddress;
+            _typeAheadController.text = formattedAddress;
+          });
+        }
+
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (_mounted) {
+            _mapController.move(_center, 17);
+            _updateBoundaryBox();
+          }
+        });
       }
     } catch (e) {
-      print("Error getting location: $e");
       if (_mounted) {
         setState(() {
           _isLoading = false;
         });
       }
     }
+  }
+
+  String _formatAddress(Map<String, dynamic> addressInfo) {
+    List<String> addressParts = [];
+    if (addressInfo['street'] != '') addressParts.add(addressInfo['street']);
+    if (addressInfo['barangayVillage'] != '')
+      addressParts.add(addressInfo['barangayVillage']);
+    if (addressInfo['city'] != '') addressParts.add(addressInfo['city']);
+    if (addressInfo['province'] != '')
+      addressParts.add(addressInfo['province']);
+
+    return addressParts.join(', ');
+  }
+
+  Future<Map<String, String>> reverseGeocoding(double lat, double lon) async {
+    final String url =
+        'https://api.mapbox.com/geocoding/v5/mapbox.places/$lon,$lat.json?access_token=${widget.accessToken}&types=place,locality,neighborhood,address&limit=1';
+    try {
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        final features = data['features'] as List;
+        if (features.isNotEmpty) {
+          final feature = features[0];
+          final List<String> addressParts = [];
+
+          if (feature['text'] != null) addressParts.add(feature['text']);
+
+          final context = feature['context'] as List? ?? [];
+          for (var item in context) {
+            if (item['id'].startsWith('neighborhood') ||
+                item['id'].startsWith('locality') ||
+                item['id'].startsWith('place') ||
+                item['id'].startsWith('region')) {
+              addressParts.add(item['text']);
+            }
+          }
+
+          String formattedAddress = addressParts.join(', ');
+
+          return {
+            'formatted': formattedAddress,
+            'raw': feature['place_name'],
+          };
+        }
+      }
+    } catch (e) {}
+    return {'formatted': 'Unknown location', 'raw': ''};
+  }
+
+  void _refreshLocation() async {
+    setState(() {
+      _isLoading = true;
+    });
+    await _getCurrentLocation();
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   Future<List<Map<String, dynamic>>> forwardGeocoding(String query) async {
@@ -361,38 +437,40 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: TypeAheadField<Map<String, dynamic>>(
-                    controller: _typeAheadController,
-                    focusNode: _focusNode,
-                    builder: (context, controller, focusNode) {
-                      return TextField(
-                        controller: controller,
-                        focusNode: focusNode,
-                        decoration: InputDecoration(
-                          hintText: 'Search for a location',
-                          suffixIcon: IconButton(
-                            icon: Icon(Icons.save),
-                            onPressed: _saveMap,
-                          ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: TypeAheadField<Map<String, dynamic>>(
+                          controller: _typeAheadController,
+                          focusNode: _focusNode,
+                          suggestionsCallback: (pattern) async {
+                            if (pattern.isEmpty) return [];
+                            return await forwardGeocoding(pattern);
+                          },
+                          itemBuilder: (context, suggestion) {
+                            return ListTile(
+                                title: Text(suggestion['place_name']));
+                          },
+                          onSelected: (suggestion) {
+                            setState(() {
+                              _selectedAddress = suggestion['place_name'];
+                              _typeAheadController.text = _selectedAddress;
+                            });
+                            final lon = suggestion['coordinates'][0];
+                            final lat = suggestion['coordinates'][1];
+                            _moveMap(ll.LatLng(lat, lon));
+                          },
                         ),
-                      );
-                    },
-                    suggestionsCallback: (pattern) async {
-                      if (pattern.isEmpty) return [];
-                      return await forwardGeocoding(pattern);
-                    },
-                    itemBuilder: (context, suggestion) {
-                      return ListTile(title: Text(suggestion['place_name']));
-                    },
-                    onSelected: (suggestion) {
-                      setState(() {
-                        _selectedAddress = suggestion['place_name'];
-                        _typeAheadController.text = _selectedAddress;
-                      });
-                      final lon = suggestion['coordinates'][0];
-                      final lat = suggestion['coordinates'][1];
-                      _moveMap(ll.LatLng(lat, lon));
-                    },
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.refresh),
+                        onPressed: _refreshLocation,
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.save),
+                        onPressed: _saveMap,
+                      ),
+                    ],
                   ),
                 ),
                 if (_isDownloading)

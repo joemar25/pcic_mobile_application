@@ -488,7 +488,7 @@ class FFRoute {
                       'assets/images/Animation_-_1720059117867.gif',
                       width: 200.0,
                       height: 200.0,
-                      fit: BoxFit.contain,
+                      fit: BoxFit.none,
                     ),
                   ),
                 )

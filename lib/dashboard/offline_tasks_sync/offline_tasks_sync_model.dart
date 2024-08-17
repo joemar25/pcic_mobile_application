@@ -18,9 +18,9 @@ class OfflineTasksSyncModel extends FlutterFlowModel<OfflineTasksSyncWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  // Stores action output result for [Backend Call - Query Rows] action in Button widget.
+  // Stores action output result for [Backend Call - Query Rows] action in Container widget.
   List<TasksRow>? onlineTasks;
-  // Stores action output result for [Backend Call - Query Rows] action in Button widget.
+  // Stores action output result for [Backend Call - Query Rows] action in Container widget.
   List<PpirFormsRow>? ppirOutput;
 
   @override

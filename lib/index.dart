@@ -19,18 +19,18 @@ export '/auth/forgot_password/forgot_password_widget.dart'
     show ForgotPasswordWidget;
 export '/dashboard/geotag/geotagging/geotagging_widget.dart'
     show GeotaggingWidget;
-export '/utils/map_test/map_test_widget.dart' show MapTestWidget;
+export '/utils/test/map_test/map_test_widget.dart' show MapTestWidget;
 export '/dashboard/geotag/pcic_map/pcic_map_widget.dart' show PcicMapWidget;
 export '/utils/test/offline_db_test/offline_db_test_widget.dart'
     show OfflineDbTestWidget;
 export '/utils/test/offline_tasks_and_ppir_list/offline_tasks_and_ppir_list_widget.dart'
     show OfflineTasksAndPpirListWidget;
 export '/auth/onboarding01/onboarding01_widget.dart' show Onboarding01Widget;
-export '/utils/sync_data/sync_data_widget.dart' show SyncDataWidget;
+export '/utils/test/sync_data/sync_data_widget.dart' show SyncDataWidget;
 export '/auth/onboarding01_original_copy/onboarding01_original_copy_widget.dart'
     show Onboarding01OriginalCopyWidget;
-export '/utils/sync_king/sync_king_widget.dart' show SyncKingWidget;
-export '/utils/offline_tasks_sync/offline_tasks_sync_widget.dart'
+export '/utils/test/sync_king/sync_king_widget.dart' show SyncKingWidget;
+export '/dashboard/offline_tasks_sync/offline_tasks_sync_widget.dart'
     show OfflineTasksSyncWidget;
 export '/dashboard/forms/ppir_original/ppir_original_widget.dart'
     show PpirOriginalWidget;

@@ -137,7 +137,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                       extra: <String, dynamic>{
                         kTransitionInfoKey: const TransitionInfo(
                           hasTransition: true,
-                          transitionType: PageTransitionType.leftToRight,
+                          transitionType: PageTransitionType.scale,
+                          alignment: Alignment.bottomCenter,
                           duration: Duration(milliseconds: 200),
                         ),
                       },
@@ -2997,19 +2998,6 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             ),
                                                           ),
                                                       ],
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 16.0,
-                                                                0.0, 16.0),
-                                                    child: Divider(
-                                                      thickness: 2.0,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .boarderForm,
                                                     ),
                                                   ),
                                                 ],

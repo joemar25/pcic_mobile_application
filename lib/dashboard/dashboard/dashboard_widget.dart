@@ -1,5 +1,6 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/sqlite/sqlite_manager.dart';
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_autocomplete_options_list.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -9,7 +10,6 @@ import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/empty_lists/empty_lists_widget.dart';
 import '/utils/components/page_loader/page_loader_widget.dart';
 import '/utils/components/tasks/tasks_widget.dart';
-import '/utils/sync/sync_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
@@ -50,6 +50,22 @@ class _DashboardWidgetState extends State<DashboardWidget>
         return;
       }
       _model.loadLocalProfile = await actions.getTheSavedLocalProfile();
+      if (FFAppState().ONLINE) {
+        _model.offlineTasks =
+            await SQLiteManager.instance.oFFLINESelectAllTasksByAssignee(
+          assignee: currentUserUid,
+        );
+        _model.onlineTasks = await TasksTable().queryRows(
+          queryFn: (q) => q,
+        );
+        if (_model.onlineTasks?.length != 0) {
+          _model.statusOutput = 'Tap here to update';
+          setState(() {});
+        } else {
+          _model.statusOutput = 'Tasks are updated';
+          setState(() {});
+        }
+      }
     });
 
     _model.textController ??= TextEditingController();
@@ -191,16 +207,81 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                     ].divide(const SizedBox(width: 10.0)),
                                   ),
                                 ),
-                                if (_model.userType == 'National_Admin')
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 5.0, 0.0),
-                                    child: wrapWithModel(
-                                      model: _model.syncModel,
-                                      updateCallback: () => setState(() {}),
-                                      child: const SyncWidget(),
-                                    ),
+                                Container(
+                                  decoration: const BoxDecoration(),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      if (FFAppState().ONLINE)
+                                        InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            if (_model.onlineTasks?.length !=
+                                                0) {
+                                              _model.statusOutput =
+                                                  'Syncing...';
+                                              setState(() {});
+                                              await Future.delayed(
+                                                  const Duration(
+                                                      milliseconds: 2000));
+                                              _model.statusOutput =
+                                                  'Tasks are updated';
+                                              setState(() {});
+                                            }
+                                          },
+                                          child: Text(
+                                            '[ ${_model.statusOutput} ]',
+                                            style: FlutterFlowTheme.of(context)
+                                                .titleSmall
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmallFamily,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .info,
+                                                  fontSize: 12.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w600,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmallFamily),
+                                                ),
+                                          ),
+                                        ),
+                                      if (!FFAppState().ONLINE)
+                                        Text(
+                                          '[ No internet for sync ]',
+                                          style: FlutterFlowTheme.of(context)
+                                              .titleSmall
+                                              .override(
+                                                fontFamily:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmallFamily,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                fontSize: 12.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w600,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .titleSmallFamily),
+                                              ),
+                                        ),
+                                    ].divide(const SizedBox(width: 5.0)),
                                   ),
+                                ),
                                 InkWell(
                                   splashColor: Colors.transparent,
                                   focusColor: Colors.transparent,
@@ -1238,7 +1319,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                   child:
                                                                       EmptyListsWidget(
                                                                     type:
-                                                                        'For Dispatch Tasks',
+                                                                        'Dispatch Tasks',
                                                                   ),
                                                                 );
                                                               }

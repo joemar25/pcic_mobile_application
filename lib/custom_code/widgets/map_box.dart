@@ -104,7 +104,9 @@ class _MapBoxState extends State<MapBox> {
       setState(() {
         _currentLocation = ll.LatLng(position.latitude, position.longitude);
         if (FFAppState().routeStarted) {
-          addRoutePoint(_currentLocation!);
+          _routePoints.add(_currentLocation!);
+          print("Added point: $_currentLocation");
+          print("Total points: ${_routePoints.length}");
         }
       });
     });
@@ -123,15 +125,6 @@ class _MapBoxState extends State<MapBox> {
           ),
         );
       });
-    }
-  }
-
-  void addRoutePoint(ll.LatLng point) {
-    if (FFAppState().routeStarted) {
-      setState(() {
-        _routePoints.add(point);
-      });
-      moveMap(point);
     }
   }
 
@@ -200,40 +193,32 @@ class _MapBoxState extends State<MapBox> {
 
     print('Route completed. Total points: ${_routePoints.length}');
 
-    // Calculate total distance
     double totalDistance = calculateTotalDistance(_routePoints);
     print('Total distance: $totalDistance meters');
 
-    // Calculate area if we have at least 3 points
     double area = 0.0;
     if (_routePoints.length >= 3) {
       area = calculateAreaOfPolygon(_routePoints);
       print('Area: $area square meters');
     }
 
-    // Prepare route coordinates string
     String routeCoordinatesString = _routePoints
         .map((point) => '${point.latitude},${point.longitude}')
         .join(' ');
 
-    // Get last coordinate
     String lastCoord =
         '${_routePoints.last.latitude},${_routePoints.last.longitude}';
     print("Last coord: $lastCoord");
 
-    // Get current date time
     String currentDateTime = DateTime.now().toIso8601String();
     print("Current date time: $currentDateTime");
 
-    // Convert area to hectares
     String areaInHectares = (area / 10000).toString();
     print("Area in hectares: $areaInHectares");
 
-    // Convert distance to hectares (assuming 1m wide path)
     String distanceInHectares = (totalDistance / 10000).toString();
     print("Distance in hectares: $distanceInHectares");
 
-    // Call saveGpx with the new parameter structure
     saveGpx(
       widget.taskId ?? 'default_task_id',
       routeCoordinatesString,
@@ -300,7 +285,7 @@ class _MapBoxState extends State<MapBox> {
             },
             tileProvider: _tileProvider,
           ),
-          if (FFAppState().routeStarted)
+          if (_routePoints.isNotEmpty)
             PolylineLayer(
               polylines: [
                 Polyline(

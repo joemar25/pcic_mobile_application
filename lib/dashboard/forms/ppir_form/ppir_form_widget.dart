@@ -208,6 +208,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
+                                    borderRadius: BorderRadius.circular(15.0),
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsets.all(24.0),
@@ -325,43 +326,104 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                               ),
                                               Stack(
                                                 children: [
-                                                  if (FFAppState().ONLINE ||
-                                                      _model.isMapDownloaded)
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(2.0),
-                                                      child: SizedBox(
-                                                        width:
-                                                            MediaQuery.sizeOf(
-                                                                        context)
+                                                  Stack(
+                                                    children: [
+                                                      if (FFAppState().ONLINE ||
+                                                          _model
+                                                              .isMapDownloaded)
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets.all(
+                                                                  2.0),
+                                                          child: SizedBox(
+                                                            width: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
                                                                     .width *
                                                                 1.0,
-                                                        height:
-                                                            MediaQuery.sizeOf(
-                                                                        context)
+                                                            height: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
                                                                     .height *
                                                                 0.2,
-                                                        child: custom_widgets
-                                                            .MapBase64(
-                                                          width:
-                                                              MediaQuery.sizeOf(
-                                                                          context)
+                                                            child:
+                                                                custom_widgets
+                                                                    .MapBase64(
+                                                              width: MediaQuery
+                                                                          .sizeOf(
+                                                                              context)
                                                                       .width *
                                                                   1.0,
-                                                          height:
-                                                              MediaQuery.sizeOf(
-                                                                          context)
+                                                              height: MediaQuery
+                                                                          .sizeOf(
+                                                                              context)
                                                                       .height *
                                                                   0.2,
-                                                          blob:
-                                                              ppirFormSelectPpirFormsRowList
-                                                                  .first.gpx,
-                                                          accessToken:
-                                                              FFAppState()
-                                                                  .accessToken,
+                                                              blob:
+                                                                  ppirFormSelectPpirFormsRowList
+                                                                      .first
+                                                                      .gpx,
+                                                              accessToken:
+                                                                  FFAppState()
+                                                                      .accessToken,
+                                                            ),
+                                                          ),
                                                         ),
-                                                      ),
-                                                    ),
+                                                      if (!FFAppState().ONLINE)
+                                                        Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .end,
+                                                          children: [
+                                                            InkWell(
+                                                              splashColor: Colors
+                                                                  .transparent,
+                                                              focusColor: Colors
+                                                                  .transparent,
+                                                              hoverColor: Colors
+                                                                  .transparent,
+                                                              highlightColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              onTap: () async {
+                                                                _model.isMapDownloaded =
+                                                                    true;
+                                                                setState(() {});
+                                                              },
+                                                              child: Text(
+                                                                FFLocalizations.of(
+                                                                        context)
+                                                                    .getText(
+                                                                  'le02hvs2' /* Tap here to dismiss map */,
+                                                                ),
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                    ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                    ],
+                                                  ),
                                                   if (!FFAppState().ONLINE &&
                                                       (_model.isMapDownloaded ==
                                                           false))
@@ -549,241 +611,244 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.center,
                                                   children: [
-                                                    Align(
-                                                      alignment:
-                                                          const AlignmentDirectional(
-                                                              0.0, 0.0),
-                                                      child: FFButtonWidget(
-                                                        onPressed: () async {
-                                                          var confirmDialogResponse =
-                                                              await showDialog<
-                                                                      bool>(
-                                                                    context:
-                                                                        context,
-                                                                    builder:
-                                                                        (alertDialogContext) {
-                                                                      return AlertDialog(
-                                                                        title: const Text(
-                                                                            'Info'),
-                                                                        content:
-                                                                            const Text('The current gpx file will be deleted. Are you sure?'),
-                                                                        actions: [
-                                                                          TextButton(
-                                                                            onPressed: () =>
-                                                                                Navigator.pop(alertDialogContext, false),
-                                                                            child:
-                                                                                const Text('Cancel'),
-                                                                          ),
-                                                                          TextButton(
-                                                                            onPressed: () =>
-                                                                                Navigator.pop(alertDialogContext, true),
-                                                                            child:
-                                                                                const Text('Confirm'),
-                                                                          ),
-                                                                        ],
-                                                                      );
-                                                                    },
-                                                                  ) ??
-                                                                  false;
-                                                          if (confirmDialogResponse) {
-                                                            if (FFAppState()
-                                                                .ONLINE) {
-                                                              await PpirFormsTable()
-                                                                  .update(
-                                                                data: {
-                                                                  'gpx': '',
-                                                                },
-                                                                matchingRows:
-                                                                    (rows) =>
-                                                                        rows.eq(
-                                                                  'task_id',
-                                                                  widget
-                                                                      .taskId,
-                                                                ),
+                                                    Flexible(
+                                                      child: Align(
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: FFButtonWidget(
+                                                          onPressed: () async {
+                                                            var confirmDialogResponse =
+                                                                await showDialog<
+                                                                        bool>(
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (alertDialogContext) {
+                                                                        return AlertDialog(
+                                                                          title:
+                                                                              const Text('Info'),
+                                                                          content:
+                                                                              const Text('The current gpx file will be deleted. Are you sure?'),
+                                                                          actions: [
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                              child: const Text('Cancel'),
+                                                                            ),
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                              child: const Text('Confirm'),
+                                                                            ),
+                                                                          ],
+                                                                        );
+                                                                      },
+                                                                    ) ??
+                                                                    false;
+                                                            if (confirmDialogResponse) {
+                                                              if (FFAppState()
+                                                                  .ONLINE) {
+                                                                await PpirFormsTable()
+                                                                    .update(
+                                                                  data: {
+                                                                    'gpx': '',
+                                                                  },
+                                                                  matchingRows:
+                                                                      (rows) =>
+                                                                          rows.eq(
+                                                                    'task_id',
+                                                                    widget
+                                                                        .taskId,
+                                                                  ),
+                                                                );
+                                                              }
+                                                              await SQLiteManager
+                                                                  .instance
+                                                                  .updatePPIRFormGpx(
+                                                                taskId: widget
+                                                                    .taskId,
+                                                                gpx: ' ',
+                                                              );
+
+                                                              context.pushNamed(
+                                                                'geotagging',
+                                                                queryParameters:
+                                                                    {
+                                                                  'taskId':
+                                                                      serializeParam(
+                                                                    widget
+                                                                        .taskId,
+                                                                    ParamType
+                                                                        .String,
+                                                                  ),
+                                                                  'taskType':
+                                                                      serializeParam(
+                                                                    'ppir',
+                                                                    ParamType
+                                                                        .String,
+                                                                  ),
+                                                                  'taskStatus':
+                                                                      serializeParam(
+                                                                    'ongoing',
+                                                                    ParamType
+                                                                        .String,
+                                                                  ),
+                                                                  'assignmentId':
+                                                                      serializeParam(
+                                                                    ppirFormSelectPpirFormsRowList
+                                                                        .first
+                                                                        .ppirAssignmentid,
+                                                                    ParamType
+                                                                        .String,
+                                                                  ),
+                                                                }.withoutNulls,
                                                               );
                                                             }
-                                                            await SQLiteManager
-                                                                .instance
-                                                                .updatePPIRFormGpx(
-                                                              taskId: widget
-                                                                  .taskId,
-                                                              gpx: ' ',
-                                                            );
-
-                                                            context.pushNamed(
-                                                              'geotagging',
-                                                              queryParameters: {
-                                                                'taskId':
-                                                                    serializeParam(
-                                                                  widget
-                                                                      .taskId,
-                                                                  ParamType
-                                                                      .String,
-                                                                ),
-                                                                'taskType':
-                                                                    serializeParam(
-                                                                  'ppir',
-                                                                  ParamType
-                                                                      .String,
-                                                                ),
-                                                                'taskStatus':
-                                                                    serializeParam(
-                                                                  'ongoing',
-                                                                  ParamType
-                                                                      .String,
-                                                                ),
-                                                                'assignmentId':
-                                                                    serializeParam(
-                                                                  ppirFormSelectPpirFormsRowList
-                                                                      .first
-                                                                      .ppirAssignmentid,
-                                                                  ParamType
-                                                                      .String,
-                                                                ),
-                                                              }.withoutNulls,
-                                                            );
-                                                          }
-                                                        },
-                                                        text:
-                                                            FFLocalizations.of(
-                                                                    context)
-                                                                .getText(
-                                                          'vlpe8yky' /* Repeat Geotag */,
-                                                        ),
-                                                        icon: const Icon(
-                                                          Icons.map_outlined,
-                                                          size: 15.0,
-                                                        ),
-                                                        options:
-                                                            FFButtonOptions(
-                                                          height: 40.0,
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      24.0,
-                                                                      0.0,
-                                                                      24.0,
-                                                                      0.0),
-                                                          iconPadding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          color: FlutterFlowTheme
+                                                          },
+                                                          text: FFLocalizations
                                                                   .of(context)
-                                                              .tertiary,
-                                                          textStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmall
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .titleSmallFamily,
-                                                                    color: Colors
-                                                                        .white,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    useGoogleFonts: GoogleFonts
-                                                                            .asMap()
-                                                                        .containsKey(
-                                                                            FlutterFlowTheme.of(context).titleSmallFamily),
-                                                                  ),
-                                                          elevation: 3.0,
-                                                          borderSide:
-                                                              const BorderSide(
-                                                            color: Colors
-                                                                .transparent,
-                                                            width: 1.0,
+                                                              .getText(
+                                                            'vlpe8yky' /* Repeat Geotag */,
                                                           ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
+                                                          icon: const Icon(
+                                                            Icons.map_outlined,
+                                                            size: 15.0,
+                                                          ),
+                                                          options:
+                                                              FFButtonOptions(
+                                                            height: 40.0,
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        24.0,
+                                                                        0.0,
+                                                                        24.0,
+                                                                        0.0),
+                                                            iconPadding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .tertiary,
+                                                            textStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .titleSmallFamily,
+                                                                      color: Colors
+                                                                          .white,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).titleSmallFamily),
+                                                                    ),
+                                                            elevation: 3.0,
+                                                            borderSide:
+                                                                const BorderSide(
+                                                              color: Colors
+                                                                  .transparent,
+                                                              width: 1.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
                                                     if (kDebugMode)
-                                                      FFButtonWidget(
-                                                        onPressed: () async {
-                                                          _model.gpxLink =
-                                                              await actions
-                                                                  .getGpxLink(
-                                                            widget.taskId,
-                                                          );
-                                                          await launchURL(
-                                                              _model.gpxLink!);
-
-                                                          setState(() {});
-                                                        },
-                                                        text:
-                                                            FFLocalizations.of(
-                                                                    context)
-                                                                .getText(
-                                                          '0er41e9i' /* Download */,
-                                                        ),
-                                                        icon: const Icon(
-                                                          Icons
-                                                              .download_outlined,
-                                                          size: 15.0,
-                                                        ),
-                                                        options:
-                                                            FFButtonOptions(
-                                                          height: 40.0,
+                                                      Flexible(
+                                                        child: Padding(
                                                           padding:
                                                               const EdgeInsetsDirectional
                                                                   .fromSTEB(
-                                                                      24.0,
-                                                                      0.0,
-                                                                      24.0,
-                                                                      0.0),
-                                                          iconPadding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
+                                                                      20.0,
                                                                       0.0,
                                                                       0.0,
                                                                       0.0),
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .success,
-                                                          textStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmall
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .titleSmallFamily,
-                                                                    color: Colors
-                                                                        .white,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    useGoogleFonts: GoogleFonts
-                                                                            .asMap()
-                                                                        .containsKey(
-                                                                            FlutterFlowTheme.of(context).titleSmallFamily),
-                                                                  ),
-                                                          elevation: 3.0,
-                                                          borderSide:
-                                                              const BorderSide(
-                                                            color: Colors
-                                                                .transparent,
-                                                            width: 1.0,
+                                                          child: FFButtonWidget(
+                                                            onPressed:
+                                                                () async {
+                                                              _model.gpxLink =
+                                                                  await actions
+                                                                      .getGpxLink(
+                                                                widget.taskId,
+                                                              );
+                                                              await launchURL(
+                                                                  _model
+                                                                      .gpxLink!);
+
+                                                              setState(() {});
+                                                            },
+                                                            text: FFLocalizations
+                                                                    .of(context)
+                                                                .getText(
+                                                              '0er41e9i' /* Download */,
+                                                            ),
+                                                            icon: const Icon(
+                                                              Icons
+                                                                  .download_outlined,
+                                                              size: 15.0,
+                                                            ),
+                                                            options:
+                                                                FFButtonOptions(
+                                                              height: 40.0,
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          24.0,
+                                                                          0.0,
+                                                                          24.0,
+                                                                          0.0),
+                                                              iconPadding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .success,
+                                                              textStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            FlutterFlowTheme.of(context).titleSmallFamily,
+                                                                        color: Colors
+                                                                            .white,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                                                                      ),
+                                                              elevation: 3.0,
+                                                              borderSide:
+                                                                  const BorderSide(
+                                                                color: Colors
+                                                                    .transparent,
+                                                                width: 1.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                            ),
                                                           ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
                                                         ),
                                                       ),
-                                                  ]
-                                                      .divide(
-                                                          const SizedBox(width: 20.0))
-                                                      .around(const SizedBox(
-                                                          width: 20.0)),
+                                                  ],
                                                 ),
                                               ),
                                               Padding(
@@ -3859,8 +3924,6 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                   },
                                 );
                               }
-
-                              setState(() {});
                             },
                             text: FFLocalizations.of(context).getText(
                               'lgxphrlo' /* Save */,
@@ -4041,6 +4104,57 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                             taskId: widget.taskId,
                                             status: 'completed',
                                           );
+                                          _model.generatedTaQDskXmlFile =
+                                              await actions.generateTaskXml(
+                                            widget.taskId,
+                                          );
+                                          await actions.saveTaskXml(
+                                            _model.generatedTaskXmlFile,
+                                            widget.taskId,
+                                          );
+                                          _model.isFtpSaved =
+                                              await actions.saveToFTP(
+                                            widget.taskId,
+                                          );
+                                          if (_model.isFtpSaved!) {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  'FTP submission success!',
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                  ),
+                                                ),
+                                                duration: const Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondary,
+                                              ),
+                                            );
+                                          } else {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  'FTP submission fail!',
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                  ),
+                                                ),
+                                                duration: const Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .warning,
+                                              ),
+                                            );
+                                          }
 
                                           context.pushNamed(
                                             'formSuccess',

@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/chat_list_container/chat_list_container_widget.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
-import '/utils/components/empty_lists/empty_lists_widget.dart';
 import '/utils/components/page_loader/page_loader_widget.dart';
 import '/utils/components/user_chats/user_chats_widget.dart';
 import 'package:flutter/material.dart';
@@ -288,22 +287,6 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                   List<ChatsRow>
                                                       listViewChatsRowList =
                                                       snapshot.data!;
-
-                                                  if (listViewChatsRowList
-                                                      .isEmpty) {
-                                                    return Center(
-                                                      child: SizedBox(
-                                                        height:
-                                                            MediaQuery.sizeOf(
-                                                                        context)
-                                                                    .height *
-                                                                0.5,
-                                                        child: const EmptyListsWidget(
-                                                          type: 'Messages',
-                                                        ),
-                                                      ),
-                                                    );
-                                                  }
 
                                                   return ListView.separated(
                                                     padding:

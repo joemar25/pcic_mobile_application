@@ -111,10 +111,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'PCIC Geotagging ',
       'tl': '',
     },
-    'b8fosx2l': {
-      'en': 'DON\"T DELETE SCOTT IS TESTING HERE',
-      'tl': '',
-    },
     '4okdmfv6': {
       'en': 'Welcome Back',
       'tl': '',
@@ -257,7 +253,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'z47fac1c': {
+    'mryzikzd': {
       'en': '',
       'tl': '',
     },
@@ -269,7 +265,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'k1ui9gal': {
+    'tec7zclw': {
       'en': '',
       'tl': '',
     },
@@ -281,7 +277,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'y54mxc86': {
+    'pdedbdq8': {
       'en': '',
       'tl': '',
     },
@@ -770,19 +766,15 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // onboarding01
   {
     'e5zj0r88': {
-      'en': 'Welcome!',
+      'en': 'Welcome Agent!',
       'tl': '',
     },
     'sdylopj4': {
-      'en': 'Welcome, Agent, to the PCIC Geotagging Application!',
+      'en': 'to the PCIC Geotagging Application!',
       'tl': '',
     },
     'ult64d5q': {
       'en': 'Get Started',
-      'tl': '',
-    },
-    'ywz684yl': {
-      'en': 'My Account',
       'tl': '',
     },
     's10teuws': {
@@ -865,14 +857,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // offlineTasksSync
   {
-    'hhy7zu7j': {
-      'en': 'Tap the button to sync again',
-      'tl': '',
-    },
-    'cvvy6ah5': {
-      'en': 'Sync Task & PPIR',
-      'tl': '',
-    },
     'nzwziy9t': {
       'en': 'Go to Dashboard',
       'tl': '',
@@ -1021,6 +1005,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'oco9wa86': {
       'en': 'Geotag',
+      'tl': '',
+    },
+    'le02hvs2': {
+      'en': 'Tap here to dismiss map',
       'tl': '',
     },
     '8bwk8let': {

@@ -1,4 +1,3 @@
-import '/auth/supabase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -186,7 +185,7 @@ class _Onboarding01WidgetState extends State<Onboarding01Widget>
                             const EdgeInsetsDirectional.fromSTEB(0.0, 44.0, 0.0, 0.0),
                         child: Text(
                           FFLocalizations.of(context).getText(
-                            'e5zj0r88' /* Welcome! */,
+                            'e5zj0r88' /* Welcome Agent! */,
                           ),
                           style: FlutterFlowTheme.of(context)
                               .displaySmall
@@ -204,10 +203,10 @@ class _Onboarding01WidgetState extends State<Onboarding01Widget>
                       ),
                       Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(
-                            44.0, 8.0, 44.0, 0.0),
+                            44.0, 0.0, 44.0, 0.0),
                         child: Text(
                           FFLocalizations.of(context).getText(
-                            'sdylopj4' /* Welcome, Agent, to the PCIC Ge... */,
+                            'sdylopj4' /* to the PCIC Geotagging Applica... */,
                           ),
                           textAlign: TextAlign.center,
                           style: FlutterFlowTheme.of(context)
@@ -273,63 +272,6 @@ class _Onboarding01WidgetState extends State<Onboarding01Widget>
                                     iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: const Color(0xB20B191E),
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmallFamily,
-                                          color: Colors.white,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmallFamily),
-                                        ),
-                                    elevation: 15.0,
-                                    borderSide: const BorderSide(
-                                      color: Colors.transparent,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(12.0),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
-                                child: FFButtonWidget(
-                                  onPressed: () async {
-                                    if (currentUserEmail != '') {
-                                      context.pushNamed(
-                                        'dashboard',
-                                        extra: <String, dynamic>{
-                                          kTransitionInfoKey: const TransitionInfo(
-                                            hasTransition: true,
-                                            transitionType:
-                                                PageTransitionType.scale,
-                                            alignment: Alignment.bottomCenter,
-                                            duration:
-                                                Duration(milliseconds: 200),
-                                          ),
-                                        },
-                                      );
-                                    }
-                                  },
-                                  text: FFLocalizations.of(context).getText(
-                                    'ywz684yl' /* My Account */,
-                                  ),
-                                  options: FFButtonOptions(
-                                    width: 230.0,
-                                    height: 52.0,
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        24.0, 0.0, 24.0, 0.0),
-                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 0.0),
-                                    color:
-                                        FlutterFlowTheme.of(context).secondary,
                                     textStyle: FlutterFlowTheme.of(context)
                                         .titleSmall
                                         .override(
