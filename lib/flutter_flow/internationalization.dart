@@ -253,7 +253,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'o7w6zotz': {
+    'vd6m2x0g': {
       'en': '',
       'tl': '',
     },
@@ -265,7 +265,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'ygqut7hg': {
+    '38zt9maz': {
       'en': '',
       'tl': '',
     },
@@ -277,7 +277,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    '222wgnzw': {
+    '41l4f0le': {
       'en': '',
       'tl': '',
     },
@@ -494,25 +494,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirmed By',
       'tl': 'Kinumpirma ni',
     },
-    'ldu99qtk': {
-      'en': 'Cannot view GPX because you are offline.',
-      'tl': '',
-    },
     '8bdkh9n1': {
       'en': 'Prepared By',
       'tl': 'Inihanda ni',
     },
-    '43s11dio': {
-      'en': 'Cannot view signature because you are offline.',
-      'tl': '',
-    },
     'ahzx9d2y': {
       'en': 'Geotag',
       'tl': 'Geotag',
-    },
-    '1ndvql8q': {
-      'en': 'Cannot view GPX because you are offline.',
-      'tl': '',
     },
     '65kky15n': {
       'en': 'Geotag',

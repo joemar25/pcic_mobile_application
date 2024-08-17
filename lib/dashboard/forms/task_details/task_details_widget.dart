@@ -2597,88 +2597,36 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           MainAxisAlignment
                                                               .spaceBetween,
                                                       children: [
-                                                        Expanded(
-                                                          child: Stack(
-                                                            children: [
-                                                              if (FFAppState()
-                                                                  .ONLINE)
-                                                                Align(
-                                                                  alignment:
-                                                                      const AlignmentDirectional(
-                                                                          0.0,
-                                                                          0.0),
-                                                                  child:
-                                                                      SizedBox(
-                                                                    width: MediaQuery.sizeOf(context)
-                                                                            .width *
-                                                                        0.8,
-                                                                    height:
-                                                                        MediaQuery.sizeOf(context).height *
-                                                                            0.2,
-                                                                    child: custom_widgets
-                                                                        .Signaturebase64(
-                                                                      width: MediaQuery.sizeOf(context)
-                                                                              .width *
-                                                                          0.8,
-                                                                      height:
-                                                                          MediaQuery.sizeOf(context).height *
-                                                                              0.2,
-                                                                      taskId: widget
-                                                                          .taskId,
-                                                                      signatureFor:
-                                                                          'insured',
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              if (!FFAppState()
-                                                                  .ONLINE)
-                                                                Container(
-                                                                  width: MediaQuery.sizeOf(
+                                                        if (FFAppState().ONLINE)
+                                                          Flexible(
+                                                            child: SizedBox(
+                                                              width: MediaQuery
+                                                                          .sizeOf(
                                                                               context)
-                                                                          .width *
-                                                                      1.0,
-                                                                  height: MediaQuery.sizeOf(
+                                                                      .width *
+                                                                  1.0,
+                                                              height: MediaQuery
+                                                                          .sizeOf(
                                                                               context)
-                                                                          .height *
-                                                                      0.2,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: FlutterFlowTheme.of(
+                                                                      .height *
+                                                                  0.2,
+                                                              child: custom_widgets
+                                                                  .Signaturebase64(
+                                                                width: MediaQuery.sizeOf(
                                                                             context)
-                                                                        .secondaryBackground,
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            0.0),
-                                                                  ),
-                                                                  child: Column(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                    children: [
-                                                                      Text(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          'ldu99qtk' /* Cannot view GPX because you ar... */,
-                                                                        ),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                                              letterSpacing: 0.0,
-                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                            ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                            ],
+                                                                        .width *
+                                                                    1.0,
+                                                                height: MediaQuery.sizeOf(
+                                                                            context)
+                                                                        .height *
+                                                                    0.2,
+                                                                taskId: widget
+                                                                    .taskId,
+                                                                signatureFor:
+                                                                    'insured',
+                                                              ),
+                                                            ),
                                                           ),
-                                                        ),
                                                       ],
                                                     ),
                                                   ),
@@ -2758,86 +2706,38 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           MainAxisAlignment
                                                               .spaceBetween,
                                                       children: [
-                                                        Expanded(
-                                                          child: Stack(
-                                                            children: [
-                                                              if (FFAppState()
-                                                                  .ONLINE)
-                                                                Align(
-                                                                  alignment:
-                                                                      const AlignmentDirectional(
-                                                                          0.0,
-                                                                          0.0),
-                                                                  child:
-                                                                      SizedBox(
-                                                                    width: MediaQuery.sizeOf(context)
-                                                                            .width *
-                                                                        0.8,
-                                                                    height:
-                                                                        MediaQuery.sizeOf(context).height *
-                                                                            0.2,
-                                                                    child: custom_widgets
-                                                                        .Signaturebase64(
-                                                                      width: MediaQuery.sizeOf(context)
-                                                                              .width *
-                                                                          0.8,
-                                                                      height:
-                                                                          MediaQuery.sizeOf(context).height *
-                                                                              0.2,
-                                                                      taskId: widget
-                                                                          .taskId,
-                                                                      signatureFor:
-                                                                          'iuia',
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              if (!FFAppState()
-                                                                  .ONLINE)
-                                                                Container(
-                                                                  width: MediaQuery.sizeOf(
+                                                        Flexible(
+                                                          child: Align(
+                                                            alignment:
+                                                                const AlignmentDirectional(
+                                                                    0.0, 0.0),
+                                                            child: SizedBox(
+                                                              width: MediaQuery
+                                                                          .sizeOf(
                                                                               context)
-                                                                          .width *
-                                                                      1.0,
-                                                                  height: MediaQuery.sizeOf(
+                                                                      .width *
+                                                                  1.0,
+                                                              height: MediaQuery
+                                                                          .sizeOf(
                                                                               context)
-                                                                          .height *
-                                                                      0.2,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: FlutterFlowTheme.of(
+                                                                      .height *
+                                                                  0.2,
+                                                              child: custom_widgets
+                                                                  .Signaturebase64(
+                                                                width: MediaQuery.sizeOf(
                                                                             context)
-                                                                        .secondaryBackground,
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            0.0),
-                                                                  ),
-                                                                  child: Column(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                    children: [
-                                                                      Text(
-                                                                        FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          '43s11dio' /* Cannot view signature because ... */,
-                                                                        ),
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                                              letterSpacing: 0.0,
-                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                            ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                            ],
+                                                                        .width *
+                                                                    1.0,
+                                                                height: MediaQuery.sizeOf(
+                                                                            context)
+                                                                        .height *
+                                                                    0.2,
+                                                                taskId: widget
+                                                                    .taskId,
+                                                                signatureFor:
+                                                                    'iuia',
+                                                              ),
+                                                            ),
                                                           ),
                                                         ),
                                                       ],
@@ -2896,12 +2796,16 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ],
                                                     ),
                                                   ),
-                                                  Container(
-                                                    decoration: const BoxDecoration(),
-                                                    child: Stack(
-                                                      children: [
-                                                        if (FFAppState().ONLINE)
-                                                          SizedBox(
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      if (FFAppState().ONLINE)
+                                                        Flexible(
+                                                          child: SizedBox(
                                                             width: MediaQuery
                                                                         .sizeOf(
                                                                             context)
@@ -2942,63 +2846,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                       .accessToken,
                                                             ),
                                                           ),
-                                                        if (!FFAppState()
-                                                            .ONLINE)
-                                                          Container(
-                                                            width: MediaQuery
-                                                                        .sizeOf(
-                                                                            context)
-                                                                    .width *
-                                                                1.0,
-                                                            height: MediaQuery
-                                                                        .sizeOf(
-                                                                            context)
-                                                                    .height *
-                                                                0.2,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryBackground,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          0.0),
-                                                            ),
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              children: [
-                                                                Text(
-                                                                  FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                    '1ndvql8q' /* Cannot view GPX because you ar... */,
-                                                                  ),
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        useGoogleFonts:
-                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                      ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                      ],
-                                                    ),
+                                                        ),
+                                                    ],
                                                   ),
                                                 ],
                                               ),
