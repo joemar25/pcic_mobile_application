@@ -4104,6 +4104,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                             taskId: widget.taskId,
                                             status: 'completed',
                                           );
+                                          await actions.saveBlobToBucket(
+                                            widget.taskId,
+                                          );
                                           _model.generatedXML =
                                               await actions.generateTaskXml(
                                             widget.taskId,
@@ -4111,28 +4114,6 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                           await actions.saveTaskXml(
                                             _model.generatedXML,
                                             widget.taskId,
-                                          );
-                                          _model.cat =
-                                              await actions.saveBlobToBucket(
-                                            widget.taskId,
-                                          );
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            SnackBar(
-                                              content: Text(
-                                                _model.cat!,
-                                                style: TextStyle(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                ),
-                                              ),
-                                              duration:
-                                                  const Duration(milliseconds: 4000),
-                                              backgroundColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondary,
-                                            ),
                                           );
 
                                           context.pushNamed(
