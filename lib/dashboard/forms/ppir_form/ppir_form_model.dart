@@ -16,7 +16,7 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
   late ConnectivityModel connectivityModel;
   // Stores action output result for [Custom Action - generateTaskXml] action in Text widget.
   String? generatedTaskXmlFile;
-  // Stores action output result for [Custom Action - getGpxLink] action in repeatGeotagButtonT widget.
+  // Stores action output result for [Custom Action - getGpxLink] action in downloadButton widget.
   String? gpxLink;
   // State field(s) for ppir_track_coordinates widget.
   FocusNode? ppirTrackCoordinatesFocusNode;
@@ -87,8 +87,6 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
   List<PpirFormsRow>? savePPIRCopy;
   // Stores action output result for [Custom Action - generateTaskXml] action in submitButton widget.
   String? generatedXML;
-  // Stores action output result for [Custom Action - saveToFTP] action in submitButton widget.
-  bool? isFtpSaved;
 
   @override
   void initState(BuildContext context) {

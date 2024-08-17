@@ -4112,10 +4112,6 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                             _model.generatedXML,
                                             widget.taskId,
                                           );
-                                          _model.isFtpSaved =
-                                              await actions.saveToFTP(
-                                            widget.taskId,
-                                          );
 
                                           context.pushNamed(
                                             'formSuccess',

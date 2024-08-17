@@ -43,8 +43,8 @@ class _AlertDialogPermissionWidgetState
     return Align(
       alignment: const AlignmentDirectional(0.0, 0.0),
       child: Container(
-        width: 338.0,
-        height: 392.0,
+        width: 320.0,
+        height: 350.0,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).primaryBackground,
           borderRadius: BorderRadius.circular(24.0),
@@ -56,25 +56,25 @@ class _AlertDialogPermissionWidgetState
             children: [
               Row(
                 mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Lottie.asset(
                     'assets/lottie_animations/xZO2U5ItRT.json',
-                    width: 150.0,
-                    height: 150.0,
+                    width: 100.0,
+                    height: 100.0,
                     fit: BoxFit.contain,
                     frameRate: FrameRate(120.0),
                     animate: true,
                   ),
                   Lottie.asset(
                     'assets/lottie_animations/sev9ruk9ef.json',
-                    width: 150.0,
-                    height: 150.0,
+                    width: 100.0,
+                    height: 100.0,
                     fit: BoxFit.cover,
                     frameRate: FrameRate(120.0),
                     animate: true,
                   ),
-                ],
+                ].divide(const SizedBox(width: 25.0)),
               ),
               Column(
                 mainAxisSize: MainAxisSize.max,
