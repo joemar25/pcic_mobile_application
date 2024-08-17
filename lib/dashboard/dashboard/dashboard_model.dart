@@ -19,8 +19,6 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   List<OFFLINESelectAllTasksByAssigneeRow>? offlineTasks;
   // Stores action output result for [Backend Call - Query Rows] action in dashboard widget.
   List<TasksRow>? onlineTasks;
-  // Stores action output result for [Backend Call - Query Rows] action in Text widget.
-  List<TasksRow>? onlineTask;
   // Stores action output result for [Custom Action - syncData] action in Text widget.
   String? message;
   // Model for connectivity component.
