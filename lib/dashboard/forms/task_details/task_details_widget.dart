@@ -2597,9 +2597,20 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           MainAxisAlignment
                                                               .spaceBetween,
                                                       children: [
-                                                        if (FFAppState().ONLINE)
-                                                          Flexible(
-                                                            child: SizedBox(
+                                                        Flexible(
+                                                          child: SizedBox(
+                                                            width: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
+                                                                    .width *
+                                                                1.0,
+                                                            height: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
+                                                                    .height *
+                                                                0.2,
+                                                            child: custom_widgets
+                                                                .Signaturebase64(
                                                               width: MediaQuery
                                                                           .sizeOf(
                                                                               context)
@@ -2610,25 +2621,15 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                               context)
                                                                       .height *
                                                                   0.2,
-                                                              child: custom_widgets
-                                                                  .Signaturebase64(
-                                                                width: MediaQuery.sizeOf(
-                                                                            context)
-                                                                        .width *
-                                                                    1.0,
-                                                                height: MediaQuery.sizeOf(
-                                                                            context)
-                                                                        .height *
-                                                                    0.2,
-                                                                taskId: widget
-                                                                    .taskId,
-                                                                signatureBlob:
-                                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                        .first
-                                                                        .ppirSigInsured,
-                                                              ),
+                                                              taskId: widget
+                                                                  .taskId,
+                                                              signatureBlob:
+                                                                  taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                      .first
+                                                                      .ppirSigInsured,
                                                             ),
                                                           ),
+                                                        ),
                                                       ],
                                                     ),
                                                   ),
@@ -2709,11 +2710,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               .spaceBetween,
                                                       children: [
                                                         Flexible(
-                                                          child: Align(
-                                                            alignment:
-                                                                const AlignmentDirectional(
-                                                                    0.0, 0.0),
-                                                            child: SizedBox(
+                                                          child: SizedBox(
+                                                            width: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
+                                                                    .width *
+                                                                1.0,
+                                                            height: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
+                                                                    .height *
+                                                                0.2,
+                                                            child: custom_widgets
+                                                                .Signaturebase64(
                                                               width: MediaQuery
                                                                           .sizeOf(
                                                                               context)
@@ -2724,23 +2733,12 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                               context)
                                                                       .height *
                                                                   0.2,
-                                                              child: custom_widgets
-                                                                  .Signaturebase64(
-                                                                width: MediaQuery.sizeOf(
-                                                                            context)
-                                                                        .width *
-                                                                    1.0,
-                                                                height: MediaQuery.sizeOf(
-                                                                            context)
-                                                                        .height *
-                                                                    0.2,
-                                                                taskId: widget
-                                                                    .taskId,
-                                                                signatureBlob:
-                                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                        .first
-                                                                        .ppirSigIuia,
-                                                              ),
+                                                              taskId: widget
+                                                                  .taskId,
+                                                              signatureBlob:
+                                                                  taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                      .first
+                                                                      .ppirSigIuia,
                                                             ),
                                                           ),
                                                         ),
@@ -2807,9 +2805,20 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                         MainAxisAlignment
                                                             .center,
                                                     children: [
-                                                      if (FFAppState().ONLINE)
-                                                        Flexible(
-                                                          child: SizedBox(
+                                                      Flexible(
+                                                        child: SizedBox(
+                                                          width:
+                                                              MediaQuery.sizeOf(
+                                                                          context)
+                                                                      .width *
+                                                                  1.0,
+                                                          height:
+                                                              MediaQuery.sizeOf(
+                                                                          context)
+                                                                      .height *
+                                                                  0.3,
+                                                          child: custom_widgets
+                                                              .MapBase64(
                                                             width: MediaQuery
                                                                         .sizeOf(
                                                                             context)
@@ -2820,37 +2829,23 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                             context)
                                                                     .height *
                                                                 0.3,
-                                                            child:
-                                                                custom_widgets
-                                                                    .MapBase64(
-                                                              width: MediaQuery
-                                                                          .sizeOf(
-                                                                              context)
-                                                                      .width *
-                                                                  1.0,
-                                                              height: MediaQuery
-                                                                          .sizeOf(
-                                                                              context)
-                                                                      .height *
-                                                                  0.3,
-                                                              blob: valueOrDefault<
-                                                                          String>(
-                                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                            .first
-                                                                            .gpx,
-                                                                        'null',
-                                                                      ) ==
-                                                                      'null'
-                                                                  ? 'PD94bWwgdmVyc2lvbj0iMS4wIj8+DQo8Z3B4IHZlcnNpb249IjEuMCIgeG1sbnM9Imh0dHA6Ly93d3cudG9wb2dyYWZpeC5jb20vR1BYLzEvMCI+DQogIDx0cms+DQogICAgPHRya3NlZz4NCiAgICAgIDx0cmtwdCBsYXQ9IjU1Ljc1MzU3MiIgbG9uPSIzNy44MDgyNTAiPg0KICAgICAgICA8ZWxlPjEzNS4wMDwvZWxlPg0KICAgICAgICA8dGltZT4yMDA5LTA1LTE5VDA0OjAwOjMwWjwvdGltZT4NCiAgICAgIDwvdHJrcHQ+DQogICAgICA8dHJrcHQgbGF0PSI1NS43NTM2MjIiIGxvbj0iMzcuODA4MjU1Ij4NCiAgICAgICAgPGVsZT4xMzUuMDA8L2VsZT4NCiAgICAgICAgPHRpbWU+MjAwOS0wNS0xOVQwNDowMDozMVo8L3RpbWU+DQogICAgICA8L3Rya3B0Pg0KICAgICAgPHRya3B0IGxhdD0iNTUuNzUzNTkzIiBsb249IjM3LjgwODE1OCI+DQogICAgICAgIDxlbGU+MTM1LjAwPC9lbGU+DQogICAgICAgIDx0aW1lPjIwMDktMDUtMTlUMDQ6MDA6MzJaPC90aW1lPg0KICAgICAgPC90cmtwdD4NCiAgICAgIDx0cmtwdCBsYXQ9IjU1Ljc1ODE3NyIgbG9uPSIzNy42Nzc4MDIiPg0KICAgICAgICA8ZWxlPjE1Mi4wMDwvZWxlPg0KICAgICAgICA8dGltZT4yMDA5LTA1LTE5VDA0OjQ2OjI3WjwvdGltZT4NCiAgICAgIDwvdHJrcHQ+DQogICAgPC90cmtzZWc+DQogIDwvdHJrPg0KPC9ncHg+'
-                                                                  : taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                      .first
-                                                                      .gpx,
-                                                              accessToken:
-                                                                  FFAppState()
-                                                                      .accessToken,
-                                                            ),
+                                                            blob: valueOrDefault<
+                                                                        String>(
+                                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                          .first
+                                                                          .gpx,
+                                                                      'null',
+                                                                    ) ==
+                                                                    'null'
+                                                                ? 'PD94bWwgdmVyc2lvbj0iMS4wIj8+DQo8Z3B4IHZlcnNpb249IjEuMCIgeG1sbnM9Imh0dHA6Ly93d3cudG9wb2dyYWZpeC5jb20vR1BYLzEvMCI+DQogIDx0cms+DQogICAgPHRya3NlZz4NCiAgICAgIDx0cmtwdCBsYXQ9IjU1Ljc1MzU3MiIgbG9uPSIzNy44MDgyNTAiPg0KICAgICAgICA8ZWxlPjEzNS4wMDwvZWxlPg0KICAgICAgICA8dGltZT4yMDA5LTA1LTE5VDA0OjAwOjMwWjwvdGltZT4NCiAgICAgIDwvdHJrcHQ+DQogICAgICA8dHJrcHQgbGF0PSI1NS43NTM2MjIiIGxvbj0iMzcuODA4MjU1Ij4NCiAgICAgICAgPGVsZT4xMzUuMDA8L2VsZT4NCiAgICAgICAgPHRpbWU+MjAwOS0wNS0xOVQwNDowMDozMVo8L3RpbWU+DQogICAgICA8L3Rya3B0Pg0KICAgICAgPHRya3B0IGxhdD0iNTUuNzUzNTkzIiBsb249IjM3LjgwODE1OCI+DQogICAgICAgIDxlbGU+MTM1LjAwPC9lbGU+DQogICAgICAgIDx0aW1lPjIwMDktMDUtMTlUMDQ6MDA6MzJaPC90aW1lPg0KICAgICAgPC90cmtwdD4NCiAgICAgIDx0cmtwdCBsYXQ9IjU1Ljc1ODE3NyIgbG9uPSIzNy42Nzc4MDIiPg0KICAgICAgICA8ZWxlPjE1Mi4wMDwvZWxlPg0KICAgICAgICA8dGltZT4yMDA5LTA1LTE5VDA0OjQ2OjI3WjwvdGltZT4NCiAgICAgIDwvdHJrcHQ+DQogICAgPC90cmtzZWc+DQogIDwvdHJrPg0KPC9ncHg+'
+                                                                : taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                    .first.gpx,
+                                                            accessToken:
+                                                                FFAppState()
+                                                                    .accessToken,
                                                           ),
                                                         ),
+                                                      ),
                                                     ],
                                                   ),
                                                 ],

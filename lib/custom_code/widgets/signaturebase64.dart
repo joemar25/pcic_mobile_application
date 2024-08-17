@@ -34,8 +34,42 @@ class Signaturebase64 extends StatefulWidget {
 }
 
 class _Signaturebase64State extends State<Signaturebase64> {
+  Uint8List? _signatureData;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSignature();
+  }
+
+  void _loadSignature() {
+    if (widget.signatureBlob != null && widget.signatureBlob!.isNotEmpty) {
+      setState(() {
+        _signatureData = base64.decode(widget.signatureBlob!);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      height: widget.height ?? 230,
+      width: widget.width ?? double.infinity,
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: _signatureData != null
+            ? Image.memory(
+                _signatureData!,
+                fit: BoxFit.contain,
+                width: double.infinity,
+                height: double.infinity,
+              )
+            : SizedBox.shrink(),
+      ),
+    );
   }
 }
