@@ -55,7 +55,8 @@ class _AlertDialogPermissionWidgetState
             mainAxisSize: MainAxisSize.max,
             children: [
               Row(
-                mainAxisSize: MainAxisSize.max,
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Lottie.asset(
                     'assets/lottie_animations/xZO2U5ItRT.json',
