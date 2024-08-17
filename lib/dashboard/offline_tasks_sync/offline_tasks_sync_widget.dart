@@ -131,20 +131,6 @@ class _OfflineTasksSyncWidgetState extends State<OfflineTasksSyncWidget>
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                'Sync Started',
-                                style: TextStyle(
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                ),
-                              ),
-                              duration: const Duration(milliseconds: 4000),
-                              backgroundColor:
-                                  FlutterFlowTheme.of(context).secondary,
-                            ),
-                          );
                           // Online Tasks
                           _model.onlineTasks = await TasksTable().queryRows(
                             queryFn: (q) => q,

@@ -56,13 +56,15 @@ class _MapBoxState extends State<MapBox> {
   void initState() {
     super.initState();
     _initializeMap();
+    connected(); // Start listening to connectivity changes
   }
 
   Future<void> _initializeMap() async {
     try {
       await _requestLocationPermission();
-      await _initializeTileProvider();
       await _getCurrentLocation();
+      await _initializeTileProvider();
+
       _startLocationStream();
     } catch (e) {
       setState(() {
@@ -116,8 +118,53 @@ class _MapBoxState extends State<MapBox> {
     final stats = FMTC.FMTCRoot.stats;
     final stores = await stats.storesAvailable;
 
-    if (stores.isNotEmpty) {
-      _storeName = stores[0].storeName;
+    print('Available stores: ${stores.length}');
+
+    if (_currentLocation == null) {
+      print('Current location is null');
+      return;
+    }
+
+    ll.LatLng currentLocation =
+        ll.LatLng(_currentLocation!.latitude, _currentLocation!.longitude);
+    print(
+        'Current location: ${currentLocation.latitude}, ${currentLocation.longitude}');
+
+    bool storeFound = false;
+
+    for (var store in stores) {
+      print('Checking store: ${store.storeName}');
+      final md = FMTC.FMTCStore(store.storeName).metadata;
+      final metadata = await md.read;
+      print('Metadata for ${store.storeName}: $metadata');
+
+      if (metadata != null) {
+        try {
+          Map<String, num> regionData = {
+            'region_south': _parseNum(metadata['region_south']),
+            'region_north': _parseNum(metadata['region_north']),
+            'region_west': _parseNum(metadata['region_west']),
+            'region_east': _parseNum(metadata['region_east']),
+          };
+          print('Parsed region data: $regionData');
+
+          if (_isLocationInRegion(currentLocation, regionData)) {
+            _storeName = store.storeName;
+            print('Matched store: $_storeName');
+            storeFound = true;
+            break;
+          }
+        } catch (e) {
+          print('Error processing metadata for ${store.storeName}: $e');
+        }
+      } else {
+        print('Metadata is null for ${store.storeName}');
+      }
+    }
+
+    if (!storeFound) {
+      print('No matching store found for the current location.');
+    } else if (_storeName != null) {
       setState(() {
         _tileProvider = FMTC.FMTCStore(_storeName!).getTileProvider(
           settings: FMTC.FMTCTileProviderSettings(
@@ -125,7 +172,60 @@ class _MapBoxState extends State<MapBox> {
           ),
         );
       });
+      print('Tile provider initialized with store: $_storeName');
+    } else {
+      print('No store available to initialize tile provider');
     }
+  }
+
+  bool _isLocationInRegion(ll.LatLng location, Map<String, num> region) {
+    print('Checking location: ${location.latitude}, ${location.longitude}');
+    print('Region: $region');
+
+    return location.latitude >= region['region_south']! &&
+        location.latitude <= region['region_north']! &&
+        location.longitude >= region['region_west']! &&
+        location.longitude <= region['region_east']!;
+  }
+
+  num _parseNum(dynamic value) {
+    if (value is num) {
+      return value;
+    } else if (value is String) {
+      return num.parse(value);
+    } else {
+      throw FormatException('Cannot parse $value to num');
+    }
+  }
+
+  void _showNoMapDataSnackBar() {
+    if (!mounted) return;
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: const Text('This map is not downloaded.'),
+        action: SnackBarAction(
+          label: 'Download',
+          onPressed: () {
+            // Close the SnackBar
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+
+            // Navigate to the download page
+            context.pushNamed(
+              'pcicMap',
+              extra: <String, dynamic>{
+                kTransitionInfoKey: const TransitionInfo(
+                  hasTransition: true,
+                  transitionType: PageTransitionType.rightToLeft,
+                  duration: Duration(milliseconds: 200),
+                ),
+              },
+            );
+          },
+        ),
+        duration: const Duration(seconds: 10),
+      ),
+    );
   }
 
   void moveMap(ll.LatLng point) {
@@ -253,6 +353,9 @@ class _MapBoxState extends State<MapBox> {
         child: CircularProgressIndicator(),
       );
     }
+    if (!FFAppState().ONLINE && (_tileProvider == null || _storeName == null)) {
+      return _buildOfflineMessageBox(context);
+    }
 
     if (FFAppState().routeStarted && _routePoints.isEmpty) {
       _startTracking();
@@ -350,6 +453,80 @@ Widget _buildIconButton(IconData icon, VoidCallback onPressed) {
             size: 18,
           ),
         ),
+      ),
+    ),
+  );
+}
+
+Widget _buildOfflineMessageBox(BuildContext context) {
+  return Center(
+    child: Container(
+      width: MediaQuery.of(context).size.width * 0.8, // 80% of screen width
+      constraints: BoxConstraints(maxWidth: 300), // Maximum width
+      padding: EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.green,
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 5,
+            blurRadius: 7,
+            offset: Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min, // Use minimum space needed
+        children: [
+          Icon(Icons.map_outlined, size: 50, color: Colors.white),
+          SizedBox(height: 15),
+          Text(
+            'Map for your current location is not downloaded yet',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+          SizedBox(height: 10),
+          Text(
+            'Download the map to use offline features',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 14,
+              color: Colors.white,
+            ),
+          ),
+          SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              context.pushNamed(
+                'pcicMap',
+                extra: <String, dynamic>{
+                  kTransitionInfoKey: const TransitionInfo(
+                    hasTransition: true,
+                    transitionType: PageTransitionType.rightToLeft,
+                    duration: Duration(milliseconds: 200),
+                  ),
+                },
+              );
+            },
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.white),
+              foregroundColor: MaterialStateProperty.all(Colors.green),
+              padding: MaterialStateProperty.all(
+                  EdgeInsets.symmetric(horizontal: 20, vertical: 10)),
+              shape: MaterialStateProperty.all(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+            ),
+            child: Text('Download Map'),
+          ),
+        ],
       ),
     ),
   );
