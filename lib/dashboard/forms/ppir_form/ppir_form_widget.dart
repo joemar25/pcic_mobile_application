@@ -4119,32 +4119,55 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                               await actions.saveToFTP(
                                             widget.taskId,
                                           );
-
-                                          context.pushNamed(
-                                            'formSuccess',
-                                            queryParameters: {
-                                              'taskId': serializeParam(
-                                                widget.taskId,
-                                                ParamType.String,
-                                              ),
-                                              'type': serializeParam(
-                                                'save',
-                                                ParamType.String,
-                                              ),
-                                            }.withoutNulls,
-                                            extra: <String, dynamic>{
-                                              kTransitionInfoKey:
-                                                  const TransitionInfo(
-                                                hasTransition: true,
-                                                transitionType:
-                                                    PageTransitionType.scale,
-                                                alignment:
-                                                    Alignment.bottomCenter,
-                                                duration:
-                                                    Duration(milliseconds: 200),
-                                              ),
-                                            },
-                                          );
+                                          if (_model.isFtpSaved!) {
+                                            context.goNamed(
+                                              'formSuccess',
+                                              queryParameters: {
+                                                'taskId': serializeParam(
+                                                  widget.taskId,
+                                                  ParamType.String,
+                                                ),
+                                                'type': serializeParam(
+                                                  'save',
+                                                  ParamType.String,
+                                                ),
+                                              }.withoutNulls,
+                                              extra: <String, dynamic>{
+                                                kTransitionInfoKey:
+                                                    const TransitionInfo(
+                                                  hasTransition: true,
+                                                  transitionType:
+                                                      PageTransitionType.scale,
+                                                  alignment:
+                                                      Alignment.bottomCenter,
+                                                  duration: Duration(
+                                                      milliseconds: 200),
+                                                ),
+                                              },
+                                            );
+                                          } else {
+                                            context.goNamed(
+                                              'fail',
+                                              queryParameters: {
+                                                'error': serializeParam(
+                                                  'Fail to submit FTP!',
+                                                  ParamType.String,
+                                                ),
+                                              }.withoutNulls,
+                                              extra: <String, dynamic>{
+                                                kTransitionInfoKey:
+                                                    const TransitionInfo(
+                                                  hasTransition: true,
+                                                  transitionType:
+                                                      PageTransitionType.scale,
+                                                  alignment:
+                                                      Alignment.bottomCenter,
+                                                  duration: Duration(
+                                                      milliseconds: 200),
+                                                ),
+                                              },
+                                            );
+                                          }
                                         }
                                       } else {
                                         await showDialog(
