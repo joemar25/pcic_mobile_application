@@ -77,9 +77,9 @@ class _SavingModeWidgetState extends State<SavingModeWidget>
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.sizeOf(context).width * 1.0,
-      height: MediaQuery.sizeOf(context).height * 0.8,
+      height: MediaQuery.sizeOf(context).height * 1.0,
       decoration: const BoxDecoration(
-        color: Color(0x1717282E),
+        color: Color(0x6317282E),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.max,

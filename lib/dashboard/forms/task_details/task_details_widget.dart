@@ -241,7 +241,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           .titleSmallFamily,
                                       fontSize: 12.0,
                                       letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w200,
+                                      fontWeight: FontWeight.w600,
                                       useGoogleFonts: GoogleFonts.asMap()
                                           .containsKey(
                                               FlutterFlowTheme.of(context)
@@ -260,7 +260,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                     color: FlutterFlowTheme.of(context).error,
                                     fontSize: 12.0,
                                     letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w200,
+                                    fontWeight: FontWeight.w600,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)

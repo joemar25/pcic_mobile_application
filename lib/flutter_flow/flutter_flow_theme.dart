@@ -65,9 +65,6 @@ abstract class FlutterFlowTheme {
 
   late Color primaryBtnText;
   late Color lineColor;
-  late Color backgroundComponents;
-  late Color darkMossGreen;
-  late Color pakistanGreen;
   late Color cornsilk;
   late Color earthYellow;
   late Color tigersEye;
@@ -169,18 +166,18 @@ class LightModeTheme extends FlutterFlowTheme {
   @Deprecated('Use tertiary instead')
   Color get tertiaryColor => tertiary;
 
-  late Color primary = const Color(0xFF15803E);
+  late Color primary = const Color(0xFF1D7F3A);
   late Color secondary = const Color(0xFF58B954);
   late Color tertiary = const Color(0xFFBBEA68);
-  late Color alternate = const Color(0xFFC8D7E4);
-  late Color primaryText = const Color(0xFF242731);
-  late Color secondaryText = const Color(0xFF384E58);
-  late Color primaryBackground = const Color(0xFFF1F4F8);
-  late Color secondaryBackground = const Color(0xFFFFFFFF);
+  late Color alternate = const Color(0xFFD9E4E6);
+  late Color primaryText = const Color(0xFF000000);
+  late Color secondaryText = const Color(0xFF4A4A4A);
+  late Color primaryBackground = const Color(0xFFF5F5F5);
+  late Color secondaryBackground = const Color(0xFFEAEAEA);
   late Color accent1 = const Color(0x4D4B986C);
   late Color accent2 = const Color(0x4D928163);
   late Color accent3 = const Color(0x4C6D604A);
-  late Color accent4 = const Color(0xCDFFFFFF);
+  late Color accent4 = const Color(0xB20B191E);
   late Color success = const Color(0xFF228B22);
   late Color warning = const Color(0xFFF3C344);
   late Color error = const Color(0xFFE34234);
@@ -188,9 +185,6 @@ class LightModeTheme extends FlutterFlowTheme {
 
   late Color primaryBtnText = const Color(0xFFFFFFFF);
   late Color lineColor = const Color(0xFFE0E3E7);
-  late Color backgroundComponents = const Color(0xFF1D2428);
-  late Color darkMossGreen = const Color(0xFF606C38);
-  late Color pakistanGreen = const Color(0xFF283618);
   late Color cornsilk = const Color(0xFFFEFAE0);
   late Color earthYellow = const Color(0xFFDDA15E);
   late Color tigersEye = const Color(0xFFBC6C25);
@@ -603,9 +597,6 @@ class DarkModeTheme extends FlutterFlowTheme {
 
   late Color primaryBtnText = const Color(0xFFFFFFFF);
   late Color lineColor = const Color(0xFF22282F);
-  late Color backgroundComponents = const Color(0xFF1D2428);
-  late Color darkMossGreen = const Color(0xFF606C38);
-  late Color pakistanGreen = const Color(0xFF283618);
   late Color cornsilk = const Color(0xFFFEFAE0);
   late Color earthYellow = const Color(0xFFDDA15E);
   late Color tigersEye = const Color(0xFFBC6C25);

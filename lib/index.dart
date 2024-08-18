@@ -28,6 +28,6 @@ export '/utils/test/offline_tasks_and_ppir_list/offline_tasks_and_ppir_list_widg
 export '/auth/onboarding/onboarding_widget.dart' show OnboardingWidget;
 export '/utils/test/sync_data/sync_data_widget.dart' show SyncDataWidget;
 export '/utils/test/sync_king/sync_king_widget.dart' show SyncKingWidget;
-export '/dashboard/offline_tasks_sync/offline_tasks_sync_widget.dart'
-    show OfflineTasksSyncWidget;
+export '/dashboard/offline_sync/offline_sync_widget.dart'
+    show OfflineSyncWidget;
 export '/dashboard/forms/ppir_form/ppir_form_widget.dart' show PpirFormWidget;

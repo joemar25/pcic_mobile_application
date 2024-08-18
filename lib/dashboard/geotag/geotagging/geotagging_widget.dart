@@ -300,9 +300,9 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                         _model.isGeotagStart != true
                                             ? (_model.isFinished
                                                 ? 'Saving'
-                                                : 'Geotagging')
-                                            : 'Waiting',
-                                        textAlign: TextAlign.start,
+                                                : 'Waiting to start')
+                                            : 'Waiting to finish',
+                                        textAlign: TextAlign.center,
                                       ),
                                     ),
                                   ),
@@ -346,11 +346,13 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                         ),
                                   ),
                                   Text(
-                                    valueOrDefault<String>(
-                                      functions.getAddress(
-                                          _model.getCurrentLocationAddress),
-                                      '{}',
-                                    ),
+                                    FFAppState().ONLINE
+                                        ? valueOrDefault<String>(
+                                            functions.getAddress(_model
+                                                .getCurrentLocationAddress),
+                                            '{}',
+                                          )
+                                        : 'No Adress to fetch because you are offline.',
                                     style: FlutterFlowTheme.of(context)
                                         .labelSmall
                                         .override(

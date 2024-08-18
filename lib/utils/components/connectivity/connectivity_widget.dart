@@ -90,7 +90,7 @@ class _ConnectivityWidgetState extends State<ConnectivityWidget>
               alignment: const AlignmentDirectional(0.0, 0.0),
               child: Icon(
                 Icons.wifi,
-                color: FlutterFlowTheme.of(context).secondary,
+                color: FlutterFlowTheme.of(context).primary,
                 size: 24.0,
               ),
             ),

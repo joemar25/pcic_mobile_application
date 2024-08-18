@@ -205,30 +205,64 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                     ].divide(const SizedBox(width: 10.0)),
                                   ),
                                 ),
-                                Container(
-                                  decoration: const BoxDecoration(),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      if (FFAppState().ONLINE)
-                                        InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            _model.statusOutput = 'Syncing...';
-                                            setState(() {});
-                                            _model.message =
-                                                await actions.syncData();
-                                            _model.statusOutput =
-                                                _model.message;
-                                            setState(() {});
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 5.0, 0.0),
+                                  child: Container(
+                                    decoration: const BoxDecoration(),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        if (FFAppState().ONLINE &&
+                                            responsiveVisibility(
+                                              context: context,
+                                              phone: false,
+                                            ))
+                                          InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              _model.statusOutput =
+                                                  'Syncing...';
+                                              setState(() {});
+                                              _model.message =
+                                                  await actions.syncData();
+                                              _model.statusOutput =
+                                                  _model.message;
+                                              setState(() {});
 
-                                            setState(() {});
-                                          },
-                                          child: Text(
-                                            '[ ${_model.statusOutput} ]',
+                                              setState(() {});
+                                            },
+                                            child: Text(
+                                              '[ ${_model.statusOutput} ]',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .titleSmall
+                                                  .override(
+                                                    fontFamily:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .titleSmallFamily,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .info,
+                                                    fontSize: 12.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w600,
+                                                    useGoogleFonts: GoogleFonts
+                                                            .asMap()
+                                                        .containsKey(
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmallFamily),
+                                                  ),
+                                            ),
+                                          ),
+                                        if (!FFAppState().ONLINE)
+                                          Text(
+                                            '[ No internet for sync ]',
                                             style: FlutterFlowTheme.of(context)
                                                 .titleSmall
                                                 .override(
@@ -238,7 +272,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                           .titleSmallFamily,
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .info,
+                                                      .error,
                                                   fontSize: 12.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w600,
@@ -250,31 +284,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                               .titleSmallFamily),
                                                 ),
                                           ),
-                                        ),
-                                      if (!FFAppState().ONLINE)
-                                        Text(
-                                          '[ No internet for sync ]',
-                                          style: FlutterFlowTheme.of(context)
-                                              .titleSmall
-                                              .override(
-                                                fontFamily:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmallFamily,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .error,
-                                                fontSize: 12.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w600,
-                                                useGoogleFonts: GoogleFonts
-                                                        .asMap()
-                                                    .containsKey(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .titleSmallFamily),
-                                              ),
-                                        ),
-                                    ].divide(const SizedBox(width: 5.0)),
+                                      ].divide(const SizedBox(width: 5.0)),
+                                    ),
                                   ),
                                 ),
                                 InkWell(
@@ -285,7 +296,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                   onTap: () async {
                                     if (FFAppState().ONLINE && kDebugMode) {
                                       context.pushNamed(
-                                        'offlineDbTest',
+                                        'offlineSync',
                                         extra: <String, dynamic>{
                                           kTransitionInfoKey: const TransitionInfo(
                                             hasTransition: true,
@@ -803,127 +814,141 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                             MainAxisAlignment.spaceEvenly,
                                         children: [
                                           Expanded(
-                                            child: Material(
-                                              color: Colors.transparent,
-                                              elevation: 10.0,
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                              ),
-                                              child: Container(
-                                                width:
-                                                    MediaQuery.sizeOf(context)
-                                                            .width *
-                                                        0.3,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .forDispatchColor,
+                                            child: InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                setState(() {});
+                                              },
+                                              child: Material(
+                                                color: Colors.transparent,
+                                                elevation: 10.0,
+                                                shape: RoundedRectangleBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           8.0),
-                                                  border: Border.all(
+                                                ),
+                                                child: Container(
+                                                  width:
+                                                      MediaQuery.sizeOf(context)
+                                                              .width *
+                                                          0.3,
+                                                  decoration: BoxDecoration(
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .forDispatchColor,
-                                                    width: 2.0,
-                                                  ),
-                                                ),
-                                                alignment: const AlignmentDirectional(
-                                                    0.0, 0.0),
-                                                child: Padding(
-                                                  padding: const EdgeInsets.all(12.0),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      AnimatedDefaultTextStyle(
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .displaySmall
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .displaySmallFamily,
-                                                                  fontSize:
-                                                                      30.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .displaySmallFamily),
-                                                                ),
-                                                        duration: const Duration(
-                                                            milliseconds: 600),
-                                                        curve: Curves.easeIn,
-                                                        child: Text(
-                                                          dashboardOFFLINESelectAllTasksByAssigneeRowList
-                                                              .where((e) =>
-                                                                  e.status ==
-                                                                  'for dispatch')
-                                                              .toList()
-                                                              .length
-                                                              .toString(),
-                                                        ),
-                                                      ),
-                                                      Icon(
-                                                        Icons.timer_sharp,
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .forDispatchIcon,
-                                                        size: 15.0,
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    4.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: Text(
-                                                          FFLocalizations.of(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                    border: Border.all(
+                                                      color:
+                                                          FlutterFlowTheme.of(
                                                                   context)
-                                                              .getText(
-                                                            'j8akb40n' /* For Dispatch */,
-                                                          ),
+                                                              .forDispatchColor,
+                                                      width: 2.0,
+                                                    ),
+                                                  ),
+                                                  alignment:
+                                                      const AlignmentDirectional(
+                                                          0.0, 0.0),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(12.0),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        AnimatedDefaultTextStyle(
                                                           style: FlutterFlowTheme
                                                                   .of(context)
-                                                              .labelMedium
+                                                              .displaySmall
                                                               .override(
                                                                 fontFamily: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .labelMediumFamily,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                                fontSize: 10.0,
+                                                                    .displaySmallFamily,
+                                                                fontSize: 30.0,
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
                                                                     FontWeight
-                                                                        .w600,
+                                                                        .bold,
                                                                 useGoogleFonts: GoogleFonts
                                                                         .asMap()
                                                                     .containsKey(
                                                                         FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
+                                                                            .displaySmallFamily),
                                                               ),
+                                                          duration: const Duration(
+                                                              milliseconds:
+                                                                  600),
+                                                          curve: Curves.easeIn,
+                                                          child: Text(
+                                                            dashboardOFFLINESelectAllTasksByAssigneeRowList
+                                                                .where((e) =>
+                                                                    e.status ==
+                                                                    'for dispatch')
+                                                                .toList()
+                                                                .length
+                                                                .toString(),
+                                                          ),
                                                         ),
-                                                      ),
-                                                    ],
+                                                        Icon(
+                                                          Icons.timer_sharp,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .forDispatchIcon,
+                                                          size: 15.0,
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      4.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .getText(
+                                                              'j8akb40n' /* For Dispatch */,
+                                                            ),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                  fontSize:
+                                                                      10.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .labelMediumFamily),
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                               ),

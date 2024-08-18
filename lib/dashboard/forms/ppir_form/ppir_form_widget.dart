@@ -732,7 +732,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                         0.0),
                                                             color: FlutterFlowTheme
                                                                     .of(context)
-                                                                .tertiary,
+                                                                .primary,
                                                             textStyle:
                                                                 FlutterFlowTheme.of(
                                                                         context)

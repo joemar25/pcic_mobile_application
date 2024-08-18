@@ -1,9 +1,9 @@
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'offline_tasks_sync_widget.dart' show OfflineTasksSyncWidget;
+import 'offline_sync_widget.dart' show OfflineSyncWidget;
 import 'package:flutter/material.dart';
 
-class OfflineTasksSyncModel extends FlutterFlowModel<OfflineTasksSyncWidget> {
+class OfflineSyncModel extends FlutterFlowModel<OfflineSyncWidget> {
   ///  Local state fields for this page.
 
   int? limit = 0;
