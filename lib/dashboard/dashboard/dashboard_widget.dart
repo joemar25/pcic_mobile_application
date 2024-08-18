@@ -772,7 +772,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                           icon: Icon(
                                             Icons.edit_rounded,
                                             color: FlutterFlowTheme.of(context)
-                                                .primary,
+                                                .secondary,
                                             size: 24.0,
                                           ),
                                           onPressed: () async {
