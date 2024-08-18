@@ -136,7 +136,7 @@ class _NoInternetDialogWidgetState extends State<NoInternetDialogWidget> {
                           print('Button pressed ...');
                         },
                         text: FFLocalizations.of(context).getText(
-                          'o9ko1105' /* Reconnect */,
+                          'x2kr3ijp' /* Reconnect */,
                         ),
                         options: FFButtonOptions(
                           height: 40.0,
@@ -166,7 +166,7 @@ class _NoInternetDialogWidgetState extends State<NoInternetDialogWidget> {
                         ),
                       ),
                     ),
-                  ],
+                  ].divide(const SizedBox(width: 20.0)).around(const SizedBox(width: 20.0)),
                 ),
               ),
             ].divide(const SizedBox(height: 15.0)),
