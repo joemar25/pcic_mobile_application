@@ -253,7 +253,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    '5ru4h1wi': {
+    '9hezv2qe': {
       'en': '',
       'tl': '',
     },
@@ -265,7 +265,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'yq4nq9gq': {
+    'fwlk7fds': {
       'en': '',
       'tl': '',
     },
@@ -277,7 +277,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'unkc5fgl': {
+    'mcm5x9ys': {
       'en': '',
       'tl': '',
     },
@@ -551,6 +551,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'v6ssh8ir': {
       'en': 'Fail!',
       'tl': 'Nabigo!',
+    },
+    'jv3aqrf6': {
+      'en': 'Okay',
+      'tl': '',
     },
     'qki1g985': {
       'en': 'Home',
@@ -1180,7 +1184,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'zoypq20i': {
       'en':
-          'This will cancel the current progress of geotagging, are you sure?',
+          'This will cancel the current progress of geotagging. Do you want to continue?',
       'tl': '',
     },
     '4m3l8rlv': {
@@ -1268,11 +1272,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // uploadFailedDialog
   {
     'v46c8giv': {
-      'en': 'Alert',
+      'en': 'Failed',
       'tl': '',
     },
     '014tcrks': {
-      'en': 'Fail to upload to FTP.',
+      'en': 'Failed to upload to FTP.',
       'tl': '',
     },
     'gn2n1vua': {

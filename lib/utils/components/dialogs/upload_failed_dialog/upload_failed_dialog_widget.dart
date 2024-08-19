@@ -55,11 +55,12 @@ class _UploadFailedDialogWidgetState extends State<UploadFailedDialogWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Lottie.asset(
-                'assets/lottie_animations/fillOutAllFields.json',
+                'assets/lottie_animations/failedUpload.json',
                 width: 150.0,
                 height: 150.0,
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
                 frameRate: FrameRate(120.0),
+                reverse: true,
                 animate: true,
               ),
               Column(
@@ -76,7 +77,7 @@ class _UploadFailedDialogWidgetState extends State<UploadFailedDialogWidget> {
                               alignment: const AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  'v46c8giv' /* Alert */,
+                                  'v46c8giv' /* Failed */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .headlineLarge
@@ -106,7 +107,7 @@ class _UploadFailedDialogWidgetState extends State<UploadFailedDialogWidget> {
                           alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
-                              '014tcrks' /* Fail to upload to FTP. */,
+                              '014tcrks' /* Failed to upload to FTP. */,
                             ),
                             textAlign: TextAlign.center,
                             style: FlutterFlowTheme.of(context)

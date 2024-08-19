@@ -117,6 +117,7 @@ class _ContinueGoBackDialogWidgetState
                                       .bodyMediumFamily,
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryText,
+                                  fontSize: 13.0,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)

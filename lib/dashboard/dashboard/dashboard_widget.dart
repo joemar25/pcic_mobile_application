@@ -1047,7 +1047,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                               unselectedLabelStyle: const TextStyle(),
                                               indicatorColor:
                                                   FlutterFlowTheme.of(context)
-                                                      .primary,
+                                                      .completeIcon,
                                               indicatorWeight: 2.0,
                                               tabs: [
                                                 Tab(

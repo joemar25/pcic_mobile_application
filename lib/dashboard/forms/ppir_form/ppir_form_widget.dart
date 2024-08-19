@@ -4195,11 +4195,11 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                 },
                                               );
                                             } else {
-                                              context.goNamed(
+                                              context.pushNamed(
                                                 'fail',
                                                 queryParameters: {
                                                   'error': serializeParam(
-                                                    'Fail to submit FTP!',
+                                                    'Failed to submit FTP!',
                                                     ParamType.String,
                                                   ),
                                                 }.withoutNulls,

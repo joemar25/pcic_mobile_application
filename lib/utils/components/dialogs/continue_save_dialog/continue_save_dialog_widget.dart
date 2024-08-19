@@ -60,6 +60,7 @@ class _ContinueSaveDialogWidgetState extends State<ContinueSaveDialogWidget> {
                 height: 150.0,
                 fit: BoxFit.contain,
                 frameRate: FrameRate(120.0),
+                reverse: true,
                 animate: true,
               ),
               Column(

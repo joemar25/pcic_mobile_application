@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
+import '/utils/components/dialogs/upload_failed_dialog/upload_failed_dialog_widget.dart';
 import '/utils/components/page_loader/page_loader_widget.dart';
 import '/utils/components/saving_mode/saving_mode_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
@@ -3112,122 +3113,137 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                     children: [
                                       // FTP Resubmission
                                       Flexible(
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 8.0, 16.0, 8.0),
-                                          child: FFButtonWidget(
-                                            onPressed: !FFAppState().ONLINE
-                                                ? null
-                                                : () async {
-                                                    _model.isReFTPClicked =
-                                                        true;
-                                                    setState(() {});
-                                                    _model.isFtpSaved =
-                                                        await actions.saveToFTP(
-                                                      widget.taskId,
-                                                    );
-                                                    _model.isReFTPClicked =
-                                                        false;
-                                                    setState(() {});
-                                                    if (_model.isFtpSaved!) {
-                                                      context.pushNamed(
-                                                        'successProfile',
-                                                        queryParameters: {
-                                                          'message':
-                                                              serializeParam(
-                                                            'FTP Successfully saved.',
-                                                            ParamType.String,
-                                                          ),
-                                                        }.withoutNulls,
-                                                        extra: <String,
-                                                            dynamic>{
-                                                          kTransitionInfoKey:
-                                                              const TransitionInfo(
-                                                            hasTransition: true,
-                                                            transitionType:
-                                                                PageTransitionType
-                                                                    .fade,
-                                                            duration: Duration(
-                                                                milliseconds:
-                                                                    200),
-                                                          ),
-                                                        },
+                                        child: Builder(
+                                          builder: (context) => Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    16.0, 8.0, 16.0, 8.0),
+                                            child: FFButtonWidget(
+                                              onPressed: !FFAppState().ONLINE
+                                                  ? null
+                                                  : () async {
+                                                      _model.isReFTPClicked =
+                                                          true;
+                                                      setState(() {});
+                                                      _model.isFtpSaved =
+                                                          await actions
+                                                              .saveToFTP(
+                                                        widget.taskId,
                                                       );
-                                                    } else {
-                                                      ScaffoldMessenger.of(
-                                                              context)
-                                                          .showSnackBar(
-                                                        SnackBar(
-                                                          content: Text(
-                                                            'Fail to upload to FTP.',
-                                                            style: TextStyle(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primaryText,
+                                                      _model.isReFTPClicked =
+                                                          false;
+                                                      setState(() {});
+                                                      if (_model.isFtpSaved!) {
+                                                        context.pushNamed(
+                                                          'successProfile',
+                                                          queryParameters: {
+                                                            'message':
+                                                                serializeParam(
+                                                              'FTP Successfully saved.',
+                                                              ParamType.String,
                                                             ),
-                                                          ),
-                                                          duration: const Duration(
-                                                              milliseconds:
-                                                                  4000),
-                                                          backgroundColor:
+                                                          }.withoutNulls,
+                                                          extra: <String,
+                                                              dynamic>{
+                                                            kTransitionInfoKey:
+                                                                const TransitionInfo(
+                                                              hasTransition:
+                                                                  true,
+                                                              transitionType:
+                                                                  PageTransitionType
+                                                                      .fade,
+                                                              duration: Duration(
+                                                                  milliseconds:
+                                                                      200),
+                                                            ),
+                                                          },
+                                                        );
+                                                      } else {
+                                                        await showDialog(
+                                                          context: context,
+                                                          builder:
+                                                              (dialogContext) {
+                                                            return Dialog(
+                                                              elevation: 0,
+                                                              insetPadding:
+                                                                  EdgeInsets
+                                                                      .zero,
+                                                              backgroundColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              alignment: const AlignmentDirectional(
+                                                                      0.0, 0.0)
+                                                                  .resolve(
+                                                                      Directionality.of(
+                                                                          context)),
+                                                              child:
+                                                                  GestureDetector(
+                                                                onTap: () =>
+                                                                    FocusScope.of(
+                                                                            dialogContext)
+                                                                        .unfocus(),
+                                                                child:
+                                                                    const UploadFailedDialogWidget(),
+                                                              ),
+                                                            );
+                                                          },
+                                                        );
+                                                      }
+
+                                                      setState(() {});
+                                                    },
+                                              text: FFLocalizations.of(context)
+                                                  .getText(
+                                                'auvo0ea6' /* Resubmit */,
+                                              ),
+                                              icon: const Icon(
+                                                Icons.swap_vert_sharp,
+                                                size: 15.0,
+                                              ),
+                                              options: FFButtonOptions(
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        0.35,
+                                                height: 50.0,
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        24.0, 0.0, 24.0, 0.0),
+                                                iconPadding:
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .warning,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily:
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .tertiary,
+                                                                  .titleSmallFamily,
+                                                          color: Colors.white,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmallFamily),
                                                         ),
-                                                      );
-                                                    }
-
-                                                    setState(() {});
-                                                  },
-                                            text: FFLocalizations.of(context)
-                                                .getText(
-                                              'auvo0ea6' /* Resubmit */,
-                                            ),
-                                            icon: const Icon(
-                                              Icons.swap_vert_sharp,
-                                              size: 15.0,
-                                            ),
-                                            options: FFButtonOptions(
-                                              width: MediaQuery.sizeOf(context)
-                                                      .width *
-                                                  0.35,
-                                              height: 50.0,
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .warning,
-                                              textStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmall
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmallFamily,
-                                                        color: Colors.white,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmallFamily),
-                                                      ),
-                                              elevation: 3.0,
-                                              borderSide: const BorderSide(
-                                                color: Colors.transparent,
-                                                width: 1.0,
+                                                elevation: 3.0,
+                                                borderSide: const BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                disabledColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
                                               ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                              disabledColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
                                             ),
                                           ),
                                         ),
