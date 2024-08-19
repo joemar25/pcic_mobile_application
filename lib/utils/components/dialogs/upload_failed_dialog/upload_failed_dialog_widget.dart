@@ -4,20 +4,19 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'ftp_upload_failed_dialog_model.dart';
-export 'ftp_upload_failed_dialog_model.dart';
+import 'upload_failed_dialog_model.dart';
+export 'upload_failed_dialog_model.dart';
 
-class FtpUploadFailedDialogWidget extends StatefulWidget {
-  const FtpUploadFailedDialogWidget({super.key});
+class UploadFailedDialogWidget extends StatefulWidget {
+  const UploadFailedDialogWidget({super.key});
 
   @override
-  State<FtpUploadFailedDialogWidget> createState() =>
-      _FtpUploadFailedDialogWidgetState();
+  State<UploadFailedDialogWidget> createState() =>
+      _UploadFailedDialogWidgetState();
 }
 
-class _FtpUploadFailedDialogWidgetState
-    extends State<FtpUploadFailedDialogWidget> {
-  late FtpUploadFailedDialogModel _model;
+class _UploadFailedDialogWidgetState extends State<UploadFailedDialogWidget> {
+  late UploadFailedDialogModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -28,7 +27,7 @@ class _FtpUploadFailedDialogWidgetState
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => FtpUploadFailedDialogModel());
+    _model = createModel(context, () => UploadFailedDialogModel());
   }
 
   @override
@@ -147,14 +146,13 @@ class _FtpUploadFailedDialogWidgetState
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
                             const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).warning,
+                        color: FlutterFlowTheme.of(context).error,
                         textStyle: FlutterFlowTheme.of(context)
                             .titleSmall
                             .override(
                               fontFamily:
                                   FlutterFlowTheme.of(context).titleSmallFamily,
-                              color: FlutterFlowTheme.of(context)
-                                  .primaryBackground,
+                              color: Colors.white,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.w500,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
