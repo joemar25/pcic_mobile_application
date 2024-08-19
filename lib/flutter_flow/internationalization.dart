@@ -253,7 +253,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'topmrzf4': {
+    'd9g2b153': {
       'en': '',
       'tl': '',
     },
@@ -265,7 +265,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'cqpn1gb9': {
+    'p42bgj9l': {
       'en': '',
       'tl': '',
     },
@@ -277,7 +277,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    '1jp8cwqs': {
+    '6zpd8zpy': {
       'en': '',
       'tl': '',
     },
@@ -1136,7 +1136,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
-  // noticePermissionDialog
+  // permissionDialog
   {
     'vsbe3eji': {
       'en': 'Notice',
@@ -1247,6 +1247,36 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'c75bzs2e': {
       'en': 'Continue',
+      'tl': '',
+    },
+  },
+  // fillOutAllFieldsDialog
+  {
+    'nfddva3z': {
+      'en': 'Alert',
+      'tl': '',
+    },
+    'ctq3a7as': {
+      'en': 'Please fill out all fields.',
+      'tl': '',
+    },
+    'nzt0dax8': {
+      'en': 'Okay',
+      'tl': '',
+    },
+  },
+  // ftpUploadFailedDialog
+  {
+    'v46c8giv': {
+      'en': 'Alert',
+      'tl': '',
+    },
+    '014tcrks': {
+      'en': 'Fail to upload to FTP.',
+      'tl': '',
+    },
+    'gn2n1vua': {
+      'en': 'Okay',
       'tl': '',
     },
   },

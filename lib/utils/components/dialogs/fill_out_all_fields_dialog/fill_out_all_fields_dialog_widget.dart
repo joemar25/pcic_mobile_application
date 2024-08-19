@@ -4,20 +4,20 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'notice_permission_dialog_model.dart';
-export 'notice_permission_dialog_model.dart';
+import 'fill_out_all_fields_dialog_model.dart';
+export 'fill_out_all_fields_dialog_model.dart';
 
-class NoticePermissionDialogWidget extends StatefulWidget {
-  const NoticePermissionDialogWidget({super.key});
+class FillOutAllFieldsDialogWidget extends StatefulWidget {
+  const FillOutAllFieldsDialogWidget({super.key});
 
   @override
-  State<NoticePermissionDialogWidget> createState() =>
-      _NoticePermissionDialogWidgetState();
+  State<FillOutAllFieldsDialogWidget> createState() =>
+      _FillOutAllFieldsDialogWidgetState();
 }
 
-class _NoticePermissionDialogWidgetState
-    extends State<NoticePermissionDialogWidget> {
-  late NoticePermissionDialogModel _model;
+class _FillOutAllFieldsDialogWidgetState
+    extends State<FillOutAllFieldsDialogWidget> {
+  late FillOutAllFieldsDialogModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -28,7 +28,7 @@ class _NoticePermissionDialogWidgetState
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => NoticePermissionDialogModel());
+    _model = createModel(context, () => FillOutAllFieldsDialogModel());
   }
 
   @override
@@ -44,7 +44,7 @@ class _NoticePermissionDialogWidgetState
       alignment: const AlignmentDirectional(0.0, 0.0),
       child: Container(
         width: 330.0,
-        height: 350.0,
+        height: 375.0,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).primaryBackground,
           borderRadius: BorderRadius.circular(24.0),
@@ -55,27 +55,13 @@ class _NoticePermissionDialogWidgetState
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Lottie.asset(
-                    'assets/lottie_animations/xZO2U5ItRT.json',
-                    width: 100.0,
-                    height: 100.0,
-                    fit: BoxFit.contain,
-                    frameRate: FrameRate(120.0),
-                    animate: true,
-                  ),
-                  Lottie.asset(
-                    'assets/lottie_animations/sev9ruk9ef.json',
-                    width: 100.0,
-                    height: 100.0,
-                    fit: BoxFit.cover,
-                    frameRate: FrameRate(120.0),
-                    animate: true,
-                  ),
-                ].divide(const SizedBox(width: 25.0)),
+              Lottie.asset(
+                'assets/lottie_animations/fillOutAllFields.json',
+                width: 150.0,
+                height: 150.0,
+                fit: BoxFit.cover,
+                frameRate: FrameRate(120.0),
+                animate: true,
               ),
               Column(
                 mainAxisSize: MainAxisSize.max,
@@ -91,7 +77,7 @@ class _NoticePermissionDialogWidgetState
                               alignment: const AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  'vsbe3eji' /* Notice */,
+                                  'nfddva3z' /* Alert */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .headlineLarge
@@ -121,7 +107,7 @@ class _NoticePermissionDialogWidgetState
                           alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
-                              'bsqylrb4' /* You must be Online and the Loc... */,
+                              'ctq3a7as' /* Please fill out all fields. */,
                             ),
                             textAlign: TextAlign.center,
                             style: FlutterFlowTheme.of(context)
@@ -153,7 +139,7 @@ class _NoticePermissionDialogWidgetState
                         Navigator.pop(context);
                       },
                       text: FFLocalizations.of(context).getText(
-                        'ighw54es' /* Okay */,
+                        'nzt0dax8' /* Okay */,
                       ),
                       options: FFButtonOptions(
                         height: 40.0,
@@ -161,7 +147,7 @@ class _NoticePermissionDialogWidgetState
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
                             const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).primary,
+                        color: FlutterFlowTheme.of(context).warning,
                         textStyle: FlutterFlowTheme.of(context)
                             .titleSmall
                             .override(
@@ -186,7 +172,7 @@ class _NoticePermissionDialogWidgetState
                   ),
                 ].divide(const SizedBox(width: 15.0)),
               ),
-            ].divide(const SizedBox(height: 20.0)),
+            ].divide(const SizedBox(height: 10.0)),
           ),
         ),
       ),

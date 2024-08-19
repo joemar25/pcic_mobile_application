@@ -12,6 +12,7 @@ import '/utils/components/dialogs/continue_cancel_dialog/continue_cancel_dialog_
 import '/utils/components/dialogs/continue_re_geotag_dialog/continue_re_geotag_dialog_widget.dart';
 import '/utils/components/dialogs/continue_save_dialog/continue_save_dialog_widget.dart';
 import '/utils/components/dialogs/continue_submit_dialog/continue_submit_dialog_widget.dart';
+import '/utils/components/dialogs/fill_out_all_fields_dialog/fill_out_all_fields_dialog_widget.dart';
 import '/utils/components/page_loader/page_loader_widget.dart';
 import '/utils/components/signature/signature_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
@@ -4221,19 +4222,23 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                         } else {
                                           await showDialog(
                                             context: context,
-                                            builder: (alertDialogContext) {
-                                              return AlertDialog(
-                                                title: const Text('Alert'),
-                                                content: const Text(
-                                                    'Fill out all fields.'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: const Text('Ok'),
-                                                  ),
-                                                ],
+                                            builder: (dialogContext) {
+                                              return Dialog(
+                                                elevation: 0,
+                                                insetPadding: EdgeInsets.zero,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                alignment: const AlignmentDirectional(
+                                                        0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                                child: GestureDetector(
+                                                  onTap: () => FocusScope.of(
+                                                          dialogContext)
+                                                      .unfocus(),
+                                                  child:
+                                                      const FillOutAllFieldsDialogWidget(),
+                                                ),
                                               );
                                             },
                                           );
@@ -4286,7 +4291,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                             .around(const SizedBox(width: 5.0)),
                       ),
                     ),
-                  ].divide(const SizedBox(height: 10.0)),
+                  ],
                 ),
               ),
             ),
