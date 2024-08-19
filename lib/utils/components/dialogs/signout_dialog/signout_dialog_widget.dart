@@ -1,4 +1,5 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -175,6 +176,15 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                   Expanded(
                     child: FFButtonWidget(
                       onPressed: () async {
+                        await UsersTable().update(
+                          data: {
+                            'is_online': false,
+                          },
+                          matchingRows: (rows) => rows.eq(
+                            'auth_user_id',
+                            currentUserUid,
+                          ),
+                        );
                         GoRouter.of(context).prepareAuthEvent();
                         await authManager.signOut();
                         GoRouter.of(context).clearRedirectLocation();

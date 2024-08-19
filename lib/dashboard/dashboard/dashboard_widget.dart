@@ -171,35 +171,11 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          if (kDebugMode) {
-                                            context.pushNamed(
-                                              'onoff',
-                                              extra: <String, dynamic>{
-                                                kTransitionInfoKey:
-                                                    const TransitionInfo(
-                                                  hasTransition: true,
-                                                  transitionType:
-                                                      PageTransitionType
-                                                          .rightToLeft,
-                                                  duration: Duration(
-                                                      milliseconds: 200),
-                                                ),
-                                              },
-                                            );
-                                          }
-                                        },
-                                        child: Icon(
-                                          Icons.home_rounded,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryBackground,
-                                          size: 34.0,
-                                        ),
+                                      Icon(
+                                        Icons.home_rounded,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
+                                        size: 34.0,
                                       ),
                                       Text(
                                         FFLocalizations.of(context).getText(
