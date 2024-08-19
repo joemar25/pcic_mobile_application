@@ -48,7 +48,6 @@ class _DashboardWidgetState extends State<DashboardWidget>
       if (RootPageContext.isInactiveRootPage(context)) {
         return;
       }
-      await actions.updateUserOnlineStatus();
       _model.loadLocalProfile = await actions.getTheSavedLocalProfile();
       _model.offlineTasks =
           await SQLiteManager.instance.oFFLINESelectAllTasksByAssignee(

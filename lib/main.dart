@@ -23,6 +23,7 @@ void main() async {
   // Start initial custom actions code
   await actions.initializeFMTCBackend();
   await actions.connected();
+  await actions.updateUserOnlineStatus();
   // End initial custom actions code
 
   await SupaFlow.initialize();
