@@ -23,12 +23,6 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   String? message;
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
-  // State field(s) for TextField widget.
-  final textFieldKey = GlobalKey();
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? textFieldSelectedOption;
-  String? Function(BuildContext, String?)? textControllerValidator;
   // State field(s) for TabBar widget.
   TabController? tabBarController;
   int get tabBarCurrentIndex =>
@@ -52,8 +46,6 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   @override
   void dispose() {
     connectivityModel.dispose();
-    textFieldFocusNode?.dispose();
-
     tabBarController?.dispose();
     tasksModels1.dispose();
     tasksModels2.dispose();
