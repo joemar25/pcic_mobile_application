@@ -201,7 +201,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                   children: [
                     Expanded(
                       child: Padding(
-                        padding: const EdgeInsets.all(10.0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            10.0, 10.0, 10.0, 0.0),
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -3727,7 +3728,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                     ),
                     Container(
                       width: MediaQuery.sizeOf(context).width * 1.0,
-                      height: MediaQuery.sizeOf(context).height * 0.05,
+                      height: MediaQuery.sizeOf(context).height * 0.07,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).primaryBackground,
                         borderRadius: BorderRadius.circular(0.0),
@@ -4285,7 +4286,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                             .around(const SizedBox(width: 5.0)),
                       ),
                     ),
-                  ],
+                  ].divide(const SizedBox(height: 10.0)),
                 ),
               ),
             ),

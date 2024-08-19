@@ -38,4 +38,10 @@ class UserLogsRow extends SupabaseDataRow {
 
   bool? get isDirty => getField<bool>('is_dirty');
   set isDirty(bool? value) => setField<bool>('is_dirty', value);
+
+  String? get taskId => getField<String>('task_id');
+  set taskId(String? value) => setField<String>('task_id', value);
+
+  String? get longlat => getField<String>('longlat');
+  set longlat(String? value) => setField<String>('longlat', value);
 }

@@ -233,8 +233,12 @@ dynamic deserializeParam<T>(
             return ChatsRow(data);
           case UserLogsRow:
             return UserLogsRow(data);
+          case SyncQueueRow:
+            return SyncQueueRow(data);
           case TasksRow:
             return TasksRow(data);
+          case SyncStatusRow:
+            return SyncStatusRow(data);
           case PpirFormsRow:
             return PpirFormsRow(data);
           case MessagesRow:

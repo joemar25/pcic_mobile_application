@@ -62,4 +62,7 @@ class UsersRow extends SupabaseDataRow {
 
   bool? get isDirty => getField<bool>('is_dirty');
   set isDirty(bool? value) => setField<bool>('is_dirty', value);
+
+  DateTime? get lastSeen => getField<DateTime>('last_seen');
+  set lastSeen(DateTime? value) => setField<DateTime>('last_seen', value);
 }

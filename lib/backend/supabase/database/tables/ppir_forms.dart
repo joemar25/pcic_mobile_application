@@ -108,8 +108,8 @@ class PpirFormsRow extends SupabaseDataRow {
   String? get ppirSvpAci => getField<String>('ppir_svp_aci');
   set ppirSvpAci(String? value) => setField<String>('ppir_svp_aci', value);
 
-  String get ppirSvpAct => getField<String>('ppir_svp_act')!;
-  set ppirSvpAct(String value) => setField<String>('ppir_svp_act', value);
+  String? get ppirSvpAct => getField<String>('ppir_svp_act');
+  set ppirSvpAct(String? value) => setField<String>('ppir_svp_act', value);
 
   String? get ppirVariety => getField<String>('ppir_variety');
   set ppirVariety(String? value) => setField<String>('ppir_variety', value);
