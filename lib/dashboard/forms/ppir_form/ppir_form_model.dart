@@ -14,8 +14,12 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
 
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in IconButton widget.
+  bool? confirmback;
   // Stores action output result for [Custom Action - generateTaskXml] action in Text widget.
   String? generatedTaskXmlFile;
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in repeatGeotagButtonT widget.
+  bool? confirmReGeotag;
   // Stores action output result for [Custom Action - getGpxLink] action in downloadButton widget.
   String? gpxLink;
   // State field(s) for ppir_track_coordinates widget.
@@ -83,6 +87,12 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
   TextEditingController? ppirConfirmedByNameFieldTextController;
   String? Function(BuildContext, String?)?
       ppirConfirmedByNameFieldTextControllerValidator;
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in cancelButton widget.
+  bool? confirmCancel;
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in saveButton widget.
+  bool? continueSave;
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in submitButton widget.
+  bool? continueSubmit;
   // Stores action output result for [Backend Call - Update Row(s)] action in submitButton widget.
   List<PpirFormsRow>? savePPIRCopy;
   // Stores action output result for [Custom Action - generateTaskXml] action in submitButton widget.

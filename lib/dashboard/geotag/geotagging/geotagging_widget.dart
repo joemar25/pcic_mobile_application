@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/utils/components/dialogs/continue_go_back_dialog/continue_go_back_dialog_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -154,86 +155,88 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                       Align(
                                         alignment:
                                             const AlignmentDirectional(0.85, -0.4),
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 50.0, 0.0, 0.0),
-                                          child: FlutterFlowIconButton(
-                                            borderColor: Colors.transparent,
-                                            borderRadius: 30.0,
-                                            borderWidth: 1.0,
-                                            buttonSize: 40.0,
-                                            fillColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primary,
-                                            icon: const Icon(
-                                              Icons.chevron_left_rounded,
-                                              color: Colors.white,
-                                              size: 20.0,
-                                            ),
-                                            onPressed: () async {
-                                              var confirmDialogResponse =
-                                                  await showDialog<bool>(
-                                                        context: context,
-                                                        builder:
-                                                            (alertDialogContext) {
-                                                          return AlertDialog(
-                                                            title:
-                                                                const Text('Alert'),
-                                                            content: const Text(
-                                                                'This will cancel the current progress of geotagging, are you sure?'),
-                                                            actions: [
-                                                              TextButton(
-                                                                onPressed: () =>
-                                                                    Navigator.pop(
-                                                                        alertDialogContext,
-                                                                        false),
-                                                                child: const Text(
-                                                                    'Cancel'),
-                                                              ),
-                                                              TextButton(
-                                                                onPressed: () =>
-                                                                    Navigator.pop(
-                                                                        alertDialogContext,
-                                                                        true),
-                                                                child: const Text(
-                                                                    'Confirm'),
-                                                              ),
-                                                            ],
-                                                          );
-                                                        },
-                                                      ) ??
-                                                      false;
-                                              if (confirmDialogResponse) {
-                                                context.pushNamed(
-                                                  'taskDetails',
-                                                  queryParameters: {
-                                                    'taskId': serializeParam(
-                                                      widget.taskId,
-                                                      ParamType.String,
-                                                    ),
-                                                    'taskStatus':
-                                                        serializeParam(
-                                                      widget.taskStatus,
-                                                      ParamType.String,
-                                                    ),
-                                                  }.withoutNulls,
-                                                  extra: <String, dynamic>{
-                                                    kTransitionInfoKey:
-                                                        const TransitionInfo(
-                                                      hasTransition: true,
-                                                      transitionType:
-                                                          PageTransitionType
-                                                              .bottomToTop,
-                                                      duration: Duration(
-                                                          milliseconds: 200),
-                                                    ),
+                                        child: Builder(
+                                          builder: (context) => Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 50.0, 0.0, 0.0),
+                                            child: FlutterFlowIconButton(
+                                              borderColor: Colors.transparent,
+                                              borderRadius: 30.0,
+                                              borderWidth: 1.0,
+                                              buttonSize: 40.0,
+                                              fillColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              icon: const Icon(
+                                                Icons.chevron_left_rounded,
+                                                color: Colors.white,
+                                                size: 20.0,
+                                              ),
+                                              onPressed: () async {
+                                                await showDialog(
+                                                  context: context,
+                                                  builder: (dialogContext) {
+                                                    return Dialog(
+                                                      elevation: 0,
+                                                      insetPadding:
+                                                          EdgeInsets.zero,
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                                  0.0, 0.0)
+                                                              .resolve(
+                                                                  Directionality.of(
+                                                                      context)),
+                                                      child: GestureDetector(
+                                                        onTap: () =>
+                                                            FocusScope.of(
+                                                                    dialogContext)
+                                                                .unfocus(),
+                                                        child:
+                                                            const ContinueGoBackDialogWidget(),
+                                                      ),
+                                                    );
                                                   },
-                                                );
-                                              }
-                                              FFAppState().routeStarted = false;
-                                              FFAppState().update(() {});
-                                            },
+                                                ).then((value) => safeSetState(
+                                                    () => _model.confirmBack =
+                                                        value));
+
+                                                if (_model.confirmBack!) {
+                                                  context.pushNamed(
+                                                    'taskDetails',
+                                                    queryParameters: {
+                                                      'taskId': serializeParam(
+                                                        widget.taskId,
+                                                        ParamType.String,
+                                                      ),
+                                                      'taskStatus':
+                                                          serializeParam(
+                                                        widget.taskStatus,
+                                                        ParamType.String,
+                                                      ),
+                                                    }.withoutNulls,
+                                                    extra: <String, dynamic>{
+                                                      kTransitionInfoKey:
+                                                          const TransitionInfo(
+                                                        hasTransition: true,
+                                                        transitionType:
+                                                            PageTransitionType
+                                                                .bottomToTop,
+                                                        duration: Duration(
+                                                            milliseconds: 200),
+                                                      ),
+                                                    },
+                                                  );
+                                                }
+                                                FFAppState().routeStarted =
+                                                    false;
+                                                FFAppState().update(() {});
+
+                                                setState(() {});
+                                              },
+                                            ),
                                           ),
                                         ),
                                       ),

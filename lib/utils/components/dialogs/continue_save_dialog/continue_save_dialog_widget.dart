@@ -205,7 +205,7 @@ class _ContinueSaveDialogWidgetState extends State<ContinueSaveDialogWidget> {
                   ),
                 ].divide(const SizedBox(width: 15.0)),
               ),
-            ].divide(const SizedBox(height: 20.0)),
+            ].divide(const SizedBox(height: 10.0)),
           ),
         ),
       ),

@@ -13,6 +13,8 @@ class GeotaggingModel extends FlutterFlowModel<GeotaggingWidget> {
 
   // Stores action output result for [Custom Action - fetchAddressFromCoordinates] action in geotagging widget.
   dynamic getCurrentLocationAddress;
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in back widget.
+  bool? confirmBack;
 
   @override
   void initState(BuildContext context) {}

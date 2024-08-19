@@ -8,6 +8,10 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
+import '/utils/components/dialogs/continue_cancel_dialog/continue_cancel_dialog_widget.dart';
+import '/utils/components/dialogs/continue_re_geotag_dialog/continue_re_geotag_dialog_widget.dart';
+import '/utils/components/dialogs/continue_save_dialog/continue_save_dialog_widget.dart';
+import '/utils/components/dialogs/continue_submit_dialog/continue_submit_dialog_widget.dart';
 import '/utils/components/page_loader/page_loader_widget.dart';
 import '/utils/components/signature/signature_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
@@ -105,63 +109,63 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
               appBar: AppBar(
                 backgroundColor: FlutterFlowTheme.of(context).primary,
                 automaticallyImplyLeading: false,
-                leading: FlutterFlowIconButton(
-                  borderColor: Colors.transparent,
-                  borderRadius: 30.0,
-                  borderWidth: 1.0,
-                  buttonSize: 60.0,
-                  icon: Icon(
-                    Icons.chevron_left,
-                    color: FlutterFlowTheme.of(context).primaryBackground,
-                    size: 30.0,
-                  ),
-                  onPressed: () async {
-                    var confirmDialogResponse = await showDialog<bool>(
-                          context: context,
-                          builder: (alertDialogContext) {
-                            return AlertDialog(
-                              title: const Text('Info'),
-                              content: const Text(
-                                  'This will cancel your current progress in the tasks. Are you sure to cancel?'),
-                              actions: [
-                                TextButton(
-                                  onPressed: () =>
-                                      Navigator.pop(alertDialogContext, false),
-                                  child: const Text('Cancel'),
-                                ),
-                                TextButton(
-                                  onPressed: () =>
-                                      Navigator.pop(alertDialogContext, true),
-                                  child: const Text('Confirm'),
-                                ),
-                              ],
-                            );
-                          },
-                        ) ??
-                        false;
-                    if (confirmDialogResponse) {
-                      context.goNamed(
-                        'taskDetails',
-                        queryParameters: {
-                          'taskId': serializeParam(
-                            widget.taskId,
-                            ParamType.String,
-                          ),
-                          'taskStatus': serializeParam(
-                            'ongoing',
-                            ParamType.String,
-                          ),
-                        }.withoutNulls,
-                        extra: <String, dynamic>{
-                          kTransitionInfoKey: const TransitionInfo(
-                            hasTransition: true,
-                            transitionType: PageTransitionType.topToBottom,
-                            duration: Duration(milliseconds: 200),
-                          ),
+                leading: Builder(
+                  builder: (context) => FlutterFlowIconButton(
+                    borderColor: Colors.transparent,
+                    borderRadius: 30.0,
+                    borderWidth: 1.0,
+                    buttonSize: 60.0,
+                    icon: Icon(
+                      Icons.chevron_left,
+                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      size: 30.0,
+                    ),
+                    onPressed: () async {
+                      await showDialog(
+                        context: context,
+                        builder: (dialogContext) {
+                          return Dialog(
+                            elevation: 0,
+                            insetPadding: EdgeInsets.zero,
+                            backgroundColor: Colors.transparent,
+                            alignment: const AlignmentDirectional(0.0, 0.0)
+                                .resolve(Directionality.of(context)),
+                            child: GestureDetector(
+                              onTap: () =>
+                                  FocusScope.of(dialogContext).unfocus(),
+                              child: const ContinueCancelDialogWidget(),
+                            ),
+                          );
                         },
-                      );
-                    }
-                  },
+                      ).then((value) =>
+                          safeSetState(() => _model.confirmback = value));
+
+                      if (_model.confirmback!) {
+                        context.goNamed(
+                          'taskDetails',
+                          queryParameters: {
+                            'taskId': serializeParam(
+                              widget.taskId,
+                              ParamType.String,
+                            ),
+                            'taskStatus': serializeParam(
+                              'ongoing',
+                              ParamType.String,
+                            ),
+                          }.withoutNulls,
+                          extra: <String, dynamic>{
+                            kTransitionInfoKey: const TransitionInfo(
+                              hasTransition: true,
+                              transitionType: PageTransitionType.topToBottom,
+                              duration: Duration(milliseconds: 200),
+                            ),
+                          },
+                        );
+                      }
+
+                      setState(() {});
+                    },
+                  ),
                 ),
                 title: Row(
                   mainAxisSize: MainAxisSize.max,
@@ -621,152 +625,165 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         alignment:
                                                             const AlignmentDirectional(
                                                                 0.0, 0.0),
-                                                        child: FFButtonWidget(
-                                                          onPressed: () async {
-                                                            var confirmDialogResponse =
-                                                                await showDialog<
-                                                                        bool>(
-                                                                      context:
-                                                                          context,
-                                                                      builder:
-                                                                          (alertDialogContext) {
-                                                                        return AlertDialog(
-                                                                          title:
-                                                                              const Text('Info'),
-                                                                          content:
-                                                                              const Text('The current gpx file will be deleted. Are you sure?'),
-                                                                          actions: [
-                                                                            TextButton(
-                                                                              onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                              child: const Text('Cancel'),
-                                                                            ),
-                                                                            TextButton(
-                                                                              onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                              child: const Text('Confirm'),
-                                                                            ),
-                                                                          ],
-                                                                        );
-                                                                      },
-                                                                    ) ??
-                                                                    false;
-                                                            if (confirmDialogResponse) {
-                                                              if (FFAppState()
-                                                                  .ONLINE) {
-                                                                await PpirFormsTable()
-                                                                    .update(
-                                                                  data: {
-                                                                    'gpx': '',
-                                                                  },
-                                                                  matchingRows:
-                                                                      (rows) =>
-                                                                          rows.eq(
-                                                                    'task_id',
-                                                                    widget
-                                                                        .taskId,
-                                                                  ),
+                                                        child: Builder(
+                                                          builder: (context) =>
+                                                              FFButtonWidget(
+                                                            onPressed:
+                                                                () async {
+                                                              await showDialog(
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (dialogContext) {
+                                                                  return Dialog(
+                                                                    elevation:
+                                                                        0,
+                                                                    insetPadding:
+                                                                        EdgeInsets
+                                                                            .zero,
+                                                                    backgroundColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0)
+                                                                        .resolve(
+                                                                            Directionality.of(context)),
+                                                                    child:
+                                                                        GestureDetector(
+                                                                      onTap: () =>
+                                                                          FocusScope.of(dialogContext)
+                                                                              .unfocus(),
+                                                                      child:
+                                                                          const ContinueReGeotagDialogWidget(),
+                                                                    ),
+                                                                  );
+                                                                },
+                                                              ).then((value) =>
+                                                                  safeSetState(() =>
+                                                                      _model.confirmReGeotag =
+                                                                          value));
+
+                                                              if (_model
+                                                                  .confirmReGeotag!) {
+                                                                if (FFAppState()
+                                                                    .ONLINE) {
+                                                                  await PpirFormsTable()
+                                                                      .update(
+                                                                    data: {
+                                                                      'gpx': '',
+                                                                    },
+                                                                    matchingRows:
+                                                                        (rows) =>
+                                                                            rows.eq(
+                                                                      'task_id',
+                                                                      widget
+                                                                          .taskId,
+                                                                    ),
+                                                                  );
+                                                                }
+                                                                await SQLiteManager
+                                                                    .instance
+                                                                    .updatePPIRFormGpx(
+                                                                  taskId: widget
+                                                                      .taskId,
+                                                                  gpx: ' ',
+                                                                );
+
+                                                                context
+                                                                    .pushNamed(
+                                                                  'geotagging',
+                                                                  queryParameters:
+                                                                      {
+                                                                    'taskId':
+                                                                        serializeParam(
+                                                                      widget
+                                                                          .taskId,
+                                                                      ParamType
+                                                                          .String,
+                                                                    ),
+                                                                    'taskType':
+                                                                        serializeParam(
+                                                                      'ppir',
+                                                                      ParamType
+                                                                          .String,
+                                                                    ),
+                                                                    'taskStatus':
+                                                                        serializeParam(
+                                                                      'ongoing',
+                                                                      ParamType
+                                                                          .String,
+                                                                    ),
+                                                                    'assignmentId':
+                                                                        serializeParam(
+                                                                      ppirFormSelectPpirFormsRowList
+                                                                          .first
+                                                                          .ppirAssignmentid,
+                                                                      ParamType
+                                                                          .String,
+                                                                    ),
+                                                                  }.withoutNulls,
                                                                 );
                                                               }
-                                                              await SQLiteManager
-                                                                  .instance
-                                                                  .updatePPIRFormGpx(
-                                                                taskId: widget
-                                                                    .taskId,
-                                                                gpx: ' ',
-                                                              );
 
-                                                              context.pushNamed(
-                                                                'geotagging',
-                                                                queryParameters:
-                                                                    {
-                                                                  'taskId':
-                                                                      serializeParam(
-                                                                    widget
-                                                                        .taskId,
-                                                                    ParamType
-                                                                        .String,
-                                                                  ),
-                                                                  'taskType':
-                                                                      serializeParam(
-                                                                    'ppir',
-                                                                    ParamType
-                                                                        .String,
-                                                                  ),
-                                                                  'taskStatus':
-                                                                      serializeParam(
-                                                                    'ongoing',
-                                                                    ParamType
-                                                                        .String,
-                                                                  ),
-                                                                  'assignmentId':
-                                                                      serializeParam(
-                                                                    ppirFormSelectPpirFormsRowList
-                                                                        .first
-                                                                        .ppirAssignmentid,
-                                                                    ParamType
-                                                                        .String,
-                                                                  ),
-                                                                }.withoutNulls,
-                                                              );
-                                                            }
-                                                          },
-                                                          text: FFLocalizations
-                                                                  .of(context)
-                                                              .getText(
-                                                            'vlpe8yky' /* Repeat Geotag */,
-                                                          ),
-                                                          icon: const Icon(
-                                                            Icons.map_outlined,
-                                                            size: 15.0,
-                                                          ),
-                                                          options:
-                                                              FFButtonOptions(
-                                                            height: 40.0,
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        24.0,
-                                                                        0.0,
-                                                                        24.0,
-                                                                        0.0),
-                                                            iconPadding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            color: FlutterFlowTheme
+                                                              setState(() {});
+                                                            },
+                                                            text: FFLocalizations
                                                                     .of(context)
-                                                                .primary,
-                                                            textStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .titleSmallFamily,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryBackground,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).titleSmallFamily),
-                                                                    ),
-                                                            elevation: 3.0,
-                                                            borderSide:
-                                                                const BorderSide(
-                                                              color: Colors
-                                                                  .transparent,
-                                                              width: 1.0,
+                                                                .getText(
+                                                              'vlpe8yky' /* Repeat Geotag */,
                                                             ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8.0),
+                                                            icon: const Icon(
+                                                              Icons
+                                                                  .map_outlined,
+                                                              size: 15.0,
+                                                            ),
+                                                            options:
+                                                                FFButtonOptions(
+                                                              height: 40.0,
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          24.0,
+                                                                          0.0,
+                                                                          24.0,
+                                                                          0.0),
+                                                              iconPadding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primary,
+                                                              textStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            FlutterFlowTheme.of(context).titleSmallFamily,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryBackground,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                                                                      ),
+                                                              elevation: 3.0,
+                                                              borderSide:
+                                                                  const BorderSide(
+                                                                color: Colors
+                                                                    .transparent,
+                                                                width: 1.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
@@ -3720,505 +3737,49 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          FFButtonWidget(
-                            onPressed: () async {
-                              var confirmDialogResponse =
-                                  await showDialog<bool>(
-                                        context: context,
-                                        builder: (alertDialogContext) {
-                                          return AlertDialog(
-                                            title: const Text('Info'),
-                                            content: const Text(
-                                                'This will cancel your current progress in the tasks. Are you sure to cancel?'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext, false),
-                                                child: const Text('Cancel'),
-                                              ),
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext, true),
-                                                child: const Text('Confirm'),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      ) ??
-                                      false;
-                              if (confirmDialogResponse) {
-                                context.pushNamed(
-                                  'dashboard',
-                                  extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
-                                      hasTransition: true,
-                                      transitionType: PageTransitionType.fade,
-                                      duration: Duration(milliseconds: 0),
-                                    ),
+                          Builder(
+                            builder: (context) => FFButtonWidget(
+                              onPressed: () async {
+                                await showDialog(
+                                  context: context,
+                                  builder: (dialogContext) {
+                                    return Dialog(
+                                      elevation: 0,
+                                      insetPadding: EdgeInsets.zero,
+                                      backgroundColor: Colors.transparent,
+                                      alignment: const AlignmentDirectional(0.0, 0.0)
+                                          .resolve(Directionality.of(context)),
+                                      child: GestureDetector(
+                                        onTap: () =>
+                                            FocusScope.of(dialogContext)
+                                                .unfocus(),
+                                        child: const ContinueCancelDialogWidget(),
+                                      ),
+                                    );
                                   },
-                                );
-                              }
-                            },
-                            text: FFLocalizations.of(context).getText(
-                              'aae0jxzm' /* Cancel */,
-                            ),
-                            icon: const Icon(
-                              Icons.cancel_presentation_sharp,
-                              size: 15.0,
-                            ),
-                            options: FFButtonOptions(
-                              width: 120.0,
-                              height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).error,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .titleSmallFamily,
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .titleSmallFamily),
-                                  ),
-                              elevation: 3.0,
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                          ),
-                          FFButtonWidget(
-                            onPressed: () async {
-                              var confirmDialogResponse =
-                                  await showDialog<bool>(
-                                        context: context,
-                                        builder: (alertDialogContext) {
-                                          return AlertDialog(
-                                            title: const Text('Info'),
-                                            content: const Text(
-                                                'Do you want to save the data above?'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext, false),
-                                                child: const Text('Cancel'),
-                                              ),
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext, true),
-                                                child: const Text('Confirm'),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      ) ??
-                                      false;
-                              if (confirmDialogResponse) {
-                                if (FFAppState().ONLINE) {
-                                  await SQLiteManager.instance.updatePPIRForm(
-                                    taskId: widget.taskId,
-                                    ppirSvpAct: _model.ppirSvpActSelectionValue,
-                                    ppirDopdsAct: _model
-                                        .ppirAreaDopDsFieldTextController.text,
-                                    ppirDoptpAct: _model
-                                        .ppirAreaDopTpFieldTextController.text,
-                                    ppirRemarks: _model
-                                        .ppirRemarksFieldTextController.text,
-                                    ppirNameInsured: _model
-                                        .ppirPreparedByNameFieldTextController
-                                        .text,
-                                    ppirNameIuia: _model
-                                        .ppirConfirmedByNameFieldTextController
-                                        .text,
-                                    ppirFarmloc: _model
-                                        .ppirTrackFarmlocTextController.text,
-                                    ppirAreaAct: _model
-                                        .ppirAreaActFieldTextController.text,
-                                    ppirVariety:
-                                        _model.ppirSvpActSelectionValue ==
-                                                'rice'
-                                            ? _model.riceDropdownValue
-                                            : _model.cornDropdownValue,
-                                    isDirty: false,
-                                  );
-                                  await PpirFormsTable().update(
-                                    data: {
-                                      'ppir_svp_act':
-                                          _model.ppirSvpActSelectionValue,
-                                      'ppir_dopds_act': _model
-                                          .ppirAreaDopDsFieldTextController
-                                          .text,
-                                      'ppir_doptp_act': _model
-                                          .ppirAreaDopTpFieldTextController
-                                          .text,
-                                      'ppir_remarks': _model
-                                          .ppirRemarksFieldTextController.text,
-                                      'ppir_name_insured': _model
-                                          .ppirPreparedByNameFieldTextController
-                                          .text,
-                                      'ppir_name_iuia': _model
-                                          .ppirConfirmedByNameFieldTextController
-                                          .text,
-                                      'ppir_farmloc': _model
-                                          .ppirTrackFarmlocTextController.text,
-                                      'ppir_area_act': _model
-                                          .ppirAreaActFieldTextController.text,
-                                      'ppir_variety':
-                                          _model.ppirSvpActSelectionValue ==
-                                                  'rice'
-                                              ? _model.riceDropdownValue
-                                              : _model.cornDropdownValue,
+                                ).then((value) => safeSetState(
+                                    () => _model.confirmCancel = value));
+
+                                if (_model.confirmCancel!) {
+                                  context.pushNamed(
+                                    'dashboard',
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: const TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
+                                      ),
                                     },
-                                    matchingRows: (rows) => rows.eq(
-                                      'task_id',
-                                      widget.taskId,
-                                    ),
-                                  );
-                                  await TasksTable().update(
-                                    data: {
-                                      'status': 'ongoing',
-                                    },
-                                    matchingRows: (rows) => rows.eq(
-                                      'id',
-                                      widget.taskId,
-                                    ),
-                                  );
-                                } else {
-                                  await SQLiteManager.instance.updatePPIRForm(
-                                    taskId: widget.taskId,
-                                    ppirSvpAct: _model.ppirSvpActSelectionValue,
-                                    ppirDopdsAct: _model
-                                        .ppirAreaDopDsFieldTextController.text,
-                                    ppirDoptpAct: _model
-                                        .ppirAreaDopTpFieldTextController.text,
-                                    ppirRemarks: _model
-                                        .ppirRemarksFieldTextController.text,
-                                    ppirNameInsured: _model
-                                        .ppirPreparedByNameFieldTextController
-                                        .text,
-                                    ppirNameIuia: _model
-                                        .ppirConfirmedByNameFieldTextController
-                                        .text,
-                                    ppirFarmloc: _model
-                                        .ppirTrackFarmlocTextController.text,
-                                    ppirAreaAct: _model
-                                        .ppirAreaActFieldTextController.text,
-                                    ppirVariety:
-                                        _model.ppirSvpActSelectionValue ==
-                                                'rice'
-                                            ? _model.riceDropdownValue
-                                            : _model.cornDropdownValue,
-                                    isDirty: true,
                                   );
                                 }
 
-                                await SQLiteManager.instance.updateTaskStatus(
-                                  taskId: widget.taskId,
-                                  status: 'ongoing',
-                                );
-
-                                context.pushNamed(
-                                  'formSuccess',
-                                  queryParameters: {
-                                    'taskId': serializeParam(
-                                      widget.taskId,
-                                      ParamType.String,
-                                    ),
-                                    'type': serializeParam(
-                                      'save',
-                                      ParamType.String,
-                                    ),
-                                  }.withoutNulls,
-                                  extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
-                                      hasTransition: true,
-                                      transitionType: PageTransitionType.scale,
-                                      alignment: Alignment.bottomCenter,
-                                      duration: Duration(milliseconds: 200),
-                                    ),
-                                  },
-                                );
-                              }
-                            },
-                            text: FFLocalizations.of(context).getText(
-                              'lgxphrlo' /* Save */,
-                            ),
-                            icon: const Icon(
-                              Icons.save,
-                              size: 15.0,
-                            ),
-                            options: FFButtonOptions(
-                              width: 120.0,
-                              height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).earthYellow,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .titleSmallFamily,
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .titleSmallFamily),
-                                  ),
-                              elevation: 3.0,
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                          ),
-                          if (FFAppState().ONLINE)
-                            FFButtonWidget(
-                              onPressed: !FFAppState().ONLINE
-                                  ? null
-                                  : () async {
-                                      if ((_model.ppirTrackCoordinatesTextController.text != '') &&
-                                          (_model.ppirTrackTotalAreaTextController1.text !=
-                                                  '') &&
-                                          (_model.ppirTrackDateTimeTextController.text !=
-                                                  '') &&
-                                          (_model.ppirTrackTotalAreaTextController2.text !=
-                                                  '') &&
-                                          (_model.ppirTrackFarmlocTextController.text !=
-                                                  '') &&
-                                          (_model.ppirSvpActSelectionValue != null &&
-                                              _model.ppirSvpActSelectionValue !=
-                                                  '') &&
-                                          (_model.ppirAreaActFieldTextController.text !=
-                                                  '') &&
-                                          (_model.ppirAreaDopDsFieldTextController.text !=
-                                                  '') &&
-                                          (_model.ppirAreaDopTpFieldTextController.text !=
-                                                  '') &&
-                                          (_model.ppirRemarksFieldTextController.text !=
-                                                  '') &&
-                                          (_model.ppirPreparedByNameFieldTextController
-                                                      .text !=
-                                                  '') &&
-                                          (_model.ppirConfirmedByNameFieldTextController.text != '')) {
-                                        var confirmDialogResponse =
-                                            await showDialog<bool>(
-                                                  context: context,
-                                                  builder:
-                                                      (alertDialogContext) {
-                                                    return AlertDialog(
-                                                      title: const Text('Info'),
-                                                      content: const Text(
-                                                          'Do you want to Submit all the data above?'),
-                                                      actions: [
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext,
-                                                                  false),
-                                                          child: const Text('Cancel'),
-                                                        ),
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext,
-                                                                  true),
-                                                          child:
-                                                              const Text('Confirm'),
-                                                        ),
-                                                      ],
-                                                    );
-                                                  },
-                                                ) ??
-                                                false;
-                                        if (confirmDialogResponse) {
-                                          await SQLiteManager.instance
-                                              .updatePPIRForm(
-                                            taskId: widget.taskId,
-                                            ppirSvpAct:
-                                                _model.ppirSvpActSelectionValue,
-                                            ppirDopdsAct: _model
-                                                .ppirAreaDopDsFieldTextController
-                                                .text,
-                                            ppirDoptpAct: _model
-                                                .ppirAreaDopTpFieldTextController
-                                                .text,
-                                            ppirRemarks: _model
-                                                .ppirRemarksFieldTextController
-                                                .text,
-                                            ppirNameInsured: _model
-                                                .ppirPreparedByNameFieldTextController
-                                                .text,
-                                            ppirNameIuia: _model
-                                                .ppirConfirmedByNameFieldTextController
-                                                .text,
-                                            ppirFarmloc: _model
-                                                .ppirTrackFarmlocTextController
-                                                .text,
-                                            ppirAreaAct: _model
-                                                .ppirAreaActFieldTextController
-                                                .text,
-                                            ppirVariety:
-                                                _model.ppirSvpActSelectionValue ==
-                                                        'rice'
-                                                    ? _model.riceDropdownValue
-                                                    : _model.cornDropdownValue,
-                                            isDirty: false,
-                                          );
-                                          await PpirFormsTable().update(
-                                            data: {
-                                              'ppir_svp_act': _model
-                                                  .ppirSvpActSelectionValue,
-                                              'ppir_dopds_act': _model
-                                                  .ppirAreaDopDsFieldTextController
-                                                  .text,
-                                              'ppir_doptp_act': _model
-                                                  .ppirAreaDopTpFieldTextController
-                                                  .text,
-                                              'ppir_remarks': _model
-                                                  .ppirRemarksFieldTextController
-                                                  .text,
-                                              'ppir_name_insured': _model
-                                                  .ppirPreparedByNameFieldTextController
-                                                  .text,
-                                              'ppir_name_iuia': _model
-                                                  .ppirConfirmedByNameFieldTextController
-                                                  .text,
-                                              'ppir_farmloc': _model
-                                                  .ppirTrackFarmlocTextController
-                                                  .text,
-                                              'ppir_area_act': _model
-                                                  .ppirAreaActFieldTextController
-                                                  .text,
-                                              'ppir_variety':
-                                                  _model.ppirSvpActSelectionValue ==
-                                                          'rice'
-                                                      ? _model.riceDropdownValue
-                                                      : _model
-                                                          .cornDropdownValue,
-                                            },
-                                            matchingRows: (rows) => rows.eq(
-                                              'task_id',
-                                              widget.taskId,
-                                            ),
-                                          );
-                                          await TasksTable().update(
-                                            data: {
-                                              'status': 'completed',
-                                            },
-                                            matchingRows: (rows) => rows.eq(
-                                              'id',
-                                              widget.taskId,
-                                            ),
-                                          );
-                                          await SQLiteManager.instance
-                                              .updateTaskStatus(
-                                            taskId: widget.taskId,
-                                            status: 'completed',
-                                          );
-                                          await actions.saveBlobToBucket(
-                                            widget.taskId,
-                                          );
-                                          _model.generatedXML =
-                                              await actions.generateTaskXml(
-                                            widget.taskId,
-                                          );
-                                          await actions.saveTaskXml(
-                                            _model.generatedXML,
-                                            widget.taskId,
-                                          );
-                                          _model.isFtpSaved =
-                                              await actions.saveToFTP(
-                                            widget.taskId,
-                                          );
-                                          if (_model.isFtpSaved!) {
-                                            context.goNamed(
-                                              'formSuccess',
-                                              queryParameters: {
-                                                'taskId': serializeParam(
-                                                  widget.taskId,
-                                                  ParamType.String,
-                                                ),
-                                                'type': serializeParam(
-                                                  'save',
-                                                  ParamType.String,
-                                                ),
-                                              }.withoutNulls,
-                                              extra: <String, dynamic>{
-                                                kTransitionInfoKey:
-                                                    const TransitionInfo(
-                                                  hasTransition: true,
-                                                  transitionType:
-                                                      PageTransitionType.scale,
-                                                  alignment:
-                                                      Alignment.bottomCenter,
-                                                  duration: Duration(
-                                                      milliseconds: 200),
-                                                ),
-                                              },
-                                            );
-                                          } else {
-                                            context.goNamed(
-                                              'fail',
-                                              queryParameters: {
-                                                'error': serializeParam(
-                                                  'Fail to submit FTP!',
-                                                  ParamType.String,
-                                                ),
-                                              }.withoutNulls,
-                                              extra: <String, dynamic>{
-                                                kTransitionInfoKey:
-                                                    const TransitionInfo(
-                                                  hasTransition: true,
-                                                  transitionType:
-                                                      PageTransitionType.scale,
-                                                  alignment:
-                                                      Alignment.bottomCenter,
-                                                  duration: Duration(
-                                                      milliseconds: 200),
-                                                ),
-                                              },
-                                            );
-                                          }
-                                        }
-                                      } else {
-                                        await showDialog(
-                                          context: context,
-                                          builder: (alertDialogContext) {
-                                            return AlertDialog(
-                                              title: const Text('Alert'),
-                                              content:
-                                                  const Text('Fill out all fields.'),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext),
-                                                  child: const Text('Ok'),
-                                                ),
-                                              ],
-                                            );
-                                          },
-                                        );
-                                      }
-
-                                      setState(() {});
-                                    },
+                                setState(() {});
+                              },
                               text: FFLocalizations.of(context).getText(
-                                'wrod6how' /* Submit */,
+                                'aae0jxzm' /* Cancel */,
                               ),
                               icon: const Icon(
-                                Icons.check_sharp,
+                                Icons.cancel_presentation_sharp,
                                 size: 15.0,
                               ),
                               options: FFButtonOptions(
@@ -4228,7 +3789,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                     0.0, 0.0, 0.0, 0.0),
                                 iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
-                                color: FlutterFlowTheme.of(context).primary,
+                                color: FlutterFlowTheme.of(context).error,
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
@@ -4247,10 +3808,476 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                   width: 1.0,
                                 ),
                                 borderRadius: BorderRadius.circular(8.0),
-                                disabledColor:
-                                    FlutterFlowTheme.of(context).error,
-                                disabledTextColor:
-                                    FlutterFlowTheme.of(context).primaryText,
+                              ),
+                            ),
+                          ),
+                          Builder(
+                            builder: (context) => FFButtonWidget(
+                              onPressed: () async {
+                                await showDialog(
+                                  context: context,
+                                  builder: (dialogContext) {
+                                    return Dialog(
+                                      elevation: 0,
+                                      insetPadding: EdgeInsets.zero,
+                                      backgroundColor: Colors.transparent,
+                                      alignment: const AlignmentDirectional(0.0, 0.0)
+                                          .resolve(Directionality.of(context)),
+                                      child: GestureDetector(
+                                        onTap: () =>
+                                            FocusScope.of(dialogContext)
+                                                .unfocus(),
+                                        child: const ContinueSaveDialogWidget(),
+                                      ),
+                                    );
+                                  },
+                                ).then((value) => safeSetState(
+                                    () => _model.continueSave = value));
+
+                                if (_model.continueSave!) {
+                                  if (FFAppState().ONLINE) {
+                                    await SQLiteManager.instance.updatePPIRForm(
+                                      taskId: widget.taskId,
+                                      ppirSvpAct:
+                                          _model.ppirSvpActSelectionValue,
+                                      ppirDopdsAct: _model
+                                          .ppirAreaDopDsFieldTextController
+                                          .text,
+                                      ppirDoptpAct: _model
+                                          .ppirAreaDopTpFieldTextController
+                                          .text,
+                                      ppirRemarks: _model
+                                          .ppirRemarksFieldTextController.text,
+                                      ppirNameInsured: _model
+                                          .ppirPreparedByNameFieldTextController
+                                          .text,
+                                      ppirNameIuia: _model
+                                          .ppirConfirmedByNameFieldTextController
+                                          .text,
+                                      ppirFarmloc: _model
+                                          .ppirTrackFarmlocTextController.text,
+                                      ppirAreaAct: _model
+                                          .ppirAreaActFieldTextController.text,
+                                      ppirVariety:
+                                          _model.ppirSvpActSelectionValue ==
+                                                  'rice'
+                                              ? _model.riceDropdownValue
+                                              : _model.cornDropdownValue,
+                                      isDirty: false,
+                                    );
+                                    await PpirFormsTable().update(
+                                      data: {
+                                        'ppir_svp_act':
+                                            _model.ppirSvpActSelectionValue,
+                                        'ppir_dopds_act': _model
+                                            .ppirAreaDopDsFieldTextController
+                                            .text,
+                                        'ppir_doptp_act': _model
+                                            .ppirAreaDopTpFieldTextController
+                                            .text,
+                                        'ppir_remarks': _model
+                                            .ppirRemarksFieldTextController
+                                            .text,
+                                        'ppir_name_insured': _model
+                                            .ppirPreparedByNameFieldTextController
+                                            .text,
+                                        'ppir_name_iuia': _model
+                                            .ppirConfirmedByNameFieldTextController
+                                            .text,
+                                        'ppir_farmloc': _model
+                                            .ppirTrackFarmlocTextController
+                                            .text,
+                                        'ppir_area_act': _model
+                                            .ppirAreaActFieldTextController
+                                            .text,
+                                        'ppir_variety':
+                                            _model.ppirSvpActSelectionValue ==
+                                                    'rice'
+                                                ? _model.riceDropdownValue
+                                                : _model.cornDropdownValue,
+                                      },
+                                      matchingRows: (rows) => rows.eq(
+                                        'task_id',
+                                        widget.taskId,
+                                      ),
+                                    );
+                                    await TasksTable().update(
+                                      data: {
+                                        'status': 'ongoing',
+                                      },
+                                      matchingRows: (rows) => rows.eq(
+                                        'id',
+                                        widget.taskId,
+                                      ),
+                                    );
+                                  } else {
+                                    await SQLiteManager.instance.updatePPIRForm(
+                                      taskId: widget.taskId,
+                                      ppirSvpAct:
+                                          _model.ppirSvpActSelectionValue,
+                                      ppirDopdsAct: _model
+                                          .ppirAreaDopDsFieldTextController
+                                          .text,
+                                      ppirDoptpAct: _model
+                                          .ppirAreaDopTpFieldTextController
+                                          .text,
+                                      ppirRemarks: _model
+                                          .ppirRemarksFieldTextController.text,
+                                      ppirNameInsured: _model
+                                          .ppirPreparedByNameFieldTextController
+                                          .text,
+                                      ppirNameIuia: _model
+                                          .ppirConfirmedByNameFieldTextController
+                                          .text,
+                                      ppirFarmloc: _model
+                                          .ppirTrackFarmlocTextController.text,
+                                      ppirAreaAct: _model
+                                          .ppirAreaActFieldTextController.text,
+                                      ppirVariety:
+                                          _model.ppirSvpActSelectionValue ==
+                                                  'rice'
+                                              ? _model.riceDropdownValue
+                                              : _model.cornDropdownValue,
+                                      isDirty: true,
+                                    );
+                                  }
+
+                                  await SQLiteManager.instance.updateTaskStatus(
+                                    taskId: widget.taskId,
+                                    status: 'ongoing',
+                                  );
+
+                                  context.pushNamed(
+                                    'formSuccess',
+                                    queryParameters: {
+                                      'taskId': serializeParam(
+                                        widget.taskId,
+                                        ParamType.String,
+                                      ),
+                                      'type': serializeParam(
+                                        'save',
+                                        ParamType.String,
+                                      ),
+                                    }.withoutNulls,
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: const TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType:
+                                            PageTransitionType.scale,
+                                        alignment: Alignment.bottomCenter,
+                                        duration: Duration(milliseconds: 200),
+                                      ),
+                                    },
+                                  );
+                                }
+
+                                setState(() {});
+                              },
+                              text: FFLocalizations.of(context).getText(
+                                'lgxphrlo' /* Save */,
+                              ),
+                              icon: const Icon(
+                                Icons.save,
+                                size: 15.0,
+                              ),
+                              options: FFButtonOptions(
+                                width: 120.0,
+                                height: 40.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).earthYellow,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .titleSmallFamily,
+                                      color: Colors.white,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmallFamily),
+                                    ),
+                                elevation: 3.0,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                            ),
+                          ),
+                          if (FFAppState().ONLINE)
+                            Builder(
+                              builder: (context) => FFButtonWidget(
+                                onPressed: !FFAppState().ONLINE
+                                    ? null
+                                    : () async {
+                                        if ((_model.ppirTrackCoordinatesTextController.text != '') &&
+                                            (_model.ppirTrackTotalAreaTextController1.text !=
+                                                    '') &&
+                                            (_model.ppirTrackDateTimeTextController.text !=
+                                                    '') &&
+                                            (_model.ppirTrackTotalAreaTextController2.text !=
+                                                    '') &&
+                                            (_model.ppirTrackFarmlocTextController.text !=
+                                                    '') &&
+                                            (_model.ppirSvpActSelectionValue != null &&
+                                                _model.ppirSvpActSelectionValue !=
+                                                    '') &&
+                                            (_model.ppirAreaActFieldTextController.text !=
+                                                    '') &&
+                                            (_model.ppirAreaDopDsFieldTextController.text !=
+                                                    '') &&
+                                            (_model.ppirAreaDopTpFieldTextController.text !=
+                                                    '') &&
+                                            (_model.ppirRemarksFieldTextController.text !=
+                                                    '') &&
+                                            (_model.ppirPreparedByNameFieldTextController
+                                                        .text !=
+                                                    '') &&
+                                            (_model.ppirConfirmedByNameFieldTextController.text != '')) {
+                                          await showDialog(
+                                            context: context,
+                                            builder: (dialogContext) {
+                                              return Dialog(
+                                                elevation: 0,
+                                                insetPadding: EdgeInsets.zero,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                alignment: const AlignmentDirectional(
+                                                        0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                                child: GestureDetector(
+                                                  onTap: () => FocusScope.of(
+                                                          dialogContext)
+                                                      .unfocus(),
+                                                  child:
+                                                      const ContinueSubmitDialogWidget(),
+                                                ),
+                                              );
+                                            },
+                                          ).then((value) => safeSetState(() =>
+                                              _model.continueSubmit = value));
+
+                                          if (_model.continueSubmit!) {
+                                            await SQLiteManager.instance
+                                                .updatePPIRForm(
+                                              taskId: widget.taskId,
+                                              ppirSvpAct: _model
+                                                  .ppirSvpActSelectionValue,
+                                              ppirDopdsAct: _model
+                                                  .ppirAreaDopDsFieldTextController
+                                                  .text,
+                                              ppirDoptpAct: _model
+                                                  .ppirAreaDopTpFieldTextController
+                                                  .text,
+                                              ppirRemarks: _model
+                                                  .ppirRemarksFieldTextController
+                                                  .text,
+                                              ppirNameInsured: _model
+                                                  .ppirPreparedByNameFieldTextController
+                                                  .text,
+                                              ppirNameIuia: _model
+                                                  .ppirConfirmedByNameFieldTextController
+                                                  .text,
+                                              ppirFarmloc: _model
+                                                  .ppirTrackFarmlocTextController
+                                                  .text,
+                                              ppirAreaAct: _model
+                                                  .ppirAreaActFieldTextController
+                                                  .text,
+                                              ppirVariety:
+                                                  _model.ppirSvpActSelectionValue ==
+                                                          'rice'
+                                                      ? _model.riceDropdownValue
+                                                      : _model
+                                                          .cornDropdownValue,
+                                              isDirty: false,
+                                            );
+                                            await PpirFormsTable().update(
+                                              data: {
+                                                'ppir_svp_act': _model
+                                                    .ppirSvpActSelectionValue,
+                                                'ppir_dopds_act': _model
+                                                    .ppirAreaDopDsFieldTextController
+                                                    .text,
+                                                'ppir_doptp_act': _model
+                                                    .ppirAreaDopTpFieldTextController
+                                                    .text,
+                                                'ppir_remarks': _model
+                                                    .ppirRemarksFieldTextController
+                                                    .text,
+                                                'ppir_name_insured': _model
+                                                    .ppirPreparedByNameFieldTextController
+                                                    .text,
+                                                'ppir_name_iuia': _model
+                                                    .ppirConfirmedByNameFieldTextController
+                                                    .text,
+                                                'ppir_farmloc': _model
+                                                    .ppirTrackFarmlocTextController
+                                                    .text,
+                                                'ppir_area_act': _model
+                                                    .ppirAreaActFieldTextController
+                                                    .text,
+                                                'ppir_variety':
+                                                    _model.ppirSvpActSelectionValue ==
+                                                            'rice'
+                                                        ? _model
+                                                            .riceDropdownValue
+                                                        : _model
+                                                            .cornDropdownValue,
+                                              },
+                                              matchingRows: (rows) => rows.eq(
+                                                'task_id',
+                                                widget.taskId,
+                                              ),
+                                            );
+                                            await TasksTable().update(
+                                              data: {
+                                                'status': 'completed',
+                                              },
+                                              matchingRows: (rows) => rows.eq(
+                                                'id',
+                                                widget.taskId,
+                                              ),
+                                            );
+                                            await SQLiteManager.instance
+                                                .updateTaskStatus(
+                                              taskId: widget.taskId,
+                                              status: 'completed',
+                                            );
+                                            await actions.saveBlobToBucket(
+                                              widget.taskId,
+                                            );
+                                            _model.generatedXML =
+                                                await actions.generateTaskXml(
+                                              widget.taskId,
+                                            );
+                                            await actions.saveTaskXml(
+                                              _model.generatedXML,
+                                              widget.taskId,
+                                            );
+                                            _model.isFtpSaved =
+                                                await actions.saveToFTP(
+                                              widget.taskId,
+                                            );
+                                            if (_model.isFtpSaved!) {
+                                              context.goNamed(
+                                                'formSuccess',
+                                                queryParameters: {
+                                                  'taskId': serializeParam(
+                                                    widget.taskId,
+                                                    ParamType.String,
+                                                  ),
+                                                  'type': serializeParam(
+                                                    'save',
+                                                    ParamType.String,
+                                                  ),
+                                                }.withoutNulls,
+                                                extra: <String, dynamic>{
+                                                  kTransitionInfoKey:
+                                                      const TransitionInfo(
+                                                    hasTransition: true,
+                                                    transitionType:
+                                                        PageTransitionType
+                                                            .scale,
+                                                    alignment:
+                                                        Alignment.bottomCenter,
+                                                    duration: Duration(
+                                                        milliseconds: 200),
+                                                  ),
+                                                },
+                                              );
+                                            } else {
+                                              context.goNamed(
+                                                'fail',
+                                                queryParameters: {
+                                                  'error': serializeParam(
+                                                    'Fail to submit FTP!',
+                                                    ParamType.String,
+                                                  ),
+                                                }.withoutNulls,
+                                                extra: <String, dynamic>{
+                                                  kTransitionInfoKey:
+                                                      const TransitionInfo(
+                                                    hasTransition: true,
+                                                    transitionType:
+                                                        PageTransitionType
+                                                            .scale,
+                                                    alignment:
+                                                        Alignment.bottomCenter,
+                                                    duration: Duration(
+                                                        milliseconds: 200),
+                                                  ),
+                                                },
+                                              );
+                                            }
+                                          }
+                                        } else {
+                                          await showDialog(
+                                            context: context,
+                                            builder: (alertDialogContext) {
+                                              return AlertDialog(
+                                                title: const Text('Alert'),
+                                                content: const Text(
+                                                    'Fill out all fields.'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: const Text('Ok'),
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        }
+
+                                        setState(() {});
+                                      },
+                                text: FFLocalizations.of(context).getText(
+                                  'wrod6how' /* Submit */,
+                                ),
+                                icon: const Icon(
+                                  Icons.check_sharp,
+                                  size: 15.0,
+                                ),
+                                options: FFButtonOptions(
+                                  width: 120.0,
+                                  height: 40.0,
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .titleSmallFamily,
+                                        color: Colors.white,
+                                        letterSpacing: 0.0,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmallFamily),
+                                      ),
+                                  elevation: 3.0,
+                                  borderSide: const BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  disabledColor:
+                                      FlutterFlowTheme.of(context).error,
+                                  disabledTextColor:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                ),
                               ),
                             ),
                         ]

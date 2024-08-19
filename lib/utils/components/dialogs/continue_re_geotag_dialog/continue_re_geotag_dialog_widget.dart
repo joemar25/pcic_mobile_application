@@ -43,8 +43,8 @@ class _ContinueReGeotagDialogWidgetState
     return Align(
       alignment: const AlignmentDirectional(0.0, 0.0),
       child: Container(
-        width: 338.0,
-        height: 392.0,
+        width: 330.0,
+        height: 375.0,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).primaryBackground,
           borderRadius: BorderRadius.circular(24.0),
@@ -207,7 +207,7 @@ class _ContinueReGeotagDialogWidgetState
                   ),
                 ].divide(const SizedBox(width: 15.0)),
               ),
-            ].divide(const SizedBox(height: 20.0)),
+            ].divide(const SizedBox(height: 10.0)),
           ),
         ),
       ),
