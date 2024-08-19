@@ -253,7 +253,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'ssr602ji': {
+    'oy7pbxxw': {
       'en': '',
       'tl': '',
     },
@@ -265,7 +265,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    '7v237fr0': {
+    '5hpabkex': {
       'en': '',
       'tl': '',
     },
@@ -277,7 +277,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'bs9yvm0s': {
+    'bmyd3znx': {
       'en': '',
       'tl': '',
     },
@@ -1184,7 +1184,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
-  // continueGoBackqDialog
+  // continueGoBackDialog
   {
     '6fpxyw60': {
       'en': 'Warning',
@@ -1192,7 +1192,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'zoypq20i': {
       'en':
-          'The current gpx file will be deleted. \nAre you sure you want to continue?',
+          'This will cancel the current progress of geotagging, are you sure?',
       'tl': '',
     },
     '4m3l8rlv': {
@@ -1200,6 +1200,64 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     '2temga0h': {
+      'en': 'Continue',
+      'tl': '',
+    },
+  },
+  // continueSubmitDialog
+  {
+    '2gqa0lrn': {
+      'en': 'Info',
+      'tl': '',
+    },
+    'x6p50a5s': {
+      'en': 'Do you want to Submit all the data above?',
+      'tl': '',
+    },
+    '30viluzv': {
+      'en': 'Cancel',
+      'tl': '',
+    },
+    '8vm8xjo5': {
+      'en': 'Continue',
+      'tl': '',
+    },
+  },
+  // continueSaveDialog
+  {
+    'n8g6v3fj': {
+      'en': 'Info',
+      'tl': '',
+    },
+    '8a42qjb7': {
+      'en': 'Do you want to Save the data above?',
+      'tl': '',
+    },
+    'clidangu': {
+      'en': 'Cancel',
+      'tl': '',
+    },
+    'nsdqb1mh': {
+      'en': 'Continue',
+      'tl': '',
+    },
+  },
+  // continueCancelDialog
+  {
+    '4i07fax8': {
+      'en': 'Warning',
+      'tl': '',
+    },
+    'hg3q7i0o': {
+      'en':
+          'This will cancel your current progress in the tasks. Are you sure you want to cancel?',
+      'tl': '',
+    },
+    '7ytcjqdh': {
+      'en': 'Cancel',
+      'tl': '',
+    },
+    'c75bzs2e': {
       'en': 'Continue',
       'tl': '',
     },

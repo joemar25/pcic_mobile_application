@@ -25,3 +25,4 @@ export 'check_password_strength.dart' show checkPasswordStrength;
 export 'compare_passwords.dart' show comparePasswords;
 export 'update_inspector_name.dart' show updateInspectorName;
 export 'save_blob_to_bucket.dart' show saveBlobToBucket;
+export 'update_user_online_status.dart' show updateUserOnlineStatus;

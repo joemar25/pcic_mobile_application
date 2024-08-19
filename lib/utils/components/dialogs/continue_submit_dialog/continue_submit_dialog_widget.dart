@@ -4,20 +4,20 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'continue_go_backq_dialog_model.dart';
-export 'continue_go_backq_dialog_model.dart';
+import 'continue_submit_dialog_model.dart';
+export 'continue_submit_dialog_model.dart';
 
-class ContinueGoBackqDialogWidget extends StatefulWidget {
-  const ContinueGoBackqDialogWidget({super.key});
+class ContinueSubmitDialogWidget extends StatefulWidget {
+  const ContinueSubmitDialogWidget({super.key});
 
   @override
-  State<ContinueGoBackqDialogWidget> createState() =>
-      _ContinueGoBackqDialogWidgetState();
+  State<ContinueSubmitDialogWidget> createState() =>
+      _ContinueSubmitDialogWidgetState();
 }
 
-class _ContinueGoBackqDialogWidgetState
-    extends State<ContinueGoBackqDialogWidget> {
-  late ContinueGoBackqDialogModel _model;
+class _ContinueSubmitDialogWidgetState
+    extends State<ContinueSubmitDialogWidget> {
+  late ContinueSubmitDialogModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -28,7 +28,7 @@ class _ContinueGoBackqDialogWidgetState
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ContinueGoBackqDialogModel());
+    _model = createModel(context, () => ContinueSubmitDialogModel());
   }
 
   @override
@@ -56,10 +56,10 @@ class _ContinueGoBackqDialogWidgetState
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Lottie.asset(
-                'assets/lottie_animations/continueRepeatGeotag.json',
+                'assets/lottie_animations/confirmSubmit.json',
                 width: 150.0,
                 height: 150.0,
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
                 frameRate: FrameRate(120.0),
                 animate: true,
               ),
@@ -77,7 +77,7 @@ class _ContinueGoBackqDialogWidgetState
                               alignment: const AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  '6fpxyw60' /* Warning */,
+                                  '2gqa0lrn' /* Info */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .headlineLarge
@@ -107,7 +107,7 @@ class _ContinueGoBackqDialogWidgetState
                           alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
-                              'zoypq20i' /* The current gpx file will be d... */,
+                              'x6p50a5s' /* Do you want to Submit all the ... */,
                             ),
                             textAlign: TextAlign.center,
                             style: FlutterFlowTheme.of(context)
@@ -139,7 +139,7 @@ class _ContinueGoBackqDialogWidgetState
                         Navigator.pop(context);
                       },
                       text: FFLocalizations.of(context).getText(
-                        '4m3l8rlv' /* Cancel */,
+                        '30viluzv' /* Cancel */,
                       ),
                       options: FFButtonOptions(
                         height: 40.0,
@@ -174,7 +174,7 @@ class _ContinueGoBackqDialogWidgetState
                         Navigator.pop(context, true);
                       },
                       text: FFLocalizations.of(context).getText(
-                        '2temga0h' /* Continue */,
+                        '8vm8xjo5' /* Continue */,
                       ),
                       options: FFButtonOptions(
                         height: 40.0,
@@ -182,7 +182,7 @@ class _ContinueGoBackqDialogWidgetState
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
                             const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).error,
+                        color: FlutterFlowTheme.of(context).success,
                         textStyle: FlutterFlowTheme.of(context)
                             .titleSmall
                             .override(
