@@ -5,20 +5,19 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'aleart_continue_dialog_model.dart';
-export 'aleart_continue_dialog_model.dart';
+import 'alert_continue_dialog_model.dart';
+export 'alert_continue_dialog_model.dart';
 
-class AleartContinueDialogWidget extends StatefulWidget {
-  const AleartContinueDialogWidget({super.key});
+class AlertContinueDialogWidget extends StatefulWidget {
+  const AlertContinueDialogWidget({super.key});
 
   @override
-  State<AleartContinueDialogWidget> createState() =>
-      _AleartContinueDialogWidgetState();
+  State<AlertContinueDialogWidget> createState() =>
+      _AlertContinueDialogWidgetState();
 }
 
-class _AleartContinueDialogWidgetState
-    extends State<AleartContinueDialogWidget> {
-  late AleartContinueDialogModel _model;
+class _AlertContinueDialogWidgetState extends State<AlertContinueDialogWidget> {
+  late AlertContinueDialogModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -29,7 +28,7 @@ class _AleartContinueDialogWidgetState
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => AleartContinueDialogModel());
+    _model = createModel(context, () => AlertContinueDialogModel());
   }
 
   @override
@@ -115,7 +114,8 @@ class _AleartContinueDialogWidgetState
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .bodyMediumFamily,
-                                  color: FlutterFlowTheme.of(context).altText1,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
@@ -189,7 +189,8 @@ class _AleartContinueDialogWidgetState
                             .override(
                               fontFamily:
                                   FlutterFlowTheme.of(context).titleSmallFamily,
-                              color: Colors.white,
+                              color: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.w500,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(

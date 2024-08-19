@@ -202,7 +202,10 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                       onPressed: () async {
                                         final selectedMedia = await selectMedia(
                                           storageFolderPath:
-                                              editProfileUsersRow?.photoUrl,
+                                              valueOrDefault<String>(
+                                            editProfileUsersRow?.photoUrl,
+                                            'pictures/\${currentUser.id}.png',
+                                          ),
                                           mediaSource: MediaSource.photoGallery,
                                           multiImage: false,
                                         );
@@ -256,6 +259,17 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                             return;
                                           }
                                         }
+
+                                        await UsersTable().update(
+                                          data: {
+                                            'photo_url':
+                                                editProfileUsersRow?.photoUrl,
+                                          },
+                                          matchingRows: (rows) => rows.eq(
+                                            'inspector_name',
+                                            editProfileUsersRow?.inspectorName,
+                                          ),
+                                        );
                                       },
                                     ),
                                   ),
@@ -440,7 +454,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                     .override(
                                       fontFamily: FlutterFlowTheme.of(context)
                                           .titleSmallFamily,
-                                      color: Colors.white,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w500,
                                       useGoogleFonts: GoogleFonts.asMap()

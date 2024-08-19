@@ -177,7 +177,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                       Icon(
                                         Icons.home_rounded,
                                         color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
+                                            .primaryBackground,
                                         size: 34.0,
                                       ),
                                       Text(
@@ -192,7 +192,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                       .headlineMediumFamily,
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
+                                                      .primaryBackground,
                                               fontSize: 28.0,
                                               letterSpacing: 0.0,
                                               useGoogleFonts: GoogleFonts
@@ -202,7 +202,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                       .headlineMediumFamily),
                                             ),
                                       ),
-                                    ].divide(const SizedBox(width: 10.0)),
+                                    ].divide(const SizedBox(width: 20.0)),
                                   ),
                                 ),
                                 Padding(
@@ -247,7 +247,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                             .titleSmallFamily,
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .info,
+                                                        .secondaryBackground,
                                                     fontSize: 12.0,
                                                     letterSpacing: 0.0,
                                                     fontWeight: FontWeight.w600,
@@ -533,7 +533,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                 Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
-                                    color: const Color(0x4015803E),
+                                    color: const Color(0x3F00A651),
                                     borderRadius: BorderRadius.circular(12.0),
                                   ),
                                   child: Padding(
@@ -766,13 +766,11 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                           borderRadius: 6.0,
                                           borderWidth: 1.0,
                                           buttonSize: 40.0,
-                                          fillColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .accent1,
+                                          fillColor: const Color(0x4D66CC33),
                                           icon: Icon(
                                             Icons.edit_rounded,
                                             color: FlutterFlowTheme.of(context)
-                                                .secondary,
+                                                .primaryText,
                                             size: 24.0,
                                           ),
                                           onPressed: () async {

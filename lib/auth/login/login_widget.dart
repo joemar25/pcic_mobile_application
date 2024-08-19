@@ -174,7 +174,8 @@ class _LoginWidgetState extends State<LoginWidget>
                                             fontFamily:
                                                 FlutterFlowTheme.of(context)
                                                     .headlineMediumFamily,
-                                            color: Colors.white,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBackground,
                                             fontSize: 30.0,
                                             letterSpacing: 0.0,
                                             useGoogleFonts: GoogleFonts.asMap()
@@ -825,25 +826,26 @@ class _LoginWidgetState extends State<LoginWidget>
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primary,
-                                              textStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmall
-                                                      .override(
-                                                        fontFamily:
+                                              textStyle: FlutterFlowTheme.of(
+                                                      context)
+                                                  .titleSmall
+                                                  .override(
+                                                    fontFamily:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .titleSmallFamily,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryBackground,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w500,
+                                                    useGoogleFonts: GoogleFonts
+                                                            .asMap()
+                                                        .containsKey(
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .titleSmallFamily,
-                                                        color: Colors.white,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmallFamily),
-                                                      ),
+                                                                .titleSmallFamily),
+                                                  ),
                                               elevation: 0.0,
                                               borderSide: const BorderSide(
                                                 color: Colors.transparent,

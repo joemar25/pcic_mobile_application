@@ -137,6 +137,7 @@ class _ChangePhotoWidgetState extends State<ChangePhotoWidget> {
                                           fontFamily:
                                               FlutterFlowTheme.of(context)
                                                   .labelMediumFamily,
+                                          fontSize: 12.0,
                                           letterSpacing: 0.0,
                                           useGoogleFonts: GoogleFonts.asMap()
                                               .containsKey(
@@ -324,6 +325,8 @@ class _ChangePhotoWidgetState extends State<ChangePhotoWidget> {
                                           fontFamily:
                                               FlutterFlowTheme.of(context)
                                                   .labelMediumFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
                                           letterSpacing: 0.0,
                                           useGoogleFonts: GoogleFonts.asMap()
                                               .containsKey(

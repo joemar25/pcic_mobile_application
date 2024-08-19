@@ -126,9 +126,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                   borderRadius: 30.0,
                   borderWidth: 1.0,
                   buttonSize: 60.0,
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.chevron_left,
-                    color: Colors.white,
+                    color: FlutterFlowTheme.of(context).primaryBackground,
                     size: 30.0,
                   ),
                   onPressed: () async {
@@ -154,17 +154,16 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                           const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
                       child: Text(
                         '${functions.capitalizeWords(widget.taskStatus)} Task',
-                        style:
-                            FlutterFlowTheme.of(context).displaySmall.override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .displaySmallFamily,
-                                  color: Colors.white,
-                                  fontSize: 16.0,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .displaySmallFamily),
-                                ),
+                        style: FlutterFlowTheme.of(context).titleSmall.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).titleSmallFamily,
+                              color: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
+                              letterSpacing: 0.0,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .titleSmallFamily),
+                            ),
                       ),
                     ),
                     Container(
@@ -239,6 +238,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                     .override(
                                       fontFamily: FlutterFlowTheme.of(context)
                                           .titleSmallFamily,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
                                       fontSize: 12.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w600,
@@ -289,7 +290,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                   minHeight: MediaQuery.sizeOf(context).height * 1.0,
                 ),
                 decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                  color: FlutterFlowTheme.of(context).primaryBackground,
                 ),
                 child: Stack(
                   children: [
@@ -315,7 +316,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                     ),
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
+                                          .secondaryBackground,
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
                                     child: Padding(
@@ -344,6 +345,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .bodyLargeFamily,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .tertiary,
                                                         letterSpacing: 0.0,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
@@ -1160,6 +1165,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .bodyLargeFamily,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .tertiary,
                                                         letterSpacing: 0.0,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
@@ -1436,6 +1445,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .bodyLargeFamily,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .tertiary,
                                                         letterSpacing: 0.0,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
@@ -1733,7 +1746,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     .bodyLargeFamily,
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .primary,
+                                                                    .tertiary,
                                                                 letterSpacing:
                                                                     0.0,
                                                                 useGoogleFonts: GoogleFonts
@@ -2778,21 +2791,21 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
-                                                              .labelMedium
+                                                              .bodyLarge
                                                               .override(
                                                                 fontFamily: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .labelMediumFamily,
+                                                                    .bodyLargeFamily,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .tertiary,
                                                                 letterSpacing:
                                                                     0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .normal,
                                                                 useGoogleFonts: GoogleFonts
                                                                         .asMap()
                                                                     .containsKey(
                                                                         FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
+                                                                            .bodyLargeFamily),
                                                               ),
                                                         ),
                                                       ],

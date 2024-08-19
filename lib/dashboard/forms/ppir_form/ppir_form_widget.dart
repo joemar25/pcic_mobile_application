@@ -110,9 +110,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                   borderRadius: 30.0,
                   borderWidth: 1.0,
                   buttonSize: 60.0,
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.chevron_left,
-                    color: Colors.white,
+                    color: FlutterFlowTheme.of(context).primaryBackground,
                     size: 30.0,
                   ),
                   onPressed: () async {
@@ -172,6 +172,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                       style: FlutterFlowTheme.of(context).titleSmall.override(
                             fontFamily:
                                 FlutterFlowTheme.of(context).titleSmallFamily,
+                            color:
+                                FlutterFlowTheme.of(context).primaryBackground,
                             letterSpacing: 0.0,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).titleSmallFamily),
@@ -313,6 +315,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               FlutterFlowTheme.of(
                                                                       context)
                                                                   .bodyLargeFamily,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .tertiary,
                                                           letterSpacing: 0.0,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
@@ -741,8 +746,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                       fontFamily:
                                                                           FlutterFlowTheme.of(context)
                                                                               .titleSmallFamily,
-                                                                      color: Colors
-                                                                          .white,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryBackground,
                                                                       letterSpacing:
                                                                           0.0,
                                                                       useGoogleFonts: GoogleFonts
@@ -895,6 +901,10 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .bodyLargeFamily,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .tertiary,
                                                         letterSpacing: 0.0,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
@@ -1706,6 +1716,10 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .bodyLargeFamily,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .tertiary,
                                                         letterSpacing: 0.0,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
@@ -2274,6 +2288,10 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .bodyLargeFamily,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .tertiary,
                                                         letterSpacing: 0.0,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
@@ -2945,6 +2963,10 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .bodyLargeFamily,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .tertiary,
                                                         letterSpacing: 0.0,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
@@ -3690,7 +3712,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                       width: MediaQuery.sizeOf(context).width * 1.0,
                       height: MediaQuery.sizeOf(context).height * 0.05,
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        color: FlutterFlowTheme.of(context).primaryBackground,
                         borderRadius: BorderRadius.circular(0.0),
                       ),
                       child: Row(

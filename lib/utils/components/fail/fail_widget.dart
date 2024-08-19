@@ -297,6 +297,8 @@ class _FailWidgetState extends State<FailWidget> with TickerProviderStateMixin {
                                     .override(
                                       fontFamily: FlutterFlowTheme.of(context)
                                           .displaySmallFamily,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
                                       fontSize: 20.0,
                                       letterSpacing: 0.0,
                                       useGoogleFonts: GoogleFonts.asMap()

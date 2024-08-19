@@ -163,7 +163,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                             FlutterFlowTheme.of(context).displaySmall.override(
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .displaySmallFamily,
-                                  fontSize: 16.0,
+                                  fontSize: 18.0,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
@@ -589,7 +589,8 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                   .override(
                                     fontFamily: FlutterFlowTheme.of(context)
                                         .titleSmallFamily,
-                                    color: Colors.white,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
                                     letterSpacing: 0.0,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(

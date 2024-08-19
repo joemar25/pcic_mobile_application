@@ -113,7 +113,8 @@ class _NoInternetDialogWidgetState extends State<NoInternetDialogWidget> {
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .bodyMediumFamily,
-                                  color: FlutterFlowTheme.of(context).altText1,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
@@ -150,7 +151,8 @@ class _NoInternetDialogWidgetState extends State<NoInternetDialogWidget> {
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .titleSmallFamily,
-                                color: Colors.white,
+                                color: FlutterFlowTheme.of(context)
+                                    .primaryBackground,
                                 letterSpacing: 0.0,
                                 fontWeight: FontWeight.w500,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(

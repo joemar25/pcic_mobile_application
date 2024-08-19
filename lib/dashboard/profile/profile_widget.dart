@@ -99,7 +99,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                       Icons.account_circle,
                                       color: FlutterFlowTheme.of(context)
                                           .primaryBackground,
-                                      size: 35.0,
+                                      size: 34.0,
                                     ),
                                     Text(
                                       FFLocalizations.of(context).getText(
@@ -121,7 +121,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                         .headlineMediumFamily),
                                           ),
                                     ),
-                                  ].divide(const SizedBox(width: 10.0)),
+                                  ].divide(const SizedBox(width: 20.0)),
                                 ),
                               ),
                               wrapWithModel(
@@ -183,8 +183,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                       },
                                       child: Container(
                                         decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .accent1,
+                                          color: const Color(0x3F7ED957),
                                           borderRadius:
                                               BorderRadius.circular(12.0),
                                         ),
@@ -367,10 +366,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                     width: 80.0,
                                                     height: 40.0,
                                                     decoration: BoxDecoration(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .alternate,
+                                                      color: const Color(0x33004D26),
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               20.0),
@@ -513,10 +509,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                     width: 80.0,
                                                     height: 40.0,
                                                     decoration: BoxDecoration(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .alternate,
+                                                      color: const Color(0x3200743B),
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               20.0),

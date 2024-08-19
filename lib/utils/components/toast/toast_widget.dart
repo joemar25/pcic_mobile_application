@@ -88,7 +88,7 @@ class _ToastWidgetState extends State<ToastWidget>
           decoration: BoxDecoration(
             color: valueOrDefault<Color>(
               widget.notificationTitle == 'Success'
-                  ? FlutterFlowTheme.of(context).success
+                  ? FlutterFlowTheme.of(context).primary
                   : FlutterFlowTheme.of(context).warning,
               FlutterFlowTheme.of(context).success,
             ),
@@ -126,7 +126,8 @@ class _ToastWidgetState extends State<ToastWidget>
                             padding: const EdgeInsets.all(4.0),
                             child: Icon(
                               Icons.add_task_rounded,
-                              color: FlutterFlowTheme.of(context).info,
+                              color: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
                               size: 24.0,
                             ),
                           ),
@@ -140,6 +141,8 @@ class _ToastWidgetState extends State<ToastWidget>
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .titleSmallFamily,
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
                                   fontSize: 16.0,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
@@ -160,7 +163,8 @@ class _ToastWidgetState extends State<ToastWidget>
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .labelMediumFamily,
-                                color: FlutterFlowTheme.of(context).accent4,
+                                color: FlutterFlowTheme.of(context)
+                                    .primaryBackground,
                                 fontSize: 9.0,
                                 letterSpacing: 0.0,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
@@ -180,7 +184,7 @@ class _ToastWidgetState extends State<ToastWidget>
                   hoverColor: FlutterFlowTheme.of(context).primaryBackground,
                   icon: Icon(
                     Icons.close_rounded,
-                    color: FlutterFlowTheme.of(context).info,
+                    color: FlutterFlowTheme.of(context).primaryBackground,
                     size: 24.0,
                   ),
                   onPressed: () async {

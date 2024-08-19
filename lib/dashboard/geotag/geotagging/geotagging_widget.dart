@@ -114,7 +114,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
         onWillPop: () async => false,
         child: Scaffold(
           key: scaffoldKey,
-          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           body: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -163,7 +163,9 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                             borderRadius: 30.0,
                                             borderWidth: 1.0,
                                             buttonSize: 40.0,
-                                            fillColor: const Color(0x7F0F1113),
+                                            fillColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
                                             icon: const Icon(
                                               Icons.chevron_left_rounded,
                                               color: Colors.white,
@@ -229,6 +231,8 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                                   },
                                                 );
                                               }
+                                              FFAppState().routeStarted = false;
+                                              FFAppState().update(() {});
                                             },
                                           ),
                                         ),
@@ -261,6 +265,8 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                     .override(
                                       fontFamily: FlutterFlowTheme.of(context)
                                           .headlineMediumFamily,
+                                      color:
+                                          FlutterFlowTheme.of(context).tertiary,
                                       letterSpacing: 0.0,
                                       useGoogleFonts: GoogleFonts.asMap()
                                           .containsKey(
@@ -275,6 +281,10 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                       ? FlutterFlowTheme.of(context).primary
                                       : FlutterFlowTheme.of(context).warning,
                                   borderRadius: BorderRadius.circular(12.0),
+                                  border: Border.all(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                  ),
                                 ),
                                 child: Align(
                                   alignment: const AlignmentDirectional(0.0, 0.0),
@@ -636,7 +646,8 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                               0.0, 0.0, 5.0, 0.0),
                           child: FaIcon(
                             FontAwesomeIcons.stop,
-                            color: FlutterFlowTheme.of(context).primaryText,
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
                             size: 20.0,
                           ),
                         ),
@@ -649,6 +660,8 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .bodyLargeFamily,
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
                                 letterSpacing: 0.0,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)

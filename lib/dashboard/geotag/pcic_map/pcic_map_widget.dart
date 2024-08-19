@@ -60,9 +60,9 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: const Icon(
+            icon: Icon(
               Icons.chevron_left,
-              color: Colors.white,
+              color: FlutterFlowTheme.of(context).primaryBackground,
               size: 30.0,
             ),
             onPressed: () async {
@@ -77,14 +77,12 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                 FFLocalizations.of(context).getText(
                   'idur2ho8' /* Map Download */,
                 ),
-                style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily:
-                          FlutterFlowTheme.of(context).headlineMediumFamily,
-                      color: Colors.white,
-                      fontSize: 20.0,
+                style: FlutterFlowTheme.of(context).titleSmall.override(
+                      fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
+                      color: FlutterFlowTheme.of(context).primaryBackground,
                       letterSpacing: 0.0,
                       useGoogleFonts: GoogleFonts.asMap().containsKey(
-                          FlutterFlowTheme.of(context).headlineMediumFamily),
+                          FlutterFlowTheme.of(context).titleSmallFamily),
                     ),
               ),
               wrapWithModel(

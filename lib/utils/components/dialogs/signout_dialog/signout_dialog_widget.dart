@@ -116,7 +116,8 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                                   .override(
                                     fontFamily: FlutterFlowTheme.of(context)
                                         .bodyMediumFamily,
-                                    color: const Color(0xFFB4B4B4),
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
                                     fontSize: 12.0,
                                     letterSpacing: 0.0,
                                     useGoogleFonts: GoogleFonts.asMap()
@@ -205,7 +206,8 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                             .override(
                               fontFamily:
                                   FlutterFlowTheme.of(context).titleSmallFamily,
-                              color: Colors.white,
+                              color: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.w500,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(

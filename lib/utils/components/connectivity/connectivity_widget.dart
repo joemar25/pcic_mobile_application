@@ -65,7 +65,7 @@ class _ConnectivityWidgetState extends State<ConnectivityWidget>
       width: 30.0,
       height: 30.0,
       decoration: BoxDecoration(
-        color: FlutterFlowTheme.of(context).secondaryBackground,
+        color: FlutterFlowTheme.of(context).primaryBackground,
         boxShadow: const [
           BoxShadow(
             blurRadius: 4.0,
@@ -90,7 +90,7 @@ class _ConnectivityWidgetState extends State<ConnectivityWidget>
               alignment: const AlignmentDirectional(0.0, 0.0),
               child: Icon(
                 Icons.wifi,
-                color: FlutterFlowTheme.of(context).primary,
+                color: FlutterFlowTheme.of(context).wifiBars,
                 size: 24.0,
               ),
             ),

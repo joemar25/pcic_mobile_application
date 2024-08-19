@@ -4,20 +4,20 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'notice_permission_dialog_model.dart';
-export 'notice_permission_dialog_model.dart';
+import 'continue_go_backq_dialog_model.dart';
+export 'continue_go_backq_dialog_model.dart';
 
-class NoticePermissionDialogWidget extends StatefulWidget {
-  const NoticePermissionDialogWidget({super.key});
+class ContinueGoBackqDialogWidget extends StatefulWidget {
+  const ContinueGoBackqDialogWidget({super.key});
 
   @override
-  State<NoticePermissionDialogWidget> createState() =>
-      _NoticePermissionDialogWidgetState();
+  State<ContinueGoBackqDialogWidget> createState() =>
+      _ContinueGoBackqDialogWidgetState();
 }
 
-class _NoticePermissionDialogWidgetState
-    extends State<NoticePermissionDialogWidget> {
-  late NoticePermissionDialogModel _model;
+class _ContinueGoBackqDialogWidgetState
+    extends State<ContinueGoBackqDialogWidget> {
+  late ContinueGoBackqDialogModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -28,7 +28,7 @@ class _NoticePermissionDialogWidgetState
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => NoticePermissionDialogModel());
+    _model = createModel(context, () => ContinueGoBackqDialogModel());
   }
 
   @override
@@ -43,8 +43,8 @@ class _NoticePermissionDialogWidgetState
     return Align(
       alignment: const AlignmentDirectional(0.0, 0.0),
       child: Container(
-        width: 330.0,
-        height: 350.0,
+        width: 338.0,
+        height: 392.0,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).primaryBackground,
           borderRadius: BorderRadius.circular(24.0),
@@ -55,27 +55,13 @@ class _NoticePermissionDialogWidgetState
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Lottie.asset(
-                    'assets/lottie_animations/xZO2U5ItRT.json',
-                    width: 100.0,
-                    height: 100.0,
-                    fit: BoxFit.contain,
-                    frameRate: FrameRate(120.0),
-                    animate: true,
-                  ),
-                  Lottie.asset(
-                    'assets/lottie_animations/sev9ruk9ef.json',
-                    width: 100.0,
-                    height: 100.0,
-                    fit: BoxFit.cover,
-                    frameRate: FrameRate(120.0),
-                    animate: true,
-                  ),
-                ].divide(const SizedBox(width: 25.0)),
+              Lottie.asset(
+                'assets/lottie_animations/continueRepeatGeotag.json',
+                width: 150.0,
+                height: 150.0,
+                fit: BoxFit.cover,
+                frameRate: FrameRate(120.0),
+                animate: true,
               ),
               Column(
                 mainAxisSize: MainAxisSize.max,
@@ -91,7 +77,7 @@ class _NoticePermissionDialogWidgetState
                               alignment: const AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  'vsbe3eji' /* Notice */,
+                                  '6fpxyw60' /* Warning */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .headlineLarge
@@ -121,7 +107,7 @@ class _NoticePermissionDialogWidgetState
                           alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
-                              'bsqylrb4' /* You must be Online and the Loc... */,
+                              'zoypq20i' /* The current gpx file will be d... */,
                             ),
                             textAlign: TextAlign.center,
                             style: FlutterFlowTheme.of(context)
@@ -153,7 +139,7 @@ class _NoticePermissionDialogWidgetState
                         Navigator.pop(context);
                       },
                       text: FFLocalizations.of(context).getText(
-                        'ighw54es' /* Okay */,
+                        '4m3l8rlv' /* Cancel */,
                       ),
                       options: FFButtonOptions(
                         height: 40.0,
@@ -161,14 +147,48 @@ class _NoticePermissionDialogWidgetState
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
                             const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).primary,
+                        color: FlutterFlowTheme.of(context).primaryBackground,
                         textStyle: FlutterFlowTheme.of(context)
                             .titleSmall
                             .override(
                               fontFamily:
                                   FlutterFlowTheme.of(context).titleSmallFamily,
-                              color: FlutterFlowTheme.of(context)
-                                  .primaryBackground,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              letterSpacing: 0.0,
+                              fontWeight: FontWeight.w500,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .titleSmallFamily),
+                            ),
+                        elevation: 0.0,
+                        borderSide: const BorderSide(
+                          width: 0.0,
+                        ),
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        Navigator.pop(context, true);
+                      },
+                      text: FFLocalizations.of(context).getText(
+                        '2temga0h' /* Continue */,
+                      ),
+                      options: FFButtonOptions(
+                        height: 40.0,
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            24.0, 0.0, 24.0, 0.0),
+                        iconPadding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: FlutterFlowTheme.of(context).error,
+                        textStyle: FlutterFlowTheme.of(context)
+                            .titleSmall
+                            .override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).titleSmallFamily,
+                              color: Colors.white,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.w500,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(

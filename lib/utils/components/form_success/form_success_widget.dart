@@ -742,7 +742,8 @@ class _FormSuccessWidgetState extends State<FormSuccessWidget>
                                     .override(
                                       fontFamily: FlutterFlowTheme.of(context)
                                           .titleSmallFamily,
-                                      color: Colors.white,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w500,
                                       useGoogleFonts: GoogleFonts.asMap()

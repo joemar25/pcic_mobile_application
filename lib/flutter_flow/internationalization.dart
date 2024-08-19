@@ -253,7 +253,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    '02gcyqbd': {
+    'ssr602ji': {
       'en': '',
       'tl': '',
     },
@@ -265,7 +265,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    '654h6aaz': {
+    '7v237fr0': {
       'en': '',
       'tl': '',
     },
@@ -277,7 +277,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    '5mqb5wsz': {
+    'bs9yvm0s': {
       'en': '',
       'tl': '',
     },
@@ -1112,7 +1112,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
-  // aleartContinueDialog
+  // alertContinueDialog
   {
     '4poy7kn4': {
       'en': 'Alert',
@@ -1161,6 +1161,46 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'ighw54es': {
       'en': 'Okay',
+      'tl': '',
+    },
+  },
+  // continueReGeotagDialog
+  {
+    'txdl513w': {
+      'en': 'Alert',
+      'tl': '',
+    },
+    'aevwr0vt': {
+      'en':
+          'The current gpx file will be deleted. \nAre you sure you want to continue?',
+      'tl': '',
+    },
+    'pol5d0m3': {
+      'en': 'Cancel',
+      'tl': '',
+    },
+    'xhp3rkfj': {
+      'en': 'Continue',
+      'tl': '',
+    },
+  },
+  // continueGoBackqDialog
+  {
+    '6fpxyw60': {
+      'en': 'Warning',
+      'tl': '',
+    },
+    'zoypq20i': {
+      'en':
+          'The current gpx file will be deleted. \nAre you sure you want to continue?',
+      'tl': '',
+    },
+    '4m3l8rlv': {
+      'en': 'Cancel',
+      'tl': '',
+    },
+    '2temga0h': {
+      'en': 'Continue',
       'tl': '',
     },
   },
