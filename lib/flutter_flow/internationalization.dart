@@ -253,7 +253,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'zv3lkyjy': {
+    'z73b38ov': {
       'en': '',
       'tl': '',
     },
@@ -265,7 +265,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    '0xcyuz14': {
+    'eiptktle': {
       'en': '',
       'tl': '',
     },
@@ -277,7 +277,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'udnhcas5': {
+    'xc5lrm49': {
       'en': '',
       'tl': '',
     },
@@ -974,6 +974,25 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     '6k4ph13p': {
+      'en': 'Home',
+      'tl': '',
+    },
+  },
+  // onoff
+  {
+    'njs15cpf': {
+      'en': 'On',
+      'tl': '',
+    },
+    'wcqgoqa1': {
+      'en': 'Off',
+      'tl': '',
+    },
+    'khwik3os': {
+      'en': 'Page Title',
+      'tl': '',
+    },
+    'j3nbm088': {
       'en': 'Home',
       'tl': '',
     },

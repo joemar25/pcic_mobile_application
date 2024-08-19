@@ -180,15 +180,22 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
-                                          await UsersTable().update(
-                                            data: {
-                                              'is_online': true,
-                                            },
-                                            matchingRows: (rows) => rows.eq(
-                                              'auth_user_id',
-                                              currentUserUid,
-                                            ),
-                                          );
+                                          if (kDebugMode) {
+                                            context.pushNamed(
+                                              'onoff',
+                                              extra: <String, dynamic>{
+                                                kTransitionInfoKey:
+                                                    const TransitionInfo(
+                                                  hasTransition: true,
+                                                  transitionType:
+                                                      PageTransitionType
+                                                          .rightToLeft,
+                                                  duration: Duration(
+                                                      milliseconds: 200),
+                                                ),
+                                              },
+                                            );
+                                          }
                                         },
                                         child: Icon(
                                           Icons.home_rounded,
@@ -197,44 +204,27 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                           size: 34.0,
                                         ),
                                       ),
-                                      InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          await UsersTable().update(
-                                            data: {
-                                              'is_online': false,
-                                            },
-                                            matchingRows: (rows) => rows.eq(
-                                              'auth_user_id',
-                                              currentUserUid,
-                                            ),
-                                          );
-                                        },
-                                        child: Text(
-                                          FFLocalizations.of(context).getText(
-                                            '5q4it2k3' /* Task Overview */,
-                                          ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .headlineMedium
-                                              .override(
-                                                fontFamily:
-                                                    FlutterFlowTheme.of(context)
-                                                        .headlineMediumFamily,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryBackground,
-                                                fontSize: 28.0,
-                                                letterSpacing: 0.0,
-                                                useGoogleFonts: GoogleFonts
-                                                        .asMap()
-                                                    .containsKey(FlutterFlowTheme
-                                                            .of(context)
-                                                        .headlineMediumFamily),
-                                              ),
+                                      Text(
+                                        FFLocalizations.of(context).getText(
+                                          '5q4it2k3' /* Task Overview */,
                                         ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .headlineMedium
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .headlineMediumFamily,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                              fontSize: 28.0,
+                                              letterSpacing: 0.0,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(FlutterFlowTheme
+                                                          .of(context)
+                                                      .headlineMediumFamily),
+                                            ),
                                       ),
                                     ].divide(const SizedBox(width: 20.0)),
                                   ),

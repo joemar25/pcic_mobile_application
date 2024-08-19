@@ -276,6 +276,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'onoff',
+          path: '/onoff',
+          builder: (context, params) => const OnoffWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

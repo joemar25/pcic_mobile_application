@@ -31,3 +31,4 @@ export '/utils/test/sync_king/sync_king_widget.dart' show SyncKingWidget;
 export '/dashboard/offline_sync/offline_sync_widget.dart'
     show OfflineSyncWidget;
 export '/dashboard/forms/ppir_form/ppir_form_widget.dart' show PpirFormWidget;
+export '/dashboard/onoff/onoff_widget.dart' show OnoffWidget;
