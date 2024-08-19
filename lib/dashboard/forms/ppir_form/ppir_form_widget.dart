@@ -4213,7 +4213,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     alignment:
                                                         Alignment.bottomCenter,
                                                     duration: Duration(
-                                                        milliseconds: 200),
+                                                        milliseconds: 3000),
                                                   ),
                                                 },
                                               );

@@ -466,7 +466,7 @@ class _OfflineSyncWidgetState extends State<OfflineSyncWidget>
                             );
                           },
                           text: FFLocalizations.of(context).getText(
-                            'nzwziy9t' /* Proceed */,
+                            'nzwziy9t' /* Dashboard */,
                           ),
                           icon: const Icon(
                             Icons.dashboard,
