@@ -18,6 +18,11 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
   FFUploadedFile? loadLocalProfile;
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
+  bool isDataUploading = false;
+  FFUploadedFile uploadedLocalFile =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+  String uploadedFileUrl = '';
+
   // State field(s) for display_name widget.
   FocusNode? displayNameFocusNode;
   TextEditingController? displayNameTextController;

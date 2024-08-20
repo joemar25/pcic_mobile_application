@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/upload_data.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/dialogs/no_internet_dialog_copy/no_internet_dialog_copy_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
@@ -208,7 +209,74 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                             color: Color(0xFFF1F4F8),
                                             size: 20.0,
                                           ),
-                                          onPressed: () async {},
+                                          onPressed: () async {
+                                            final selectedMedia =
+                                                await selectMedia(
+                                              storageFolderPath:
+                                                  currentUserEmail,
+                                              mediaSource:
+                                                  MediaSource.photoGallery,
+                                              multiImage: false,
+                                            );
+                                            if (selectedMedia != null &&
+                                                selectedMedia.every((m) =>
+                                                    validateFileFormat(
+                                                        m.storagePath,
+                                                        context))) {
+                                              setState(() => _model
+                                                  .isDataUploading = true);
+                                              var selectedUploadedFiles =
+                                                  <FFUploadedFile>[];
+
+                                              var downloadUrls = <String>[];
+                                              try {
+                                                selectedUploadedFiles =
+                                                    selectedMedia
+                                                        .map((m) =>
+                                                            FFUploadedFile(
+                                                              name: m
+                                                                  .storagePath
+                                                                  .split('/')
+                                                                  .last,
+                                                              bytes: m.bytes,
+                                                              height: m
+                                                                  .dimensions
+                                                                  ?.height,
+                                                              width: m
+                                                                  .dimensions
+                                                                  ?.width,
+                                                              blurHash:
+                                                                  m.blurHash,
+                                                            ))
+                                                        .toList();
+
+                                                downloadUrls =
+                                                    await uploadSupabaseStorageFiles(
+                                                  bucketName: _model
+                                                      .uploadedPhoto!.photoUrl!,
+                                                  selectedFiles: selectedMedia,
+                                                );
+                                              } finally {
+                                                _model.isDataUploading = false;
+                                              }
+                                              if (selectedUploadedFiles
+                                                          .length ==
+                                                      selectedMedia.length &&
+                                                  downloadUrls.length ==
+                                                      selectedMedia.length) {
+                                                setState(() {
+                                                  _model.uploadedLocalFile =
+                                                      selectedUploadedFiles
+                                                          .first;
+                                                  _model.uploadedFileUrl =
+                                                      downloadUrls.first;
+                                                });
+                                              } else {
+                                                setState(() {});
+                                                return;
+                                              }
+                                            }
+                                          },
                                         ),
                                       ),
                                   ],

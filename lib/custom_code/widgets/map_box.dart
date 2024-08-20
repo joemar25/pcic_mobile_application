@@ -16,10 +16,10 @@ import 'dart:async';
 import 'dart:math';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart' as ll;
-import 'package:flutter_map_tile_caching/flutter_map_tile_caching.dart' as FMTC;
 import 'package:geolocator/geolocator.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
+import 'package:flutter_map_tile_caching/flutter_map_tile_caching.dart' as FMTC;
+import 'package:connectivity_plus/connectivity_plus.dart';
 
 class MapBox extends StatefulWidget {
   const MapBox({
@@ -41,178 +41,154 @@ class MapBox extends StatefulWidget {
 
 class _MapBoxState extends State<MapBox> {
   final MapController _mapController = MapController();
+  StreamSubscription<Position>? _positionStreamSubscription;
+
+  ll.LatLng? _currentLocation;
+  List<ll.LatLng> _routeCoordinates = [];
+  ll.LatLng? _startingPosition;
+  final ll.Distance _distance = ll.Distance();
+
+  bool _isTracking = false;
+  bool _isMapReady = false;
+
   TileProvider? _tileProvider;
   String? _storeName;
-  bool _isMapReady = false;
+
   String? _errorMessage;
-  StreamSubscription<Position>? _positionStream;
-  ll.LatLng? _currentLocation;
-  List<ll.LatLng> _routePoints = [];
-  static const double _autoSnapThreshold = 10.0;
 
-  static const double _initialZoom = 20.0;
-  double _currentZoom = _initialZoom;
+  static const double _currentZoom = 19.0;
+  static const int _positionStreamIntervalMs = 100;
+  static const int _initialPositionSamples = 50;
+  static const double _highAccuracyThreshold = 10.0;
+  static const double _stationarySpeedThreshold = 0.1;
+  static const double _significantMovementThreshold = 0.5;
+  static const int _stationaryWindowSize = 20;
 
-  ll.LatLng? _lastValidLocation;
-  static const double _maxJumpDistance = 20.0; // meters
+  late SimpleKalmanFilter _latFilter;
+  late SimpleKalmanFilter _lonFilter;
+
+  List<Position> _recentPositions = [];
+
+  ll.LatLng _averagePosition = ll.LatLng(0, 0);
+  bool _isStationary = true;
+
+  DateTime _lastUpdateTime = DateTime.now();
+  double? _currentHeading;
+  ll.LatLng? _lastFilteredLocation;
 
   @override
   void initState() {
     super.initState();
-    _initializeMap();
-    connected(); // Start listening to connectivity changes
+    _latFilter =
+        SimpleKalmanFilter(e: 3, q: 0.02); // Decreased q from 0.5 to 0.02
+    _lonFilter =
+        SimpleKalmanFilter(e: 3, q: 0.02); // Decreased q from 0.5 to 0.02
+    _checkConnectivity();
+    _initializeTileProvider();
+    _initializeLocation();
   }
 
-  Future<void> _initializeMap() async {
+  Future<void> _checkConnectivity() async {
+    var connectivityResult = await Connectivity().checkConnectivity();
+    if (connectivityResult == ConnectivityResult.none) {
+      setState(() {
+        _errorMessage = "No internet connection.";
+      });
+    }
+  }
+
+  Future<void> _initializeLocation() async {
     try {
-      await _requestLocationPermission();
-      await _getCurrentLocation();
-      await _initializeTileProvider();
+      await _checkLocationPermission();
+      await _checkLocationAccuracy();
+
+      Position initialPosition = await _getAccuratePosition();
+
+      if (!mounted) return;
+
+      setState(() {
+        _currentLocation =
+            ll.LatLng(initialPosition.latitude, initialPosition.longitude);
+        _routeCoordinates.add(_currentLocation!);
+        if (_isMapReady) {
+          _mapController.move(_currentLocation!, _currentZoom);
+        }
+      });
 
       _startLocationStream();
     } catch (e) {
-      setState(() {
-        _errorMessage = e.toString();
-      });
-    }
-  }
-
-  Future<void> _requestLocationPermission() async {
-    final status = await Permission.location.request();
-    if (!status.isGranted) {
-      throw Exception('Location permission denied');
-    }
-  }
-
-  Future<void> _getCurrentLocation() async {
-    try {
-      Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high,
-      );
-      setState(() {
-        _currentLocation = ll.LatLng(position.latitude, position.longitude);
-      });
-      if (_currentLocation != null) {
-        moveMap(_currentLocation!);
-      }
-    } catch (e) {
-      debugPrint('Error getting current location: $e');
-    }
-  }
-
-  void _startLocationStream() {
-    _positionStream = Geolocator.getPositionStream(
-      locationSettings: const LocationSettings(
-        accuracy: LocationAccuracy.high,
-        distanceFilter: 1, // Adjusted to make updates more frequent
-      ),
-    ).listen((Position position) {
-      ll.LatLng newLocation = ll.LatLng(position.latitude, position.longitude);
-
-      if (_isValidLocation(newLocation)) {
+      if (mounted) {
         setState(() {
-          _lastValidLocation = newLocation;
-          _currentLocation = newLocation;
-
-          if (FFAppState().routeStarted) {
-            _routePoints.add(_currentLocation!);
-            // _checkAndSnapToStart(); // Commented out
-            print("Added point: $_currentLocation");
-            print("Total points: ${_routePoints.length}");
-          }
-
-          moveMap(_currentLocation!);
+          _errorMessage = "Initialization error: $e";
         });
-      } else {
-        print("Noise detected. Keeping the marker at the last valid location.");
       }
-    });
+    }
   }
 
-  bool _isValidLocation(ll.LatLng newLocation) {
-    if (_lastValidLocation == null) {
-      return true;
+  Future<Position> _getAccuratePosition() async {
+    List<Position> samples = [];
+    for (int i = 0; i < _initialPositionSamples; i++) {
+      Position position = await _getCurrentPositionWithRetry();
+      samples.add(position);
+      await Future.delayed(Duration(milliseconds: 200));
     }
 
-    double distance = const ll.Distance().as(
-      ll.LengthUnit.Meter,
-      _lastValidLocation!,
-      newLocation,
+    double sumLat = 0, sumLon = 0, sumAcc = 0;
+    for (var pos in samples) {
+      sumLat += pos.latitude;
+      sumLon += pos.longitude;
+      sumAcc += pos.accuracy;
+    }
+
+    double avgLat = sumLat / _initialPositionSamples;
+    double avgLon = sumLon / _initialPositionSamples;
+    double avgAcc = sumAcc / _initialPositionSamples;
+
+    _latFilter = SimpleKalmanFilter(
+        e: avgAcc, q: 0.01); // Increased q from 0.001 to 0.01
+    _lonFilter = SimpleKalmanFilter(
+        e: avgAcc, q: 0.01); // Increased q from 0.001 to 0.01
+
+    return Position(
+      latitude: avgLat,
+      longitude: avgLon,
+      timestamp: DateTime.now(),
+      accuracy: avgAcc,
+      altitude: samples.last.altitude,
+      heading: samples.last.heading,
+      speed: samples.last.speed,
+      speedAccuracy: samples.last.speedAccuracy,
+      altitudeAccuracy: samples.last.altitudeAccuracy ?? 0,
+      headingAccuracy: samples.last.headingAccuracy ?? 0,
     );
-
-    return distance <= _maxJumpDistance;
   }
-
-  /*
-  void _checkAndSnapToStart() {
-    if (_routePoints.length > 1) {
-      double distanceToStart = const ll.Distance().as(
-        ll.LengthUnit.Meter,
-        _routePoints.first,
-        _routePoints.last,
-      );
-
-      if (distanceToStart <= _autoSnapThreshold) {
-        _routePoints.add(_routePoints.first);
-        FFAppState().routeStarted = false;
-        _stopTracking();
-        print("Automatically snapped to start and stopped tracking");
-      }
-    }
-  }
-  */
 
   Future<void> _initializeTileProvider() async {
     final stats = FMTC.FMTCRoot.stats;
     final stores = await stats.storesAvailable;
 
-    print('Available stores: ${stores.length}');
-
-    if (_currentLocation == null) {
-      print('Current location is null');
+    if (stores.isEmpty) {
+      print("No stores available");
       return;
     }
 
+    Position position = await _getCurrentPositionWithRetry();
+    if (!mounted) return;
     ll.LatLng currentLocation =
-        ll.LatLng(_currentLocation!.latitude, _currentLocation!.longitude);
-    print(
-        'Current location: ${currentLocation.latitude}, ${currentLocation.longitude}');
-
-    bool storeFound = false;
+        ll.LatLng(position.latitude, position.longitude);
 
     for (var store in stores) {
-      print('Checking store: ${store.storeName}');
       final md = FMTC.FMTCStore(store.storeName).metadata;
       final metadata = await md.read;
-      print('Metadata for ${store.storeName}: $metadata');
-
-      if (metadata != null) {
-        try {
-          Map<String, num> regionData = {
-            'region_south': _parseNum(metadata['region_south']),
-            'region_north': _parseNum(metadata['region_north']),
-            'region_west': _parseNum(metadata['region_west']),
-            'region_east': _parseNum(metadata['region_east']),
-          };
-          print('Parsed region data: $regionData');
-
-          if (_isLocationInRegion(currentLocation, regionData)) {
-            _storeName = store.storeName;
-            print('Matched store: $_storeName');
-            storeFound = true;
-            break;
-          }
-        } catch (e) {
-          print('Error processing metadata for ${store.storeName}: $e');
-        }
-      } else {
-        print('Metadata is null for ${store.storeName}');
+      if (metadata != null && _isLocationInRegion(currentLocation, metadata)) {
+        _storeName = store.storeName;
+        break;
       }
     }
 
-    if (!storeFound) {
-      print('No matching store found for the current location.');
-    } else if (_storeName != null) {
+    _storeName ??= stores.isNotEmpty ? stores[0].storeName : null;
+
+    if (_storeName != null) {
       setState(() {
         _tileProvider = FMTC.FMTCStore(_storeName!).getTileProvider(
           settings: FMTC.FMTCTileProviderSettings(
@@ -220,72 +196,262 @@ class _MapBoxState extends State<MapBox> {
           ),
         );
       });
-      print('Tile provider initialized with store: $_storeName');
     } else {
-      print('No store available to initialize tile provider');
+      if (mounted) {
+        setState(() {
+          _errorMessage = "No suitable tile store found.";
+        });
+      }
     }
   }
 
-  bool _isLocationInRegion(ll.LatLng location, Map<String, num> region) {
-    print('Checking location: ${location.latitude}, ${location.longitude}');
-    print('Region: $region');
-
-    return location.latitude >= region['region_south']! &&
-        location.latitude <= region['region_north']! &&
-        location.longitude >= region['region_west']! &&
-        location.longitude <= region['region_east']!;
+  bool _isLocationInRegion(ll.LatLng location, Map<String, dynamic> region) {
+    return location.latitude >= region['region_south'] &&
+        location.latitude <= region['region_north'] &&
+        location.longitude >= region['region_west'] &&
+        location.longitude <= region['region_east'];
   }
 
-  num _parseNum(dynamic value) {
-    if (value is num) {
-      return value;
-    } else if (value is String) {
-      return num.parse(value);
-    } else {
-      throw FormatException('Cannot parse $value to num');
+  Future<void> _checkLocationPermission() async {
+    final serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) throw Exception('Location services are disabled.');
+
+    var permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        throw Exception('Location permissions are denied');
+      }
+    }
+    if (permission == LocationPermission.deniedForever) {
+      throw Exception('Location permissions are permanently denied');
     }
   }
 
-  void _showNoMapDataSnackBar() {
-    if (!mounted) return;
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: const Text('This map is not downloaded.'),
-        action: SnackBarAction(
-          label: 'Download',
-          onPressed: () {
-            // Close the SnackBar
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-
-            // Navigate to the download page
-            context.pushNamed(
-              'pcicMap',
-              extra: <String, dynamic>{
-                kTransitionInfoKey: const TransitionInfo(
-                  hasTransition: true,
-                  transitionType: PageTransitionType.rightToLeft,
-                  duration: Duration(milliseconds: 200),
-                ),
+  Future<void> _checkLocationAccuracy() async {
+    try {
+      LocationAccuracyStatus accuracy = await Geolocator.getLocationAccuracy();
+      if (accuracy == LocationAccuracyStatus.reduced && mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Please enable precise location for better accuracy'),
+            action: SnackBarAction(
+              label: 'Settings',
+              onPressed: () {
+                Geolocator.openAppSettings();
               },
+            ),
+          ),
+        );
+      }
+    } catch (e) {
+      print('Error checking location accuracy: $e');
+    }
+  }
+
+  Future<Position> _getCurrentPositionWithRetry({int retries = 0}) async {
+    try {
+      return await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.best,
+        timeLimit: Duration(seconds: 10),
+      );
+    } catch (e) {
+      if (retries < 3) {
+        await Future.delayed(Duration(seconds: 2));
+        return _getCurrentPositionWithRetry(retries: retries + 1);
+      } else {
+        _showSnackbar("Failed to get accurate location, using best effort.");
+        return await Geolocator.getLastKnownPosition() ??
+            Position(
+              longitude: 0.0,
+              latitude: 0.0,
+              timestamp: DateTime.now(),
+              accuracy: 0.0,
+              altitude: 0.0,
+              heading: 0.0,
+              speed: 0.0,
+              speedAccuracy: 0.0,
+              altitudeAccuracy: 0.0,
+              headingAccuracy: 0.0,
             );
-          },
-        ),
-        duration: const Duration(seconds: 10),
-      ),
+      }
+    }
+  }
+
+  Future<bool> _isGpsEnabled() async {
+    return await Geolocator.isLocationServiceEnabled();
+  }
+
+  void _startLocationStream() {
+    final LocationSettings locationSettings = AndroidSettings(
+      accuracy: LocationAccuracy.bestForNavigation,
+      distanceFilter: 1,
+      forceLocationManager: false,
+      intervalDuration: Duration(milliseconds: _positionStreamIntervalMs),
+    );
+
+    _positionStreamSubscription = Geolocator.getPositionStream(
+      locationSettings: locationSettings,
+    ).listen(
+      (Position position) {
+        if (mounted) {
+          _processNewPosition(position);
+        }
+      },
+      onError: (error) {
+        print("Location stream error: $error");
+        _restartLocationStream();
+      },
     );
   }
 
-  void moveMap(ll.LatLng point) {
-    _mapController.move(point, _currentZoom);
+  void _restartLocationStream() {
+    _positionStreamSubscription?.cancel();
+    Future.delayed(Duration(seconds: 1), _startLocationStream);
   }
 
-  void zoomMap(double zoom) {
+  void _processNewPosition(Position position) {
+    // Apply Kalman filter for the marker position
+    double filteredLat = _latFilter.filter(position.latitude);
+    double filteredLon = _lonFilter.filter(position.longitude);
+    ll.LatLng filteredLocation = ll.LatLng(filteredLat, filteredLon);
+
+    // Use raw coordinates for the route
+    ll.LatLng rawLocation = ll.LatLng(position.latitude, position.longitude);
+
+    _updatePosition(
+        filteredLocation, rawLocation, position.heading, position.speed);
+  }
+
+  void _updatePosition(ll.LatLng filteredLocation, ll.LatLng rawLocation,
+      double heading, double speed) {
     setState(() {
-      _currentZoom = zoom;
+      _currentLocation =
+          filteredLocation; // Use filtered location for the marker
+      _currentHeading = heading;
+      _lastFilteredLocation = filteredLocation;
+      _lastUpdateTime = DateTime.now();
+
+      if (_isMapReady && _shouldRecenterMap()) {
+        _mapController.move(_currentLocation!, _currentZoom);
+        if (speed > _stationarySpeedThreshold) {
+          _mapController.rotate(heading);
+        }
+      }
+
+      if (_isTracking) {
+        _addToRoute(rawLocation); // Use raw location for the route
+      }
     });
-    final currentCenter = _mapController.camera.center;
-    _mapController.move(currentCenter, zoom);
+  }
+
+  void _addToRoute(ll.LatLng newLocation) {
+    // Always add the new raw location to make the route more detailed
+    setState(() {
+      _routeCoordinates.add(newLocation);
+    });
+  }
+
+  Future<void> _startTracking() async {
+    if (_currentLocation != null && !_isTracking) {
+      bool gpsEnabled = await _isGpsEnabled();
+      if (!gpsEnabled) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(
+                'GPS is not enabled. Please turn on GPS to start tracking.'),
+          ));
+        }
+        FFAppState().routeStarted = false;
+        return;
+      }
+
+      try {
+        setState(() {
+          _isTracking = true;
+          _routeCoordinates.clear();
+          _startingPosition = _currentLocation;
+        });
+
+        Position startPosition = await _getAccuratePosition();
+        if (!mounted) return;
+
+        setState(() {
+          _startingPosition =
+              ll.LatLng(startPosition.latitude, startPosition.longitude);
+          _routeCoordinates.add(_startingPosition!);
+        });
+
+        FFAppState().routeStarted = true;
+      } catch (e) {
+        if (mounted) {
+          setState(() {
+            _isTracking = false;
+            _errorMessage = "Failed to start tracking: $e";
+          });
+        }
+        FFAppState().routeStarted = false;
+      }
+    }
+  }
+
+  void _completeTracking() {
+    if (_routeCoordinates.isEmpty) return;
+
+    print('Route completed. Total points: ${_routeCoordinates.length}');
+
+    double totalDistance = calculateTotalDistance(_routeCoordinates);
+    print('Total distance: $totalDistance meters');
+
+    double area = 0.0;
+    if (_routeCoordinates.length >= 3) {
+      area = calculateAreaOfPolygon(_routeCoordinates);
+      print('Area: $area square meters');
+    }
+
+    String routeCoordinatesString = _routeCoordinates
+        .map((point) => '${point.latitude},${point.longitude}')
+        .join(' ');
+
+    String lastCoord =
+        '${_routeCoordinates.last.latitude},${_routeCoordinates.last.longitude}';
+    print("Last coord: $lastCoord");
+
+    String currentDateTime = DateTime.now().toIso8601String();
+    print("Current date time: $currentDateTime");
+
+    String areaInHectares = (area / 10000).toString();
+    print("Area in hectares: $areaInHectares");
+
+    String distanceInKilometers = (totalDistance / 1000).toString();
+    print("Distance in kilometers: $distanceInKilometers");
+
+    saveGpx(
+      widget.taskId ?? 'default_task_id',
+      routeCoordinatesString,
+      lastCoord,
+      currentDateTime,
+      areaInHectares,
+      distanceInKilometers,
+    );
+
+    setState(() {
+      _routeCoordinates.clear();
+      _isTracking = false;
+      FFAppState().routeStarted = false;
+    });
+  }
+
+  double calculateTotalDistance(List<ll.LatLng> points) {
+    double totalDistance = 0.0;
+    for (int i = 0; i < points.length - 1; i++) {
+      totalDistance += const ll.Distance().as(
+        ll.LengthUnit.Meter,
+        points[i],
+        points[i + 1],
+      );
+    }
+    return totalDistance;
   }
 
   double calculateAreaOfPolygon(List<ll.LatLng> points) {
@@ -315,272 +481,784 @@ class _MapBoxState extends State<MapBox> {
     return (area * radius * radius).abs();
   }
 
-  double calculateTotalDistance(List<ll.LatLng> points) {
-    double totalDistance = 0.0;
-    for (int i = 0; i < points.length - 1; i++) {
-      totalDistance += const ll.Distance().as(
-        ll.LengthUnit.Meter,
-        points[i],
-        points[i + 1],
-      );
+  void _recenterMap() {
+    if (_currentLocation != null && _isMapReady) {
+      _mapController.move(_currentLocation!, _currentZoom);
     }
-    return totalDistance;
   }
 
-  void _startTracking() {
-    setState(() {
-      _routePoints.clear();
-      if (_currentLocation != null) {
-        _routePoints.add(_currentLocation!);
-      }
-    });
-  }
+  bool _shouldRecenterMap() {
+    if (!_isMapReady || _currentLocation == null) return false;
 
-  void _stopTracking() {
-    if (_routePoints.isEmpty) return;
-
-    print('Route completed. Total points: ${_routePoints.length}');
-
-    double totalDistance = calculateTotalDistance(_routePoints);
-    print('Total distance: $totalDistance meters');
-
-    double area = 0.0;
-    if (_routePoints.length >= 3) {
-      area = calculateAreaOfPolygon(_routePoints);
-      print('Area: $area square meters');
-    }
-
-    String routeCoordinatesString = _routePoints
-        .map((point) => '${point.latitude},${point.longitude}')
-        .join(' ');
-
-    String lastCoord =
-        '${_routePoints.last.latitude},${_routePoints.last.longitude}';
-    print("Last coord: $lastCoord");
-
-    String currentDateTime = DateTime.now().toIso8601String();
-    print("Current date time: $currentDateTime");
-
-    String areaInHectares = (area / 10000).toString();
-    print("Area in hectares: $areaInHectares");
-
-    String distanceInHectares = (totalDistance / 10000).toString();
-    print("Distance in hectares: $distanceInHectares");
-
-    saveGpx(
-      widget.taskId ?? 'default_task_id',
-      routeCoordinatesString,
-      lastCoord,
-      currentDateTime,
-      areaInHectares,
-      distanceInHectares,
+    final mapBounds = LatLngBounds.fromPoints(
+      [
+        _calculateOffset(_currentLocation!, _mapController.camera.zoom, -1, -1),
+        _calculateOffset(_currentLocation!, _mapController.camera.zoom, 1, 1),
+      ],
     );
 
-    setState(() {
-      _routePoints.clear();
-    });
+    final currentPoint =
+        _mapController.camera.latLngToScreenPoint(_currentLocation!);
+
+    return currentPoint == null || !mapBounds.contains(_currentLocation!);
+  }
+
+  ll.LatLng _calculateOffset(
+      ll.LatLng center, double zoom, double xOffset, double yOffset) {
+    final double scaleFactor = 0.01 / zoom;
+    return ll.LatLng(
+      center.latitude + (scaleFactor * yOffset),
+      center.longitude + (scaleFactor * xOffset),
+    );
+  }
+
+  void _showSnackbar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message)),
+    );
   }
 
   @override
   void dispose() {
+    _positionStreamSubscription?.cancel();
     _mapController.dispose();
-    _positionStream
-        ?.cancel(); // Ensure the stream is canceled when the widget is disposed
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final appState = FFAppState();
+
+    if (appState.routeStarted && !_isTracking) {
+      _startTracking();
+    }
+
+    if (!appState.routeStarted && _isTracking) {
+      _completeTracking();
+    }
+
     if (_errorMessage != null) {
       return Center(
-        child: Text('Error: $_errorMessage'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Error: $_errorMessage'),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  _errorMessage = null;
+                });
+                _initializeLocation();
+              },
+              child: Text('Retry'),
+            ),
+          ],
+        ),
       );
     }
 
     if (_currentLocation == null) {
-      return Center(
-        child: CircularProgressIndicator(),
-      );
-    }
-    if (!FFAppState().ONLINE && (_tileProvider == null || _storeName == null)) {
-      return _buildOfflineMessageBox(context);
+      return const Center(child: CircularProgressIndicator());
     }
 
-    if (FFAppState().routeStarted && _routePoints.isEmpty) {
-      _startTracking();
-    } else if (!FFAppState().routeStarted && _routePoints.isNotEmpty) {
-      _stopTracking();
-    }
-
-    return SizedBox(
-      width: widget.width ?? MediaQuery.of(context).size.width,
-      height: widget.height ?? MediaQuery.of(context).size.height,
-      child: FlutterMap(
-        mapController: _mapController,
-        options: MapOptions(
-          initialCenter: _currentLocation!,
-          initialZoom: _currentZoom,
-          minZoom: 18.5,
-          maxZoom: 22,
-          onMapReady: () {
-            setState(() {
-              _isMapReady = true;
-            });
-          },
-        ),
-        children: [
-          TileLayer(
-            urlTemplate:
-                'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}@2x?access_token=${widget.accessToken}',
-            additionalOptions: {
-              'accessToken': widget.accessToken ?? '',
-            },
-            tileProvider: _tileProvider,
-          ),
-          if (_routePoints.isNotEmpty)
-            PolylineLayer(
-              polylines: [
-                Polyline(
-                  points: _routePoints,
-                  strokeWidth: 4.0,
-                  color: Colors.blue,
-                ),
-              ],
+    return Stack(
+      children: [
+        SizedBox(
+          width: widget.width ?? MediaQuery.of(context).size.width,
+          height: widget.height ?? MediaQuery.of(context).size.height,
+          child: FlutterMap(
+            mapController: _mapController,
+            options: MapOptions(
+              initialCenter: _currentLocation!,
+              initialZoom: _currentZoom,
+              minZoom: 18,
+              maxZoom: 22,
+              onMapReady: () {
+                setState(() {
+                  _isMapReady = true;
+                  if (_currentLocation != null) {
+                    _mapController.move(_currentLocation!, _currentZoom);
+                  }
+                });
+              },
             ),
-          CurrentLocationLayer(
-            alignPositionOnUpdate: AlignOnUpdate.always,
-            alignDirectionOnUpdate: AlignOnUpdate.never,
-            style: LocationMarkerStyle(
-              marker: DefaultLocationMarker(
-                color: Colors.green,
+            children: [
+              TileLayer(
+                urlTemplate:
+                    'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}@2x?access_token=${widget.accessToken}',
+                additionalOptions: {
+                  'accessToken': widget.accessToken ?? '',
+                },
+                tileProvider: _tileProvider,
               ),
-              markerSize: const Size(12, 12),
-              showAccuracyCircle: false,
-              showHeadingSector: false,
-              markerDirection: MarkerDirection.heading,
+              CurrentLocationLayer(
+                followOnLocationUpdate: FollowOnLocationUpdate.always,
+                style: LocationMarkerStyle(
+                  marker: const DefaultLocationMarker(color: Colors.green),
+                  markerSize: const Size(12, 12),
+                  markerDirection: MarkerDirection.heading,
+                  accuracyCircleColor: Colors.green.withOpacity(0.2),
+                  headingSectorColor: Colors.green.withOpacity(0.8),
+                  headingSectorRadius: 60,
+                ),
+                moveAnimationDuration: Duration.zero,
+              ),
+              if (_routeCoordinates.isNotEmpty &&
+                  (appState.routeStarted || _isTracking))
+                PolylineLayer(
+                  polylines: [
+                    Polyline(
+                      points: _routeCoordinates,
+                      strokeWidth: 3.0,
+                      color: Colors.blue,
+                    ),
+                  ],
+                ),
+              MarkerLayer(
+                markers: _startingPosition != null
+                    ? [
+                        Marker(
+                          point: _startingPosition!,
+                          child: Icon(
+                            Icons.pin_drop,
+                            color: Colors.red,
+                            size: 10.0,
+                          ),
+                        ),
+                      ]
+                    : [],
+              ),
+            ],
+          ),
+        ),
+        Positioned(
+          top: 50,
+          right: 20,
+          child: Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              color: Color(0x7f0f1113),
+              shape: BoxShape.circle,
+              border: Border.all(color: Colors.transparent, width: 1),
+            ),
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(30),
+                onTap: _recenterMap,
+                child: Center(
+                  child: Icon(
+                    Icons.my_location_outlined,
+                    color: Colors.white,
+                    size: 24,
+                  ),
+                ),
+              ),
             ),
           ),
-          Positioned(
-            top: 50,
-            right: 20,
-            child: Column(
-              children: [
-                _buildIconButton(Icons.my_location, () {
-                  if (_currentLocation != null) moveMap(_currentLocation!);
-                }),
-                SizedBox(height: 10),
-                _buildIconButton(Icons.add, () => zoomMap(_currentZoom + 1)),
-                SizedBox(height: 10),
-                _buildIconButton(Icons.remove, () => zoomMap(_currentZoom - 1)),
-              ],
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
 
-Widget _buildIconButton(IconData icon, VoidCallback onPressed) {
-  return Container(
-    width: 40,
-    height: 40,
-    decoration: BoxDecoration(
-      color: Color(0x7f0f1113),
-      shape: BoxShape.circle,
-      border: Border.all(color: Colors.transparent, width: 1),
-    ),
-    child: Material(
-      color: Colors.transparent,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(30),
-        onTap: onPressed,
-        child: Center(
-          child: Icon(
-            icon,
-            color: Colors.white,
-            size: 18,
-          ),
-        ),
-      ),
-    ),
-  );
+class SimpleKalmanFilter {
+  double _e;
+  double _q;
+  double? _lastEstimate;
+
+  SimpleKalmanFilter({required double e, required double q})
+      : _e = e,
+        _q = q;
+
+  double filter(double measurement) {
+    if (_lastEstimate == null) {
+      _lastEstimate = measurement;
+      return measurement;
+    }
+
+    double prediction = _lastEstimate!;
+    double kalmanGain = _e / (_e + _q);
+    double estimate = prediction + kalmanGain * (measurement - prediction);
+
+    _e = (1 - kalmanGain) * _e + ((_lastEstimate! - estimate).abs()) * _q;
+    _lastEstimate = estimate;
+
+    return estimate;
+  }
 }
 
-Widget _buildOfflineMessageBox(BuildContext context) {
-  return Center(
-    child: Container(
-      width: MediaQuery.of(context).size.width * 0.8, // 80% of screen width
-      constraints: BoxConstraints(maxWidth: 300), // Maximum width
-      padding: EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: Colors.green,
-        borderRadius: BorderRadius.circular(10),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 5,
-            blurRadius: 7,
-            offset: Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min, // Use minimum space needed
-        children: [
-          Icon(Icons.map_outlined, size: 50, color: Colors.white),
-          SizedBox(height: 15),
-          Text(
-            'Map for your current location is not downloaded yet',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
-          SizedBox(height: 10),
-          Text(
-            'Download the map to use offline features',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 14,
-              color: Colors.white,
-            ),
-          ),
-          SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              context.pushNamed(
-                'pcicMap',
-                extra: <String, dynamic>{
-                  kTransitionInfoKey: const TransitionInfo(
-                    hasTransition: true,
-                    transitionType: PageTransitionType.rightToLeft,
-                    duration: Duration(milliseconds: 200),
-                  ),
-                },
-              );
-            },
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(Colors.white),
-              foregroundColor: MaterialStateProperty.all(Colors.green),
-              padding: MaterialStateProperty.all(
-                  EdgeInsets.symmetric(horizontal: 20, vertical: 10)),
-              shape: MaterialStateProperty.all(
-                RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.circular(8.0), // Changed from 😎 to 8.0
-                ),
-              ),
-            ),
-            child: Text('Download Map'),
-          ),
-        ],
-      ),
-    ),
-  );
-}
+//-------------------------------this day 8 / 20/ 2024
+// import 'dart:async';
+// import 'dart:math';
+// import 'package:flutter_map/flutter_map.dart';
+// import 'package:latlong2/latlong.dart' as ll;
+// import 'package:flutter_map_tile_caching/flutter_map_tile_caching.dart' as FMTC;
+// import 'package:geolocator/geolocator.dart';
+// import 'package:permission_handler/permission_handler.dart';
+// import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
+
+// class MapBox extends StatefulWidget {
+//   const MapBox({
+//     Key? key,
+//     this.width,
+//     this.height,
+//     this.accessToken,
+//     this.taskId,
+//   }) : super(key: key);
+
+//   final double? width;
+//   final double? height;
+//   final String? accessToken;
+//   final String? taskId;
+
+//   @override
+//   State<MapBox> createState() => _MapBoxState();
+// }
+
+// class _MapBoxState extends State<MapBox> {
+//   final MapController _mapController = MapController();
+//   TileProvider? _tileProvider;
+//   String? _storeName;
+//   bool _isMapReady = false;
+//   String? _errorMessage;
+//   StreamSubscription<Position>? _positionStream;
+//   ll.LatLng? _currentLocation;
+//   List<ll.LatLng> _routePoints = [];
+//   static const double _autoSnapThreshold = 10.0;
+
+//   static const double _initialZoom = 20.0;
+//   double _currentZoom = _initialZoom;
+
+//   ll.LatLng? _lastValidLocation;
+//   static const double _maxJumpDistance = 20.0; // meters
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     _initializeMap();
+//     connected(); // Start listening to connectivity changes
+//   }
+
+//   Future<void> _initializeMap() async {
+//     try {
+//       await _requestLocationPermission();
+//       await _getCurrentLocation();
+//       await _initializeTileProvider();
+
+//       _startLocationStream();
+//     } catch (e) {
+//       setState(() {
+//         _errorMessage = e.toString();
+//       });
+//     }
+//   }
+
+//   Future<void> _requestLocationPermission() async {
+//     final status = await Permission.location.request();
+//     if (!status.isGranted) {
+//       throw Exception('Location permission denied');
+//     }
+//   }
+
+//   Future<void> _getCurrentLocation() async {
+//     try {
+//       Position position = await Geolocator.getCurrentPosition(
+//         desiredAccuracy: LocationAccuracy.high,
+//       );
+//       setState(() {
+//         _currentLocation = ll.LatLng(position.latitude, position.longitude);
+//       });
+//       if (_currentLocation != null) {
+//         moveMap(_currentLocation!);
+//       }
+//     } catch (e) {
+//       debugPrint('Error getting current location: $e');
+//     }
+//   }
+
+//   void _startLocationStream() {
+//     _positionStream = Geolocator.getPositionStream(
+//       locationSettings: const LocationSettings(
+//         accuracy: LocationAccuracy.high,
+//         distanceFilter: 1, // Adjusted to make updates more frequent
+//       ),
+//     ).listen((Position position) {
+//       ll.LatLng newLocation = ll.LatLng(position.latitude, position.longitude);
+
+//       if (_isValidLocation(newLocation)) {
+//         setState(() {
+//           _lastValidLocation = newLocation;
+//           _currentLocation = newLocation;
+
+//           if (FFAppState().routeStarted) {
+//             _routePoints.add(_currentLocation!);
+//             // _checkAndSnapToStart(); // Commented out
+//             print("Added point: $_currentLocation");
+//             print("Total points: ${_routePoints.length}");
+//           }
+
+//           moveMap(_currentLocation!);
+//         });
+//       } else {
+//         print("Noise detected. Keeping the marker at the last valid location.");
+//       }
+//     });
+//   }
+
+//   bool _isValidLocation(ll.LatLng newLocation) {
+//     if (_lastValidLocation == null) {
+//       return true;
+//     }
+
+//     double distance = const ll.Distance().as(
+//       ll.LengthUnit.Meter,
+//       _lastValidLocation!,
+//       newLocation,
+//     );
+
+//     return distance <= _maxJumpDistance;
+//   }
+
+//   /*
+//   void _checkAndSnapToStart() {
+//     if (_routePoints.length > 1) {
+//       double distanceToStart = const ll.Distance().as(
+//         ll.LengthUnit.Meter,
+//         _routePoints.first,
+//         _routePoints.last,
+//       );
+
+//       if (distanceToStart <= _autoSnapThreshold) {
+//         _routePoints.add(_routePoints.first);
+//         FFAppState().routeStarted = false;
+//         _stopTracking();
+//         print("Automatically snapped to start and stopped tracking");
+//       }
+//     }
+//   }
+//   */
+
+//   Future<void> _initializeTileProvider() async {
+//     final stats = FMTC.FMTCRoot.stats;
+//     final stores = await stats.storesAvailable;
+
+//     print('Available stores: ${stores.length}');
+
+//     if (_currentLocation == null) {
+//       print('Current location is null');
+//       return;
+//     }
+
+//     ll.LatLng currentLocation =
+//         ll.LatLng(_currentLocation!.latitude, _currentLocation!.longitude);
+//     print(
+//         'Current location: ${currentLocation.latitude}, ${currentLocation.longitude}');
+
+//     bool storeFound = false;
+
+//     for (var store in stores) {
+//       print('Checking store: ${store.storeName}');
+//       final md = FMTC.FMTCStore(store.storeName).metadata;
+//       final metadata = await md.read;
+//       print('Metadata for ${store.storeName}: $metadata');
+
+//       if (metadata != null) {
+//         try {
+//           Map<String, num> regionData = {
+//             'region_south': _parseNum(metadata['region_south']),
+//             'region_north': _parseNum(metadata['region_north']),
+//             'region_west': _parseNum(metadata['region_west']),
+//             'region_east': _parseNum(metadata['region_east']),
+//           };
+//           print('Parsed region data: $regionData');
+
+//           if (_isLocationInRegion(currentLocation, regionData)) {
+//             _storeName = store.storeName;
+//             print('Matched store: $_storeName');
+//             storeFound = true;
+//             break;
+//           }
+//         } catch (e) {
+//           print('Error processing metadata for ${store.storeName}: $e');
+//         }
+//       } else {
+//         print('Metadata is null for ${store.storeName}');
+//       }
+//     }
+
+//     if (!storeFound) {
+//       print('No matching store found for the current location.');
+//     } else if (_storeName != null) {
+//       setState(() {
+//         _tileProvider = FMTC.FMTCStore(_storeName!).getTileProvider(
+//           settings: FMTC.FMTCTileProviderSettings(
+//             behavior: FMTC.CacheBehavior.cacheFirst,
+//           ),
+//         );
+//       });
+//       print('Tile provider initialized with store: $_storeName');
+//     } else {
+//       print('No store available to initialize tile provider');
+//     }
+//   }
+
+//   bool _isLocationInRegion(ll.LatLng location, Map<String, num> region) {
+//     print('Checking location: ${location.latitude}, ${location.longitude}');
+//     print('Region: $region');
+
+//     return location.latitude >= region['region_south']! &&
+//         location.latitude <= region['region_north']! &&
+//         location.longitude >= region['region_west']! &&
+//         location.longitude <= region['region_east']!;
+//   }
+
+//   num _parseNum(dynamic value) {
+//     if (value is num) {
+//       return value;
+//     } else if (value is String) {
+//       return num.parse(value);
+//     } else {
+//       throw FormatException('Cannot parse $value to num');
+//     }
+//   }
+
+//   void _showNoMapDataSnackBar() {
+//     if (!mounted) return;
+
+//     ScaffoldMessenger.of(context).showSnackBar(
+//       SnackBar(
+//         content: const Text('This map is not downloaded.'),
+//         action: SnackBarAction(
+//           label: 'Download',
+//           onPressed: () {
+//             // Close the SnackBar
+//             ScaffoldMessenger.of(context).hideCurrentSnackBar();
+
+//             // Navigate to the download page
+//             context.pushNamed(
+//               'pcicMap',
+//               extra: <String, dynamic>{
+//                 kTransitionInfoKey: const TransitionInfo(
+//                   hasTransition: true,
+//                   transitionType: PageTransitionType.rightToLeft,
+//                   duration: Duration(milliseconds: 200),
+//                 ),
+//               },
+//             );
+//           },
+//         ),
+//         duration: const Duration(seconds: 10),
+//       ),
+//     );
+//   }
+
+//   void moveMap(ll.LatLng point) {
+//     _mapController.move(point, _currentZoom);
+//   }
+
+//   void zoomMap(double zoom) {
+//     setState(() {
+//       _currentZoom = zoom;
+//     });
+//     final currentCenter = _mapController.camera.center;
+//     _mapController.move(currentCenter, zoom);
+//   }
+
+//   double calculateAreaOfPolygon(List<ll.LatLng> points) {
+//     if (points.length < 3) {
+//       return 0.0;
+//     }
+//     double radius = 6378137.0;
+//     double area = 0.0;
+
+//     for (int i = 0; i < points.length; i++) {
+//       ll.LatLng p1 = points[i];
+//       ll.LatLng p2 = points[(i + 1) % points.length];
+
+//       double lat1 = p1.latitudeInRad;
+//       double lon1 = p1.longitudeInRad;
+//       double lat2 = p2.latitudeInRad;
+//       double lon2 = p2.longitudeInRad;
+
+//       double segmentArea = 2 *
+//           atan2(
+//             tan((lon2 - lon1) / 2) * tan((lat1 + lat2) / 2),
+//             1 + tan(lat1 / 2) * tan(lat2 / 2) * cos(lon1 - lon2),
+//           );
+//       area += segmentArea;
+//     }
+
+//     return (area * radius * radius).abs();
+//   }
+
+//   double calculateTotalDistance(List<ll.LatLng> points) {
+//     double totalDistance = 0.0;
+//     for (int i = 0; i < points.length - 1; i++) {
+//       totalDistance += const ll.Distance().as(
+//         ll.LengthUnit.Meter,
+//         points[i],
+//         points[i + 1],
+//       );
+//     }
+//     return totalDistance;
+//   }
+
+//   void _startTracking() {
+//     setState(() {
+//       _routePoints.clear();
+//       if (_currentLocation != null) {
+//         _routePoints.add(_currentLocation!);
+//       }
+//     });
+//   }
+
+//   void _stopTracking() {
+//     if (_routePoints.isEmpty) return;
+
+//     print('Route completed. Total points: ${_routePoints.length}');
+
+//     double totalDistance = calculateTotalDistance(_routePoints);
+//     print('Total distance: $totalDistance meters');
+
+//     double area = 0.0;
+//     if (_routePoints.length >= 3) {
+//       area = calculateAreaOfPolygon(_routePoints);
+//       print('Area: $area square meters');
+//     }
+
+//     String routeCoordinatesString = _routePoints
+//         .map((point) => '${point.latitude},${point.longitude}')
+//         .join(' ');
+
+//     String lastCoord =
+//         '${_routePoints.last.latitude},${_routePoints.last.longitude}';
+//     print("Last coord: $lastCoord");
+
+//     String currentDateTime = DateTime.now().toIso8601String();
+//     print("Current date time: $currentDateTime");
+
+//     String areaInHectares = (area / 10000).toString();
+//     print("Area in hectares: $areaInHectares");
+
+//     String distanceInHectares = (totalDistance / 10000).toString();
+//     print("Distance in hectares: $distanceInHectares");
+
+//     saveGpx(
+//       widget.taskId ?? 'default_task_id',
+//       routeCoordinatesString,
+//       lastCoord,
+//       currentDateTime,
+//       areaInHectares,
+//       distanceInHectares,
+//     );
+
+//     setState(() {
+//       _routePoints.clear();
+//     });
+//   }
+
+//   @override
+//   void dispose() {
+//     _mapController.dispose();
+//     _positionStream
+//         ?.cancel(); // Ensure the stream is canceled when the widget is disposed
+//     super.dispose();
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     if (_errorMessage != null) {
+//       return Center(
+//         child: Text('Error: $_errorMessage'),
+//       );
+//     }
+
+//     if (_currentLocation == null) {
+//       return Center(
+//         child: CircularProgressIndicator(),
+//       );
+//     }
+//     if (!FFAppState().ONLINE && (_tileProvider == null || _storeName == null)) {
+//       return _buildOfflineMessageBox(context);
+//     }
+
+//     if (FFAppState().routeStarted && _routePoints.isEmpty) {
+//       _startTracking();
+//     } else if (!FFAppState().routeStarted && _routePoints.isNotEmpty) {
+//       _stopTracking();
+//     }
+
+//     return SizedBox(
+//       width: widget.width ?? MediaQuery.of(context).size.width,
+//       height: widget.height ?? MediaQuery.of(context).size.height,
+//       child: FlutterMap(
+//         mapController: _mapController,
+//         options: MapOptions(
+//           initialCenter: _currentLocation!,
+//           initialZoom: _currentZoom,
+//           minZoom: 18.5,
+//           maxZoom: 22,
+//           onMapReady: () {
+//             setState(() {
+//               _isMapReady = true;
+//             });
+//           },
+//         ),
+//         children: [
+//           TileLayer(
+//             urlTemplate:
+//                 'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}@2x?access_token=${widget.accessToken}',
+//             additionalOptions: {
+//               'accessToken': widget.accessToken ?? '',
+//             },
+//             tileProvider: _tileProvider,
+//           ),
+//           if (_routePoints.isNotEmpty)
+//             PolylineLayer(
+//               polylines: [
+//                 Polyline(
+//                   points: _routePoints,
+//                   strokeWidth: 4.0,
+//                   color: Colors.blue,
+//                 ),
+//               ],
+//             ),
+//           CurrentLocationLayer(
+//             alignPositionOnUpdate: AlignOnUpdate.always,
+//             alignDirectionOnUpdate: AlignOnUpdate.never,
+//             style: LocationMarkerStyle(
+//               marker: DefaultLocationMarker(
+//                 color: Colors.green,
+//               ),
+//               markerSize: const Size(12, 12),
+//               showAccuracyCircle: false,
+//               showHeadingSector: false,
+//               markerDirection: MarkerDirection.heading,
+//             ),
+//           ),
+//           Positioned(
+//             top: 50,
+//             right: 20,
+//             child: Column(
+//               children: [
+//                 _buildIconButton(Icons.my_location, () {
+//                   if (_currentLocation != null) moveMap(_currentLocation!);
+//                 }),
+//                 SizedBox(height: 10),
+//                 _buildIconButton(Icons.add, () => zoomMap(_currentZoom + 1)),
+//                 SizedBox(height: 10),
+//                 _buildIconButton(Icons.remove, () => zoomMap(_currentZoom - 1)),
+//               ],
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+// Widget _buildIconButton(IconData icon, VoidCallback onPressed) {
+//   return Container(
+//     width: 40,
+//     height: 40,
+//     decoration: BoxDecoration(
+//       color: Color(0x7f0f1113),
+//       shape: BoxShape.circle,
+//       border: Border.all(color: Colors.transparent, width: 1),
+//     ),
+//     child: Material(
+//       color: Colors.transparent,
+//       child: InkWell(
+//         borderRadius: BorderRadius.circular(30),
+//         onTap: onPressed,
+//         child: Center(
+//           child: Icon(
+//             icon,
+//             color: Colors.white,
+//             size: 18,
+//           ),
+//         ),
+//       ),
+//     ),
+//   );
+// }
+
+// Widget _buildOfflineMessageBox(BuildContext context) {
+//   return Center(
+//     child: Container(
+//       width: MediaQuery.of(context).size.width * 0.8, // 80% of screen width
+//       constraints: BoxConstraints(maxWidth: 300), // Maximum width
+//       padding: EdgeInsets.all(20),
+//       decoration: BoxDecoration(
+//         color: Colors.green,
+//         borderRadius: BorderRadius.circular(10),
+//         boxShadow: [
+//           BoxShadow(
+//             color: Colors.grey.withOpacity(0.5),
+//             spreadRadius: 5,
+//             blurRadius: 7,
+//             offset: Offset(0, 3),
+//           ),
+//         ],
+//       ),
+//       child: Column(
+//         mainAxisSize: MainAxisSize.min, // Use minimum space needed
+//         children: [
+//           Icon(Icons.map_outlined, size: 50, color: Colors.white),
+//           SizedBox(height: 15),
+//           Text(
+//             'Map for your current location is not downloaded yet',
+//             textAlign: TextAlign.center,
+//             style: TextStyle(
+//               fontSize: 18,
+//               fontWeight: FontWeight.bold,
+//               color: Colors.white,
+//             ),
+//           ),
+//           SizedBox(height: 10),
+//           Text(
+//             'Download the map to use offline features',
+//             textAlign: TextAlign.center,
+//             style: TextStyle(
+//               fontSize: 14,
+//               color: Colors.white,
+//             ),
+//           ),
+//           SizedBox(height: 20),
+//           ElevatedButton(
+//             onPressed: () {
+//               context.pushNamed(
+//                 'pcicMap',
+//                 extra: <String, dynamic>{
+//                   kTransitionInfoKey: const TransitionInfo(
+//                     hasTransition: true,
+//                     transitionType: PageTransitionType.rightToLeft,
+//                     duration: Duration(milliseconds: 200),
+//                   ),
+//                 },
+//               );
+//             },
+//             style: ButtonStyle(
+//               backgroundColor: MaterialStateProperty.all(Colors.white),
+//               foregroundColor: MaterialStateProperty.all(Colors.green),
+//               padding: MaterialStateProperty.all(
+//                   EdgeInsets.symmetric(horizontal: 20, vertical: 10)),
+//               shape: MaterialStateProperty.all(
+//                 RoundedRectangleBorder(
+//                   borderRadius:
+//                       BorderRadius.circular(8.0), // Changed from 😎 to 8.0
+//                 ),
+//               ),
+//             ),
+//             child: Text('Download Map'),
+//           ),
+//         ],
+//       ),
+//     ),
+//   );
+// }
 
 // --------------------------------------------------- RECENT OLD CODE -----------------////////
 // import 'dart:async';

@@ -122,12 +122,34 @@ class _UserChatsWidgetState extends State<UserChatsWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            await ChatsTable().insert({
-                              'id': '',
+                            _model.newChat = await ChatsTable().insert({
                               'user1_id': listViewUsersRow.id,
                               'user2_id': currentUserUid,
                             });
-                            Navigator.pop(context);
+
+                            context.pushNamed(
+                              'messages',
+                              queryParameters: {
+                                'chatId': serializeParam(
+                                  _model.newChat?.id,
+                                  ParamType.String,
+                                ),
+                                'recieverId': serializeParam(
+                                  listViewUsersRow.id,
+                                  ParamType.String,
+                                ),
+                              }.withoutNulls,
+                              extra: <String, dynamic>{
+                                kTransitionInfoKey: const TransitionInfo(
+                                  hasTransition: true,
+                                  transitionType:
+                                      PageTransitionType.bottomToTop,
+                                  duration: Duration(milliseconds: 200),
+                                ),
+                              },
+                            );
+
+                            setState(() {});
                           },
                           child: Row(
                             mainAxisSize: MainAxisSize.max,

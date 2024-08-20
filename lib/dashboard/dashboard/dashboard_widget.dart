@@ -54,6 +54,15 @@ class _DashboardWidgetState extends State<DashboardWidget>
         assignee: currentUserUid,
       );
       if (FFAppState().ONLINE) {
+        await UsersTable().update(
+          data: {
+            'is_online': true,
+          },
+          matchingRows: (rows) => rows.eq(
+            'id',
+            currentUserUid,
+          ),
+        );
         _model.onlineTasks = await TasksTable().queryRows(
           queryFn: (q) => q,
         );
