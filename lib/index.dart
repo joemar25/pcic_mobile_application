@@ -4,7 +4,7 @@ export '/dashboard/profile/profile/profile_widget.dart' show ProfileWidget;
 export '/dashboard/messages/chats/chats_widget.dart' show ChatsWidget;
 export '/dashboard/profile/edit_password/edit_password_widget.dart'
     show EditPasswordWidget;
-export '/dashboard/edit_profile/edit_profile_widget.dart'
+export '/dashboard/profile/edit_profile/edit_profile_widget.dart'
     show EditProfileWidget;
 export '/dashboard/messages/messages/messages_widget.dart' show MessagesWidget;
 export '/dashboard/forms/task_details/task_details_widget.dart'
