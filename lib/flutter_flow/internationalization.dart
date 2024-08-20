@@ -253,7 +253,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'u3sm4km6': {
+    '26byqlzt': {
       'en': '',
       'tl': '',
     },
@@ -265,7 +265,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'dt90ggs4': {
+    '42666g9d': {
       'en': '',
       'tl': '',
     },
@@ -277,7 +277,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    '54fjpf0g': {
+    'kybxjscb': {
       'en': '',
       'tl': '',
     },
@@ -1281,6 +1281,21 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'gn2n1vua': {
       'en': 'Okay',
+      'tl': '',
+    },
+  },
+  // noInternetDialogCopy
+  {
+    'x9y1e4s4': {
+      'en': 'Info',
+      'tl': '',
+    },
+    'vjr5drgf': {
+      'en': 'You have no current internet connection.',
+      'tl': '',
+    },
+    'f76rmfhb': {
+      'en': 'Dismiss',
       'tl': '',
     },
   },

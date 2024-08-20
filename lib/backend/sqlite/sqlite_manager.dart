@@ -609,5 +609,15 @@ class SQLiteManager {
         signatureBlob: signatureBlob,
       );
 
+  Future updateUsersProfileName({
+    String? id,
+    String? inspectorName,
+  }) =>
+      performUpdateUsersProfileName(
+        _database,
+        id: id,
+        inspectorName: inspectorName,
+      );
+
   /// END UPDATE QUERY CALLS
 }

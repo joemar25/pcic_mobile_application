@@ -116,7 +116,7 @@ class _MapBoxState extends State<MapBox> {
 
           if (FFAppState().routeStarted) {
             _routePoints.add(_currentLocation!);
-            _checkAndSnapToStart();
+            // _checkAndSnapToStart(); // Commented out
             print("Added point: $_currentLocation");
             print("Total points: ${_routePoints.length}");
           }
@@ -143,6 +143,7 @@ class _MapBoxState extends State<MapBox> {
     return distance <= _maxJumpDistance;
   }
 
+  /*
   void _checkAndSnapToStart() {
     if (_routePoints.length > 1) {
       double distanceToStart = const ll.Distance().as(
@@ -159,6 +160,7 @@ class _MapBoxState extends State<MapBox> {
       }
     }
   }
+  */
 
   Future<void> _initializeTileProvider() async {
     final stats = FMTC.FMTCRoot.stats;

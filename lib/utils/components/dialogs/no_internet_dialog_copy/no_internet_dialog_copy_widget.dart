@@ -4,20 +4,20 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'fill_out_all_fields_dialog_model.dart';
-export 'fill_out_all_fields_dialog_model.dart';
+import 'no_internet_dialog_copy_model.dart';
+export 'no_internet_dialog_copy_model.dart';
 
-class FillOutAllFieldsDialogWidget extends StatefulWidget {
-  const FillOutAllFieldsDialogWidget({super.key});
+class NoInternetDialogCopyWidget extends StatefulWidget {
+  const NoInternetDialogCopyWidget({super.key});
 
   @override
-  State<FillOutAllFieldsDialogWidget> createState() =>
-      _FillOutAllFieldsDialogWidgetState();
+  State<NoInternetDialogCopyWidget> createState() =>
+      _NoInternetDialogCopyWidgetState();
 }
 
-class _FillOutAllFieldsDialogWidgetState
-    extends State<FillOutAllFieldsDialogWidget> {
-  late FillOutAllFieldsDialogModel _model;
+class _NoInternetDialogCopyWidgetState
+    extends State<NoInternetDialogCopyWidget> {
+  late NoInternetDialogCopyModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -28,7 +28,7 @@ class _FillOutAllFieldsDialogWidgetState
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => FillOutAllFieldsDialogModel());
+    _model = createModel(context, () => NoInternetDialogCopyModel());
   }
 
   @override
@@ -43,8 +43,8 @@ class _FillOutAllFieldsDialogWidgetState
     return Align(
       alignment: const AlignmentDirectional(0.0, 0.0),
       child: Container(
-        width: 330.0,
-        height: 375.0,
+        width: 338.0,
+        height: 392.0,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).primaryBackground,
           borderRadius: BorderRadius.circular(24.0),
@@ -56,7 +56,7 @@ class _FillOutAllFieldsDialogWidgetState
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Lottie.asset(
-                'assets/lottie_animations/fillOutAllFields.json',
+                'assets/lottie_animations/tZsu2uNXgs.json',
                 width: 150.0,
                 height: 150.0,
                 fit: BoxFit.cover,
@@ -77,7 +77,7 @@ class _FillOutAllFieldsDialogWidgetState
                               alignment: const AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  'nfddva3z' /* Alert */,
+                                  'x9y1e4s4' /* Info */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .headlineLarge
@@ -107,7 +107,7 @@ class _FillOutAllFieldsDialogWidgetState
                           alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
-                              'ctq3a7as' /* Please fill out all fields. */,
+                              'vjr5drgf' /* You have no current internet c... */,
                             ),
                             textAlign: TextAlign.center,
                             style: FlutterFlowTheme.of(context)
@@ -129,49 +129,51 @@ class _FillOutAllFieldsDialogWidgetState
                   ),
                 ].divide(const SizedBox(height: 15.0)),
               ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: FFButtonWidget(
-                      onPressed: () async {
-                        Navigator.pop(context);
-                      },
-                      text: FFLocalizations.of(context).getText(
-                        'nzt0dax8' /* Okay */,
-                      ),
-                      options: FFButtonOptions(
-                        height: 40.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            24.0, 0.0, 24.0, 0.0),
-                        iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).warning,
-                        textStyle: FlutterFlowTheme.of(context)
-                            .titleSmall
-                            .override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).titleSmallFamily,
-                              color: Colors.white,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.w500,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context)
-                                      .titleSmallFamily),
-                            ),
-                        elevation: 0.0,
-                        borderSide: const BorderSide(
-                          color: Colors.transparent,
-                          width: 1.0,
+              Expanded(
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          Navigator.pop(context);
+                        },
+                        text: FFLocalizations.of(context).getText(
+                          'f76rmfhb' /* Dismiss */,
                         ),
-                        borderRadius: BorderRadius.circular(12.0),
+                        options: FFButtonOptions(
+                          height: 40.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              24.0, 0.0, 24.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).warning,
+                          textStyle: FlutterFlowTheme.of(context)
+                              .titleSmall
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .titleSmallFamily,
+                                color: FlutterFlowTheme.of(context)
+                                    .primaryBackground,
+                                letterSpacing: 0.0,
+                                fontWeight: FontWeight.w500,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .titleSmallFamily),
+                              ),
+                          elevation: 0.0,
+                          borderSide: const BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
                       ),
                     ),
-                  ),
-                ].divide(const SizedBox(width: 15.0)),
+                  ].divide(const SizedBox(width: 20.0)).around(const SizedBox(width: 20.0)),
+                ),
               ),
-            ].divide(const SizedBox(height: 10.0)),
+            ].divide(const SizedBox(height: 15.0)),
           ),
         ),
       ),

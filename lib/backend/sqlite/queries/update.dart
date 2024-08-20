@@ -572,3 +572,19 @@ WHERE task_id = '$taskId';
 }
 
 /// END UPDATE PPIR FORM INSURED SIGNATURE BLOB
+
+/// BEGIN UPDATE USERS PROFILE NAME
+Future performUpdateUsersProfileName(
+  Database database, {
+  String? id,
+  String? inspectorName,
+}) {
+  final query = '''
+UPDATE users
+SET  inspector_name = '$inspectorName'
+WHERE id = '$id';
+''';
+  return database.rawQuery(query);
+}
+
+/// END UPDATE USERS PROFILE NAME

@@ -189,8 +189,7 @@ class _AlertContinueDialogWidgetState extends State<AlertContinueDialogWidget> {
                             .override(
                               fontFamily:
                                   FlutterFlowTheme.of(context).titleSmallFamily,
-                              color: FlutterFlowTheme.of(context)
-                                  .primaryBackground,
+                              color: Colors.white,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.w500,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(

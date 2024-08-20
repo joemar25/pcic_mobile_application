@@ -644,13 +644,12 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                        const Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 5.0, 0.0),
                           child: FaIcon(
                             FontAwesomeIcons.stop,
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
+                            color: Colors.white,
                             size: 20.0,
                           ),
                         ),
@@ -663,8 +662,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .bodyLargeFamily,
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
+                                color: Colors.white,
                                 letterSpacing: 0.0,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)

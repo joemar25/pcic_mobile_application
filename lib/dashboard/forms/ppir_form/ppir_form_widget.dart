@@ -767,8 +767,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                       .override(
                                                                         fontFamily:
                                                                             FlutterFlowTheme.of(context).titleSmallFamily,
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryBackground,
+                                                                        color: Colors
+                                                                            .white,
                                                                         letterSpacing:
                                                                             0.0,
                                                                         useGoogleFonts:
@@ -1002,7 +1002,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .boarderForm,
+                                                                .lineColor,
                                                         width: 2.0,
                                                       ),
                                                       borderRadius:
@@ -1152,7 +1152,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .boarderForm,
+                                                                .lineColor,
                                                         width: 2.0,
                                                       ),
                                                       borderRadius:
@@ -1302,7 +1302,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .boarderForm,
+                                                                .lineColor,
                                                         width: 2.0,
                                                       ),
                                                       borderRadius:
@@ -1452,7 +1452,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .boarderForm,
+                                                                .lineColor,
                                                         width: 2.0,
                                                       ),
                                                       borderRadius:
