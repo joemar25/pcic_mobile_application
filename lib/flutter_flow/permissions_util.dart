@@ -1,4 +1,7 @@
 import 'package:permission_handler/permission_handler.dart';
+import 'package:device_info_plus/device_info_plus.dart';
+
+import '/flutter_flow/flutter_flow_util.dart';
 
 const kPermissionStateToBool = {
   PermissionStatus.granted: true,
@@ -17,5 +20,14 @@ Future<bool> getPermissionStatus(Permission setting) async {
   return kPermissionStateToBool[status]!;
 }
 
-Future<void> requestPermission(Permission setting) async =>
-    await setting.request();
+Future<void> requestPermission(Permission setting) async {
+  if (setting == Permission.photos && isAndroid) {
+    final androidInfo = await DeviceInfoPlugin().androidInfo;
+    if (androidInfo.version.sdkInt <= 32) {
+      await Permission.storage.request();
+    } else {
+      await Permission.photos.request();
+    }
+  }
+  await setting.request();
+}

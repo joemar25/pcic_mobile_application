@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/utils/components/dialogs/continue_cancel_dialog/continue_cancel_dialog_widget.dart';
 import '/utils/components/dialogs/no_internet_dialog_copy/no_internet_dialog_copy_widget.dart';
 import '/utils/components/dialogs/permission_dialog/permission_dialog_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
@@ -725,39 +724,6 @@ class _LoginWidgetState extends State<LoginWidget>
                                                     return;
                                                   }
 
-                                                  if (_model
-                                                          .emailFieldTextController
-                                                          .text !=
-                                                      _model.authUserQuery
-                                                          ?.first.email) {
-                                                    await showDialog(
-                                                      context: context,
-                                                      builder: (dialogContext) {
-                                                        return Dialog(
-                                                          elevation: 0,
-                                                          insetPadding:
-                                                              EdgeInsets.zero,
-                                                          backgroundColor:
-                                                              Colors
-                                                                  .transparent,
-                                                          alignment: const AlignmentDirectional(
-                                                                  0.0, -1.0)
-                                                              .resolve(
-                                                                  Directionality.of(
-                                                                      context)),
-                                                          child:
-                                                              GestureDetector(
-                                                            onTap: () =>
-                                                                FocusScope.of(
-                                                                        dialogContext)
-                                                                    .unfocus(),
-                                                            child:
-                                                                const ContinueCancelDialogWidget(),
-                                                          ),
-                                                        );
-                                                      },
-                                                    );
-                                                  }
                                                   _model.authUserQuery =
                                                       await UsersTable()
                                                           .queryRows(
