@@ -135,6 +135,14 @@ class SQLiteManager {
         taskId: taskId,
       );
 
+  Future<List<OFFLINESelectREGIONCODERow>> oFFLINESelectREGIONCODE({
+    String? id,
+  }) =>
+      performOFFLINESelectREGIONCODE(
+        _database,
+        id: id,
+      );
+
   /// END READ QUERY CALLS
 
   /// START UPDATE QUERY CALLS

@@ -77,7 +77,7 @@ Future<bool> saveToFTP(String? taskId) async {
     final socket = await SSHSocket.connect('122.55.242.110', 22);
     client = SSHClient(
       socket,
-      username: 'k2c_User1',
+      username: 'k2c_User2',
       onPasswordRequest: () => 'K2C@PC!C2024',
     );
 
@@ -85,7 +85,7 @@ Future<bool> saveToFTP(String? taskId) async {
     final sftp = await client.sftp();
 
     // Construct the remote path
-    final remotePath = '/Work/$bucketPath/task_$taskId.task';
+    final remotePath = '/taskarchive/$bucketPath/task_$taskId.task';
 
     // Ensure the remote directory exists
     await createRemoteDirectoryIfNotExists(sftp, remotePath);

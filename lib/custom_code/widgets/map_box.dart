@@ -56,7 +56,7 @@ class _MapBoxState extends State<MapBox> {
 
   String? _errorMessage;
 
-  static const double _currentZoom = 19.0;
+  static const double _currentZoom = 21.0;
   static const int _positionStreamIntervalMs = 100;
   static const int _initialPositionSamples = 10;
   static const double _highAccuracyThreshold = 10.0;
@@ -668,7 +668,7 @@ class _MapBoxState extends State<MapBox> {
                           child: Icon(
                             Icons.pin_drop,
                             color: Colors.red,
-                            size: 10.0,
+                            size: 14.0,
                           ),
                         ),
                       ]

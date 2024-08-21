@@ -203,7 +203,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     'xliyfzs6': {
-      'en': 'Mar is here Sync From FTP',
+      'en': 'Mar is here - Syncing From FTP',
       'tl': '',
     },
     'yttqc4w2': {
@@ -257,7 +257,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'v7p5479g': {
+    'gonfhwnx': {
       'en': '',
       'tl': '',
     },
@@ -269,7 +269,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    '78ujxhny': {
+    '93fnl0wr': {
       'en': '',
       'tl': '',
     },
@@ -281,7 +281,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'mbbqqo7y': {
+    '9rktq9wy': {
       'en': '',
       'tl': '',
     },

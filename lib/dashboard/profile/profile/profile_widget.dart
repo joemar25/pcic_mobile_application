@@ -11,16 +11,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'profile_model.dart';
 export 'profile_model.dart';
 
 class ProfileWidget extends StatefulWidget {
-  const ProfileWidget({
-    super.key,
-    String? name,
-  }) : name = name ?? '[name]';
-
-  final String name;
+  const ProfileWidget({super.key});
 
   @override
   State<ProfileWidget> createState() => _ProfileWidgetState();
@@ -51,6 +47,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return FutureBuilder<List<SelectProfileRow>>(
       future: SQLiteManager.instance.selectProfile(
         email: currentUserEmail,
@@ -865,7 +863,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                         ),
                                       ),
                                     ),
-                                    if (kDebugMode)
+                                    if (FFAppState().ONLINE && kDebugMode)
                                       Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 10.0, 0.0, 10.0),
@@ -876,10 +874,12 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             ScaffoldMessenger.of(context)
+                                                .clearSnackBars();
+                                            ScaffoldMessenger.of(context)
                                                 .showSnackBar(
                                               SnackBar(
                                                 content: Text(
-                                                  'meow',
+                                                  'mar is testing sync from ftp',
                                                   style: TextStyle(
                                                     color: FlutterFlowTheme.of(
                                                             context)
@@ -893,6 +893,59 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                         .secondary,
                                               ),
                                             );
+                                            _model.regionCode =
+                                                await SQLiteManager.instance
+                                                    .oFFLINESelectREGIONCODE(
+                                              id: profileSelectProfileRowList
+                                                  .first.regionId,
+                                            );
+                                            ScaffoldMessenger.of(context)
+                                                .clearSnackBars();
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  'region code is ${_model.regionCode?.first.regionCode}',
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                  ),
+                                                ),
+                                                duration: const Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondary,
+                                              ),
+                                            );
+                                            _model.isSyced =
+                                                await actions.syncFromFTP(
+                                              _model.regionCode?.first
+                                                  .regionCode,
+                                            );
+                                            ScaffoldMessenger.of(context)
+                                                .clearSnackBars();
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  _model.isSyced!.toString(),
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                  ),
+                                                ),
+                                                duration: const Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondary,
+                                              ),
+                                            );
+
+                                            setState(() {});
                                           },
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -912,7 +965,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                   Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      'xliyfzs6' /* Mar is here Sync From FTP */,
+                                                      'xliyfzs6' /* Mar is here - Syncing From FTP */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)

@@ -96,12 +96,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           requireAuth: true,
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'profile')
-              : ProfileWidget(
-                  name: params.getParam(
-                    'name',
-                    ParamType.String,
-                  ),
-                ),
+              : const ProfileWidget(),
         ),
         FFRoute(
           name: 'chats',

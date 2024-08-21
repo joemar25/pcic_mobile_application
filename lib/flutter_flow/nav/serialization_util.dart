@@ -292,6 +292,8 @@ dynamic deserializeParam<T>(
             return SELECTCornSEEDSRow(data);
           case SELECTPPIRFORMSSignaturesRow:
             return SELECTPPIRFORMSSignaturesRow(data);
+          case OFFLINESelectREGIONCODERow:
+            return OFFLINESelectREGIONCODERow(data);
           default:
             return null;
         }

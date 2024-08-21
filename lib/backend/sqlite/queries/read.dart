@@ -602,3 +602,22 @@ class SELECTPPIRFORMSSignaturesRow extends SqliteRow {
 }
 
 /// END SELECT PPIR FORMS SIGNATURES
+
+/// BEGIN OFFLINE SELECT REGION CODE
+Future<List<OFFLINESelectREGIONCODERow>> performOFFLINESelectREGIONCODE(
+  Database database, {
+  String? id,
+}) {
+  final query = '''
+SELECT region_code FROM regions WHERE id = '$id'
+''';
+  return _readQuery(database, query, (d) => OFFLINESelectREGIONCODERow(d));
+}
+
+class OFFLINESelectREGIONCODERow extends SqliteRow {
+  OFFLINESelectREGIONCODERow(super.data);
+
+  String? get regionCode => data['region_code'] as String?;
+}
+
+/// END OFFLINE SELECT REGION CODE
