@@ -58,7 +58,7 @@ class _MapBoxState extends State<MapBox> {
 
   static const double _currentZoom = 19.0;
   static const int _positionStreamIntervalMs = 100;
-  static const int _initialPositionSamples = 50;
+  static const int _initialPositionSamples = 10;
   static const double _highAccuracyThreshold = 10.0;
   static const double _stationarySpeedThreshold = 0.1;
   static const double _significantMovementThreshold = 0.5;
@@ -571,8 +571,12 @@ class _MapBoxState extends State<MapBox> {
   Widget build(BuildContext context) {
     final appState = FFAppState();
 
-    if (_currentLocation == null || _tileProvider == null) {
-      return Center(child: CircularProgressIndicator());
+    if (_currentLocation == null) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    if (_tileProvider == null) {
+      return _buildOfflineMessageBox(this.context);
     }
 
     if (appState.routeStarted && !_isTracking) {
@@ -601,10 +605,6 @@ class _MapBoxState extends State<MapBox> {
           ],
         ),
       );
-    }
-
-    if (_currentLocation == null) {
-      return const Center(child: CircularProgressIndicator());
     }
 
     return Stack(
