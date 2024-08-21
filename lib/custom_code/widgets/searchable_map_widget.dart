@@ -124,16 +124,6 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 14),
               ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: _checkInternetConnectivity,
-                child: Text('Reconnect'),
-                style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.red,
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                ),
-              ),
             ],
           ),
         ),

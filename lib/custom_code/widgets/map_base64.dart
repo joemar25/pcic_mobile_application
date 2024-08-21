@@ -220,10 +220,6 @@ class _MapBase64State extends State<MapBase64> {
       return Center(child: CircularProgressIndicator());
     }
 
-    if (_errorMessage != null) {
-      return Center(child: Text('Error: $_errorMessage'));
-    }
-
     if (_coordinates.isEmpty) {
       return Center(child: Text('No GPS data available'));
     }
