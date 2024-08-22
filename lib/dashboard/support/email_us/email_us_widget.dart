@@ -8,6 +8,7 @@ import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'email_us_model.dart';
 export 'email_us_model.dart';
 
@@ -42,9 +43,6 @@ class _EmailUsWidgetState extends State<EmailUsWidget>
 
     _model.textController4 ??= TextEditingController();
     _model.textFieldFocusNode4 ??= FocusNode();
-
-    _model.textController5 ??= TextEditingController();
-    _model.textFieldFocusNode5 ??= FocusNode();
 
     animationsMap.addAll({
       'containerOnPageLoadAnimation': AnimationInfo(
@@ -141,6 +139,13 @@ class _EmailUsWidgetState extends State<EmailUsWidget>
                           children: [
                             Container(
                               decoration: const BoxDecoration(),
+                              child: Lottie.asset(
+                                'assets/lottie_animations/emailUs.json',
+                                width: 125.0,
+                                height: 125.0,
+                                fit: BoxFit.cover,
+                                animate: true,
+                              ),
                             ),
                             Align(
                               alignment: const AlignmentDirectional(0.0, 0.0),
@@ -290,6 +295,7 @@ class _EmailUsWidgetState extends State<EmailUsWidget>
                                     .override(
                                       fontFamily: FlutterFlowTheme.of(context)
                                           .labelLargeFamily,
+                                      fontSize: 14.0,
                                       letterSpacing: 0.0,
                                       useGoogleFonts: GoogleFonts.asMap()
                                           .containsKey(
@@ -349,7 +355,7 @@ class _EmailUsWidgetState extends State<EmailUsWidget>
                                         child: TextFormField(
                                           controller: _model.textController1,
                                           focusNode: _model.textFieldFocusNode1,
-                                          autofocus: true,
+                                          autofocus: false,
                                           textCapitalization:
                                               TextCapitalization.words,
                                           obscureText: false,
@@ -471,7 +477,7 @@ class _EmailUsWidgetState extends State<EmailUsWidget>
                                         child: TextFormField(
                                           controller: _model.textController2,
                                           focusNode: _model.textFieldFocusNode2,
-                                          autofocus: true,
+                                          autofocus: false,
                                           textCapitalization:
                                               TextCapitalization.none,
                                           obscureText: false,
@@ -594,7 +600,7 @@ class _EmailUsWidgetState extends State<EmailUsWidget>
                                         child: TextFormField(
                                           controller: _model.textController3,
                                           focusNode: _model.textFieldFocusNode3,
-                                          autofocus: true,
+                                          autofocus: false,
                                           textCapitalization:
                                               TextCapitalization.none,
                                           obscureText: false,
@@ -701,129 +707,6 @@ class _EmailUsWidgetState extends State<EmailUsWidget>
                                     ),
                                   ].divide(const SizedBox(width: 10.0)),
                                 ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Icon(
-                                      Icons.location_on_rounded,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      size: 24.0,
-                                    ),
-                                    Expanded(
-                                      child: Container(
-                                        decoration: const BoxDecoration(),
-                                        child: TextFormField(
-                                          controller: _model.textController4,
-                                          focusNode: _model.textFieldFocusNode4,
-                                          autofocus: true,
-                                          textCapitalization:
-                                              TextCapitalization.none,
-                                          obscureText: false,
-                                          decoration: InputDecoration(
-                                            labelText:
-                                                FFLocalizations.of(context)
-                                                    .getText(
-                                              'fypzgy7c' /* Address */,
-                                            ),
-                                            labelStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .override(
-                                                      fontFamily:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelMediumFamily,
-                                                      letterSpacing: 0.0,
-                                                      useGoogleFonts: GoogleFonts
-                                                              .asMap()
-                                                          .containsKey(
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelMediumFamily),
-                                                    ),
-                                            hintStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .override(
-                                                      fontFamily:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelMediumFamily,
-                                                      letterSpacing: 0.0,
-                                                      useGoogleFonts: GoogleFonts
-                                                              .asMap()
-                                                          .containsKey(
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelMediumFamily),
-                                                    ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .alternate,
-                                                width: 2.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                width: 2.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                            ),
-                                            errorBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .error,
-                                                width: 2.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                            ),
-                                            focusedErrorBorder:
-                                                OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .error,
-                                                width: 2.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                            ),
-                                          ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMediumFamily,
-                                                letterSpacing: 0.0,
-                                                useGoogleFonts: GoogleFonts
-                                                        .asMap()
-                                                    .containsKey(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMediumFamily),
-                                              ),
-                                          keyboardType:
-                                              TextInputType.streetAddress,
-                                          validator: _model
-                                              .textController4Validator
-                                              .asValidator(context),
-                                        ),
-                                      ),
-                                    ),
-                                  ].divide(const SizedBox(width: 10.0)),
-                                ),
                               ].divide(const SizedBox(height: 10.0)),
                             ),
                             Column(
@@ -919,12 +802,12 @@ class _EmailUsWidgetState extends State<EmailUsWidget>
                                         borderColor:
                                             FlutterFlowTheme.of(context)
                                                 .alternate,
-                                        borderWidth: 1.0,
+                                        borderWidth: 2.0,
                                         borderRadius: 8.0,
                                         margin: const EdgeInsetsDirectional.fromSTEB(
                                             16.0, 4.0, 16.0, 4.0),
                                         hidesUnderline: true,
-                                        isOverButton: true,
+                                        isOverButton: false,
                                         isSearchable: false,
                                         isMultiSelect: false,
                                         labelText: '',
@@ -986,8 +869,8 @@ class _EmailUsWidgetState extends State<EmailUsWidget>
                                     child: Container(
                                       decoration: const BoxDecoration(),
                                       child: TextFormField(
-                                        controller: _model.textController5,
-                                        focusNode: _model.textFieldFocusNode5,
+                                        controller: _model.textController4,
+                                        focusNode: _model.textFieldFocusNode4,
                                         autofocus: false,
                                         textCapitalization:
                                             TextCapitalization.sentences,
@@ -1033,7 +916,7 @@ class _EmailUsWidgetState extends State<EmailUsWidget>
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .alternate,
-                                              width: 1.0,
+                                              width: 2.0,
                                             ),
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
@@ -1043,7 +926,7 @@ class _EmailUsWidgetState extends State<EmailUsWidget>
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primary,
-                                              width: 1.0,
+                                              width: 2.0,
                                             ),
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
@@ -1053,7 +936,7 @@ class _EmailUsWidgetState extends State<EmailUsWidget>
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .error,
-                                              width: 1.0,
+                                              width: 2.0,
                                             ),
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
@@ -1064,7 +947,7 @@ class _EmailUsWidgetState extends State<EmailUsWidget>
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .error,
-                                              width: 1.0,
+                                              width: 2.0,
                                             ),
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
@@ -1086,7 +969,7 @@ class _EmailUsWidgetState extends State<EmailUsWidget>
                                             ),
                                         maxLines: null,
                                         validator: _model
-                                            .textController5Validator
+                                            .textController4Validator
                                             .asValidator(context),
                                       ),
                                     ),

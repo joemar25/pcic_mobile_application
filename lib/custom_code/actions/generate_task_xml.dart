@@ -155,19 +155,20 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('AuditLevel', nest: 'Task');
           builder.element('Label', nest: 'Task Status');
           builder.element('Message',
-              nest: "Task status is changed to '${data['status']}'.");
+              nest:
+                  "Task status is changed to '${data['status'] ?? 'Unknown'}'.");
           builder.element('SnapshotValue', nest: 'For Dispatch');
-          builder.element('Source', nest: data['inspector_name'] ?? '');
+          builder.element('Source',
+              nest: data['users']?['inspector_name'] ?? 'Unknown');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? 'Unknown');
           builder.element('Timestamp',
               nest: data['task_updated_at']?.toString() ?? '');
           builder.element('UpdatedValue',
-              nest: data['status']?.toString() ?? '');
+              nest: data['status']?.toString() ?? 'Unknown');
           builder.element('FieldLabel', nest: 'Task Status');
-          builder.element('IPAddress', nest: '');
+          builder.element('IPAddress', nest: ipv4);
         });
-
         // Captured Mobile Location Audit Logs
         builder.element('TaskAuditLogZipModel', nest: () {
           builder.element('AuditLevel', nest: 'Field');

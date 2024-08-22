@@ -281,9 +281,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'dashboardCopyss',
           path: '/dashboardsss',
           requireAuth: true,
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'dashboardCopyss')
-              : const DashboardCopyssWidget(),
+          builder: (context, params) => const DashboardCopyssWidget(),
         ),
         FFRoute(
           name: 'callUs',

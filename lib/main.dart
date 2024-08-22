@@ -158,7 +158,6 @@ class _NavBarPageState extends State<NavBarPage> {
       'dashboard': const DashboardWidget(),
       'chats': const ChatsWidget(),
       'profile': const ProfileWidget(),
-      'dashboardCopyss': const DashboardCopyssWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -216,20 +215,6 @@ class _NavBarPageState extends State<NavBarPage> {
             ),
             label: FFLocalizations.of(context).getText(
               'kcupitz3' /* Account */,
-            ),
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(
-              FFIcons.kicons8Home,
-              size: 24.0,
-            ),
-            activeIcon: const Icon(
-              FFIcons.kicons8Home1,
-              size: 24.0,
-            ),
-            label: FFLocalizations.of(context).getText(
-              'wl6clzlz' /* Home */,
             ),
             tooltip: '',
           )

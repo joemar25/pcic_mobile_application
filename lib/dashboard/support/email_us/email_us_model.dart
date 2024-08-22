@@ -18,17 +18,13 @@ class EmailUsModel extends FlutterFlowModel<EmailUsWidget> {
   FocusNode? textFieldFocusNode3;
   TextEditingController? textController3;
   String? Function(BuildContext, String?)? textController3Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode4;
-  TextEditingController? textController4;
-  String? Function(BuildContext, String?)? textController4Validator;
   // State field(s) for DropDown widget.
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;
   // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode5;
-  TextEditingController? textController5;
-  String? Function(BuildContext, String?)? textController5Validator;
+  FocusNode? textFieldFocusNode4;
+  TextEditingController? textController4;
+  String? Function(BuildContext, String?)? textController4Validator;
 
   @override
   void initState(BuildContext context) {}
@@ -46,8 +42,5 @@ class EmailUsModel extends FlutterFlowModel<EmailUsWidget> {
 
     textFieldFocusNode4?.dispose();
     textController4?.dispose();
-
-    textFieldFocusNode5?.dispose();
-    textController5?.dispose();
   }
 }
