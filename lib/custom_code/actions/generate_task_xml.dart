@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'index.dart'; // Imports other custom actions
+
 import 'package:xml/xml.dart';
 import 'package:dart_ipify/dart_ipify.dart';
 import 'dart:convert';
@@ -202,7 +204,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('AuditLevel', nest: 'Task');
           builder.element('Message',
               nest:
-                  "Executed P${data['ppir_assignmentid']?.toString() ?? ''} - UpdatePostPlanting script.");
+                  "Executed P${ppirForm['ppir_assignmentid']?.toString() ?? ''} - UpdatePostPlanting script.");
           builder.element('Source', nest: 'System');
           builder.element('TaskId', nest: data['task_id']?.toString() ?? '');
           builder.element('Timestamp',
@@ -216,11 +218,11 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('SnapshotValue', nest: '');
           builder.element('Source', nest: data['inspector_name'] ?? '');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp',
               nest: data['task_updated_at']?.toString() ?? '');
           builder.element('UpdatedValue',
-              nest: data['ppir_area_act']?.toString() ?? '0.2500');
+              nest: ppirForm['ppir_area_act']?.toString() ?? '0.2500');
           builder.element('FieldId', nest: '');
           builder.element('FormTitle',
               nest: 'PPIR - Post Planting Inspection Report');
@@ -235,7 +237,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('SnapshotValue', nest: '');
           builder.element('Source', nest: data['inspector_name'] ?? '');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp',
               nest: data['task_updated_at']?.toString() ?? '');
           builder.element('UpdatedValue',
@@ -251,10 +253,10 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('AuditLevel', nest: 'Task');
           builder.element('Message',
               nest:
-                  'Executed P${data['ppir_assignmentid']?.toString() ?? ''} - UpdatePostPlanting script.');
+                  'Executed P${ppirForm['ppir_assignmentid']?.toString() ?? ''} - UpdatePostPlanting script.');
           builder.element('Source', nest: 'System');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:27:02.4373782Z');
         });
 
@@ -266,11 +268,11 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('SnapshotValue', nest: '');
           builder.element('Source', nest: data['inspector_name'] ?? '');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp',
               nest: data['task_updated_at']?.toString() ?? '');
           builder.element('UpdatedValue',
-              nest: data['ppir_dopds_act']?.toString() ?? '');
+              nest: ppirForm['ppir_dopds_act']?.toString() ?? '');
           builder.element('FieldId', nest: '');
           builder.element('FormTitle',
               nest: 'PPIR - Post Planting Inspection Report');
@@ -286,11 +288,11 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('SnapshotValue', nest: '');
           builder.element('Source', nest: data['inspector_name'] ?? '');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp',
               nest: data['task_updated_at']?.toString() ?? '');
           builder.element('UpdatedValue',
-              nest: data['ppir_doptp_act']?.toString() ?? '');
+              nest: ppirForm['ppir_doptp_act']?.toString() ?? '');
           builder.element('FieldId', nest: '');
           builder.element('FormTitle',
               nest: 'PPIR - Post Planting Inspection Report');
@@ -305,11 +307,11 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('SnapshotValue', nest: '');
           builder.element('Source', nest: data['inspector_name'] ?? '');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp',
               nest: data['task_updated_at']?.toString() ?? '');
           builder.element('UpdatedValue',
-              nest: data['ppir_svp_aci']?.toString() ?? '');
+              nest: ppirForm['ppir_svp_aci']?.toString() ?? '');
           builder.element('FieldId', nest: '');
           builder.element('FormTitle',
               nest: 'PPIR - Post Planting Inspection Report');
@@ -322,10 +324,10 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('AuditLevel', nest: 'Task');
           builder.element('Message',
               nest:
-                  'Executed P${data['ppir_assignmentid']?.toString() ?? ''} - UpdatePostPlanting script.');
+                  'Executed P${ppirForm['ppir_assignmentid']?.toString() ?? ''} - UpdatePostPlanting script.');
           builder.element('Source', nest: 'System');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp',
               nest: data['task_updated_at']?.toString() ?? '');
         });
@@ -337,10 +339,10 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('SnapshotValue', nest: '');
           builder.element('Source', nest: data['inspector_name'] ?? '');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:27:21.86Z');
           builder.element('UpdatedValue',
-              nest: data['ppir_svp_act']?.toString() ?? '');
+              nest: ppirForm['ppir_svp_act']?.toString() ?? '');
           builder.element('FieldId', nest: '');
           builder.element('FormTitle',
               nest: 'PPIR - Post Planting Inspection Report');
@@ -360,10 +362,10 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('SnapshotValue', nest: '');
           builder.element('Source', nest: data['inspector_name'] ?? '');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:27:21.86Z');
           builder.element('UpdatedValue',
-              nest: data['ppir_stagecrop']?.toString() ??
+              nest: ppirForm['ppir_stagecrop']?.toString() ??
                   'RICE-DOUGH STG. (MATURITY)');
           builder.element('FieldId', nest: '');
           builder.element('FormTitle',
@@ -376,10 +378,10 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('AuditLevel', nest: 'Task');
           builder.element('Message',
               nest:
-                  'Executed P${data['ppir_assignmentid']?.toString() ?? ''} - UpdatePostPlanting script.');
+                  'Executed P${ppirForm['ppir_assignmentid']?.toString() ?? ''} - UpdatePostPlanting script.');
           builder.element('Source', nest: 'System');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:27:28.7517927Z');
         });
 
@@ -390,10 +392,10 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('SnapshotValue', nest: '');
           builder.element('Source', nest: data['inspector_name'] ?? '');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:27:27.52Z');
           builder.element('UpdatedValue',
-              nest: data['ppir_name_insured']?.toString() ?? 'F');
+              nest: ppirForm['ppir_name_insured']?.toString() ?? 'F');
           builder.element('FieldId', nest: '');
           builder.element('FormTitle',
               nest: 'PPIR - Post Planting Inspection Report');
@@ -409,7 +411,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('SnapshotValue', nest: '');
           builder.element('Source', nest: data['inspector_name'] ?? '');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:27:27.52Z');
           builder.element('UpdatedValue',
               nest: '{"events":[],"attemptCount":0,"duration":0}');
@@ -424,10 +426,10 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('AuditLevel', nest: 'Task');
           builder.element('Message',
               nest:
-                  'Executed P${data['ppir_assignmentid']?.toString() ?? ''} - UpdatePostPlanting script.');
+                  'Executed P${ppirForm['ppir_assignmentid']?.toString() ?? ''} - UpdatePostPlanting script.');
           builder.element('Source', nest: 'System');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:27:40.5418779Z');
         });
 
@@ -440,7 +442,7 @@ Future<String> generateTaskXml(String? taskId) async {
               nest: '{"events":[],"attemptCount":0,"duration":0}');
           builder.element('Source', nest: data['inspector_name'] ?? '');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:27:29.743Z');
           builder.element('UpdatedValue',
               nest:
@@ -456,10 +458,10 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('AuditLevel', nest: 'Task');
           builder.element('Message',
               nest:
-                  'Executed P${data['ppir_assignmentid']?.toString() ?? ''} - UpdatePostPlanting script.');
+                  'Executed P${ppirForm['ppir_assignmentid']?.toString() ?? ''} - UpdatePostPlanting script.');
           builder.element('Source', nest: 'System');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:27:52.2099499Z');
         });
 
@@ -470,7 +472,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('SnapshotValue', nest: '');
           builder.element('Source', nest: data['inspector_name'] ?? '');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:28:21.815Z');
           builder.element('UpdatedValue',
               nest: data['inspector_name'] ?? 'Inspector ');
@@ -485,10 +487,10 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('AuditLevel', nest: 'Task');
           builder.element('Message',
               nest:
-                  'Executed P${data['ppir_assignmentid']?.toString() ?? ''} - UpdatePostPlanting script.');
+                  'Executed P${ppirForm['ppir_assignmentid']?.toString() ?? ''} - UpdatePostPlanting script.');
           builder.element('Source', nest: 'System');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:28:24.4310056Z');
         });
 
@@ -499,7 +501,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('SnapshotValue', nest: 'Inspector ');
           builder.element('Source', nest: data['inspector_name'] ?? '');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:28:25.002Z');
           builder.element('UpdatedValue',
               nest: data['inspector_name'] ?? 'Inspector');
@@ -518,7 +520,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('SnapshotValue', nest: '');
           builder.element('Source', nest: data['inspector_name'] ?? '');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:28:25.002Z');
           builder.element('UpdatedValue',
               nest: '{"events":[],"attemptCount":0,"duration":0}');
@@ -533,10 +535,10 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('AuditLevel', nest: 'Task');
           builder.element('Message',
               nest:
-                  'Executed P${data['ppir_assignmentid']?.toString() ?? ''} - UpdatePostPlanting script.');
+                  'Executed P${ppirForm['ppir_assignmentid']?.toString() ?? ''} - UpdatePostPlanting script.');
           builder.element('Source', nest: 'System');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:28:36.975082Z');
         });
 
@@ -549,7 +551,7 @@ Future<String> generateTaskXml(String? taskId) async {
               nest: '{"events":[],"attemptCount":0,"duration":0}');
           builder.element('Source', nest: data['inspector_name'] ?? '');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:28:33.479Z');
           builder.element('UpdatedValue',
               nest:
@@ -565,10 +567,10 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('AuditLevel', nest: 'Task');
           builder.element('Message',
               nest:
-                  'Executed P${data['ppir_assignmentid']?.toString() ?? ''} - UpdatePostPlanting script.');
+                  'Executed P${ppirForm['ppir_assignmentid']?.toString() ?? ''} - UpdatePostPlanting script.');
           builder.element('Source', nest: 'System');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:28:48.7513389Z');
         });
 
@@ -579,10 +581,10 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('SnapshotValue', nest: '');
           builder.element('Source', nest: data['inspector_name'] ?? '');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue',
-              nest: data['track_total_area']?.toString() ?? '0');
+              nest: ppirForm['track_total_area']?.toString() ?? '0');
           builder.element('FieldId', nest: '');
           builder.element('FormTitle', nest: 'Tracked Farm');
           builder.element('FieldLabel', nest: 'Total Area (in sqm.)');
@@ -595,10 +597,10 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('SnapshotValue', nest: '');
           builder.element('Source', nest: data['inspector_name'] ?? '');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue',
-              nest: data['track_date_time']?.toString() ??
+              nest: ppirForm['track_date_time']?.toString() ??
                   '04/08/2024 1:29:22 pm');
           builder.element('FieldId', nest: '');
           builder.element('FormTitle', nest: 'Tracked Farm');
@@ -611,10 +613,10 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('SnapshotValue', nest: '');
           builder.element('Source', nest: data['inspector_name'] ?? '');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue',
-              nest: data['track_last_coord']?.toString() ??
+              nest: ppirForm['track_last_coord']?.toString() ??
                   '{"accuracy":null,"barangayVillage":null,"buildingName":null,"city":null,"country":null,"latitude":14.6531133,"longitude":121.0351767,"province":null,"street":null,"timestamp":"2024-04-08T13:29:22.228+08:00","unitLotNo":null,"zipCode":null}');
           builder.element('FieldId', nest: '');
           builder.element('FormTitle', nest: 'Tracked Farm');
@@ -627,7 +629,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Tracked Farm &gt; Fields');
           builder.element('Source', nest: data['inspector_name'] ?? '');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue',
               nest: 'Coordinate Row|track_coordinate_row|');
@@ -642,11 +644,11 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Tracked Farm &gt; Fields');
           builder.element('Source', nest: data['inspector_name'] ?? '');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue',
               nest:
-                  'Coordinates|track_coordinates|${data['track_coordinates']?.toString() ?? '{"accuracy":null,"barangayVillage":null,"buildingName":null,"city":null,"country":null,"latitude":14.6531133,"longitude":121.0351767,"province":null,"street":null,"timestamp":"2024-04-08T13:29:02.631+08:00","unitLotNo":null,"zipCode":null}'}');
+                  'Coordinates|track_coordinates|${ppirForm['track_coordinates']?.toString() ?? '{"accuracy":null,"barangayVillage":null,"buildingName":null,"city":null,"country":null,"latitude":14.6531133,"longitude":121.0351767,"province":null,"street":null,"timestamp":"2024-04-08T13:29:02.631+08:00","unitLotNo":null,"zipCode":null}'}');
           builder.element('FormTitle', nest: 'Tracked Farm');
           builder.element('FieldLabel', nest: 'Field');
           builder.element('IPAddress', nest: '');
@@ -657,11 +659,11 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Tracked Farm &gt; Fields');
           builder.element('Source', nest: data['inspector_name'] ?? '');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue',
               nest:
-                  'Date/Time|track_coord_timestamp|${data['track_date_time']?.toString() ?? '04/08/2024 1:29:02 pm'}');
+                  'Date/Time|track_coord_timestamp|${ppirForm['track_date_time']?.toString() ?? '04/08/2024 1:29:02 pm'}');
           builder.element('FormTitle', nest: 'Tracked Farm');
           builder.element('FieldLabel', nest: 'Field');
           builder.element('IPAddress', nest: '');
@@ -671,10 +673,10 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('AuditLevel', nest: 'Task');
           builder.element('Message',
               nest:
-                  'Executed P${data['ppir_assignmentid']?.toString() ?? ''} - UpdatePostPlanting script.');
+                  'Executed P${ppirForm['ppir_assignmentid']?.toString() ?? ''} - UpdatePostPlanting script.');
           builder.element('Source', nest: 'System');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T02:31:09.1609392Z');
         });
 
@@ -685,11 +687,11 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('SnapshotValue', nest: '');
           builder.element('Source', nest: 'System');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T02:31:08.8601031Z');
           builder.element('UpdatedValue',
               nest:
-                  'N - ${data['ppir_north']?.toString() ?? ''} | E - ${data['ppir_east']?.toString() ?? ''} | S - ${data['ppir_south']?.toString() ?? ''} | W - ${data['ppir_west']?.toString() ?? ''}');
+                  'N - ${ppirForm['ppir_north']?.toString() ?? ''} | E - ${ppirForm['ppir_east']?.toString() ?? ''} | S - ${ppirForm['ppir_south']?.toString() ?? ''} | W - ${ppirForm['ppir_west']?.toString() ?? ''}');
           builder.element('FieldId', nest: '');
           builder.element('FormTitle',
               nest: 'PPIR - Post Planting Inspection Report');
@@ -701,7 +703,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Message', nest: 'Task created.');
           builder.element('Source', nest: 'System');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T02:31:03.8278713Z');
         });
 
@@ -710,7 +712,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Assigned Date Time');
           builder.element('Source', nest: 'System');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T02:31:08.3743402Z');
           builder.element('UpdatedValue',
               nest: data['task_created_at']?.toString() ??
@@ -724,7 +726,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Agent');
           builder.element('Source', nest: 'System');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T02:31:08.3743402Z');
           builder.element('UpdatedValue', nest: 'Suarez, Christian');
           builder.element('FieldLabel', nest: 'Agent');
@@ -735,7 +737,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Tracked Farm &gt; Fields');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue',
               nest: 'Coordinate Row|track_coordinate_row|');
@@ -749,7 +751,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Tracked Farm &gt; Fields');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue',
               nest:
@@ -764,7 +766,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Tracked Farm &gt; Fields');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue',
               nest: 'Date/Time|track_coord_timestamp|04/08/2024 1:29:05 pm');
@@ -778,7 +780,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Tracked Farm &gt; Fields');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue',
               nest: 'Coordinate Row|track_coordinate_row|');
@@ -792,7 +794,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Tracked Farm &gt; Fields');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue',
               nest:
@@ -807,7 +809,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Tracked Farm &gt; Fields');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue',
               nest: 'Date/Time|track_coord_timestamp|04/08/2024 1:29:08 pm');
@@ -821,7 +823,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Tracked Farm &gt; Fields');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue',
               nest: 'Coordinate Row|track_coordinate_row|');
@@ -835,7 +837,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Tracked Farm &gt; Fields');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue',
               nest:
@@ -850,7 +852,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Tracked Farm &gt; Fields');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue',
               nest: 'Date/Time|track_coord_timestamp|04/08/2024 1:29:11 pm');
@@ -864,7 +866,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Tracked Farm &gt; Fields');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue', nest: 'Section Break||');
           builder.element('FormTitle', nest: 'Tracked Farm');
@@ -877,7 +879,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Tracked Farm &gt; Fields');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue',
               nest: 'Coordinate Row|track_coordinate_row|');
@@ -891,7 +893,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Tracked Farm &gt; Fields');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue',
               nest:
@@ -906,7 +908,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Tracked Farm &gt; Fields');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue',
               nest: 'Date/Time|track_coord_timestamp|04/08/2024 1:29:14 pm');
@@ -920,7 +922,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Tracked Farm &gt; Fields');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue', nest: 'Section Break||');
           builder.element('FormTitle', nest: 'Tracked Farm');
@@ -933,7 +935,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Tracked Farm &gt; Fields');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue',
               nest: 'Coordinate Row|track_coordinate_row|');
@@ -947,7 +949,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Tracked Farm &gt; Fields');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue',
               nest:
@@ -962,7 +964,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Tracked Farm &gt; Fields');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue',
               nest: 'Date/Time|track_coord_timestamp|04/08/2024 1:29:17 pm');
@@ -976,7 +978,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Tracked Farm &gt; Fields');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue', nest: 'Section Break||');
           builder.element('FormTitle', nest: 'Tracked Farm');
@@ -989,7 +991,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Tracked Farm &gt; Fields');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue',
               nest: 'Coordinate Row|track_coordinate_row|');
@@ -1003,7 +1005,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Tracked Farm &gt; Fields');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue',
               nest:
@@ -1018,7 +1020,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Tracked Farm &gt; Fields');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue',
               nest: 'Date/Time|track_coord_timestamp|04/08/2024 1:29:20 pm');
@@ -1032,7 +1034,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Tracked Farm &gt; Fields');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue', nest: 'Section Break||');
           builder.element('FormTitle', nest: 'Tracked Farm');
@@ -1045,7 +1047,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Tracked Farm &gt; Fields');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue',
               nest: 'Coordinate Row|track_coordinate_row|');
@@ -1059,7 +1061,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Tracked Farm &gt; Fields');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue',
               nest:
@@ -1074,7 +1076,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Tracked Farm &gt; Fields');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue',
               nest: 'Date/Time|track_coord_timestamp|04/08/2024 1:29:22 pm');
@@ -1088,7 +1090,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Tracked Farm &gt; Fields');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue', nest: 'Section Break||');
           builder.element('FormTitle', nest: 'Tracked Farm');
@@ -1101,7 +1103,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Tracked Farm &gt; Fields');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue', nest: 'Section Break||');
           builder.element('FormTitle', nest: 'Tracked Farm');
@@ -1114,7 +1116,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Label', nest: 'Tracked Farm &gt; Fields');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue', nest: 'Section Break||');
           builder.element('FormTitle', nest: 'Tracked Farm');
@@ -1129,7 +1131,7 @@ Future<String> generateTaskXml(String? taskId) async {
               nest: 'Coordinates|track_coordinates|');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('FormTitle', nest: 'Tracked Farm');
           builder.element('FieldLabel', nest: 'Field');
@@ -1143,7 +1145,7 @@ Future<String> generateTaskXml(String? taskId) async {
               nest: 'Date/Time|track_coord_timestamp|');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('FormTitle', nest: 'Tracked Farm');
           builder.element('FieldLabel', nest: 'Field');
@@ -1157,7 +1159,7 @@ Future<String> generateTaskXml(String? taskId) async {
               nest: 'Coordinate Row|track_coordinate_row|');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('FormTitle', nest: 'Tracked Farm');
           builder.element('FieldLabel', nest: 'Field');
@@ -1170,7 +1172,7 @@ Future<String> generateTaskXml(String? taskId) async {
               nest: 'Executed P$ipv4 - UpdatePostPlanting script.');
           builder.element('Source', nest: 'System');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:31.9213368Z');
         });
 
@@ -1180,7 +1182,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('SnapshotValue', nest: '');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:48.04Z');
           builder.element('UpdatedValue', nest: 'Farm');
           builder.element('FieldId', nest: '');
@@ -1195,7 +1197,7 @@ Future<String> generateTaskXml(String? taskId) async {
               nest: 'Executed P$ipv4 - UpdatePostPlanting script.');
           builder.element('Source', nest: 'System');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:53.7502153Z');
         });
 
@@ -1206,7 +1208,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('SnapshotValue', nest: '');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:30:45.183Z');
           builder.element('UpdatedValue', nest: 'Remarks');
           builder.element('FieldId', nest: 'ppir_remarks');
@@ -1226,7 +1228,7 @@ Future<String> generateTaskXml(String? taskId) async {
                   '{"events":[{"type":0,"timestamp":"2024-04-08T13:27:26.735+08:00"},{"type":2,"timestamp":"2024-04-08T13:27:29.352+08:00"}],"attemptCount":1,"duration":0}');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:30:45.183Z');
           builder.element('UpdatedValue',
               nest:
@@ -1244,7 +1246,7 @@ Future<String> generateTaskXml(String? taskId) async {
               nest: 'Executed P$ipv4 - UpdatePostPlanting script.');
           builder.element('Source', nest: 'System');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:30:51.4918205Z');
         });
 
@@ -1256,7 +1258,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('SnapshotValue', nest: 'In Progress');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:30:57.111Z');
           builder.element('UpdatedValue', nest: 'Submitted');
           builder.element('FieldLabel', nest: 'Task Status');
@@ -1269,7 +1271,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('SnapshotValue', nest: 'Quezon City, 1100');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:30:57.111Z');
           builder.element('UpdatedValue', nest: '14.653113, 121.035177');
           builder.element('FieldLabel', nest: 'Captured Mobile Location');
@@ -1283,7 +1285,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('SnapshotValue', nest: '14.653113, 121.035177');
           builder.element('Source', nest: 'System');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:30:57.111Z');
           builder.element('UpdatedValue',
               nest:
@@ -1298,7 +1300,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('SnapshotValue', nest: 'Suarez, Christian');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:30:59.921735Z');
           builder.element('FieldLabel', nest: 'Agent');
           builder.element('IPAddress', nest: ipv4);
@@ -1311,7 +1313,7 @@ Future<String> generateTaskXml(String? taskId) async {
               nest: '2024-04-08T02:31:03.8278713+00:00');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:30:59.921735Z');
           builder.element('UpdatedValue',
               nest: '2024-04-08T05:30:59.9217363+00:00');
@@ -1325,7 +1327,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('SnapshotValue', nest: 'True');
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:30:59.921735Z');
           builder.element('UpdatedValue', nest: 'False');
           builder.element('FieldLabel', nest: 'Dispatch Acknowledged');
@@ -1338,7 +1340,7 @@ Future<String> generateTaskXml(String? taskId) async {
               nest: 'Executed P$ipv4 - ${data['region_name']} script.');
           builder.element('Source', nest: 'System');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:31:00.8335183Z');
         });
       });
@@ -1399,7 +1401,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '3');
               builder.element('Type', nest: 'Number');
               builder.element('Value',
-                  nest: data['ppir_insuranceid']?.toString() ?? '');
+                  nest: ppirForm['ppir_insuranceid']?.toString() ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -1423,7 +1425,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '4');
               builder.element('Type', nest: 'Text');
               builder.element('Value',
-                  nest: data['ppir_farmername']?.toString() ?? '');
+                  nest: ppirForm['ppir_farmername']?.toString() ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -1447,7 +1449,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '5');
               builder.element('Type', nest: 'Paragraph');
               builder.element('Value',
-                  nest: data['ppir_address']?.toString() ?? '');
+                  nest: ppirForm['ppir_address']?.toString() ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -1471,7 +1473,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '7');
               builder.element('Type', nest: 'Text');
               builder.element('Value',
-                  nest: data['ppir_mobileno']?.toString() ?? '');
+                  nest: ppirForm['ppir_mobileno']?.toString() ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -1538,7 +1540,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '17');
               builder.element('Type', nest: 'Text');
               builder.element('Value',
-                  nest: data['ppir_north']?.toString() ?? '');
+                  nest: ppirForm['ppir_north']?.toString() ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -1562,7 +1564,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '18');
               builder.element('Type', nest: 'Text');
               builder.element('Value',
-                  nest: data['ppir_east']?.toString() ?? '');
+                  nest: ppirForm['ppir_east']?.toString() ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -1606,7 +1608,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Options', nest: '');
               builder.element('Sequence', nest: '20');
               builder.element('Type', nest: 'Text');
-              builder.element('Value', nest: data['ppir_south'] ?? '');
+              builder.element('Value', nest: ppirForm['ppir_south'] ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -1629,7 +1631,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Options', nest: '');
               builder.element('Sequence', nest: '21');
               builder.element('Type', nest: 'Text');
-              builder.element('Value', nest: data['ppir_west'] ?? '');
+              builder.element('Value', nest: ppirForm['ppir_west'] ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -1799,7 +1801,8 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Options', nest: '');
               builder.element('Sequence', nest: '9');
               builder.element('Type', nest: 'Paragraph');
-              builder.element('Value', nest: data['ppir_groupaddress'] ?? '');
+              builder.element('Value',
+                  nest: ppirForm['ppir_groupaddress'] ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -1823,7 +1826,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '11');
               builder.element('Type', nest: 'Paragraph');
               builder.element('Value',
-                  nest: data['ppir_lendername']?.toString() ?? '');
+                  nest: ppirForm['ppir_lendername']?.toString() ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -1847,7 +1850,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '12');
               builder.element('Type', nest: 'Text');
               builder.element('Value',
-                  nest: data['ppir_cicno']?.toString() ?? '');
+                  nest: ppirForm['ppir_cicno']?.toString() ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -1871,7 +1874,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '13');
               builder.element('Type', nest: 'Paragraph');
               builder.element('Value',
-                  nest: data['ppir_farmloc']?.toString() ?? '');
+                  nest: ppirForm['ppir_farmloc']?.toString() ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -2004,7 +2007,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '57');
               builder.element('Type', nest: 'Paragraph');
               builder.element('Value',
-                  nest: data['ppir_remarks']?.toString() ?? '');
+                  nest: ppirForm['ppir_remarks']?.toString() ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -2051,7 +2054,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '59');
               builder.element('Type', nest: 'Text');
               builder.element('Value',
-                  nest: data['ppir_name_insured']?.toString() ?? '');
+                  nest: ppirForm['ppir_name_insured']?.toString() ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -2097,7 +2100,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '8');
               builder.element('Type', nest: 'Text');
               builder.element('Value',
-                  nest: data['ppir_groupname']?.toString() ?? '');
+                  nest: ppirForm['ppir_groupname']?.toString() ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -2121,14 +2124,14 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '10');
               builder.element('Type', nest: 'Text');
               builder.element('Value',
-                  nest: data['ppir_lendername']?.toString() ?? '');
+                  nest: ppirForm['ppir_lendername']?.toString() ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
               builder.element('Attachment', nest: () {
                 builder.element('AuthorId', nest: '53111');
                 builder.element('Blob',
-                    nest: data['ppir_sig_insured']?.toString() ?? '');
+                    nest: ppirForm['ppir_sig_insured']?.toString() ?? '');
                 builder.element('BlobLocation',
                     nest: '2cba2e43-122c-4f9a-b7a7-3e97fcd3183d');
                 builder.element('CapturedDateTime',
@@ -2187,7 +2190,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Attachment', nest: () {
                 builder.element('AuthorId', nest: '53111');
                 builder.element('Blob',
-                    nest: data['ppir_sig_iuia']?.toString() ?? '');
+                    nest: ppirForm['ppir_sig_iuia']?.toString() ?? '');
                 builder.element('BlobLocation',
                     nest: '3ef6459c-3634-4bc1-b048-e1c0247cb6a1');
                 builder.element('CapturedDateTime',
@@ -2286,7 +2289,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '63');
               builder.element('Type', nest: 'Text');
               builder.element('Value',
-                  nest: data['ppir_name_iuia']?.toString() ?? '');
+                  nest: ppirForm['ppir_name_iuia']?.toString() ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -2310,7 +2313,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '36');
               builder.element('Type', nest: 'Date');
               builder.element('Value',
-                  nest: data['ppir_dopds_aci']?.toString() ?? '');
+                  nest: ppirForm['ppir_dopds_aci']?.toString() ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -2334,7 +2337,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '37');
               builder.element('Type', nest: 'Date');
               builder.element('Value',
-                  nest: data['ppir_dopds_act']?.toString() ?? '');
+                  nest: ppirForm['ppir_dopds_act']?.toString() ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -2358,7 +2361,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '41');
               builder.element('Type', nest: 'Date');
               builder.element('Value',
-                  nest: data['ppir_doptp_aci']?.toString() ?? '');
+                  nest: ppirForm['ppir_doptp_aci']?.toString() ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -2382,14 +2385,14 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '42');
               builder.element('Type', nest: 'Date');
               builder.element('Value',
-                  nest: data['ppir_dopdp_act']?.toString() ?? '');
+                  nest: ppirForm['ppir_dopdp_act']?.toString() ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
               builder.element('FieldId',
-                  nest: data['ppir_svp_aci']?.toString() ?? '');
+                  nest: ppirForm['ppir_svp_aci']?.toString() ?? '');
               builder.element('ContentId',
-                  nest: data['ppir_svp_aci']?.toString() ?? '');
+                  nest: ppirForm['ppir_svp_aci']?.toString() ?? '');
               builder.element('Indicator', nest: () {
                 builder.attribute('xsi:nil', 'true');
               });
@@ -2407,7 +2410,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Options', nest: '');
               builder.element('Sequence', nest: '46');
               builder.element('Type', nest: 'Text');
-              builder.element('Value', nest: data['ppir_svp_aci'] ?? '');
+              builder.element('Value', nest: ppirForm['ppir_svp_aci'] ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -2456,7 +2459,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '2');
               builder.element('Type', nest: 'Number');
               builder.element('Value',
-                  nest: data['ppir_assignmentid']?.toString() ?? '');
+                  nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -2585,7 +2588,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '6');
               builder.element('Type', nest: 'Text');
               builder.element('Value',
-                  nest: data['ppir_farmertype']?.toString() ?? '');
+                  nest: ppirForm['ppir_farmertype']?.toString() ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -2630,7 +2633,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '32');
               builder.element('Type', nest: 'Number');
               builder.element('Value',
-                  nest: data['ppir_area_act']?.toString() ?? '');
+                  nest: ppirForm['ppir_area_act']?.toString() ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -2675,7 +2678,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '31');
               builder.element('Type', nest: 'Number');
               builder.element('Value',
-                  nest: data['ppir_area_aci']?.toString() ?? '');
+                  nest: ppirForm['ppir_area_aci']?.toString() ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -2724,7 +2727,8 @@ Future<String> generateTaskXml(String? taskId) async {
             builder.element('FormFieldZipModel', nest: () {
               builder.element('Attachment', nest: () {
                 builder.element('AuthorId', nest: '1001');
-                builder.element('Blob', nest: data['gpx']?.toString() ?? '');
+                builder.element('Blob',
+                    nest: ppirForm['gpx']?.toString() ?? '');
                 builder.element('BlobLocation',
                     nest: '3bb8a48d-4b87-4d96-a6fa-8dc7804aaf0c');
                 builder.element('CapturedDateTime', nest: () {
@@ -2788,10 +2792,10 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Type', nest: 'Text');
 
               builder.element('Value', nest: () {
-                return 'N - ${data['ppir_north']?.toString() ?? ''} | '
-                    'E - ${data['ppir_east']?.toString() ?? ''} | '
-                    'S - ${data['ppir_south']?.toString() ?? ''} | '
-                    'W - ${data['ppir_west']?.toString() ?? ''}';
+                return 'N - ${ppirForm['ppir_north']?.toString() ?? ''} | '
+                    'E - ${ppirForm['ppir_east']?.toString() ?? ''} | '
+                    'S - ${ppirForm['ppir_south']?.toString() ?? ''} | '
+                    'W - ${ppirForm['ppir_west']?.toString() ?? ''}';
               });
             });
 
@@ -2876,7 +2880,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '54');
               builder.element('Type', nest: 'List');
               builder.element('Value',
-                  nest: data['ppir_svp_act']?.toString() ?? '');
+                  nest: ppirForm['ppir_svp_act']?.toString() ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -2917,7 +2921,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '56');
               builder.element('Type', nest: 'List');
               builder.element('Value',
-                  nest: data['ppir_stagecrop']?.toString() ?? '');
+                  nest: ppirForm['ppir_stagecrop']?.toString() ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -2959,7 +2963,8 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '53');
               builder.element('Type', nest: 'Radio');
               builder.element('Value',
-                  nest: data['ppir_svp_act']?.toString() ?? ''); // rice/corn
+                  nest:
+                      ppirForm['ppir_svp_act']?.toString() ?? ''); // rice/corn
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -3137,7 +3142,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '5');
               builder.element('Type', nest: 'Number');
               builder.element('Value',
-                  nest: data['track_totalarea']?.toString() ?? '');
+                  nest: ppirForm['track_totalarea']?.toString() ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -3162,7 +3167,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '6');
               builder.element('Type', nest: 'Text');
               builder.element('Value',
-                  nest: data['track_date_time']?.toString() ??
+                  nest: ppirForm['track_date_time']?.toString() ??
                       ''); // last value is 04/08/2024 1:29:22 pm
             });
 
@@ -3274,7 +3279,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '42');
               builder.element('Type', nest: 'Paragraph');
               builder.element('Value',
-                  nest: data['ppir_farmloc']?.toString() ?? '');
+                  nest: ppirForm['ppir_farmloc']?.toString() ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -4122,7 +4127,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Source', nest: 'System');
           builder.element('SourceId', nest: '1001');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('TaskNumber',
               nest: "P${ipv4}-${date}-${data['task_number']?.toString()}");
           builder.element('TaskStatus', nest: 'For Dispatch');
@@ -4133,7 +4138,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Agent', nest: 'Suarez, Christian');
           builder.element('AgentId', nest: '53111');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('TaskNumber',
               nest: "P${ipv4}-${date}-${data['task_number']?.toString()}");
           builder.element('TaskStatus', nest: 'In Progress');
@@ -4146,7 +4151,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('SourceId', nest: '53111');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('TaskNumber',
               nest: "P${ipv4}-${date}-${data['task_number']?.toString()}");
           builder.element('TaskStatus', nest: 'In Progress');
@@ -4158,7 +4163,7 @@ Future<String> generateTaskXml(String? taskId) async {
             builder.attribute('xsi:nil', 'true');
           });
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('TaskNumber',
               nest: "P${ipv4}-${date}-${data['task_number']?.toString()}");
           builder.element('TaskStatus', nest: 'Submitted');
@@ -4171,7 +4176,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Source', nest: 'Suarez, Christian');
           builder.element('SourceId', nest: '53111');
           builder.element('TaskId',
-              nest: data['ppir_assignmentid']?.toString() ?? '');
+              nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('TaskNumber',
               nest: "P${ipv4}-${date}-${data['task_number']?.toString()}");
           builder.element('TaskStatus', nest: 'Submitted');
