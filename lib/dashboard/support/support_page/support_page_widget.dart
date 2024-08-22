@@ -98,25 +98,6 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
           ),
           MoveEffect(
             curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: const Offset(0.0, 110.0),
-            end: const Offset(0.0, 0.0),
-          ),
-        ],
-      ),
-      'containerOnPageLoadAnimation5': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-          MoveEffect(
-            curve: Curves.easeInOut,
             delay: 150.0.ms,
             duration: 600.0.ms,
             begin: const Offset(0.0, 110.0),
@@ -124,7 +105,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
           ),
         ],
       ),
-      'containerOnPageLoadAnimation6': AnimationInfo(
+      'containerOnPageLoadAnimation5': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
           FadeEffect(
@@ -376,7 +357,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                                             child: Text(
                                               FFLocalizations.of(context)
                                                   .getText(
-                                                'cb36qij3' /* Email Us */,
+                                                'cb36qij3' /* Feedback */,
                                               ),
                                               textAlign: TextAlign.center,
                                               style:
@@ -403,73 +384,6 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                                   ),
                                 ).animateOnPageLoad(animationsMap[
                                     'containerOnPageLoadAnimation2']!),
-                              ),
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 16.0, 0.0, 0.0),
-                                child: Container(
-                                  width: 120.0,
-                                  constraints: const BoxConstraints(
-                                    maxWidth: 500.0,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    borderRadius: BorderRadius.circular(12.0),
-                                    border: Border.all(
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                      width: 2.0,
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Icon(
-                                          Icons.search_rounded,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          size: 36.0,
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 12.0, 0.0, 0.0),
-                                          child: Text(
-                                            FFLocalizations.of(context).getText(
-                                              'ye5tuirb' /* Search FAQs */,
-                                            ),
-                                            textAlign: TextAlign.center,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMediumFamily,
-                                                  letterSpacing: 0.0,
-                                                  useGoogleFonts: GoogleFonts
-                                                          .asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMediumFamily),
-                                                ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ).animateOnPageLoad(animationsMap[
-                                    'containerOnPageLoadAnimation3']!),
                               ),
                             ),
                           ].divide(const SizedBox(width: 12.0)),
@@ -518,7 +432,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                                 children: [
                                   Text(
                                     FFLocalizations.of(context).getText(
-                                      '6fkaz1l6' /* How do I download Code? */,
+                                      '6fkaz1l6' /* What is the PCIC Geotagging Mo... */,
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyLarge
@@ -538,7 +452,74 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                                         0.0, 4.0, 0.0, 0.0),
                                     child: Text(
                                       FFLocalizations.of(context).getText(
-                                        'p1oe42iv' /* Showcase a couple of eye-catch... */,
+                                        'p1oe42iv' /* The PCIC Geotagging Mobile App... */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMediumFamily,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelMediumFamily),
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ).animateOnPageLoad(
+                              animationsMap['containerOnPageLoadAnimation3']!),
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 8.0, 0.0, 0.0),
+                          child: Container(
+                            width: double.infinity,
+                            constraints: const BoxConstraints(
+                              maxWidth: 500.0,
+                            ),
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              borderRadius: BorderRadius.circular(12.0),
+                              border: Border.all(
+                                color: FlutterFlowTheme.of(context).alternate,
+                                width: 2.0,
+                              ),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    FFLocalizations.of(context).getText(
+                                      'n4gust3z' /* Who can use the PCIC Geotaggin... */,
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyLarge
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLargeFamily,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLargeFamily),
+                                        ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 4.0, 0.0, 0.0),
+                                    child: Text(
+                                      FFLocalizations.of(context).getText(
+                                        'zsw3n6yw' /* The app is intended for use by... */,
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .labelMedium
@@ -585,7 +566,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                                 children: [
                                   Text(
                                     FFLocalizations.of(context).getText(
-                                      'n4gust3z' /* How do I download Code? */,
+                                      'racl5rk4' /* Can I use the application offl... */,
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyLarge
@@ -605,7 +586,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                                         0.0, 4.0, 0.0, 0.0),
                                     child: Text(
                                       FFLocalizations.of(context).getText(
-                                        'zsw3n6yw' /* Showcase a couple of eye-catch... */,
+                                        '54dme8do' /* Yes, you can geotag locations ... */,
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .labelMedium
@@ -627,73 +608,6 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                           ).animateOnPageLoad(
                               animationsMap['containerOnPageLoadAnimation5']!),
                         ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 8.0, 0.0, 0.0),
-                          child: Container(
-                            width: double.infinity,
-                            constraints: const BoxConstraints(
-                              maxWidth: 500.0,
-                            ),
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              borderRadius: BorderRadius.circular(12.0),
-                              border: Border.all(
-                                color: FlutterFlowTheme.of(context).alternate,
-                                width: 2.0,
-                              ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    FFLocalizations.of(context).getText(
-                                      'racl5rk4' /* How do I download Code? */,
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyLargeFamily,
-                                          letterSpacing: 0.0,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily),
-                                        ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 4.0, 0.0, 0.0),
-                                    child: Text(
-                                      FFLocalizations.of(context).getText(
-                                        '54dme8do' /* Showcase a couple of eye-catch... */,
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMediumFamily,
-                                            letterSpacing: 0.0,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelMediumFamily),
-                                          ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ).animateOnPageLoad(
-                              animationsMap['containerOnPageLoadAnimation6']!),
-                        ),
                       ],
                     ),
                   ),
@@ -701,55 +615,62 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
               ),
               Container(
                 decoration: const BoxDecoration(),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      decoration: const BoxDecoration(),
-                      child: Text(
-                        FFLocalizations.of(context).getText(
-                          'iaed2gmv' /* Powered by: */,
-                        ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodyMediumFamily,
-                              fontSize: 12.0,
-                              letterSpacing: 0.0,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily),
-                            ),
-                      ),
-                    ),
-                    Container(
-                      decoration: const BoxDecoration(),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.asset(
-                          'assets/images/434383497_432242859458618_7596006234169326765_n-removebg-preview.png',
-                          width: 75.0,
-                          height: 75.0,
-                          fit: BoxFit.cover,
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        decoration: const BoxDecoration(),
+                        child: Text(
+                          FFLocalizations.of(context).getText(
+                            'iaed2gmv' /* Powered by: */,
+                          ),
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
+                                fontSize: 12.0,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily),
+                              ),
                         ),
                       ),
-                    ),
-                    Container(
-                      decoration: const BoxDecoration(),
-                      child: Text(
-                        FFLocalizations.of(context).getText(
-                          '7ytbdnzb' /* Quanby Solutions Inc. */,
+                      Container(
+                        decoration: const BoxDecoration(),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Image.asset(
+                            'assets/images/434383497_432242859458618_7596006234169326765_n-removebg-preview.png',
+                            width: 75.0,
+                            height: 75.0,
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Poppins',
-                              fontSize: 12.0,
-                              letterSpacing: 0.0,
-                              useGoogleFonts:
-                                  GoogleFonts.asMap().containsKey('Poppins'),
-                            ),
                       ),
-                    ),
-                  ].divide(const SizedBox(height: 2.0)),
+                      Container(
+                        decoration: const BoxDecoration(),
+                        child: Text(
+                          FFLocalizations.of(context).getText(
+                            '7ytbdnzb' /* Quanby Solutions Inc. */,
+                          ),
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: 'Poppins',
+                                fontSize: 12.0,
+                                letterSpacing: 0.0,
+                                useGoogleFonts:
+                                    GoogleFonts.asMap().containsKey('Poppins'),
+                              ),
+                        ),
+                      ),
+                    ].divide(const SizedBox(height: 2.0)),
+                  ),
                 ),
               ),
             ],

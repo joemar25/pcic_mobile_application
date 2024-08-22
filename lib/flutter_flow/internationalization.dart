@@ -261,7 +261,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    't3kek8wc': {
+    'arovso8z': {
       'en': '',
       'tl': '',
     },
@@ -273,7 +273,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'bh86b0l3': {
+    '21auuh53': {
       'en': '',
       'tl': '',
     },
@@ -285,7 +285,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'vwdp3yjj': {
+    'mcpkjxc9': {
       'en': '',
       'tl': '',
     },
@@ -1001,11 +1001,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     'cb36qij3': {
-      'en': 'Email Us',
-      'tl': '',
-    },
-    'ye5tuirb': {
-      'en': 'Search FAQs',
+      'en': 'Feedback',
       'tl': '',
     },
     'a7g4fvh0': {
@@ -1013,30 +1009,30 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     '6fkaz1l6': {
-      'en': 'How do I download Code?',
+      'en': 'What is the PCIC Geotagging Mobile Application?',
       'tl': '',
     },
     'p1oe42iv': {
       'en':
-          'Showcase a couple of eye-catching screenshots or mockups of your UI Kit to capture attention and give users a glimpse of what they can expect.',
+          'The PCIC Geotagging Mobile Application is a tool designed to assist farmers and PCIC field officers in accurately geotagging and documenting agricultural lands. It helps in streamlining the process of insurance claims by providing precise geographical data of the insured crops. To ensure the most accurate geotagging results, we advise users to walk slowly while geotagging.',
       'tl': '',
     },
     'n4gust3z': {
-      'en': 'How do I download Code?',
+      'en': 'Who can use the PCIC Geotagging Mobile Application?',
       'tl': '',
     },
     'zsw3n6yw': {
       'en':
-          'Showcase a couple of eye-catching screenshots or mockups of your UI Kit to capture attention and give users a glimpse of what they can expect.',
+          'The app is intended for use by PCIC field officers, accredited agents, and farmers who are involved in the crop insurance program.',
       'tl': '',
     },
     'racl5rk4': {
-      'en': 'How do I download Code?',
+      'en': 'Can I use the application offline?',
       'tl': '',
     },
     '54dme8do': {
       'en':
-          'Showcase a couple of eye-catching screenshots or mockups of your UI Kit to capture attention and give users a glimpse of what they can expect.',
+          'Yes, you can geotag locations offline. However, an internet connection is required to sync the data with the PCIC server once you are back online.',
       'tl': '',
     },
     'iaed2gmv': {
@@ -1133,51 +1129,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // emailUs
   {
     'u6v8cxw1': {
-      'en': 'Email Us',
-      'tl': '',
-    },
-    'kms1zdyl': {
-      'en': 'Contact us through our email address',
-      'tl': '',
-    },
-    'u306t03m': {
-      'en': 'Email Address:',
-      'tl': '',
-    },
-    '1fg65cxy': {
-      'en': 'andre@quanbyit.com',
-      'tl': '',
-    },
-    'drvdqe2p': {
-      'en': 'or feel free to give us a message below',
-      'tl': '',
-    },
-    'j3nymxm8': {
-      'en': 'Enter your personal information',
-      'tl': '',
-    },
-    'do3tuxep': {
-      'en': 'Full Name',
-      'tl': '',
-    },
-    'qy3d20a9': {
-      'en': '',
-      'tl': '',
-    },
-    'nuu9my6r': {
-      'en': 'Email Address',
-      'tl': '',
-    },
-    'q96avkay': {
-      'en': '',
-      'tl': '',
-    },
-    '57iltpax': {
-      'en': 'Phone Number',
-      'tl': '',
-    },
-    '5omxwq74': {
-      'en': '',
+      'en': 'Send us your feedback',
       'tl': '',
     },
     'bwb2aldx': {
@@ -1201,7 +1153,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     'z3u9d6fz': {
-      'en': 'Report',
+      'en': 'Bug Report',
       'tl': '',
     },
     'msi4fo1j': {
