@@ -3335,6 +3335,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                       child: Column(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
                                                         children: [
                                                           Text(
                                                             FFLocalizations.of(
@@ -3404,25 +3407,56 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   safeSetState(
                                                                       () {}));
                                                             },
-                                                            child: ClipRRect(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          8.0),
-                                                              child:
-                                                                  Image.asset(
-                                                                'assets/images/signature.png',
-                                                                width: MediaQuery.sizeOf(
-                                                                            context)
-                                                                        .width *
-                                                                    0.6,
-                                                                height: MediaQuery.sizeOf(
-                                                                            context)
-                                                                        .height *
-                                                                    0.15,
-                                                                fit: BoxFit
-                                                                    .contain,
-                                                              ),
+                                                            child: Stack(
+                                                              children: [
+                                                                if (ppirFormSelectPpirFormsRowList
+                                                                        .first
+                                                                        .ppirSigInsured ==
+                                                                    'null')
+                                                                  ClipRRect(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            8.0),
+                                                                    child: Image
+                                                                        .asset(
+                                                                      'assets/images/signature.png',
+                                                                      width: MediaQuery.sizeOf(context)
+                                                                              .width *
+                                                                          0.6,
+                                                                      height: MediaQuery.sizeOf(context)
+                                                                              .height *
+                                                                          0.15,
+                                                                      fit: BoxFit
+                                                                          .contain,
+                                                                    ),
+                                                                  ),
+                                                                if (ppirFormSelectPpirFormsRowList
+                                                                        .first
+                                                                        .ppirSigInsured !=
+                                                                    'null')
+                                                                  SizedBox(
+                                                                    width: MediaQuery.sizeOf(context)
+                                                                            .width *
+                                                                        1.0,
+                                                                    height: MediaQuery.sizeOf(context)
+                                                                            .height *
+                                                                        0.178,
+                                                                    child: custom_widgets
+                                                                        .Signaturebase64(
+                                                                      width: MediaQuery.sizeOf(context)
+                                                                              .width *
+                                                                          1.0,
+                                                                      height: MediaQuery.sizeOf(context)
+                                                                              .height *
+                                                                          0.178,
+                                                                      taskId: widget
+                                                                          .taskId,
+                                                                      signatureBlob:
+                                                                          (ppirFormSelectPpirFormsRowList.first.ppirSigInsured != 'null')
+                                                                              .toString(),
+                                                                    ),
+                                                                  ),
+                                                              ],
                                                             ),
                                                           ),
                                                         ],
@@ -3612,12 +3646,15 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                       child: Column(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
                                                         children: [
                                                           Text(
                                                             FFLocalizations.of(
                                                                     context)
                                                                 .getText(
-                                                              '7ozi615f' /* Tap to Signature */,
+                                                              '5c3vfe96' /* Tap to Signature */,
                                                             ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
@@ -3681,25 +3718,56 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   safeSetState(
                                                                       () {}));
                                                             },
-                                                            child: ClipRRect(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          8.0),
-                                                              child:
-                                                                  Image.asset(
-                                                                'assets/images/signature.png',
-                                                                width: MediaQuery.sizeOf(
-                                                                            context)
-                                                                        .width *
-                                                                    0.6,
-                                                                height: MediaQuery.sizeOf(
-                                                                            context)
-                                                                        .height *
-                                                                    0.15,
-                                                                fit: BoxFit
-                                                                    .contain,
-                                                              ),
+                                                            child: Stack(
+                                                              children: [
+                                                                if (ppirFormSelectPpirFormsRowList
+                                                                        .first
+                                                                        .ppirSigIuia ==
+                                                                    'null')
+                                                                  ClipRRect(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            8.0),
+                                                                    child: Image
+                                                                        .asset(
+                                                                      'assets/images/signature.png',
+                                                                      width: MediaQuery.sizeOf(context)
+                                                                              .width *
+                                                                          0.6,
+                                                                      height: MediaQuery.sizeOf(context)
+                                                                              .height *
+                                                                          0.15,
+                                                                      fit: BoxFit
+                                                                          .contain,
+                                                                    ),
+                                                                  ),
+                                                                if (ppirFormSelectPpirFormsRowList
+                                                                        .first
+                                                                        .ppirSigIuia !=
+                                                                    'null')
+                                                                  SizedBox(
+                                                                    width: MediaQuery.sizeOf(context)
+                                                                            .width *
+                                                                        1.0,
+                                                                    height: MediaQuery.sizeOf(context)
+                                                                            .height *
+                                                                        0.178,
+                                                                    child: custom_widgets
+                                                                        .Signaturebase64(
+                                                                      width: MediaQuery.sizeOf(context)
+                                                                              .width *
+                                                                          1.0,
+                                                                      height: MediaQuery.sizeOf(context)
+                                                                              .height *
+                                                                          0.178,
+                                                                      taskId: widget
+                                                                          .taskId,
+                                                                      signatureBlob: ppirFormSelectPpirFormsRowList
+                                                                          .first
+                                                                          .ppirSigIuia,
+                                                                    ),
+                                                                  ),
+                                                              ],
                                                             ),
                                                           ),
                                                         ],

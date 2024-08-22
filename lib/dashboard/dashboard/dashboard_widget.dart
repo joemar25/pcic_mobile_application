@@ -577,33 +577,35 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                             ],
                                           ),
                                         ),
-                                        FlutterFlowIconButton(
-                                          borderRadius: 6.0,
-                                          borderWidth: 1.0,
-                                          buttonSize: 40.0,
-                                          fillColor: const Color(0x4D66CC33),
-                                          icon: Icon(
-                                            Icons.edit_rounded,
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            size: 24.0,
+                                        if (kDebugMode)
+                                          FlutterFlowIconButton(
+                                            borderRadius: 6.0,
+                                            borderWidth: 1.0,
+                                            buttonSize: 40.0,
+                                            fillColor: const Color(0x4D66CC33),
+                                            icon: Icon(
+                                              Icons.edit_rounded,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              size: 24.0,
+                                            ),
+                                            onPressed: () async {
+                                              context.pushNamed(
+                                                'editProfile',
+                                                extra: <String, dynamic>{
+                                                  kTransitionInfoKey:
+                                                      const TransitionInfo(
+                                                    hasTransition: true,
+                                                    transitionType:
+                                                        PageTransitionType.fade,
+                                                    duration: Duration(
+                                                        milliseconds: 0),
+                                                  ),
+                                                },
+                                              );
+                                            },
                                           ),
-                                          onPressed: () async {
-                                            context.pushNamed(
-                                              'editProfile',
-                                              extra: <String, dynamic>{
-                                                kTransitionInfoKey:
-                                                    const TransitionInfo(
-                                                  hasTransition: true,
-                                                  transitionType:
-                                                      PageTransitionType.fade,
-                                                  duration:
-                                                      Duration(milliseconds: 0),
-                                                ),
-                                              },
-                                            );
-                                          },
-                                        ),
                                       ].divide(const SizedBox(width: 10.0)),
                                     ),
                                   ),

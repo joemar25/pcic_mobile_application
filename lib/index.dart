@@ -1,6 +1,6 @@
 // Export pages
 export '/auth/login/login_widget.dart' show LoginWidget;
-export '/dashboard/profile/profile/profile_widget.dart' show ProfileWidget;
+export '/dashboard/profile/settings/settings_widget.dart' show SettingsWidget;
 export '/dashboard/messages/chats/chats_widget.dart' show ChatsWidget;
 export '/dashboard/profile/edit_password/edit_password_widget.dart'
     show EditPasswordWidget;

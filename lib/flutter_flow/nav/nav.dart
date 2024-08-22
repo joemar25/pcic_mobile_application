@@ -91,12 +91,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const LoginWidget(),
         ),
         FFRoute(
-          name: 'profile',
-          path: '/profile',
+          name: 'settings',
+          path: '/settings',
           requireAuth: true,
           builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'profile')
-              : const ProfileWidget(),
+              ? const NavBarPage(initialPage: 'settings')
+              : const SettingsWidget(),
         ),
         FFRoute(
           name: 'chats',

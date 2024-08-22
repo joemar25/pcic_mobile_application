@@ -12,25 +12,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'profile_model.dart';
-export 'profile_model.dart';
+import 'settings_model.dart';
+export 'settings_model.dart';
 
-class ProfileWidget extends StatefulWidget {
-  const ProfileWidget({super.key});
+class SettingsWidget extends StatefulWidget {
+  const SettingsWidget({super.key});
 
   @override
-  State<ProfileWidget> createState() => _ProfileWidgetState();
+  State<SettingsWidget> createState() => _SettingsWidgetState();
 }
 
-class _ProfileWidgetState extends State<ProfileWidget> {
-  late ProfileModel _model;
+class _SettingsWidgetState extends State<SettingsWidget> {
+  late SettingsModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ProfileModel());
+    _model = createModel(context, () => SettingsModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -61,7 +61,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
             body: const PageLoaderWidget(),
           );
         }
-        final profileSelectProfileRowList = snapshot.data!;
+        final settingsSelectProfileRowList = snapshot.data!;
 
         return WillPopScope(
           onWillPop: () async => false,
@@ -95,14 +95,14 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Icon(
-                                      Icons.account_circle,
+                                      Icons.settings,
                                       color: FlutterFlowTheme.of(context)
                                           .primaryBackground,
                                       size: 34.0,
                                     ),
                                     Text(
                                       FFLocalizations.of(context).getText(
-                                        'xqwyoxrh' /* Account */,
+                                        'xqwyoxrh' /* Settings */,
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .headlineMedium
@@ -245,7 +245,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                               Text(
                                                 valueOrDefault<String>(
                                                   functions.sentenceCaseWords(
-                                                      profileSelectProfileRowList
+                                                      settingsSelectProfileRowList
                                                           .first.inspectorName),
                                                   'Agent',
                                                 ),
@@ -896,7 +896,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                             _model.regionCode =
                                                 await SQLiteManager.instance
                                                     .oFFLINESelectREGIONCODE(
-                                              id: profileSelectProfileRowList
+                                              id: settingsSelectProfileRowList
                                                   .first.regionId,
                                             );
                                             ScaffoldMessenger.of(context)

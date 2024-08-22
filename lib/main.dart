@@ -157,7 +157,7 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'dashboard': const DashboardWidget(),
       'chats': const ChatsWidget(),
-      'profile': const ProfileWidget(),
+      'settings': const SettingsWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -210,11 +210,11 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24.0,
             ),
             activeIcon: const Icon(
-              Icons.account_circle_sharp,
+              Icons.settings_sharp,
               size: 24.0,
             ),
             label: FFLocalizations.of(context).getText(
-              'kcupitz3' /* Account */,
+              'kcupitz3' /* Settings */,
             ),
             tooltip: '',
           )

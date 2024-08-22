@@ -176,10 +176,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Bahay',
     },
   },
-  // profile
+  // settings
   {
     'xqwyoxrh': {
-      'en': 'Account',
+      'en': 'Settings',
       'tl': '',
     },
     '00if4ta7': {
@@ -215,7 +215,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     'kcupitz3': {
-      'en': 'Account',
+      'en': 'Settings',
       'tl': '__',
     },
   },
@@ -261,7 +261,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'arovso8z': {
+    'sk96d32p': {
       'en': '',
       'tl': '',
     },
@@ -273,7 +273,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    '21auuh53': {
+    'twmtj5hz': {
       'en': '',
       'tl': '',
     },
@@ -285,7 +285,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'mcpkjxc9': {
+    '58zzdb65': {
       'en': '',
       'tl': '',
     },
@@ -965,7 +965,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm by',
       'tl': '',
     },
-    '7ozi615f': {
+    '5c3vfe96': {
       'en': 'Tap to Signature',
       'tl': '',
     },
