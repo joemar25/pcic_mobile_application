@@ -60,7 +60,7 @@ Future<bool> saveToFTP(String? taskId) async {
     final String insuranceId = ppirResponse.data['ppir_insuranceid'] ?? '';
 
     // 3. Get all files from the Supabase bucket
-    final bucketPath = '$serviceGroup/$userEmail/$taskNumber';
+    final bucketPath = '$serviceGroup/$userEmail/${taskNumber}_$insuranceId';
     final fileList = await listAllFiles(bucketPath);
 
     // 4. Create a temporary directory to store the .task file
@@ -92,7 +92,8 @@ Future<bool> saveToFTP(String? taskId) async {
     final socket = await SSHSocket.connect('122.55.242.110', 22);
     client = SSHClient(
       socket,
-      username: 'k2c_User2',
+      username:
+          'k2c_User2', // MAR: This would be changed depending on what region the user is in
       onPasswordRequest: () => 'K2C@PC!C2024',
     );
 
@@ -100,8 +101,8 @@ Future<bool> saveToFTP(String? taskId) async {
     final sftp = await client.sftp();
 
     // Construct the remote path with the new file name
-    final remotePath =
-        '/taskarchive/$bucketPath/${taskNumber}_${insuranceId}.task';
+    // final remotePath = '/taskarchive/$bucketPath/${taskNumber}_${insuranceId}.task';
+    final remotePath = '/taskarchive/${taskNumber}_${insuranceId}.task';
 
     // Ensure the remote directory exists
     await createRemoteDirectoryIfNotExists(sftp, remotePath);

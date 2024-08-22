@@ -261,7 +261,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'etf91p43': {
+    'l8c8sqt2': {
       'en': '',
       'tl': '',
     },
@@ -273,7 +273,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'xd6niij2': {
+    '1u5zkwcd': {
       'en': '',
       'tl': '',
     },
@@ -285,7 +285,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'hkrb1ul8': {
+    'f5h6j8mj': {
       'en': '',
       'tl': '',
     },
@@ -1110,34 +1110,15 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     'lrfdphye': {
-      'en': 'Call us through the following numebrs',
+      'en': 'Call us through our phone number',
       'tl': '',
     },
     'voantubs': {
-      'en': 'Hotline Numebrs:',
+      'en': 'Phone Number:',
       'tl': '',
     },
     'l24tzpzw': {
-      'en':
-          'Showcase a couple of eye-catching screenshots or mockups of your UI Kit to capture attention and give users a glimpse of what they can expect.',
-      'tl': '',
-    },
-    'y4qn5e27': {
-      'en': 'How do I download Code?',
-      'tl': '',
-    },
-    'xsecytb4': {
-      'en':
-          'Showcase a couple of eye-catching screenshots or mockups of your UI Kit to capture attention and give users a glimpse of what they can expect.',
-      'tl': '',
-    },
-    'mt0q1ggc': {
-      'en': 'How do I download Code?',
-      'tl': '',
-    },
-    '8x017fjb': {
-      'en':
-          'Showcase a couple of eye-catching screenshots or mockups of your UI Kit to capture attention and give users a glimpse of what they can expect.',
+      'en': '0524311169',
       'tl': '',
     },
     'x1l0pduf': {
@@ -1145,6 +1126,117 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     'kgq160zz': {
+      'en': 'Home',
+      'tl': '',
+    },
+  },
+  // emailUs
+  {
+    'u6v8cxw1': {
+      'en': 'Email Us',
+      'tl': '',
+    },
+    'kms1zdyl': {
+      'en': 'Contact us through our email address',
+      'tl': '',
+    },
+    'u306t03m': {
+      'en': 'Email Address:',
+      'tl': '',
+    },
+    '1fg65cxy': {
+      'en': 'andre@quanbyit.com',
+      'tl': '',
+    },
+    'drvdqe2p': {
+      'en': 'or feel free to give us a message below',
+      'tl': '',
+    },
+    'j3nymxm8': {
+      'en': 'Enter your personal information',
+      'tl': '',
+    },
+    'do3tuxep': {
+      'en': 'Full Name',
+      'tl': '',
+    },
+    'qy3d20a9': {
+      'en': '',
+      'tl': '',
+    },
+    'nuu9my6r': {
+      'en': 'Email Address',
+      'tl': '',
+    },
+    'q96avkay': {
+      'en': '',
+      'tl': '',
+    },
+    '57iltpax': {
+      'en': 'Phone Number',
+      'tl': '',
+    },
+    '5omxwq74': {
+      'en': '',
+      'tl': '',
+    },
+    'fypzgy7c': {
+      'en': 'Address',
+      'tl': '',
+    },
+    'cjoa5inm': {
+      'en': '',
+      'tl': '',
+    },
+    'bwb2aldx': {
+      'en': 'What is your Purpose?',
+      'tl': '',
+    },
+    'ps8o96jz': {
+      'en': 'Feedback',
+      'tl': '',
+    },
+    '6yihtdbo': {
+      'en': 'Inquiry',
+      'tl': '',
+    },
+    'nmsj2mj6': {
+      'en': 'Comment',
+      'tl': '',
+    },
+    'hfdktwd5': {
+      'en': 'Suggestion',
+      'tl': '',
+    },
+    'z3u9d6fz': {
+      'en': 'Report',
+      'tl': '',
+    },
+    'msi4fo1j': {
+      'en': 'Choose the type of purpose',
+      'tl': '',
+    },
+    'd9wispbd': {
+      'en': 'Search for an item...',
+      'tl': '',
+    },
+    'gd6lp3vu': {
+      'en': 'Add Message',
+      'tl': '',
+    },
+    '1ovjjhqy': {
+      'en': 'Input your message here...',
+      'tl': '',
+    },
+    'e112gj5d': {
+      'en': 'Submit',
+      'tl': '',
+    },
+    'deunldpx': {
+      'en': 'Support',
+      'tl': '',
+    },
+    'o65xm4kk': {
       'en': 'Home',
       'tl': '',
     },

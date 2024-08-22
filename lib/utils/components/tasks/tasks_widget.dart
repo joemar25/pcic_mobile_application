@@ -179,6 +179,27 @@ class _TasksWidgetState extends State<TasksWidget>
                                 ),
                               ),
                             ),
+                            Text(
+                              valueOrDefault<String>(
+                                containerSelectPpirFormsRowList
+                                    .first.ppirInsuranceid,
+                                'Insurance Id',
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    letterSpacing: 0.0,
+                                    fontStyle: FontStyle.italic,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyMediumFamily),
+                                  ),
+                            ),
                           ],
                         ),
                       ),
@@ -494,6 +515,8 @@ class _TasksWidgetState extends State<TasksWidget>
                                           fontFamily:
                                               FlutterFlowTheme.of(context)
                                                   .bodyMediumFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
                                           fontSize: 12.0,
                                           letterSpacing: 0.0,
                                           useGoogleFonts: GoogleFonts.asMap()
@@ -520,7 +543,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                                       .bodyMediumFamily,
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .primary,
+                                                      .primaryText,
                                               fontSize: 12.0,
                                               letterSpacing: 0.0,
                                               useGoogleFonts: GoogleFonts
@@ -549,6 +572,8 @@ class _TasksWidgetState extends State<TasksWidget>
                                           fontFamily:
                                               FlutterFlowTheme.of(context)
                                                   .bodyMediumFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
                                           fontSize: 12.0,
                                           letterSpacing: 0.0,
                                           useGoogleFonts: GoogleFonts.asMap()
@@ -575,7 +600,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                                       .bodyMediumFamily,
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .primary,
+                                                      .primaryText,
                                               fontSize: 12.0,
                                               letterSpacing: 0.0,
                                               useGoogleFonts: GoogleFonts

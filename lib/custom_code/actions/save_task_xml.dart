@@ -44,8 +44,25 @@ Future<String> saveTaskXml(String? generatedTaskXml, String? taskId) async {
       throw Exception('Unable to get user email');
     }
 
+    // Fetch the insurance ID from ppir_forms
+    final ppirResponse = await SupaFlow.client
+        .from('ppir_forms')
+        .select('ppir_insuranceid')
+        .eq('task_id', taskId)
+        .single()
+        .execute();
+
+    if (ppirResponse.status != 200 || ppirResponse.data == null) {
+      throw Exception(
+          'Error querying ppir_forms table: ${ppirResponse.status}');
+    }
+
+    final String insuranceId = ppirResponse.data['ppir_insuranceid'] ?? '';
+
+    // Update the file path to include insuranceId
     final String fileName = 'Task.xml';
-    final String filePath = '$serviceGroup/$userEmail/$taskNumber/$fileName';
+    final String filePath =
+        '$serviceGroup/$userEmail/${taskNumber}_$insuranceId/$fileName';
 
     // Delete existing XML file from Supabase storage
     try {
@@ -74,8 +91,8 @@ Future<String> saveTaskXml(String? generatedTaskXml, String? taskId) async {
     }
 
     // Save XML locally (this will overwrite if it exists)
-    await _saveXmlLocally(
-        serviceGroup, userEmail, taskNumber, fileName, generatedTaskXml);
+    await _saveXmlLocally(serviceGroup, userEmail, '${taskNumber}_$insuranceId',
+        fileName, generatedTaskXml);
 
     return 'XML saved successfully both in Supabase and locally';
   } catch (e) {
@@ -84,11 +101,16 @@ Future<String> saveTaskXml(String? generatedTaskXml, String? taskId) async {
   }
 }
 
-Future<void> _saveXmlLocally(String serviceGroup, String userEmail,
-    String taskNumber, String fileName, String xmlContent) async {
+Future<void> _saveXmlLocally(
+    String serviceGroup,
+    String userEmail,
+    String taskNumberWithInsuranceId,
+    String fileName,
+    String xmlContent) async {
   try {
     final directory = await getApplicationDocumentsDirectory();
-    final folderPath = '${directory.path}/$serviceGroup/$userEmail/$taskNumber';
+    final folderPath =
+        '${directory.path}/$serviceGroup/$userEmail/$taskNumberWithInsuranceId';
     await Directory(folderPath).create(recursive: true);
     final file = File('$folderPath/$fileName');
 

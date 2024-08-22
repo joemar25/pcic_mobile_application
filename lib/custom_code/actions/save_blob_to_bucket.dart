@@ -39,9 +39,23 @@ Future<String> saveBlobToBucket(String? taskId) async {
     final String userEmail =
         SupaFlow.client.auth.currentUser?.email ?? taskData['assignee'] ?? '';
 
-    // Define attachments folder path
+    // Fetch the insurance ID from ppir_forms
+    final ppirResponse = await SupaFlow.client
+        .from('ppir_forms')
+        .select('ppir_insuranceid')
+        .eq('task_id', taskId)
+        .single()
+        .execute();
+
+    if (ppirResponse.status != 200 || ppirResponse.data == null) {
+      return 'Error: Unable to fetch insurance ID';
+    }
+
+    final String insuranceId = ppirResponse.data['ppir_insuranceid'] ?? '';
+
+    // Define attachments folder path with insuranceId included
     final String attachmentsPath =
-        '$serviceGroup/$userEmail/$taskNumber/attachments/';
+        '$serviceGroup/$userEmail/${taskNumber}_$insuranceId/attachments/';
 
     // List existing files in the attachments folder
     final listResult = await SupaFlow.client.storage
