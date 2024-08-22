@@ -69,7 +69,7 @@ Future<bool> saveToFTP(String? taskId) async {
     }
 
     // 5. Create the .task file
-    final taskFile = File('${tempDir.path}/task_$taskId.task');
+    final taskFile = File('${tempDir.path}/$taskNumber - $taskId.task');
     final zipBytes = ZipEncoder().encode(archive) ?? [];
     await taskFile.writeAsBytes(zipBytes);
 
@@ -85,7 +85,7 @@ Future<bool> saveToFTP(String? taskId) async {
     final sftp = await client.sftp();
 
     // Construct the remote path
-    final remotePath = '/taskarchive/$bucketPath/task_$taskId.task';
+    final remotePath = '/taskarchive/$bucketPath/$taskNumber - $taskId.task';
 
     // Ensure the remote directory exists
     await createRemoteDirectoryIfNotExists(sftp, remotePath);
