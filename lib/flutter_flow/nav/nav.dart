@@ -276,6 +276,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'supportPage',
           path: '/supportPage',
           builder: (context, params) => const SupportPageWidget(),
+        ),
+        FFRoute(
+          name: 'dashboardCopyss',
+          path: '/dashboardsss',
+          requireAuth: true,
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'dashboardCopyss')
+              : const DashboardCopyssWidget(),
+        ),
+        FFRoute(
+          name: 'callUs',
+          path: '/callUs',
+          builder: (context, params) => const CallUsWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

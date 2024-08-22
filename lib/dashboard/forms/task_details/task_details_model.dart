@@ -21,6 +21,8 @@ class TaskDetailsModel extends FlutterFlowModel<TaskDetailsWidget> {
   List<PpirFormsRow>? savePPIR;
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
+  // Stores action output result for [Custom Action - generateTaskXml] action in reFTP widget.
+  String? generatedXML;
   // Stores action output result for [Custom Action - saveToFTP] action in reFTP widget.
   bool? isFtpSaved;
   // Model for savingMode component.

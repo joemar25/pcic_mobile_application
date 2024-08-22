@@ -44,14 +44,29 @@ Future<bool> saveToFTP(String? taskId) async {
       throw Exception('Unable to get user email');
     }
 
-    // 2. Get all files from the Supabase bucket
+    // 2. Query insurance ID from ppir_forms
+    final ppirResponse = await SupaFlow.client
+        .from('ppir_forms')
+        .select('ppir_insuranceid')
+        .eq('task_id', taskId)
+        .single()
+        .execute();
+
+    if (ppirResponse.status != 200 || ppirResponse.data == null) {
+      throw Exception(
+          'Error querying ppir_forms table: ${ppirResponse.status}');
+    }
+
+    final String insuranceId = ppirResponse.data['ppir_insuranceid'] ?? '';
+
+    // 3. Get all files from the Supabase bucket
     final bucketPath = '$serviceGroup/$userEmail/$taskNumber';
     final fileList = await listAllFiles(bucketPath);
 
-    // 3. Create a temporary directory to store the .task file
+    // 4. Create a temporary directory to store the .task file
     final tempDir = await getTemporaryDirectory();
 
-    // 4. Download files and create archive
+    // 5. Download files and create archive
     final archive = Archive();
     for (final filePath in fileList) {
       final fileData =
@@ -68,12 +83,12 @@ Future<bool> saveToFTP(String? taskId) async {
       archive.addFile(archiveFile);
     }
 
-    // 5. Create the .task file
-    final taskFile = File('${tempDir.path}/$taskNumber - $taskId.task');
+    // 6. Create the .task file with the new naming convention
+    final taskFile = File('${tempDir.path}/${taskNumber}_${insuranceId}.task');
     final zipBytes = ZipEncoder().encode(archive) ?? [];
     await taskFile.writeAsBytes(zipBytes);
 
-    // 6. Upload to SFTP
+    // 7. Upload to SFTP
     final socket = await SSHSocket.connect('122.55.242.110', 22);
     client = SSHClient(
       socket,
@@ -84,8 +99,9 @@ Future<bool> saveToFTP(String? taskId) async {
     await client.authenticated;
     final sftp = await client.sftp();
 
-    // Construct the remote path
-    final remotePath = '/taskarchive/$bucketPath/$taskNumber - $taskId.task';
+    // Construct the remote path with the new file name
+    final remotePath =
+        '/taskarchive/$bucketPath/${taskNumber}_${insuranceId}.task';
 
     // Ensure the remote directory exists
     await createRemoteDirectoryIfNotExists(sftp, remotePath);
@@ -102,7 +118,7 @@ Future<bool> saveToFTP(String? taskId) async {
     await remoteFile.write(taskFile.openRead().cast<Uint8List>());
     await remoteFile.close();
 
-    // 7. Clean up: delete the temporary .task file
+    // 8. Clean up: delete the temporary .task file
     await taskFile.delete();
 
     return true;

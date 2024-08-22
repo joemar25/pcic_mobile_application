@@ -117,7 +117,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
           ),
           MoveEffect(
             curve: Curves.easeInOut,
-            delay: 0.0.ms,
+            delay: 150.0.ms,
             duration: 600.0.ms,
             begin: const Offset(0.0, 110.0),
             end: const Offset(0.0, 0.0),
@@ -136,7 +136,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
           ),
           MoveEffect(
             curve: Curves.easeInOut,
-            delay: 0.0.ms,
+            delay: 300.0.ms,
             duration: 600.0.ms,
             begin: const Offset(0.0, 110.0),
             end: const Offset(0.0, 0.0),
@@ -675,6 +675,59 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                       ],
                     ),
                   ),
+                ),
+              ),
+              Container(
+                decoration: const BoxDecoration(),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      decoration: const BoxDecoration(),
+                      child: Text(
+                        FFLocalizations.of(context).getText(
+                          'iaed2gmv' /* Powered by: */,
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
+                              fontSize: 12.0,
+                              letterSpacing: 0.0,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily),
+                            ),
+                      ),
+                    ),
+                    Container(
+                      decoration: const BoxDecoration(),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Image.asset(
+                          'assets/images/434383497_432242859458618_7596006234169326765_n-removebg-preview.png',
+                          width: 75.0,
+                          height: 75.0,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      decoration: const BoxDecoration(),
+                      child: Text(
+                        FFLocalizations.of(context).getText(
+                          '7ytbdnzb' /* Quanby Solutions Inc. */,
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Poppins',
+                              fontSize: 12.0,
+                              letterSpacing: 0.0,
+                              useGoogleFonts:
+                                  GoogleFonts.asMap().containsKey('Poppins'),
+                            ),
+                      ),
+                    ),
+                  ].divide(const SizedBox(height: 2.0)),
                 ),
               ),
             ],

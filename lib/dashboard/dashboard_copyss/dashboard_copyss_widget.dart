@@ -1,0 +1,1407 @@
+import '/auth/supabase_auth/auth_util.dart';
+import '/backend/sqlite/sqlite_manager.dart';
+import '/backend/supabase/supabase.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/utils/components/connectivity/connectivity_widget.dart';
+import '/utils/components/empty_lists/empty_lists_widget.dart';
+import '/utils/components/page_loader/page_loader_widget.dart';
+import '/utils/components/tasks/tasks_widget.dart';
+import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
+import 'dashboard_copyss_model.dart';
+export 'dashboard_copyss_model.dart';
+
+class DashboardCopyssWidget extends StatefulWidget {
+  const DashboardCopyssWidget({super.key});
+
+  @override
+  State<DashboardCopyssWidget> createState() => _DashboardCopyssWidgetState();
+}
+
+class _DashboardCopyssWidgetState extends State<DashboardCopyssWidget>
+    with TickerProviderStateMixin {
+  late DashboardCopyssModel _model;
+
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final animationsMap = <String, AnimationInfo>{};
+
+  @override
+  void initState() {
+    super.initState();
+    _model = createModel(context, () => DashboardCopyssModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.loadLocalProfile = await actions.getTheSavedLocalProfile();
+      _model.offlineTasks =
+          await SQLiteManager.instance.oFFLINESelectAllTasksByAssignee(
+        assignee: currentUserUid,
+      );
+      if (FFAppState().ONLINE) {
+        await UsersTable().update(
+          data: {
+            'is_online': true,
+          },
+          matchingRows: (rows) => rows.eq(
+            'id',
+            currentUserUid,
+          ),
+        );
+        _model.onlineTasks = await TasksTable().queryRows(
+          queryFn: (q) => q,
+        );
+        _model.statusOutput =
+            _model.offlineTasks?.length != _model.onlineTasks?.length
+                ? 'Tap to update'
+                : 'Tasks are updated';
+        setState(() {});
+      }
+    });
+
+    _model.tabBarController = TabController(
+      vsync: this,
+      length: 3,
+      initialIndex: 1,
+    )..addListener(() => setState(() {}));
+    animationsMap.addAll({
+      'circleImageOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          ShakeEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 1450.0.ms,
+            hz: 10,
+            offset: const Offset(0.0, 0.0),
+            rotation: 0.087,
+          ),
+        ],
+      ),
+      'containerOnPageLoadAnimation1': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: const Offset(0.0, 0.0),
+            end: const Offset(0.0, 0.0),
+          ),
+        ],
+      ),
+      'containerOnPageLoadAnimation3': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: const Offset(0.0, 0.0),
+            end: const Offset(0.0, 0.0),
+          ),
+        ],
+      ),
+    });
+  }
+
+  @override
+  void dispose() {
+    _model.dispose();
+
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
+    return FutureBuilder<List<OFFLINESelectAllTasksByAssigneeRow>>(
+      future: SQLiteManager.instance.oFFLINESelectAllTasksByAssignee(
+        assignee: currentUserUid,
+      ),
+      builder: (context, snapshot) {
+        // Customize what your widget looks like when it's loading.
+        if (!snapshot.hasData) {
+          return Scaffold(
+            backgroundColor: FlutterFlowTheme.of(context).primary,
+            body: const PageLoaderWidget(),
+          );
+        }
+        final dashboardCopyssOFFLINESelectAllTasksByAssigneeRowList =
+            snapshot.data!;
+
+        return GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: WillPopScope(
+            onWillPop: () async => false,
+            child: Scaffold(
+              key: scaffoldKey,
+              backgroundColor: FlutterFlowTheme.of(context).primary,
+              body: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 60.0, 0.0, 0.0),
+                child: Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).primary,
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            20.0, 20.0, 20.0, 20.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.home_rounded,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
+                                        size: 34.0,
+                                      ),
+                                      Text(
+                                        FFLocalizations.of(context).getText(
+                                          'u4ff768p' /* Task Overview */,
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .headlineMedium
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .headlineMediumFamily,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                              fontSize: 28.0,
+                                              letterSpacing: 0.0,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(FlutterFlowTheme
+                                                          .of(context)
+                                                      .headlineMediumFamily),
+                                            ),
+                                      ),
+                                    ].divide(const SizedBox(width: 20.0)),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 5.0, 0.0),
+                                  child: Container(
+                                    decoration: const BoxDecoration(),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        if (FFAppState().ONLINE &&
+                                            responsiveVisibility(
+                                              context: context,
+                                              phone: false,
+                                            ))
+                                          InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              _model.statusOutput =
+                                                  'Syncing...';
+                                              setState(() {});
+                                              _model.message =
+                                                  await actions.syncData();
+                                              _model.statusOutput =
+                                                  _model.message;
+                                              setState(() {});
+
+                                              setState(() {});
+                                            },
+                                            child: Text(
+                                              '[ ${_model.statusOutput} ]',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .titleSmall
+                                                  .override(
+                                                    fontFamily:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .titleSmallFamily,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
+                                                    fontSize: 12.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w600,
+                                                    useGoogleFonts: GoogleFonts
+                                                            .asMap()
+                                                        .containsKey(
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmallFamily),
+                                                  ),
+                                            ),
+                                          ),
+                                        if (!FFAppState().ONLINE)
+                                          Text(
+                                            '[ No internet for sync ]',
+                                            style: FlutterFlowTheme.of(context)
+                                                .titleSmall
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmallFamily,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .error,
+                                                  fontSize: 12.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w600,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmallFamily),
+                                                ),
+                                          ),
+                                      ].divide(const SizedBox(width: 5.0)),
+                                    ),
+                                  ),
+                                ),
+                                InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    if (FFAppState().ONLINE && kDebugMode) {
+                                      context.pushNamed(
+                                        'offlineSync',
+                                        extra: <String, dynamic>{
+                                          kTransitionInfoKey: const TransitionInfo(
+                                            hasTransition: true,
+                                            transitionType:
+                                                PageTransitionType.fade,
+                                            duration: Duration(milliseconds: 0),
+                                          ),
+                                        },
+                                      );
+                                    }
+                                  },
+                                  child: wrapWithModel(
+                                    model: _model.connectivityModel,
+                                    updateCallback: () => setState(() {}),
+                                    child: const ConnectivityWidget(),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color:
+                                FlutterFlowTheme.of(context).primaryBackground,
+                            borderRadius: const BorderRadius.only(
+                              bottomLeft: Radius.circular(0.0),
+                              bottomRight: Radius.circular(0.0),
+                              topLeft: Radius.circular(24.0),
+                              topRight: Radius.circular(24.0),
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                20.0, 20.0, 20.0, 0.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: const Color(0x3F00A651),
+                                    borderRadius: BorderRadius.circular(12.0),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        20.0, 20.0, 20.0, 20.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Align(
+                                          alignment:
+                                              const AlignmentDirectional(0.0, 0.0),
+                                          child: Container(
+                                            width: 75.0,
+                                            height: 75.0,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              border: Border.all(
+                                                color: FFAppState().ONLINE
+                                                    ? FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary
+                                                    : FlutterFlowTheme.of(
+                                                            context)
+                                                        .warning,
+                                              ),
+                                            ),
+                                            child: Container(
+                                              width: 75.0,
+                                              height: 75.0,
+                                              clipBehavior: Clip.antiAlias,
+                                              decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: Image.memory(
+                                                _model.loadLocalProfile
+                                                        ?.bytes ??
+                                                    Uint8List.fromList([]),
+                                                fit: BoxFit.cover,
+                                                errorBuilder: (context, error,
+                                                        stackTrace) =>
+                                                    Image.asset(
+                                                  'assets/images/error_image.gif',
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                            ).animateOnPageLoad(animationsMap[
+                                                'circleImageOnPageLoadAnimation']!),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  AutoSizeText(
+                                                    FFLocalizations.of(context)
+                                                        .getText(
+                                                      '2o54l4bh' /* Welcome */,
+                                                    ),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .titleLarge
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleLargeFamily,
+                                                          fontSize: 22.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleLargeFamily),
+                                                        ),
+                                                  ),
+                                                  Align(
+                                                    alignment:
+                                                        const AlignmentDirectional(
+                                                            0.0, 0.0),
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  5.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Lottie.asset(
+                                                        'assets/lottie_animations/Animation_-_1720082435989.json',
+                                                        width: 30.0,
+                                                        height: 30.0,
+                                                        fit: BoxFit.contain,
+                                                        repeat: false,
+                                                        animate: true,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Flexible(
+                                                    child: FutureBuilder<
+                                                        List<SelectProfileRow>>(
+                                                      future: SQLiteManager
+                                                          .instance
+                                                          .selectProfile(
+                                                        email: currentUserEmail,
+                                                      ),
+                                                      builder:
+                                                          (context, snapshot) {
+                                                        // Customize what your widget looks like when it's loading.
+                                                        if (!snapshot.hasData) {
+                                                          return Center(
+                                                            child: SizedBox(
+                                                              width: 100.0,
+                                                              height: 100.0,
+                                                              child:
+                                                                  SpinKitRipple(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                                size: 100.0,
+                                                              ),
+                                                            ),
+                                                          );
+                                                        }
+                                                        final richTextSelectProfileRowList =
+                                                            snapshot.data!;
+
+                                                        return RichText(
+                                                          textScaler:
+                                                              MediaQuery.of(
+                                                                      context)
+                                                                  .textScaler,
+                                                          text: TextSpan(
+                                                            children: [
+                                                              TextSpan(
+                                                                text: FFLocalizations.of(
+                                                                        context)
+                                                                    .getText(
+                                                                  'qrby5t3f' /* Good morning  */,
+                                                                ),
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .normal,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                    ),
+                                                              ),
+                                                              TextSpan(
+                                                                text:
+                                                                    valueOrDefault<
+                                                                        String>(
+                                                                  functions.sentenceCaseWords(
+                                                                      richTextSelectProfileRowList
+                                                                          .first
+                                                                          .inspectorName),
+                                                                  'Inspector Name',
+                                                                ),
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                                ),
+                                                              ),
+                                                              TextSpan(
+                                                                text: FFLocalizations.of(
+                                                                        context)
+                                                                    .getText(
+                                                                  '7i9tptvp' /* ! */,
+                                                                ),
+                                                                style:
+                                                                    const TextStyle(),
+                                                              )
+                                                            ],
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily),
+                                                                ),
+                                                          ),
+                                                        );
+                                                      },
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        FlutterFlowIconButton(
+                                          borderRadius: 6.0,
+                                          borderWidth: 1.0,
+                                          buttonSize: 40.0,
+                                          fillColor: const Color(0x4D66CC33),
+                                          icon: Icon(
+                                            Icons.edit_rounded,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            size: 24.0,
+                                          ),
+                                          onPressed: () async {
+                                            context.pushNamed(
+                                              'editProfile',
+                                              extra: <String, dynamic>{
+                                                kTransitionInfoKey:
+                                                    const TransitionInfo(
+                                                  hasTransition: true,
+                                                  transitionType:
+                                                      PageTransitionType.fade,
+                                                  duration:
+                                                      Duration(milliseconds: 0),
+                                                ),
+                                              },
+                                            );
+                                          },
+                                        ),
+                                      ].divide(const SizedBox(width: 10.0)),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 15.0, 0.0, 0.0),
+                                  child: Container(
+                                    width: double.infinity,
+                                    decoration: const BoxDecoration(
+                                      color: Color(0x00FFFFFF),
+                                    ),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Expanded(
+                                          child: InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              setState(() {});
+                                            },
+                                            child: Material(
+                                              color: Colors.transparent,
+                                              elevation: 10.0,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
+                                              child: Container(
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        0.3,
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .forDispatchColor,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                  border: Border.all(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .forDispatchColor,
+                                                    width: 2.0,
+                                                  ),
+                                                ),
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(12.0),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      AnimatedDefaultTextStyle(
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .displaySmall
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .displaySmallFamily,
+                                                                  fontSize:
+                                                                      30.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .displaySmallFamily),
+                                                                ),
+                                                        duration: const Duration(
+                                                            milliseconds: 600),
+                                                        curve: Curves.easeIn,
+                                                        child: Text(
+                                                          dashboardCopyssOFFLINESelectAllTasksByAssigneeRowList
+                                                              .where((e) =>
+                                                                  e.status ==
+                                                                  'for dispatch')
+                                                              .toList()
+                                                              .length
+                                                              .toString(),
+                                                        ),
+                                                      ),
+                                                      Icon(
+                                                        Icons.timer_sharp,
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .forDispatchIcon,
+                                                        size: 15.0,
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    4.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: Text(
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                            'vx8lxe6a' /* For Dispatch */,
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .labelMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMediumFamily,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
+                                                                fontSize: 10.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .labelMediumFamily),
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ).animateOnPageLoad(animationsMap[
+                                              'containerOnPageLoadAnimation1']!),
+                                        ),
+                                        Expanded(
+                                          child: Material(
+                                            color: Colors.transparent,
+                                            elevation: 10.0,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                            child: Container(
+                                              width: MediaQuery.sizeOf(context)
+                                                      .width *
+                                                  0.3,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .inProgress,
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                border: Border.all(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .inProgress,
+                                                  width: 2.0,
+                                                ),
+                                              ),
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(12.0),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    AnimatedDefaultTextStyle(
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .displaySmall
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .displaySmallFamily,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
+                                                                fontSize: 30.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .displaySmallFamily),
+                                                              ),
+                                                      duration: const Duration(
+                                                          milliseconds: 600),
+                                                      curve: Curves.easeIn,
+                                                      child: Text(
+                                                        dashboardCopyssOFFLINESelectAllTasksByAssigneeRowList
+                                                            .where((e) =>
+                                                                e.status ==
+                                                                'ongoing')
+                                                            .toList()
+                                                            .length
+                                                            .toString(),
+                                                      ),
+                                                    ),
+                                                    Icon(
+                                                      Icons.incomplete_circle,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .inProgressIcon,
+                                                      size: 15.0,
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  4.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Text(
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          'qb0wf2so' /* Ongoing */,
+                                                        ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                  fontSize:
+                                                                      10.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .labelMediumFamily),
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Material(
+                                            color: Colors.transparent,
+                                            elevation: 10.0,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                            child: Container(
+                                              width: MediaQuery.sizeOf(context)
+                                                      .width *
+                                                  0.3,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .completeColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                border: Border.all(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .completeColor,
+                                                  width: 2.0,
+                                                ),
+                                              ),
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(12.0),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    AnimatedDefaultTextStyle(
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .displaySmall
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .displaySmallFamily,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
+                                                                fontSize: 30.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .displaySmallFamily),
+                                                              ),
+                                                      duration: const Duration(
+                                                          milliseconds: 600),
+                                                      curve: Curves.easeIn,
+                                                      child: Text(
+                                                        dashboardCopyssOFFLINESelectAllTasksByAssigneeRowList
+                                                            .where((e) =>
+                                                                e.status ==
+                                                                'completed')
+                                                            .toList()
+                                                            .length
+                                                            .toString(),
+                                                      ),
+                                                    ),
+                                                    Icon(
+                                                      Icons.check_circle,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .completeIcon,
+                                                      size: 15.0,
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  4.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Text(
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          'yxb7mh8n' /* Completed */,
+                                                        ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                  fontSize:
+                                                                      10.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .labelMediumFamily),
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ).animateOnPageLoad(animationsMap[
+                                              'containerOnPageLoadAnimation3']!),
+                                        ),
+                                      ].divide(SizedBox(
+                                          width: valueOrDefault<double>(
+                                        MediaQuery.sizeOf(context).width >=
+                                                375.0
+                                            ? 20.0
+                                            : 0.0,
+                                        10.0,
+                                      ))),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 15.0, 0.0, 0.0),
+                                    child: Container(
+                                      decoration: const BoxDecoration(),
+                                      child: Column(
+                                        children: [
+                                          Align(
+                                            alignment: const Alignment(0.0, 0),
+                                            child: TabBar(
+                                              labelColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              labelStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
+                                                        fontSize: 12.0,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
+                                              unselectedLabelStyle: const TextStyle(),
+                                              indicatorColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .completeIcon,
+                                              indicatorWeight: 2.0,
+                                              tabs: [
+                                                Tab(
+                                                  text: FFLocalizations.of(
+                                                          context)
+                                                      .getText(
+                                                    'fw6onrn1' /* For Dispatch */,
+                                                  ),
+                                                  icon: const Icon(
+                                                    Icons.timer_rounded,
+                                                  ),
+                                                ),
+                                                Tab(
+                                                  text: FFLocalizations.of(
+                                                          context)
+                                                      .getText(
+                                                    'wu8a7le4' /* Ongoing */,
+                                                  ),
+                                                  icon: const Icon(
+                                                    Icons
+                                                        .incomplete_circle_rounded,
+                                                  ),
+                                                ),
+                                                Tab(
+                                                  text: FFLocalizations.of(
+                                                          context)
+                                                      .getText(
+                                                    'lzyroz1y' /* Completed */,
+                                                  ),
+                                                  icon: const Icon(
+                                                    Icons.check_circle_rounded,
+                                                  ),
+                                                ),
+                                              ],
+                                              controller:
+                                                  _model.tabBarController,
+                                              onTap: (i) async {
+                                                [
+                                                  () async {},
+                                                  () async {},
+                                                  () async {}
+                                                ][i]();
+                                              },
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: TabBarView(
+                                              controller:
+                                                  _model.tabBarController,
+                                              children: [
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Expanded(
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    12.0,
+                                                                    0.0,
+                                                                    12.0),
+                                                        child: Builder(
+                                                          builder: (context) {
+                                                            final forDispatchTasks =
+                                                                dashboardCopyssOFFLINESelectAllTasksByAssigneeRowList
+                                                                    .where((e) =>
+                                                                        e.status ==
+                                                                        'for dispatch')
+                                                                    .toList();
+                                                            if (forDispatchTasks
+                                                                .isEmpty) {
+                                                              return const Center(
+                                                                child:
+                                                                    EmptyListsWidget(
+                                                                  type:
+                                                                      'Dispatch Tasks',
+                                                                ),
+                                                              );
+                                                            }
+
+                                                            return ListView
+                                                                .separated(
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .zero,
+                                                              primary: false,
+                                                              scrollDirection:
+                                                                  Axis.vertical,
+                                                              itemCount:
+                                                                  forDispatchTasks
+                                                                      .length,
+                                                              separatorBuilder: (_,
+                                                                      __) =>
+                                                                  const SizedBox(
+                                                                      height:
+                                                                          15.0),
+                                                              itemBuilder: (context,
+                                                                  forDispatchTasksIndex) {
+                                                                final forDispatchTasksItem =
+                                                                    forDispatchTasks[
+                                                                        forDispatchTasksIndex];
+                                                                return Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      wrapWithModel(
+                                                                    model: _model
+                                                                        .tasksModels1
+                                                                        .getModel(
+                                                                      forDispatchTasksIndex
+                                                                          .toString(),
+                                                                      forDispatchTasksIndex,
+                                                                    ),
+                                                                    updateCallback: () =>
+                                                                        setState(
+                                                                            () {}),
+                                                                    updateOnChange:
+                                                                        true,
+                                                                    child:
+                                                                        TasksWidget(
+                                                                      key: Key(
+                                                                        'Key3pe_${forDispatchTasksIndex.toString()}',
+                                                                      ),
+                                                                      task: forDispatchTasksItem
+                                                                          .id!,
+                                                                      status: forDispatchTasksItem
+                                                                          .status!,
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                              },
+                                                            );
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Expanded(
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    12.0,
+                                                                    0.0,
+                                                                    12.0),
+                                                        child: Builder(
+                                                          builder: (context) {
+                                                            final ongoingTasks =
+                                                                dashboardCopyssOFFLINESelectAllTasksByAssigneeRowList
+                                                                    .where((e) =>
+                                                                        e.status ==
+                                                                        'ongoing')
+                                                                    .toList();
+                                                            if (ongoingTasks
+                                                                .isEmpty) {
+                                                              return const Center(
+                                                                child:
+                                                                    EmptyListsWidget(
+                                                                  type:
+                                                                      'For Dispatch Tasks',
+                                                                ),
+                                                              );
+                                                            }
+
+                                                            return ListView
+                                                                .separated(
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .zero,
+                                                              primary: false,
+                                                              scrollDirection:
+                                                                  Axis.vertical,
+                                                              itemCount:
+                                                                  ongoingTasks
+                                                                      .length,
+                                                              separatorBuilder: (_,
+                                                                      __) =>
+                                                                  const SizedBox(
+                                                                      height:
+                                                                          15.0),
+                                                              itemBuilder: (context,
+                                                                  ongoingTasksIndex) {
+                                                                final ongoingTasksItem =
+                                                                    ongoingTasks[
+                                                                        ongoingTasksIndex];
+                                                                return Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      wrapWithModel(
+                                                                    model: _model
+                                                                        .tasksModels2
+                                                                        .getModel(
+                                                                      ongoingTasksIndex
+                                                                          .toString(),
+                                                                      ongoingTasksIndex,
+                                                                    ),
+                                                                    updateCallback: () =>
+                                                                        setState(
+                                                                            () {}),
+                                                                    updateOnChange:
+                                                                        true,
+                                                                    child:
+                                                                        TasksWidget(
+                                                                      key: Key(
+                                                                        'Key619_${ongoingTasksIndex.toString()}',
+                                                                      ),
+                                                                      task: ongoingTasksItem
+                                                                          .id!,
+                                                                      status: ongoingTasksItem
+                                                                          .status!,
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                              },
+                                                            );
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Expanded(
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    12.0,
+                                                                    0.0,
+                                                                    12.0),
+                                                        child: Builder(
+                                                          builder: (context) {
+                                                            final completedTasks =
+                                                                dashboardCopyssOFFLINESelectAllTasksByAssigneeRowList
+                                                                    .where((e) =>
+                                                                        e.status ==
+                                                                        'completed')
+                                                                    .toList();
+                                                            if (completedTasks
+                                                                .isEmpty) {
+                                                              return const Center(
+                                                                child:
+                                                                    EmptyListsWidget(
+                                                                  type:
+                                                                      'For Dispatch Tasks',
+                                                                ),
+                                                              );
+                                                            }
+
+                                                            return ListView
+                                                                .separated(
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .zero,
+                                                              primary: false,
+                                                              scrollDirection:
+                                                                  Axis.vertical,
+                                                              itemCount:
+                                                                  completedTasks
+                                                                      .length,
+                                                              separatorBuilder: (_,
+                                                                      __) =>
+                                                                  const SizedBox(
+                                                                      height:
+                                                                          15.0),
+                                                              itemBuilder: (context,
+                                                                  completedTasksIndex) {
+                                                                final completedTasksItem =
+                                                                    completedTasks[
+                                                                        completedTasksIndex];
+                                                                return Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      wrapWithModel(
+                                                                    model: _model
+                                                                        .tasksModels3
+                                                                        .getModel(
+                                                                      completedTasksIndex
+                                                                          .toString(),
+                                                                      completedTasksIndex,
+                                                                    ),
+                                                                    updateCallback: () =>
+                                                                        setState(
+                                                                            () {}),
+                                                                    updateOnChange:
+                                                                        true,
+                                                                    child:
+                                                                        TasksWidget(
+                                                                      key: Key(
+                                                                        'Keyppj_${completedTasksIndex.toString()}',
+                                                                      ),
+                                                                      task: completedTasksItem
+                                                                          .id!,
+                                                                      status: completedTasksItem
+                                                                          .status!,
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                              },
+                                                            );
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}

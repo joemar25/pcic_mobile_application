@@ -261,7 +261,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'z776gw9x': {
+    'etf91p43': {
       'en': '',
       'tl': '',
     },
@@ -273,7 +273,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'fk0bjpeu': {
+    'xd6niij2': {
       'en': '',
       'tl': '',
     },
@@ -285,7 +285,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'ok5z316c': {
+    'hkrb1ul8': {
       'en': '',
       'tl': '',
     },
@@ -753,16 +753,24 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // onboarding
   {
-    'e5zj0r88': {
+    '1sqjo09d': {
       'en': 'Welcome Agent!',
       'tl': '',
     },
-    'sdylopj4': {
+    'p9sqnvj6': {
       'en': 'to the PCIC Geotagging Application!',
       'tl': '',
     },
-    'ult64d5q': {
+    'ip5y7sxk': {
       'en': 'Get Started',
+      'tl': '',
+    },
+    'vy3o8pvi': {
+      'en': 'Powered by ',
+      'tl': '',
+    },
+    'ei4kaehl': {
+      'en': 'Quanby Solutions Inc.',
       'tl': '',
     },
     's10teuws': {
@@ -1031,11 +1039,112 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'Showcase a couple of eye-catching screenshots or mockups of your UI Kit to capture attention and give users a glimpse of what they can expect.',
       'tl': '',
     },
+    'iaed2gmv': {
+      'en': 'Powered by:',
+      'tl': '',
+    },
+    '7ytbdnzb': {
+      'en': 'Quanby Solutions Inc.',
+      'tl': '',
+    },
     'lg67t3sj': {
       'en': 'Get support',
       'tl': '',
     },
     '9s1xr77j': {
+      'en': 'Home',
+      'tl': '',
+    },
+  },
+  // dashboardCopyss
+  {
+    'u4ff768p': {
+      'en': 'Task Overview',
+      'tl': '',
+    },
+    '2o54l4bh': {
+      'en': 'Welcome',
+      'tl': '',
+    },
+    'qrby5t3f': {
+      'en': 'Good morning ',
+      'tl': '',
+    },
+    '7i9tptvp': {
+      'en': '!',
+      'tl': '',
+    },
+    'vx8lxe6a': {
+      'en': 'For Dispatch',
+      'tl': '',
+    },
+    'qb0wf2so': {
+      'en': 'Ongoing',
+      'tl': '',
+    },
+    'yxb7mh8n': {
+      'en': 'Completed',
+      'tl': '',
+    },
+    'fw6onrn1': {
+      'en': 'For Dispatch',
+      'tl': '',
+    },
+    'wu8a7le4': {
+      'en': 'Ongoing',
+      'tl': '',
+    },
+    'lzyroz1y': {
+      'en': 'Completed',
+      'tl': '',
+    },
+    'wl6clzlz': {
+      'en': 'Home',
+      'tl': '',
+    },
+  },
+  // callUs
+  {
+    'nupfvz8w': {
+      'en': 'Call Us',
+      'tl': '',
+    },
+    'lrfdphye': {
+      'en': 'Call us through the following numebrs',
+      'tl': '',
+    },
+    'voantubs': {
+      'en': 'Hotline Numebrs:',
+      'tl': '',
+    },
+    'l24tzpzw': {
+      'en':
+          'Showcase a couple of eye-catching screenshots or mockups of your UI Kit to capture attention and give users a glimpse of what they can expect.',
+      'tl': '',
+    },
+    'y4qn5e27': {
+      'en': 'How do I download Code?',
+      'tl': '',
+    },
+    'xsecytb4': {
+      'en':
+          'Showcase a couple of eye-catching screenshots or mockups of your UI Kit to capture attention and give users a glimpse of what they can expect.',
+      'tl': '',
+    },
+    'mt0q1ggc': {
+      'en': 'How do I download Code?',
+      'tl': '',
+    },
+    '8x017fjb': {
+      'en':
+          'Showcase a couple of eye-catching screenshots or mockups of your UI Kit to capture attention and give users a glimpse of what they can expect.',
+      'tl': '',
+    },
+    'x1l0pduf': {
+      'en': 'Support',
+      'tl': '',
+    },
+    'kgq160zz': {
       'en': 'Home',
       'tl': '',
     },

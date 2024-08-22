@@ -3125,6 +3125,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       _model.isReFTPClicked =
                                                           true;
                                                       setState(() {});
+                                                      await actions
+                                                          .saveBlobToBucket(
+                                                        widget.taskId,
+                                                      );
+                                                      _model.generatedXML =
+                                                          await actions
+                                                              .generateTaskXml(
+                                                        widget.taskId,
+                                                      );
+                                                      await actions.saveTaskXml(
+                                                        _model.generatedXML,
+                                                        widget.taskId,
+                                                      );
                                                       _model.isFtpSaved =
                                                           await actions
                                                               .saveToFTP(
