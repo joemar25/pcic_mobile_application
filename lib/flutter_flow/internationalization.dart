@@ -206,6 +206,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Mar is here - Syncing From FTP',
       'tl': '',
     },
+    'i23guhwp': {
+      'en': 'Support',
+      'tl': '',
+    },
     'yttqc4w2': {
       'en': 'Sign Out',
       'tl': '',
@@ -257,7 +261,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'gonfhwnx': {
+    '167hjm6a': {
       'en': '',
       'tl': '',
     },
@@ -269,7 +273,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    '93fnl0wr': {
+    '740keaci': {
       'en': '',
       'tl': '',
     },
@@ -281,7 +285,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    '9rktq9wy': {
+    'n8w6s1yk': {
       'en': '',
       'tl': '',
     },
@@ -970,6 +974,68 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     '6k4ph13p': {
+      'en': 'Home',
+      'tl': '',
+    },
+  },
+  // supportPage
+  {
+    'uj32qsjg': {
+      'en': 'Welcome to support',
+      'tl': '',
+    },
+    't4e1n2ku': {
+      'en': 'How can we help you?',
+      'tl': '',
+    },
+    'jxxssi5q': {
+      'en': 'Call Us',
+      'tl': '',
+    },
+    'cb36qij3': {
+      'en': 'Email Us',
+      'tl': '',
+    },
+    'ye5tuirb': {
+      'en': 'Search FAQs',
+      'tl': '',
+    },
+    'a7g4fvh0': {
+      'en': 'Review FAQ\'s below',
+      'tl': '',
+    },
+    '6fkaz1l6': {
+      'en': 'How do I download Code?',
+      'tl': '',
+    },
+    'p1oe42iv': {
+      'en':
+          'Showcase a couple of eye-catching screenshots or mockups of your UI Kit to capture attention and give users a glimpse of what they can expect.',
+      'tl': '',
+    },
+    'n4gust3z': {
+      'en': 'How do I download Code?',
+      'tl': '',
+    },
+    'zsw3n6yw': {
+      'en':
+          'Showcase a couple of eye-catching screenshots or mockups of your UI Kit to capture attention and give users a glimpse of what they can expect.',
+      'tl': '',
+    },
+    'racl5rk4': {
+      'en': 'How do I download Code?',
+      'tl': '',
+    },
+    '54dme8do': {
+      'en':
+          'Showcase a couple of eye-catching screenshots or mockups of your UI Kit to capture attention and give users a glimpse of what they can expect.',
+      'tl': '',
+    },
+    'lg67t3sj': {
+      'en': 'Get support',
+      'tl': '',
+    },
+    '9s1xr77j': {
       'en': 'Home',
       'tl': '',
     },
