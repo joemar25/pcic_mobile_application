@@ -627,5 +627,9 @@ class SQLiteManager {
         inspectorName: inspectorName,
       );
 
+  Future dELETEAllRowsForTASKSAndPPIR() => performDELETEAllRowsForTASKSAndPPIR(
+        _database,
+      );
+
   /// END UPDATE QUERY CALLS
 }

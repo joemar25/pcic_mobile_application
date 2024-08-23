@@ -588,3 +588,16 @@ WHERE id = '$id';
 }
 
 /// END UPDATE USERS PROFILE NAME
+
+/// BEGIN DELETE ALL ROWS FOR TASKS AND PPIR
+Future performDELETEAllRowsForTASKSAndPPIR(
+  Database database,
+) {
+  const query = '''
+DELETE FROM tasks;
+DELETE FROM ppir_forms;
+''';
+  return database.rawQuery(query);
+}
+
+/// END DELETE ALL ROWS FOR TASKS AND PPIR

@@ -1,4 +1,5 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/backend/sqlite/sqlite_manager.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -184,6 +185,8 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                       builder: (context) => FFButtonWidget(
                         onPressed: () async {
                           if (FFAppState().ONLINE) {
+                            await SQLiteManager.instance
+                                .dELETEAllRowsForTASKSAndPPIR();
                             await UsersTable().update(
                               data: {
                                 'is_online': false,
