@@ -62,6 +62,10 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
       _model.isGeotagStart = false;
       _model.isFinished = false;
       setState(() {});
+      if (FFAppState().ONLINE) {
+        FFAppState().mapLoadedWithInternet = true;
+        setState(() {});
+      }
     });
 
     getCurrentUserLocation(defaultLocation: const LatLng(0.0, 0.0), cached: true)
@@ -130,14 +134,27 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                         child: Stack(
                           alignment: const AlignmentDirectional(0.0, 0.0),
                           children: [
-                            SizedBox(
-                              width: MediaQuery.sizeOf(context).width * 1.0,
-                              height: MediaQuery.sizeOf(context).height * 1.0,
-                              child: custom_widgets.MapBox(
+                            InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                if (FFAppState().ONLINE) {
+                                  FFAppState().mapLoadedWithInternet = true;
+                                  setState(() {});
+                                }
+                              },
+                              child: SizedBox(
                                 width: MediaQuery.sizeOf(context).width * 1.0,
                                 height: MediaQuery.sizeOf(context).height * 1.0,
-                                accessToken: FFAppState().accessToken,
-                                taskId: widget.taskId,
+                                child: custom_widgets.MapBox(
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
+                                  height:
+                                      MediaQuery.sizeOf(context).height * 1.0,
+                                  accessToken: FFAppState().accessToken,
+                                  taskId: widget.taskId,
+                                ),
                               ),
                             ),
                             Column(

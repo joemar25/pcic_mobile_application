@@ -65,4 +65,9 @@ class UsersRow extends SupabaseDataRow {
 
   DateTime? get lastSeen => getField<DateTime>('last_seen');
   set lastSeen(DateTime? value) => setField<DateTime>('last_seen', value);
+
+  DateTime? get inactivityCheckTime =>
+      getField<DateTime>('inactivity_check_time');
+  set inactivityCheckTime(DateTime? value) =>
+      setField<DateTime>('inactivity_check_time', value);
 }

@@ -127,6 +127,12 @@ class FFAppState extends ChangeNotifier {
   set mapBoxKeyString(String value) {
     _mapBoxKeyString = value;
   }
+
+  bool _mapLoadedWithInternet = false;
+  bool get mapLoadedWithInternet => _mapLoadedWithInternet;
+  set mapLoadedWithInternet(bool value) {
+    _mapLoadedWithInternet = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {

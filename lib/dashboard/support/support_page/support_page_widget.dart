@@ -412,8 +412,8 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                               0.0, 8.0, 0.0, 0.0),
                           child: Container(
                             width: double.infinity,
-                            constraints: const BoxConstraints(
-                              maxWidth: 500.0,
+                            constraints: BoxConstraints(
+                              maxWidth: MediaQuery.sizeOf(context).width * 1.0,
                             ),
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
@@ -479,8 +479,8 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                               0.0, 8.0, 0.0, 0.0),
                           child: Container(
                             width: double.infinity,
-                            constraints: const BoxConstraints(
-                              maxWidth: 500.0,
+                            constraints: BoxConstraints(
+                              maxWidth: MediaQuery.sizeOf(context).width * 1.0,
                             ),
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
@@ -546,8 +546,8 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                               0.0, 8.0, 0.0, 0.0),
                           child: Container(
                             width: double.infinity,
-                            constraints: const BoxConstraints(
-                              maxWidth: 500.0,
+                            constraints: BoxConstraints(
+                              maxWidth: MediaQuery.sizeOf(context).width * 1.0,
                             ),
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)

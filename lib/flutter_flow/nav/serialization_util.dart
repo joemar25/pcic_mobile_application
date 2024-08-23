@@ -237,6 +237,8 @@ dynamic deserializeParam<T>(
             return SyncQueueRow(data);
           case TasksRow:
             return TasksRow(data);
+          case ContactRow:
+            return ContactRow(data);
           case SyncStatusRow:
             return SyncStatusRow(data);
           case PpirFormsRow:

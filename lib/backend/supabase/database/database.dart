@@ -13,6 +13,7 @@ export 'tables/chats.dart';
 export 'tables/user_logs.dart';
 export 'tables/sync_queue.dart';
 export 'tables/tasks.dart';
+export 'tables/contact.dart';
 export 'tables/sync_status.dart';
 export 'tables/ppir_forms.dart';
 export 'tables/messages.dart';

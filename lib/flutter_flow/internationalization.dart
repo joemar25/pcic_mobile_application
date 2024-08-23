@@ -261,7 +261,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'euwd17ng': {
+    'k9ttc7qr': {
       'en': '',
       'tl': '',
     },
@@ -273,7 +273,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    '8fxu19fw': {
+    '95c3no08': {
       'en': '',
       'tl': '',
     },
@@ -285,7 +285,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'rhucopww': {
+    '9vj2vjax': {
       'en': '',
       'tl': '',
     },
@@ -561,7 +561,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Nabigo!',
     },
     'jv3aqrf6': {
-      'en': 'Okay',
+      'en': 'Continue',
       'tl': '',
     },
     'qki1g985': {
@@ -861,7 +861,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Download',
       'tl': '',
     },
-    'kjo3rf9g': {
+    'riev7l1c': {
       'en': 'Geotag Information',
       'tl': '',
     },
@@ -1044,53 +1044,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
-  // dashboardCopyss
-  {
-    'u4ff768p': {
-      'en': 'Task Overview',
-      'tl': '',
-    },
-    '2o54l4bh': {
-      'en': 'Welcome',
-      'tl': '',
-    },
-    'qrby5t3f': {
-      'en': 'Good morning ',
-      'tl': '',
-    },
-    '7i9tptvp': {
-      'en': '!',
-      'tl': '',
-    },
-    'vx8lxe6a': {
-      'en': 'For Dispatch',
-      'tl': '',
-    },
-    'qb0wf2so': {
-      'en': 'Ongoing',
-      'tl': '',
-    },
-    'yxb7mh8n': {
-      'en': 'Completed',
-      'tl': '',
-    },
-    'fw6onrn1': {
-      'en': 'For Dispatch',
-      'tl': '',
-    },
-    'wu8a7le4': {
-      'en': 'Ongoing',
-      'tl': '',
-    },
-    'lzyroz1y': {
-      'en': 'Completed',
-      'tl': '',
-    },
-    'wl6clzlz': {
-      'en': 'Home',
-      'tl': '',
-    },
-  },
   // callUs
   {
     'nupfvz8w': {
@@ -1128,6 +1081,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'What is your Purpose?',
       'tl': '',
     },
+    'bv7yxnab': {
+      'en': 'Feedback',
+      'tl': '',
+    },
     'ps8o96jz': {
       'en': 'Feedback',
       'tl': '',
@@ -1157,7 +1114,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     'gd6lp3vu': {
-      'en': 'Add Message',
+      'en': 'Message',
       'tl': '',
     },
     '1ovjjhqy': {
@@ -1166,6 +1123,14 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'e112gj5d': {
       'en': 'Submit',
+      'tl': '',
+    },
+    'q79tvmns': {
+      'en': 'Field is required',
+      'tl': '',
+    },
+    '7uv8ljni': {
+      'en': 'Please choose an option from the dropdown',
       'tl': '',
     },
     'deunldpx': {
@@ -1503,6 +1468,26 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'f76rmfhb': {
       'en': 'Dismiss',
+      'tl': '',
+    },
+  },
+  // noGpxDialog
+  {
+    'vp2e9icj': {
+      'en': 'GPX Data Not Found',
+      'tl': '',
+    },
+    'qub6moi7': {
+      'en':
+          'Geotagging may have failed due to a saving error. Please try again to ensure accurate GPX data is captured. Thank you.',
+      'tl': '',
+    },
+    'bng6nve1': {
+      'en': 'Cancel',
+      'tl': '',
+    },
+    '974v2qwt': {
+      'en': 'Try Again',
       'tl': '',
     },
   },

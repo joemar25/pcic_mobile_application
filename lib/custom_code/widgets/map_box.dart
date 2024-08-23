@@ -575,7 +575,7 @@ class _MapBoxState extends State<MapBox> {
       return const Center(child: CircularProgressIndicator());
     }
 
-    if (_tileProvider == null) {
+    if (!appState.mapLoadedWithInternet && _tileProvider == null) {
       return _buildOfflineMessageBox(this.context);
     }
 

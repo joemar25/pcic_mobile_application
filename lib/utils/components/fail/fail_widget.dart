@@ -334,7 +334,7 @@ class _FailWidgetState extends State<FailWidget> with TickerProviderStateMixin {
                                 context.safePop();
                               },
                               text: FFLocalizations.of(context).getText(
-                                'jv3aqrf6' /* Okay */,
+                                'jv3aqrf6' /* Continue */,
                               ),
                               options: FFButtonOptions(
                                 width: MediaQuery.sizeOf(context).width * 0.6,

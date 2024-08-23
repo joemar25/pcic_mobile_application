@@ -278,12 +278,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const SupportPageWidget(),
         ),
         FFRoute(
-          name: 'dashboardCopyss',
-          path: '/dashboardsss',
-          requireAuth: true,
-          builder: (context, params) => const DashboardCopyssWidget(),
-        ),
-        FFRoute(
           name: 'callUs',
           path: '/callUs',
           builder: (context, params) => const CallUsWidget(),
