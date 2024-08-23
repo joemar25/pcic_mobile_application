@@ -482,6 +482,23 @@ class _MapBoxState extends State<MapBox> {
       _isTracking = false;
       FFAppState().routeStarted = false;
     });
+
+    context.pushNamed(
+      'ppirForm',
+      queryParameters: {
+        'taskId': serializeParam(
+          widget.taskId ?? 'default_task_id',
+          ParamType.String,
+        ),
+      }.withoutNulls,
+      extra: <String, dynamic>{
+        kTransitionInfoKey: TransitionInfo(
+          hasTransition: true,
+          transitionType: PageTransitionType.bottomToTop,
+          duration: Duration(milliseconds: 200),
+        ),
+      },
+    );
   }
 
   double calculateTotalDistance(List<ll.LatLng> points) {

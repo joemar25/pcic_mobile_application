@@ -943,7 +943,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     .bodyLargeFamily,
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .tertiary,
+                                                                    .primaryText,
                                                                 letterSpacing:
                                                                     0.0,
                                                                 useGoogleFonts: GoogleFonts
@@ -1025,7 +1025,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     .bodyLargeFamily,
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .tertiary,
+                                                                    .primaryText,
                                                                 letterSpacing:
                                                                     0.0,
                                                                 useGoogleFonts: GoogleFonts
