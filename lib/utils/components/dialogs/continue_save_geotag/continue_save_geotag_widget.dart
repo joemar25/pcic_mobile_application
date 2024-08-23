@@ -107,7 +107,7 @@ class _ContinueSaveGeotagWidgetState extends State<ContinueSaveGeotagWidget> {
                           alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
-                              '0d8bu1tl' /* Do you want to Save the geotag... */,
+                              '0d8bu1tl' /* Are you want to save the geota... */,
                             ),
                             textAlign: TextAlign.center,
                             style: FlutterFlowTheme.of(context)
@@ -174,7 +174,7 @@ class _ContinueSaveGeotagWidgetState extends State<ContinueSaveGeotagWidget> {
                         Navigator.pop(context, true);
                       },
                       text: FFLocalizations.of(context).getText(
-                        'y0pshty8' /* Continue */,
+                        'y0pshty8' /* Confirm */,
                       ),
                       options: FFButtonOptions(
                         height: 40.0,
