@@ -15,6 +15,8 @@ class GeotaggingModel extends FlutterFlowModel<GeotaggingWidget> {
   dynamic getCurrentLocationAddress;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in back widget.
   bool? confirmBack;
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in Container widget.
+  bool? isGeotagGood;
 
   @override
   void initState(BuildContext context) {}

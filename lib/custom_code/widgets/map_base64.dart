@@ -224,7 +224,7 @@ class _MapBase64State extends State<MapBase64> {
       return Center(child: Text('No GPS data available'));
     }
 
-    if (!appState.mapLoadedWithInternet && _tileProvider == null) {
+    if (!FFAppstate().mapLoadedWithInternet && _tileProvider == null) {
       return _buildOfflineMessageBox(this.context);
     }
 
