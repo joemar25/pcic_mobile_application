@@ -51,6 +51,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
         taskId: widget.taskId,
       );
       if (FFAppState().ONLINE) {
+        FFAppState().mapLoadedWithInternet = true;
+        setState(() {});
         _model.statusOutput = 'Syncing...';
         setState(() {});
         await PpirFormsTable().update(

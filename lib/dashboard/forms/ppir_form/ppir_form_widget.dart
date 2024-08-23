@@ -53,6 +53,10 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       FFAppState().routeStarted = false;
       FFAppState().update(() {});
+      if (FFAppState().ONLINE) {
+        FFAppState().mapLoadedWithInternet = true;
+        setState(() {});
+      }
     });
 
     _model.ppirTrackCoordinatesFocusNode ??= FocusNode();
