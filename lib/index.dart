@@ -35,3 +35,5 @@ export '/dashboard/support/support_page/support_page_widget.dart'
     show SupportPageWidget;
 export '/dashboard/support/call_us/call_us_widget.dart' show CallUsWidget;
 export '/dashboard/support/email_us/email_us_widget.dart' show EmailUsWidget;
+export '/utils/components/gpx_success/gpx_success_widget.dart'
+    show GpxSuccessWidget;

@@ -286,6 +286,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'emailUs',
           path: '/emailUs',
           builder: (context, params) => const EmailUsWidget(),
+        ),
+        FFRoute(
+          name: 'gpxSuccess',
+          path: '/gpxSuccess',
+          requireAuth: true,
+          builder: (context, params) => GpxSuccessWidget(
+            taskId: params.getParam(
+              'taskId',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
