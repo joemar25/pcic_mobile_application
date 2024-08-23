@@ -164,7 +164,7 @@ class _ToastWidgetState extends State<ToastWidget>
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .labelMediumFamily,
                                 color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
+                                    .secondaryBackground,
                                 fontSize: 9.0,
                                 letterSpacing: 0.0,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(

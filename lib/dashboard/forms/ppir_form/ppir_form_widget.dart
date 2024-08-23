@@ -3340,11 +3340,12 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                 .center,
                                                         children: [
                                                           Text(
-                                                            FFLocalizations.of(
-                                                                    context)
-                                                                .getText(
-                                                              'd6o99v59' /* Tap to Signature */,
-                                                            ),
+                                                            ppirFormSelectPpirFormsRowList
+                                                                        .first
+                                                                        .ppirSigInsured !=
+                                                                    'null'
+                                                                ? 'Tap to change Signature'
+                                                                : 'Tap to Signature',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyMedium
@@ -3434,26 +3435,54 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                         .first
                                                                         .ppirSigInsured !=
                                                                     'null')
-                                                                  SizedBox(
+                                                                  Container(
                                                                     width: MediaQuery.sizeOf(context)
                                                                             .width *
                                                                         1.0,
                                                                     height: MediaQuery.sizeOf(context)
                                                                             .height *
                                                                         0.178,
-                                                                    child: custom_widgets
-                                                                        .Signaturebase64(
-                                                                      width: MediaQuery.sizeOf(context)
-                                                                              .width *
-                                                                          1.0,
-                                                                      height: MediaQuery.sizeOf(context)
-                                                                              .height *
-                                                                          0.178,
-                                                                      taskId: widget
-                                                                          .taskId,
-                                                                      signatureBlob:
-                                                                          (ppirFormSelectPpirFormsRowList.first.ppirSigInsured != 'null')
-                                                                              .toString(),
+                                                                    decoration:
+                                                                        const BoxDecoration(
+                                                                      color: Colors
+                                                                          .white,
+                                                                      borderRadius:
+                                                                          BorderRadius
+                                                                              .only(
+                                                                        bottomLeft:
+                                                                            Radius.circular(10.0),
+                                                                        bottomRight:
+                                                                            Radius.circular(10.0),
+                                                                        topLeft:
+                                                                            Radius.circular(0.0),
+                                                                        topRight:
+                                                                            Radius.circular(0.0),
+                                                                      ),
+                                                                    ),
+                                                                    child:
+                                                                        Padding(
+                                                                      padding:
+                                                                          const EdgeInsets.all(
+                                                                              6.0),
+                                                                      child:
+                                                                          SizedBox(
+                                                                        width: MediaQuery.sizeOf(context).width *
+                                                                            1.0,
+                                                                        height: MediaQuery.sizeOf(context).height *
+                                                                            1.0,
+                                                                        child: custom_widgets
+                                                                            .Signaturebase64(
+                                                                          width:
+                                                                              MediaQuery.sizeOf(context).width * 1.0,
+                                                                          height:
+                                                                              MediaQuery.sizeOf(context).height * 1.0,
+                                                                          taskId:
+                                                                              widget.taskId,
+                                                                          signatureBlob: ppirFormSelectPpirFormsRowList
+                                                                              .first
+                                                                              .ppirSigInsured,
+                                                                        ),
+                                                                      ),
                                                                     ),
                                                                   ),
                                                               ],
@@ -3651,11 +3680,12 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                 .center,
                                                         children: [
                                                           Text(
-                                                            FFLocalizations.of(
-                                                                    context)
-                                                                .getText(
-                                                              '5c3vfe96' /* Tap to Signature */,
-                                                            ),
+                                                            ppirFormSelectPpirFormsRowList
+                                                                        .first
+                                                                        .ppirSigIuia !=
+                                                                    'null'
+                                                                ? 'Tap to change Signature'
+                                                                : 'Tap to Signature',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyMedium
@@ -3745,26 +3775,54 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                         .first
                                                                         .ppirSigIuia !=
                                                                     'null')
-                                                                  SizedBox(
+                                                                  Container(
                                                                     width: MediaQuery.sizeOf(context)
                                                                             .width *
                                                                         1.0,
                                                                     height: MediaQuery.sizeOf(context)
                                                                             .height *
                                                                         0.178,
-                                                                    child: custom_widgets
-                                                                        .Signaturebase64(
-                                                                      width: MediaQuery.sizeOf(context)
-                                                                              .width *
-                                                                          1.0,
-                                                                      height: MediaQuery.sizeOf(context)
-                                                                              .height *
-                                                                          0.178,
-                                                                      taskId: widget
-                                                                          .taskId,
-                                                                      signatureBlob: ppirFormSelectPpirFormsRowList
-                                                                          .first
-                                                                          .ppirSigIuia,
+                                                                    decoration:
+                                                                        const BoxDecoration(
+                                                                      color: Colors
+                                                                          .white,
+                                                                      borderRadius:
+                                                                          BorderRadius
+                                                                              .only(
+                                                                        bottomLeft:
+                                                                            Radius.circular(10.0),
+                                                                        bottomRight:
+                                                                            Radius.circular(10.0),
+                                                                        topLeft:
+                                                                            Radius.circular(0.0),
+                                                                        topRight:
+                                                                            Radius.circular(0.0),
+                                                                      ),
+                                                                    ),
+                                                                    child:
+                                                                        Padding(
+                                                                      padding:
+                                                                          const EdgeInsets.all(
+                                                                              6.0),
+                                                                      child:
+                                                                          SizedBox(
+                                                                        width: MediaQuery.sizeOf(context).width *
+                                                                            1.0,
+                                                                        height: MediaQuery.sizeOf(context).height *
+                                                                            1.0,
+                                                                        child: custom_widgets
+                                                                            .Signaturebase64(
+                                                                          width:
+                                                                              MediaQuery.sizeOf(context).width * 1.0,
+                                                                          height:
+                                                                              MediaQuery.sizeOf(context).height * 1.0,
+                                                                          taskId:
+                                                                              widget.taskId,
+                                                                          signatureBlob: ppirFormSelectPpirFormsRowList
+                                                                              .first
+                                                                              .ppirSigIuia,
+                                                                        ),
+                                                                      ),
                                                                     ),
                                                                   ),
                                                               ],
