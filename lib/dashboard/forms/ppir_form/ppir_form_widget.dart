@@ -3509,34 +3509,42 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                           .contain,
                                                                     ),
                                                                   ),
-                                                                if (ppirFormSelectPpirFormsRowList
-                                                                        .first
-                                                                        .ppirSigInsured !=
-                                                                    'null')
-                                                                  Container(
-                                                                    width: MediaQuery.sizeOf(context)
-                                                                            .width *
-                                                                        1.0,
-                                                                    height: MediaQuery.sizeOf(context)
-                                                                            .height *
-                                                                        0.175,
-                                                                    decoration:
-                                                                        const BoxDecoration(
-                                                                      color: Colors
-                                                                          .white,
-                                                                      borderRadius:
-                                                                          BorderRadius
-                                                                              .only(
-                                                                        bottomLeft:
-                                                                            Radius.circular(10.0),
-                                                                        bottomRight:
-                                                                            Radius.circular(10.0),
-                                                                        topLeft:
-                                                                            Radius.circular(0.0),
-                                                                        topRight:
-                                                                            Radius.circular(0.0),
-                                                                      ),
+                                                                Container(
+                                                                  width: MediaQuery.sizeOf(
+                                                                              context)
+                                                                          .width *
+                                                                      1.0,
+                                                                  height: MediaQuery.sizeOf(
+                                                                              context)
+                                                                          .height *
+                                                                      0.175,
+                                                                  decoration:
+                                                                      const BoxDecoration(
+                                                                    color: Colors
+                                                                        .white,
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .only(
+                                                                      bottomLeft:
+                                                                          Radius.circular(
+                                                                              10.0),
+                                                                      bottomRight:
+                                                                          Radius.circular(
+                                                                              10.0),
+                                                                      topLeft: Radius
+                                                                          .circular(
+                                                                              0.0),
+                                                                      topRight:
+                                                                          Radius.circular(
+                                                                              0.0),
                                                                     ),
+                                                                  ),
+                                                                  child:
+                                                                      Visibility(
+                                                                    visible: ppirFormSelectPpirFormsRowList
+                                                                            .first
+                                                                            .ppirSigInsured !=
+                                                                        'null',
                                                                     child:
                                                                         Padding(
                                                                       padding:
@@ -3563,6 +3571,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                       ),
                                                                     ),
                                                                   ),
+                                                                ),
                                                               ],
                                                             ),
                                                           ),
