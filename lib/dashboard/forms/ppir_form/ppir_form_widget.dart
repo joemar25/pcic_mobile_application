@@ -3509,10 +3509,12 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                           .contain,
                                                                     ),
                                                                   ),
-                                                                if (ppirFormSelectPpirFormsRowList
-                                                                        .first
-                                                                        .ppirSigInsured !=
-                                                                    'null')
+                                                                if ((ppirFormSelectPpirFormsRowList
+                                                                            .first
+                                                                            .ppirSigInsured !=
+                                                                        'null') &&
+                                                                    FFAppState()
+                                                                        .signatureIsSaved)
                                                                   Container(
                                                                     width: MediaQuery.sizeOf(context)
                                                                             .width *
