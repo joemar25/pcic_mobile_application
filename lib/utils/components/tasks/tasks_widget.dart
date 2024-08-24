@@ -13,11 +13,13 @@ class TasksWidget extends StatefulWidget {
     super.key,
     String? task,
     String? status,
+    required this.index,
   })  : task = task ?? '123',
         status = status ?? 'for dispatch';
 
   final String task;
   final String status;
+  final int? index;
 
   @override
   State<TasksWidget> createState() => _TasksWidgetState();
@@ -190,8 +192,8 @@ class _TasksWidgetState extends State<TasksWidget>
                                   .override(
                                     fontFamily: FlutterFlowTheme.of(context)
                                         .bodyMediumFamily,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
+                                    color:
+                                        FlutterFlowTheme.of(context).secondary,
                                     letterSpacing: 0.0,
                                     fontStyle: FontStyle.italic,
                                     useGoogleFonts: GoogleFonts.asMap()
@@ -591,6 +593,62 @@ class _TasksWidgetState extends State<TasksWidget>
                                           containerSelectPpirFormsRowList
                                               .first.ppirAddress,
                                           'Address',
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              fontSize: 12.0,
+                                              letterSpacing: 0.0,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily),
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    FFLocalizations.of(context).getText(
+                                      'mvysl6a7' /* Index */,
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          fontSize: 12.0,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily),
+                                        ),
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          8.0, 0.0, 0.0, 0.0),
+                                      child: Text(
+                                        valueOrDefault<String>(
+                                          widget.index?.toString(),
+                                          '0',
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium

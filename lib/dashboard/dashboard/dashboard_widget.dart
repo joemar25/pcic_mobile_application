@@ -1190,6 +1190,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                           .id!,
                                                                       status: forDispatchTasksItem
                                                                           .status!,
+                                                                      index:
+                                                                          forDispatchTasksIndex,
                                                                     ),
                                                                   ),
                                                                 );
@@ -1282,6 +1284,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                           .id!,
                                                                       status: ongoingTasksItem
                                                                           .status!,
+                                                                      index:
+                                                                          ongoingTasksIndex,
                                                                     ),
                                                                   ),
                                                                 );
@@ -1374,6 +1378,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                           .id!,
                                                                       status: completedTasksItem
                                                                           .status!,
+                                                                      index:
+                                                                          completedTasksIndex,
                                                                     ),
                                                                   ),
                                                                 );
