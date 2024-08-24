@@ -18,7 +18,7 @@ class EmailUsModel extends FlutterFlowModel<EmailUsWidget> {
       BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
-        'c2yh7kit' /* Field is required */,
+        'woi12gmx' /* Field is required */,
       );
     }
 

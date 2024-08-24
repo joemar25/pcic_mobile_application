@@ -12,6 +12,7 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
 
   ///  State fields for stateful widgets in this page.
 
+  final formKey = GlobalKey<FormState>();
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in IconButton widget.
@@ -22,31 +23,104 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
   bool? confirmReGeotag;
   // Stores action output result for [Custom Action - getGpxLink] action in downloadButton widget.
   String? gpxLink;
+  // State field(s) for gpx_blob widget.
+  FocusNode? gpxBlobFocusNode;
+  TextEditingController? gpxBlobTextController;
+  String? Function(BuildContext, String?)? gpxBlobTextControllerValidator;
+  String? _gpxBlobTextControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        'o22az3b7' /* Field is required */,
+      );
+    }
+
+    if (val.length < 4) {
+      return 'Requires at least 4 characters.';
+    }
+
+    return null;
+  }
+
   // State field(s) for ppir_track_coordinates widget.
   FocusNode? ppirTrackCoordinatesFocusNode;
   TextEditingController? ppirTrackCoordinatesTextController;
   String? Function(BuildContext, String?)?
       ppirTrackCoordinatesTextControllerValidator;
+  String? _ppirTrackCoordinatesTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        'n9qxzlnc' /* Field is required */,
+      );
+    }
+
+    return null;
+  }
+
   // State field(s) for ppir_track_total_area widget.
   FocusNode? ppirTrackTotalAreaFocusNode1;
   TextEditingController? ppirTrackTotalAreaTextController1;
   String? Function(BuildContext, String?)?
       ppirTrackTotalAreaTextController1Validator;
+  String? _ppirTrackTotalAreaTextController1Validator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        '1g01x7w4' /* Field is required */,
+      );
+    }
+
+    return null;
+  }
+
   // State field(s) for ppir_track_date_time widget.
   FocusNode? ppirTrackDateTimeFocusNode;
   TextEditingController? ppirTrackDateTimeTextController;
   String? Function(BuildContext, String?)?
       ppirTrackDateTimeTextControllerValidator;
+  String? _ppirTrackDateTimeTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        'qewwk8ln' /* Field is required */,
+      );
+    }
+
+    return null;
+  }
+
   // State field(s) for ppir_track_total_area widget.
   FocusNode? ppirTrackTotalAreaFocusNode2;
   TextEditingController? ppirTrackTotalAreaTextController2;
   String? Function(BuildContext, String?)?
       ppirTrackTotalAreaTextController2Validator;
+  String? _ppirTrackTotalAreaTextController2Validator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        'pj4tf8fn' /* Field is required */,
+      );
+    }
+
+    return null;
+  }
+
   // State field(s) for ppir_track_farmloc widget.
   FocusNode? ppirTrackFarmlocFocusNode;
   TextEditingController? ppirTrackFarmlocTextController;
   String? Function(BuildContext, String?)?
       ppirTrackFarmlocTextControllerValidator;
+  String? _ppirTrackFarmlocTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        'vr769179' /* Field is required */,
+      );
+    }
+
+    return null;
+  }
+
   // State field(s) for ppir_svp_act_selection widget.
   FormFieldController<String>? ppirSvpActSelectionValueController;
   // State field(s) for riceDropdown widget.
@@ -65,28 +139,120 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
   TextEditingController? ppirAreaDopDsFieldTextController;
   String? Function(BuildContext, String?)?
       ppirAreaDopDsFieldTextControllerValidator;
+  String? _ppirAreaDopDsFieldTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        'x8h9ctg8' /* Field is required */,
+      );
+    }
+
+    return null;
+  }
+
   DateTime? datePicked1;
   // State field(s) for ppir_area_dop_tp_field widget.
   FocusNode? ppirAreaDopTpFieldFocusNode;
   TextEditingController? ppirAreaDopTpFieldTextController;
   String? Function(BuildContext, String?)?
       ppirAreaDopTpFieldTextControllerValidator;
+  String? _ppirAreaDopTpFieldTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        'g73iojeh' /* Field is required */,
+      );
+    }
+
+    return null;
+  }
+
   DateTime? datePicked2;
   // State field(s) for ppir_remarks_field widget.
   FocusNode? ppirRemarksFieldFocusNode;
   TextEditingController? ppirRemarksFieldTextController;
   String? Function(BuildContext, String?)?
       ppirRemarksFieldTextControllerValidator;
+  String? _ppirRemarksFieldTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        'rny5ce43' /* Field is required */,
+      );
+    }
+
+    return null;
+  }
+
   // State field(s) for ppir_prepared_by_name_field widget.
   FocusNode? ppirPreparedByNameFieldFocusNode;
   TextEditingController? ppirPreparedByNameFieldTextController;
   String? Function(BuildContext, String?)?
       ppirPreparedByNameFieldTextControllerValidator;
+  String? _ppirPreparedByNameFieldTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        'hxfm3oxy' /* Field is required */,
+      );
+    }
+
+    return null;
+  }
+
+  // State field(s) for insured_blob widget.
+  FocusNode? insuredBlobFocusNode;
+  TextEditingController? insuredBlobTextController;
+  String? Function(BuildContext, String?)? insuredBlobTextControllerValidator;
+  String? _insuredBlobTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        'ez2u8e33' /* Field is required */,
+      );
+    }
+
+    if (val.length < 4) {
+      return 'Requires at least 4 characters.';
+    }
+
+    return null;
+  }
+
   // State field(s) for ppir_confirmed_by_name_field widget.
   FocusNode? ppirConfirmedByNameFieldFocusNode;
   TextEditingController? ppirConfirmedByNameFieldTextController;
   String? Function(BuildContext, String?)?
       ppirConfirmedByNameFieldTextControllerValidator;
+  String? _ppirConfirmedByNameFieldTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        'gug2f3ir' /* Field is required */,
+      );
+    }
+
+    return null;
+  }
+
+  // State field(s) for iuia_blob widget.
+  FocusNode? iuiaBlobFocusNode;
+  TextEditingController? iuiaBlobTextController;
+  String? Function(BuildContext, String?)? iuiaBlobTextControllerValidator;
+  String? _iuiaBlobTextControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        'ub0zeqvu' /* Field is required */,
+      );
+    }
+
+    if (val.length < 4) {
+      return 'Requires at least 4 characters.';
+    }
+
+    return null;
+  }
+
   // Stores action output result for [Alert Dialog - Custom Dialog] action in cancelButton widget.
   bool? confirmCancel;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in saveButton widget.
@@ -103,11 +269,37 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
   @override
   void initState(BuildContext context) {
     connectivityModel = createModel(context, () => ConnectivityModel());
+    gpxBlobTextControllerValidator = _gpxBlobTextControllerValidator;
+    ppirTrackCoordinatesTextControllerValidator =
+        _ppirTrackCoordinatesTextControllerValidator;
+    ppirTrackTotalAreaTextController1Validator =
+        _ppirTrackTotalAreaTextController1Validator;
+    ppirTrackDateTimeTextControllerValidator =
+        _ppirTrackDateTimeTextControllerValidator;
+    ppirTrackTotalAreaTextController2Validator =
+        _ppirTrackTotalAreaTextController2Validator;
+    ppirTrackFarmlocTextControllerValidator =
+        _ppirTrackFarmlocTextControllerValidator;
+    ppirAreaDopDsFieldTextControllerValidator =
+        _ppirAreaDopDsFieldTextControllerValidator;
+    ppirAreaDopTpFieldTextControllerValidator =
+        _ppirAreaDopTpFieldTextControllerValidator;
+    ppirRemarksFieldTextControllerValidator =
+        _ppirRemarksFieldTextControllerValidator;
+    ppirPreparedByNameFieldTextControllerValidator =
+        _ppirPreparedByNameFieldTextControllerValidator;
+    insuredBlobTextControllerValidator = _insuredBlobTextControllerValidator;
+    ppirConfirmedByNameFieldTextControllerValidator =
+        _ppirConfirmedByNameFieldTextControllerValidator;
+    iuiaBlobTextControllerValidator = _iuiaBlobTextControllerValidator;
   }
 
   @override
   void dispose() {
     connectivityModel.dispose();
+    gpxBlobFocusNode?.dispose();
+    gpxBlobTextController?.dispose();
+
     ppirTrackCoordinatesFocusNode?.dispose();
     ppirTrackCoordinatesTextController?.dispose();
 
@@ -138,8 +330,14 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
     ppirPreparedByNameFieldFocusNode?.dispose();
     ppirPreparedByNameFieldTextController?.dispose();
 
+    insuredBlobFocusNode?.dispose();
+    insuredBlobTextController?.dispose();
+
     ppirConfirmedByNameFieldFocusNode?.dispose();
     ppirConfirmedByNameFieldTextController?.dispose();
+
+    iuiaBlobFocusNode?.dispose();
+    iuiaBlobTextController?.dispose();
   }
 
   /// Additional helper methods.
