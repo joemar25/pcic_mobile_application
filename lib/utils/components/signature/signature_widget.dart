@@ -229,6 +229,8 @@ class _SignatureWidgetState extends State<SignatureWidget>
                                         ),
                                         onPressed: () async {
                                           Navigator.pop(context);
+
+                                          _model.updatePage(() {});
                                         },
                                       ),
                                     ],
