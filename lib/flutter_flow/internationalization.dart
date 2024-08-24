@@ -261,7 +261,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'w6wmug5n': {
+    'us8kw747': {
       'en': '',
       'tl': '',
     },
@@ -273,7 +273,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    '9rzkt1nz': {
+    'z1lo8nte': {
       'en': '',
       'tl': '',
     },
@@ -285,7 +285,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang bagong password...',
     },
-    'il1jqdvz': {
+    '0ldf5379': {
       'en': '',
       'tl': '',
     },
@@ -1479,26 +1479,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'f76rmfhb': {
       'en': 'Dismiss',
-      'tl': '',
-    },
-  },
-  // noGpxDialog
-  {
-    'vp2e9icj': {
-      'en': 'GPX Data Not Found',
-      'tl': '',
-    },
-    'qub6moi7': {
-      'en':
-          'Geotagging may have failed due to a saving error. Please try again to ensure accurate GPX data is captured. Thank you.',
-      'tl': '',
-    },
-    'bng6nve1': {
-      'en': 'Cancel',
-      'tl': '',
-    },
-    '974v2qwt': {
-      'en': 'Try Again',
       'tl': '',
     },
   },
