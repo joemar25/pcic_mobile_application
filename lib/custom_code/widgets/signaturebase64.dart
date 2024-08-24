@@ -17,12 +17,12 @@ import 'dart:typed_data';
 
 class Signaturebase64 extends StatefulWidget {
   const Signaturebase64({
-    super.key,
+    Key? key,
     this.width,
     this.height,
     this.taskId,
     this.signatureBlob,
-  });
+  }) : super(key: key);
 
   final double? width;
   final double? height;
@@ -42,10 +42,22 @@ class _Signaturebase64State extends State<Signaturebase64> {
     _loadSignature();
   }
 
+  @override
+  void didUpdateWidget(Signaturebase64 oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.signatureBlob != oldWidget.signatureBlob) {
+      _loadSignature();
+    }
+  }
+
   void _loadSignature() {
     if (widget.signatureBlob != null && widget.signatureBlob!.isNotEmpty) {
       setState(() {
         _signatureData = base64.decode(widget.signatureBlob!);
+      });
+    } else {
+      setState(() {
+        _signatureData = null;
       });
     }
   }
@@ -67,9 +79,75 @@ class _Signaturebase64State extends State<Signaturebase64> {
                 fit: BoxFit.contain,
                 width: double.infinity,
                 height: double.infinity,
+                errorBuilder: (context, error, stackTrace) {
+                  print('Error loading signature image: $error');
+                  return Center(child: Text('Failed to load signature'));
+                },
               )
-            : SizedBox.shrink(),
+            : Center(child: Text('No signature available')),
       ),
     );
   }
 }
+
+// import 'dart:convert';
+// import 'dart:typed_data';
+
+// class Signaturebase64 extends StatefulWidget {
+//   const Signaturebase64({
+//     super.key,
+//     this.width,
+//     this.height,
+//     this.taskId,
+//     this.signatureBlob,
+//   });
+
+//   final double? width;
+//   final double? height;
+//   final String? taskId;
+//   final String? signatureBlob;
+
+//   @override
+//   State<Signaturebase64> createState() => _Signaturebase64State();
+// }
+
+// class _Signaturebase64State extends State<Signaturebase64> {
+//   Uint8List? _signatureData;
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     _loadSignature();
+//   }
+
+//   void _loadSignature() {
+//     if (widget.signatureBlob != null && widget.signatureBlob!.isNotEmpty) {
+//       setState(() {
+//         _signatureData = base64.decode(widget.signatureBlob!);
+//       });
+//     }
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       height: widget.height ?? 230,
+//       width: widget.width ?? double.infinity,
+//       decoration: BoxDecoration(
+//         border: Border.all(color: Colors.grey),
+//         borderRadius: BorderRadius.circular(8),
+//       ),
+//       child: ClipRRect(
+//         borderRadius: BorderRadius.circular(8),
+//         child: _signatureData != null
+//             ? Image.memory(
+//                 _signatureData!,
+//                 fit: BoxFit.contain,
+//                 width: double.infinity,
+//                 height: double.infinity,
+//               )
+//             : SizedBox.shrink(),
+//       ),
+//     );
+//   }
+// }
