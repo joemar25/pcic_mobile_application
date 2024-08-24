@@ -3514,7 +3514,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                             .ppirSigInsured !=
                                                                         'null') &&
                                                                     FFAppState()
-                                                                        .signatureIsSaved)
+                                                                        .signitureIsSaved)
                                                                   Container(
                                                                     width: MediaQuery.sizeOf(context)
                                                                             .width *

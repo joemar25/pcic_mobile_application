@@ -134,10 +134,10 @@ class FFAppState extends ChangeNotifier {
     _mapLoadedWithInternet = value;
   }
 
-  bool _signatureIsSaved = false;
-  bool get signatureIsSaved => _signatureIsSaved;
-  set signatureIsSaved(bool value) {
-    _signatureIsSaved = value;
+  bool _signitureIsSaved = false;
+  bool get signitureIsSaved => _signitureIsSaved;
+  set signitureIsSaved(bool value) {
+    _signitureIsSaved = value;
   }
 }
 
