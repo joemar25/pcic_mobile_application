@@ -133,12 +133,6 @@ class FFAppState extends ChangeNotifier {
   set mapLoadedWithInternet(bool value) {
     _mapLoadedWithInternet = value;
   }
-
-  bool _signitureIsSaved = false;
-  bool get signitureIsSaved => _signitureIsSaved;
-  set signitureIsSaved(bool value) {
-    _signitureIsSaved = value;
-  }
 }
 
 void _safeInit(Function() initializeField) {
