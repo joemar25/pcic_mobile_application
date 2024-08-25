@@ -636,7 +636,6 @@ SELECT gpx FROM ppir_forms WHERE task_id='$taskId'
 class SELECTPPIRFORMSGpxRow extends SqliteRow {
   SELECTPPIRFORMSGpxRow(super.data);
 
-  String? get taskId => data['task_id'] as String?;
   String? get gpx => data['gpx'] as String?;
 }
 

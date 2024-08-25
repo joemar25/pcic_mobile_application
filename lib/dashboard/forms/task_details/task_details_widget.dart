@@ -334,9 +334,23 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 12.0),
                                             child: Text(
-                                              FFLocalizations.of(context)
-                                                  .getText(
-                                                '7l5eyyx5' /* Form Details */,
+                                              valueOrDefault<String>(
+                                                (valueOrDefault<String>(
+                                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                  .first.gpx,
+                                                              'null',
+                                                            ) ==
+                                                            'null') ||
+                                                        (valueOrDefault<String>(
+                                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                  .first.gpx,
+                                                              'null',
+                                                            ) ==
+                                                            ' ')
+                                                    ? 'null si value'
+                                                    : taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                        .first.gpx,
+                                                'hahahahea',
                                               ),
                                               style:
                                                   FlutterFlowTheme.of(context)
@@ -3139,12 +3153,18 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      if (valueOrDefault<String>(
-                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                .first.gpx,
-                                            'null',
-                                          ) ==
-                                          'null')
+                                      if ((valueOrDefault<String>(
+                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                    .first.gpx,
+                                                'null',
+                                              ) ==
+                                              'null') ||
+                                          (valueOrDefault<String>(
+                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                    .first.gpx,
+                                                'null',
+                                              ) ==
+                                              ' '))
                                         Flexible(
                                           child: Padding(
                                             padding:
@@ -3244,12 +3264,18 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             ),
                                           ),
                                         ),
-                                      if ((valueOrDefault<String>(
-                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                    .first.gpx,
-                                                'null',
-                                              ) !=
-                                              'null') &&
+                                      if (((valueOrDefault<String>(
+                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                        .first.gpx,
+                                                    'null',
+                                                  ) !=
+                                                  'null') &&
+                                              (valueOrDefault<String>(
+                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                        .first.gpx,
+                                                    'null',
+                                                  ) !=
+                                                  ' ')) &&
                                           (valueOrDefault<String>(
                                                 taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                     .first.status,

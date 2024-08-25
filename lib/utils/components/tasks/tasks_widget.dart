@@ -182,20 +182,20 @@ class _TasksWidgetState extends State<TasksWidget>
                               ),
                             ),
                             Text(
-                              '${widget.index?.toString()} - ${valueOrDefault<String>(
+                              valueOrDefault<String>(
                                 containerSelectPpirFormsRowList
                                     .first.ppirInsuranceid,
                                 'Insurance Id',
-                              )}',
+                              ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
                                     fontFamily: FlutterFlowTheme.of(context)
                                         .bodyMediumFamily,
-                                    color:
-                                        FlutterFlowTheme.of(context).secondary,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
                                     letterSpacing: 0.0,
-                                    fontStyle: FontStyle.italic,
+                                    decoration: TextDecoration.underline,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)
