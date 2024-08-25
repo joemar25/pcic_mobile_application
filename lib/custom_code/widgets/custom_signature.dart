@@ -307,20 +307,6 @@ class _CustomSignatureState extends State<CustomSignature>
                     width: double.infinity,
                     height: double.infinity,
                   ),
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Container(
-                    color: Colors.black.withOpacity(0.5),
-                    padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                    child: Text(
-                      _statusMessage,
-                      style: TextStyle(color: Colors.white),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ),
               ],
             ),
           ),

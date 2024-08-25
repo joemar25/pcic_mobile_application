@@ -11,30 +11,51 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-// Future<bool> syncFromFTP(String? region) async {
-//   if (region == null) return false;
-
-//   final regionName = region.replaceAll("PO", "P0");
-
-//   return true;
-// }
-
 import '/auth/supabase_auth/auth_util.dart';
+import '/backend/supabase/database/tables/tasks.dart';
+import '/backend/supabase/database/tables/ppir_forms.dart';
+import '/backend/supabase/database/tables/regions.dart';
 import 'package:dartssh2/dartssh2.dart';
 import 'package:csv/csv.dart';
 import 'dart:convert';
+import 'package:uuid/uuid.dart';
 
 Future<bool> syncFromFTP(String? region) async {
-  if (region == null) return false;
+  if (region == null) {
+    print('Error: Region is null');
+    return false;
+  }
 
-  final regionCode =
-      'P${region.replaceAll(RegExp(r'[Oo]'), '0').padLeft(2, '0').replaceFirst('P', '')}';
-  print("regionCode = $regionCode");
+  String transformedRegionCode =
+      'PO${region.replaceAll(RegExp(r'[POpo]'), '')}';
+  String originalRegionCode = 'P0${region.replaceAll(RegExp(r'[POpo]'), '')}';
+  print('Processing region: $transformedRegionCode');
+  print('Original region code for file matching: $originalRegionCode');
 
   SSHClient? client;
+  int newTasksCount = 0;
+  int newPPIRFormsCount = 0;
 
   try {
-    // Connect to SFTP
+    final userQuery = await UsersTable().queryRows(
+      queryFn: (q) => q.eq('email', currentUserEmail),
+    );
+    if (userQuery.isEmpty) {
+      print('Error: Current user not found in the database');
+      return false;
+    }
+    final currentUserId = userQuery.first.id;
+    print('Current user ID: $currentUserId');
+
+    final regionQuery = await RegionsTable().queryRows(
+      queryFn: (q) => q.eq('region_code', transformedRegionCode),
+    );
+    if (regionQuery.isEmpty) {
+      print('Error: Region not found in the database');
+      return false;
+    }
+    final regionName = regionQuery.first.regionName + ' PPIR';
+
     final socket = await SSHSocket.connect('122.55.242.110', 22);
     client = SSHClient(
       socket,
@@ -45,90 +66,184 @@ Future<bool> syncFromFTP(String? region) async {
     await client.authenticated;
     final sftp = await client.sftp();
 
-    // Navigate to the Work directory and list files
     const remotePath = '/Work';
     final List<SftpName> files = await sftp.listdir(remotePath);
 
-    // Filter files
+    print('All files in directory:');
+    for (var file in files) {
+      print(file.filename);
+    }
+
     final List<String> filesToProcess = files
         .where((file) =>
-            file.filename.startsWith('$regionCode RICE Region') &&
+            file.filename.startsWith('$originalRegionCode RICE Region') &&
             file.filename.endsWith('.csv'))
         .map((file) => file.filename)
         .toList();
-    print("filesToProcess = $filesToProcess");
 
-    // Get the current user's email
-    final String userEmail = currentUserEmail;
+    print('Files to process: ${filesToProcess.join(", ")}');
 
-    print('User email: $userEmail');
+    if (filesToProcess.isEmpty) {
+      print('No matching files found for region $originalRegionCode');
+      return false;
+    }
 
-    List<List<dynamic>> allFilteredData = [];
-
-    // Process each file
     for (final filename in filesToProcess) {
+      print('Processing file: $filename');
       final remoteFile = await sftp.open('$remotePath/$filename');
-
-      print('Processing file: $filename\n\n');
-
       final String contents = utf8.decode(await remoteFile.readBytes());
-      print("contents = $contents\n\n");
-
       await remoteFile.close();
 
-      // Parse CSV
       List<List<dynamic>> rowsAsListOfValues =
-          const CsvToListConverter().convert(contents);
-
-      print("rowsAsListOfValues = $rowsAsListOfValues\n\n");
-
-      // Assuming the header is the first row
+          const CsvToListConverter().convert(contents, eol: '\n');
       List<String> headers =
-          rowsAsListOfValues[0].map((e) => e.toString()).toList();
+          rowsAsListOfValues.first.map((e) => e.toString()).toList();
       int assigneeIndex = headers.indexOf('Assignee');
 
-      print("assigneeIndex = $assigneeIndex\n\n");
-      print("assigneeIndex != -1 = ${assigneeIndex != -1}\n\n");
+      print('CSV Headers: ${headers.join(", ")}');
+      print('Assignee index: $assigneeIndex');
+
       if (assigneeIndex != -1) {
-        print("Headers: $headers");
-        print("User email for filtering: $userEmail");
+        List<Map<String, dynamic>> filteredRows = rowsAsListOfValues
+            .skip(1)
+            .where((row) {
+              if (row.length <= assigneeIndex) return false;
+              String assigneeValue =
+                  row[assigneeIndex].toString().trim().toLowerCase();
+              return assigneeValue == currentUserEmail.trim().toLowerCase();
+            })
+            .map((row) => Map.fromIterables(headers, row))
+            .toList();
 
-        // Filter rows where Assignee matches userEmail
-        List<List<dynamic>> filteredRows = rowsAsListOfValues.where((row) {
-          if (row.length <= assigneeIndex) {
-            print("Skipping row (too short): $row");
-            return false;
-          }
-          String assigneeValue =
-              row[assigneeIndex].toString().trim().toLowerCase();
-          String userEmailLower = userEmail.trim().toLowerCase();
-          bool matches = assigneeValue == userEmailLower;
-          if (matches) {
-            print("Matched row: $row");
-          } else {
-            print(
-                "Non-matching row - Assignee: '$assigneeValue', User: '$userEmailLower'");
-          }
-          return matches;
-        }).toList();
+        print('Filtered rows count: ${filteredRows.length}');
 
-        print("Number of filtered rows: ${filteredRows.length}");
-        print("First few filtered rows: ${filteredRows.take(5).toList()}\n\n");
-        allFilteredData.addAll(filteredRows);
+        for (var row in filteredRows) {
+          String taskNumber = row['Task Number']?.toString().trim() ?? '';
+          if (taskNumber.isEmpty) {
+            taskNumber = 'PPIR-${row['ppir_assignmentid']?.toString() ?? ''}';
+          }
+
+          var onlineTasks = await TasksTable().queryRows(
+            queryFn: (q) => q.eq('task_number', taskNumber),
+          );
+
+          var offlineTasks =
+              await SQLiteManager.instance.oFFLINESelectAllTasksByAssignee(
+            assignee: currentUserId,
+          );
+
+          bool taskExists = onlineTasks.isNotEmpty ||
+              offlineTasks.any((task) => task.taskNumber == taskNumber);
+
+          if (!taskExists) {
+            print('Inserting new task: $taskNumber');
+
+            String taskId = const Uuid().v4();
+
+            await TasksTable().insert({
+              'id': taskId,
+              'task_number': taskNumber,
+              'service_group': transformedRegionCode,
+              'status':
+                  row['Task Status']?.toString().toLowerCase() ?? 'pending',
+              'service_type': regionName,
+              'priority': row['Priority']?.toString() ?? 'medium',
+              'assignee': currentUserId,
+              'date_added': DateTime.now().toIso8601String(),
+              'date_access': DateTime.now().toIso8601String(),
+            });
+
+            await SQLiteManager.instance.insertOfflineTask(
+              id: taskId,
+              taskNumber: taskNumber,
+              serviceGroup: transformedRegionCode,
+              status: row['Task Status']?.toString().toLowerCase() ?? 'pending',
+              serviceType: regionName,
+              priority: row['Priority']?.toString() ?? 'medium',
+              assignee: currentUserId,
+              dateAdded: DateTime.now().toIso8601String(),
+              dateAccess: DateTime.now().toIso8601String(),
+              fileId: filename,
+            );
+
+            newTasksCount++;
+
+            await PpirFormsTable().insert({
+              'task_id': taskId,
+              'ppir_assignmentid': row['ppir_assignmentid']?.toString() ?? '',
+              'ppir_insuranceid': row['ppir_insuranceid']?.toString() ?? '',
+              'ppir_farmername': row['ppir_farmername']?.toString() ?? '',
+              'ppir_address': row['ppir_address']?.toString() ?? '',
+              'ppir_farmertype': row['ppir_farmertype']?.toString() ?? '',
+              'ppir_mobileno': row['ppir_mobileno']?.toString() ?? '',
+              'ppir_groupname': row['ppir_groupname']?.toString() ?? '',
+              'ppir_groupaddress': row['ppir_groupaddress']?.toString() ?? '',
+              'ppir_lendername': row['ppir_lendername']?.toString() ?? '',
+              'ppir_lenderaddress': row['ppir_lenderaddress']?.toString() ?? '',
+              'ppir_cicno': row['ppir_cicno']?.toString() ?? '',
+              'ppir_farmloc': row['ppir_farmloc']?.toString() ?? '',
+              'ppir_north': row['ppir_north']?.toString() ?? '',
+              'ppir_south': row['ppir_south']?.toString() ?? '',
+              'ppir_east': row['ppir_east']?.toString() ?? '',
+              'ppir_west': row['ppir_west']?.toString() ?? '',
+              'ppir_area_aci': row['ppir_area_aci']?.toString() ?? '',
+              'ppir_area_act': row['ppir_area_act']?.toString() ?? '',
+              'ppir_dopds_aci': row['ppir_dopds_aci']?.toString() ?? '',
+              'ppir_dopds_act': row['ppir_dopds_act']?.toString() ?? '',
+              'ppir_doptp_aci': row['ppir_doptp_aci']?.toString() ?? '',
+              'ppir_doptp_act': row['ppir_doptp_act']?.toString() ?? '',
+              'ppir_variety': row['ppir_variety']?.toString() ?? '',
+              'ppir_stagecrop': row['ppir_stagecrop']?.toString() ?? '',
+              'created_at': DateTime.now().toIso8601String(),
+              'updated_at': DateTime.now().toIso8601String(),
+              'sync_status': 'synced',
+              'is_dirty': false,
+            });
+
+            await SQLiteManager.instance.insertOfflinePPIRForm(
+              taskId: taskId,
+              ppirAssignmentId: row['ppir_assignmentid']?.toString() ?? '',
+              ppirInsuranceId: row['ppir_insuranceid']?.toString() ?? '',
+              ppirFarmerName: row['ppir_farmername']?.toString() ?? '',
+              ppirAddress: row['ppir_address']?.toString() ?? '',
+              ppirFarmerType: row['ppir_farmertype']?.toString() ?? '',
+              ppirMobileNo: row['ppir_mobileno']?.toString() ?? '',
+              ppirGroupName: row['ppir_groupname']?.toString() ?? '',
+              ppirGroupAddress: row['ppir_groupaddress']?.toString() ?? '',
+              ppirLenderName: row['ppir_lendername']?.toString() ?? '',
+              ppirLenderAddress: row['ppir_lenderaddress']?.toString() ?? '',
+              ppirCICNo: row['ppir_cicno']?.toString() ?? '',
+              ppirFarmLoc: row['ppir_farmloc']?.toString() ?? '',
+              ppirNorth: row['ppir_north']?.toString() ?? '',
+              ppirSouth: row['ppir_south']?.toString() ?? '',
+              ppirEast: row['ppir_east']?.toString() ?? '',
+              ppirWest: row['ppir_west']?.toString() ?? '',
+              ppirAreaAci: row['ppir_area_aci']?.toString() ?? '',
+              ppirAreaAct: row['ppir_area_act']?.toString() ?? '',
+              ppirDopdsAci: row['ppir_dopds_aci']?.toString() ?? '',
+              ppirDopdsAct: row['ppir_dopds_act']?.toString() ?? '',
+              ppirDoptpAci: row['ppir_doptp_aci']?.toString() ?? '',
+              ppirDoptpAct: row['ppir_doptp_act']?.toString() ?? '',
+              ppirVariety: row['ppir_variety']?.toString() ?? '',
+              ppirStageCrop: row['ppir_stagecrop']?.toString() ?? '',
+              createdAt: DateTime.now().toIso8601String(),
+              updatedAt: DateTime.now().toIso8601String(),
+              syncStatus: 'synced',
+              lastSyncedAt: DateTime.now().toIso8601String(),
+              isDirty: 'false',
+            );
+
+            newPPIRFormsCount++;
+          }
+        }
       }
     }
 
-    // Process or save allFilteredData
-    if (allFilteredData.isNotEmpty) {
-      // Here you can process the filtered data as needed
-      // For example, you could save it to a local file or send it to a database
-      print('Filtered data: ${allFilteredData.length} rows');
-      // TODO: Add your logic to handle the filtered data
-    }
-
+    print(
+        'Sync completed: $newTasksCount new tasks, $newPPIRFormsCount new PPIR forms');
     return true;
   } catch (e) {
-    print('SFTP Sync Error: $e');
+    print('Sync Error: $e');
     return false;
   } finally {
     client?.close();
