@@ -10,6 +10,12 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
 
   bool isMapDownloaded = false;
 
+  bool hasGpx = true;
+
+  bool hasSigInsured = true;
+
+  bool hasSigIuia = true;
+
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
@@ -200,25 +206,6 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
     return null;
   }
 
-  // State field(s) for insured_blob widget.
-  FocusNode? insuredBlobFocusNode;
-  TextEditingController? insuredBlobTextController;
-  String? Function(BuildContext, String?)? insuredBlobTextControllerValidator;
-  String? _insuredBlobTextControllerValidator(
-      BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return FFLocalizations.of(context).getText(
-        'ez2u8e33' /* Field is required */,
-      );
-    }
-
-    if (val.length < 4) {
-      return 'Requires at least 4 characters.';
-    }
-
-    return null;
-  }
-
   // State field(s) for ppir_confirmed_by_name_field widget.
   FocusNode? ppirConfirmedByNameFieldFocusNode;
   TextEditingController? ppirConfirmedByNameFieldTextController;
@@ -230,24 +217,6 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
       return FFLocalizations.of(context).getText(
         'gug2f3ir' /* Field is required */,
       );
-    }
-
-    return null;
-  }
-
-  // State field(s) for iuia_blob widget.
-  FocusNode? iuiaBlobFocusNode;
-  TextEditingController? iuiaBlobTextController;
-  String? Function(BuildContext, String?)? iuiaBlobTextControllerValidator;
-  String? _iuiaBlobTextControllerValidator(BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return FFLocalizations.of(context).getText(
-        'ub0zeqvu' /* Field is required */,
-      );
-    }
-
-    if (val.length < 4) {
-      return 'Requires at least 4 characters.';
     }
 
     return null;
@@ -288,10 +257,8 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
         _ppirRemarksFieldTextControllerValidator;
     ppirPreparedByNameFieldTextControllerValidator =
         _ppirPreparedByNameFieldTextControllerValidator;
-    insuredBlobTextControllerValidator = _insuredBlobTextControllerValidator;
     ppirConfirmedByNameFieldTextControllerValidator =
         _ppirConfirmedByNameFieldTextControllerValidator;
-    iuiaBlobTextControllerValidator = _iuiaBlobTextControllerValidator;
   }
 
   @override
@@ -330,14 +297,8 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
     ppirPreparedByNameFieldFocusNode?.dispose();
     ppirPreparedByNameFieldTextController?.dispose();
 
-    insuredBlobFocusNode?.dispose();
-    insuredBlobTextController?.dispose();
-
     ppirConfirmedByNameFieldFocusNode?.dispose();
     ppirConfirmedByNameFieldTextController?.dispose();
-
-    iuiaBlobFocusNode?.dispose();
-    iuiaBlobTextController?.dispose();
   }
 
   /// Additional helper methods.

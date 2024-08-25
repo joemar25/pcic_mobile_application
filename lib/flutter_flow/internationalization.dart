@@ -266,7 +266,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    '1w23flke': {
+    'b13tzykt': {
       'en': '',
       'tl': '',
     },
@@ -278,7 +278,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    '551ldyeu': {
+    'rknzcfsa': {
       'en': '',
       'tl': '',
     },
@@ -290,7 +290,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang Bagong Password...',
     },
-    't11nmybh': {
+    'bn53eq3h': {
       'en': '',
       'tl': '',
     },
@@ -994,16 +994,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Prepared by',
       'tl': 'Inihanda ni',
     },
-    '8r38llaf': {
-      'en': 'PPIR Insured (debug mode only)',
-      'tl': 'Kumpirmahin ni',
-    },
     '0wibdp4s': {
       'en': 'Confirm by',
-      'tl': '',
-    },
-    'yd8wxomh': {
-      'en': 'PPIR Iuia (debug mode only)',
       'tl': '',
     },
     'aae0jxzm': {
