@@ -2731,6 +2731,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                           textInputAction:
                                                               TextInputAction
                                                                   .next,
+                                                          readOnly: true,
                                                           obscureText: false,
                                                           decoration:
                                                               InputDecoration(
@@ -4532,6 +4533,27 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               .riceDropdownValue
                                                           : _model
                                                               .cornDropdownValue,
+                                                  'gpx': _model
+                                                      .gpxBlobTextController
+                                                      .text,
+                                                  'ppir_sig_iuia':
+                                                      ppirFormSelectPpirFormsRowList
+                                                          .first.ppirSigIuia,
+                                                  'ppir_sig_insured':
+                                                      ppirFormSelectPpirFormsRowList
+                                                          .first.ppirSigInsured,
+                                                  'track_last_coord': _model
+                                                      .ppirTrackCoordinatesTextController
+                                                      .text,
+                                                  'track_date_time': _model
+                                                      .ppirTrackDateTimeTextController
+                                                      .text,
+                                                  'track_total_area': _model
+                                                      .ppirTrackTotalAreaTextController1
+                                                      .text,
+                                                  'track_total_distance': _model
+                                                      .ppirTrackTotalAreaTextController2
+                                                      .text,
                                                 },
                                                 matchingRows: (rows) => rows.eq(
                                                   'task_id',

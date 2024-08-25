@@ -151,6 +151,7 @@ Future<bool> syncFromFTP(String? region) async {
               'assignee': currentUserId,
               'date_added': DateTime.now().toIso8601String(),
               'date_access': DateTime.now().toIso8601String(),
+              'task_type': 'ppir',
             });
 
             await SQLiteManager.instance.insertOfflineTask(
