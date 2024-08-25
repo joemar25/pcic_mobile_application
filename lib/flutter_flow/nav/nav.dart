@@ -69,12 +69,15 @@ class AppStateNotifier extends ChangeNotifier {
   }
 }
 
-GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
+GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
+    GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) => RootPageContext.wrap(
-        appStateNotifier.loggedIn ? const NavBarPage() : const OnboardingWidget(),
+        appStateNotifier.loggedIn
+            ? entryPage ?? const NavBarPage()
+            : const OnboardingWidget(),
         errorRoute: state.uri.toString(),
       ),
       routes: [
@@ -82,7 +85,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: '_initialize',
           path: '/',
           builder: (context, _) => RootPageContext.wrap(
-            appStateNotifier.loggedIn ? const NavBarPage() : const OnboardingWidget(),
+            appStateNotifier.loggedIn
+                ? entryPage ?? const NavBarPage()
+                : const OnboardingWidget(),
           ),
         ),
         FFRoute(

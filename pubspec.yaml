@@ -133,6 +133,8 @@ dev_dependencies:
   flutter_launcher_icons: 0.13.1
   flutter_lints: 4.0.0
   image: 4.0.17
+  integration_test: 
+    sdk: flutter
   lints: 4.0.0
   flutter_test:
     sdk: flutter
