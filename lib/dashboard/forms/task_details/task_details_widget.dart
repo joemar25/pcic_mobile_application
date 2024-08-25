@@ -3139,18 +3139,12 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      if ((valueOrDefault<String>(
-                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                    .first.gpx,
-                                                'null',
-                                              ) ==
-                                              'null') &&
-                                          (valueOrDefault<String>(
-                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                    .first.status,
-                                                'Value',
-                                              ) !=
-                                              'complete'))
+                                      if (valueOrDefault<String>(
+                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                .first.gpx,
+                                            'null',
+                                          ) ==
+                                          'null')
                                         Flexible(
                                           child: Padding(
                                             padding:
