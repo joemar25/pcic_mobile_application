@@ -4,7 +4,7 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/utils/components/dialogs/no_internet_dialog_copy/no_internet_dialog_copy_widget.dart';
+import '/utils/components/dialogs/no_internet_dialog/no_internet_dialog_widget.dart';
 import '/utils/components/dialogs/permission_dialog/permission_dialog_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/permissions_util.dart';
@@ -840,7 +840,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                                     dialogContext)
                                                                 .unfocus(),
                                                         child:
-                                                            const NoInternetDialogCopyWidget(),
+                                                            const NoInternetDialogWidget(),
                                                       ),
                                                     );
                                                   },

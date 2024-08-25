@@ -133,11 +133,11 @@ class _NoInternetDialogWidgetState extends State<NoInternetDialogWidget> {
                   children: [
                     Expanded(
                       child: FFButtonWidget(
-                        onPressed: () {
-                          print('Button pressed ...');
+                        onPressed: () async {
+                          Navigator.pop(context);
                         },
                         text: FFLocalizations.of(context).getText(
-                          'x2kr3ijp' /* Reconnect */,
+                          'x2kr3ijp' /* Dismiss */,
                         ),
                         options: FFButtonOptions(
                           height: 40.0,

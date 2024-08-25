@@ -221,6 +221,25 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                                         value));
 
                                                 if (_model.confirmBack!) {
+                                                  if (FFAppState().ONLINE) {
+                                                    await PpirFormsTable()
+                                                        .update(
+                                                      data: {
+                                                        'gpx': '',
+                                                      },
+                                                      matchingRows: (rows) =>
+                                                          rows.eq(
+                                                        'task_id',
+                                                        widget.taskId,
+                                                      ),
+                                                    );
+                                                  }
+                                                  await SQLiteManager.instance
+                                                      .updatePPIRFormGpx(
+                                                    taskId: widget.taskId,
+                                                    gpx: ' ',
+                                                  );
+
                                                   context.pushNamed(
                                                     'taskDetails',
                                                     queryParameters: {

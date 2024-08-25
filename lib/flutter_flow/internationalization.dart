@@ -266,7 +266,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'lpmz13b4': {
+    'aw9vxf6k': {
       'en': '',
       'tl': '',
     },
@@ -278,7 +278,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'k7y3ze3g': {
+    'h8yeyxa0': {
       'en': '',
       'tl': '',
     },
@@ -290,7 +290,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang Bagong Password...',
     },
-    'j5jozpwm': {
+    'vnp7aw38': {
       'en': '',
       'tl': '',
     },
@@ -1323,10 +1323,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Address',
       'tl': 'Address',
     },
-    'mvysl6a7': {
-      'en': 'Index',
-      'tl': '',
-    },
   },
   // chat
   {
@@ -1481,7 +1477,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'Wala kang kasalukuyang koneksyon sa internet. Upang mag-download ng mapa, mangyaring kumonekta sa internet.',
     },
     'x2kr3ijp': {
-      'en': 'Reconnect',
+      'en': 'Dismiss',
       'tl': 'Kumonekta muli',
     },
   },
@@ -1631,21 +1627,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'gn2n1vua': {
       'en': 'Okay',
       'tl': 'Okay',
-    },
-  },
-  // noInternetDialogCopy
-  {
-    'x9y1e4s4': {
-      'en': 'Info',
-      'tl': 'Impormasyon',
-    },
-    'vjr5drgf': {
-      'en': 'You have no current internet connection.',
-      'tl': 'Wala kang kasalukuyang koneksyon sa internet.',
-    },
-    'f76rmfhb': {
-      'en': 'Dismiss',
-      'tl': 'I-dismiss',
     },
   },
   // continueSaveGeotag

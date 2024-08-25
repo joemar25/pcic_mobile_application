@@ -7,7 +7,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
-import '/utils/components/dialogs/no_internet_dialog_copy/no_internet_dialog_copy_widget.dart';
+import '/utils/components/dialogs/no_internet_dialog/no_internet_dialog_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -439,8 +439,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                               onTap: () =>
                                                   FocusScope.of(dialogContext)
                                                       .unfocus(),
-                                              child:
-                                                  const NoInternetDialogCopyWidget(),
+                                              child: const NoInternetDialogWidget(),
                                             ),
                                           );
                                         },
