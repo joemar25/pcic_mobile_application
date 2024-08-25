@@ -143,6 +143,14 @@ class SQLiteManager {
         id: id,
       );
 
+  Future<List<SELECTPPIRFORMSGpxRow>> sELECTPPIRFORMSGpx({
+    String? taskId,
+  }) =>
+      performSELECTPPIRFORMSGpx(
+        _database,
+        taskId: taskId,
+      );
+
   /// END READ QUERY CALLS
 
   /// START UPDATE QUERY CALLS

@@ -296,6 +296,8 @@ dynamic deserializeParam<T>(
             return SELECTPPIRFORMSSignaturesRow(data);
           case OFFLINESelectREGIONCODERow:
             return OFFLINESelectREGIONCODERow(data);
+          case SELECTPPIRFORMSGpxRow:
+            return SELECTPPIRFORMSGpxRow(data);
           default:
             return null;
         }

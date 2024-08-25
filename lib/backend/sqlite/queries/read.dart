@@ -621,3 +621,23 @@ class OFFLINESelectREGIONCODERow extends SqliteRow {
 }
 
 /// END OFFLINE SELECT REGION CODE
+
+/// BEGIN SELECT PPIR FORMS GPX
+Future<List<SELECTPPIRFORMSGpxRow>> performSELECTPPIRFORMSGpx(
+  Database database, {
+  String? taskId,
+}) {
+  final query = '''
+SELECT gpx FROM ppir_forms WHERE task_id='$taskId'
+''';
+  return _readQuery(database, query, (d) => SELECTPPIRFORMSGpxRow(d));
+}
+
+class SELECTPPIRFORMSGpxRow extends SqliteRow {
+  SELECTPPIRFORMSGpxRow(super.data);
+
+  String? get taskId => data['task_id'] as String?;
+  String? get gpx => data['gpx'] as String?;
+}
+
+/// END SELECT PPIR FORMS GPX
