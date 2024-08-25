@@ -266,7 +266,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'ly7ffa6f': {
+    'lpmz13b4': {
       'en': '',
       'tl': '',
     },
@@ -278,7 +278,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'xd8ae6p6': {
+    'k7y3ze3g': {
       'en': '',
       'tl': '',
     },
@@ -290,7 +290,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang Bagong Password...',
     },
-    '4neipjgj': {
+    'j5jozpwm': {
       'en': '',
       'tl': '',
     },
@@ -512,8 +512,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Mga Detalye ng Petsa',
     },
     '27rka9jx': {
-      'en': 'Date of Planting (DS)',
+      'en': 'Actual Area Planted',
       'tl': 'Petsa ng Pagtanim (DS)',
+    },
+    '4s2psn11': {
+      'en': 'Date of Planting (DS)',
+      'tl': '',
     },
     '3zj0x11r': {
       'en': 'Date of Planting (TP)',

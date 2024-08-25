@@ -12,7 +12,6 @@ import '/utils/components/saving_mode/saving_mode_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -393,12 +392,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     .labelMediumFamily),
                                                       ),
                                                 ),
-                                                Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirAssignmentid,
-                                                    'Assignment Id',
-                                                  ),
+                                                AnimatedDefaultTextStyle(
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -415,6 +409,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
+                                                  duration: const Duration(
+                                                      milliseconds: 600),
+                                                  curve: Curves.easeIn,
+                                                  child: Text(
+                                                    valueOrDefault<String>(
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                          .first
+                                                          .ppirAssignmentid,
+                                                      'Assignment Id',
+                                                    ),
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -451,12 +456,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     .labelMediumFamily),
                                                       ),
                                                 ),
-                                                Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirFarmername,
-                                                    'Farmer Name',
-                                                  ),
+                                                AnimatedDefaultTextStyle(
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -473,6 +473,16 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
+                                                  duration: const Duration(
+                                                      milliseconds: 600),
+                                                  curve: Curves.easeIn,
+                                                  child: Text(
+                                                    valueOrDefault<String>(
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                          .first.ppirFarmername,
+                                                      'Farmer Name',
+                                                    ),
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -511,12 +521,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     .labelMediumFamily),
                                                       ),
                                                 ),
-                                                Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirAddress,
-                                                    'Address',
-                                                  ),
+                                                AnimatedDefaultTextStyle(
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -533,6 +538,16 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
+                                                  duration: const Duration(
+                                                      milliseconds: 600),
+                                                  curve: Curves.easeIn,
+                                                  child: Text(
+                                                    valueOrDefault<String>(
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                          .first.ppirAddress,
+                                                      'Address',
+                                                    ),
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -571,12 +586,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     .labelMediumFamily),
                                                       ),
                                                 ),
-                                                Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirInsuranceid,
-                                                    'Insurance Id',
-                                                  ),
+                                                AnimatedDefaultTextStyle(
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -593,6 +603,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
+                                                  duration: const Duration(
+                                                      milliseconds: 600),
+                                                  curve: Curves.easeIn,
+                                                  child: Text(
+                                                    valueOrDefault<String>(
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                          .first
+                                                          .ppirInsuranceid,
+                                                      'Insurance Id',
+                                                    ),
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -631,12 +652,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     .labelMediumFamily),
                                                       ),
                                                 ),
-                                                Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirMobileno,
-                                                    'Mobile Number',
-                                                  ),
+                                                AnimatedDefaultTextStyle(
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -653,6 +669,16 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
+                                                  duration: const Duration(
+                                                      milliseconds: 600),
+                                                  curve: Curves.easeIn,
+                                                  child: Text(
+                                                    valueOrDefault<String>(
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                          .first.ppirMobileno,
+                                                      'Mobile Number',
+                                                    ),
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -691,12 +717,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     .labelMediumFamily),
                                                       ),
                                                 ),
-                                                Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirFarmertype,
-                                                    'Famer Type',
-                                                  ),
+                                                AnimatedDefaultTextStyle(
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -713,6 +734,16 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
+                                                  duration: const Duration(
+                                                      milliseconds: 600),
+                                                  curve: Curves.easeIn,
+                                                  child: Text(
+                                                    valueOrDefault<String>(
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                          .first.ppirFarmertype,
+                                                      'Famer Type',
+                                                    ),
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -751,12 +782,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     .labelMediumFamily),
                                                       ),
                                                 ),
-                                                Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirGroupname,
-                                                    'Group Name',
-                                                  ),
+                                                AnimatedDefaultTextStyle(
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -773,6 +799,16 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
+                                                  duration: const Duration(
+                                                      milliseconds: 600),
+                                                  curve: Curves.easeIn,
+                                                  child: Text(
+                                                    valueOrDefault<String>(
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                          .first.ppirGroupname,
+                                                      'Group Name',
+                                                    ),
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -811,12 +847,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     .labelMediumFamily),
                                                       ),
                                                 ),
-                                                Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirGroupaddress,
-                                                    'Group Address',
-                                                  ),
+                                                AnimatedDefaultTextStyle(
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -833,6 +864,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
+                                                  duration: const Duration(
+                                                      milliseconds: 600),
+                                                  curve: Curves.easeIn,
+                                                  child: Text(
+                                                    valueOrDefault<String>(
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                          .first
+                                                          .ppirGroupaddress,
+                                                      'Group Address',
+                                                    ),
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -871,12 +913,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     .labelMediumFamily),
                                                       ),
                                                 ),
-                                                Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirLendername,
-                                                    'Lender Name',
-                                                  ),
+                                                AnimatedDefaultTextStyle(
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -893,6 +930,16 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
+                                                  duration: const Duration(
+                                                      milliseconds: 600),
+                                                  curve: Curves.easeIn,
+                                                  child: Text(
+                                                    valueOrDefault<String>(
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                          .first.ppirLendername,
+                                                      'Lender Name',
+                                                    ),
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -931,13 +978,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     .labelMediumFamily),
                                                       ),
                                                 ),
-                                                Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first
-                                                        .ppirLenderaddress,
-                                                    'Lender Address',
-                                                  ),
+                                                AnimatedDefaultTextStyle(
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -954,6 +995,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
+                                                  duration: const Duration(
+                                                      milliseconds: 600),
+                                                  curve: Curves.easeIn,
+                                                  child: Text(
+                                                    valueOrDefault<String>(
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                          .first
+                                                          .ppirLenderaddress,
+                                                      'Lender Address',
+                                                    ),
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -992,13 +1044,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     .labelMediumFamily),
                                                       ),
                                                 ),
-                                                Text(
-                                                  valueOrDefault<String>(
-                                                    functions.removePpirOnString(
-                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                            .first.serviceType),
-                                                    'CIC Number',
-                                                  ),
+                                                AnimatedDefaultTextStyle(
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -1015,6 +1061,18 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
+                                                  duration: const Duration(
+                                                      milliseconds: 600),
+                                                  curve: Curves.easeIn,
+                                                  child: Text(
+                                                    valueOrDefault<String>(
+                                                      functions.removePpirOnString(
+                                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                              .first
+                                                              .serviceType),
+                                                      'CIC Number',
+                                                    ),
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -1053,12 +1111,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     .labelMediumFamily),
                                                       ),
                                                 ),
-                                                Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirCicno,
-                                                    'CIC Number',
-                                                  ),
+                                                AnimatedDefaultTextStyle(
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -1075,6 +1128,16 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
+                                                  duration: const Duration(
+                                                      milliseconds: 600),
+                                                  curve: Curves.easeIn,
+                                                  child: Text(
+                                                    valueOrDefault<String>(
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                          .first.ppirCicno,
+                                                      'CIC Number',
+                                                    ),
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -1113,12 +1176,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     .labelMediumFamily),
                                                       ),
                                                 ),
-                                                Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirFarmloc,
-                                                    'Farm Location',
-                                                  ),
+                                                AnimatedDefaultTextStyle(
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -1135,6 +1193,16 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
+                                                  duration: const Duration(
+                                                      milliseconds: 600),
+                                                  curve: Curves.easeIn,
+                                                  child: Text(
+                                                    valueOrDefault<String>(
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                          .first.ppirFarmloc,
+                                                      'Farm Location',
+                                                    ),
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -1215,12 +1283,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     .labelMediumFamily),
                                                       ),
                                                 ),
-                                                Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirNorth,
-                                                    'North',
-                                                  ),
+                                                AnimatedDefaultTextStyle(
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -1237,6 +1300,16 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
+                                                  duration: const Duration(
+                                                      milliseconds: 600),
+                                                  curve: Curves.easeIn,
+                                                  child: Text(
+                                                    valueOrDefault<String>(
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                          .first.ppirNorth,
+                                                      'North',
+                                                    ),
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -1275,12 +1348,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     .labelMediumFamily),
                                                       ),
                                                 ),
-                                                Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirEast,
-                                                    'East',
-                                                  ),
+                                                AnimatedDefaultTextStyle(
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -1297,6 +1365,16 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
+                                                  duration: const Duration(
+                                                      milliseconds: 600),
+                                                  curve: Curves.easeIn,
+                                                  child: Text(
+                                                    valueOrDefault<String>(
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                          .first.ppirEast,
+                                                      'East',
+                                                    ),
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -1334,12 +1412,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     .labelLargeFamily),
                                                       ),
                                                 ),
-                                                Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirSouth,
-                                                    'South',
-                                                  ),
+                                                AnimatedDefaultTextStyle(
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -1356,6 +1429,16 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
+                                                  duration: const Duration(
+                                                      milliseconds: 600),
+                                                  curve: Curves.easeIn,
+                                                  child: Text(
+                                                    valueOrDefault<String>(
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                          .first.ppirSouth,
+                                                      'South',
+                                                    ),
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -1393,12 +1476,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     .labelLargeFamily),
                                                       ),
                                                 ),
-                                                Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirWest,
-                                                    'West',
-                                                  ),
+                                                AnimatedDefaultTextStyle(
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -1415,6 +1493,16 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
+                                                  duration: const Duration(
+                                                      milliseconds: 600),
+                                                  curve: Curves.easeIn,
+                                                  child: Text(
+                                                    valueOrDefault<String>(
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                          .first.ppirWest,
+                                                      'West',
+                                                    ),
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -1495,12 +1583,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     .labelMediumFamily),
                                                       ),
                                                 ),
-                                                Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirAreaAci,
-                                                    'Area Planted',
-                                                  ),
+                                                AnimatedDefaultTextStyle(
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -1517,6 +1600,16 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
+                                                  duration: const Duration(
+                                                      milliseconds: 600),
+                                                  curve: Curves.easeIn,
+                                                  child: Text(
+                                                    valueOrDefault<String>(
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                          .first.ppirAreaAci,
+                                                      'Area Planted',
+                                                    ),
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -1555,12 +1648,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     .labelMediumFamily),
                                                       ),
                                                 ),
-                                                Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirDopdsAci,
-                                                    'Date of Planting',
-                                                  ),
+                                                AnimatedDefaultTextStyle(
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -1577,6 +1665,16 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
+                                                  duration: const Duration(
+                                                      milliseconds: 600),
+                                                  curve: Curves.easeIn,
+                                                  child: Text(
+                                                    valueOrDefault<String>(
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                          .first.ppirDopdsAci,
+                                                      'Date of Planting',
+                                                    ),
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -1615,12 +1713,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     .labelMediumFamily),
                                                       ),
                                                 ),
-                                                Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirDoptpAci,
-                                                    'Datee of Planting',
-                                                  ),
+                                                AnimatedDefaultTextStyle(
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -1637,6 +1730,16 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
+                                                  duration: const Duration(
+                                                      milliseconds: 600),
+                                                  curve: Curves.easeIn,
+                                                  child: Text(
+                                                    valueOrDefault<String>(
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                          .first.ppirDoptpAci,
+                                                      'Datee of Planting',
+                                                    ),
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -1675,12 +1778,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     .labelMediumFamily),
                                                       ),
                                                 ),
-                                                Text(
-                                                  valueOrDefault<String>(
-                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                        .first.ppirSvpAci,
-                                                    'Seed Variety Planted',
-                                                  ),
+                                                AnimatedDefaultTextStyle(
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -1697,6 +1795,16 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
+                                                  duration: const Duration(
+                                                      milliseconds: 600),
+                                                  curve: Curves.easeIn,
+                                                  child: Text(
+                                                    valueOrDefault<String>(
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                          .first.ppirSvpAci,
+                                                      'Seed Variety Planted',
+                                                    ),
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -1838,14 +1946,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                             .labelMediumFamily),
                                                               ),
                                                         ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                .first
-                                                                .trackLastCoord,
-                                                            'Last Coordinates',
-                                                          ),
+                                                        AnimatedDefaultTextStyle(
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
@@ -1861,6 +1962,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         FlutterFlowTheme.of(context)
                                                                             .bodyMediumFamily),
                                                               ),
+                                                          duration: const Duration(
+                                                              milliseconds:
+                                                                  600),
+                                                          curve: Curves.easeIn,
+                                                          child: Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                  .first
+                                                                  .trackLastCoord,
+                                                              'Last Coordinates',
+                                                            ),
+                                                          ),
                                                         ),
                                                       ],
                                                     ),
@@ -1902,14 +2016,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                             .labelMediumFamily),
                                                               ),
                                                         ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                .first
-                                                                .trackDateTime,
-                                                            'Track Date',
-                                                          ),
+                                                        AnimatedDefaultTextStyle(
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
@@ -1925,6 +2032,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         FlutterFlowTheme.of(context)
                                                                             .bodyMediumFamily),
                                                               ),
+                                                          duration: const Duration(
+                                                              milliseconds:
+                                                                  600),
+                                                          curve: Curves.easeIn,
+                                                          child: Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                  .first
+                                                                  .trackDateTime,
+                                                              'Track Date',
+                                                            ),
+                                                          ),
                                                         ),
                                                       ],
                                                     ),
@@ -1966,14 +2086,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                             .labelMediumFamily),
                                                               ),
                                                         ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                .first
-                                                                .trackTotalArea,
-                                                            'Track Area',
-                                                          ),
+                                                        AnimatedDefaultTextStyle(
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
@@ -1989,6 +2102,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         FlutterFlowTheme.of(context)
                                                                             .bodyMediumFamily),
                                                               ),
+                                                          duration: const Duration(
+                                                              milliseconds:
+                                                                  600),
+                                                          curve: Curves.easeIn,
+                                                          child: Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                  .first
+                                                                  .trackTotalArea,
+                                                              'Track Area',
+                                                            ),
+                                                          ),
                                                         ),
                                                       ],
                                                     ),
@@ -2030,14 +2156,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                             .labelMediumFamily),
                                                               ),
                                                         ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                .first
-                                                                .trackTotalDistance,
-                                                            'Total Distance',
-                                                          ),
+                                                        AnimatedDefaultTextStyle(
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
@@ -2053,6 +2172,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         FlutterFlowTheme.of(context)
                                                                             .bodyMediumFamily),
                                                               ),
+                                                          duration: const Duration(
+                                                              milliseconds:
+                                                                  600),
+                                                          curve: Curves.easeIn,
+                                                          child: Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                  .first
+                                                                  .trackTotalDistance,
+                                                              'Total Distance',
+                                                            ),
+                                                          ),
                                                         ),
                                                       ],
                                                     ),
@@ -2147,14 +2279,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                             .labelMediumFamily),
                                                               ),
                                                         ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                .first
-                                                                .ppirVariety,
-                                                            'Type',
-                                                          ),
+                                                        AnimatedDefaultTextStyle(
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
@@ -2170,6 +2295,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         FlutterFlowTheme.of(context)
                                                                             .bodyMediumFamily),
                                                               ),
+                                                          duration: const Duration(
+                                                              milliseconds:
+                                                                  600),
+                                                          curve: Curves.easeIn,
+                                                          child: Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                  .first
+                                                                  .ppirVariety,
+                                                              'Type',
+                                                            ),
+                                                          ),
                                                         ),
                                                       ],
                                                     ),
@@ -2211,14 +2349,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                             .labelMediumFamily),
                                                               ),
                                                         ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                .first
-                                                                .ppirSvpAct,
-                                                            'Variety',
-                                                          ),
+                                                        AnimatedDefaultTextStyle(
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
@@ -2234,6 +2365,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         FlutterFlowTheme.of(context)
                                                                             .bodyMediumFamily),
                                                               ),
+                                                          duration: const Duration(
+                                                              milliseconds:
+                                                                  600),
+                                                          curve: Curves.easeIn,
+                                                          child: Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                  .first
+                                                                  .ppirSvpAct,
+                                                              'Variety',
+                                                            ),
+                                                          ),
                                                         ),
                                                       ],
                                                     ),
@@ -2307,7 +2451,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           FFLocalizations.of(
                                                                   context)
                                                               .getText(
-                                                            '27rka9jx' /* Date of Planting (DS) */,
+                                                            '27rka9jx' /* Actual Area Planted */,
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -2328,14 +2472,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                             .labelMediumFamily),
                                                               ),
                                                         ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                .first
-                                                                .ppirDopdsAct,
-                                                            'Date of Planting',
-                                                          ),
+                                                        AnimatedDefaultTextStyle(
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
@@ -2351,6 +2488,89 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         FlutterFlowTheme.of(context)
                                                                             .bodyMediumFamily),
                                                               ),
+                                                          duration: const Duration(
+                                                              milliseconds:
+                                                                  600),
+                                                          curve: Curves.easeIn,
+                                                          child: Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                  .first
+                                                                  .ppirAreaAct,
+                                                              'Actual Area Planted',
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(20.0, 8.0,
+                                                                20.0, 0.0),
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                            '4s2psn11' /* Date of Planting (DS) */,
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .labelMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMediumFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .labelMediumFamily),
+                                                              ),
+                                                        ),
+                                                        AnimatedDefaultTextStyle(
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyMediumFamily),
+                                                              ),
+                                                          duration: const Duration(
+                                                              milliseconds:
+                                                                  600),
+                                                          curve: Curves.easeIn,
+                                                          child: Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                  .first
+                                                                  .ppirDopdsAct,
+                                                              'Date of Planting',
+                                                            ),
+                                                          ),
                                                         ),
                                                       ],
                                                     ),
@@ -2392,14 +2612,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                             .labelMediumFamily),
                                                               ),
                                                         ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                .first
-                                                                .ppirDoptpAct,
-                                                            'Date of Planting',
-                                                          ),
+                                                        AnimatedDefaultTextStyle(
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
@@ -2415,6 +2628,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         FlutterFlowTheme.of(context)
                                                                             .bodyMediumFamily),
                                                               ),
+                                                          duration: const Duration(
+                                                              milliseconds:
+                                                                  600),
+                                                          curve: Curves.easeIn,
+                                                          child: Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                  .first
+                                                                  .ppirDoptpAct,
+                                                              'Date of Planting',
+                                                            ),
+                                                          ),
                                                         ),
                                                       ],
                                                     ),
@@ -2509,14 +2735,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                             .labelMediumFamily),
                                                               ),
                                                         ),
-                                                        AutoSizeText(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                .first
-                                                                .ppirRemarks,
-                                                            'Address',
-                                                          ),
+                                                        AnimatedDefaultTextStyle(
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
@@ -2532,6 +2751,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         FlutterFlowTheme.of(context)
                                                                             .bodyMediumFamily),
                                                               ),
+                                                          duration: const Duration(
+                                                              milliseconds:
+                                                                  600),
+                                                          curve: Curves.easeIn,
+                                                          child: Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                  .first
+                                                                  .ppirRemarks,
+                                                              'Address',
+                                                            ),
+                                                          ),
                                                         ),
                                                       ],
                                                     ),
@@ -2573,14 +2805,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                             .labelMediumFamily),
                                                               ),
                                                         ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                .first
-                                                                .ppirNameInsured,
-                                                            'Address',
-                                                          ),
+                                                        AnimatedDefaultTextStyle(
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
@@ -2596,6 +2821,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         FlutterFlowTheme.of(context)
                                                                             .bodyMediumFamily),
                                                               ),
+                                                          duration: const Duration(
+                                                              milliseconds:
+                                                                  600),
+                                                          curve: Curves.easeIn,
+                                                          child: Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                  .first
+                                                                  .ppirNameInsured,
+                                                              'Address',
+                                                            ),
+                                                          ),
                                                         ),
                                                       ],
                                                     ),
@@ -2685,14 +2923,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                             .labelMediumFamily),
                                                               ),
                                                         ),
-                                                        Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                .first
-                                                                .ppirNameIuia,
-                                                            'Address',
-                                                          ),
+                                                        AnimatedDefaultTextStyle(
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
@@ -2708,6 +2939,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         FlutterFlowTheme.of(context)
                                                                             .bodyMediumFamily),
                                                               ),
+                                                          duration: const Duration(
+                                                              milliseconds:
+                                                                  600),
+                                                          curve: Curves.easeIn,
+                                                          child: Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                  .first
+                                                                  .ppirNameIuia,
+                                                              'Address',
+                                                            ),
+                                                          ),
                                                         ),
                                                       ],
                                                     ),
