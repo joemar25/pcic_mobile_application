@@ -266,7 +266,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'aw9vxf6k': {
+    'jwmzkvdd': {
       'en': '',
       'tl': '',
     },
@@ -278,7 +278,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'h8yeyxa0': {
+    'j00imsmh': {
       'en': '',
       'tl': '',
     },
@@ -290,7 +290,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang Bagong Password...',
     },
-    'vnp7aw38': {
+    '8dkkek1f': {
       'en': '',
       'tl': '',
     },
@@ -1645,6 +1645,21 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'y0pshty8': {
       'en': 'Confirm',
+      'tl': '',
+    },
+  },
+  // noGpxDialog
+  {
+    '4sv8tytx': {
+      'en': 'Info',
+      'tl': '',
+    },
+    '5pkk2ssu': {
+      'en': 'No GPX Found!',
+      'tl': '',
+    },
+    'kbahfjhr': {
+      'en': 'Re-Geotag',
       'tl': '',
     },
   },

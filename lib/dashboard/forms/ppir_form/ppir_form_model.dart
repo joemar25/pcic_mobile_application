@@ -13,6 +13,8 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in ppirForm widget.
+  bool? confirm;
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in IconButton widget.
