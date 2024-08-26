@@ -3179,15 +3179,15 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   );
                                                 }
                                                 await SQLiteManager.instance
-                                                    .updatePPIRFormGpx(
-                                                  taskId: widget.taskId,
-                                                  gpx: ' ',
-                                                  isDirty: !FFAppState().ONLINE,
-                                                );
-                                                await SQLiteManager.instance
                                                     .updateTaskStatus(
                                                   taskId: widget.taskId,
                                                   status: 'ongoing',
+                                                  isDirty: !FFAppState().ONLINE,
+                                                );
+                                                await SQLiteManager.instance
+                                                    .updatePPIRFormGpx(
+                                                  taskId: widget.taskId,
+                                                  gpx: ' ',
                                                   isDirty: !FFAppState().ONLINE,
                                                 );
 
