@@ -224,11 +224,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
-                                            if (FFAppState().ONLINE &&
-                                                responsiveVisibility(
-                                                  context: context,
-                                                  phone: false,
-                                                ))
+                                            if (FFAppState().ONLINE)
                                               InkWell(
                                                 splashColor: Colors.transparent,
                                                 focusColor: Colors.transparent,
