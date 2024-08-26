@@ -94,17 +94,17 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
 
     return FutureBuilder<List<SelectPpirFormsRow>>(
       future: SQLiteManager.instance.selectPpirForms(
-        taskId: widget.taskId,
+        taskId: widget!.taskId,
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
           return Scaffold(
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            body: SizedBox(
+            body: Container(
               width: MediaQuery.sizeOf(context).width * 1.0,
               height: MediaQuery.sizeOf(context).height * 1.0,
-              child: const PageLoaderWidget(),
+              child: PageLoaderWidget(),
             ),
           );
         }
@@ -139,12 +139,12 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                             elevation: 0,
                             insetPadding: EdgeInsets.zero,
                             backgroundColor: Colors.transparent,
-                            alignment: const AlignmentDirectional(0.0, 0.0)
+                            alignment: AlignmentDirectional(0.0, 0.0)
                                 .resolve(Directionality.of(context)),
                             child: GestureDetector(
                               onTap: () =>
                                   FocusScope.of(dialogContext).unfocus(),
-                              child: const ContinueCancelDialogWidget(),
+                              child: ContinueCancelDialogWidget(),
                             ),
                           );
                         },
@@ -156,7 +156,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                           'taskDetails',
                           queryParameters: {
                             'taskId': serializeParam(
-                              widget.taskId,
+                              widget!.taskId,
                               ParamType.String,
                             ),
                             'taskStatus': serializeParam(
@@ -165,7 +165,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                             ),
                           }.withoutNulls,
                           extra: <String, dynamic>{
-                            kTransitionInfoKey: const TransitionInfo(
+                            kTransitionInfoKey: TransitionInfo(
                               hasTransition: true,
                               transitionType: PageTransitionType.topToBottom,
                               duration: Duration(milliseconds: 200),
@@ -197,11 +197,11 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                     wrapWithModel(
                       model: _model.connectivityModel,
                       updateCallback: () => setState(() {}),
-                      child: const ConnectivityWidget(),
+                      child: ConnectivityWidget(),
                     ),
                   ],
                 ),
-                actions: const [],
+                actions: [],
                 centerTitle: false,
                 elevation: 2.0,
               ),
@@ -215,7 +215,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               10.0, 10.0, 10.0, 0.0),
                           child: SingleChildScrollView(
                             child: Column(
@@ -223,7 +223,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.all(10.0),
+                                  padding: EdgeInsets.all(10.0),
                                   child: Container(
                                     width:
                                         MediaQuery.sizeOf(context).width * 1.0,
@@ -233,7 +233,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                       borderRadius: BorderRadius.circular(15.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(24.0),
+                                      padding: EdgeInsets.all(24.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
@@ -252,7 +252,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 12.0),
                                                   child: InkWell(
@@ -269,7 +269,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                       _model.generatedTaskXmlFile =
                                                           await actions
                                                               .generateTaskXml(
-                                                        widget.taskId,
+                                                        widget!.taskId,
                                                       );
                                                       if (_model.generatedTaskXmlFile !=
                                                               null &&
@@ -287,7 +287,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     .primaryText,
                                                               ),
                                                             ),
-                                                            duration: const Duration(
+                                                            duration: Duration(
                                                                 milliseconds:
                                                                     4000),
                                                             backgroundColor:
@@ -310,7 +310,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     .primaryText,
                                                               ),
                                                             ),
-                                                            duration: const Duration(
+                                                            duration: Duration(
                                                                 milliseconds:
                                                                     4000),
                                                             backgroundColor:
@@ -378,9 +378,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   .isMapDownloaded)
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsets
+                                                                  EdgeInsets
                                                                       .all(2.0),
-                                                              child: SizedBox(
+                                                              child: Container(
                                                                 width: MediaQuery.sizeOf(
                                                                             context)
                                                                         .width *
@@ -645,7 +645,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   ],
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsets.all(10.0),
+                                                  padding: EdgeInsets.all(10.0),
                                                   child: Row(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -656,7 +656,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                       Flexible(
                                                         child: Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   0.0, 0.0),
                                                           child: Builder(
                                                             builder: (context) =>
@@ -680,7 +680,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                       backgroundColor:
                                                                           Colors
                                                                               .transparent,
-                                                                      alignment: const AlignmentDirectional(
+                                                                      alignment: AlignmentDirectional(
                                                                               0.0,
                                                                               0.0)
                                                                           .resolve(
@@ -690,7 +690,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                         onTap: () =>
                                                                             FocusScope.of(dialogContext).unfocus(),
                                                                         child:
-                                                                            const ContinueReGeotagDialogWidget(),
+                                                                            ContinueReGeotagDialogWidget(),
                                                                       ),
                                                                     );
                                                                   },
@@ -713,7 +713,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                           (rows) =>
                                                                               rows.eq(
                                                                         'task_id',
-                                                                        widget
+                                                                        widget!
                                                                             .taskId,
                                                                       ),
                                                                     );
@@ -721,7 +721,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   await SQLiteManager
                                                                       .instance
                                                                       .updatePPIRFormGpx(
-                                                                    taskId: widget
+                                                                    taskId: widget!
                                                                         .taskId,
                                                                     gpx: ' ',
                                                                     isDirty:
@@ -736,7 +736,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                         {
                                                                       'taskId':
                                                                           serializeParam(
-                                                                        widget
+                                                                        widget!
                                                                             .taskId,
                                                                         ParamType
                                                                             .String,
@@ -765,7 +765,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     extra: <String,
                                                                         dynamic>{
                                                                       kTransitionInfoKey:
-                                                                          const TransitionInfo(
+                                                                          TransitionInfo(
                                                                         hasTransition:
                                                                             true,
                                                                         transitionType:
@@ -784,7 +784,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   .getText(
                                                                 'vlpe8yky' /* Repeat Geotag */,
                                                               ),
-                                                              icon: const Icon(
+                                                              icon: Icon(
                                                                 Icons
                                                                     .map_outlined,
                                                                 size: 15.0,
@@ -792,14 +792,14 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               options:
                                                                   FFButtonOptions(
                                                                 height: 40.0,
-                                                                padding: const EdgeInsetsDirectional
+                                                                padding: EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         24.0,
                                                                         0.0,
                                                                         24.0,
                                                                         0.0),
                                                                 iconPadding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -826,7 +826,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     ),
                                                                 elevation: 3.0,
                                                                 borderSide:
-                                                                    const BorderSide(
+                                                                    BorderSide(
                                                                   color: Colors
                                                                       .transparent,
                                                                   width: 1.0,
@@ -844,7 +844,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         Flexible(
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         20.0,
                                                                         0.0,
@@ -857,7 +857,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                 _model.gpxLink =
                                                                     await actions
                                                                         .getGpxLink(
-                                                                  widget
+                                                                  widget!
                                                                       .taskId,
                                                                 );
                                                                 await launchURL(
@@ -871,7 +871,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   .getText(
                                                                 '0er41e9i' /* Download */,
                                                               ),
-                                                              icon: const Icon(
+                                                              icon: Icon(
                                                                 Icons
                                                                     .download_outlined,
                                                                 size: 15.0,
@@ -879,14 +879,14 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               options:
                                                                   FFButtonOptions(
                                                                 height: 40.0,
-                                                                padding: const EdgeInsetsDirectional
+                                                                padding: EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         24.0,
                                                                         0.0,
                                                                         24.0,
                                                                         0.0),
                                                                 iconPadding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -913,7 +913,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     ),
                                                                 elevation: 3.0,
                                                                 borderSide:
-                                                                    const BorderSide(
+                                                                    BorderSide(
                                                                   color: Colors
                                                                       .transparent,
                                                                   width: 1.0,
@@ -930,7 +930,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 16.0, 0.0, 16.0),
                                                   child: Divider(
@@ -958,7 +958,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 12.0),
                                                   child: Text(
@@ -990,7 +990,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                 if (kDebugMode)
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 10.0,
                                                                 0.0, 10.0),
                                                     child: TextFormField(
@@ -1117,7 +1117,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                 .of(context)
                                                             .secondaryBackground,
                                                         contentPadding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     16.0,
                                                                     12.0,
@@ -1157,7 +1157,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     ),
                                                   ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 10.0),
                                                   child: TextFormField(
@@ -1271,7 +1271,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               .of(context)
                                                           .secondaryBackground,
                                                       contentPadding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   16.0,
                                                                   12.0,
@@ -1307,7 +1307,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 10.0),
                                                   child: TextFormField(
@@ -1416,7 +1416,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               .of(context)
                                                           .secondaryBackground,
                                                       contentPadding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   16.0,
                                                                   12.0,
@@ -1452,7 +1452,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 10.0),
                                                   child: TextFormField(
@@ -1561,7 +1561,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               .of(context)
                                                           .secondaryBackground,
                                                       contentPadding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   16.0,
                                                                   12.0,
@@ -1597,7 +1597,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 10.0),
                                                   child: TextFormField(
@@ -1705,7 +1705,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               .of(context)
                                                           .secondaryBackground,
                                                       contentPadding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   16.0,
                                                                   12.0,
@@ -1741,7 +1741,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 10.0),
                                                   child: TextFormField(
@@ -1758,7 +1758,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     onChanged: (_) =>
                                                         EasyDebounce.debounce(
                                                       '_model.ppirTrackFarmlocTextController',
-                                                      const Duration(
+                                                      Duration(
                                                           milliseconds: 2000),
                                                       () => setState(() {}),
                                                     ),
@@ -1862,7 +1862,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               .of(context)
                                                           .secondaryBackground,
                                                       contentPadding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   16.0,
                                                                   12.0,
@@ -1895,7 +1895,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 16.0, 0.0, 16.0),
                                                   child: Divider(
@@ -1906,9 +1906,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   ),
                                                 ),
                                               ]
-                                                  .divide(const SizedBox(height: 5.0))
+                                                  .divide(SizedBox(height: 5.0))
                                                   .around(
-                                                      const SizedBox(height: 5.0)),
+                                                      SizedBox(height: 5.0)),
                                             ),
                                           ),
                                           Container(
@@ -1926,7 +1926,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 12.0),
                                                   child: Text(
@@ -2036,7 +2036,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                       WrapCrossAlignment.start,
                                                 ),
                                                 Container(
-                                                  decoration: const BoxDecoration(),
+                                                  decoration: BoxDecoration(),
                                                   child: Column(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -2240,7 +2240,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                             borderWidth: 2.0,
                                                             borderRadius: 8.0,
                                                             margin:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         16.0,
                                                                         4.0,
@@ -2262,7 +2262,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   ),
                                                 ),
                                                 Container(
-                                                  decoration: const BoxDecoration(),
+                                                  decoration: BoxDecoration(),
                                                   child: Column(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -2466,7 +2466,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                             borderWidth: 2.0,
                                                             borderRadius: 8.0,
                                                             margin:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         16.0,
                                                                         4.0,
@@ -2488,7 +2488,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 16.0, 0.0, 16.0),
                                                   child: Divider(
@@ -2499,9 +2499,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   ),
                                                 ),
                                               ]
-                                                  .divide(const SizedBox(height: 5.0))
+                                                  .divide(SizedBox(height: 5.0))
                                                   .around(
-                                                      const SizedBox(height: 5.0)),
+                                                      SizedBox(height: 5.0)),
                                             ),
                                           ),
                                           Container(
@@ -2519,7 +2519,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 12.0),
                                                   child: Text(
@@ -2549,7 +2549,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 10.0),
                                                   child: TextFormField(
@@ -2566,7 +2566,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     onChanged: (_) =>
                                                         EasyDebounce.debounce(
                                                       '_model.ppirAreaActFieldTextController',
-                                                      const Duration(
+                                                      Duration(
                                                           milliseconds: 2000),
                                                       () => setState(() {}),
                                                     ),
@@ -2666,7 +2666,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               .of(context)
                                                           .secondaryBackground,
                                                       contentPadding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   16.0,
                                                                   12.0,
@@ -2709,7 +2709,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     Expanded(
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     10.0,
@@ -2729,7 +2729,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               EasyDebounce
                                                                   .debounce(
                                                             '_model.ppirAreaDopDsFieldTextController',
-                                                            const Duration(
+                                                            Duration(
                                                                 milliseconds:
                                                                     2000),
                                                             () =>
@@ -2843,7 +2843,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     .of(context)
                                                                 .secondaryBackground,
                                                             contentPadding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         16.0,
                                                                         12.0,
@@ -2899,7 +2899,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         size: 20.0,
                                                       ),
                                                       onPressed: () async {
-                                                        final datePicked1Date =
+                                                        final _datePicked1Date =
                                                             await showDatePicker(
                                                           context: context,
                                                           initialDate:
@@ -2910,16 +2910,16 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               DateTime(2050),
                                                         );
 
-                                                        if (datePicked1Date !=
+                                                        if (_datePicked1Date !=
                                                             null) {
                                                           safeSetState(() {
                                                             _model.datePicked1 =
                                                                 DateTime(
-                                                              datePicked1Date
+                                                              _datePicked1Date
                                                                   .year,
-                                                              datePicked1Date
+                                                              _datePicked1Date
                                                                   .month,
-                                                              datePicked1Date
+                                                              _datePicked1Date
                                                                   .day,
                                                             );
                                                           });
@@ -2945,7 +2945,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                       },
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(width: 4.0)),
+                                                      SizedBox(width: 4.0)),
                                                 ),
                                                 Row(
                                                   mainAxisSize:
@@ -2970,7 +2970,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                             EasyDebounce
                                                                 .debounce(
                                                           '_model.ppirAreaDopTpFieldTextController',
-                                                          const Duration(
+                                                          Duration(
                                                               milliseconds:
                                                                   2000),
                                                           () => setState(() {}),
@@ -3083,7 +3083,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   .of(context)
                                                               .secondaryBackground,
                                                           contentPadding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       16.0,
                                                                       12.0,
@@ -3139,7 +3139,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         size: 20.0,
                                                       ),
                                                       onPressed: () async {
-                                                        final datePicked2Date =
+                                                        final _datePicked2Date =
                                                             await showDatePicker(
                                                           context: context,
                                                           initialDate:
@@ -3150,16 +3150,16 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               DateTime(2050),
                                                         );
 
-                                                        if (datePicked2Date !=
+                                                        if (_datePicked2Date !=
                                                             null) {
                                                           safeSetState(() {
                                                             _model.datePicked2 =
                                                                 DateTime(
-                                                              datePicked2Date
+                                                              _datePicked2Date
                                                                   .year,
-                                                              datePicked2Date
+                                                              _datePicked2Date
                                                                   .month,
-                                                              datePicked2Date
+                                                              _datePicked2Date
                                                                   .day,
                                                             );
                                                           });
@@ -3185,10 +3185,10 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                       },
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(width: 4.0)),
+                                                      SizedBox(width: 4.0)),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 16.0, 0.0, 16.0),
                                                   child: Divider(
@@ -3199,9 +3199,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   ),
                                                 ),
                                               ]
-                                                  .divide(const SizedBox(height: 5.0))
+                                                  .divide(SizedBox(height: 5.0))
                                                   .around(
-                                                      const SizedBox(height: 5.0)),
+                                                      SizedBox(height: 5.0)),
                                             ),
                                           ),
                                           Container(
@@ -3219,7 +3219,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 12.0),
                                                   child: Text(
@@ -3249,7 +3249,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 10.0),
                                                   child: TextFormField(
@@ -3266,7 +3266,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     onChanged: (_) =>
                                                         EasyDebounce.debounce(
                                                       '_model.ppirRemarksFieldTextController',
-                                                      const Duration(
+                                                      Duration(
                                                           milliseconds: 2000),
                                                       () => setState(() {}),
                                                     ),
@@ -3366,7 +3366,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               .of(context)
                                                           .secondaryBackground,
                                                       contentPadding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   16.0,
                                                                   24.0,
@@ -3401,7 +3401,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 16.0, 0.0, 16.0),
                                                   child: Divider(
@@ -3412,7 +3412,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 10.0),
                                                   child: TextFormField(
@@ -3429,7 +3429,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     onChanged: (_) =>
                                                         EasyDebounce.debounce(
                                                       '_model.ppirPreparedByNameFieldTextController',
-                                                      const Duration(
+                                                      Duration(
                                                           milliseconds: 2000),
                                                       () => setState(() {}),
                                                     ),
@@ -3529,7 +3529,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               .of(context)
                                                           .secondaryBackground,
                                                       contentPadding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   16.0,
                                                                   12.0,
@@ -3563,11 +3563,11 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                 ),
                                                 Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 10.0,
                                                                 0.0, 10.0),
                                                     child: Container(
@@ -3596,7 +3596,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                       ),
                                                       child: Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: InkWell(
                                                           splashColor: Colors
@@ -3630,7 +3630,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                             context),
                                                                     child:
                                                                         SignatureWidget(
-                                                                      taskId: widget
+                                                                      taskId: widget!
                                                                           .taskId!,
                                                                       signatureFor:
                                                                           'insured',
@@ -3709,7 +3709,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                               .height *
                                                                           0.175,
                                                                       decoration:
-                                                                          const BoxDecoration(
+                                                                          BoxDecoration(
                                                                         color: Colors
                                                                             .white,
                                                                         borderRadius:
@@ -3727,9 +3727,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                       child:
                                                                           Padding(
                                                                         padding:
-                                                                            const EdgeInsets.all(10.0),
+                                                                            EdgeInsets.all(10.0),
                                                                         child:
-                                                                            SizedBox(
+                                                                            Container(
                                                                           width:
                                                                               MediaQuery.sizeOf(context).width * 1.0,
                                                                           height:
@@ -3741,7 +3741,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                             height:
                                                                                 MediaQuery.sizeOf(context).height * 1.0,
                                                                             taskId:
-                                                                                widget.taskId,
+                                                                                widget!.taskId,
                                                                             signatureBlob:
                                                                                 ppirFormSelectPpirFormsRowList.first.ppirSigInsured,
                                                                           ),
@@ -3758,7 +3758,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 10.0),
                                                   child: TextFormField(
@@ -3775,7 +3775,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     onChanged: (_) =>
                                                         EasyDebounce.debounce(
                                                       '_model.ppirConfirmedByNameFieldTextController',
-                                                      const Duration(
+                                                      Duration(
                                                           milliseconds: 2000),
                                                       () => setState(() {}),
                                                     ),
@@ -3877,7 +3877,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               .of(context)
                                                           .secondaryBackground,
                                                       contentPadding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   16.0,
                                                                   12.0,
@@ -3911,11 +3911,11 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                 ),
                                                 Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 10.0,
                                                                 0.0, 10.0),
                                                     child: Container(
@@ -3944,7 +3944,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                       ),
                                                       child: Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: InkWell(
                                                           splashColor: Colors
@@ -3978,7 +3978,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                             context),
                                                                     child:
                                                                         SignatureWidget(
-                                                                      taskId: widget
+                                                                      taskId: widget!
                                                                           .taskId!,
                                                                       signatureFor:
                                                                           'iuia',
@@ -4057,7 +4057,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                               .height *
                                                                           0.178,
                                                                       decoration:
-                                                                          const BoxDecoration(
+                                                                          BoxDecoration(
                                                                         color: Colors
                                                                             .white,
                                                                         borderRadius:
@@ -4075,9 +4075,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                       child:
                                                                           Padding(
                                                                         padding:
-                                                                            const EdgeInsets.all(10.0),
+                                                                            EdgeInsets.all(10.0),
                                                                         child:
-                                                                            SizedBox(
+                                                                            Container(
                                                                           width:
                                                                               MediaQuery.sizeOf(context).width * 1.0,
                                                                           height:
@@ -4089,7 +4089,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                             height:
                                                                                 MediaQuery.sizeOf(context).height * 1.0,
                                                                             taskId:
-                                                                                widget.taskId,
+                                                                                widget!.taskId,
                                                                             signatureBlob:
                                                                                 ppirFormSelectPpirFormsRowList.first.ppirSigIuia,
                                                                           ),
@@ -4106,21 +4106,21 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   ),
                                                 ),
                                               ]
-                                                  .divide(const SizedBox(height: 5.0))
+                                                  .divide(SizedBox(height: 5.0))
                                                   .around(
-                                                      const SizedBox(height: 5.0)),
+                                                      SizedBox(height: 5.0)),
                                             ),
                                           ),
                                         ]
-                                            .divide(const SizedBox(height: 5.0))
-                                            .around(const SizedBox(height: 5.0)),
+                                            .divide(SizedBox(height: 5.0))
+                                            .around(SizedBox(height: 5.0)),
                                       ),
                                     ),
                                   ),
                                 ),
                               ]
-                                  .divide(const SizedBox(height: 5.0))
-                                  .around(const SizedBox(height: 5.0)),
+                                  .divide(SizedBox(height: 5.0))
+                                  .around(SizedBox(height: 5.0)),
                             ),
                           ),
                         ),
@@ -4148,14 +4148,14 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                         insetPadding: EdgeInsets.zero,
                                         backgroundColor: Colors.transparent,
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0)
+                                            AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
                                         child: GestureDetector(
                                           onTap: () =>
                                               FocusScope.of(dialogContext)
                                                   .unfocus(),
-                                          child: const ContinueCancelDialogWidget(),
+                                          child: ContinueCancelDialogWidget(),
                                         ),
                                       );
                                     },
@@ -4166,7 +4166,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                     context.pushNamed(
                                       'dashboard',
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
+                                        kTransitionInfoKey: TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.fade,
@@ -4181,16 +4181,16 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                 text: FFLocalizations.of(context).getText(
                                   'aae0jxzm' /* Cancel */,
                                 ),
-                                icon: const Icon(
+                                icon: Icon(
                                   Icons.cancel_presentation_sharp,
                                   size: 15.0,
                                 ),
                                 options: FFButtonOptions(
                                   width: 120.0,
                                   height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).error,
                                   textStyle: FlutterFlowTheme.of(context)
@@ -4206,7 +4206,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     .titleSmallFamily),
                                       ),
                                   elevation: 3.0,
-                                  borderSide: const BorderSide(
+                                  borderSide: BorderSide(
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),
@@ -4225,14 +4225,14 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                         insetPadding: EdgeInsets.zero,
                                         backgroundColor: Colors.transparent,
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0)
+                                            AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
                                         child: GestureDetector(
                                           onTap: () =>
                                               FocusScope.of(dialogContext)
                                                   .unfocus(),
-                                          child: const ContinueSaveDialogWidget(),
+                                          child: ContinueSaveDialogWidget(),
                                         ),
                                       );
                                     },
@@ -4274,7 +4274,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                         },
                                         matchingRows: (rows) => rows.eq(
                                           'task_id',
-                                          widget.taskId,
+                                          widget!.taskId,
                                         ),
                                       );
                                       await TasksTable().update(
@@ -4283,12 +4283,12 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                         },
                                         matchingRows: (rows) => rows.eq(
                                           'id',
-                                          widget.taskId,
+                                          widget!.taskId,
                                         ),
                                       );
                                     }
                                     await SQLiteManager.instance.updatePPIRForm(
-                                      taskId: widget.taskId,
+                                      taskId: widget!.taskId,
                                       ppirSvpAct:
                                           _model.ppirSvpActSelectionValue,
                                       ppirDopdsAct: _model
@@ -4318,7 +4318,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                     );
                                     await SQLiteManager.instance
                                         .updateTaskStatus(
-                                      taskId: widget.taskId,
+                                      taskId: widget!.taskId,
                                       status: 'ongoing',
                                       isDirty: !FFAppState().ONLINE,
                                     );
@@ -4327,7 +4327,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                       'formSuccess',
                                       queryParameters: {
                                         'taskId': serializeParam(
-                                          widget.taskId,
+                                          widget!.taskId,
                                           ParamType.String,
                                         ),
                                         'type': serializeParam(
@@ -4336,7 +4336,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
+                                        kTransitionInfoKey: TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.scale,
@@ -4352,16 +4352,16 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                 text: FFLocalizations.of(context).getText(
                                   'lgxphrlo' /* Save */,
                                 ),
-                                icon: const Icon(
+                                icon: Icon(
                                   Icons.save,
                                   size: 15.0,
                                 ),
                                 options: FFButtonOptions(
                                   width: 120.0,
                                   height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color:
                                       FlutterFlowTheme.of(context).earthYellow,
@@ -4378,7 +4378,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     .titleSmallFamily),
                                       ),
                                   elevation: 3.0,
-                                  borderSide: const BorderSide(
+                                  borderSide: BorderSide(
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),
@@ -4428,7 +4428,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     backgroundColor:
                                                         Colors.transparent,
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                                 0.0, 0.0)
                                                             .resolve(
                                                                 Directionality.of(
@@ -4439,7 +4439,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   dialogContext)
                                                               .unfocus(),
                                                       child:
-                                                          const ContinueSubmitDialogWidget(),
+                                                          ContinueSubmitDialogWidget(),
                                                     ),
                                                   );
                                                 },
@@ -4450,7 +4450,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                               if (_model.continueSubmit!) {
                                                 await SQLiteManager.instance
                                                     .updatePPIRForm(
-                                                  taskId: widget.taskId,
+                                                  taskId: widget!.taskId,
                                                   ppirSvpAct: _model
                                                       .ppirSvpActSelectionValue,
                                                   ppirDopdsAct: _model
@@ -4541,7 +4541,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   matchingRows: (rows) =>
                                                       rows.eq(
                                                     'task_id',
-                                                    widget.taskId,
+                                                    widget!.taskId,
                                                   ),
                                                 );
                                                 await TasksTable().update(
@@ -4551,37 +4551,37 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   matchingRows: (rows) =>
                                                       rows.eq(
                                                     'id',
-                                                    widget.taskId,
+                                                    widget!.taskId,
                                                   ),
                                                 );
                                                 await SQLiteManager.instance
                                                     .updateTaskStatus(
-                                                  taskId: widget.taskId,
+                                                  taskId: widget!.taskId,
                                                   status: 'completed',
                                                   isDirty: false,
                                                 );
                                                 await actions.saveBlobToBucket(
-                                                  widget.taskId,
+                                                  widget!.taskId,
                                                 );
                                                 _model.generatedXML =
                                                     await actions
                                                         .generateTaskXml(
-                                                  widget.taskId,
+                                                  widget!.taskId,
                                                 );
                                                 await actions.saveTaskXml(
                                                   _model.generatedXML,
-                                                  widget.taskId,
+                                                  widget!.taskId,
                                                 );
                                                 _model.isFtpSaved =
                                                     await actions.saveToFTP(
-                                                  widget.taskId,
+                                                  widget!.taskId,
                                                 );
                                                 if (_model.isFtpSaved!) {
                                                   context.goNamed(
                                                     'formSuccess',
                                                     queryParameters: {
                                                       'taskId': serializeParam(
-                                                        widget.taskId,
+                                                        widget!.taskId,
                                                         ParamType.String,
                                                       ),
                                                       'type': serializeParam(
@@ -4591,7 +4591,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     }.withoutNulls,
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
-                                                          const TransitionInfo(
+                                                          TransitionInfo(
                                                         hasTransition: true,
                                                         transitionType:
                                                             PageTransitionType
@@ -4614,7 +4614,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     }.withoutNulls,
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
-                                                          const TransitionInfo(
+                                                          TransitionInfo(
                                                         hasTransition: true,
                                                         transitionType:
                                                             PageTransitionType
@@ -4639,7 +4639,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     backgroundColor:
                                                         Colors.transparent,
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                                 0.0, 0.0)
                                                             .resolve(
                                                                 Directionality.of(
@@ -4650,7 +4650,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   dialogContext)
                                                               .unfocus(),
                                                       child:
-                                                          const FillOutAllFieldsDialogWidget(),
+                                                          FillOutAllFieldsDialogWidget(),
                                                     ),
                                                   );
                                                 },
@@ -4679,7 +4679,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   backgroundColor:
                                                       Colors.transparent,
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                               0.0, 0.0)
                                                           .resolve(
                                                               Directionality.of(
@@ -4689,7 +4689,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                             dialogContext)
                                                         .unfocus(),
                                                     child:
-                                                        const FillOutAllFieldsDialogWidget(),
+                                                        FillOutAllFieldsDialogWidget(),
                                                   ),
                                                 );
                                               },
@@ -4701,16 +4701,16 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                   text: FFLocalizations.of(context).getText(
                                     'wrod6how' /* Submit */,
                                   ),
-                                  icon: const Icon(
+                                  icon: Icon(
                                     Icons.check_sharp,
                                     size: 15.0,
                                   ),
                                   options: FFButtonOptions(
                                     width: 120.0,
                                     height: 40.0,
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
-                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -4727,7 +4727,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                       .titleSmallFamily),
                                         ),
                                     elevation: 3.0,
-                                    borderSide: const BorderSide(
+                                    borderSide: BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
@@ -4741,8 +4741,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                 ),
                               ),
                           ]
-                              .divide(const SizedBox(width: 5.0))
-                              .around(const SizedBox(width: 5.0)),
+                              .divide(SizedBox(width: 5.0))
+                              .around(SizedBox(width: 5.0)),
                         ),
                       ),
                     ],

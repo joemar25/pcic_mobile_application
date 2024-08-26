@@ -9,7 +9,7 @@ class SyncQueueTable extends SupabaseTable<SyncQueueRow> {
 }
 
 class SyncQueueRow extends SupabaseDataRow {
-  SyncQueueRow(super.data);
+  SyncQueueRow(Map<String, dynamic> data) : super(data);
 
   @override
   SupabaseTable get table => SyncQueueTable();

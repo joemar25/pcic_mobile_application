@@ -2,8 +2,10 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 import 'upload_failed_dialog_model.dart';
 export 'upload_failed_dialog_model.dart';
 
@@ -40,7 +42,7 @@ class _UploadFailedDialogWidgetState extends State<UploadFailedDialogWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Container(
         width: 330.0,
         height: 375.0,
@@ -49,7 +51,7 @@ class _UploadFailedDialogWidgetState extends State<UploadFailedDialogWidget> {
           borderRadius: BorderRadius.circular(24.0),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: EdgeInsets.all(20.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -74,7 +76,7 @@ class _UploadFailedDialogWidgetState extends State<UploadFailedDialogWidget> {
                         children: [
                           Expanded(
                             child: Align(
-                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
                                   'v46c8giv' /* Failed */,
@@ -104,7 +106,7 @@ class _UploadFailedDialogWidgetState extends State<UploadFailedDialogWidget> {
                     children: [
                       Expanded(
                         child: Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
                               '014tcrks' /* Failed to upload to FTP. */,
@@ -127,7 +129,7 @@ class _UploadFailedDialogWidgetState extends State<UploadFailedDialogWidget> {
                       ),
                     ],
                   ),
-                ].divide(const SizedBox(height: 15.0)),
+                ].divide(SizedBox(height: 15.0)),
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
@@ -143,10 +145,10 @@ class _UploadFailedDialogWidgetState extends State<UploadFailedDialogWidget> {
                       ),
                       options: FFButtonOptions(
                         height: 40.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).error,
                         textStyle: FlutterFlowTheme.of(context)
                             .titleSmall
@@ -161,7 +163,7 @@ class _UploadFailedDialogWidgetState extends State<UploadFailedDialogWidget> {
                                       .titleSmallFamily),
                             ),
                         elevation: 0.0,
-                        borderSide: const BorderSide(
+                        borderSide: BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),
@@ -169,9 +171,9 @@ class _UploadFailedDialogWidgetState extends State<UploadFailedDialogWidget> {
                       ),
                     ),
                   ),
-                ].divide(const SizedBox(width: 15.0)),
+                ].divide(SizedBox(width: 15.0)),
               ),
-            ].divide(const SizedBox(height: 10.0)),
+            ].divide(SizedBox(height: 10.0)),
           ),
         ),
       ),

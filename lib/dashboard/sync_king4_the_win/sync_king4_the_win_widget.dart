@@ -6,9 +6,12 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/page_loader/page_loader_widget.dart';
+import 'dart:math';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -64,22 +67,22 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
             curve: Curves.easeInOut,
             delay: 150.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0.8, 0.8),
-            end: const Offset(1.0, 1.0),
+            begin: Offset(0.8, 0.8),
+            end: Offset(1.0, 1.0),
           ),
           TiltEffect(
             curve: Curves.easeInOut,
             delay: 150.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0, 1.396),
-            end: const Offset(0, 0),
+            begin: Offset(0, 1.396),
+            end: Offset(0, 0),
           ),
           MoveEffect(
             curve: Curves.easeInOut,
             delay: 150.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0.0, 40.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 40.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -91,8 +94,8 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
             curve: Curves.easeInOutQuint,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(1.0, 1.0),
-            end: const Offset(1.0, 1.0),
+            begin: Offset(1.0, 1.0),
+            end: Offset(1.0, 1.0),
           ),
         ],
       ),
@@ -104,7 +107,7 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            color: const Color(0x80FFFFFF),
+            color: Color(0x80FFFFFF),
             angle: 0.524,
           ),
         ],
@@ -138,7 +141,7 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
         if (!snapshot.hasData) {
           return Scaffold(
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            body: const PageLoaderWidget(),
+            body: PageLoaderWidget(),
           );
         }
         final syncKing4TheWinSelectProfileRowList = snapshot.data!;
@@ -151,7 +154,7 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
             body: SafeArea(
               top: true,
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
                 child: Container(
                   width: MediaQuery.sizeOf(context).width * 1.0,
                   height: MediaQuery.sizeOf(context).height * 1.0,
@@ -161,7 +164,7 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                     maxWidth: MediaQuery.sizeOf(context).width * 1.0,
                     maxHeight: MediaQuery.sizeOf(context).height * 1.0,
                   ),
-                  decoration: const BoxDecoration(),
+                  decoration: BoxDecoration(),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -203,7 +206,7 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                                       _model.iteration,
                                       0,
                                     )]
-                                        .id,
+                                        ?.id,
                                     'id',
                                   ),
                                 ),
@@ -215,7 +218,7 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                                     _model.iteration,
                                     0,
                                   )]
-                                      .id,
+                                      ?.id,
                                   'id',
                                 ),
                                 taskNumber: valueOrDefault<String>(
@@ -224,7 +227,7 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                                     _model.iteration,
                                     0,
                                   )]
-                                      .serviceGroup,
+                                      ?.serviceGroup,
                                   'task number',
                                 ),
                                 serviceGroup: valueOrDefault<String>(
@@ -233,7 +236,7 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                                     _model.iteration,
                                     0,
                                   )]
-                                      .serviceGroup,
+                                      ?.serviceGroup,
                                   'task number',
                                 ),
                                 status: valueOrDefault<String>(
@@ -242,7 +245,7 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                                     _model.iteration,
                                     0,
                                   )]
-                                      .status,
+                                      ?.status,
                                   'task number',
                                 ),
                                 serviceType: valueOrDefault<String>(
@@ -251,7 +254,7 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                                     _model.iteration,
                                     0,
                                   )]
-                                      .serviceType,
+                                      ?.serviceType,
                                   'task number',
                                 ),
                                 priority: valueOrDefault<String>(
@@ -260,7 +263,7 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                                     _model.iteration,
                                     0,
                                   )]
-                                      .priority,
+                                      ?.priority,
                                   'task number',
                                 ),
                                 assignee: valueOrDefault<String>(
@@ -269,7 +272,7 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                                     _model.iteration,
                                     0,
                                   )]
-                                      .assignee,
+                                      ?.assignee,
                                   'task number',
                                 ),
                                 dateAdded: valueOrDefault<String>(
@@ -278,7 +281,7 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                                     _model.iteration,
                                     0,
                                   )]
-                                      .dateAdded
+                                      ?.dateAdded
                                       ?.toString(),
                                   'task number',
                                 ),
@@ -288,7 +291,7 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                                     _model.iteration,
                                     0,
                                   )]
-                                      .dateAccess
+                                      ?.dateAccess
                                       ?.toString(),
                                   'task number',
                                 ),
@@ -298,95 +301,95 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                                     _model.iteration,
                                     0,
                                   )]
-                                      .fileId,
+                                      ?.fileId,
                                   'task number',
                                 ),
                               );
                               await SQLiteManager.instance
                                   .insertOfflinePPIRForm(
                                 taskId:
-                                    _model.onlineTasks?[_model.iteration!].id,
+                                    _model.onlineTasks?[_model.iteration!]?.id,
                                 ppirAssignmentId:
-                                    _model.ppirOutput?.first.ppirAssignmentid,
-                                gpx: _model.ppirOutput?.first.gpx,
+                                    _model.ppirOutput?.first?.ppirAssignmentid,
+                                gpx: _model.ppirOutput?.first?.gpx,
                                 ppirInsuranceId:
-                                    _model.ppirOutput?.first.ppirInsuranceid,
+                                    _model.ppirOutput?.first?.ppirInsuranceid,
                                 ppirFarmerName:
-                                    _model.ppirOutput?.first.ppirFarmername,
+                                    _model.ppirOutput?.first?.ppirFarmername,
                                 ppirAddress:
-                                    _model.ppirOutput?.first.ppirAddress,
+                                    _model.ppirOutput?.first?.ppirAddress,
                                 ppirFarmerType:
-                                    _model.ppirOutput?.first.ppirFarmertype,
+                                    _model.ppirOutput?.first?.ppirFarmertype,
                                 ppirMobileNo:
-                                    _model.ppirOutput?.first.ppirMobileno,
+                                    _model.ppirOutput?.first?.ppirMobileno,
                                 ppirGroupName:
-                                    _model.ppirOutput?.first.ppirGroupname,
+                                    _model.ppirOutput?.first?.ppirGroupname,
                                 ppirGroupAddress:
-                                    _model.ppirOutput?.first.ppirGroupaddress,
+                                    _model.ppirOutput?.first?.ppirGroupaddress,
                                 ppirLenderName:
-                                    _model.ppirOutput?.first.ppirLendername,
+                                    _model.ppirOutput?.first?.ppirLendername,
                                 ppirLenderAddress:
-                                    _model.ppirOutput?.first.ppirLenderaddress,
-                                ppirCICNo: _model.ppirOutput?.first.ppirCicno,
+                                    _model.ppirOutput?.first?.ppirLenderaddress,
+                                ppirCICNo: _model.ppirOutput?.first?.ppirCicno,
                                 ppirFarmLoc:
-                                    _model.ppirOutput?.first.ppirFarmloc,
-                                ppirNorth: _model.ppirOutput?.first.ppirNorth,
-                                ppirSouth: _model.ppirOutput?.first.ppirSouth,
-                                ppirEast: _model.ppirOutput?.first.ppirEast,
-                                ppirWest: _model.ppirOutput?.first.ppirWest,
-                                ppirAtt1: _model.ppirOutput?.first.ppirAtt1,
-                                ppirAtt2: _model.ppirOutput?.first.ppirAtt2,
-                                ppirAtt3: _model.ppirOutput?.first.ppirAtt3,
-                                ppirAtt4: _model.ppirOutput?.first.ppirAtt4,
+                                    _model.ppirOutput?.first?.ppirFarmloc,
+                                ppirNorth: _model.ppirOutput?.first?.ppirNorth,
+                                ppirSouth: _model.ppirOutput?.first?.ppirSouth,
+                                ppirEast: _model.ppirOutput?.first?.ppirEast,
+                                ppirWest: _model.ppirOutput?.first?.ppirWest,
+                                ppirAtt1: _model.ppirOutput?.first?.ppirAtt1,
+                                ppirAtt2: _model.ppirOutput?.first?.ppirAtt2,
+                                ppirAtt3: _model.ppirOutput?.first?.ppirAtt3,
+                                ppirAtt4: _model.ppirOutput?.first?.ppirAtt4,
                                 ppirAreaAci:
-                                    _model.ppirOutput?.first.ppirAreaAci,
+                                    _model.ppirOutput?.first?.ppirAreaAci,
                                 ppirAreaAct:
-                                    _model.ppirOutput?.first.ppirAreaAct,
+                                    _model.ppirOutput?.first?.ppirAreaAct,
                                 ppirDopdsAci:
-                                    _model.ppirOutput?.first.ppirDopdsAci,
+                                    _model.ppirOutput?.first?.ppirDopdsAci,
                                 ppirDopdsAct:
-                                    _model.ppirOutput?.first.ppirDopdsAct,
+                                    _model.ppirOutput?.first?.ppirDopdsAct,
                                 ppirDoptpAci:
-                                    _model.ppirOutput?.first.ppirDoptpAci,
+                                    _model.ppirOutput?.first?.ppirDoptpAci,
                                 ppirDoptpAct:
-                                    _model.ppirOutput?.first.ppirDoptpAct,
+                                    _model.ppirOutput?.first?.ppirDoptpAct,
                                 ppirSvpAci:
-                                    _model.ppirOutput?.first.ppirSvpAci,
+                                    _model.ppirOutput?.first?.ppirSvpAci,
                                 ppirSvpAct:
-                                    _model.ppirOutput?.first.ppirSvpAct,
+                                    _model.ppirOutput?.first?.ppirSvpAct,
                                 ppirVariety:
-                                    _model.ppirOutput?.first.ppirVariety,
+                                    _model.ppirOutput?.first?.ppirVariety,
                                 ppirStageCrop:
-                                    _model.ppirOutput?.first.ppirStagecrop,
+                                    _model.ppirOutput?.first?.ppirStagecrop,
                                 ppirRemarks:
-                                    _model.ppirOutput?.first.ppirRemarks,
+                                    _model.ppirOutput?.first?.ppirRemarks,
                                 ppirNameInsured:
-                                    _model.ppirOutput?.first.ppirNameInsured,
+                                    _model.ppirOutput?.first?.ppirNameInsured,
                                 ppirNameIUIA:
-                                    _model.ppirOutput?.first.ppirNameIuia,
+                                    _model.ppirOutput?.first?.ppirNameIuia,
                                 ppirSigInsured:
-                                    _model.ppirOutput?.first.ppirSigInsured,
+                                    _model.ppirOutput?.first?.ppirSigInsured,
                                 ppirSigIUIA:
-                                    _model.ppirOutput?.first.ppirSigIuia,
+                                    _model.ppirOutput?.first?.ppirSigIuia,
                                 trackLastCoord:
-                                    _model.ppirOutput?.first.trackLastCoord,
+                                    _model.ppirOutput?.first?.trackLastCoord,
                                 trackDateTime:
-                                    _model.ppirOutput?.first.trackDateTime,
+                                    _model.ppirOutput?.first?.trackDateTime,
                                 trackTotalArea:
-                                    _model.ppirOutput?.first.trackTotalArea,
+                                    _model.ppirOutput?.first?.trackTotalArea,
                                 trackTotalDistance: _model
-                                    .ppirOutput?.first.trackTotalDistance,
-                                createdAt: _model.ppirOutput?.first.createdAt
+                                    .ppirOutput?.first?.trackTotalDistance,
+                                createdAt: _model.ppirOutput?.first?.createdAt
                                     ?.toString(),
-                                updatedAt: _model.ppirOutput?.first.updatedAt
+                                updatedAt: _model.ppirOutput?.first?.updatedAt
                                     ?.toString(),
                                 syncStatus:
-                                    _model.ppirOutput?.first.syncStatus,
+                                    _model.ppirOutput?.first?.syncStatus,
                                 lastSyncedAt: _model
-                                    .ppirOutput?.first.lastSyncedAt
+                                    .ppirOutput?.first?.lastSyncedAt
                                     ?.toString(),
-                                localId: _model.ppirOutput?.first.localId,
-                                isDirty: _model.ppirOutput?.first.isDirty
+                                localId: _model.ppirOutput?.first?.localId,
+                                isDirty: _model.ppirOutput?.first?.isDirty
                                     ?.toString(),
                               );
                               // Number Iteration
@@ -401,7 +404,7 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                                   .first.regionId,
                             );
                             _model.isSyced = await actions.syncFromFTP(
-                              _model.regionCode?.first.regionCode,
+                              _model.regionCode?.first?.regionCode,
                             );
                             _model.isSync = false;
                             _model.startSync = false;
@@ -413,7 +416,7 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                         },
                         child: Container(
                           width: 300.0,
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -438,7 +441,7 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                                 ],
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(0.0, -1.0),
+                                alignment: AlignmentDirectional(0.0, -1.0),
                                 child: AnimatedDefaultTextStyle(
                                   style: FlutterFlowTheme.of(context)
                                       .labelMedium
@@ -451,7 +454,7 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                                                 FlutterFlowTheme.of(context)
                                                     .labelMediumFamily),
                                       ),
-                                  duration: const Duration(milliseconds: 600),
+                                  duration: Duration(milliseconds: 600),
                                   curve: Curves.easeIn,
                                   child: Text(
                                     () {
@@ -471,8 +474,8 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                                     animationsMap['textOnPageLoadAnimation']!),
                               ),
                             ]
-                                .divide(const SizedBox(height: 20.0))
-                                .around(const SizedBox(height: 20.0)),
+                                .divide(SizedBox(height: 20.0))
+                                .around(SizedBox(height: 20.0)),
                           ),
                         ),
                       ),
@@ -504,7 +507,7 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                                 context.pushNamed(
                                   'dashboard',
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
+                                    kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.scale,
                                       alignment: Alignment.bottomCenter,
@@ -519,16 +522,16 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                               text: FFLocalizations.of(context).getText(
                                 'nzwziy9t' /* Dashboard */,
                               ),
-                              icon: const Icon(
+                              icon: Icon(
                                 Icons.dashboard,
                                 size: 15.0,
                               ),
                               options: FFButtonOptions(
                                 width: 200.0,
                                 height: 40.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
@@ -544,7 +547,7 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                                                   .titleSmallFamily),
                                     ),
                                 elevation: 3.0,
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
@@ -554,14 +557,14 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                               animationsMap['buttonOnActionTriggerAnimation']!,
                             ),
                           ]
-                              .divide(const SizedBox(height: 10.0))
-                              .around(const SizedBox(height: 10.0)),
+                              .divide(SizedBox(height: 10.0))
+                              .around(SizedBox(height: 10.0)),
                         ).animateOnActionTrigger(
                           animationsMap['columnOnActionTriggerAnimation']!,
                         ),
                     ]
-                        .divide(const SizedBox(height: 10.0))
-                        .around(const SizedBox(height: 10.0)),
+                        .divide(SizedBox(height: 10.0))
+                        .around(SizedBox(height: 10.0)),
                   ),
                 ),
               ),

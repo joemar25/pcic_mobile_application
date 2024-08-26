@@ -9,6 +9,7 @@ import '/flutter_flow/upload_data.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/dialogs/no_internet_dialog/no_internet_dialog_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -106,18 +107,18 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                   wrapWithModel(
                     model: _model.connectivityModel,
                     updateCallback: () => setState(() {}),
-                    child: const ConnectivityWidget(),
+                    child: ConnectivityWidget(),
                   ),
                 ],
               ),
-              actions: const [],
+              actions: [],
               centerTitle: false,
               elevation: 0.0,
             ),
             body: SafeArea(
               top: true,
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
@@ -149,16 +150,16 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                         ],
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             0.0, 20.0, 0.0, 40.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Align(
-                              alignment: const AlignmentDirectional(0.0, -0.13),
+                              alignment: AlignmentDirectional(0.0, -0.13),
                               child: Container(
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Stack(
                                   children: [
                                     Container(
@@ -171,12 +172,12 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                       ),
                                       child: Align(
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
+                                            AlignmentDirectional(0.0, 0.0),
                                         child: Container(
                                           width: 120.0,
                                           height: 120.0,
                                           clipBehavior: Clip.antiAlias,
-                                          decoration: const BoxDecoration(
+                                          decoration: BoxDecoration(
                                             shape: BoxShape.circle,
                                           ),
                                           child: Image.memory(
@@ -195,7 +196,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                     ),
                                     if (kDebugMode)
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             80.0, 80.0, 0.0, 0.0),
                                         child: FlutterFlowIconButton(
                                           borderRadius: 20.0,
@@ -204,7 +205,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                           fillColor:
                                               FlutterFlowTheme.of(context)
                                                   .primary,
-                                          icon: const Icon(
+                                          icon: Icon(
                                             Icons.edit_square,
                                             color: Color(0xFFF1F4F8),
                                             size: 20.0,
@@ -361,7 +362,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                 filled: true,
                                 fillColor: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
-                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     15.0, 10.0, 15.0, 10.0),
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -382,7 +383,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                   .asValidator(context),
                             ),
                             Align(
-                              alignment: const AlignmentDirectional(0.0, 0.05),
+                              alignment: AlignmentDirectional(0.0, 0.05),
                               child: Builder(
                                 builder: (context) => FFButtonWidget(
                                   onPressed: () async {
@@ -415,7 +416,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                           ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: const TransitionInfo(
+                                          kTransitionInfoKey: TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.fade,
@@ -431,7 +432,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                             elevation: 0,
                                             insetPadding: EdgeInsets.zero,
                                             backgroundColor: Colors.transparent,
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                     0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
@@ -439,7 +440,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                               onTap: () =>
                                                   FocusScope.of(dialogContext)
                                                       .unfocus(),
-                                              child: const NoInternetDialogWidget(),
+                                              child: NoInternetDialogWidget(),
                                             ),
                                           );
                                         },
@@ -454,9 +455,9 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                   options: FFButtonOptions(
                                     width: double.infinity,
                                     height: 50.0,
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         24.0, 0.0, 24.0, 0.0),
-                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -474,7 +475,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                       .titleSmallFamily),
                                         ),
                                     elevation: 0.0,
-                                    borderSide: const BorderSide(
+                                    borderSide: BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
@@ -484,8 +485,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                               ),
                             ),
                           ]
-                              .divide(const SizedBox(height: 20.0))
-                              .around(const SizedBox(height: 20.0)),
+                              .divide(SizedBox(height: 20.0))
+                              .around(SizedBox(height: 20.0)),
                         ),
                       ),
                     ],

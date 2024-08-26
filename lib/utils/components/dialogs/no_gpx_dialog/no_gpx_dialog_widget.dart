@@ -2,8 +2,10 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 import 'no_gpx_dialog_model.dart';
 export 'no_gpx_dialog_model.dart';
 
@@ -39,7 +41,7 @@ class _NoGpxDialogWidgetState extends State<NoGpxDialogWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Container(
         width: 338.0,
         height: 392.0,
@@ -48,7 +50,7 @@ class _NoGpxDialogWidgetState extends State<NoGpxDialogWidget> {
           borderRadius: BorderRadius.circular(24.0),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: EdgeInsets.all(20.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -72,7 +74,7 @@ class _NoGpxDialogWidgetState extends State<NoGpxDialogWidget> {
                         children: [
                           Expanded(
                             child: Align(
-                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
                                   '4sv8tytx' /* Info */,
@@ -102,7 +104,7 @@ class _NoGpxDialogWidgetState extends State<NoGpxDialogWidget> {
                     children: [
                       Expanded(
                         child: Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
                               '5pkk2ssu' /* No GPX Found! */,
@@ -125,7 +127,7 @@ class _NoGpxDialogWidgetState extends State<NoGpxDialogWidget> {
                       ),
                     ],
                   ),
-                ].divide(const SizedBox(height: 15.0)),
+                ].divide(SizedBox(height: 15.0)),
               ),
               Expanded(
                 child: Row(
@@ -141,9 +143,9 @@ class _NoGpxDialogWidgetState extends State<NoGpxDialogWidget> {
                         ),
                         options: FFButtonOptions(
                           height: 40.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).warning,
                           textStyle: FlutterFlowTheme.of(context)
@@ -159,7 +161,7 @@ class _NoGpxDialogWidgetState extends State<NoGpxDialogWidget> {
                                         .titleSmallFamily),
                               ),
                           elevation: 0.0,
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
@@ -167,10 +169,10 @@ class _NoGpxDialogWidgetState extends State<NoGpxDialogWidget> {
                         ),
                       ),
                     ),
-                  ].divide(const SizedBox(width: 20.0)).around(const SizedBox(width: 20.0)),
+                  ].divide(SizedBox(width: 20.0)).around(SizedBox(width: 20.0)),
                 ),
               ),
-            ].divide(const SizedBox(height: 15.0)),
+            ].divide(SizedBox(height: 15.0)),
           ),
         ),
       ),

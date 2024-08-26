@@ -2,9 +2,14 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'support_page_model.dart';
 export 'support_page_model.dart';
 
@@ -43,8 +48,8 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 110.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 110.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -62,8 +67,8 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 110.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 110.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -81,8 +86,8 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 110.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 110.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -100,8 +105,8 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
             curve: Curves.easeInOut,
             delay: 150.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 110.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 110.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -119,8 +124,8 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
             curve: Curves.easeInOut,
             delay: 300.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 110.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 110.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -175,7 +180,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                       FlutterFlowTheme.of(context).titleLargeFamily),
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 0.0,
         ),
@@ -187,7 +192,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
               Expanded(
                 child: Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
@@ -209,7 +214,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                               ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 4.0, 0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
@@ -232,7 +237,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 16.0, 0.0, 0.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -244,7 +249,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                                   },
                                   child: Container(
                                     width: 120.0,
-                                    constraints: const BoxConstraints(
+                                    constraints: BoxConstraints(
                                       maxWidth: 500.0,
                                     ),
                                     decoration: BoxDecoration(
@@ -258,7 +263,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                      padding: EdgeInsets.all(8.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -274,7 +279,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 12.0, 0.0, 0.0),
                                             child: Text(
                                               FFLocalizations.of(context)
@@ -310,7 +315,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                             ),
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 16.0, 0.0, 0.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -322,7 +327,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                                   },
                                   child: Container(
                                     width: 120.0,
-                                    constraints: const BoxConstraints(
+                                    constraints: BoxConstraints(
                                       maxWidth: 500.0,
                                     ),
                                     decoration: BoxDecoration(
@@ -336,7 +341,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                      padding: EdgeInsets.all(8.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -352,7 +357,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 12.0, 0.0, 0.0),
                                             child: Text(
                                               FFLocalizations.of(context)
@@ -386,10 +391,10 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                                     'containerOnPageLoadAnimation2']!),
                               ),
                             ),
-                          ].divide(const SizedBox(width: 12.0)),
+                          ].divide(SizedBox(width: 12.0)),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 12.0, 0.0, 4.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
@@ -408,7 +413,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Container(
                             width: double.infinity,
@@ -425,7 +430,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                               ),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(12.0),
+                              padding: EdgeInsets.all(12.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -448,7 +453,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                                         ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 4.0, 0.0, 0.0),
                                     child: Text(
                                       FFLocalizations.of(context).getText(
@@ -475,7 +480,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                               animationsMap['containerOnPageLoadAnimation3']!),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Container(
                             width: double.infinity,
@@ -492,7 +497,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                               ),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(12.0),
+                              padding: EdgeInsets.all(12.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -515,7 +520,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                                         ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 4.0, 0.0, 0.0),
                                     child: Text(
                                       FFLocalizations.of(context).getText(
@@ -542,7 +547,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                               animationsMap['containerOnPageLoadAnimation4']!),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Container(
                             width: double.infinity,
@@ -559,7 +564,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                               ),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(12.0),
+                              padding: EdgeInsets.all(12.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -582,7 +587,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                                         ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 4.0, 0.0, 0.0),
                                     child: Text(
                                       FFLocalizations.of(context).getText(
@@ -614,15 +619,15 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                 ),
               ),
               Container(
-                decoration: const BoxDecoration(),
+                decoration: BoxDecoration(),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                         child: Text(
                           FFLocalizations.of(context).getText(
                             'iaed2gmv' /* Powered by: */,
@@ -641,7 +646,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                         ),
                       ),
                       Container(
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8.0),
                           child: Image.asset(
@@ -653,7 +658,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                         ),
                       ),
                       Container(
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                         child: Text(
                           FFLocalizations.of(context).getText(
                             '7ytbdnzb' /* Quanby Solutions Inc. */,
@@ -669,7 +674,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                               ),
                         ),
                       ),
-                    ].divide(const SizedBox(height: 2.0)),
+                    ].divide(SizedBox(height: 2.0)),
                   ),
                 ),
               ),
