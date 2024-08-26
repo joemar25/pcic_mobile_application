@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'sync_king4_the_win_model.dart';
 export 'sync_king4_the_win_model.dart';
 
@@ -126,6 +127,8 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return FutureBuilder<List<SelectProfileRow>>(
       future: SQLiteManager.instance.selectProfile(
         email: currentUserEmail,
@@ -480,7 +483,7 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                           children: [
                             Text(
                               'Total number of tasks synced ${valueOrDefault<String>(
-                                _model.iteration?.toString(),
+                                FFAppState().syncCount.toString(),
                                 '0',
                               )}',
                               textAlign: TextAlign.center,
