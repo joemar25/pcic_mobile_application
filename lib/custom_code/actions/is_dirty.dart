@@ -12,21 +12,27 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 Future<String> isDirty(String? taskId) async {
-  if (taskId == null) {
+  if (taskId == null || taskId.isEmpty) {
     return 'false';
   }
 
-  var taskList =
-      await SQLiteManager.instance.oFFLINESelectTaskByID(taskId: taskId);
+  List<SelectPpirFormsRow> ppirList =
+      await SQLiteManager.instance.selectPpirForms(taskId: taskId);
 
-  if (taskList.isEmpty) {
+  if (ppirList.isEmpty) {
     return 'false';
   }
 
-  var task = taskList.first;
+  var ppir = ppirList.first;
+  var value = ppir.data['is_dirty'];
 
-  print("task -> ( $task )");
+  print('value -> $value');
 
-  // Assuming `isDirty` is stored as a string '1' or '0' in the database
-  return task.isDirty == '1' ? 'true' : 'false';
+  if (value == 1 || value == true) {
+    return 'true'; // Task is dirty
+  } else if (value == 0 || value == false) {
+    return 'false'; // Task is not dirty
+  } else {
+    return 'false'; // Default case for unexpected values
+  }
 }

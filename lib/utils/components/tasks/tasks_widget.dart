@@ -628,42 +628,73 @@ class _TasksWidgetState extends State<TasksWidget>
                                   ),
                                 ],
                               ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    valueOrDefault<String>(
-                                              _model.isDirty,
-                                              'false',
-                                            ) ==
-                                            'true'
-                                        ? 'This task has unsaved changes. Please sync to save your progress.'
-                                        : 'This task is up to date. No unsaved changes.',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMediumFamily,
-                                          color: valueOrDefault<String>(
-                                                    _model.isDirty,
-                                                    'false',
-                                                  ) ==
-                                                  'true'
-                                              ? FlutterFlowTheme.of(context)
-                                                  .warning
-                                              : FlutterFlowTheme.of(context)
-                                                  .primary,
-                                          fontSize: 12.0,
-                                          letterSpacing: 0.0,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMediumFamily),
-                                        ),
-                                  ),
-                                ],
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 10.0, 0.0, 0.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      FFLocalizations.of(context).getText(
+                                        'e0z31xxp' /* Note:  */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily,
+                                            color: valueOrDefault<String>(
+                                                      _model.isDirty,
+                                                      'false',
+                                                    ) ==
+                                                    'true'
+                                                ? FlutterFlowTheme.of(context)
+                                                    .warning
+                                                : FlutterFlowTheme.of(context)
+                                                    .primary,
+                                            fontSize: 12.0,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMediumFamily),
+                                          ),
+                                    ),
+                                    Text(
+                                      valueOrDefault<String>(
+                                                _model.isDirty,
+                                                'false',
+                                              ) ==
+                                              'true'
+                                          ? 'This task has unsaved changes. Please sync to save your progress.'
+                                          : 'This task is up to date. No unsaved changes.',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily,
+                                            color: valueOrDefault<String>(
+                                                      _model.isDirty,
+                                                      'false',
+                                                    ) ==
+                                                    'true'
+                                                ? FlutterFlowTheme.of(context)
+                                                    .warning
+                                                : FlutterFlowTheme.of(context)
+                                                    .primary,
+                                            fontSize: 12.0,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMediumFamily),
+                                          ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           ),
