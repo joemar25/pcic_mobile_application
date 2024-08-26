@@ -65,7 +65,7 @@ class _MapBoxState extends State<MapBox> {
   static const double _stationarySpeedThreshold = 0.1;
   static const double _significantMovementThreshold = 0.5;
   static const int _stationaryWindowSize = 20;
-  static const double _autoSnapThreshold = 1.0;
+  static const double _autoSnapThreshold = 20.0;
   static const int _minPointsForAutosnap = 10;
 
   late SimpleKalmanFilter _latFilter;

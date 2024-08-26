@@ -151,6 +151,14 @@ class SQLiteManager {
         taskId: taskId,
       );
 
+  Future<List<COUNTIsDirtyRow>> cOUNTIsDirty({
+    String? assignee,
+  }) =>
+      performCOUNTIsDirty(
+        _database,
+        assignee: assignee,
+      );
+
   /// END READ QUERY CALLS
 
   /// START UPDATE QUERY CALLS

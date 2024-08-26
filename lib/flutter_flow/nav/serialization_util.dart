@@ -298,6 +298,8 @@ dynamic deserializeParam<T>(
             return OFFLINESelectREGIONCODERow(data);
           case SELECTPPIRFORMSGpxRow:
             return SELECTPPIRFORMSGpxRow(data);
+          case COUNTIsDirtyRow:
+            return COUNTIsDirtyRow(data);
           default:
             return null;
         }

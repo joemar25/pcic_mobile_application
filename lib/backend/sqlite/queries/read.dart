@@ -640,3 +640,29 @@ class SELECTPPIRFORMSGpxRow extends SqliteRow {
 }
 
 /// END SELECT PPIR FORMS GPX
+
+/// BEGIN COUNT ISDIRTY
+Future<List<COUNTIsDirtyRow>> performCOUNTIsDirty(
+  Database database, {
+  String? assignee,
+}) {
+  final query = '''
+SELECT 
+    CAST(p.is_dirty AS TEXT) AS ppir_is_dirty
+FROM 
+    ppir_forms p
+JOIN 
+    tasks t ON t.id = p.task_id
+WHERE 
+    t.assignee = '$assignee';
+''';
+  return _readQuery(database, query, (d) => COUNTIsDirtyRow(d));
+}
+
+class COUNTIsDirtyRow extends SqliteRow {
+  COUNTIsDirtyRow(super.data);
+
+  String? get ppirIsDirty => data['ppir_is_dirty'] as String?;
+}
+
+/// END COUNT ISDIRTY
