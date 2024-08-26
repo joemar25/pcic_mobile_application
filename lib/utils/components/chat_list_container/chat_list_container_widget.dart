@@ -6,7 +6,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'chat_list_container_model.dart';
 export 'chat_list_container_model.dart';
 
@@ -54,7 +53,7 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
         queryFn: (q) => q
             .eq(
               'chat_id',
-              widget!.chatId,
+              widget.chatId,
             )
             .order('timestamp'),
       ),
@@ -92,12 +91,12 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
                   ParamType.String,
                 ),
                 'recieverId': serializeParam(
-                  widget!.receiverId,
+                  widget.receiverId,
                   ParamType.String,
                 ),
               }.withoutNulls,
               extra: <String, dynamic>{
-                kTransitionInfoKey: TransitionInfo(
+                kTransitionInfoKey: const TransitionInfo(
                   hasTransition: true,
                   transitionType: PageTransitionType.rightToLeft,
                   duration: Duration(milliseconds: 250),
@@ -113,7 +112,7 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
               future: UsersTable().querySingleRow(
                 queryFn: (q) => q.eq(
                   'id',
-                  widget!.receiverId,
+                  widget.receiverId,
                 ),
               ),
               builder: (context, snapshot) {
@@ -152,12 +151,12 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
                         ),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.all(2.0),
+                        padding: const EdgeInsets.all(2.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(40.0),
                           child: CachedNetworkImage(
-                            fadeInDuration: Duration(milliseconds: 900000),
-                            fadeOutDuration: Duration(milliseconds: 900000),
+                            fadeInDuration: const Duration(milliseconds: 900000),
+                            fadeOutDuration: const Duration(milliseconds: 900000),
                             imageUrl: rowUsersRow!.photoUrl!,
                             width: 44.0,
                             height: 44.0,
@@ -169,7 +168,7 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
                     Expanded(
                       child: Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -179,7 +178,7 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
                               valueOrDefault<String>(
                                 functions
                                     .sentenceCaseWords(valueOrDefault<String>(
-                                  rowUsersRow?.inspectorName,
+                                  rowUsersRow.inspectorName,
                                   'Inspector Name',
                                 )),
                                 'Inspector Name',
@@ -199,7 +198,7 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
                                   ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 4.0, 0.0, 0.0),
                               child: Text(
                                 valueOrDefault<String>(
@@ -222,7 +221,7 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 4.0, 0.0, 0.0),
                               child: Text(
                                 valueOrDefault<String>(

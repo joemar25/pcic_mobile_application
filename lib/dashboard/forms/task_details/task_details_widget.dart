@@ -14,7 +14,6 @@ import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -54,7 +53,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
         setState(() {});
         _model.message =
             await actions.updateOnlinePpirFormsFromOfflinePpirForms(
-          widget!.taskId,
+          widget.taskId,
         );
         _model.statusOutput = _model.message!;
         setState(() {});
@@ -75,7 +74,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
 
     return FutureBuilder<List<SELECTTASKSAndPPIRByAssigneeRow>>(
       future: SQLiteManager.instance.sELECTTASKSAndPPIRByAssignee(
-        taskId: widget!.taskId,
+        taskId: widget.taskId,
         assignee: currentUserUid,
       ),
       builder: (context, snapshot) {
@@ -83,7 +82,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
         if (!snapshot.hasData) {
           return Scaffold(
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            body: PageLoaderWidget(),
+            body: const PageLoaderWidget(),
           );
         }
         final taskDetailsSELECTTASKSAndPPIRByAssigneeRowList = snapshot.data!;
@@ -112,7 +111,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                     context.pushNamed(
                       'dashboard',
                       extra: <String, dynamic>{
-                        kTransitionInfoKey: TransitionInfo(
+                        kTransitionInfoKey: const TransitionInfo(
                           hasTransition: true,
                           transitionType: PageTransitionType.scale,
                           alignment: Alignment.bottomCenter,
@@ -128,9 +127,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
                       child: Text(
-                        '${functions.capitalizeWords(widget!.taskStatus)} Task',
+                        '${functions.capitalizeWords(widget.taskStatus)} Task',
                         style: FlutterFlowTheme.of(context).titleSmall.override(
                               fontFamily:
                                   FlutterFlowTheme.of(context).titleSmallFamily,
@@ -144,7 +143,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                       ),
                     ),
                     Container(
-                      decoration: BoxDecoration(),
+                      decoration: const BoxDecoration(),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -159,7 +158,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                 setState(() {});
                                 _model.messageCopy = await actions
                                     .updateOnlinePpirFormsFromOfflinePpirForms(
-                                  widget!.taskId,
+                                  widget.taskId,
                                 );
                                 _model.statusOutput = _model.messageCopy!;
                                 setState(() {});
@@ -206,14 +205,14 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                           wrapWithModel(
                             model: _model.connectivityModel,
                             updateCallback: () => setState(() {}),
-                            child: ConnectivityWidget(),
+                            child: const ConnectivityWidget(),
                           ),
-                        ].divide(SizedBox(width: 5.0)),
+                        ].divide(const SizedBox(width: 5.0)),
                       ),
                     ),
                   ],
                 ),
-                actions: [],
+                actions: const [],
                 centerTitle: false,
                 elevation: 0.0,
               ),
@@ -242,11 +241,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       20.0, 20.0, 20.0, 0.0),
                                   child: Container(
                                     width: 600.0,
-                                    constraints: BoxConstraints(
+                                    constraints: const BoxConstraints(
                                       maxWidth: 570.0,
                                     ),
                                     decoration: BoxDecoration(
@@ -255,7 +254,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(10.0),
+                                      padding: const EdgeInsets.all(10.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -265,7 +264,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 12.0),
                                             child: Text(
                                               FFLocalizations.of(context)
@@ -296,7 +295,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -343,7 +342,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds: 600),
                                                   curve: Curves.easeIn,
                                                   child: Text(
@@ -360,7 +359,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -407,7 +406,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds: 600),
                                                   curve: Curves.easeIn,
                                                   child: Text(
@@ -423,7 +422,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -472,7 +471,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds: 600),
                                                   curve: Curves.easeIn,
                                                   child: Text(
@@ -488,7 +487,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -537,7 +536,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds: 600),
                                                   curve: Curves.easeIn,
                                                   child: Text(
@@ -554,7 +553,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -603,7 +602,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds: 600),
                                                   curve: Curves.easeIn,
                                                   child: Text(
@@ -619,7 +618,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -668,7 +667,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds: 600),
                                                   curve: Curves.easeIn,
                                                   child: Text(
@@ -684,7 +683,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -733,7 +732,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds: 600),
                                                   curve: Curves.easeIn,
                                                   child: Text(
@@ -749,7 +748,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -798,7 +797,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds: 600),
                                                   curve: Curves.easeIn,
                                                   child: Text(
@@ -815,7 +814,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -864,7 +863,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds: 600),
                                                   curve: Curves.easeIn,
                                                   child: Text(
@@ -880,7 +879,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -929,7 +928,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds: 600),
                                                   curve: Curves.easeIn,
                                                   child: Text(
@@ -946,7 +945,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -995,7 +994,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds: 600),
                                                   curve: Curves.easeIn,
                                                   child: Text(
@@ -1013,7 +1012,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -1062,7 +1061,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds: 600),
                                                   curve: Curves.easeIn,
                                                   child: Text(
@@ -1078,7 +1077,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -1127,7 +1126,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds: 600),
                                                   curve: Curves.easeIn,
                                                   child: Text(
@@ -1143,7 +1142,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 16.0, 0.0, 16.0),
                                             child: Divider(
                                               thickness: 2.0,
@@ -1154,7 +1153,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 12.0),
                                             child: Text(
                                               FFLocalizations.of(context)
@@ -1185,7 +1184,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -1234,7 +1233,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds: 600),
                                                   curve: Curves.easeIn,
                                                   child: Text(
@@ -1250,7 +1249,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -1299,7 +1298,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds: 600),
                                                   curve: Curves.easeIn,
                                                   child: Text(
@@ -1315,7 +1314,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -1363,7 +1362,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds: 600),
                                                   curve: Curves.easeIn,
                                                   child: Text(
@@ -1379,7 +1378,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -1427,7 +1426,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds: 600),
                                                   curve: Curves.easeIn,
                                                   child: Text(
@@ -1443,7 +1442,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 16.0, 0.0, 16.0),
                                             child: Divider(
                                               thickness: 2.0,
@@ -1454,7 +1453,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 12.0),
                                             child: Text(
                                               FFLocalizations.of(context)
@@ -1485,7 +1484,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -1534,7 +1533,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds: 600),
                                                   curve: Curves.easeIn,
                                                   child: Text(
@@ -1550,7 +1549,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -1599,7 +1598,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds: 600),
                                                   curve: Curves.easeIn,
                                                   child: Text(
@@ -1615,7 +1614,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -1664,7 +1663,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds: 600),
                                                   curve: Curves.easeIn,
                                                   child: Text(
@@ -1680,7 +1679,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -1729,7 +1728,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
-                                                  duration: Duration(
+                                                  duration: const Duration(
                                                       milliseconds: 600),
                                                   curve: Curves.easeIn,
                                                   child: Text(
@@ -1745,7 +1744,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 16.0, 0.0, 16.0),
                                             child: Divider(
                                               thickness: 2.0,
@@ -1754,7 +1753,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .boarderForm,
                                             ),
                                           ),
-                                          if (widget!.taskStatus == 'completed')
+                                          if (widget.taskStatus == 'completed')
                                             SingleChildScrollView(
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1769,7 +1768,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -1805,7 +1804,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 8.0,
                                                                 0.0, 0.0),
                                                     child: Row(
@@ -1845,7 +1844,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(20.0, 8.0,
                                                                 20.0, 0.0),
                                                     child: Row(
@@ -1896,7 +1895,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         FlutterFlowTheme.of(context)
                                                                             .bodyMediumFamily),
                                                               ),
-                                                          duration: Duration(
+                                                          duration: const Duration(
                                                               milliseconds:
                                                                   600),
                                                           curve: Curves.easeIn,
@@ -1915,7 +1914,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(20.0, 8.0,
                                                                 20.0, 0.0),
                                                     child: Row(
@@ -1966,7 +1965,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         FlutterFlowTheme.of(context)
                                                                             .bodyMediumFamily),
                                                               ),
-                                                          duration: Duration(
+                                                          duration: const Duration(
                                                               milliseconds:
                                                                   600),
                                                           curve: Curves.easeIn,
@@ -1985,7 +1984,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(20.0, 8.0,
                                                                 20.0, 0.0),
                                                     child: Row(
@@ -2036,7 +2035,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         FlutterFlowTheme.of(context)
                                                                             .bodyMediumFamily),
                                                               ),
-                                                          duration: Duration(
+                                                          duration: const Duration(
                                                               milliseconds:
                                                                   600),
                                                           curve: Curves.easeIn,
@@ -2055,7 +2054,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(20.0, 8.0,
                                                                 20.0, 0.0),
                                                     child: Row(
@@ -2106,7 +2105,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         FlutterFlowTheme.of(context)
                                                                             .bodyMediumFamily),
                                                               ),
-                                                          duration: Duration(
+                                                          duration: const Duration(
                                                               milliseconds:
                                                                   600),
                                                           curve: Curves.easeIn,
@@ -2125,7 +2124,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 16.0,
                                                                 0.0, 16.0),
                                                     child: Divider(
@@ -2138,7 +2137,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 8.0,
                                                                 0.0, 0.0),
                                                     child: Row(
@@ -2178,7 +2177,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(20.0, 8.0,
                                                                 20.0, 0.0),
                                                     child: Row(
@@ -2229,7 +2228,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         FlutterFlowTheme.of(context)
                                                                             .bodyMediumFamily),
                                                               ),
-                                                          duration: Duration(
+                                                          duration: const Duration(
                                                               milliseconds:
                                                                   600),
                                                           curve: Curves.easeIn,
@@ -2248,7 +2247,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(20.0, 8.0,
                                                                 20.0, 0.0),
                                                     child: Row(
@@ -2299,7 +2298,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         FlutterFlowTheme.of(context)
                                                                             .bodyMediumFamily),
                                                               ),
-                                                          duration: Duration(
+                                                          duration: const Duration(
                                                               milliseconds:
                                                                   600),
                                                           curve: Curves.easeIn,
@@ -2318,7 +2317,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 16.0,
                                                                 0.0, 16.0),
                                                     child: Divider(
@@ -2331,7 +2330,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 8.0,
                                                                 0.0, 0.0),
                                                     child: Row(
@@ -2371,7 +2370,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(20.0, 8.0,
                                                                 20.0, 0.0),
                                                     child: Row(
@@ -2422,7 +2421,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         FlutterFlowTheme.of(context)
                                                                             .bodyMediumFamily),
                                                               ),
-                                                          duration: Duration(
+                                                          duration: const Duration(
                                                               milliseconds:
                                                                   600),
                                                           curve: Curves.easeIn,
@@ -2441,7 +2440,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(20.0, 8.0,
                                                                 20.0, 0.0),
                                                     child: Row(
@@ -2492,7 +2491,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         FlutterFlowTheme.of(context)
                                                                             .bodyMediumFamily),
                                                               ),
-                                                          duration: Duration(
+                                                          duration: const Duration(
                                                               milliseconds:
                                                                   600),
                                                           curve: Curves.easeIn,
@@ -2511,7 +2510,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(20.0, 8.0,
                                                                 20.0, 0.0),
                                                     child: Row(
@@ -2562,7 +2561,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         FlutterFlowTheme.of(context)
                                                                             .bodyMediumFamily),
                                                               ),
-                                                          duration: Duration(
+                                                          duration: const Duration(
                                                               milliseconds:
                                                                   600),
                                                           curve: Curves.easeIn,
@@ -2581,7 +2580,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 16.0,
                                                                 0.0, 16.0),
                                                     child: Divider(
@@ -2594,7 +2593,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 8.0,
                                                                 0.0, 0.0),
                                                     child: Row(
@@ -2634,7 +2633,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(20.0, 8.0,
                                                                 20.0, 0.0),
                                                     child: Row(
@@ -2685,7 +2684,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         FlutterFlowTheme.of(context)
                                                                             .bodyMediumFamily),
                                                               ),
-                                                          duration: Duration(
+                                                          duration: const Duration(
                                                               milliseconds:
                                                                   600),
                                                           curve: Curves.easeIn,
@@ -2704,7 +2703,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(20.0, 8.0,
                                                                 20.0, 0.0),
                                                     child: Row(
@@ -2755,7 +2754,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         FlutterFlowTheme.of(context)
                                                                             .bodyMediumFamily),
                                                               ),
-                                                          duration: Duration(
+                                                          duration: const Duration(
                                                               milliseconds:
                                                                   600),
                                                           curve: Curves.easeIn,
@@ -2774,7 +2773,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(20.0, 8.0,
                                                                 20.0, 0.0),
                                                     child: Row(
@@ -2785,7 +2784,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               .spaceBetween,
                                                       children: [
                                                         Flexible(
-                                                          child: Container(
+                                                          child: SizedBox(
                                                             width: MediaQuery
                                                                         .sizeOf(
                                                                             context)
@@ -2808,7 +2807,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                               context)
                                                                       .height *
                                                                   0.2,
-                                                              taskId: widget!
+                                                              taskId: widget
                                                                   .taskId,
                                                               signatureBlob:
                                                                   taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
@@ -2822,7 +2821,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(20.0, 8.0,
                                                                 20.0, 0.0),
                                                     child: Row(
@@ -2873,7 +2872,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         FlutterFlowTheme.of(context)
                                                                             .bodyMediumFamily),
                                                               ),
-                                                          duration: Duration(
+                                                          duration: const Duration(
                                                               milliseconds:
                                                                   600),
                                                           curve: Curves.easeIn,
@@ -2892,7 +2891,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(20.0, 8.0,
                                                                 20.0, 0.0),
                                                     child: Row(
@@ -2903,7 +2902,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               .spaceBetween,
                                                       children: [
                                                         Flexible(
-                                                          child: Container(
+                                                          child: SizedBox(
                                                             width: MediaQuery
                                                                         .sizeOf(
                                                                             context)
@@ -2926,7 +2925,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                               context)
                                                                       .height *
                                                                   0.2,
-                                                              taskId: widget!
+                                                              taskId: widget
                                                                   .taskId,
                                                               signatureBlob:
                                                                   taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
@@ -2940,7 +2939,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 16.0,
                                                                 0.0, 16.0),
                                                     child: Divider(
@@ -2953,7 +2952,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 8.0,
                                                                 0.0, 0.0),
                                                     child: Row(
@@ -2999,7 +2998,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             .center,
                                                     children: [
                                                       Flexible(
-                                                        child: Container(
+                                                        child: SizedBox(
                                                           width:
                                                               MediaQuery.sizeOf(
                                                                           context)
@@ -3044,7 +3043,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                 ],
                                               ),
                                             ),
-                                        ].divide(SizedBox(height: 10.0)),
+                                        ].divide(const SizedBox(height: 10.0)),
                                       ),
                                     ),
                                   ),
@@ -3054,7 +3053,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.all(12.0),
+                          padding: const EdgeInsets.all(12.0),
                           child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(0.0),
@@ -3088,7 +3087,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         Flexible(
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 8.0, 16.0, 8.0),
                                             child: FFButtonWidget(
                                               onPressed: () async {
@@ -3100,19 +3099,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     matchingRows: (rows) =>
                                                         rows.eq(
                                                       'id',
-                                                      widget!.taskId,
+                                                      widget.taskId,
                                                     ),
                                                   );
                                                 }
                                                 await SQLiteManager.instance
                                                     .updateTaskStatus(
-                                                  taskId: widget!.taskId,
+                                                  taskId: widget.taskId,
                                                   status: 'ongoing',
                                                   isDirty: !FFAppState().ONLINE,
                                                 );
                                                 await SQLiteManager.instance
                                                     .updatePPIRFormGpx(
-                                                  taskId: widget!.taskId,
+                                                  taskId: widget.taskId,
                                                   gpx: ' ',
                                                   isDirty: !FFAppState().ONLINE,
                                                 );
@@ -3121,7 +3120,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   'geotagging',
                                                   queryParameters: {
                                                     'taskId': serializeParam(
-                                                      widget!.taskId,
+                                                      widget.taskId,
                                                       ParamType.String,
                                                     ),
                                                     'taskType': serializeParam(
@@ -3131,7 +3130,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     ),
                                                     'taskStatus':
                                                         serializeParam(
-                                                      widget!.taskStatus,
+                                                      widget.taskStatus,
                                                       ParamType.String,
                                                     ),
                                                     'assignmentId':
@@ -3144,7 +3143,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   }.withoutNulls,
                                                   extra: <String, dynamic>{
                                                     kTransitionInfoKey:
-                                                        TransitionInfo(
+                                                        const TransitionInfo(
                                                       hasTransition: true,
                                                       transitionType:
                                                           PageTransitionType
@@ -3161,7 +3160,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   .getText(
                                                 '65kky15n' /* Geotag */,
                                               ),
-                                              icon: Icon(
+                                              icon: const Icon(
                                                 Icons.map_outlined,
                                                 size: 15.0,
                                               ),
@@ -3171,11 +3170,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             .width *
                                                         0.35,
                                                 height: 50.0,
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         24.0, 0.0, 24.0, 0.0),
                                                 iconPadding:
-                                                    EdgeInsetsDirectional
+                                                    const EdgeInsetsDirectional
                                                         .fromSTEB(
                                                             0.0, 0.0, 0.0, 0.0),
                                                 color:
@@ -3199,7 +3198,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                       .titleSmallFamily),
                                                         ),
                                                 elevation: 3.0,
-                                                borderSide: BorderSide(
+                                                borderSide: const BorderSide(
                                                   color: Colors.transparent,
                                                   width: 1.0,
                                                 ),
@@ -3230,7 +3229,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         Flexible(
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 8.0, 16.0, 8.0),
                                             child: FFButtonWidget(
                                               onPressed: () async {
@@ -3238,13 +3237,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   'ppirForm',
                                                   queryParameters: {
                                                     'taskId': serializeParam(
-                                                      widget!.taskId,
+                                                      widget.taskId,
                                                       ParamType.String,
                                                     ),
                                                   }.withoutNulls,
                                                   extra: <String, dynamic>{
                                                     kTransitionInfoKey:
-                                                        TransitionInfo(
+                                                        const TransitionInfo(
                                                       hasTransition: true,
                                                       transitionType:
                                                           PageTransitionType
@@ -3261,7 +3260,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   .getText(
                                                 '7qj8fid9' /* Continue Form */,
                                               ),
-                                              icon: FaIcon(
+                                              icon: const FaIcon(
                                                 FontAwesomeIcons.fileAlt,
                                                 size: 15.0,
                                               ),
@@ -3271,11 +3270,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             .width *
                                                         0.35,
                                                 height: 50.0,
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         24.0, 0.0, 24.0, 0.0),
                                                 iconPadding:
-                                                    EdgeInsetsDirectional
+                                                    const EdgeInsetsDirectional
                                                         .fromSTEB(
                                                             0.0, 0.0, 0.0, 0.0),
                                                 color:
@@ -3299,7 +3298,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                       .titleSmallFamily),
                                                         ),
                                                 elevation: 3.0,
-                                                borderSide: BorderSide(
+                                                borderSide: const BorderSide(
                                                   color: Colors.transparent,
                                                   width: 1.0,
                                                 ),
@@ -3326,7 +3325,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         child: Builder(
                                           builder: (context) => Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 8.0, 16.0, 8.0),
                                             child: FFButtonWidget(
                                               onPressed: !FFAppState().ONLINE
@@ -3337,21 +3336,21 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       setState(() {});
                                                       await actions
                                                           .saveBlobToBucket(
-                                                        widget!.taskId,
+                                                        widget.taskId,
                                                       );
                                                       _model.generatedXML =
                                                           await actions
                                                               .generateTaskXml(
-                                                        widget!.taskId,
+                                                        widget.taskId,
                                                       );
                                                       await actions.saveTaskXml(
                                                         _model.generatedXML,
-                                                        widget!.taskId,
+                                                        widget.taskId,
                                                       );
                                                       _model.isFtpSaved =
                                                           await actions
                                                               .saveToFTP(
-                                                        widget!.taskId,
+                                                        widget.taskId,
                                                       );
                                                       _model.isReFTPClicked =
                                                           false;
@@ -3369,7 +3368,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           extra: <String,
                                                               dynamic>{
                                                             kTransitionInfoKey:
-                                                                TransitionInfo(
+                                                                const TransitionInfo(
                                                               hasTransition:
                                                                   true,
                                                               transitionType:
@@ -3394,7 +3393,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               backgroundColor:
                                                                   Colors
                                                                       .transparent,
-                                                              alignment: AlignmentDirectional(
+                                                              alignment: const AlignmentDirectional(
                                                                       0.0, 0.0)
                                                                   .resolve(
                                                                       Directionality.of(
@@ -3406,7 +3405,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                             dialogContext)
                                                                         .unfocus(),
                                                                 child:
-                                                                    UploadFailedDialogWidget(),
+                                                                    const UploadFailedDialogWidget(),
                                                               ),
                                                             );
                                                           },
@@ -3419,7 +3418,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   .getText(
                                                 'auvo0ea6' /* Resubmit */,
                                               ),
-                                              icon: Icon(
+                                              icon: const Icon(
                                                 Icons.swap_vert_sharp,
                                                 size: 15.0,
                                               ),
@@ -3429,11 +3428,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             .width *
                                                         0.35,
                                                 height: 50.0,
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         24.0, 0.0, 24.0, 0.0),
                                                 iconPadding:
-                                                    EdgeInsetsDirectional
+                                                    const EdgeInsetsDirectional
                                                         .fromSTEB(
                                                             0.0, 0.0, 0.0, 0.0),
                                                 color:
@@ -3457,7 +3456,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                       .titleSmallFamily),
                                                         ),
                                                 elevation: 3.0,
-                                                borderSide: BorderSide(
+                                                borderSide: const BorderSide(
                                                   color: Colors.transparent,
                                                   width: 1.0,
                                                 ),
@@ -3475,7 +3474,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         Flexible(
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 8.0, 16.0, 8.0),
                                             child: FFButtonWidget(
                                               onPressed: () async {
@@ -3487,13 +3486,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     matchingRows: (rows) =>
                                                         rows.eq(
                                                       'id',
-                                                      widget!.taskId,
+                                                      widget.taskId,
                                                     ),
                                                   );
                                                 }
                                                 await SQLiteManager.instance
                                                     .updateTaskStatus(
-                                                  taskId: widget!.taskId,
+                                                  taskId: widget.taskId,
                                                   status: 'ongoing',
                                                   isDirty: FFAppState().ONLINE,
                                                 );
@@ -3502,7 +3501,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   'geotagging',
                                                   queryParameters: {
                                                     'taskId': serializeParam(
-                                                      widget!.taskId,
+                                                      widget.taskId,
                                                       ParamType.String,
                                                     ),
                                                     'taskType': serializeParam(
@@ -3526,7 +3525,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   }.withoutNulls,
                                                   extra: <String, dynamic>{
                                                     kTransitionInfoKey:
-                                                        TransitionInfo(
+                                                        const TransitionInfo(
                                                       hasTransition: true,
                                                       transitionType:
                                                           PageTransitionType
@@ -3543,7 +3542,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   .getText(
                                                 '0mkqs892' /* Geotag Again */,
                                               ),
-                                              icon: Icon(
+                                              icon: const Icon(
                                                 Icons.swap_vert_sharp,
                                                 size: 15.0,
                                               ),
@@ -3553,11 +3552,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             .width *
                                                         0.35,
                                                 height: 50.0,
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         24.0, 0.0, 24.0, 0.0),
                                                 iconPadding:
-                                                    EdgeInsetsDirectional
+                                                    const EdgeInsetsDirectional
                                                         .fromSTEB(
                                                             0.0, 0.0, 0.0, 0.0),
                                                 color:
@@ -3581,7 +3580,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                       .titleSmallFamily),
                                                         ),
                                                 elevation: 3.0,
-                                                borderSide: BorderSide(
+                                                borderSide: const BorderSide(
                                                   color: Colors.transparent,
                                                   width: 1.0,
                                                 ),
@@ -3594,8 +3593,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                     ],
                                   ),
                               ]
-                                  .divide(SizedBox(height: 10.0))
-                                  .around(SizedBox(height: 10.0)),
+                                  .divide(const SizedBox(height: 10.0))
+                                  .around(const SizedBox(height: 10.0)),
                             ),
                           ),
                         ),
@@ -3603,11 +3602,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                     ),
                     if (_model.isReFTPClicked == true)
                       Align(
-                        alignment: AlignmentDirectional(0.0, 0.0),
+                        alignment: const AlignmentDirectional(0.0, 0.0),
                         child: wrapWithModel(
                           model: _model.savingModeModel,
                           updateCallback: () => setState(() {}),
-                          child: SavingModeWidget(
+                          child: const SavingModeWidget(
                             savingWhat: 'Loading...',
                           ),
                         ),

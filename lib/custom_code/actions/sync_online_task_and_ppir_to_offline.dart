@@ -12,28 +12,97 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 import '/auth/supabase_auth/auth_util.dart';
-import '/backend/sqlite/queries/read.dart';
 
 Future<String> syncOnlineTaskAndPpirToOffline() async {
-  // Fetch online tasks
-  List<TasksRow> onlineTasks = await TasksTable().queryRows(
-    queryFn: (q) => q.eq('assignee', currentUserUid),
-  );
+  try {
+    int updatedOnlinePPIRFormsCount = 0;
+    int newOfflineTasksCount = 0;
+    int newOfflinePPIRFormsCount = 0;
 
-  // Fetch offline tasks
-  List<OFFLINESelectAllTasksByAssigneeRow> offlineTasks =
-      await SQLiteManager.instance.oFFLINESelectAllTasksByAssignee(
-    assignee: currentUserUid,
-  );
+    // Step 1: Sync offline PPIR forms to online
+    print('Starting Step 1: Sync offline PPIR forms to online');
+    List<SELECTPPIRFormsByAssigneeRow> offlinePPIRForms =
+        await SQLiteManager.instance.sELECTPPIRFormsByAssignee(
+      assignee: currentUserUid,
+    );
+    print('Fetched ${offlinePPIRForms.length} offline PPIR forms.');
 
-  int newTasksCount = 0;
+    for (var offlinePPIR in offlinePPIRForms) {
+      bool isPpirDirty =
+          offlinePPIR.ppirIsDirty == 'true' || offlinePPIR.ppirIsDirty == '1';
 
-  // Compare and insert new tasks
-  for (var onlineTask in onlineTasks) {
-    bool taskExists =
-        offlineTasks.any((offlineTask) => offlineTask.id == onlineTask.id);
+      if (isPpirDirty) {
+        var onlinePPIRFormExists = await PpirFormsTable().queryRows(
+          queryFn: (q) => q.eq('task_id', offlinePPIR.taskId),
+        );
 
-    if (!taskExists) {
+        if (onlinePPIRFormExists.isNotEmpty) {
+          print('Updating online PPIR form for task ID: ${offlinePPIR.taskId}');
+          await PpirFormsTable().update(
+            data: {
+              'ppir_assignmentid': offlinePPIR.ppirAssignmentid,
+              'gpx': offlinePPIR.gpx,
+              'ppir_insuranceid': offlinePPIR.ppirInsuranceid,
+              'ppir_farmername': offlinePPIR.ppirFarmername,
+              'ppir_address': offlinePPIR.ppirAddress,
+              'ppir_farmertype': offlinePPIR.ppirFarmertype,
+              'ppir_mobileno': offlinePPIR.ppirMobileno,
+              'ppir_groupname': offlinePPIR.ppirGroupname,
+              'ppir_groupaddress': offlinePPIR.ppirGroupaddress,
+              'ppir_lendername': offlinePPIR.ppirLendername,
+              'ppir_lenderaddress': offlinePPIR.ppirLenderaddress,
+              'ppir_cicno': offlinePPIR.ppirCicno,
+              'ppir_farmloc': offlinePPIR.ppirFarmloc,
+              'ppir_north': offlinePPIR.ppirNorth,
+              'ppir_south': offlinePPIR.ppirSouth,
+              'ppir_east': offlinePPIR.ppirEast,
+              'ppir_west': offlinePPIR.ppirWest,
+              // 'ppir_att_1': offlinePPIR.ppirAt,
+              // 'ppir_att_2': offlinePPIR.ppirAtt2,
+              // 'ppir_att_3': offlinePPIR.ppirAtt3,
+              // 'ppir_att_4': offlinePPIR.ppirAtt4,
+              'ppir_area_aci': offlinePPIR.ppirAreaAci,
+              'ppir_area_act': offlinePPIR.ppirAreaAct,
+              'ppir_dopds_aci': offlinePPIR.ppirDopdsAci,
+              'ppir_dopds_act': offlinePPIR.ppirDopdsAct,
+              'ppir_doptp_aci': offlinePPIR.ppirDoptpAci,
+              'ppir_doptp_act': offlinePPIR.ppirDoptpAct,
+              'ppir_svp_aci': offlinePPIR.ppirSvpAci,
+              'ppir_svp_act': offlinePPIR.ppirSvpAct,
+              'ppir_variety': offlinePPIR.ppirVariety,
+              'ppir_stagecrop': offlinePPIR.ppirStagecrop,
+              'ppir_remarks': offlinePPIR.ppirRemarks,
+              'ppir_name_insured': offlinePPIR.ppirNameInsured,
+              'ppir_name_iuia': offlinePPIR.ppirNameIuia,
+              'ppir_sig_insured': offlinePPIR.ppirSigInsured,
+              'ppir_sig_iuia': offlinePPIR.ppirSigIuia,
+              'track_last_coord': offlinePPIR.trackLastCoord,
+              'track_date_time': offlinePPIR.trackDateTime,
+              'track_total_area': offlinePPIR.trackTotalArea,
+              'track_total_distance': offlinePPIR.trackTotalDistance,
+              'sync_status': 'synced',
+              'is_dirty': false,
+            },
+            matchingRows: (row) => row.eq('task_id', offlinePPIR.taskId),
+          );
+          updatedOnlinePPIRFormsCount++;
+        }
+      }
+    }
+
+    // Step 2: Clear offline database
+    print('Starting Step 2: Clearing offline database');
+    await SQLiteManager.instance.dELETEAllRowsForTASKSAndPPIR();
+    print('Cleared offline database');
+
+    // Step 3: Sync online data to offline
+    print('Starting Step 3: Sync online data to offline');
+    List<TasksRow> onlineTasks = await TasksTable().queryRows(
+      queryFn: (q) => q.eq('assignee', currentUserUid),
+    );
+    print('Fetched ${onlineTasks.length} online tasks.');
+
+    for (var onlineTask in onlineTasks) {
       await SQLiteManager.instance.insertOfflineTask(
         id: onlineTask.id,
         taskNumber: onlineTask.taskNumber,
@@ -46,9 +115,8 @@ Future<String> syncOnlineTaskAndPpirToOffline() async {
         dateAccess: onlineTask.dateAccess?.toIso8601String() ?? '',
         fileId: onlineTask.fileId ?? '',
       );
-      newTasksCount++;
+      newOfflineTasksCount++;
 
-      // Fetch and insert corresponding PPIR form if it exists
       var ppirForms = await PpirFormsTable().queryRows(
         queryFn: (q) => q.eq('task_id', onlineTask.id),
       );
@@ -99,18 +167,19 @@ Future<String> syncOnlineTaskAndPpirToOffline() async {
           trackTotalDistance: ppir.trackTotalDistance ?? '',
           createdAt: ppir.createdAt?.toIso8601String() ?? '',
           updatedAt: ppir.updatedAt?.toIso8601String() ?? '',
-          syncStatus: ppir.syncStatus ?? 'synced',
+          syncStatus: 'synced',
           lastSyncedAt: DateTime.now().toIso8601String(),
           localId: ppir.localId ?? '',
-          isDirty: ppir.isDirty?.toString() ?? 'false',
+          isDirty: 'false',
         );
+        newOfflinePPIRFormsCount++;
       }
     }
-  }
 
-  if (newTasksCount > 0) {
-    return 'Synced $newTasksCount task(s)';
-  } else {
-    return 'No new tasks to sync';
+    print('Sync completed successfully');
+    return 'Updated $updatedOnlinePPIRFormsCount, Added $newOfflineTasksCount/$newOfflinePPIRFormsCount';
+  } catch (e) {
+    print('Sync Error: $e');
+    return 'Sync failed';
   }
 }

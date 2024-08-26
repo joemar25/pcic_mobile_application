@@ -2,10 +2,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:provider/provider.dart';
 import 'continue_re_geotag_dialog_model.dart';
 export 'continue_re_geotag_dialog_model.dart';
 
@@ -43,7 +41,7 @@ class _ContinueReGeotagDialogWidgetState
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Container(
         width: 330.0,
         height: 375.0,
@@ -52,7 +50,7 @@ class _ContinueReGeotagDialogWidgetState
           borderRadius: BorderRadius.circular(24.0),
         ),
         child: Padding(
-          padding: EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -76,7 +74,7 @@ class _ContinueReGeotagDialogWidgetState
                         children: [
                           Expanded(
                             child: Align(
-                              alignment: AlignmentDirectional(0.0, 0.0),
+                              alignment: const AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
                                   'txdl513w' /* Alert */,
@@ -106,7 +104,7 @@ class _ContinueReGeotagDialogWidgetState
                     children: [
                       Expanded(
                         child: Align(
-                          alignment: AlignmentDirectional(0.0, 0.0),
+                          alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
                               'aevwr0vt' /* The current gpx file will be d... */,
@@ -129,7 +127,7 @@ class _ContinueReGeotagDialogWidgetState
                       ),
                     ],
                   ),
-                ].divide(SizedBox(height: 15.0)),
+                ].divide(const SizedBox(height: 15.0)),
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
@@ -145,10 +143,10 @@ class _ContinueReGeotagDialogWidgetState
                       ),
                       options: FFButtonOptions(
                         height: 40.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).primaryBackground,
                         textStyle: FlutterFlowTheme.of(context)
                             .titleSmall
@@ -163,7 +161,7 @@ class _ContinueReGeotagDialogWidgetState
                                       .titleSmallFamily),
                             ),
                         elevation: 0.0,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           width: 0.0,
                         ),
                         borderRadius: BorderRadius.circular(12.0),
@@ -180,10 +178,10 @@ class _ContinueReGeotagDialogWidgetState
                       ),
                       options: FFButtonOptions(
                         height: 40.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).warning,
                         textStyle: FlutterFlowTheme.of(context)
                             .titleSmall
@@ -198,7 +196,7 @@ class _ContinueReGeotagDialogWidgetState
                                       .titleSmallFamily),
                             ),
                         elevation: 0.0,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),
@@ -206,9 +204,9 @@ class _ContinueReGeotagDialogWidgetState
                       ),
                     ),
                   ),
-                ].divide(SizedBox(width: 15.0)),
+                ].divide(const SizedBox(width: 15.0)),
               ),
-            ].divide(SizedBox(height: 10.0)),
+            ].divide(const SizedBox(height: 10.0)),
           ),
         ),
       ),

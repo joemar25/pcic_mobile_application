@@ -2,10 +2,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:provider/provider.dart';
 import 'warning_for_sync_model.dart';
 export 'warning_for_sync_model.dart';
 
@@ -13,7 +11,7 @@ class WarningForSyncWidget extends StatefulWidget {
   const WarningForSyncWidget({
     super.key,
     String? dirtyNumbers,
-  }) : this.dirtyNumbers = dirtyNumbers ?? '1';
+  }) : dirtyNumbers = dirtyNumbers ?? '1';
 
   final String dirtyNumbers;
 
@@ -46,7 +44,7 @@ class _WarningForSyncWidgetState extends State<WarningForSyncWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Container(
         width: 338.0,
         height: 392.0,
@@ -55,7 +53,7 @@ class _WarningForSyncWidgetState extends State<WarningForSyncWidget> {
           borderRadius: BorderRadius.circular(24.0),
         ),
         child: Padding(
-          padding: EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -79,7 +77,7 @@ class _WarningForSyncWidgetState extends State<WarningForSyncWidget> {
                         children: [
                           Expanded(
                             child: Align(
-                              alignment: AlignmentDirectional(0.0, 0.0),
+                              alignment: const AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
                                   'bj5fwdr1' /* Warning */,
@@ -109,9 +107,9 @@ class _WarningForSyncWidgetState extends State<WarningForSyncWidget> {
                     children: [
                       Expanded(
                         child: Align(
-                          alignment: AlignmentDirectional(0.0, 0.0),
+                          alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Text(
-                            'Are you sure you want to sync? There is/are ${widget!.dirtyNumbers} task(s) that is/are not sync yet. ',
+                            'Are you sure you want to sync? There is/are ${widget.dirtyNumbers} task(s) that is/are not sync yet. ',
                             textAlign: TextAlign.center,
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
@@ -131,7 +129,7 @@ class _WarningForSyncWidgetState extends State<WarningForSyncWidget> {
                       ),
                     ],
                   ),
-                ].divide(SizedBox(height: 15.0)),
+                ].divide(const SizedBox(height: 15.0)),
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
@@ -147,10 +145,10 @@ class _WarningForSyncWidgetState extends State<WarningForSyncWidget> {
                       ),
                       options: FFButtonOptions(
                         height: 40.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).primaryBackground,
                         textStyle: FlutterFlowTheme.of(context)
                             .titleSmall
@@ -165,7 +163,7 @@ class _WarningForSyncWidgetState extends State<WarningForSyncWidget> {
                                       .titleSmallFamily),
                             ),
                         elevation: 0.0,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           width: 0.0,
                         ),
                         borderRadius: BorderRadius.circular(12.0),
@@ -182,10 +180,10 @@ class _WarningForSyncWidgetState extends State<WarningForSyncWidget> {
                       ),
                       options: FFButtonOptions(
                         height: 40.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).error,
                         textStyle: FlutterFlowTheme.of(context)
                             .titleSmall
@@ -200,7 +198,7 @@ class _WarningForSyncWidgetState extends State<WarningForSyncWidget> {
                                       .titleSmallFamily),
                             ),
                         elevation: 0.0,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),
@@ -208,9 +206,9 @@ class _WarningForSyncWidgetState extends State<WarningForSyncWidget> {
                       ),
                     ),
                   ),
-                ].divide(SizedBox(width: 15.0)),
+                ].divide(const SizedBox(width: 15.0)),
               ),
-            ].divide(SizedBox(height: 10.0)),
+            ].divide(const SizedBox(height: 10.0)),
           ),
         ),
       ),

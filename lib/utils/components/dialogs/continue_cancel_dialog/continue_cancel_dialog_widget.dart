@@ -2,10 +2,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:provider/provider.dart';
 import 'continue_cancel_dialog_model.dart';
 export 'continue_cancel_dialog_model.dart';
 
@@ -43,7 +41,7 @@ class _ContinueCancelDialogWidgetState
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Container(
         width: 338.0,
         height: 392.0,
@@ -52,7 +50,7 @@ class _ContinueCancelDialogWidgetState
           borderRadius: BorderRadius.circular(24.0),
         ),
         child: Padding(
-          padding: EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -76,7 +74,7 @@ class _ContinueCancelDialogWidgetState
                         children: [
                           Expanded(
                             child: Align(
-                              alignment: AlignmentDirectional(0.0, 0.0),
+                              alignment: const AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
                                   '4i07fax8' /* Warning */,
@@ -106,7 +104,7 @@ class _ContinueCancelDialogWidgetState
                     children: [
                       Expanded(
                         child: Align(
-                          alignment: AlignmentDirectional(0.0, 0.0),
+                          alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
                               'hg3q7i0o' /* This will cancel your current ... */,
@@ -130,7 +128,7 @@ class _ContinueCancelDialogWidgetState
                       ),
                     ],
                   ),
-                ].divide(SizedBox(height: 15.0)),
+                ].divide(const SizedBox(height: 15.0)),
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
@@ -146,10 +144,10 @@ class _ContinueCancelDialogWidgetState
                       ),
                       options: FFButtonOptions(
                         height: 40.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).primaryBackground,
                         textStyle: FlutterFlowTheme.of(context)
                             .titleSmall
@@ -164,7 +162,7 @@ class _ContinueCancelDialogWidgetState
                                       .titleSmallFamily),
                             ),
                         elevation: 0.0,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           width: 0.0,
                         ),
                         borderRadius: BorderRadius.circular(12.0),
@@ -181,10 +179,10 @@ class _ContinueCancelDialogWidgetState
                       ),
                       options: FFButtonOptions(
                         height: 40.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).error,
                         textStyle: FlutterFlowTheme.of(context)
                             .titleSmall
@@ -199,7 +197,7 @@ class _ContinueCancelDialogWidgetState
                                       .titleSmallFamily),
                             ),
                         elevation: 0.0,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),
@@ -207,9 +205,9 @@ class _ContinueCancelDialogWidgetState
                       ),
                     ),
                   ),
-                ].divide(SizedBox(width: 15.0)),
+                ].divide(const SizedBox(width: 15.0)),
               ),
-            ].divide(SizedBox(height: 10.0)),
+            ].divide(const SizedBox(height: 10.0)),
           ),
         ),
       ),
