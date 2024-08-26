@@ -60,12 +60,12 @@ class _MapBoxState extends State<MapBox> {
 
   static const double _currentZoom = 21.0;
   static const int _positionStreamIntervalMs = 100;
-  static const int _initialPositionSamples = 30;
+  static const int _initialPositionSamples = 25;
   static const double _highAccuracyThreshold = 10.0;
   static const double _stationarySpeedThreshold = 0.1;
   static const double _significantMovementThreshold = 0.5;
   static const int _stationaryWindowSize = 20;
-  static const double _autoSnapThreshold = 20.0;
+  static const double _autoSnapThreshold = 1.0;
   static const int _minPointsForAutosnap = 10;
 
   late SimpleKalmanFilter _latFilter;
@@ -409,7 +409,17 @@ class _MapBoxState extends State<MapBox> {
 
       if (distanceToStart <= _autoSnapThreshold) {
         print("Autosnap condition met. Executing completion logic...");
-        _routeCoordinates.add(_routeCoordinates.first);
+
+        // Replace the last point with the starting point to ensure proper closure
+        _routeCoordinates.last = _startingPosition!;
+
+        // Add the first point again to close the route
+        if (_routeCoordinates.first != _routeCoordinates.last) {
+          _routeCoordinates.add(_routeCoordinates.first);
+        }
+
+        print(
+            "Route closed. First and last coordinates: ${_routeCoordinates.first}, ${_routeCoordinates.last}");
 
         // Perform the autosnap and execute the provided code
         FFAppState().routeStarted = false;
@@ -443,6 +453,9 @@ class _MapBoxState extends State<MapBox> {
           } catch (modelError) {
             print("Error updating model: $modelError");
           }
+
+          // Force a rebuild to update the map
+          setState(() {});
 
           print("Attempting navigation to gpxSuccess...");
 
@@ -482,6 +495,98 @@ class _MapBoxState extends State<MapBox> {
       }
     }
   }
+
+  // void _addToRoute(ll.LatLng newLocation) async {
+  //   if (_startingPosition == null) {
+  //     _startingPosition = newLocation;
+  //   }
+
+  //   setState(() {
+  //     _routeCoordinates.add(newLocation);
+  //   });
+
+  //   if (_routeCoordinates.length >= _minPointsForAutosnap) {
+  //     double distanceToStart = _distance.as(
+  //       ll.LengthUnit.Meter,
+  //       _startingPosition!,
+  //       newLocation,
+  //     );
+
+  //     if (distanceToStart <= _autoSnapThreshold) {
+  //       print("Autosnap condition met. Executing completion logic...");
+  //       _routeCoordinates.add(_routeCoordinates.first);
+
+  //       // Perform the autosnap and execute the provided code
+  //       FFAppState().routeStarted = false;
+
+  //       try {
+  //         if (FFAppState().ONLINE) {
+  //           await TasksTable().update(
+  //             data: {
+  //               'status': 'ongoing',
+  //             },
+  //             matchingRows: (rows) => rows.eq(
+  //               'id',
+  //               widget.taskId,
+  //             ),
+  //           );
+  //           print("Online task status updated");
+  //         }
+
+  //         await SQLiteManager.instance.updateTaskStatus(
+  //           taskId: widget.taskId,
+  //           status: 'ongoing',
+  //           isDirty: !FFAppState().ONLINE,
+  //         );
+  //         print("SQLite task status updated");
+
+  //         // Safely update the model
+  //         try {
+  //           _model.isGeotagStart = false;
+  //           _model.isFinished = true;
+  //           print("Model updated successfully");
+  //         } catch (modelError) {
+  //           print("Error updating model: $modelError");
+  //         }
+
+  //         print("Attempting navigation to gpxSuccess...");
+
+  //         // Use a more robust navigation method
+  //         if (mounted && context.mounted) {
+  //           await Future.delayed(Duration.zero, () {
+  //             context.pushNamed(
+  //               'gpxSuccess',
+  //               queryParameters: {
+  //                 'taskId': serializeParam(
+  //                   widget.taskId,
+  //                   ParamType.String,
+  //                 ),
+  //               }.withoutNulls,
+  //               extra: <String, dynamic>{
+  //                 kTransitionInfoKey: const TransitionInfo(
+  //                   hasTransition: true,
+  //                   transitionType: PageTransitionType.scale,
+  //                   alignment: Alignment.bottomCenter,
+  //                   duration: Duration(milliseconds: 300),
+  //                 ),
+  //               },
+  //             );
+  //           });
+  //           print("Navigation to gpxSuccess initiated");
+  //         } else {
+  //           print("Context is not available for navigation");
+  //         }
+  //       } catch (e) {
+  //         print("Error during autosnap completion: $e");
+  //         // Attempt navigation even if there was an error
+  //         if (mounted && context.mounted) {
+  //           context.pushNamed('gpxSuccess',
+  //               queryParameters: {'taskId': widget.taskId});
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 
   // void _addToRoute(ll.LatLng newLocation) {
   //   // Always add the new raw location to make the route more detailed
@@ -535,6 +640,10 @@ class _MapBoxState extends State<MapBox> {
 
   void _completeTracking() {
     if (_routeCoordinates.isEmpty) return;
+
+    if (_routeCoordinates.first != _routeCoordinates.last) {
+      _routeCoordinates.add(_routeCoordinates.first);
+    }
 
     print('Route completed. Total points: ${_routeCoordinates.length}');
 

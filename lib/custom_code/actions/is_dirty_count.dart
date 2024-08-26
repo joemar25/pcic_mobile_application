@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 
 import '/auth/supabase_auth/auth_util.dart';
 
-Future<int> isDirtyCount() async {
+Future<String> isDirtyCount() async {
   // Fetch all ppir forms using the COUNTIsDirtyRow type
   List<COUNTIsDirtyRow> ppirList =
       await SQLiteManager.instance.cOUNTIsDirty(assignee: currentUserUid);
@@ -31,5 +31,6 @@ Future<int> isDirtyCount() async {
     }
   }
 
-  return dirtyCount;
+  // Return the count as a string
+  return dirtyCount.toString();
 }

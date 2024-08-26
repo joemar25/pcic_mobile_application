@@ -3,8 +3,8 @@ import '/backend/sqlite/sqlite_manager.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
-import '/utils/components/dialogs/has_dirty_ppir_notif/has_dirty_ppir_notif_widget.dart';
 import '/utils/components/dialogs/signout_dialog/signout_dialog_widget.dart';
+import '/utils/components/dialogs/warning_for_sync/warning_for_sync_widget.dart';
 import '/utils/components/page_loader/page_loader_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -956,8 +956,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
-                                              if (_model.isDirtyCounter
-                                                      .toString() ==
+                                              if (_model.isDirtyCounter ==
                                                   '0') {
                                                 context.pushNamed(
                                                   'syncKing4TheWin',
@@ -992,36 +991,19 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                                   Directionality.of(
                                                                       context)),
                                                       child:
-                                                          HasDirtyPpirNotifWidget(
-                                                        number: _model
+                                                          WarningForSyncWidget(
+                                                        dirtyNumbers: _model
                                                             .isDirtyCounter!,
                                                       ),
                                                     );
                                                   },
                                                 ).then((value) => safeSetState(
-                                                    () =>
-                                                        _model.answer = value));
+                                                    () => _model.answerKey =
+                                                        value));
 
-                                                if (_model.answer!) {
+                                                if (_model.answerKey!) {
                                                   context.pushNamed(
                                                     'syncKing4TheWin',
-                                                    extra: <String, dynamic>{
-                                                      kTransitionInfoKey:
-                                                          const TransitionInfo(
-                                                        hasTransition: true,
-                                                        transitionType:
-                                                            PageTransitionType
-                                                                .scale,
-                                                        alignment: Alignment
-                                                            .bottomCenter,
-                                                        duration: Duration(
-                                                            milliseconds: 200),
-                                                      ),
-                                                    },
-                                                  );
-                                                } else {
-                                                  context.pushNamed(
-                                                    'dashboard',
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
                                                           const TransitionInfo(
@@ -1051,17 +1033,36 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                   mainAxisSize:
                                                       MainAxisSize.max,
                                                   children: [
-                                                    Icon(
-                                                      Icons.sync_alt,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                      size: 30.0,
+                                                    Stack(
+                                                      children: [
+                                                        if (_model
+                                                                .isDirtyCounter ==
+                                                            '0')
+                                                          Icon(
+                                                            Icons.sync_sharp,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryText,
+                                                            size: 30.0,
+                                                          ),
+                                                        if (_model
+                                                                .isDirtyCounter !=
+                                                            '0')
+                                                          Icon(
+                                                            Icons.sync_problem,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryText,
+                                                            size: 30.0,
+                                                          ),
+                                                      ],
                                                     ),
                                                     Text(
-                                                      _model.isDirtyCounter
-                                                          .toString(),
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .getText(
+                                                        'xliyfzs6' /* Sync FTP */,
+                                                      ),
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)

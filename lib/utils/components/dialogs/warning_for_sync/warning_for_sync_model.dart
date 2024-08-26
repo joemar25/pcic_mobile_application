@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'has_dirty_ppir_notif_widget.dart' show HasDirtyPpirNotifWidget;
+import 'warning_for_sync_widget.dart' show WarningForSyncWidget;
 import 'package:flutter/material.dart';
 
-class HasDirtyPpirNotifModel extends FlutterFlowModel<HasDirtyPpirNotifWidget> {
+class WarningForSyncModel extends FlutterFlowModel<WarningForSyncWidget> {
   @override
   void initState(BuildContext context) {}
 

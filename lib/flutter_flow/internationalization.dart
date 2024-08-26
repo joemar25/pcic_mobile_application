@@ -210,6 +210,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Support',
       'tl': 'Suporta',
     },
+    'xliyfzs6': {
+      'en': 'Sync FTP',
+      'tl': 'Nandito si Mar - Nagsi-sync Mula sa FTP',
+    },
     'yttqc4w2': {
       'en': 'Sign Out',
       'tl': 'Mag-sign Out',
@@ -262,7 +266,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    '76rpkyab': {
+    'j7jgehgm': {
       'en': '',
       'tl': '',
     },
@@ -274,7 +278,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'lsh93fyp': {
+    'lrl4i1sf': {
       'en': '',
       'tl': '',
     },
@@ -286,7 +290,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang Bagong Password...',
     },
-    'dvzgc5zq': {
+    'sckvwc93': {
       'en': '',
       'tl': '',
     },
@@ -1590,14 +1594,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
-  // hasDirtyPpirNotif
+  // warningForSync
   {
-    'dwwupjc2': {
-      'en': 'Info',
+    'bj5fwdr1': {
+      'en': 'Warning',
       'tl': '',
     },
-    'pm431x2w': {
-      'en': 'Dashboard',
+    'j12qx5tg': {
+      'en': 'Cancel',
+      'tl': '',
+    },
+    'mcwvr395': {
+      'en': 'Continue',
       'tl': '',
     },
   },
