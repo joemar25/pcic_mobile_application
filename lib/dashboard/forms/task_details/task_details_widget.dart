@@ -49,9 +49,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
       _model.offlinePPIR = await SQLiteManager.instance.selectPpirForms(
         taskId: widget.taskId,
       );
+      FFAppState().mapLoadedWithInternet = FFAppState().ONLINE;
+      setState(() {});
       if (FFAppState().ONLINE) {
-        FFAppState().mapLoadedWithInternet = true;
-        setState(() {});
         _model.statusOutput = 'Syncing...';
         setState(() {});
         await PpirFormsTable().update(
@@ -67,6 +67,14 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
             'ppir_variety': _model.offlinePPIR?.first.ppirVariety,
             'sync_status': 'synced',
             'is_dirty': false,
+            'gpx': _model.offlinePPIR?.first.gpx,
+            'ppir_sig_iuia': _model.offlinePPIR?.first.ppirSigIuia,
+            'ppir_sig_insured': _model.offlinePPIR?.first.ppirSigInsured,
+            'track_last_coord': _model.offlinePPIR?.first.trackLastCoord,
+            'track_date_time': _model.offlinePPIR?.first.trackDateTime,
+            'track_total_area': _model.offlinePPIR?.first.trackTotalArea,
+            'track_total_distance':
+                _model.offlinePPIR?.first.trackTotalDistance,
           },
           matchingRows: (rows) => rows.eq(
             'task_id',

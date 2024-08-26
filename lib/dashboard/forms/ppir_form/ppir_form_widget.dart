@@ -53,7 +53,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       FFAppState().mapLoadedWithInternet = FFAppState().ONLINE;
       FFAppState().routeStarted = false;
-      FFAppState().update(() {});
+      setState(() {});
     });
 
     _model.gpxBlobFocusNode ??= FocusNode();
