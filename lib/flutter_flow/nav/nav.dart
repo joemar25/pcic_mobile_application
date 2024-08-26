@@ -262,10 +262,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           builder: (context, params) => const SyncKingWidget(),
         ),
         FFRoute(
-          name: 'offlineSync',
-          path: '/offlineSync',
+          name: 'syncKing4TheWin',
+          path: '/syncKing4TheWin',
           requireAuth: true,
-          builder: (context, params) => const OfflineSyncWidget(),
+          builder: (context, params) => const SyncKing4TheWinWidget(),
         ),
         FFRoute(
           name: 'ppirForm',

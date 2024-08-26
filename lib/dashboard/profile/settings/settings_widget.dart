@@ -951,7 +951,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             context.pushNamed(
-                                              'offlineSync',
+                                              'syncKing4TheWin',
                                               extra: <String, dynamic>{
                                                 kTransitionInfoKey:
                                                     const TransitionInfo(

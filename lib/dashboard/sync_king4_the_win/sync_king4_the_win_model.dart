@@ -1,10 +1,10 @@
 import '/backend/sqlite/sqlite_manager.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'offline_sync_widget.dart' show OfflineSyncWidget;
+import 'sync_king4_the_win_widget.dart' show SyncKing4TheWinWidget;
 import 'package:flutter/material.dart';
 
-class OfflineSyncModel extends FlutterFlowModel<OfflineSyncWidget> {
+class SyncKing4TheWinModel extends FlutterFlowModel<SyncKing4TheWinWidget> {
   ///  Local state fields for this page.
 
   int? limit = 0;

@@ -302,7 +302,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                   onTap: () async {
                                     if (FFAppState().ONLINE && kDebugMode) {
                                       context.pushNamed(
-                                        'offlineSync',
+                                        'syncKing4TheWin',
                                         extra: <String, dynamic>{
                                           kTransitionInfoKey: const TransitionInfo(
                                             hasTransition: true,

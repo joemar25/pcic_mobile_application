@@ -505,7 +505,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                   context.pop();
                                                 }
                                                 context.pushNamedAuth(
-                                                  'offlineSync',
+                                                  'syncKing4TheWin',
                                                   context.mounted,
                                                   extra: <String, dynamic>{
                                                     kTransitionInfoKey:
@@ -751,7 +751,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                       context.pop();
                                                     }
                                                     context.pushNamedAuth(
-                                                      'offlineSync',
+                                                      'syncKing4TheWin',
                                                       context.mounted,
                                                       extra: <String, dynamic>{
                                                         kTransitionInfoKey:

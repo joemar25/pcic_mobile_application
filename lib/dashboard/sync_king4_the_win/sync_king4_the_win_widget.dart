@@ -11,19 +11,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'offline_sync_model.dart';
-export 'offline_sync_model.dart';
+import 'sync_king4_the_win_model.dart';
+export 'sync_king4_the_win_model.dart';
 
-class OfflineSyncWidget extends StatefulWidget {
-  const OfflineSyncWidget({super.key});
+class SyncKing4TheWinWidget extends StatefulWidget {
+  const SyncKing4TheWinWidget({super.key});
 
   @override
-  State<OfflineSyncWidget> createState() => _OfflineSyncWidgetState();
+  State<SyncKing4TheWinWidget> createState() => _SyncKing4TheWinWidgetState();
 }
 
-class _OfflineSyncWidgetState extends State<OfflineSyncWidget>
+class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
     with TickerProviderStateMixin {
-  late OfflineSyncModel _model;
+  late SyncKing4TheWinModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -32,7 +32,7 @@ class _OfflineSyncWidgetState extends State<OfflineSyncWidget>
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => OfflineSyncModel());
+    _model = createModel(context, () => SyncKing4TheWinModel());
 
     animationsMap.addAll({
       'iconOnPageLoadAnimation': AnimationInfo(
@@ -138,7 +138,7 @@ class _OfflineSyncWidgetState extends State<OfflineSyncWidget>
             body: const PageLoaderWidget(),
           );
         }
-        final offlineSyncSelectProfileRowList = snapshot.data!;
+        final syncKing4TheWinSelectProfileRowList = snapshot.data!;
 
         return GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -170,6 +170,8 @@ class _OfflineSyncWidgetState extends State<OfflineSyncWidget>
                         highlightColor: Colors.transparent,
                         onTap: () async {
                           if (!_model.isSync) {
+                            await SQLiteManager.instance
+                                .dELETEAllRowsForTASKSAndPPIR();
                             // Online Tasks
                             _model.onlineTasks = await TasksTable().queryRows(
                               queryFn: (q) => q,
@@ -390,7 +392,7 @@ class _OfflineSyncWidgetState extends State<OfflineSyncWidget>
                             }
                             _model.regionCode = await SQLiteManager.instance
                                 .oFFLINESelectREGIONCODE(
-                              id: offlineSyncSelectProfileRowList
+                              id: syncKing4TheWinSelectProfileRowList
                                   .first.regionId,
                             );
                             _model.isSyced = await actions.syncFromFTP(
