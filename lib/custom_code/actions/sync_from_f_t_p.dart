@@ -242,6 +242,12 @@ Future<bool> syncFromFTP(String? region) async {
 
     print(
         'Sync completed: $newTasksCount new tasks, $newPPIRFormsCount new PPIR forms');
+
+    // mar: Update sync count in app state
+    print("Before FFAppState().syncCount -> ${FFAppState().syncCount}");
+    FFAppState().syncCount = FFAppState().syncCount + newTasksCount;
+    print("AfterFFAppState().syncCount -> ${FFAppState().syncCount}");
+
     return true;
   } catch (e) {
     print('Sync Error: $e');
