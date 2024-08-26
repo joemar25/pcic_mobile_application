@@ -11,20 +11,22 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import '/auth/supabase_auth/auth_util.dart';
+
 Future<int> isDirtyCount() async {
-  // Fetch all ppir forms
-  List<SelectPpirFormsRow> ppirList =
-      await SQLiteManager.instance.selectPpirForms();
+  // Fetch all ppir forms using the COUNTIsDirtyRow type
+  List<COUNTIsDirtyRow> ppirList =
+      await SQLiteManager.instance.cOUNTIsDirty(assignee: currentUserUid);
 
   // Initialize a counter for dirty records
   int dirtyCount = 0;
 
   // Iterate through the list and count how many are dirty
   for (var ppir in ppirList) {
-    var value = ppir.data['is_dirty'];
+    print('ppir -> ${ppir.data}');
+    var value = ppir.data['ppir_is_dirty'];
 
-    // Check if the value is dirty (either 1 or true)
-    if (value == 1 || value == true) {
+    if (value == 1 || value == '1' || value == true || value == 'true') {
       dirtyCount++;
     }
   }
