@@ -266,7 +266,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    '6qog2i1q': {
+    'g931brm6': {
       'en': '',
       'tl': '',
     },
@@ -278,7 +278,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    '4fp5evz5': {
+    'r8hd0jto': {
       'en': '',
       'tl': '',
     },
@@ -290,7 +290,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang Bagong Password...',
     },
-    'blft95r0': {
+    '5qgij6di': {
       'en': '',
       'tl': '',
     },
@@ -1098,27 +1098,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Please choose an option from the dropdown',
       'tl': 'Mangyaring pumili ng opsyon mula sa dropdown',
     },
-    'ez2u8e33': {
-      'en': 'Field is required',
-      'tl': 'Kinakailangan ang field',
-    },
-    'crnym7hj': {
-      'en': 'Please choose an option from the dropdown',
-      'tl': 'Mangyaring pumili ng opsyon mula sa dropdown',
-    },
     'gug2f3ir': {
       'en': 'Field is required',
       'tl': '',
     },
     'x5yedns4': {
-      'en': 'Please choose an option from the dropdown',
-      'tl': '',
-    },
-    'ub0zeqvu': {
-      'en': 'Field is required',
-      'tl': '',
-    },
-    '4l573kvw': {
       'en': 'Please choose an option from the dropdown',
       'tl': '',
     },

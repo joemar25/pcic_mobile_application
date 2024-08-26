@@ -140,6 +140,17 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
   TextEditingController? ppirAreaActFieldTextController;
   String? Function(BuildContext, String?)?
       ppirAreaActFieldTextControllerValidator;
+  String? _ppirAreaActFieldTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        'f7d4dwme' /* Field is required */,
+      );
+    }
+
+    return null;
+  }
+
   // State field(s) for ppir_area_dop_ds_field widget.
   FocusNode? ppirAreaDopDsFieldFocusNode;
   TextEditingController? ppirAreaDopDsFieldTextController;
@@ -226,6 +237,8 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
   bool? confirmCancel;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in saveButton widget.
   bool? continueSave;
+  // Stores action output result for [Validate Form] action in submitButton widget.
+  bool? isValidated;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in submitButton widget.
   bool? continueSubmit;
   // Stores action output result for [Backend Call - Update Row(s)] action in submitButton widget.
@@ -249,6 +262,8 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
         _ppirTrackTotalAreaTextController2Validator;
     ppirTrackFarmlocTextControllerValidator =
         _ppirTrackFarmlocTextControllerValidator;
+    ppirAreaActFieldTextControllerValidator =
+        _ppirAreaActFieldTextControllerValidator;
     ppirAreaDopDsFieldTextControllerValidator =
         _ppirAreaDopDsFieldTextControllerValidator;
     ppirAreaDopTpFieldTextControllerValidator =
