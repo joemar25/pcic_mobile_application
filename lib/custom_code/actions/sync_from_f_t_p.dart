@@ -240,6 +240,7 @@ Future<bool> syncFromFTP(String? region) async {
       }
     }
 
+    // print for count
     print(
         'Sync completed: $newTasksCount new tasks, $newPPIRFormsCount new PPIR forms');
 

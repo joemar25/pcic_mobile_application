@@ -79,7 +79,7 @@ class _SavingModeWidgetState extends State<SavingModeWidget>
       width: MediaQuery.sizeOf(context).width * 1.0,
       height: MediaQuery.sizeOf(context).height * 1.0,
       decoration: const BoxDecoration(
-        color: Color(0x6317282E),
+        color: Color(0x1E1E1E1E),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.max,
