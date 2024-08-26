@@ -1968,8 +1968,16 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   controller: _model
                                                           .ppirSvpActSelectionValueController ??=
                                                       FormFieldController<
-                                                              String>(
-                                                          ppirFormSelectPpirFormsRowList
+                                                          String>((ppirFormSelectPpirFormsRowList
+                                                                      .first
+                                                                      .ppirSvpAct ==
+                                                                  'null') ||
+                                                              (ppirFormSelectPpirFormsRowList
+                                                                      .first
+                                                                      .ppirSvpAct ==
+                                                                  '')
+                                                          ? 'rice'
+                                                          : ppirFormSelectPpirFormsRowList
                                                               .first
                                                               .ppirSvpAct!),
                                                   optionHeight: 32.0,

@@ -19,7 +19,8 @@ export 'change_password.dart' show changePassword;
 export 'verify_password.dart' show verifyPassword;
 export 'update_password.dart' show updatePassword;
 export 'get_gpx_link.dart' show getGpxLink;
-export 'sync_data.dart' show syncData;
+export 'sync_online_task_and_ppir_to_offline.dart'
+    show syncOnlineTaskAndPpirToOffline;
 export 'edit_password.dart' show editPassword;
 export 'check_password_strength.dart' show checkPasswordStrength;
 export 'compare_passwords.dart' show comparePasswords;

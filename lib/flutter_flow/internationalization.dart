@@ -266,7 +266,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    '9xslyexb': {
+    'xxviiwa5': {
       'en': '',
       'tl': '',
     },
@@ -278,7 +278,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'y128dxzi': {
+    'hba8yqfc': {
       'en': '',
       'tl': '',
     },
@@ -290,7 +290,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang Bagong Password...',
     },
-    'w9lj21m9': {
+    'jy0r57ak': {
       'en': '',
       'tl': '',
     },
@@ -754,21 +754,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Bahay',
     },
   },
-  // offlineDbTest
-  {
-    'tcs90efh': {
-      'en': 'Area 69',
-      'tl': 'Lugar 69',
-    },
-    '4twa0pya': {
-      'en': 'List of Tasks',
-      'tl': 'Listahan ng mga Gawain',
-    },
-    'lj1x71om': {
-      'en': 'Home',
-      'tl': 'Bahay',
-    },
-  },
   // offlineTasksAndPpirList
   {
     'o7uaesf0': {
@@ -807,40 +792,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Quanby Solutions Inc.',
     },
     's10teuws': {
-      'en': 'Home',
-      'tl': 'Bahay',
-    },
-  },
-  // syncData
-  {
-    '5l39d1ob': {
-      'en': 'Tap to Sync',
-      'tl': 'I-tap para I-sync',
-    },
-    'mh2af94v': {
-      'en': 'Dashboard',
-      'tl': 'Dashboard',
-    },
-    '2nf0agys': {
-      'en': 'Home',
-      'tl': 'Bahay',
-    },
-  },
-  // syncKing
-  {
-    'e3h43o18': {
-      'en': 'Sync Task & PPIR',
-      'tl': 'I-sync ang Gawain at PPIR',
-    },
-    '3i8noo2z': {
-      'en': 'Dashboard',
-      'tl': 'Dashboard',
-    },
-    'nm7pj9jt': {
-      'en': 'Offline Tasks Sync Test',
-      'tl': 'Pagsubok sa Pag-sync ng Mga Gawain sa Offline',
-    },
-    '5fh27y4l': {
       'en': 'Home',
       'tl': 'Bahay',
     },

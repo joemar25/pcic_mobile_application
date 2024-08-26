@@ -208,7 +208,7 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: const Icon(
-              Icons.account_circle_outlined,
+              Icons.settings_outlined,
               size: 24.0,
             ),
             activeIcon: const Icon(

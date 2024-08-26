@@ -14,7 +14,7 @@ import 'package:flutter/material.dart';
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/sqlite/queries/read.dart';
 
-Future<String> syncData() async {
+Future<String> syncOnlineTaskAndPpirToOffline() async {
   // Fetch online tasks
   List<TasksRow> onlineTasks = await TasksTable().queryRows(
     queryFn: (q) => q.eq('assignee', currentUserUid),

@@ -951,6 +951,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             FFAppState().syncCount = 0;
+                                            FFAppState().update(() {});
 
                                             context.pushNamed(
                                               'syncKing4TheWin',

@@ -235,11 +235,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           builder: (context, params) => const PcicMapWidget(),
         ),
         FFRoute(
-          name: 'offlineDbTest',
-          path: '/offlineDbTest',
-          builder: (context, params) => const OfflineDbTestWidget(),
-        ),
-        FFRoute(
           name: 'offlineTasksAndPpirList',
           path: '/offlineTasksAndPpirList',
           builder: (context, params) => const OfflineTasksAndPpirListWidget(),
@@ -248,18 +243,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           name: 'onboarding',
           path: '/onboarding',
           builder: (context, params) => const OnboardingWidget(),
-        ),
-        FFRoute(
-          name: 'syncData',
-          path: '/syncData',
-          requireAuth: true,
-          builder: (context, params) => const SyncDataWidget(),
-        ),
-        FFRoute(
-          name: 'syncKing',
-          path: '/syncKing',
-          requireAuth: true,
-          builder: (context, params) => const SyncKingWidget(),
         ),
         FFRoute(
           name: 'syncKing4TheWin',
