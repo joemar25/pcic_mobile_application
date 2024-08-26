@@ -34,6 +34,7 @@ export '/dashboard/forms/ppir_form/ppir_form_widget.dart' show PpirFormWidget;
 export '/dashboard/support/support_page/support_page_widget.dart'
     show SupportPageWidget;
 export '/dashboard/support/call_us/call_us_widget.dart' show CallUsWidget;
-export '/dashboard/support/email_us/email_us_widget.dart' show EmailUsWidget;
+export '/dashboard/support/send_feedback/send_feedback_widget.dart'
+    show SendFeedbackWidget;
 export '/utils/components/gpx_success/gpx_success_widget.dart'
     show GpxSuccessWidget;

@@ -318,7 +318,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    context.pushNamed('emailUs');
+                                    context.pushNamed('sendFeedback');
                                   },
                                   child: Container(
                                     width: 120.0,

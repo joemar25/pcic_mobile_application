@@ -1,9 +1,9 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
-import 'email_us_widget.dart' show EmailUsWidget;
+import 'send_feedback_widget.dart' show SendFeedbackWidget;
 import 'package:flutter/material.dart';
 
-class EmailUsModel extends FlutterFlowModel<EmailUsWidget> {
+class SendFeedbackModel extends FlutterFlowModel<SendFeedbackWidget> {
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();

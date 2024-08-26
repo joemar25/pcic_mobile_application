@@ -288,9 +288,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           builder: (context, params) => const CallUsWidget(),
         ),
         FFRoute(
-          name: 'emailUs',
-          path: '/emailUs',
-          builder: (context, params) => const EmailUsWidget(),
+          name: 'sendFeedback',
+          path: '/sendFeedback',
+          builder: (context, params) => const SendFeedbackWidget(),
         ),
         FFRoute(
           name: 'gpxSuccess',

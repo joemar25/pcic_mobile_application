@@ -9,25 +9,25 @@ import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'email_us_model.dart';
-export 'email_us_model.dart';
+import 'send_feedback_model.dart';
+export 'send_feedback_model.dart';
 
-class EmailUsWidget extends StatefulWidget {
-  const EmailUsWidget({super.key});
+class SendFeedbackWidget extends StatefulWidget {
+  const SendFeedbackWidget({super.key});
 
   @override
-  State<EmailUsWidget> createState() => _EmailUsWidgetState();
+  State<SendFeedbackWidget> createState() => _SendFeedbackWidgetState();
 }
 
-class _EmailUsWidgetState extends State<EmailUsWidget> {
-  late EmailUsModel _model;
+class _SendFeedbackWidgetState extends State<SendFeedbackWidget> {
+  late SendFeedbackModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => EmailUsModel());
+    _model = createModel(context, () => SendFeedbackModel());
 
     _model.inputMessageTextController ??= TextEditingController();
     _model.inputMessageFocusNode ??= FocusNode();
