@@ -390,6 +390,8 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                               _model.iteration = _model.iteration! + 1;
                               setState(() {});
                             }
+                            FFAppState().syncCount = _model.iteration!;
+                            setState(() {});
                             _model.regionCode = await SQLiteManager.instance
                                 .oFFLINESelectREGIONCODE(
                               id: syncKing4TheWinSelectProfileRowList
