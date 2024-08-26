@@ -724,6 +724,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     taskId: widget
                                                                         .taskId,
                                                                     gpx: ' ',
+                                                                    isDirty:
+                                                                        FFAppState()
+                                                                            .ONLINE,
                                                                   );
 
                                                                   context
@@ -4238,39 +4241,6 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
 
                                   if (_model.continueSave!) {
                                     if (FFAppState().ONLINE) {
-                                      await SQLiteManager.instance
-                                          .updatePPIRForm(
-                                        taskId: widget.taskId,
-                                        ppirSvpAct:
-                                            _model.ppirSvpActSelectionValue,
-                                        ppirDopdsAct: _model
-                                            .ppirAreaDopDsFieldTextController
-                                            .text,
-                                        ppirDoptpAct: _model
-                                            .ppirAreaDopTpFieldTextController
-                                            .text,
-                                        ppirRemarks: _model
-                                            .ppirRemarksFieldTextController
-                                            .text,
-                                        ppirNameInsured: _model
-                                            .ppirPreparedByNameFieldTextController
-                                            .text,
-                                        ppirNameIuia: _model
-                                            .ppirConfirmedByNameFieldTextController
-                                            .text,
-                                        ppirFarmloc: _model
-                                            .ppirTrackFarmlocTextController
-                                            .text,
-                                        ppirAreaAct: _model
-                                            .ppirAreaActFieldTextController
-                                            .text,
-                                        ppirVariety:
-                                            _model.ppirSvpActSelectionValue ==
-                                                    'rice'
-                                                ? _model.riceDropdownValue
-                                                : _model.cornDropdownValue,
-                                        isDirty: false,
-                                      );
                                       await PpirFormsTable().update(
                                         data: {
                                           'ppir_svp_act':
@@ -4316,46 +4286,41 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                           widget.taskId,
                                         ),
                                       );
-                                    } else {
-                                      await SQLiteManager.instance
-                                          .updatePPIRForm(
-                                        taskId: widget.taskId,
-                                        ppirSvpAct:
-                                            _model.ppirSvpActSelectionValue,
-                                        ppirDopdsAct: _model
-                                            .ppirAreaDopDsFieldTextController
-                                            .text,
-                                        ppirDoptpAct: _model
-                                            .ppirAreaDopTpFieldTextController
-                                            .text,
-                                        ppirRemarks: _model
-                                            .ppirRemarksFieldTextController
-                                            .text,
-                                        ppirNameInsured: _model
-                                            .ppirPreparedByNameFieldTextController
-                                            .text,
-                                        ppirNameIuia: _model
-                                            .ppirConfirmedByNameFieldTextController
-                                            .text,
-                                        ppirFarmloc: _model
-                                            .ppirTrackFarmlocTextController
-                                            .text,
-                                        ppirAreaAct: _model
-                                            .ppirAreaActFieldTextController
-                                            .text,
-                                        ppirVariety:
-                                            _model.ppirSvpActSelectionValue ==
-                                                    'rice'
-                                                ? _model.riceDropdownValue
-                                                : _model.cornDropdownValue,
-                                        isDirty: true,
-                                      );
                                     }
-
+                                    await SQLiteManager.instance.updatePPIRForm(
+                                      taskId: widget.taskId,
+                                      ppirSvpAct:
+                                          _model.ppirSvpActSelectionValue,
+                                      ppirDopdsAct: _model
+                                          .ppirAreaDopDsFieldTextController
+                                          .text,
+                                      ppirDoptpAct: _model
+                                          .ppirAreaDopTpFieldTextController
+                                          .text,
+                                      ppirRemarks: _model
+                                          .ppirRemarksFieldTextController.text,
+                                      ppirNameInsured: _model
+                                          .ppirPreparedByNameFieldTextController
+                                          .text,
+                                      ppirNameIuia: _model
+                                          .ppirConfirmedByNameFieldTextController
+                                          .text,
+                                      ppirFarmloc: _model
+                                          .ppirTrackFarmlocTextController.text,
+                                      ppirAreaAct: _model
+                                          .ppirAreaActFieldTextController.text,
+                                      ppirVariety:
+                                          _model.ppirSvpActSelectionValue ==
+                                                  'rice'
+                                              ? _model.riceDropdownValue
+                                              : _model.cornDropdownValue,
+                                      isDirty: !FFAppState().ONLINE,
+                                    );
                                     await SQLiteManager.instance
                                         .updateTaskStatus(
                                       taskId: widget.taskId,
                                       status: 'ongoing',
+                                      isDirty: !FFAppState().ONLINE,
                                     );
 
                                     context.pushNamed(
@@ -4593,6 +4558,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     .updateTaskStatus(
                                                   taskId: widget.taskId,
                                                   status: 'completed',
+                                                  isDirty: false,
                                                 );
                                                 await actions.saveBlobToBucket(
                                                   widget.taskId,

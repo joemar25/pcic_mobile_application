@@ -221,23 +221,12 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                                         value));
 
                                                 if (_model.confirmBack!) {
-                                                  if (FFAppState().ONLINE) {
-                                                    await PpirFormsTable()
-                                                        .update(
-                                                      data: {
-                                                        'gpx': '',
-                                                      },
-                                                      matchingRows: (rows) =>
-                                                          rows.eq(
-                                                        'task_id',
-                                                        widget.taskId,
-                                                      ),
-                                                    );
-                                                  }
                                                   await SQLiteManager.instance
                                                       .updatePPIRFormGpx(
                                                     taskId: widget.taskId,
                                                     gpx: ' ',
+                                                    isDirty:
+                                                        !FFAppState().ONLINE,
                                                   );
 
                                                   context.pushNamed(
@@ -626,17 +615,12 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                           widget.taskId,
                         ),
                       );
-                      await SQLiteManager.instance.updateTaskStatus(
-                        taskId: widget.taskId,
-                        status: 'ongoing',
-                      );
-                    } else {
-                      await SQLiteManager.instance.updateTaskStatus(
-                        taskId: widget.taskId,
-                        status: 'ongoing',
-                      );
                     }
-
+                    await SQLiteManager.instance.updateTaskStatus(
+                      taskId: widget.taskId,
+                      status: 'ongoing',
+                      isDirty: !FFAppState().ONLINE,
+                    );
                     _model.isGeotagStart = false;
                     _model.isFinished = true;
                     setState(() {});

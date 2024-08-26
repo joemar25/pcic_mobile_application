@@ -470,10 +470,13 @@ Future performUpdateTaskStatus(
   Database database, {
   String? taskId,
   String? status,
+  bool? isDirty,
 }) {
   final query = '''
 UPDATE tasks
-SET status = '$status'
+SET 
+  status = '$status',
+  is_dirty = '$isDirty'
 WHERE id = '$taskId';
 ''';
   return database.rawQuery(query);
@@ -502,11 +505,13 @@ Future performUpdatePPIRFormGpx(
   Database database, {
   String? taskId,
   String? gpx,
+  bool? isDirty,
 }) {
   final query = '''
 UPDATE ppir_forms
 SET 
-  gpx = '$gpx'
+  gpx = '$gpx',
+  is_dirty = '$isDirty'
 WHERE task_id = '$taskId';
 ''';
   return database.rawQuery(query);

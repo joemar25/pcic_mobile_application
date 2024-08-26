@@ -3166,6 +3166,31 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     16.0, 8.0, 16.0, 8.0),
                                             child: FFButtonWidget(
                                               onPressed: () async {
+                                                if (FFAppState().ONLINE) {
+                                                  await TasksTable().update(
+                                                    data: {
+                                                      'status': 'ongoing',
+                                                    },
+                                                    matchingRows: (rows) =>
+                                                        rows.eq(
+                                                      'id',
+                                                      widget.taskId,
+                                                    ),
+                                                  );
+                                                }
+                                                await SQLiteManager.instance
+                                                    .updatePPIRFormGpx(
+                                                  taskId: widget.taskId,
+                                                  gpx: ' ',
+                                                  isDirty: !FFAppState().ONLINE,
+                                                );
+                                                await SQLiteManager.instance
+                                                    .updateTaskStatus(
+                                                  taskId: widget.taskId,
+                                                  status: 'ongoing',
+                                                  isDirty: !FFAppState().ONLINE,
+                                                );
+
                                                 context.pushNamed(
                                                   'geotagging',
                                                   queryParameters: {
@@ -3544,6 +3569,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     .updateTaskStatus(
                                                   taskId: widget.taskId,
                                                   status: 'ongoing',
+                                                  isDirty: FFAppState().ONLINE,
                                                 );
 
                                                 context.pushNamed(

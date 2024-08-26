@@ -558,11 +558,13 @@ class SQLiteManager {
   Future updateTaskStatus({
     String? taskId,
     String? status,
+    bool? isDirty,
   }) =>
       performUpdateTaskStatus(
         _database,
         taskId: taskId,
         status: status,
+        isDirty: isDirty,
       );
 
   Future updatePPIRFormValidity({
@@ -578,11 +580,13 @@ class SQLiteManager {
   Future updatePPIRFormGpx({
     String? taskId,
     String? gpx,
+    bool? isDirty,
   }) =>
       performUpdatePPIRFormGpx(
         _database,
         taskId: taskId,
         gpx: gpx,
+        isDirty: isDirty,
       );
 
   Future updatePPIRFormAfterGeotag({
