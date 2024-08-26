@@ -507,6 +507,9 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                                     ),
                                   },
                                 );
+
+                                FFAppState().syncCount = 0;
+                                setState(() {});
                               },
                               text: FFLocalizations.of(context).getText(
                                 'nzwziy9t' /* Dashboard */,

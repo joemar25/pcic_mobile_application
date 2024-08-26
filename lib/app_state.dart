@@ -133,6 +133,12 @@ class FFAppState extends ChangeNotifier {
   set mapLoadedWithInternet(bool value) {
     _mapLoadedWithInternet = value;
   }
+
+  int _syncCount = 0;
+  int get syncCount => _syncCount;
+  set syncCount(int value) {
+    _syncCount = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {
