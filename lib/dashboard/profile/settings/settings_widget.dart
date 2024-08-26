@@ -37,6 +37,8 @@ class _SettingsWidgetState extends State<SettingsWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.getProfilePic = await actions.getTheSavedLocalProfile();
       _model.isDirtyCounter = await actions.isDirtyCount();
+      FFAppState().syncCount = 0;
+      FFAppState().update(() {});
     });
   }
 
@@ -954,8 +956,6 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
-                                              FFAppState().syncCount = 0;
-                                              FFAppState().update(() {});
                                               if (_model.isDirtyCounter
                                                       .toString() ==
                                                   '0') {
