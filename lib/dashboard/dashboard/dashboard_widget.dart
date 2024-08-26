@@ -241,10 +241,10 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                         'Syncing...';
                                                     _model.isSyncDone = false;
                                                     setState(() {});
-                                                    _model.message = await actions
-                                                        .syncOnlineTaskAndPpirToOffline();
                                                     await SQLiteManager.instance
                                                         .dELETEAllRowsForTASKSAndPPIR();
+                                                    _model.message = await actions
+                                                        .syncOnlineTaskAndPpirToOffline();
                                                     _model.statusOutput =
                                                         _model.message;
                                                     _model.isSyncDone = true;
