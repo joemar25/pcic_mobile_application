@@ -2,7 +2,9 @@ import '/backend/sqlite/sqlite_manager.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'tasks_model.dart';
@@ -41,6 +43,15 @@ class _TasksWidgetState extends State<TasksWidget>
   void initState() {
     super.initState();
     _model = createModel(context, () => TasksModel());
+
+    // On component load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.output = await actions.isDirty(
+        widget.task,
+      );
+      _model.isDirty = _model.output;
+      _model.updatePage(() {});
+    });
 
     animationsMap.addAll({
       'containerOnPageLoadAnimation': AnimationInfo(
@@ -614,6 +625,43 @@ class _TasksWidgetState extends State<TasksWidget>
                                             ),
                                       ),
                                     ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    valueOrDefault<String>(
+                                              _model.isDirty,
+                                              'false',
+                                            ) ==
+                                            'true'
+                                        ? 'This task has unsaved changes. Please sync to save your progress.'
+                                        : 'This task is up to date. No unsaved changes.',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily,
+                                          color: valueOrDefault<String>(
+                                                    _model.isDirty,
+                                                    'false',
+                                                  ) ==
+                                                  'true'
+                                              ? FlutterFlowTheme.of(context)
+                                                  .warning
+                                              : FlutterFlowTheme.of(context)
+                                                  .primary,
+                                          fontSize: 12.0,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily),
+                                        ),
                                   ),
                                 ],
                               ),

@@ -46,49 +46,16 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.offlinePPIR = await SQLiteManager.instance.selectPpirForms(
-        taskId: widget.taskId,
-      );
       FFAppState().mapLoadedWithInternet = FFAppState().ONLINE;
       setState(() {});
       if (FFAppState().ONLINE) {
         _model.statusOutput = 'Syncing...';
         setState(() {});
-        await PpirFormsTable().update(
-          data: {
-            'ppir_svp_act': _model.offlinePPIR?.first.ppirSvpAct,
-            'ppir_dopds_act': _model.offlinePPIR?.first.ppirDopdsAct,
-            'ppir_doptp_act': _model.offlinePPIR?.first.ppirDoptpAct,
-            'ppir_remarks': _model.offlinePPIR?.first.ppirRemarks,
-            'ppir_name_insured': _model.offlinePPIR?.first.ppirNameInsured,
-            'ppir_name_iuia': _model.offlinePPIR?.first.ppirNameIuia,
-            'ppir_farmloc': _model.offlinePPIR?.first.ppirFarmloc,
-            'ppir_area_act': _model.offlinePPIR?.first.ppirAreaAct,
-            'ppir_variety': _model.offlinePPIR?.first.ppirVariety,
-            'sync_status': 'synced',
-            'is_dirty': false,
-            'gpx': _model.offlinePPIR?.first.gpx,
-            'ppir_sig_iuia': _model.offlinePPIR?.first.ppirSigIuia,
-            'ppir_sig_insured': _model.offlinePPIR?.first.ppirSigInsured,
-            'track_last_coord': _model.offlinePPIR?.first.trackLastCoord,
-            'track_date_time': _model.offlinePPIR?.first.trackDateTime,
-            'track_total_area': _model.offlinePPIR?.first.trackTotalArea,
-            'track_total_distance':
-                _model.offlinePPIR?.first.trackTotalDistance,
-          },
-          matchingRows: (rows) => rows.eq(
-            'task_id',
-            widget.taskId,
-          ),
+        _model.message =
+            await actions.updateOnlinePpirFormsFromOfflinePpirForms(
+          widget.taskId,
         );
-        await SQLiteManager.instance.updatePPIRFormValidity(
-          taskId: widget.taskId,
-          isDirty: false,
-        );
-        _model.statusOutput = 'Up to date';
-        setState(() {});
-      } else {
-        _model.statusOutput = 'Already Synced';
+        _model.statusOutput = _model.message!;
         setState(() {});
       }
     });
@@ -187,56 +154,14 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                if (taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                        .first.ppirIsDirty ==
-                                    '1') {
-                                  _model.statusOutput = 'Syncing...';
-                                  setState(() {});
-                                  await PpirFormsTable().update(
-                                    data: {
-                                      'ppir_svp_act':
-                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                              .first.ppirSvpAct,
-                                      'ppir_dopds_act':
-                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                              .first.ppirDopdsAct,
-                                      'ppir_doptp_act':
-                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                              .first.ppirDoptpAci,
-                                      'ppir_remarks':
-                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                              .first.ppirRemarks,
-                                      'ppir_name_insured':
-                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                              .first.ppirNameInsured,
-                                      'ppir_name_iuia':
-                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                              .first.ppirNameIuia,
-                                      'ppir_farmloc':
-                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                              .first.ppirFarmloc,
-                                      'ppir_area_act':
-                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                              .first.ppirAreaAct,
-                                      'ppir_variety':
-                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                              .first.ppirVariety,
-                                      'sync_status': 'synced',
-                                      'is_dirty': false,
-                                    },
-                                    matchingRows: (rows) => rows.eq(
-                                      'task_id',
-                                      widget.taskId,
-                                    ),
-                                  );
-                                  await SQLiteManager.instance
-                                      .updatePPIRFormValidity(
-                                    taskId: widget.taskId,
-                                    isDirty: false,
-                                  );
-                                  _model.statusOutput = 'Up to date';
-                                  setState(() {});
-                                }
+                                _model.statusOutput = 'Syncing...';
+                                setState(() {});
+                                _model.messageCopy = await actions
+                                    .updateOnlinePpirFormsFromOfflinePpirForms(
+                                  widget.taskId,
+                                );
+                                _model.statusOutput = _model.messageCopy!;
+                                setState(() {});
 
                                 setState(() {});
                               },

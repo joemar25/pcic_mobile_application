@@ -28,3 +28,6 @@ export 'update_inspector_name.dart' show updateInspectorName;
 export 'save_blob_to_bucket.dart' show saveBlobToBucket;
 export 'update_user_online_status.dart' show updateUserOnlineStatus;
 export 'sync_from_f_t_p.dart' show syncFromFTP;
+export 'update_online_ppir_forms_from_offline_ppir_forms.dart'
+    show updateOnlinePpirFormsFromOfflinePpirForms;
+export 'is_dirty.dart' show isDirty;

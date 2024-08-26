@@ -1,5 +1,3 @@
-import '/backend/sqlite/sqlite_manager.dart';
-import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/saving_mode/saving_mode_widget.dart';
@@ -15,10 +13,10 @@ class TaskDetailsModel extends FlutterFlowModel<TaskDetailsWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  // Stores action output result for [Backend Call - SQLite (SELECT PPIR FORMS)] action in taskDetails widget.
-  List<SelectPpirFormsRow>? offlinePPIR;
-  // Stores action output result for [Backend Call - Update Row(s)] action in Text widget.
-  List<PpirFormsRow>? savePPIR;
+  // Stores action output result for [Custom Action - updateOnlinePpirFormsFromOfflinePpirForms] action in taskDetails widget.
+  String? message;
+  // Stores action output result for [Custom Action - updateOnlinePpirFormsFromOfflinePpirForms] action in Text widget.
+  String? messageCopy;
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
   // Stores action output result for [Custom Action - generateTaskXml] action in reFTP widget.
