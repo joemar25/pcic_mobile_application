@@ -20,6 +20,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
 import 'package:flutter_map_tile_caching/flutter_map_tile_caching.dart' as FMTC;
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:p_c_i_c_mobile_app/dashboard/geotag/geotagging/geotagging_model.dart';
 
 class MapBox extends StatefulWidget {
   const MapBox({
@@ -40,6 +41,7 @@ class MapBox extends StatefulWidget {
 }
 
 class _MapBoxState extends State<MapBox> {
+  late GeotaggingModel _model;
   final MapController _mapController = MapController();
   StreamSubscription<Position>? _positionStreamSubscription;
 
@@ -63,6 +65,8 @@ class _MapBoxState extends State<MapBox> {
   static const double _stationarySpeedThreshold = 0.1;
   static const double _significantMovementThreshold = 0.5;
   static const int _stationaryWindowSize = 20;
+  static const double _autoSnapThreshold = 1.0;
+  static const int _minPointsForAutosnap = 10;
 
   late SimpleKalmanFilter _latFilter;
   late SimpleKalmanFilter _lonFilter;
@@ -387,12 +391,104 @@ class _MapBoxState extends State<MapBox> {
     });
   }
 
-  void _addToRoute(ll.LatLng newLocation) {
-    // Always add the new raw location to make the route more detailed
+  void _addToRoute(ll.LatLng newLocation) async {
+    if (_startingPosition == null) {
+      _startingPosition = newLocation;
+    }
+
     setState(() {
       _routeCoordinates.add(newLocation);
     });
+
+    if (_routeCoordinates.length >= _minPointsForAutosnap) {
+      double distanceToStart = _distance.as(
+        ll.LengthUnit.Meter,
+        _startingPosition!,
+        newLocation,
+      );
+
+      if (distanceToStart <= _autoSnapThreshold) {
+        print("Autosnap condition met. Executing completion logic...");
+        _routeCoordinates.add(_routeCoordinates.first);
+
+        // Perform the autosnap and execute the provided code
+        FFAppState().routeStarted = false;
+
+        try {
+          if (FFAppState().ONLINE) {
+            await TasksTable().update(
+              data: {
+                'status': 'ongoing',
+              },
+              matchingRows: (rows) => rows.eq(
+                'id',
+                widget.taskId,
+              ),
+            );
+            print("Online task status updated");
+          }
+
+          await SQLiteManager.instance.updateTaskStatus(
+            taskId: widget.taskId,
+            status: 'ongoing',
+            isDirty: !FFAppState().ONLINE,
+          );
+          print("SQLite task status updated");
+
+          // Safely update the model
+          try {
+            _model.isGeotagStart = false;
+            _model.isFinished = true;
+            print("Model updated successfully");
+          } catch (modelError) {
+            print("Error updating model: $modelError");
+          }
+
+          print("Attempting navigation to gpxSuccess...");
+
+          // Use a more robust navigation method
+          if (mounted && context.mounted) {
+            await Future.delayed(Duration.zero, () {
+              context.pushNamed(
+                'gpxSuccess',
+                queryParameters: {
+                  'taskId': serializeParam(
+                    widget.taskId,
+                    ParamType.String,
+                  ),
+                }.withoutNulls,
+                extra: <String, dynamic>{
+                  kTransitionInfoKey: const TransitionInfo(
+                    hasTransition: true,
+                    transitionType: PageTransitionType.scale,
+                    alignment: Alignment.bottomCenter,
+                    duration: Duration(milliseconds: 300),
+                  ),
+                },
+              );
+            });
+            print("Navigation to gpxSuccess initiated");
+          } else {
+            print("Context is not available for navigation");
+          }
+        } catch (e) {
+          print("Error during autosnap completion: $e");
+          // Attempt navigation even if there was an error
+          if (mounted && context.mounted) {
+            context.pushNamed('gpxSuccess',
+                queryParameters: {'taskId': widget.taskId});
+          }
+        }
+      }
+    }
   }
+
+  // void _addToRoute(ll.LatLng newLocation) {
+  //   // Always add the new raw location to make the route more detailed
+  //   setState(() {
+  //     _routeCoordinates.add(newLocation);
+  //   });
+  // }
 
   Future<void> _startTracking() async {
     if (_currentLocation != null && !_isTracking) {
