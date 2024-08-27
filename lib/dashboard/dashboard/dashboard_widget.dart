@@ -1,6 +1,5 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/sqlite/sqlite_manager.dart';
-import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -50,29 +49,22 @@ class _DashboardWidgetState extends State<DashboardWidget>
         return;
       }
       _model.loadLocalProfile = await actions.getTheSavedLocalProfile();
-      _model.offlineTasks =
-          await SQLiteManager.instance.oFFLINESelectAllTasksByAssignee(
-        assignee: currentUserUid,
-      );
-      if (FFAppState().ONLINE) {
-        await UsersTable().update(
-          data: {
-            'is_online': true,
-          },
-          matchingRows: (rows) => rows.eq(
-            'id',
-            currentUserUid,
-          ),
-        );
-        _model.onlineTasks = await TasksTable().queryRows(
-          queryFn: (q) => q,
-        );
-        _model.statusOutput =
-            _model.offlineTasks?.length != _model.onlineTasks?.length
-                ? 'Tap to update'
-                : 'Tasks are updated';
+      _model.isDirtyCounter = await actions.isDirtyCount();
+      _model.statusOutput =
+          _model.isDirtyCounter != '0' ? 'Tap to update' : 'Tasks are updated';
+      setState(() {});
+      if (FFAppState().ONLINE && (_model.isDirtyCounter != '0')) {
+        _model.statusOutput = 'Syncing...';
+        _model.isSyncDone = false;
         setState(() {});
+        _model.messagexxxx = await actions.syncOnlineTaskAndPpirToOffline();
+        _model.statusOutput = _model.messagexxxx;
+        _model.isSyncDone = true;
+        setState(() {});
+        await Future.delayed(const Duration(milliseconds: 5000));
       }
+      _model.statusOutput = 'Tasks are updated';
+      setState(() {});
     });
 
     _model.tabBarController = TabController(
@@ -242,6 +234,13 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                     _model.statusOutput =
                                                         _model.message;
                                                     _model.isSyncDone = true;
+                                                    setState(() {});
+                                                    await Future.delayed(
+                                                        const Duration(
+                                                            milliseconds:
+                                                                5000));
+                                                    _model.statusOutput =
+                                                        'Tasks are updated';
                                                     setState(() {});
                                                   }
 

@@ -645,15 +645,8 @@ class _TasksWidgetState extends State<TasksWidget>
                                             fontFamily:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMediumFamily,
-                                            color: valueOrDefault<String>(
-                                                      _model.isDirty,
-                                                      'false',
-                                                    ) ==
-                                                    'true'
-                                                ? FlutterFlowTheme.of(context)
-                                                    .warning
-                                                : FlutterFlowTheme.of(context)
-                                                    .primary,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
                                             fontSize: 12.0,
                                             letterSpacing: 0.0,
                                             useGoogleFonts: GoogleFonts.asMap()
@@ -681,6 +674,82 @@ class _TasksWidgetState extends State<TasksWidget>
                                                       'false',
                                                     ) ==
                                                     'true'
+                                                ? FlutterFlowTheme.of(context)
+                                                    .warning
+                                                : FlutterFlowTheme.of(context)
+                                                    .primary,
+                                            fontSize: 12.0,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMediumFamily),
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 10.0, 0.0, 0.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      FFLocalizations.of(context).getText(
+                                        '6sf4iafs' /*            */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily,
+                                            color: valueOrDefault<String>(
+                                                      _model.isDirty,
+                                                      'false',
+                                                    ) ==
+                                                    'true'
+                                                ? FlutterFlowTheme.of(context)
+                                                    .warning
+                                                : FlutterFlowTheme.of(context)
+                                                    .primary,
+                                            fontSize: 12.0,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMediumFamily),
+                                          ),
+                                    ),
+                                    Text(
+                                      (containerSelectPpirFormsRowList
+                                                      .first.gpx ==
+                                                  ' ') ||
+                                              (containerSelectPpirFormsRowList
+                                                      .first.gpx ==
+                                                  'null') ||
+                                              (containerSelectPpirFormsRowList
+                                                      .first.gpx ==
+                                                  '')
+                                          ? 'No GPX data found.'
+                                          : 'Has GPX data.',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily,
+                                            color: (containerSelectPpirFormsRowList
+                                                            .first.gpx ==
+                                                        ' ') ||
+                                                    (containerSelectPpirFormsRowList
+                                                            .first.gpx ==
+                                                        'null') ||
+                                                    (containerSelectPpirFormsRowList
+                                                            .first.gpx ==
+                                                        '')
                                                 ? FlutterFlowTheme.of(context)
                                                     .warning
                                                 : FlutterFlowTheme.of(context)

@@ -32,3 +32,4 @@ export 'update_online_ppir_forms_from_offline_ppir_forms.dart'
     show updateOnlinePpirFormsFromOfflinePpirForms;
 export 'is_dirty.dart' show isDirty;
 export 'is_dirty_count.dart' show isDirtyCount;
+export 'update_user_logs.dart' show updateUserLogs;

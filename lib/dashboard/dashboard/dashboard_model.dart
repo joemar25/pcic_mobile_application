@@ -1,5 +1,3 @@
-import '/backend/sqlite/sqlite_manager.dart';
-import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/saving_mode/saving_mode_widget.dart';
@@ -18,10 +16,10 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
 
   // Stores action output result for [Custom Action - getTheSavedLocalProfile] action in dashboard widget.
   FFUploadedFile? loadLocalProfile;
-  // Stores action output result for [Backend Call - SQLite (OFFLINE select all Tasks by Assignee)] action in dashboard widget.
-  List<OFFLINESelectAllTasksByAssigneeRow>? offlineTasks;
-  // Stores action output result for [Backend Call - Query Rows] action in dashboard widget.
-  List<TasksRow>? onlineTasks;
+  // Stores action output result for [Custom Action - isDirtyCount] action in dashboard widget.
+  String? isDirtyCounter;
+  // Stores action output result for [Custom Action - syncOnlineTaskAndPpirToOffline] action in dashboard widget.
+  String? messagexxxx;
   // Stores action output result for [Custom Action - syncOnlineTaskAndPpirToOffline] action in Text widget.
   String? message;
   // Model for connectivity component.

@@ -46,9 +46,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      FFAppState().mapLoadedWithInternet = FFAppState().ONLINE;
-      setState(() {});
       if (FFAppState().ONLINE) {
+        FFAppState().mapLoadedWithInternet = false;
+        setState(() {});
         _model.statusOutput = 'Syncing...';
         setState(() {});
         _model.message =
