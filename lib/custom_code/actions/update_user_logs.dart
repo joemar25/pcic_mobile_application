@@ -15,4 +15,5 @@ Future updateUserLogs() async {
   // check if there is an auth user using currentUserUid because it is given globally then  if true then
   // get app logs of pages in this flutterflow project
   // print the current apps page
+  // check if FFAppState.ONLINE because later we will use this to update something in the db
 }
