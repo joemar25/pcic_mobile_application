@@ -12,5 +12,7 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 Future updateUserLogs() async {
-  // Add your function code here!
+  // check if there is an auth user using currentUserUid because it is given globally then  if true then
+  // get app logs of pages in this flutterflow project
+  // print the current apps page
 }

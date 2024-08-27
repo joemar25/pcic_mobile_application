@@ -139,6 +139,12 @@ class FFAppState extends ChangeNotifier {
   set syncCount(int value) {
     _syncCount = value;
   }
+
+  String _appLogs = '';
+  String get appLogs => _appLogs;
+  set appLogs(String value) {
+    _appLogs = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {
