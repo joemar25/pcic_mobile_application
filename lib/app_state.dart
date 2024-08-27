@@ -140,10 +140,10 @@ class FFAppState extends ChangeNotifier {
     _syncCount = value;
   }
 
-  String _appLogs = '';
-  String get appLogs => _appLogs;
-  set appLogs(String value) {
-    _appLogs = value;
+  String _whatPage = '';
+  String get whatPage => _whatPage;
+  set whatPage(String value) {
+    _whatPage = value;
   }
 }
 
