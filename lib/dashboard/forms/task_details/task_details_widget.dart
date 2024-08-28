@@ -9,9 +9,11 @@ import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/dialogs/upload_failed_dialog/upload_failed_dialog_widget.dart';
 import '/utils/components/page_loader/page_loader_widget.dart';
 import '/utils/components/saving_mode/saving_mode_widget.dart';
+import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:styled_divider/styled_divider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -37,6 +39,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
   late TaskDetailsModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  LatLng? currentUserLocationValue;
 
   @override
   void initState() {
@@ -914,11 +917,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 16.0, 0.0, 16.0),
-                                            child: Divider(
+                                            child: StyledDivider(
                                               thickness: 2.0,
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryText,
+                                              lineStyle:
+                                                  DividerLineStyle.dashed,
                                             ),
                                           ),
                                           Padding(
@@ -1140,11 +1145,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 16.0, 0.0, 16.0),
-                                            child: Divider(
+                                            child: StyledDivider(
                                               thickness: 2.0,
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryText,
+                                              lineStyle:
+                                                  DividerLineStyle.dashed,
                                             ),
                                           ),
                                           Padding(
@@ -1368,11 +1375,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 16.0, 0.0, 16.0),
-                                            child: Divider(
+                                            child: StyledDivider(
                                               thickness: 2.0,
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryText,
+                                              lineStyle:
+                                                  DividerLineStyle.dashed,
                                             ),
                                           ),
                                           if (widget.taskStatus == 'completed')
@@ -1689,12 +1698,15 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                         const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 16.0,
                                                                 0.0, 16.0),
-                                                    child: Divider(
+                                                    child: StyledDivider(
                                                       thickness: 2.0,
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .secondaryText,
+                                                      lineStyle:
+                                                          DividerLineStyle
+                                                              .dashed,
                                                     ),
                                                   ),
                                                   Padding(
@@ -1852,12 +1864,15 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                         const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 16.0,
                                                                 0.0, 16.0),
-                                                    child: Divider(
+                                                    child: StyledDivider(
                                                       thickness: 2.0,
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .secondaryText,
+                                                      lineStyle:
+                                                          DividerLineStyle
+                                                              .dashed,
                                                     ),
                                                   ),
                                                   Padding(
@@ -2073,12 +2088,15 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                         const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 16.0,
                                                                 0.0, 16.0),
-                                                    child: Divider(
+                                                    child: StyledDivider(
                                                       thickness: 2.0,
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .secondaryText,
+                                                      lineStyle:
+                                                          DividerLineStyle
+                                                              .dashed,
                                                     ),
                                                   ),
                                                   Padding(
@@ -2390,12 +2408,15 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                         const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 16.0,
                                                                 0.0, 16.0),
-                                                    child: Divider(
+                                                    child: StyledDivider(
                                                       thickness: 2.0,
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .secondaryText,
+                                                      lineStyle:
+                                                          DividerLineStyle
+                                                              .dashed,
                                                     ),
                                                   ),
                                                   Padding(
@@ -2757,6 +2778,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               onPressed: !FFAppState().ONLINE
                                                   ? null
                                                   : () async {
+                                                      currentUserLocationValue =
+                                                          await getCurrentUserLocation(
+                                                              defaultLocation:
+                                                                  const LatLng(0.0,
+                                                                      0.0));
                                                       _model.isReFTPClicked =
                                                           true;
                                                       setState(() {});
@@ -2777,6 +2803,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           await actions
                                                               .saveToFTP(
                                                         widget.taskId,
+                                                      );
+                                                      unawaited(
+                                                        () async {
+                                                          await UserLogsTable()
+                                                              .insert({
+                                                            'user_id':
+                                                                currentUserUid,
+                                                            'activity':
+                                                                'Resubmitted a Task',
+                                                            'longlat':
+                                                                '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                                                          });
+                                                        }(),
                                                       );
                                                       _model.isReFTPClicked =
                                                           false;
@@ -2896,7 +2935,23 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     16.0, 8.0, 16.0, 8.0),
                                             child: FFButtonWidget(
                                               onPressed: () async {
+                                                currentUserLocationValue =
+                                                    await getCurrentUserLocation(
+                                                        defaultLocation:
+                                                            const LatLng(0.0, 0.0));
                                                 if (FFAppState().ONLINE) {
+                                                  unawaited(
+                                                    () async {
+                                                      await UserLogsTable()
+                                                          .insert({
+                                                        'user_id':
+                                                            currentUserUid,
+                                                        'activity': 'Re Geotag',
+                                                        'longlat':
+                                                            '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                                                      });
+                                                    }(),
+                                                  );
                                                   await TasksTable().update(
                                                     data: {
                                                       'status': 'ongoing',

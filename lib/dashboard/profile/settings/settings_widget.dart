@@ -1030,52 +1030,56 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                           ),
                                         ),
                                       ),
-                                    FFButtonWidget(
-                                      onPressed: () async {
-                                        currentUserLocationValue =
-                                            await getCurrentUserLocation(
-                                                defaultLocation:
-                                                    const LatLng(0.0, 0.0));
-                                        unawaited(
-                                          () async {
-                                            await UserLogsTable().insert({
-                                              'user_id': currentUserUid,
-                                              'activity':
-                                                  'LOREMM AKO DITO MADAMI',
-                                              'longlat':
-                                                  '${functions.getLng(currentUserLocationValue).toString()}${functions.getLat(currentUserLocationValue).toString()}',
-                                            });
-                                          }(),
-                                        );
-                                      },
-                                      text: FFLocalizations.of(context).getText(
-                                        'i3u5yib7' /* DONT TOUCH THE TAT BUTTON  */,
-                                      ),
-                                      options: FFButtonOptions(
-                                        height: 40.0,
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            24.0, 0.0, 24.0, 0.0),
-                                        iconPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
-                                                0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              color: Colors.white,
-                                              letterSpacing: 0.0,
-                                            ),
-                                        elevation: 3.0,
-                                        borderSide: const BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1.0,
+                                    if (kDebugMode)
+                                      FFButtonWidget(
+                                        onPressed: () async {
+                                          currentUserLocationValue =
+                                              await getCurrentUserLocation(
+                                                  defaultLocation:
+                                                      const LatLng(0.0, 0.0));
+                                          unawaited(
+                                            () async {
+                                              await UserLogsTable().insert({
+                                                'user_id': currentUserUid,
+                                                'activity':
+                                                    'LOREMM AKO DITO MADAMI',
+                                                'longlat':
+                                                    '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                                              });
+                                            }(),
+                                          );
+                                        },
+                                        text:
+                                            FFLocalizations.of(context).getText(
+                                          'i3u5yib7' /* DONT TOUCH THE TAT BUTTON  */,
                                         ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
+                                        options: FFButtonOptions(
+                                          height: 40.0,
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  24.0, 0.0, 24.0, 0.0),
+                                          iconPadding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          textStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: Colors.white,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                          elevation: 3.0,
+                                          borderSide: const BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
                                       ),
-                                    ),
                                   ]
                                       .divide(const SizedBox(height: 10.0))
                                       .around(const SizedBox(height: 10.0)),

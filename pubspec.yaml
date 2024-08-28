@@ -98,6 +98,7 @@ dependencies:
   signature: ^5.5.0
   sqflite: 2.2.6
   storage_client: 1.5.4
+  styled_divider: 1.0.4
   supabase: 1.11.11
   supabase_flutter: 1.10.24
   synchronized: 3.1.0

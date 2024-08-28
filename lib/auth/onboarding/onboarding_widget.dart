@@ -292,7 +292,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget>
                                               fontFamily: 'Readex Pro',
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .primaryText,
+                                                      .info,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.w500,
                                             ),

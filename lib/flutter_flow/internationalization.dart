@@ -270,7 +270,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'a3yti1e7': {
+    'ncmigzz9': {
       'en': '',
       'tl': '',
     },
@@ -282,7 +282,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'gls0agq3': {
+    'gdya1wcc': {
       'en': '',
       'tl': '',
     },
@@ -294,7 +294,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang Bagong Password...',
     },
-    'u0m3sdp8': {
+    'ohiy3ud8': {
       'en': '',
       'tl': '',
     },
@@ -1102,6 +1102,15 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'Yes, you can geotag locations offline. However, an internet connection is required to sync the data with the PCIC server once you are back online.',
       'tl':
           'Oo, maaari mong i-geotag ang mga lokasyon offline. Gayunpaman, kailangan ng koneksyon sa internet upang i-sync ang data sa PCIC server sa sandaling online ka na.',
+    },
+    '0s4k66lp': {
+      'en': 'What to do if data error occurs?',
+      'tl': '',
+    },
+    '8gbqahjo': {
+      'en':
+          'You can reset the tasks by going to the settings and clickign the Sync to FTP, then sync the tasks again. This way you will get the initial tasks fresh from the database.',
+      'tl': '',
     },
     'iaed2gmv': {
       'en': 'Powered by:',

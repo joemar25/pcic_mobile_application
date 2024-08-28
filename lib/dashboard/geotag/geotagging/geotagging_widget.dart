@@ -295,7 +295,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                     .override(
                                       fontFamily: 'Inter',
                                       color:
-                                          FlutterFlowTheme.of(context).tertiary,
+                                          FlutterFlowTheme.of(context).primary,
                                       letterSpacing: 0.0,
                                     ),
                               ),

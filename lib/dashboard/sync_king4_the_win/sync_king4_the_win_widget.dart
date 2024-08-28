@@ -6,7 +6,9 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/page_loader/page_loader_widget.dart';
+import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -27,6 +29,7 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
   late SyncKing4TheWinModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  LatLng? currentUserLocationValue;
 
   final animationsMap = <String, AnimationInfo>{};
 
@@ -175,6 +178,9 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
+                          currentUserLocationValue =
+                              await getCurrentUserLocation(
+                                  defaultLocation: const LatLng(0.0, 0.0));
                           if (!_model.isSync) {
                             await SQLiteManager.instance
                                 .dELETEAllRowsForTASKSAndPPIR();
@@ -405,6 +411,16 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                             );
                             _model.isSyced = await actions.syncFromFTP(
                               _model.regionCode?.first.regionCode,
+                            );
+                            unawaited(
+                              () async {
+                                await UserLogsTable().insert({
+                                  'user_id': currentUserUid,
+                                  'activity': 'Syncing Task',
+                                  'longlat':
+                                      '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                                });
+                              }(),
                             );
                             _model.isSync = false;
                             _model.startSync = false;

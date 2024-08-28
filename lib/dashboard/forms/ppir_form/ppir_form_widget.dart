@@ -1,3 +1,4 @@
+import '/auth/supabase_auth/auth_util.dart';
 import '/backend/sqlite/sqlite_manager.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
@@ -15,8 +16,11 @@ import '/utils/components/dialogs/continue_submit_dialog/continue_submit_dialog_
 import '/utils/components/dialogs/fill_out_all_fields_dialog/fill_out_all_fields_dialog_widget.dart';
 import '/utils/components/page_loader/page_loader_widget.dart';
 import '/utils/components/signature/signature_widget.dart';
+import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
+import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:styled_divider/styled_divider.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -42,6 +46,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
   late PpirFormModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  LatLng? currentUserLocationValue;
 
   @override
   void initState() {
@@ -134,6 +139,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                       size: 30.0,
                     ),
                     onPressed: () async {
+                      currentUserLocationValue = await getCurrentUserLocation(
+                          defaultLocation: const LatLng(0.0, 0.0));
                       await showDialog(
                         context: context,
                         builder: (dialogContext) {
@@ -154,26 +161,60 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                           safeSetState(() => _model.confirmback = value));
 
                       if (_model.confirmback!) {
-                        context.goNamed(
-                          'taskDetails',
-                          queryParameters: {
-                            'taskId': serializeParam(
-                              widget.taskId,
-                              ParamType.String,
-                            ),
-                            'taskStatus': serializeParam(
-                              'ongoing',
-                              ParamType.String,
-                            ),
-                          }.withoutNulls,
-                          extra: <String, dynamic>{
-                            kTransitionInfoKey: const TransitionInfo(
-                              hasTransition: true,
-                              transitionType: PageTransitionType.topToBottom,
-                              duration: Duration(milliseconds: 200),
-                            ),
-                          },
-                        );
+                        if (FFAppState().ONLINE) {
+                          unawaited(
+                            () async {
+                              await UserLogsTable().insert({
+                                'user_id': currentUserUid,
+                                'activity': 'Cancel Task',
+                                'longlat':
+                                    '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                              });
+                            }(),
+                          );
+
+                          context.goNamed(
+                            'taskDetails',
+                            queryParameters: {
+                              'taskId': serializeParam(
+                                widget.taskId,
+                                ParamType.String,
+                              ),
+                              'taskStatus': serializeParam(
+                                'ongoing',
+                                ParamType.String,
+                              ),
+                            }.withoutNulls,
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: const TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.topToBottom,
+                                duration: Duration(milliseconds: 200),
+                              ),
+                            },
+                          );
+                        } else {
+                          context.goNamed(
+                            'taskDetails',
+                            queryParameters: {
+                              'taskId': serializeParam(
+                                widget.taskId,
+                                ParamType.String,
+                              ),
+                              'taskStatus': serializeParam(
+                                'ongoing',
+                                ParamType.String,
+                              ),
+                            }.withoutNulls,
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: const TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.topToBottom,
+                                duration: Duration(milliseconds: 200),
+                              ),
+                            },
+                          );
+                        }
                       }
 
                       setState(() {});
@@ -641,6 +682,11 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                 FFButtonWidget(
                                                               onPressed:
                                                                   () async {
+                                                                currentUserLocationValue =
+                                                                    await getCurrentUserLocation(
+                                                                        defaultLocation: const LatLng(
+                                                                            0.0,
+                                                                            0.0));
                                                                 _model.hasGpx =
                                                                     true;
                                                                 setState(() {});
@@ -681,6 +727,19 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     .confirmReGeotag!) {
                                                                   if (FFAppState()
                                                                       .ONLINE) {
+                                                                    unawaited(
+                                                                      () async {
+                                                                        await UserLogsTable()
+                                                                            .insert({
+                                                                          'user_id':
+                                                                              currentUserUid,
+                                                                          'activity':
+                                                                              'Repeat Geotag',
+                                                                          'longlat':
+                                                                              '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                                                                        });
+                                                                      }(),
+                                                                    );
                                                                     await PpirFormsTable()
                                                                         .update(
                                                                       data: {
@@ -901,11 +960,13 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 16.0, 0.0, 16.0),
-                                                  child: Divider(
+                                                  child: StyledDivider(
                                                     thickness: 2.0,
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .secondaryText,
+                                                    lineStyle:
+                                                        DividerLineStyle.dashed,
                                                   ),
                                                 ),
                                               ],
@@ -918,7 +979,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                             decoration: BoxDecoration(
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
+                                                      .alternate,
                                             ),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -1740,11 +1801,13 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 16.0, 0.0, 16.0),
-                                                  child: Divider(
+                                                  child: StyledDivider(
                                                     thickness: 2.0,
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .secondaryText,
+                                                    lineStyle:
+                                                        DividerLineStyle.dashed,
                                                   ),
                                                 ),
                                               ]
@@ -1760,7 +1823,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                             decoration: BoxDecoration(
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
+                                                      .alternate,
                                             ),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -2255,11 +2318,13 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 16.0, 0.0, 16.0),
-                                                  child: Divider(
+                                                  child: StyledDivider(
                                                     thickness: 2.0,
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .secondaryText,
+                                                    lineStyle:
+                                                        DividerLineStyle.dashed,
                                                   ),
                                                 ),
                                               ]
@@ -2275,7 +2340,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                             decoration: BoxDecoration(
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
+                                                      .alternate,
                                             ),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -2895,11 +2960,13 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 16.0, 0.0, 16.0),
-                                                  child: Divider(
+                                                  child: StyledDivider(
                                                     thickness: 2.0,
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .secondaryText,
+                                                    lineStyle:
+                                                        DividerLineStyle.dashed,
                                                   ),
                                                 ),
                                               ]
@@ -2915,7 +2982,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                             decoration: BoxDecoration(
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
+                                                      .alternate,
                                             ),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -3080,11 +3147,13 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 16.0, 0.0, 16.0),
-                                                  child: Divider(
+                                                  child: StyledDivider(
                                                     thickness: 2.0,
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .secondaryText,
+                                                    lineStyle:
+                                                        DividerLineStyle.dashed,
                                                   ),
                                                 ),
                                                 Padding(
@@ -3774,6 +3843,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                             Builder(
                               builder: (context) => FFButtonWidget(
                                 onPressed: () async {
+                                  currentUserLocationValue =
+                                      await getCurrentUserLocation(
+                                          defaultLocation: const LatLng(0.0, 0.0));
                                   await showDialog(
                                     context: context,
                                     builder: (dialogContext) {
@@ -3797,17 +3869,42 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                       () => _model.confirmCancel = value));
 
                                   if (_model.confirmCancel!) {
-                                    context.pushNamed(
-                                      'dashboard',
-                                      extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
-                                          hasTransition: true,
-                                          transitionType:
-                                              PageTransitionType.fade,
-                                          duration: Duration(milliseconds: 0),
-                                        ),
-                                      },
-                                    );
+                                    if (FFAppState().ONLINE) {
+                                      unawaited(
+                                        () async {
+                                          await UserLogsTable().insert({
+                                            'user_id': currentUserUid,
+                                            'activity': 'Cancel Task',
+                                            'longlat':
+                                                '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                                          });
+                                        }(),
+                                      );
+
+                                      context.pushNamed(
+                                        'dashboard',
+                                        extra: <String, dynamic>{
+                                          kTransitionInfoKey: const TransitionInfo(
+                                            hasTransition: true,
+                                            transitionType:
+                                                PageTransitionType.fade,
+                                            duration: Duration(milliseconds: 0),
+                                          ),
+                                        },
+                                      );
+                                    } else {
+                                      context.pushNamed(
+                                        'dashboard',
+                                        extra: <String, dynamic>{
+                                          kTransitionInfoKey: const TransitionInfo(
+                                            hasTransition: true,
+                                            transitionType:
+                                                PageTransitionType.fade,
+                                            duration: Duration(milliseconds: 0),
+                                          ),
+                                        },
+                                      );
+                                    }
                                   }
 
                                   setState(() {});
@@ -3846,6 +3943,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                             Builder(
                               builder: (context) => FFButtonWidget(
                                 onPressed: () async {
+                                  currentUserLocationValue =
+                                      await getCurrentUserLocation(
+                                          defaultLocation: const LatLng(0.0, 0.0));
                                   await showDialog(
                                     context: context,
                                     builder: (dialogContext) {
@@ -3914,6 +4014,16 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                           'id',
                                           widget.taskId,
                                         ),
+                                      );
+                                      unawaited(
+                                        () async {
+                                          await UserLogsTable().insert({
+                                            'user_id': currentUserUid,
+                                            'activity': 'Save Task',
+                                            'longlat':
+                                                '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                                          });
+                                        }(),
                                       );
                                     }
                                     await SQLiteManager.instance.updatePPIRForm(
@@ -4015,6 +4125,10 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                   onPressed: !FFAppState().ONLINE
                                       ? null
                                       : () async {
+                                          currentUserLocationValue =
+                                              await getCurrentUserLocation(
+                                                  defaultLocation:
+                                                      const LatLng(0.0, 0.0));
                                           if (!((_model.gpxBlobTextController
                                                       .text ==
                                                   ' ') ||
@@ -4198,6 +4312,17 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                 _model.isFtpSaved =
                                                     await actions.saveToFTP(
                                                   widget.taskId,
+                                                );
+                                                unawaited(
+                                                  () async {
+                                                    await UserLogsTable()
+                                                        .insert({
+                                                      'user_id': currentUserUid,
+                                                      'activity': 'Submit Task',
+                                                      'longlat':
+                                                          '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                                                    });
+                                                  }(),
                                                 );
                                                 if (_model.isFtpSaved!) {
                                                   context.goNamed(

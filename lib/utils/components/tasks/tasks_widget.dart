@@ -1,8 +1,12 @@
+import '/auth/supabase_auth/auth_util.dart';
 import '/backend/sqlite/sqlite_manager.dart';
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -29,6 +33,8 @@ class TasksWidget extends StatefulWidget {
 class _TasksWidgetState extends State<TasksWidget>
     with TickerProviderStateMixin {
   late TasksModel _model;
+
+  LatLng? currentUserLocationValue;
 
   final animationsMap = <String, AnimationInfo>{};
 
@@ -103,6 +109,19 @@ class _TasksWidgetState extends State<TasksWidget>
             hoverColor: Colors.transparent,
             highlightColor: Colors.transparent,
             onTap: () async {
+              currentUserLocationValue = await getCurrentUserLocation(
+                  defaultLocation: const LatLng(0.0, 0.0));
+              unawaited(
+                () async {
+                  await UserLogsTable().insert({
+                    'user_id': currentUserUid,
+                    'activity': 'Select a Task',
+                    'longlat':
+                        '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                  });
+                }(),
+              );
+
               context.pushNamed(
                 'taskDetails',
                 queryParameters: {
@@ -554,15 +573,19 @@ class _TasksWidgetState extends State<TasksWidget>
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Readex Pro',
-                                            color: valueOrDefault<String>(
-                                                      _model.isDirty,
-                                                      'false',
-                                                    ) ==
-                                                    'true'
-                                                ? FlutterFlowTheme.of(context)
-                                                    .warning
-                                                : FlutterFlowTheme.of(context)
-                                                    .primary,
+                                            color: valueOrDefault<Color>(
+                                              valueOrDefault<String>(
+                                                        _model.isDirty,
+                                                        'false',
+                                                      ) ==
+                                                      'true'
+                                                  ? FlutterFlowTheme.of(context)
+                                                      .warning
+                                                  : FlutterFlowTheme.of(context)
+                                                      .secondary,
+                                              FlutterFlowTheme.of(context)
+                                                  .secondary,
+                                            ),
                                             fontSize: 12.0,
                                             letterSpacing: 0.0,
                                           ),
@@ -614,19 +637,23 @@ class _TasksWidgetState extends State<TasksWidget>
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Readex Pro',
-                                            color: (containerSelectPpirFormsRowList
-                                                            .first.gpx ==
-                                                        ' ') ||
-                                                    (containerSelectPpirFormsRowList
-                                                            .first.gpx ==
-                                                        'null') ||
-                                                    (containerSelectPpirFormsRowList
-                                                            .first.gpx ==
-                                                        '')
-                                                ? FlutterFlowTheme.of(context)
-                                                    .warning
-                                                : FlutterFlowTheme.of(context)
-                                                    .primary,
+                                            color: valueOrDefault<Color>(
+                                              (containerSelectPpirFormsRowList.first
+                                                              .gpx ==
+                                                          ' ') ||
+                                                      (containerSelectPpirFormsRowList
+                                                              .first.gpx ==
+                                                          'null') ||
+                                                      (containerSelectPpirFormsRowList
+                                                              .first.gpx ==
+                                                          '')
+                                                  ? FlutterFlowTheme.of(context)
+                                                      .warning
+                                                  : FlutterFlowTheme.of(context)
+                                                      .secondary,
+                                              FlutterFlowTheme.of(context)
+                                                  .secondary,
+                                            ),
                                             fontSize: 12.0,
                                             letterSpacing: 0.0,
                                           ),
