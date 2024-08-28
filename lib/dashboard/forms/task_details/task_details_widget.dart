@@ -15,7 +15,6 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'task_details_model.dart';
 export 'task_details_model.dart';
@@ -38,6 +37,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
   late TaskDetailsModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  LatLng? currentUserLocationValue;
 
   @override
   void initState() {
@@ -134,14 +134,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                       child: Text(
                         '${functions.capitalizeWords(widget.taskStatus)} Task',
                         style: FlutterFlowTheme.of(context).titleSmall.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).titleSmallFamily,
+                              fontFamily: 'Readex Pro',
                               color: FlutterFlowTheme.of(context)
                                   .primaryBackground,
                               letterSpacing: 0.0,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context)
-                                      .titleSmallFamily),
                             ),
                       ),
                     ),
@@ -173,17 +169,12 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .titleSmallFamily,
+                                      fontFamily: 'Readex Pro',
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
                                       fontSize: 12.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w600,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmallFamily),
                                     ),
                               ),
                             ),
@@ -193,16 +184,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .titleSmallFamily,
+                                    fontFamily: 'Readex Pro',
                                     color: FlutterFlowTheme.of(context).error,
                                     fontSize: 12.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .titleSmallFamily),
                                   ),
                             ),
                           wrapWithModel(
@@ -274,26 +260,16 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   .getText(
                                                 '7l5eyyx5' /* Form Details */,
                                               ),
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyLargeFamily,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .tertiary,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyLargeFamily),
-                                                      ),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyLarge
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .tertiary,
+                                                    letterSpacing: 0.0,
+                                                  ),
                                             ),
                                           ),
                                           Padding(
@@ -316,16 +292,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily),
                                                       ),
                                                 ),
                                                 AnimatedDefaultTextStyle(
@@ -334,16 +302,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
                                                       ),
                                                   duration: const Duration(
                                                       milliseconds: 600),
@@ -380,16 +340,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily),
                                                       ),
                                                 ),
                                                 AnimatedDefaultTextStyle(
@@ -398,16 +350,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
                                                       ),
                                                   duration: const Duration(
                                                       milliseconds: 600),
@@ -443,18 +387,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily),
                                                       ),
                                                 ),
                                                 AnimatedDefaultTextStyle(
@@ -463,16 +399,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
                                                       ),
                                                   duration: const Duration(
                                                       milliseconds: 600),
@@ -508,18 +436,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily),
                                                       ),
                                                 ),
                                                 AnimatedDefaultTextStyle(
@@ -528,16 +448,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
                                                       ),
                                                   duration: const Duration(
                                                       milliseconds: 600),
@@ -574,18 +486,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily),
                                                       ),
                                                 ),
                                                 AnimatedDefaultTextStyle(
@@ -594,16 +498,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
                                                       ),
                                                   duration: const Duration(
                                                       milliseconds: 600),
@@ -639,18 +535,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily),
                                                       ),
                                                 ),
                                                 AnimatedDefaultTextStyle(
@@ -659,16 +547,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
                                                       ),
                                                   duration: const Duration(
                                                       milliseconds: 600),
@@ -704,18 +584,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily),
                                                       ),
                                                 ),
                                                 AnimatedDefaultTextStyle(
@@ -724,16 +596,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
                                                       ),
                                                   duration: const Duration(
                                                       milliseconds: 600),
@@ -769,18 +633,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily),
                                                       ),
                                                 ),
                                                 AnimatedDefaultTextStyle(
@@ -789,16 +645,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
                                                       ),
                                                   duration: const Duration(
                                                       milliseconds: 600),
@@ -835,18 +683,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily),
                                                       ),
                                                 ),
                                                 AnimatedDefaultTextStyle(
@@ -855,16 +695,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
                                                       ),
                                                   duration: const Duration(
                                                       milliseconds: 600),
@@ -900,18 +732,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily),
                                                       ),
                                                 ),
                                                 AnimatedDefaultTextStyle(
@@ -920,16 +744,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
                                                       ),
                                                   duration: const Duration(
                                                       milliseconds: 600),
@@ -966,18 +782,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily),
                                                       ),
                                                 ),
                                                 AnimatedDefaultTextStyle(
@@ -986,16 +794,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
                                                       ),
                                                   duration: const Duration(
                                                       milliseconds: 600),
@@ -1033,18 +833,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily),
                                                       ),
                                                 ),
                                                 AnimatedDefaultTextStyle(
@@ -1053,16 +845,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
                                                       ),
                                                   duration: const Duration(
                                                       milliseconds: 600),
@@ -1098,18 +882,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily),
                                                       ),
                                                 ),
                                                 AnimatedDefaultTextStyle(
@@ -1118,16 +894,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
                                                       ),
                                                   duration: const Duration(
                                                       milliseconds: 600),
@@ -1151,7 +919,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               thickness: 2.0,
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .boarderForm,
+                                                      .primary,
                                             ),
                                           ),
                                           Padding(
@@ -1163,26 +931,16 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   .getText(
                                                 'hvb7985g' /* Location Sketch Plan */,
                                               ),
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyLargeFamily,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .tertiary,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyLargeFamily),
-                                                      ),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyLarge
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .tertiary,
+                                                    letterSpacing: 0.0,
+                                                  ),
                                             ),
                                           ),
                                           Padding(
@@ -1205,18 +963,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily),
                                                       ),
                                                 ),
                                                 AnimatedDefaultTextStyle(
@@ -1225,16 +975,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
                                                       ),
                                                   duration: const Duration(
                                                       milliseconds: 600),
@@ -1270,18 +1012,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily),
                                                       ),
                                                 ),
                                                 AnimatedDefaultTextStyle(
@@ -1290,16 +1024,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
                                                       ),
                                                   duration: const Duration(
                                                       milliseconds: 600),
@@ -1335,17 +1061,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .labelLarge
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelLargeFamily,
+                                                            'Readex Pro',
                                                         fontSize: 14.0,
                                                         letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelLargeFamily),
                                                       ),
                                                 ),
                                                 AnimatedDefaultTextStyle(
@@ -1354,16 +1072,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
                                                       ),
                                                   duration: const Duration(
                                                       milliseconds: 600),
@@ -1399,17 +1109,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .labelLarge
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelLargeFamily,
+                                                            'Readex Pro',
                                                         fontSize: 14.0,
                                                         letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelLargeFamily),
                                                       ),
                                                 ),
                                                 AnimatedDefaultTextStyle(
@@ -1418,16 +1120,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
                                                       ),
                                                   duration: const Duration(
                                                       milliseconds: 600),
@@ -1451,7 +1145,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               thickness: 2.0,
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .boarderForm,
+                                                      .primary,
                                             ),
                                           ),
                                           Padding(
@@ -1463,26 +1157,16 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   .getText(
                                                 'tsu0lxo2' /* Location Sketch Plan */,
                                               ),
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyLargeFamily,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .tertiary,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyLargeFamily),
-                                                      ),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyLarge
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .tertiary,
+                                                    letterSpacing: 0.0,
+                                                  ),
                                             ),
                                           ),
                                           Padding(
@@ -1505,18 +1189,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily),
                                                       ),
                                                 ),
                                                 AnimatedDefaultTextStyle(
@@ -1525,16 +1201,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
                                                       ),
                                                   duration: const Duration(
                                                       milliseconds: 600),
@@ -1570,18 +1238,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily),
                                                       ),
                                                 ),
                                                 AnimatedDefaultTextStyle(
@@ -1590,16 +1250,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
                                                       ),
                                                   duration: const Duration(
                                                       milliseconds: 600),
@@ -1635,18 +1287,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily),
                                                       ),
                                                 ),
                                                 AnimatedDefaultTextStyle(
@@ -1655,16 +1299,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
                                                       ),
                                                   duration: const Duration(
                                                       milliseconds: 600),
@@ -1700,18 +1336,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily),
                                                       ),
                                                 ),
                                                 AnimatedDefaultTextStyle(
@@ -1720,16 +1348,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
                                                       ),
                                                   duration: const Duration(
                                                       milliseconds: 600),
@@ -1753,7 +1373,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               thickness: 2.0,
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .boarderForm,
+                                                      .primary,
                                             ),
                                           ),
                                           if (widget.taskStatus == 'completed')
@@ -1787,19 +1407,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   .of(context)
                                                               .bodyLarge
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyLargeFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .tertiary,
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyLargeFamily),
                                                               ),
                                                         ),
                                                       ),
@@ -1827,19 +1441,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   .of(context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .normal,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                         ),
                                                       ],
@@ -1867,19 +1475,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   .of(context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .normal,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                         ),
                                                         AnimatedDefaultTextStyle(
@@ -1887,16 +1489,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   .of(context)
                                                               .bodyMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily),
                                                               ),
                                                           duration: const Duration(
                                                               milliseconds:
@@ -1937,19 +1533,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   .of(context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .normal,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                         ),
                                                         AnimatedDefaultTextStyle(
@@ -1957,16 +1547,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   .of(context)
                                                               .bodyMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily),
                                                               ),
                                                           duration: const Duration(
                                                               milliseconds:
@@ -2007,19 +1591,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   .of(context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .normal,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                         ),
                                                         AnimatedDefaultTextStyle(
@@ -2027,16 +1605,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   .of(context)
                                                               .bodyMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily),
                                                               ),
                                                           duration: const Duration(
                                                               milliseconds:
@@ -2077,19 +1649,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   .of(context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .normal,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                         ),
                                                         AnimatedDefaultTextStyle(
@@ -2097,16 +1663,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   .of(context)
                                                               .bodyMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily),
                                                               ),
                                                           duration: const Duration(
                                                               milliseconds:
@@ -2135,7 +1695,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .boarderForm,
+                                                              .primary,
                                                     ),
                                                   ),
                                                   Padding(
@@ -2160,19 +1720,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   .of(context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .normal,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                         ),
                                                       ],
@@ -2200,19 +1754,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   .of(context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .normal,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                         ),
                                                         AnimatedDefaultTextStyle(
@@ -2220,16 +1768,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   .of(context)
                                                               .bodyMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily),
                                                               ),
                                                           duration: const Duration(
                                                               milliseconds:
@@ -2270,19 +1812,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   .of(context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .normal,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                         ),
                                                         AnimatedDefaultTextStyle(
@@ -2290,16 +1826,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   .of(context)
                                                               .bodyMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily),
                                                               ),
                                                           duration: const Duration(
                                                               milliseconds:
@@ -2328,7 +1858,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .boarderForm,
+                                                              .primary,
                                                     ),
                                                   ),
                                                   Padding(
@@ -2353,19 +1883,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   .of(context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .normal,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                         ),
                                                       ],
@@ -2393,19 +1917,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   .of(context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .normal,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                         ),
                                                         AnimatedDefaultTextStyle(
@@ -2413,16 +1931,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   .of(context)
                                                               .bodyMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily),
                                                               ),
                                                           duration: const Duration(
                                                               milliseconds:
@@ -2463,19 +1975,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   .of(context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .normal,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                         ),
                                                         AnimatedDefaultTextStyle(
@@ -2483,16 +1989,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   .of(context)
                                                               .bodyMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily),
                                                               ),
                                                           duration: const Duration(
                                                               milliseconds:
@@ -2533,19 +2033,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   .of(context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .normal,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                         ),
                                                         AnimatedDefaultTextStyle(
@@ -2553,16 +2047,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   .of(context)
                                                               .bodyMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily),
                                                               ),
                                                           duration: const Duration(
                                                               milliseconds:
@@ -2591,7 +2079,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .boarderForm,
+                                                              .primary,
                                                     ),
                                                   ),
                                                   Padding(
@@ -2616,19 +2104,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   .of(context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .normal,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                         ),
                                                       ],
@@ -2656,19 +2138,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   .of(context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .normal,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                         ),
                                                         AnimatedDefaultTextStyle(
@@ -2676,16 +2152,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   .of(context)
                                                               .bodyMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily),
                                                               ),
                                                           duration: const Duration(
                                                               milliseconds:
@@ -2726,19 +2196,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   .of(context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .normal,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                         ),
                                                         AnimatedDefaultTextStyle(
@@ -2746,16 +2210,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   .of(context)
                                                               .bodyMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily),
                                                               ),
                                                           duration: const Duration(
                                                               milliseconds:
@@ -2844,19 +2302,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   .of(context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .normal,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                         ),
                                                         AnimatedDefaultTextStyle(
@@ -2864,16 +2316,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   .of(context)
                                                               .bodyMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily),
                                                               ),
                                                           duration: const Duration(
                                                               milliseconds:
@@ -2950,7 +2396,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .boarderForm,
+                                                              .primary,
                                                     ),
                                                   ),
                                                   Padding(
@@ -2975,19 +2421,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   .of(context)
                                                               .bodyLarge
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyLargeFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .tertiary,
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyLargeFamily),
                                                               ),
                                                         ),
                                                       ],
@@ -3188,17 +2628,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                         .titleSmall
                                                         .override(
                                                           fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmallFamily,
+                                                              'Readex Pro',
                                                           color: Colors.white,
                                                           letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmallFamily),
                                                         ),
                                                 elevation: 3.0,
                                                 borderSide: const BorderSide(
@@ -3288,17 +2720,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                         .titleSmall
                                                         .override(
                                                           fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmallFamily,
+                                                              'Readex Pro',
                                                           color: Colors.white,
                                                           letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmallFamily),
                                                         ),
                                                 elevation: 3.0,
                                                 borderSide: const BorderSide(
@@ -3334,6 +2758,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               onPressed: !FFAppState().ONLINE
                                                   ? null
                                                   : () async {
+                                                      currentUserLocationValue =
+                                                          await getCurrentUserLocation(
+                                                              defaultLocation:
+                                                                  const LatLng(0.0,
+                                                                      0.0));
                                                       _model.isReFTPClicked =
                                                           true;
                                                       setState(() {});
@@ -3359,6 +2788,16 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           false;
                                                       setState(() {});
                                                       if (_model.isFtpSaved!) {
+                                                        await UserLogsTable()
+                                                            .insert({
+                                                          'user_id':
+                                                              currentUserUid,
+                                                          'activity':
+                                                              'Resubmit Success',
+                                                          'longlat':
+                                                              '${functions.getLng(currentUserLocationValue).toString()}${functions.getLat(currentUserLocationValue).toString()}',
+                                                        });
+
                                                         context.pushNamed(
                                                           'successProfile',
                                                           queryParameters: {
@@ -3384,6 +2823,15 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           },
                                                         );
                                                       } else {
+                                                        await UserLogsTable()
+                                                            .insert({
+                                                          'user_id':
+                                                              currentUserUid,
+                                                          'activity':
+                                                              'Resubmit Error',
+                                                          'longlat':
+                                                              '${functions.getLng(currentUserLocationValue).toString()}${functions.getLat(currentUserLocationValue).toString()}',
+                                                        });
                                                         await showDialog(
                                                           context: context,
                                                           builder:
@@ -3446,17 +2894,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                         .titleSmall
                                                         .override(
                                                           fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmallFamily,
+                                                              'Readex Pro',
                                                           color: Colors.white,
                                                           letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmallFamily),
                                                         ),
                                                 elevation: 3.0,
                                                 borderSide: const BorderSide(
@@ -3570,17 +3010,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                         .titleSmall
                                                         .override(
                                                           fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmallFamily,
+                                                              'Readex Pro',
                                                           color: Colors.white,
                                                           letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmallFamily),
                                                         ),
                                                 elevation: 3.0,
                                                 borderSide: const BorderSide(

@@ -7,7 +7,6 @@ import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'pcic_map_model.dart';
 export 'pcic_map_model.dart';
@@ -95,11 +94,9 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                   'idur2ho8' /* Map Download */,
                 ),
                 style: FlutterFlowTheme.of(context).titleSmall.override(
-                      fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
+                      fontFamily: 'Readex Pro',
                       color: FlutterFlowTheme.of(context).primaryBackground,
                       letterSpacing: 0.0,
-                      useGoogleFonts: GoogleFonts.asMap().containsKey(
-                          FlutterFlowTheme.of(context).titleSmallFamily),
                     ),
               ),
               wrapWithModel(
@@ -202,16 +199,8 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                                                       .bodyLarge
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyLargeFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyLargeFamily),
                                                       ),
                                                 ),
                                                 Padding(
@@ -225,16 +214,8 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                                                         .labelSmall
                                                         .override(
                                                           fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelSmallFamily,
+                                                              'Readex Pro',
                                                           letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelSmallFamily),
                                                         ),
                                                   ),
                                                 ),
@@ -249,16 +230,8 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                                                         .labelSmall
                                                         .override(
                                                           fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelSmallFamily,
+                                                              'Readex Pro',
                                                           letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelSmallFamily),
                                                         ),
                                                   ),
                                                 ),
@@ -319,11 +292,8 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                     FlutterFlowTheme.of(context).secondaryText,
                 labelPadding: const EdgeInsets.all(10.0),
                 labelStyle: FlutterFlowTheme.of(context).titleMedium.override(
-                      fontFamily:
-                          FlutterFlowTheme.of(context).titleMediumFamily,
+                      fontFamily: 'Readex Pro',
                       letterSpacing: 0.0,
-                      useGoogleFonts: GoogleFonts.asMap().containsKey(
-                          FlutterFlowTheme.of(context).titleMediumFamily),
                     ),
                 unselectedLabelStyle: const TextStyle(),
                 indicatorColor: FlutterFlowTheme.of(context).primary,

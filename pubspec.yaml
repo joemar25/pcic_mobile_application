@@ -146,7 +146,7 @@ flutter_launcher_icons:
   web:
     generate: true
   image_path: 'assets/images/app_launcher_icon.gif'
-  adaptive_icon_background: '#228b22'
+  adaptive_icon_background: '#16b070'
   adaptive_icon_foreground: 'assets/images/adaptive_foreground_icon.png'
 
 

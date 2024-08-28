@@ -7,11 +7,11 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/page_loader/page_loader_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'sync_king4_the_win_model.dart';
 export 'sync_king4_the_win_model.dart';
@@ -28,6 +28,7 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
   late SyncKing4TheWinModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  LatLng? currentUserLocationValue;
 
   final animationsMap = <String, AnimationInfo>{};
 
@@ -180,6 +181,9 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
+                          currentUserLocationValue =
+                              await getCurrentUserLocation(
+                                  defaultLocation: const LatLng(0.0, 0.0));
                           if (!_model.isSync) {
                             await SQLiteManager.instance
                                 .dELETEAllRowsForTASKSAndPPIR();
@@ -415,6 +419,12 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                             _model.startSync = false;
                             _model.isSynced = true;
                             setState(() {});
+                            await UserLogsTable().insert({
+                              'user_id': currentUserUid,
+                              'activity': 'Syncing Tasks',
+                              'longlat':
+                                  '${functions.getLng(currentUserLocationValue).toString()}${functions.getLat(currentUserLocationValue).toString()}',
+                            });
                           }
 
                           setState(() {});
@@ -451,13 +461,8 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                                   style: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        fontFamily: FlutterFlowTheme.of(context)
-                                            .labelMediumFamily,
+                                        fontFamily: 'Readex Pro',
                                         letterSpacing: 0.0,
-                                        useGoogleFonts: GoogleFonts.asMap()
-                                            .containsKey(
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMediumFamily),
                                       ),
                                   duration: const Duration(milliseconds: 600),
                                   curve: Curves.easeIn,
@@ -498,13 +503,8 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily,
+                                    fontFamily: 'Readex Pro',
                                     letterSpacing: 0.0,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .bodyMediumFamily),
                                   ),
                             ),
                             FFButtonWidget(
@@ -542,14 +542,9 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .titleSmallFamily,
+                                      fontFamily: 'Readex Pro',
                                       color: Colors.white,
                                       letterSpacing: 0.0,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmallFamily),
                                     ),
                                 elevation: 3.0,
                                 borderSide: const BorderSide(

@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'call_us_model.dart';
@@ -95,10 +94,8 @@ class _CallUsWidgetState extends State<CallUsWidget>
               'x1l0pduf' /* Support */,
             ),
             style: FlutterFlowTheme.of(context).titleLarge.override(
-                  fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
+                  fontFamily: 'Readex Pro',
                   letterSpacing: 0.0,
-                  useGoogleFonts: GoogleFonts.asMap().containsKey(
-                      FlutterFlowTheme.of(context).titleLargeFamily),
                 ),
           ),
           actions: const [],
@@ -146,13 +143,8 @@ class _CallUsWidgetState extends State<CallUsWidget>
                                 style: FlutterFlowTheme.of(context)
                                     .headlineMedium
                                     .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .headlineMediumFamily,
+                                      fontFamily: 'Inter',
                                       letterSpacing: 0.0,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .headlineMediumFamily),
                                     ),
                               ),
                             ),
@@ -168,12 +160,8 @@ class _CallUsWidgetState extends State<CallUsWidget>
                             style: FlutterFlowTheme.of(context)
                                 .labelLarge
                                 .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .labelLargeFamily,
+                                  fontFamily: 'Readex Pro',
                                   letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .labelLargeFamily),
                                 ),
                           ),
                         ),
@@ -218,14 +206,8 @@ class _CallUsWidgetState extends State<CallUsWidget>
                                       style: FlutterFlowTheme.of(context)
                                           .bodyLarge
                                           .override(
-                                            fontFamily:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyLargeFamily,
+                                            fontFamily: 'Readex Pro',
                                             letterSpacing: 0.0,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyLargeFamily),
                                           ),
                                     ),
                                     Align(
@@ -241,16 +223,8 @@ class _CallUsWidgetState extends State<CallUsWidget>
                                           style: FlutterFlowTheme.of(context)
                                               .labelMedium
                                               .override(
-                                                fontFamily:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelMediumFamily,
+                                                fontFamily: 'Readex Pro',
                                                 letterSpacing: 0.0,
-                                                useGoogleFonts: GoogleFonts
-                                                        .asMap()
-                                                    .containsKey(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelMediumFamily),
                                               ),
                                         ),
                                       ),

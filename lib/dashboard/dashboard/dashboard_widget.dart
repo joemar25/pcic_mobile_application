@@ -17,7 +17,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'dashboard_model.dart';
@@ -192,20 +191,12 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                             style: FlutterFlowTheme.of(context)
                                                 .headlineMedium
                                                 .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .headlineMediumFamily,
+                                                  fontFamily: 'Inter',
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primaryBackground,
                                                   fontSize: 28.0,
                                                   letterSpacing: 0.0,
-                                                  useGoogleFonts: GoogleFonts
-                                                          .asMap()
-                                                      .containsKey(FlutterFlowTheme
-                                                              .of(context)
-                                                          .headlineMediumFamily),
                                                 ),
                                           ),
                                         ].divide(const SizedBox(width: 20.0)),
@@ -256,9 +247,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                       .titleSmall
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmallFamily,
+                                                            'Readex Pro',
                                                         color: FlutterFlowTheme
                                                                 .of(context)
                                                             .secondaryBackground,
@@ -266,40 +255,26 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.w600,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmallFamily),
                                                       ),
                                                 ),
                                               ),
                                             if (!FFAppState().ONLINE)
                                               Text(
                                                 '[ No internet for sync ]',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmallFamily,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .titleSmall
+                                                    .override(
+                                                      fontFamily: 'Readex Pro',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
                                                               .error,
-                                                          fontSize: 12.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmallFamily),
-                                                        ),
+                                                      fontSize: 12.0,
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
                                               ),
                                           ].divide(const SizedBox(width: 5.0)),
                                         ),
@@ -413,27 +388,19 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                             .getText(
                                                           'b756yymk' /* Welcome */,
                                                         ),
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleLarge
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleLargeFamily,
-                                                                  fontSize:
-                                                                      22.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .titleLargeFamily),
-                                                                ),
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .titleLarge
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Readex Pro',
+                                                              fontSize: 22.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                            ),
                                                       ),
                                                       Align(
                                                         alignment:
@@ -513,13 +480,11 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                         .bodyMedium
                                                                         .override(
                                                                           fontFamily:
-                                                                              FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                              'Readex Pro',
                                                                           letterSpacing:
                                                                               0.0,
                                                                           fontWeight:
                                                                               FontWeight.normal,
-                                                                          useGoogleFonts:
-                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                         ),
                                                                   ),
                                                                   TextSpan(
@@ -552,14 +517,9 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                     .bodyMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily,
+                                                                          'Readex Pro',
                                                                       letterSpacing:
                                                                           0.0,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                     ),
                                                               ),
                                                             );
@@ -645,14 +605,15 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .forDispatchColor,
+                                                              .secondary,
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               8.0),
                                                       border: Border.all(
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .forDispatchColor,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondary,
                                                         width: 2.0,
                                                       ),
                                                     ),
@@ -677,9 +638,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                     .of(context)
                                                                 .displaySmall
                                                                 .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .displaySmallFamily,
+                                                                  fontFamily:
+                                                                      'Inter',
                                                                   fontSize:
                                                                       30.0,
                                                                   letterSpacing:
@@ -687,11 +647,6 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .bold,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .displaySmallFamily),
                                                                 ),
                                                             duration: const Duration(
                                                                 milliseconds:
@@ -712,7 +667,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                             Icons.timer_sharp,
                                                             color: FlutterFlowTheme
                                                                     .of(context)
-                                                                .forDispatchIcon,
+                                                                .primaryText,
                                                             size: 15.0,
                                                           ),
                                                           Padding(
@@ -734,8 +689,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                   .labelMedium
                                                                   .override(
                                                                     fontFamily:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily,
+                                                                        'Readex Pro',
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
                                                                         .primaryText,
@@ -746,10 +700,6 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .w600,
-                                                                    useGoogleFonts: GoogleFonts
-                                                                            .asMap()
-                                                                        .containsKey(
-                                                                            FlutterFlowTheme.of(context).labelMediumFamily),
                                                                   ),
                                                             ),
                                                           ),
@@ -778,7 +728,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                   decoration: BoxDecoration(
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .inProgress,
+                                                        .primary,
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8.0),
@@ -786,7 +736,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .inProgress,
+                                                              .primary,
                                                       width: 2.0,
                                                     ),
                                                   ),
@@ -808,9 +758,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                   .of(context)
                                                               .displaySmall
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .displaySmallFamily,
+                                                                fontFamily:
+                                                                    'Inter',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primaryText,
@@ -820,11 +769,6 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .displaySmallFamily),
                                                               ),
                                                           duration: const Duration(
                                                               milliseconds:
@@ -845,7 +789,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                               .incomplete_circle,
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .inProgressIcon,
+                                                              .primaryText,
                                                           size: 15.0,
                                                         ),
                                                         Padding(
@@ -866,9 +810,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                     .of(context)
                                                                 .labelMedium
                                                                 .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMediumFamily,
+                                                                  fontFamily:
+                                                                      'Readex Pro',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primaryText,
@@ -879,11 +822,6 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .w600,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .labelMediumFamily),
                                                                 ),
                                                           ),
                                                         ),
@@ -910,7 +848,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                   decoration: BoxDecoration(
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .completeColor,
+                                                        .tertiary,
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8.0),
@@ -918,7 +856,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .completeColor,
+                                                              .tertiary,
                                                       width: 2.0,
                                                     ),
                                                   ),
@@ -940,9 +878,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                   .of(context)
                                                               .displaySmall
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .displaySmallFamily,
+                                                                fontFamily:
+                                                                    'Inter',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primaryText,
@@ -952,11 +889,6 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .displaySmallFamily),
                                                               ),
                                                           duration: const Duration(
                                                               milliseconds:
@@ -976,7 +908,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                           Icons.check_circle,
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .completeIcon,
+                                                              .primaryText,
                                                           size: 15.0,
                                                         ),
                                                         Padding(
@@ -997,9 +929,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                     .of(context)
                                                                 .labelMedium
                                                                 .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMediumFamily,
+                                                                  fontFamily:
+                                                                      'Readex Pro',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primaryText,
@@ -1010,11 +941,6 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .w600,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .labelMediumFamily),
                                                                 ),
                                                           ),
                                                         ),
@@ -1057,24 +983,16 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
+                                                                'Readex Pro',
                                                             fontSize: 12.0,
                                                             letterSpacing: 0.0,
-                                                            useGoogleFonts: GoogleFonts
-                                                                    .asMap()
-                                                                .containsKey(
-                                                                    FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMediumFamily),
                                                           ),
                                                   unselectedLabelStyle:
                                                       const TextStyle(),
                                                   indicatorColor:
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .completeIcon,
+                                                          .secondary,
                                                   indicatorWeight: 2.0,
                                                   tabs: [
                                                     Tab(

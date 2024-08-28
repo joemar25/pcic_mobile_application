@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'user_chats_model.dart';
 export 'user_chats_model.dart';
 
@@ -70,11 +69,8 @@ class _UserChatsWidgetState extends State<UserChatsWidget> {
                     'gb6dx75i' /* Select User */,
                   ),
                   style: FlutterFlowTheme.of(context).bodyLarge.override(
-                        fontFamily:
-                            FlutterFlowTheme.of(context).bodyLargeFamily,
+                        fontFamily: 'Readex Pro',
                         letterSpacing: 0.0,
-                        useGoogleFonts: GoogleFonts.asMap().containsKey(
-                            FlutterFlowTheme.of(context).bodyLargeFamily),
                       ),
                 ),
               ),
@@ -180,15 +176,9 @@ class _UserChatsWidgetState extends State<UserChatsWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMediumFamily,
+                                            fontFamily: 'Readex Pro',
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.bold,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMediumFamily),
                                           ),
                                     ),
                                     Padding(
@@ -199,19 +189,11 @@ class _UserChatsWidgetState extends State<UserChatsWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodySmall
                                             .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodySmallFamily,
+                                              fontFamily: 'Readex Pro',
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primary,
                                               letterSpacing: 0.0,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodySmallFamily),
                                             ),
                                       ),
                                     ),

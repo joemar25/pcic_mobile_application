@@ -10,6 +10,8 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
 
   String? routeName;
 
+  bool isLoggedIn = true;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

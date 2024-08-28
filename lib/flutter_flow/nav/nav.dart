@@ -479,8 +479,8 @@ class FFRoute {
                   child: Center(
                     child: Image.asset(
                       'assets/images/Animation_-_1720059117867.gif',
-                      width: 200.0,
-                      height: 200.0,
+                      width: 150.0,
+                      height: 150.0,
                       fit: BoxFit.contain,
                     ),
                   ),

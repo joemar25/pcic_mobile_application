@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'saving_mode_model.dart';
 export 'saving_mode_model.dart';
 
@@ -101,12 +100,9 @@ class _SavingModeWidgetState extends State<SavingModeWidget>
                   'Loading',
                 ),
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily:
-                          FlutterFlowTheme.of(context).headlineMediumFamily,
+                      fontFamily: 'Inter',
                       color: FlutterFlowTheme.of(context).primaryText,
                       letterSpacing: 0.0,
-                      useGoogleFonts: GoogleFonts.asMap().containsKey(
-                          FlutterFlowTheme.of(context).headlineMediumFamily),
                     ),
               ).animateOnPageLoad(animationsMap['textOnPageLoadAnimation']!),
             ],

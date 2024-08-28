@@ -1,3 +1,4 @@
+import '/auth/supabase_auth/auth_util.dart';
 import '/backend/sqlite/sqlite_manager.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
@@ -13,7 +14,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'geotagging_model.dart';
 export 'geotagging_model.dart';
@@ -294,15 +294,10 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                 style: FlutterFlowTheme.of(context)
                                     .headlineMedium
                                     .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .headlineMediumFamily,
+                                      fontFamily: 'Inter',
                                       color:
                                           FlutterFlowTheme.of(context).tertiary,
                                       letterSpacing: 0.0,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .headlineMediumFamily),
                                     ),
                               ),
                               Container(
@@ -326,14 +321,8 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMediumFamily,
+                                            fontFamily: 'Readex Pro',
                                             letterSpacing: 0.0,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMediumFamily),
                                           ),
                                       duration: const Duration(milliseconds: 600),
                                       curve: Curves.easeIn,
@@ -374,16 +363,10 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                     style: FlutterFlowTheme.of(context)
                                         .labelSmall
                                         .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelSmallFamily,
+                                          fontFamily: 'Readex Pro',
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
                                           letterSpacing: 0.0,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelSmallFamily),
                                         ),
                                   ),
                                   Text(
@@ -397,14 +380,8 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                     style: FlutterFlowTheme.of(context)
                                         .labelSmall
                                         .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelSmallFamily,
+                                          fontFamily: 'Readex Pro',
                                           letterSpacing: 0.0,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelSmallFamily),
                                         ),
                                   ),
                                 ],
@@ -420,16 +397,10 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                     style: FlutterFlowTheme.of(context)
                                         .labelSmall
                                         .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelSmallFamily,
+                                          fontFamily: 'Readex Pro',
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
                                           letterSpacing: 0.0,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelSmallFamily),
                                         ),
                                   ),
                                   Text(
@@ -439,14 +410,8 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                     style: FlutterFlowTheme.of(context)
                                         .labelSmall
                                         .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelSmallFamily,
+                                          fontFamily: 'Readex Pro',
                                           letterSpacing: 0.0,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelSmallFamily),
                                         ),
                                   ),
                                 ],
@@ -462,16 +427,10 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                     style: FlutterFlowTheme.of(context)
                                         .labelSmall
                                         .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelSmallFamily,
+                                          fontFamily: 'Readex Pro',
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
                                           letterSpacing: 0.0,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelSmallFamily),
                                         ),
                                   ),
                                   Text(
@@ -481,14 +440,8 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                     style: FlutterFlowTheme.of(context)
                                         .labelSmall
                                         .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelSmallFamily,
+                                          fontFamily: 'Readex Pro',
                                           letterSpacing: 0.0,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelSmallFamily),
                                         ),
                                   ),
                                 ],
@@ -510,6 +463,8 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
+                    currentUserLocationValue = await getCurrentUserLocation(
+                        defaultLocation: const LatLng(0.0, 0.0));
                     if (_model.isFinished) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
@@ -525,6 +480,14 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                         ),
                       );
                     } else {
+                      if (FFAppState().ONLINE) {
+                        await UserLogsTable().insert({
+                          'user_id': currentUserUid,
+                          'activity': 'Started geotag.',
+                          'longlat':
+                              '${functions.getLng(currentUserLocationValue).toString()}${functions.getLat(currentUserLocationValue).toString()}',
+                        });
+                      }
                       _model.isGeotagStart = true;
                       _model.isFinished = false;
                       setState(() {});
@@ -584,16 +547,11 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                         ),
                         Text(
                           _model.isFinished ? 'Saving' : 'Start',
-                          style: FlutterFlowTheme.of(context)
-                              .bodyLarge
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyLargeFamily,
-                                letterSpacing: 0.0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyLargeFamily),
-                              ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyLarge.override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
                         ),
                       ],
                     ),
@@ -606,9 +564,17 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
+                    currentUserLocationValue = await getCurrentUserLocation(
+                        defaultLocation: const LatLng(0.0, 0.0));
                     FFAppState().routeStarted = false;
                     setState(() {});
                     if (FFAppState().ONLINE) {
+                      await UserLogsTable().insert({
+                        'user_id': currentUserUid,
+                        'activity': 'Finish geotag.',
+                        'longlat':
+                            '${functions.getLng(currentUserLocationValue).toString()}${functions.getLat(currentUserLocationValue).toString()}',
+                      });
                       await TasksTable().update(
                         data: {
                           'status': 'ongoing',
@@ -682,17 +648,12 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                           FFLocalizations.of(context).getText(
                             'cmxtd6yw' /* Finish */,
                           ),
-                          style: FlutterFlowTheme.of(context)
-                              .bodyLarge
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyLargeFamily,
-                                color: Colors.white,
-                                letterSpacing: 0.0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyLargeFamily),
-                              ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyLarge.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                  ),
                         ),
                       ],
                     ),

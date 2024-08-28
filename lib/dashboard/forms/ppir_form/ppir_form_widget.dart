@@ -1,3 +1,4 @@
+import '/auth/supabase_auth/auth_util.dart';
 import '/backend/sqlite/sqlite_manager.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
@@ -17,12 +18,12 @@ import '/utils/components/page_loader/page_loader_widget.dart';
 import '/utils/components/signature/signature_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'ppir_form_model.dart';
 export 'ppir_form_model.dart';
@@ -43,6 +44,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
   late PpirFormModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  LatLng? currentUserLocationValue;
 
   @override
   void initState() {
@@ -131,7 +133,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                     buttonSize: 60.0,
                     icon: Icon(
                       Icons.chevron_left,
-                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      color: FlutterFlowTheme.of(context).info,
                       size: 30.0,
                     ),
                     onPressed: () async {
@@ -188,13 +190,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                     Text(
                       '${ppirFormSelectPpirFormsRowList.first.ppirAssignmentid} Form',
                       style: FlutterFlowTheme.of(context).titleSmall.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).titleSmallFamily,
-                            color:
-                                FlutterFlowTheme.of(context).primaryBackground,
+                            fontFamily: 'Readex Pro',
+                            color: FlutterFlowTheme.of(context).info,
                             letterSpacing: 0.0,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).titleSmallFamily),
                           ),
                     ),
                     wrapWithModel(
@@ -337,19 +335,13 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   context)
                                                               .bodyLarge
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyLargeFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .tertiary,
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyLargeFamily),
                                                               ),
                                                     ),
                                                   ),
@@ -367,7 +359,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               ? FlutterFlowTheme
                                                                       .of(
                                                                           context)
-                                                                  .boarderForm
+                                                                  .primary
                                                               : FlutterFlowTheme
                                                                       .of(context)
                                                                   .error,
@@ -454,13 +446,11 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                         .bodyMedium
                                                                         .override(
                                                                           fontFamily:
-                                                                              FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                              'Readex Pro',
                                                                           color:
                                                                               FlutterFlowTheme.of(context).primary,
                                                                           letterSpacing:
                                                                               0.0,
-                                                                          useGoogleFonts:
-                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                         ),
                                                                   ),
                                                                 ),
@@ -514,14 +504,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   .bodyMedium
                                                                   .override(
                                                                     fontFamily:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily,
+                                                                        'Readex Pro',
                                                                     letterSpacing:
                                                                         0.0,
-                                                                    useGoogleFonts: GoogleFonts
-                                                                            .asMap()
-                                                                        .containsKey(
-                                                                            FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                   ),
                                                             ),
                                                             Text(
@@ -538,14 +523,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   .bodyMedium
                                                                   .override(
                                                                     fontFamily:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily,
+                                                                        'Readex Pro',
                                                                     letterSpacing:
                                                                         0.0,
-                                                                    useGoogleFonts: GoogleFonts
-                                                                            .asMap()
-                                                                        .containsKey(
-                                                                            FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                   ),
                                                             ),
                                                             Row(
@@ -570,11 +550,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                       .bodyMedium
                                                                       .override(
                                                                         fontFamily:
-                                                                            FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                            'Readex Pro',
                                                                         letterSpacing:
                                                                             0.0,
-                                                                        useGoogleFonts:
-                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                       ),
                                                                 ),
                                                                 InkWell(
@@ -609,13 +587,11 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                         .bodyMedium
                                                                         .override(
                                                                           fontFamily:
-                                                                              FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                              'Readex Pro',
                                                                           color:
                                                                               FlutterFlowTheme.of(context).secondary,
                                                                           letterSpacing:
                                                                               0.0,
-                                                                          useGoogleFonts:
-                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                         ),
                                                                   ),
                                                                 ),
@@ -633,11 +609,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                       .bodyMedium
                                                                       .override(
                                                                         fontFamily:
-                                                                            FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                            'Readex Pro',
                                                                         letterSpacing:
                                                                             0.0,
-                                                                        useGoogleFonts:
-                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                       ),
                                                                 ),
                                                               ],
@@ -666,6 +640,11 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                 FFButtonWidget(
                                                               onPressed:
                                                                   () async {
+                                                                currentUserLocationValue =
+                                                                    await getCurrentUserLocation(
+                                                                        defaultLocation: const LatLng(
+                                                                            0.0,
+                                                                            0.0));
                                                                 _model.hasGpx =
                                                                     true;
                                                                 setState(() {});
@@ -720,6 +699,15 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                             .taskId,
                                                                       ),
                                                                     );
+                                                                    await UserLogsTable()
+                                                                        .insert({
+                                                                      'user_id':
+                                                                          currentUserUid,
+                                                                      'activity':
+                                                                          'Regeotag.',
+                                                                      'longlat':
+                                                                          '${functions.getLng(currentUserLocationValue).toString()}${functions.getLat(currentUserLocationValue).toString()}',
+                                                                    });
                                                                   }
                                                                   await SQLiteManager
                                                                       .instance
@@ -816,16 +804,11 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     .titleSmall
                                                                     .override(
                                                                       fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .titleSmallFamily,
+                                                                          'Readex Pro',
                                                                       color: Colors
                                                                           .white,
                                                                       letterSpacing:
                                                                           0.0,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).titleSmallFamily),
                                                                     ),
                                                                 elevation: 3.0,
                                                                 borderSide:
@@ -903,16 +886,11 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     .titleSmall
                                                                     .override(
                                                                       fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .titleSmallFamily,
+                                                                          'Readex Pro',
                                                                       color: Colors
                                                                           .white,
                                                                       letterSpacing:
                                                                           0.0,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).titleSmallFamily),
                                                                     ),
                                                                 elevation: 3.0,
                                                                 borderSide:
@@ -940,7 +918,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     thickness: 2.0,
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .boarderForm,
+                                                        .primary,
                                                   ),
                                                 ),
                                               ],
@@ -974,19 +952,11 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         .bodyLarge
                                                         .override(
                                                           fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyLargeFamily,
+                                                              'Readex Pro',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .tertiary,
                                                           letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyLargeFamily),
                                                         ),
                                                   ),
                                                 ),
@@ -1027,19 +997,13 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     context)
                                                                 .bodyMedium
                                                                 .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily,
+                                                                  fontFamily:
+                                                                      'Readex Pro',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .secondaryText,
                                                                   letterSpacing:
                                                                       0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily),
                                                                 ),
                                                         alignLabelWithHint:
                                                             false,
@@ -1048,16 +1012,10 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     context)
                                                                 .labelMedium
                                                                 .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMediumFamily,
+                                                                  fontFamily:
+                                                                      'Readex Pro',
                                                                   letterSpacing:
                                                                       0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .labelMediumFamily),
                                                                 ),
                                                         enabledBorder:
                                                             OutlineInputBorder(
@@ -1065,7 +1023,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               BorderSide(
                                                             color: FlutterFlowTheme
                                                                     .of(context)
-                                                                .lineColor,
+                                                                .primary,
                                                             width: 2.0,
                                                           ),
                                                           borderRadius:
@@ -1132,19 +1090,13 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   context)
                                                               .bodyMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily),
                                                               ),
                                                       maxLines: 10,
                                                       keyboardType:
@@ -1190,19 +1142,13 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   context)
                                                               .bodyMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily),
                                                               ),
                                                       alignLabelWithHint: false,
                                                       hintStyle:
@@ -1210,23 +1156,17 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                       enabledBorder:
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .lineColor,
+                                                              .primary,
                                                           width: 2.0,
                                                         ),
                                                         borderRadius:
@@ -1286,19 +1226,11 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
+                                                              'Readex Pro',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondaryText,
                                                           letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
                                                         ),
                                                     cursorColor:
                                                         FlutterFlowTheme.of(
@@ -1339,39 +1271,27 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                       hintStyle:
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                       enabledBorder:
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .lineColor,
+                                                              .primary,
                                                           width: 2.0,
                                                         ),
                                                         borderRadius:
@@ -1431,19 +1351,11 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
+                                                              'Readex Pro',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondaryText,
                                                           letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
                                                         ),
                                                     cursorColor:
                                                         FlutterFlowTheme.of(
@@ -1484,39 +1396,27 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                       hintStyle:
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                       enabledBorder:
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .lineColor,
+                                                              .primary,
                                                           width: 2.0,
                                                         ),
                                                         borderRadius:
@@ -1576,19 +1476,11 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
+                                                              'Readex Pro',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondaryText,
                                                           letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
                                                         ),
                                                     cursorColor:
                                                         FlutterFlowTheme.of(
@@ -1628,39 +1520,27 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                       hintStyle:
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                       enabledBorder:
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .lineColor,
+                                                              .primary,
                                                           width: 2.0,
                                                         ),
                                                         borderRadius:
@@ -1720,19 +1600,11 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
+                                                              'Readex Pro',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondaryText,
                                                           letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
                                                         ),
                                                     cursorColor:
                                                         FlutterFlowTheme.of(
@@ -1779,45 +1651,33 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primaryText,
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                       hintStyle:
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                       enabledBorder:
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .boarderForm,
+                                                              .primary,
                                                           width: 2.0,
                                                         ),
                                                         borderRadius:
@@ -1877,16 +1737,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
+                                                              'Readex Pro',
                                                           letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
                                                         ),
                                                     cursorColor:
                                                         FlutterFlowTheme.of(
@@ -1905,7 +1757,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     thickness: 2.0,
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .boarderForm,
+                                                        .primary,
                                                   ),
                                                 ),
                                               ]
@@ -1942,19 +1794,11 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         .bodyLarge
                                                         .override(
                                                           fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyLargeFamily,
+                                                              'Readex Pro',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .tertiary,
                                                           letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyLargeFamily),
                                                         ),
                                                   ),
                                                 ),
@@ -1993,16 +1837,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                           .labelMedium
                                                           .override(
                                                             fontFamily:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                'Readex Pro',
                                                             letterSpacing: 0.0,
-                                                            useGoogleFonts: GoogleFonts
-                                                                    .asMap()
-                                                                .containsKey(
-                                                                    FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .labelMediumFamily),
                                                           ),
                                                   selectedTextStyle:
                                                       FlutterFlowTheme.of(
@@ -2010,16 +1846,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
+                                                                'Readex Pro',
                                                             letterSpacing: 0.0,
-                                                            useGoogleFonts: GoogleFonts
-                                                                    .asMap()
-                                                                .containsKey(
-                                                                    FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMediumFamily),
                                                           ),
                                                   buttonPosition:
                                                       RadioButtonPosition.left,
@@ -2058,16 +1886,10 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     .of(context)
                                                                 .labelSmall
                                                                 .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelSmallFamily,
+                                                                  fontFamily:
+                                                                      'Readex Pro',
                                                                   letterSpacing:
                                                                       0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .labelSmallFamily),
                                                                 ),
                                                           ),
                                                           Text(
@@ -2079,9 +1901,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     .of(context)
                                                                 .labelSmall
                                                                 .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelSmallFamily,
+                                                                  fontFamily:
+                                                                      'Readex Pro',
                                                                   color: _model
                                                                               .ppirSvpActSelectionValue ==
                                                                           'rice'
@@ -2093,11 +1914,6 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                           .secondaryText,
                                                                   letterSpacing:
                                                                       0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .labelSmallFamily),
                                                                 ),
                                                           ),
                                                         ],
@@ -2167,14 +1983,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     .labelMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .labelMediumFamily,
+                                                                          'Readex Pro',
                                                                       letterSpacing:
                                                                           0.0,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).labelMediumFamily),
                                                                     ),
                                                             searchTextStyle:
                                                                 FlutterFlowTheme.of(
@@ -2182,14 +1993,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     .bodyMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily,
+                                                                          'Readex Pro',
                                                                       letterSpacing:
                                                                           0.0,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                     ),
                                                             textStyle:
                                                                 FlutterFlowTheme.of(
@@ -2197,8 +2003,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     .bodyMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily,
+                                                                          'Readex Pro',
                                                                       color: _model.ppirSvpActSelectionValue ==
                                                                               'corn'
                                                                           ? FlutterFlowTheme.of(context)
@@ -2207,10 +2012,6 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                               .primaryText,
                                                                       letterSpacing:
                                                                           0.0,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                     ),
                                                             hintText:
                                                                 FFLocalizations.of(
@@ -2284,16 +2085,10 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     .of(context)
                                                                 .labelSmall
                                                                 .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelSmallFamily,
+                                                                  fontFamily:
+                                                                      'Readex Pro',
                                                                   letterSpacing:
                                                                       0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .labelSmallFamily),
                                                                 ),
                                                           ),
                                                           Text(
@@ -2305,9 +2100,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     .of(context)
                                                                 .labelSmall
                                                                 .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelSmallFamily,
+                                                                  fontFamily:
+                                                                      'Readex Pro',
                                                                   color: _model
                                                                               .ppirSvpActSelectionValue ==
                                                                           'corn'
@@ -2319,11 +2113,6 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                           .secondaryText,
                                                                   letterSpacing:
                                                                       0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .labelSmallFamily),
                                                                 ),
                                                           ),
                                                         ],
@@ -2393,14 +2182,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     .labelMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .labelMediumFamily,
+                                                                          'Readex Pro',
                                                                       letterSpacing:
                                                                           0.0,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).labelMediumFamily),
                                                                     ),
                                                             searchTextStyle:
                                                                 FlutterFlowTheme.of(
@@ -2408,14 +2192,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     .bodyMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily,
+                                                                          'Readex Pro',
                                                                       letterSpacing:
                                                                           0.0,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                     ),
                                                             textStyle:
                                                                 FlutterFlowTheme.of(
@@ -2423,8 +2202,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     .bodyMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily,
+                                                                          'Readex Pro',
                                                                       color: _model.ppirSvpActSelectionValue ==
                                                                               'rice'
                                                                           ? FlutterFlowTheme.of(context)
@@ -2433,10 +2211,6 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                               .primaryText,
                                                                       letterSpacing:
                                                                           0.0,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                     ),
                                                             hintText:
                                                                 FFLocalizations.of(
@@ -2498,7 +2272,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     thickness: 2.0,
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .boarderForm,
+                                                        .primary,
                                                   ),
                                                 ),
                                               ]
@@ -2535,19 +2309,11 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         .bodyLarge
                                                         .override(
                                                           fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyLargeFamily,
+                                                              'Readex Pro',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .tertiary,
                                                           letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyLargeFamily),
                                                         ),
                                                   ),
                                                 ),
@@ -2589,39 +2355,27 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                       hintStyle:
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                       enabledBorder:
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .boarderForm,
+                                                              .primary,
                                                           width: 2.0,
                                                         ),
                                                         borderRadius:
@@ -2681,16 +2435,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
+                                                              'Readex Pro',
                                                           letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
                                                         ),
                                                     keyboardType:
                                                         const TextInputType
@@ -2761,14 +2507,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     .labelMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .labelMediumFamily,
+                                                                          'Readex Pro',
                                                                       letterSpacing:
                                                                           0.0,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).labelMediumFamily),
                                                                     ),
                                                             hintStyle:
                                                                 FlutterFlowTheme.of(
@@ -2776,14 +2517,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     .labelMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .labelMediumFamily,
+                                                                          'Readex Pro',
                                                                       letterSpacing:
                                                                           0.0,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).labelMediumFamily),
                                                                     ),
                                                             enabledBorder:
                                                                 OutlineInputBorder(
@@ -2791,7 +2527,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   BorderSide(
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .boarderForm,
+                                                                    .primary,
                                                                 width: 2.0,
                                                               ),
                                                               borderRadius:
@@ -2857,16 +2593,10 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   .of(context)
                                                               .bodyMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily),
                                                               ),
                                                           keyboardType:
                                                               TextInputType
@@ -2886,7 +2616,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                       borderColor:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .boarderForm,
+                                                              .primary,
                                                       borderRadius: 12.0,
                                                       borderWidth: 2.0,
                                                       buttonSize: 48.0,
@@ -3001,14 +2731,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   .labelMedium
                                                                   .override(
                                                                     fontFamily:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily,
+                                                                        'Readex Pro',
                                                                     letterSpacing:
                                                                         0.0,
-                                                                    useGoogleFonts: GoogleFonts
-                                                                            .asMap()
-                                                                        .containsKey(
-                                                                            FlutterFlowTheme.of(context).labelMediumFamily),
                                                                   ),
                                                           hintStyle:
                                                               FlutterFlowTheme.of(
@@ -3016,14 +2741,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   .labelMedium
                                                                   .override(
                                                                     fontFamily:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily,
+                                                                        'Readex Pro',
                                                                     letterSpacing:
                                                                         0.0,
-                                                                    useGoogleFonts: GoogleFonts
-                                                                            .asMap()
-                                                                        .containsKey(
-                                                                            FlutterFlowTheme.of(context).labelMediumFamily),
                                                                   ),
                                                           enabledBorder:
                                                               OutlineInputBorder(
@@ -3031,7 +2751,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                 BorderSide(
                                                               color: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .boarderForm,
+                                                                  .primary,
                                                               width: 2.0,
                                                             ),
                                                             borderRadius:
@@ -3098,16 +2818,10 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     context)
                                                                 .bodyMedium
                                                                 .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily,
+                                                                  fontFamily:
+                                                                      'Readex Pro',
                                                                   letterSpacing:
                                                                       0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily),
                                                                 ),
                                                         keyboardType:
                                                             TextInputType
@@ -3126,7 +2840,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                       borderColor:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .boarderForm,
+                                                              .primary,
                                                       borderRadius: 12.0,
                                                       borderWidth: 2.0,
                                                       buttonSize: 48.0,
@@ -3198,7 +2912,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     thickness: 2.0,
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .boarderForm,
+                                                        .primary,
                                                   ),
                                                 ),
                                               ]
@@ -3235,19 +2949,11 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         .bodyLarge
                                                         .override(
                                                           fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyLargeFamily,
+                                                              'Readex Pro',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .tertiary,
                                                           letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyLargeFamily),
                                                         ),
                                                   ),
                                                 ),
@@ -3283,16 +2989,10 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                       hintText:
                                                           FFLocalizations.of(
@@ -3305,23 +3005,17 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                       enabledBorder:
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .boarderForm,
+                                                              .primary,
                                                           width: 2.0,
                                                         ),
                                                         borderRadius:
@@ -3381,16 +3075,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
+                                                              'Readex Pro',
                                                           letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
                                                         ),
                                                     maxLines: 16,
                                                     minLines: 10,
@@ -3411,7 +3097,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     thickness: 2.0,
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .boarderForm,
+                                                        .primary,
                                                   ),
                                                 ),
                                                 Padding(
@@ -3452,39 +3138,27 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                       hintStyle:
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                       enabledBorder:
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .boarderForm,
+                                                              .primary,
                                                           width: 2.0,
                                                         ),
                                                         borderRadius:
@@ -3544,16 +3218,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
+                                                              'Readex Pro',
                                                           letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
                                                         ),
                                                     cursorColor:
                                                         FlutterFlowTheme.of(
@@ -3586,15 +3252,19 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                             BorderRadius
                                                                 .circular(10.0),
                                                         border: Border.all(
-                                                          color: _model
-                                                                  .hasSigInsured
-                                                              ? FlutterFlowTheme
-                                                                      .of(
-                                                                          context)
-                                                                  .boarderForm
-                                                              : FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .error,
+                                                          color: valueOrDefault<
+                                                              Color>(
+                                                            _model.hasSigInsured
+                                                                ? FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary
+                                                                : FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .error,
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                          ),
                                                         ),
                                                       ),
                                                       child: Align(
@@ -3669,14 +3339,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     .bodyMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily,
+                                                                          'Readex Pro',
                                                                       letterSpacing:
                                                                           0.0,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                     ),
                                                               ),
                                                               Stack(
@@ -3800,39 +3465,27 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                       hintStyle:
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily,
+                                                                fontFamily:
+                                                                    'Readex Pro',
                                                                 letterSpacing:
                                                                     0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily),
                                                               ),
                                                       enabledBorder:
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .boarderForm,
+                                                              .primary,
                                                           width: 2.0,
                                                         ),
                                                         borderRadius:
@@ -3892,16 +3545,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
+                                                              'Readex Pro',
                                                           letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
                                                         ),
                                                     cursorColor:
                                                         FlutterFlowTheme.of(
@@ -3934,15 +3579,19 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                             BorderRadius
                                                                 .circular(10.0),
                                                         border: Border.all(
-                                                          color: _model
-                                                                  .hasSigIuia
-                                                              ? FlutterFlowTheme
-                                                                      .of(
-                                                                          context)
-                                                                  .boarderForm
-                                                              : FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .error,
+                                                          color: valueOrDefault<
+                                                              Color>(
+                                                            _model.hasSigIuia
+                                                                ? FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary
+                                                                : FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .error,
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                          ),
                                                         ),
                                                       ),
                                                       child: Align(
@@ -4017,14 +3666,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     .bodyMedium
                                                                     .override(
                                                                       fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily,
+                                                                          'Readex Pro',
                                                                       letterSpacing:
                                                                           0.0,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                     ),
                                                               ),
                                                               Stack(
@@ -4143,6 +3787,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                             Builder(
                               builder: (context) => FFButtonWidget(
                                 onPressed: () async {
+                                  currentUserLocationValue =
+                                      await getCurrentUserLocation(
+                                          defaultLocation: const LatLng(0.0, 0.0));
                                   await showDialog(
                                     context: context,
                                     builder: (dialogContext) {
@@ -4166,17 +3813,38 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                       () => _model.confirmCancel = value));
 
                                   if (_model.confirmCancel!) {
-                                    context.pushNamed(
-                                      'dashboard',
-                                      extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
-                                          hasTransition: true,
-                                          transitionType:
-                                              PageTransitionType.fade,
-                                          duration: Duration(milliseconds: 0),
-                                        ),
-                                      },
-                                    );
+                                    if (FFAppState().ONLINE) {
+                                      await UserLogsTable().insert({
+                                        'user_id': currentUserUid,
+                                        'activity': 'Cancel current progress.',
+                                        'longlat':
+                                            '${functions.getLng(currentUserLocationValue).toString()}${functions.getLat(currentUserLocationValue).toString()}',
+                                      });
+
+                                      context.pushNamed(
+                                        'dashboard',
+                                        extra: <String, dynamic>{
+                                          kTransitionInfoKey: const TransitionInfo(
+                                            hasTransition: true,
+                                            transitionType:
+                                                PageTransitionType.fade,
+                                            duration: Duration(milliseconds: 0),
+                                          ),
+                                        },
+                                      );
+                                    } else {
+                                      context.pushNamed(
+                                        'dashboard',
+                                        extra: <String, dynamic>{
+                                          kTransitionInfoKey: const TransitionInfo(
+                                            hasTransition: true,
+                                            transitionType:
+                                                PageTransitionType.fade,
+                                            duration: Duration(milliseconds: 0),
+                                          ),
+                                        },
+                                      );
+                                    }
                                   }
 
                                   setState(() {});
@@ -4199,14 +3867,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .override(
-                                        fontFamily: FlutterFlowTheme.of(context)
-                                            .titleSmallFamily,
+                                        fontFamily: 'Readex Pro',
                                         color: Colors.white,
                                         letterSpacing: 0.0,
-                                        useGoogleFonts: GoogleFonts.asMap()
-                                            .containsKey(
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmallFamily),
                                       ),
                                   elevation: 3.0,
                                   borderSide: const BorderSide(
@@ -4220,6 +3883,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                             Builder(
                               builder: (context) => FFButtonWidget(
                                 onPressed: () async {
+                                  currentUserLocationValue =
+                                      await getCurrentUserLocation(
+                                          defaultLocation: const LatLng(0.0, 0.0));
                                   await showDialog(
                                     context: context,
                                     builder: (dialogContext) {
@@ -4325,6 +3991,12 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                       status: 'ongoing',
                                       isDirty: !FFAppState().ONLINE,
                                     );
+                                    await UserLogsTable().insert({
+                                      'user_id': currentUserUid,
+                                      'activity': 'Save PPIR Form',
+                                      'longlat':
+                                          '${functions.getLng(currentUserLocationValue).toString()}${functions.getLat(currentUserLocationValue).toString()}',
+                                    });
 
                                     context.pushNamed(
                                       'formSuccess',
@@ -4366,19 +4038,13 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                       0.0, 0.0, 0.0, 0.0),
                                   iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
-                                  color:
-                                      FlutterFlowTheme.of(context).earthYellow,
+                                  color: FlutterFlowTheme.of(context).primary,
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .override(
-                                        fontFamily: FlutterFlowTheme.of(context)
-                                            .titleSmallFamily,
+                                        fontFamily: 'Readex Pro',
                                         color: Colors.white,
                                         letterSpacing: 0.0,
-                                        useGoogleFonts: GoogleFonts.asMap()
-                                            .containsKey(
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmallFamily),
                                       ),
                                   elevation: 3.0,
                                   borderSide: const BorderSide(
@@ -4719,15 +4385,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                     textStyle: FlutterFlowTheme.of(context)
                                         .titleSmall
                                         .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmallFamily,
+                                          fontFamily: 'Readex Pro',
                                           color: Colors.white,
                                           letterSpacing: 0.0,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmallFamily),
                                         ),
                                     elevation: 3.0,
                                     borderSide: const BorderSide(
@@ -4744,8 +4404,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                 ),
                               ),
                           ]
-                              .divide(const SizedBox(width: 5.0))
-                              .around(const SizedBox(width: 5.0)),
+                              .divide(const SizedBox(width: 10.0))
+                              .around(const SizedBox(width: 10.0)),
                         ),
                       ),
                     ],

@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'backup_tasks_model.dart';
 export 'backup_tasks_model.dart';
 
@@ -176,13 +175,9 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
                             style: FlutterFlowTheme.of(context)
                                 .titleLarge
                                 .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .titleLargeFamily,
+                                  fontFamily: 'Readex Pro',
                                   fontSize: 16.0,
                                   letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .titleLargeFamily),
                                 ),
                           ),
                         ),
@@ -204,14 +199,10 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily,
+                                  fontFamily: 'Readex Pro',
                                   color: FlutterFlowTheme.of(context).primary,
                                   fontSize: 12.0,
                                   letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily),
                                 ),
                           ),
                         ),
@@ -225,13 +216,9 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
                           style: FlutterFlowTheme.of(context)
                               .headlineSmall
                               .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .headlineSmallFamily,
+                                fontFamily: 'Inter',
                                 fontSize: 12.0,
                                 letterSpacing: 0.0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .headlineSmallFamily),
                               ),
                         ),
                       ),
@@ -246,14 +233,10 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily,
+                                  fontFamily: 'Readex Pro',
                                   color: FlutterFlowTheme.of(context).primary,
                                   fontSize: 12.0,
                                   letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily),
                                 ),
                           ),
                         ),
@@ -267,13 +250,9 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
                           style: FlutterFlowTheme.of(context)
                               .headlineSmall
                               .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .headlineSmallFamily,
+                                fontFamily: 'Inter',
                                 fontSize: 12.0,
                                 letterSpacing: 0.0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .headlineSmallFamily),
                               ),
                         ),
                       ),
@@ -294,14 +273,10 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily,
+                                  fontFamily: 'Readex Pro',
                                   color: FlutterFlowTheme.of(context).primary,
                                   fontSize: 12.0,
                                   letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily),
                                 ),
                           ),
                         ),
@@ -315,13 +290,9 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
                           style: FlutterFlowTheme.of(context)
                               .headlineSmall
                               .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .headlineSmallFamily,
+                                fontFamily: 'Inter',
                                 fontSize: 12.0,
                                 letterSpacing: 0.0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .headlineSmallFamily),
                               ),
                         ),
                       ),
@@ -336,14 +307,10 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily,
+                                  fontFamily: 'Readex Pro',
                                   color: FlutterFlowTheme.of(context).primary,
                                   fontSize: 12.0,
                                   letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily),
                                 ),
                           ),
                         ),
@@ -357,13 +324,9 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
                           style: FlutterFlowTheme.of(context)
                               .headlineSmall
                               .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .headlineSmallFamily,
+                                fontFamily: 'Inter',
                                 fontSize: 12.0,
                                 letterSpacing: 0.0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .headlineSmallFamily),
                               ),
                         ),
                       ),
@@ -372,7 +335,7 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
                   Divider(
                     height: 24.0,
                     thickness: 1.0,
-                    color: FlutterFlowTheme.of(context).boarderForm,
+                    color: FlutterFlowTheme.of(context).primary,
                   ),
                   Row(
                     mainAxisSize: MainAxisSize.max,
@@ -383,12 +346,8 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
                           '6ov3yzwq' /* Assignment Id */,
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodyMediumFamily,
+                              fontFamily: 'Readex Pro',
                               letterSpacing: 0.0,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily),
                             ),
                       ),
                       Expanded(
@@ -403,13 +362,9 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily,
+                                  fontFamily: 'Readex Pro',
                                   color: FlutterFlowTheme.of(context).primary,
                                   letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily),
                                 ),
                           ),
                         ),
@@ -425,12 +380,8 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
                           'ftz1qs3j' /* Address */,
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodyMediumFamily,
+                              fontFamily: 'Readex Pro',
                               letterSpacing: 0.0,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily),
                             ),
                       ),
                       Expanded(
@@ -445,13 +396,9 @@ class _BackupTasksWidgetState extends State<BackupTasksWidget>
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily,
+                                  fontFamily: 'Readex Pro',
                                   color: FlutterFlowTheme.of(context).primary,
                                   letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily),
                                 ),
                           ),
                         ),

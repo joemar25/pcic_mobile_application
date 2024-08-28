@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'toast_model.dart';
 export 'toast_model.dart';
 
@@ -139,15 +138,11 @@ class _ToastWidgetState extends State<ToastWidget>
                             style: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .titleSmallFamily,
+                                  fontFamily: 'Readex Pro',
                                   color: FlutterFlowTheme.of(context)
                                       .primaryBackground,
                                   fontSize: 16.0,
                                   letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .titleSmallFamily),
                                 ),
                           ),
                         ].divide(const SizedBox(width: 8.0)),
@@ -158,19 +153,14 @@ class _ToastWidgetState extends State<ToastWidget>
                             widget.notificationMessage,
                             'Some body copy that is present in this small notification.',
                           ),
-                          style: FlutterFlowTheme.of(context)
-                              .labelMedium
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .labelMediumFamily,
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                fontSize: 9.0,
-                                letterSpacing: 0.0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .labelMediumFamily),
-                              ),
+                          style:
+                              FlutterFlowTheme.of(context).labelMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    fontSize: 9.0,
+                                    letterSpacing: 0.0,
+                                  ),
                         ),
                       ),
                     ].divide(const SizedBox(height: 2.0)),

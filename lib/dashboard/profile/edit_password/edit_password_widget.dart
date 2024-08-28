@@ -7,7 +7,6 @@ import '/utils/components/connectivity/connectivity_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'edit_password_model.dart';
 export 'edit_password_model.dart';
@@ -56,11 +55,9 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
             content: Text(
               'Password changed',
               style: FlutterFlowTheme.of(context).titleMedium.override(
-                    fontFamily: FlutterFlowTheme.of(context).titleMediumFamily,
+                    fontFamily: 'Readex Pro',
                     color: FlutterFlowTheme.of(context).primaryText,
                     letterSpacing: 0.0,
-                    useGoogleFonts: GoogleFonts.asMap().containsKey(
-                        FlutterFlowTheme.of(context).titleMediumFamily),
                   ),
             ),
             duration: const Duration(milliseconds: 4000),
@@ -74,11 +71,9 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
             content: Text(
               'Password change failed',
               style: FlutterFlowTheme.of(context).titleSmall.override(
-                    fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
+                    fontFamily: 'Readex Pro',
                     color: FlutterFlowTheme.of(context).primaryText,
                     letterSpacing: 0.0,
-                    useGoogleFonts: GoogleFonts.asMap().containsKey(
-                        FlutterFlowTheme.of(context).titleSmallFamily),
                   ),
             ),
             duration: const Duration(milliseconds: 4000),
@@ -163,14 +158,10 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                           style: FlutterFlowTheme.of(context)
                               .headlineMedium
                               .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .headlineMediumFamily,
+                                fontFamily: 'Inter',
                                 fontSize: 28.0,
                                 letterSpacing: 0.0,
                                 fontWeight: FontWeight.bold,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .headlineMediumFamily),
                               ),
                         ),
                       ),
@@ -214,17 +205,12 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                             'zo0cddz7' /* We will reset your password. P... */,
                           ),
                           textAlign: TextAlign.justify,
-                          style: FlutterFlowTheme.of(context)
-                              .bodyMedium
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyMediumFamily,
-                                letterSpacing: 0.0,
-                                fontWeight: FontWeight.normal,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily),
-                              ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
+                                  ),
                         ),
                       ),
                     ],
@@ -252,13 +238,9 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                             labelStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .labelMediumFamily,
+                                  fontFamily: 'Readex Pro',
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .labelMediumFamily),
                                 ),
                             hintText: FFLocalizations.of(context).getText(
                               '9qdzutxx' /* Enter Old Password... */,
@@ -266,17 +248,13 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                             hintStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .labelMediumFamily,
+                                  fontFamily: 'Readex Pro',
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .labelMediumFamily),
                                 ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).boarderForm,
+                                color: FlutterFlowTheme.of(context).primary,
                                 width: 2.0,
                               ),
                               borderRadius: BorderRadius.circular(12.0),
@@ -322,18 +300,13 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                               ),
                             ),
                           ),
-                          style: FlutterFlowTheme.of(context)
-                              .bodyMedium
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyMediumFamily,
-                                letterSpacing: 0.0,
-                                fontWeight: FontWeight.normal,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily),
-                                lineHeight: 2.5,
-                              ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
+                                    lineHeight: 2.5,
+                                  ),
                           keyboardType: TextInputType.visiblePassword,
                           validator: _model.oldPasswordTextControllerValidator
                               .asValidator(context),
@@ -354,13 +327,9 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                             labelStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .labelMediumFamily,
+                                  fontFamily: 'Readex Pro',
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .labelMediumFamily),
                                 ),
                             hintText: FFLocalizations.of(context).getText(
                               'h4q8epxo' /* Enter New Password... */,
@@ -368,17 +337,13 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                             hintStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .labelMediumFamily,
+                                  fontFamily: 'Readex Pro',
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .labelMediumFamily),
                                 ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).boarderForm,
+                                color: FlutterFlowTheme.of(context).primary,
                                 width: 2.0,
                               ),
                               borderRadius: BorderRadius.circular(12.0),
@@ -424,18 +389,13 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                               ),
                             ),
                           ),
-                          style: FlutterFlowTheme.of(context)
-                              .bodyMedium
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyMediumFamily,
-                                letterSpacing: 0.0,
-                                fontWeight: FontWeight.normal,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily),
-                                lineHeight: 2.5,
-                              ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
+                                    lineHeight: 2.5,
+                                  ),
                           keyboardType: TextInputType.visiblePassword,
                           validator: _model.newPasswordTextControllerValidator
                               .asValidator(context),
@@ -455,13 +415,9 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                             labelStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .labelMediumFamily,
+                                  fontFamily: 'Readex Pro',
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .labelMediumFamily),
                                 ),
                             hintText: FFLocalizations.of(context).getText(
                               'h1tl8jic' /* Confirm New Password... */,
@@ -469,17 +425,13 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                             hintStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .labelMediumFamily,
+                                  fontFamily: 'Readex Pro',
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .labelMediumFamily),
                                 ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).boarderForm,
+                                color: FlutterFlowTheme.of(context).primary,
                                 width: 2.0,
                               ),
                               borderRadius: BorderRadius.circular(12.0),
@@ -525,18 +477,13 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                               ),
                             ),
                           ),
-                          style: FlutterFlowTheme.of(context)
-                              .bodyMedium
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyMediumFamily,
-                                letterSpacing: 0.0,
-                                fontWeight: FontWeight.normal,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily),
-                                lineHeight: 2.5,
-                              ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
+                                    lineHeight: 2.5,
+                                  ),
                           keyboardType: TextInputType.visiblePassword,
                           validator: _model
                               .confirmNewPasswordTextControllerValidator
@@ -589,16 +536,10 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .titleMedium
                                           .override(
-                                            fontFamily:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleMediumFamily,
+                                            fontFamily: 'Readex Pro',
                                             color: FlutterFlowTheme.of(context)
                                                 .primaryText,
                                             letterSpacing: 0.0,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleMediumFamily),
                                           ),
                                     ),
                                     duration: const Duration(milliseconds: 4000),
@@ -651,19 +592,13 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .titleSmallFamily,
+                                    fontFamily: 'Readex Pro',
                                     color: Colors.white,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w500,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .titleSmallFamily),
                                   ),
                               elevation: 0.0,
                               borderSide: const BorderSide(
-                                color: Colors.transparent,
                                 width: 1.0,
                               ),
                               borderRadius: BorderRadius.circular(12.0),

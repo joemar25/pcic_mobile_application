@@ -7,13 +7,13 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/dialogs/no_internet_dialog/no_internet_dialog_widget.dart';
 import '/utils/components/dialogs/permission_dialog/permission_dialog_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/permissions_util.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'login_model.dart';
 export 'login_model.dart';
@@ -35,6 +35,7 @@ class _LoginWidgetState extends State<LoginWidget>
   late LoginModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  LatLng? currentUserLocationValue;
 
   final animationsMap = <String, AnimationInfo>{};
 
@@ -185,17 +186,11 @@ class _LoginWidgetState extends State<LoginWidget>
                                       style: FlutterFlowTheme.of(context)
                                           .headlineMedium
                                           .override(
-                                            fontFamily:
-                                                FlutterFlowTheme.of(context)
-                                                    .headlineMediumFamily,
+                                            fontFamily: 'Inter',
                                             color: FlutterFlowTheme.of(context)
-                                                .primaryBackground,
+                                                .info,
                                             fontSize: 30.0,
                                             letterSpacing: 0.0,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    FlutterFlowTheme.of(context)
-                                                        .headlineMediumFamily),
                                           ),
                                     ),
                                   ],
@@ -246,16 +241,10 @@ class _LoginWidgetState extends State<LoginWidget>
                                     style: FlutterFlowTheme.of(context)
                                         .headlineMedium
                                         .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .headlineMediumFamily,
+                                          fontFamily: 'Inter',
                                           fontSize: 28.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.bold,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .headlineMediumFamily),
                                         ),
                                   ),
                                 ),
@@ -327,14 +316,8 @@ class _LoginWidgetState extends State<LoginWidget>
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMediumFamily,
+                                            fontFamily: 'Readex Pro',
                                             letterSpacing: 0.0,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMediumFamily),
                                           ),
                                     ),
                                   ),
@@ -375,19 +358,10 @@ class _LoginWidgetState extends State<LoginWidget>
                                                 FlutterFlowTheme.of(context)
                                                     .labelMedium
                                                     .override(
-                                                      fontFamily:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelMediumFamily,
+                                                      fontFamily: 'Readex Pro',
                                                       letterSpacing: 0.0,
                                                       fontWeight:
                                                           FontWeight.normal,
-                                                      useGoogleFonts: GoogleFonts
-                                                              .asMap()
-                                                          .containsKey(
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelMediumFamily),
                                                     ),
                                             hintText:
                                                 FFLocalizations.of(context)
@@ -398,25 +372,16 @@ class _LoginWidgetState extends State<LoginWidget>
                                                 FlutterFlowTheme.of(context)
                                                     .labelMedium
                                                     .override(
-                                                      fontFamily:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelMediumFamily,
+                                                      fontFamily: 'Readex Pro',
                                                       letterSpacing: 0.0,
                                                       fontWeight:
                                                           FontWeight.normal,
-                                                      useGoogleFonts: GoogleFonts
-                                                              .asMap()
-                                                          .containsKey(
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelMediumFamily),
                                                     ),
                                             enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .boarderForm,
+                                                        .primary,
                                                 width: 2.0,
                                               ),
                                               borderRadius:
@@ -464,17 +429,9 @@ class _LoginWidgetState extends State<LoginWidget>
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMediumFamily,
+                                                fontFamily: 'Readex Pro',
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.normal,
-                                                useGoogleFonts: GoogleFonts
-                                                        .asMap()
-                                                    .containsKey(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMediumFamily),
                                                 lineHeight: 2.5,
                                               ),
                                           keyboardType:
@@ -578,18 +535,10 @@ class _LoginWidgetState extends State<LoginWidget>
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily),
                                                       ),
                                               hintText:
                                                   FFLocalizations.of(context)
@@ -601,24 +550,16 @@ class _LoginWidgetState extends State<LoginWidget>
                                                       .labelMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMediumFamily,
+                                                            'Readex Pro',
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily),
                                                       ),
                                               enabledBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .boarderForm,
+                                                      .primary,
                                                   width: 2.0,
                                                 ),
                                                 borderRadius:
@@ -686,18 +627,9 @@ class _LoginWidgetState extends State<LoginWidget>
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMediumFamily,
+                                                  fontFamily: 'Readex Pro',
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
-                                                  useGoogleFonts: GoogleFonts
-                                                          .asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMediumFamily),
                                                   lineHeight: 2.5,
                                                 ),
                                             keyboardType:
@@ -714,6 +646,10 @@ class _LoginWidgetState extends State<LoginWidget>
                                         child: Builder(
                                           builder: (context) => FFButtonWidget(
                                             onPressed: () async {
+                                              currentUserLocationValue =
+                                                  await getCurrentUserLocation(
+                                                      defaultLocation:
+                                                          const LatLng(0.0, 0.0));
                                               if (_model.formKey.currentState ==
                                                       null ||
                                                   !_model.formKey.currentState!
@@ -743,6 +679,12 @@ class _LoginWidgetState extends State<LoginWidget>
                                                     return;
                                                   }
 
+                                                  await UserLogsTable().insert({
+                                                    'user_id': currentUserUid,
+                                                    'activity': '',
+                                                    'longlat':
+                                                        '${functions.getLng(currentUserLocationValue).toString()}${functions.getLat(currentUserLocationValue).toString()}',
+                                                  });
                                                   _model.authUserQuery =
                                                       await UsersTable()
                                                           .queryRows(
@@ -877,28 +819,17 @@ class _LoginWidgetState extends State<LoginWidget>
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primary,
-                                              textStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmall
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmallFamily,
-                                                        color: Colors.white,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmallFamily),
-                                                      ),
+                                              textStyle: FlutterFlowTheme.of(
+                                                      context)
+                                                  .titleSmall
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: Colors.white,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
                                               elevation: 0.0,
                                               borderSide: const BorderSide(
-                                                color: Colors.transparent,
                                                 width: 1.0,
                                               ),
                                               borderRadius:
@@ -949,20 +880,12 @@ class _LoginWidgetState extends State<LoginWidget>
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
+                                                            'Readex Pro',
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .secondary,
                                                         letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
                                                       ),
                                                 ),
                                               ),
