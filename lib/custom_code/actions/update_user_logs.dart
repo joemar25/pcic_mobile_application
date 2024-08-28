@@ -13,8 +13,37 @@ import 'package:flutter/material.dart';
 
 import '/auth/supabase_auth/auth_util.dart'; // for currentUserUid
 
-Future updateUserLogs() async {
-// Check if there is an auth user using 'currentUserUid'
+Future updateUserLogs(BuildContext context) async {
+// // Check if there is an auth user using 'currentUserUid'
+//   if (currentUserUid != null) {
+//     // Print the current app's page using FFAppState
+//     // print('Current route: ${FFAppState().currentPage}');
+
+//     // Check if FFAppState.ONLINE because later we will use this to update something in the DB
+//     if (FFAppState().ONLINE) {
+//       // Add your logic here to update the database or perform other actions
+//       print('User is online, ready to update the database.');
+//     } else {
+//       print('User is offline, no updates will be made.');
+//     }
+//   } else {
+//     print('No authenticated user found.');
+//   }
+
+  // Initialize route listener to get the current route
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    // Listen for changes to the router delegate's current configuration
+    final router = Router.of(context).routerDelegate;
+    router.addListener(() {
+      final currentRoute =
+          router.currentConfiguration?.toString() ?? 'Unknown Route';
+      // Update the FFAppState with the current route
+      FFAppState().updateCurrentPage(currentRoute);
+      print('Current route: $currentRoute');
+    });
+  });
+
+  // Check if there is an auth user using 'currentUserUid'
   if (currentUserUid != null) {
     // Print the current app's page using FFAppState
     print('Current route: ${FFAppState().currentPage}');
