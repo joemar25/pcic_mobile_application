@@ -53,6 +53,7 @@ class _LoginWidgetState extends State<LoginWidget>
       FFAppState().whatPage =
           'pcicmobileapp://pcicmobileapp.com${GoRouterState.of(context).uri.toString()}';
       setState(() {});
+      await actions.updateUserLogs();
     });
 
     _model.emailFieldTextController ??= TextEditingController();
