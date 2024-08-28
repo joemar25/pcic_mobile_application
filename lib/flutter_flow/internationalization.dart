@@ -266,7 +266,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'yqdm1qr7': {
+    '6ezl5v6e': {
       'en': '',
       'tl': '',
     },
@@ -278,7 +278,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    '93xuqgen': {
+    'dcvagmfy': {
       'en': '',
       'tl': '',
     },
@@ -290,7 +290,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang Bagong Password...',
     },
-    'baxt4vvy': {
+    'xnnxmznw': {
       'en': '',
       'tl': '',
     },
@@ -750,21 +750,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Pag-download ng Mapa',
     },
     '8n2rvzxw': {
-      'en': 'Home',
-      'tl': 'Bahay',
-    },
-  },
-  // offlineTasksAndPpirList
-  {
-    'o7uaesf0': {
-      'en': 'Sync Task & PPIR',
-      'tl': 'I-sync ang Gawain at PPIR',
-    },
-    'g6jjirj5': {
-      'en': 'Offline Tasks Sync Test',
-      'tl': 'Pagsubok sa Pag-sync ng Mga Gawain sa Offline',
-    },
-    'ua766qme': {
       'en': 'Home',
       'tl': 'Bahay',
     },

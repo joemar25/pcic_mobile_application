@@ -21,8 +21,6 @@ export '/dashboard/geotag/geotagging/geotagging_widget.dart'
     show GeotaggingWidget;
 export '/utils/test/map_test/map_test_widget.dart' show MapTestWidget;
 export '/dashboard/geotag/pcic_map/pcic_map_widget.dart' show PcicMapWidget;
-export '/utils/test/offline_tasks_and_ppir_list/offline_tasks_and_ppir_list_widget.dart'
-    show OfflineTasksAndPpirListWidget;
 export '/auth/onboarding/onboarding_widget.dart' show OnboardingWidget;
 export '/dashboard/sync_king4_the_win/sync_king4_the_win_widget.dart'
     show SyncKing4TheWinWidget;

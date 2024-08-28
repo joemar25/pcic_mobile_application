@@ -240,11 +240,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           builder: (context, params) => const PcicMapWidget(),
         ),
         FFRoute(
-          name: 'offlineTasksAndPpirList',
-          path: '/offlineTasksAndPpirList',
-          builder: (context, params) => const OfflineTasksAndPpirListWidget(),
-        ),
-        FFRoute(
           name: 'onboarding',
           path: '/onboarding',
           builder: (context, params) => const OnboardingWidget(),

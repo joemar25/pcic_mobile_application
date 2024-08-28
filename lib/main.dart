@@ -116,6 +116,15 @@ class _MyAppState extends State<MyApp> {
           thumbVisibility: WidgetStateProperty.all(true),
           trackVisibility: WidgetStateProperty.all(false),
           interactive: false,
+          thumbColor: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.dragged)) {
+              return const Color(0xff19db8a);
+            }
+            if (states.contains(WidgetState.hovered)) {
+              return const Color(0xff19db8a);
+            }
+            return const Color(0xff19db8a);
+          }),
         ),
       ),
       darkTheme: ThemeData(
@@ -124,6 +133,15 @@ class _MyAppState extends State<MyApp> {
           thumbVisibility: WidgetStateProperty.all(true),
           trackVisibility: WidgetStateProperty.all(false),
           interactive: false,
+          thumbColor: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.dragged)) {
+              return const Color(0xff19db8a);
+            }
+            if (states.contains(WidgetState.hovered)) {
+              return const Color(0xff19db8a);
+            }
+            return const Color(0xff19db8a);
+          }),
         ),
       ),
       themeMode: _themeMode,

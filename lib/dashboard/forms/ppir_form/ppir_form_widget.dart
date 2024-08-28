@@ -3584,10 +3584,10 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                             _model.hasSigIuia
                                                                 ? FlutterFlowTheme.of(
                                                                         context)
-                                                                    .primary
+                                                                    .warning
                                                                 : FlutterFlowTheme.of(
                                                                         context)
-                                                                    .error,
+                                                                    .warning,
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primary,
