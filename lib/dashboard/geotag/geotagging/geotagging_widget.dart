@@ -1,3 +1,4 @@
+import '/auth/supabase_auth/auth_util.dart';
 import '/backend/sqlite/sqlite_manager.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
@@ -5,6 +6,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/dialogs/continue_go_back_dialog/continue_go_back_dialog_widget.dart';
+import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -193,6 +195,10 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                                 size: 20.0,
                                               ),
                                               onPressed: () async {
+                                                currentUserLocationValue =
+                                                    await getCurrentUserLocation(
+                                                        defaultLocation:
+                                                            const LatLng(0.0, 0.0));
                                                 await showDialog(
                                                   context: context,
                                                   builder: (dialogContext) {
@@ -229,6 +235,19 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                                     gpx: ' ',
                                                     isDirty:
                                                         !FFAppState().ONLINE,
+                                                  );
+                                                  unawaited(
+                                                    () async {
+                                                      await UserLogsTable()
+                                                          .insert({
+                                                        'user_id':
+                                                            currentUserUid,
+                                                        'activity':
+                                                            'Navigate back to Task details',
+                                                        'longlat':
+                                                            '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                                                      });
+                                                    }(),
                                                   );
 
                                                   context.pushNamed(
@@ -462,6 +481,8 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
+                    currentUserLocationValue = await getCurrentUserLocation(
+                        defaultLocation: const LatLng(0.0, 0.0));
                     if (_model.isFinished) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
@@ -477,11 +498,29 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                         ),
                       );
                     } else {
-                      _model.isGeotagStart = true;
-                      _model.isFinished = false;
-                      setState(() {});
-                      FFAppState().routeStarted = true;
-                      setState(() {});
+                      if (FFAppState().ONLINE) {
+                        _model.isGeotagStart = true;
+                        _model.isFinished = false;
+                        setState(() {});
+                        FFAppState().routeStarted = true;
+                        setState(() {});
+                        unawaited(
+                          () async {
+                            await UserLogsTable().insert({
+                              'user_id': currentUserUid,
+                              'activity': 'Started Tracking',
+                              'longlat':
+                                  '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                            });
+                          }(),
+                        );
+                      } else {
+                        _model.isGeotagStart = true;
+                        _model.isFinished = false;
+                        setState(() {});
+                        FFAppState().routeStarted = true;
+                        setState(() {});
+                      }
                     }
                   },
                   child: Container(
@@ -553,9 +592,21 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
+                    currentUserLocationValue = await getCurrentUserLocation(
+                        defaultLocation: const LatLng(0.0, 0.0));
                     FFAppState().routeStarted = false;
                     setState(() {});
                     if (FFAppState().ONLINE) {
+                      unawaited(
+                        () async {
+                          await UserLogsTable().insert({
+                            'user_id': currentUserUid,
+                            'activity': 'Finished Tracking',
+                            'longlat':
+                                '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                          });
+                        }(),
+                      );
                       await TasksTable().update(
                         data: {
                           'status': 'ongoing',

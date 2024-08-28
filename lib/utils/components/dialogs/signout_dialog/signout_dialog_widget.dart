@@ -5,6 +5,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/dialogs/no_internet_dialog/no_internet_dialog_widget.dart';
+import 'dart:async';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
@@ -20,6 +22,8 @@ class SignoutDialogWidget extends StatefulWidget {
 
 class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
   late SignoutDialogModel _model;
+
+  LatLng? currentUserLocationValue;
 
   @override
   void setState(VoidCallback callback) {
@@ -169,6 +173,9 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                     child: Builder(
                       builder: (context) => FFButtonWidget(
                         onPressed: () async {
+                          currentUserLocationValue =
+                              await getCurrentUserLocation(
+                                  defaultLocation: const LatLng(0.0, 0.0));
                           if (FFAppState().ONLINE) {
                             await SQLiteManager.instance
                                 .dELETEAllRowsForTASKSAndPPIR();
@@ -184,6 +191,17 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                             GoRouter.of(context).prepareAuthEvent();
                             await authManager.signOut();
                             GoRouter.of(context).clearRedirectLocation();
+
+                            unawaited(
+                              () async {
+                                await UserLogsTable().insert({
+                                  'user_id': currentUserUid,
+                                  'activity': 'Logout',
+                                  'longlat':
+                                      '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                                });
+                              }(),
+                            );
 
                             context.pushNamedAuth(
                               'onboarding',
