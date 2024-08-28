@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/dialogs/no_internet_dialog/no_internet_dialog_widget.dart';
-import 'dart:async';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -188,20 +187,15 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                                 currentUserUid,
                               ),
                             );
+                            await UserLogsTable().insert({
+                              'user_id': currentUserUid,
+                              'activity': 'Log out',
+                              'longlat':
+                                  '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                            });
                             GoRouter.of(context).prepareAuthEvent();
                             await authManager.signOut();
                             GoRouter.of(context).clearRedirectLocation();
-
-                            unawaited(
-                              () async {
-                                await UserLogsTable().insert({
-                                  'user_id': currentUserUid,
-                                  'activity': 'Logout',
-                                  'longlat':
-                                      '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
-                                });
-                              }(),
-                            );
 
                             context.pushNamedAuth(
                               'onboarding',

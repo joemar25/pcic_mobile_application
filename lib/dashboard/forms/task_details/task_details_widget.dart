@@ -9,7 +9,6 @@ import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/dialogs/upload_failed_dialog/upload_failed_dialog_widget.dart';
 import '/utils/components/page_loader/page_loader_widget.dart';
 import '/utils/components/saving_mode/saving_mode_widget.dart';
-import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -2804,19 +2803,15 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               .saveToFTP(
                                                         widget.taskId,
                                                       );
-                                                      unawaited(
-                                                        () async {
-                                                          await UserLogsTable()
-                                                              .insert({
-                                                            'user_id':
-                                                                currentUserUid,
-                                                            'activity':
-                                                                'Resubmitted a Task',
-                                                            'longlat':
-                                                                '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
-                                                          });
-                                                        }(),
-                                                      );
+                                                      await UserLogsTable()
+                                                          .insert({
+                                                        'user_id':
+                                                            currentUserUid,
+                                                        'activity':
+                                                            'Resubmit a Task',
+                                                        'longlat':
+                                                            '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                                                      });
                                                       _model.isReFTPClicked =
                                                           false;
                                                       setState(() {});
@@ -2940,18 +2935,12 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                         defaultLocation:
                                                             const LatLng(0.0, 0.0));
                                                 if (FFAppState().ONLINE) {
-                                                  unawaited(
-                                                    () async {
-                                                      await UserLogsTable()
-                                                          .insert({
-                                                        'user_id':
-                                                            currentUserUid,
-                                                        'activity': 'Re Geotag',
-                                                        'longlat':
-                                                            '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
-                                                      });
-                                                    }(),
-                                                  );
+                                                  await UserLogsTable().insert({
+                                                    'user_id': currentUserUid,
+                                                    'activity': 'Repeat Geotag',
+                                                    'longlat':
+                                                        '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                                                  });
                                                   await TasksTable().update(
                                                     data: {
                                                       'status': 'ongoing',

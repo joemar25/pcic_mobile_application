@@ -727,19 +727,15 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     .confirmReGeotag!) {
                                                                   if (FFAppState()
                                                                       .ONLINE) {
-                                                                    unawaited(
-                                                                      () async {
-                                                                        await UserLogsTable()
-                                                                            .insert({
-                                                                          'user_id':
-                                                                              currentUserUid,
-                                                                          'activity':
-                                                                              'Repeat Geotag',
-                                                                          'longlat':
-                                                                              '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
-                                                                        });
-                                                                      }(),
-                                                                    );
+                                                                    await UserLogsTable()
+                                                                        .insert({
+                                                                      'user_id':
+                                                                          currentUserUid,
+                                                                      'activity':
+                                                                          'Repeat Geotag',
+                                                                      'longlat':
+                                                                          '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                                                                    });
                                                                     await PpirFormsTable()
                                                                         .update(
                                                                       data: {
@@ -3870,16 +3866,12 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
 
                                   if (_model.confirmCancel!) {
                                     if (FFAppState().ONLINE) {
-                                      unawaited(
-                                        () async {
-                                          await UserLogsTable().insert({
-                                            'user_id': currentUserUid,
-                                            'activity': 'Cancel Task',
-                                            'longlat':
-                                                '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
-                                          });
-                                        }(),
-                                      );
+                                      await UserLogsTable().insert({
+                                        'user_id': currentUserUid,
+                                        'activity': 'Cancel Task',
+                                        'longlat':
+                                            '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                                      });
 
                                       context.pushNamed(
                                         'dashboard',
@@ -4015,16 +4007,12 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                           widget.taskId,
                                         ),
                                       );
-                                      unawaited(
-                                        () async {
-                                          await UserLogsTable().insert({
-                                            'user_id': currentUserUid,
-                                            'activity': 'Save Task',
-                                            'longlat':
-                                                '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
-                                          });
-                                        }(),
-                                      );
+                                      await UserLogsTable().insert({
+                                        'user_id': currentUserUid,
+                                        'activity': 'Save Task',
+                                        'longlat':
+                                            '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                                      });
                                     }
                                     await SQLiteManager.instance.updatePPIRForm(
                                       taskId: widget.taskId,
@@ -4318,7 +4306,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     await UserLogsTable()
                                                         .insert({
                                                       'user_id': currentUserUid,
-                                                      'activity': 'Submit Task',
+                                                      'activity':
+                                                          'Submitted a Task',
                                                       'longlat':
                                                           '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
                                                     });
