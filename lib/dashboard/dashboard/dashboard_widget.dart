@@ -48,6 +48,9 @@ class _DashboardWidgetState extends State<DashboardWidget>
       if (RootPageContext.isInactiveRootPage(context)) {
         return;
       }
+      await actions.updateUserLogs(
+        context,
+      );
       _model.loadLocalProfile = await actions.getTheSavedLocalProfile();
       _model.isDirtyCounter = await actions.isDirtyCount();
       _model.statusOutput =
