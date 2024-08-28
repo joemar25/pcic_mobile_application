@@ -14,6 +14,7 @@ class OfflineTasksAndPpirListModel
 
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - Query Rows] action in Button widget.
   List<TasksRow>? onlineTasks;
   // Stores action output result for [Backend Call - Query Rows] action in Button widget.

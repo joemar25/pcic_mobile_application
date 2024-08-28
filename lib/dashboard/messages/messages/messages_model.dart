@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 class MessagesModel extends FlutterFlowModel<MessagesWidget> {
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
   // State field(s) for inputChat widget.

@@ -18,6 +18,7 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
 
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;

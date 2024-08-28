@@ -9,6 +9,7 @@ class SuccessProfileModel extends FlutterFlowModel<SuccessProfileWidget> {
 
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // Stores action output result for [Custom Action - getTheSavedLocalProfile] action in successProfile widget.
   FFUploadedFile? latestProfileData;
 
