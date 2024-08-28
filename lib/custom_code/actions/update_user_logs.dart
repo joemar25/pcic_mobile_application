@@ -11,9 +11,22 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import '/auth/supabase_auth/auth_util.dart'; // for currentUserUid
+
 Future updateUserLogs() async {
-  // check if there is an auth user using currentUserUid because it is given globally then  if true then
-  // get app logs of pages in this flutterflow project
-  // print the current apps page
-  // check if FFAppState.ONLINE because later we will use this to update something in the db
+// Check if there is an auth user using 'currentUserUid'
+  if (currentUserUid != null) {
+    // Print the current app's page using FFAppState
+    print('Current route: ${FFAppState().currentPage}');
+
+    // Check if FFAppState.ONLINE because later we will use this to update something in the DB
+    if (FFAppState().ONLINE) {
+      // Add your logic here to update the database or perform other actions
+      print('User is online, ready to update the database.');
+    } else {
+      print('User is offline, no updates will be made.');
+    }
+  } else {
+    print('No authenticated user found.');
+  }
 }
