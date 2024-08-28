@@ -214,6 +214,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Sync FTP',
       'tl': 'Nandito si Mar - Nagsi-sync Mula sa FTP',
     },
+    'i3u5yib7': {
+      'en': 'DONT TOUCH THE TAT BUTTON ',
+      'tl': '',
+    },
     'yttqc4w2': {
       'en': 'Sign Out',
       'tl': 'Mag-sign Out',
@@ -266,7 +270,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    '71qgy2wi': {
+    'a3yti1e7': {
       'en': '',
       'tl': '',
     },
@@ -278,7 +282,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'brvc1y5j': {
+    'gls0agq3': {
       'en': '',
       'tl': '',
     },
@@ -290,7 +294,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang Bagong Password...',
     },
-    'adcruxhf': {
+    'u0m3sdp8': {
       'en': '',
       'tl': '',
     },

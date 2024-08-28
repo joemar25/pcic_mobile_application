@@ -1,4 +1,3 @@
-import '/auth/supabase_auth/auth_util.dart';
 import '/backend/sqlite/sqlite_manager.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
@@ -463,8 +462,6 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
-                    currentUserLocationValue = await getCurrentUserLocation(
-                        defaultLocation: const LatLng(0.0, 0.0));
                     if (_model.isFinished) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
@@ -480,14 +477,6 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                         ),
                       );
                     } else {
-                      if (FFAppState().ONLINE) {
-                        await UserLogsTable().insert({
-                          'user_id': currentUserUid,
-                          'activity': 'Started geotag.',
-                          'longlat':
-                              '${functions.getLng(currentUserLocationValue).toString()}${functions.getLat(currentUserLocationValue).toString()}',
-                        });
-                      }
                       _model.isGeotagStart = true;
                       _model.isFinished = false;
                       setState(() {});
@@ -564,17 +553,9 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
-                    currentUserLocationValue = await getCurrentUserLocation(
-                        defaultLocation: const LatLng(0.0, 0.0));
                     FFAppState().routeStarted = false;
                     setState(() {});
                     if (FFAppState().ONLINE) {
-                      await UserLogsTable().insert({
-                        'user_id': currentUserUid,
-                        'activity': 'Finish geotag.',
-                        'longlat':
-                            '${functions.getLng(currentUserLocationValue).toString()}${functions.getLat(currentUserLocationValue).toString()}',
-                      });
                       await TasksTable().update(
                         data: {
                           'status': 'ongoing',

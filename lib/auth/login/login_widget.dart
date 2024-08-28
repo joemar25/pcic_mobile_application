@@ -7,7 +7,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/dialogs/no_internet_dialog/no_internet_dialog_widget.dart';
 import '/utils/components/dialogs/permission_dialog/permission_dialog_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
-import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/permissions_util.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +34,6 @@ class _LoginWidgetState extends State<LoginWidget>
   late LoginModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  LatLng? currentUserLocationValue;
 
   final animationsMap = <String, AnimationInfo>{};
 
@@ -646,10 +644,6 @@ class _LoginWidgetState extends State<LoginWidget>
                                         child: Builder(
                                           builder: (context) => FFButtonWidget(
                                             onPressed: () async {
-                                              currentUserLocationValue =
-                                                  await getCurrentUserLocation(
-                                                      defaultLocation:
-                                                          const LatLng(0.0, 0.0));
                                               if (_model.formKey.currentState ==
                                                       null ||
                                                   !_model.formKey.currentState!
@@ -679,12 +673,6 @@ class _LoginWidgetState extends State<LoginWidget>
                                                     return;
                                                   }
 
-                                                  await UserLogsTable().insert({
-                                                    'user_id': currentUserUid,
-                                                    'activity': '',
-                                                    'longlat':
-                                                        '${functions.getLng(currentUserLocationValue).toString()}${functions.getLat(currentUserLocationValue).toString()}',
-                                                  });
                                                   _model.authUserQuery =
                                                       await UsersTable()
                                                           .queryRows(

@@ -1,4 +1,3 @@
-import '/auth/supabase_auth/auth_util.dart';
 import '/backend/sqlite/sqlite_manager.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
@@ -18,7 +17,6 @@ import '/utils/components/page_loader/page_loader_widget.dart';
 import '/utils/components/signature/signature_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +42,6 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
   late PpirFormModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  LatLng? currentUserLocationValue;
 
   @override
   void initState() {
@@ -230,7 +227,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                         MediaQuery.sizeOf(context).width * 1.0,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
+                                          .alternate,
                                       borderRadius: BorderRadius.circular(15.0),
                                     ),
                                     child: Padding(
@@ -245,7 +242,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                             decoration: BoxDecoration(
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
+                                                      .alternate,
                                             ),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -339,7 +336,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     'Readex Pro',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .tertiary,
+                                                                    .primary,
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
@@ -354,6 +351,10 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               .width *
                                                           1.0,
                                                       decoration: BoxDecoration(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
                                                         border: Border.all(
                                                           color: _model.hasGpx
                                                               ? FlutterFlowTheme
@@ -477,7 +478,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                             BoxDecoration(
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .secondaryBackground,
+                                                              .alternate,
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(
@@ -640,11 +641,6 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                 FFButtonWidget(
                                                               onPressed:
                                                                   () async {
-                                                                currentUserLocationValue =
-                                                                    await getCurrentUserLocation(
-                                                                        defaultLocation: const LatLng(
-                                                                            0.0,
-                                                                            0.0));
                                                                 _model.hasGpx =
                                                                     true;
                                                                 setState(() {});
@@ -699,15 +695,6 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                             .taskId,
                                                                       ),
                                                                     );
-                                                                    await UserLogsTable()
-                                                                        .insert({
-                                                                      'user_id':
-                                                                          currentUserUid,
-                                                                      'activity':
-                                                                          'Regeotag.',
-                                                                      'longlat':
-                                                                          '${functions.getLng(currentUserLocationValue).toString()}${functions.getLat(currentUserLocationValue).toString()}',
-                                                                    });
                                                                   }
                                                                   await SQLiteManager
                                                                       .instance
@@ -918,7 +905,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     thickness: 2.0,
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .primary,
+                                                        .secondaryText,
                                                   ),
                                                 ),
                                               ],
@@ -955,7 +942,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               'Readex Pro',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .tertiary,
+                                                              .primary,
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -1023,7 +1010,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               BorderSide(
                                                             color: FlutterFlowTheme
                                                                     .of(context)
-                                                                .primary,
+                                                                .alternate,
                                                             width: 2.0,
                                                           ),
                                                           borderRadius:
@@ -1166,7 +1153,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         borderSide: BorderSide(
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .primary,
+                                                              .alternate,
                                                           width: 2.0,
                                                         ),
                                                         borderRadius:
@@ -1291,7 +1278,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         borderSide: BorderSide(
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .primary,
+                                                              .alternate,
                                                           width: 2.0,
                                                         ),
                                                         borderRadius:
@@ -1416,7 +1403,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         borderSide: BorderSide(
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .primary,
+                                                              .alternate,
                                                           width: 2.0,
                                                         ),
                                                         borderRadius:
@@ -1540,7 +1527,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         borderSide: BorderSide(
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .primary,
+                                                              .alternate,
                                                           width: 2.0,
                                                         ),
                                                         borderRadius:
@@ -1677,7 +1664,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         borderSide: BorderSide(
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .primary,
+                                                              .secondaryText,
                                                           width: 2.0,
                                                         ),
                                                         borderRadius:
@@ -1757,7 +1744,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     thickness: 2.0,
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .primary,
+                                                        .secondaryText,
                                                   ),
                                                 ),
                                               ]
@@ -1797,7 +1784,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               'Readex Pro',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .tertiary,
+                                                              .primary,
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -2040,7 +2027,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                             borderColor:
                                                                 FlutterFlowTheme.of(
                                                                         context)
-                                                                    .alternate,
+                                                                    .secondaryText,
                                                             borderWidth: 2.0,
                                                             borderRadius: 8.0,
                                                             margin:
@@ -2239,7 +2226,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                             borderColor:
                                                                 FlutterFlowTheme.of(
                                                                         context)
-                                                                    .alternate,
+                                                                    .secondaryText,
                                                             borderWidth: 2.0,
                                                             borderRadius: 8.0,
                                                             margin:
@@ -2272,7 +2259,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     thickness: 2.0,
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .primary,
+                                                        .secondaryText,
                                                   ),
                                                 ),
                                               ]
@@ -2312,7 +2299,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               'Readex Pro',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .tertiary,
+                                                              .primary,
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -2375,7 +2362,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         borderSide: BorderSide(
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .primary,
+                                                              .secondaryText,
                                                           width: 2.0,
                                                         ),
                                                         borderRadius:
@@ -2527,7 +2514,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   BorderSide(
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .primary,
+                                                                    .secondaryText,
                                                                 width: 2.0,
                                                               ),
                                                               borderRadius:
@@ -2616,7 +2603,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                       borderColor:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .primary,
+                                                              .secondaryText,
                                                       borderRadius: 12.0,
                                                       borderWidth: 2.0,
                                                       buttonSize: 48.0,
@@ -2751,7 +2738,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                 BorderSide(
                                                               color: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .primary,
+                                                                  .secondaryText,
                                                               width: 2.0,
                                                             ),
                                                             borderRadius:
@@ -2840,7 +2827,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                       borderColor:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .primary,
+                                                              .secondaryText,
                                                       borderRadius: 12.0,
                                                       borderWidth: 2.0,
                                                       buttonSize: 48.0,
@@ -2912,7 +2899,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     thickness: 2.0,
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .primary,
+                                                        .secondaryText,
                                                   ),
                                                 ),
                                               ]
@@ -2952,7 +2939,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               'Readex Pro',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .tertiary,
+                                                              .primary,
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -3015,7 +3002,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         borderSide: BorderSide(
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .primary,
+                                                              .secondaryText,
                                                           width: 2.0,
                                                         ),
                                                         borderRadius:
@@ -3097,7 +3084,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     thickness: 2.0,
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .primary,
+                                                        .secondaryText,
                                                   ),
                                                 ),
                                                 Padding(
@@ -3158,7 +3145,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         borderSide: BorderSide(
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .primary,
+                                                              .secondaryText,
                                                           width: 2.0,
                                                         ),
                                                         borderRadius:
@@ -3257,7 +3244,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                             _model.hasSigInsured
                                                                 ? FlutterFlowTheme.of(
                                                                         context)
-                                                                    .primary
+                                                                    .secondaryText
                                                                 : FlutterFlowTheme.of(
                                                                         context)
                                                                     .error,
@@ -3485,7 +3472,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         borderSide: BorderSide(
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .primary,
+                                                              .secondaryText,
                                                           width: 2.0,
                                                         ),
                                                         borderRadius:
@@ -3584,10 +3571,10 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                             _model.hasSigIuia
                                                                 ? FlutterFlowTheme.of(
                                                                         context)
-                                                                    .warning
+                                                                    .secondaryText
                                                                 : FlutterFlowTheme.of(
                                                                         context)
-                                                                    .warning,
+                                                                    .error,
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primary,
@@ -3787,9 +3774,6 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                             Builder(
                               builder: (context) => FFButtonWidget(
                                 onPressed: () async {
-                                  currentUserLocationValue =
-                                      await getCurrentUserLocation(
-                                          defaultLocation: const LatLng(0.0, 0.0));
                                   await showDialog(
                                     context: context,
                                     builder: (dialogContext) {
@@ -3813,38 +3797,17 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                       () => _model.confirmCancel = value));
 
                                   if (_model.confirmCancel!) {
-                                    if (FFAppState().ONLINE) {
-                                      await UserLogsTable().insert({
-                                        'user_id': currentUserUid,
-                                        'activity': 'Cancel current progress.',
-                                        'longlat':
-                                            '${functions.getLng(currentUserLocationValue).toString()}${functions.getLat(currentUserLocationValue).toString()}',
-                                      });
-
-                                      context.pushNamed(
-                                        'dashboard',
-                                        extra: <String, dynamic>{
-                                          kTransitionInfoKey: const TransitionInfo(
-                                            hasTransition: true,
-                                            transitionType:
-                                                PageTransitionType.fade,
-                                            duration: Duration(milliseconds: 0),
-                                          ),
-                                        },
-                                      );
-                                    } else {
-                                      context.pushNamed(
-                                        'dashboard',
-                                        extra: <String, dynamic>{
-                                          kTransitionInfoKey: const TransitionInfo(
-                                            hasTransition: true,
-                                            transitionType:
-                                                PageTransitionType.fade,
-                                            duration: Duration(milliseconds: 0),
-                                          ),
-                                        },
-                                      );
-                                    }
+                                    context.pushNamed(
+                                      'dashboard',
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: const TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 0),
+                                        ),
+                                      },
+                                    );
                                   }
 
                                   setState(() {});
@@ -3883,9 +3846,6 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                             Builder(
                               builder: (context) => FFButtonWidget(
                                 onPressed: () async {
-                                  currentUserLocationValue =
-                                      await getCurrentUserLocation(
-                                          defaultLocation: const LatLng(0.0, 0.0));
                                   await showDialog(
                                     context: context,
                                     builder: (dialogContext) {
@@ -3991,12 +3951,6 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                       status: 'ongoing',
                                       isDirty: !FFAppState().ONLINE,
                                     );
-                                    await UserLogsTable().insert({
-                                      'user_id': currentUserUid,
-                                      'activity': 'Save PPIR Form',
-                                      'longlat':
-                                          '${functions.getLng(currentUserLocationValue).toString()}${functions.getLat(currentUserLocationValue).toString()}',
-                                    });
 
                                     context.pushNamed(
                                       'formSuccess',
@@ -4038,7 +3992,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                       0.0, 0.0, 0.0, 0.0),
                                   iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
-                                  color: FlutterFlowTheme.of(context).primary,
+                                  color: FlutterFlowTheme.of(context).secondary,
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .override(

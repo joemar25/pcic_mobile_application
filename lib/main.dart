@@ -118,12 +118,12 @@ class _MyAppState extends State<MyApp> {
           interactive: false,
           thumbColor: WidgetStateProperty.resolveWith((states) {
             if (states.contains(WidgetState.dragged)) {
-              return const Color(0xff19db8a);
+              return const Color(0xff1cc680);
             }
             if (states.contains(WidgetState.hovered)) {
-              return const Color(0xff19db8a);
+              return const Color(0xff1cc680);
             }
-            return const Color(0xff19db8a);
+            return const Color(0xff1cc680);
           }),
         ),
       ),

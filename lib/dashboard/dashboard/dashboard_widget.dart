@@ -47,9 +47,6 @@ class _DashboardWidgetState extends State<DashboardWidget>
       if (RootPageContext.isInactiveRootPage(context)) {
         return;
       }
-      await actions.updateUserLogs(
-        context,
-      );
       _model.loadLocalProfile = await actions.getTheSavedLocalProfile();
       _model.isDirtyCounter = await actions.isDirtyCount();
       _model.statusOutput =
@@ -976,7 +973,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                   labelColor:
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .primary,
+                                                          .primaryText,
                                                   labelStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
@@ -992,7 +989,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                   indicatorColor:
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .secondary,
+                                                          .primaryText,
                                                   indicatorWeight: 2.0,
                                                   tabs: [
                                                     Tab(
@@ -1001,8 +998,12 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                           .getText(
                                                         'ba2q7w08' /* For Dispatch */,
                                                       ),
-                                                      icon: const Icon(
+                                                      icon: Icon(
                                                         Icons.timer_rounded,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondary,
                                                       ),
                                                     ),
                                                     Tab(
@@ -1011,9 +1012,13 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                           .getText(
                                                         'nxy1vlhk' /* Ongoing */,
                                                       ),
-                                                      icon: const Icon(
+                                                      icon: Icon(
                                                         Icons
                                                             .incomplete_circle_rounded,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
                                                       ),
                                                     ),
                                                     Tab(
@@ -1022,9 +1027,13 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                           .getText(
                                                         'c0a56ui1' /* Completed */,
                                                       ),
-                                                      icon: const Icon(
+                                                      icon: Icon(
                                                         Icons
                                                             .check_circle_rounded,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .tertiary,
                                                       ),
                                                     ),
                                                   ],

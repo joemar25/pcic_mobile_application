@@ -37,7 +37,6 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
   late TaskDetailsModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  LatLng? currentUserLocationValue;
 
   @override
   void initState() {
@@ -239,7 +238,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                     ),
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
+                                          .alternate,
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
                                     child: Padding(
@@ -267,7 +266,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     fontFamily: 'Readex Pro',
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .tertiary,
+                                                        .primary,
                                                     letterSpacing: 0.0,
                                                   ),
                                             ),
@@ -919,7 +918,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               thickness: 2.0,
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .primary,
+                                                      .secondaryText,
                                             ),
                                           ),
                                           Padding(
@@ -938,7 +937,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     fontFamily: 'Readex Pro',
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .tertiary,
+                                                        .primary,
                                                     letterSpacing: 0.0,
                                                   ),
                                             ),
@@ -1145,7 +1144,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               thickness: 2.0,
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .primary,
+                                                      .secondaryText,
                                             ),
                                           ),
                                           Padding(
@@ -1164,7 +1163,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     fontFamily: 'Readex Pro',
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .tertiary,
+                                                        .primary,
                                                     letterSpacing: 0.0,
                                                   ),
                                             ),
@@ -1373,7 +1372,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               thickness: 2.0,
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .primary,
+                                                      .secondaryText,
                                             ),
                                           ),
                                           if (widget.taskStatus == 'completed')
@@ -1411,7 +1410,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     'Readex Pro',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .tertiary,
+                                                                    .primary,
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
@@ -1695,7 +1694,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .primary,
+                                                              .secondaryText,
                                                     ),
                                                   ),
                                                   Padding(
@@ -1858,7 +1857,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .primary,
+                                                              .secondaryText,
                                                     ),
                                                   ),
                                                   Padding(
@@ -2079,7 +2078,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .primary,
+                                                              .secondaryText,
                                                     ),
                                                   ),
                                                   Padding(
@@ -2396,7 +2395,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .primary,
+                                                              .secondaryText,
                                                     ),
                                                   ),
                                                   Padding(
@@ -2425,7 +2424,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     'Readex Pro',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .tertiary,
+                                                                    .primary,
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
@@ -2714,7 +2713,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             0.0, 0.0, 0.0, 0.0),
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .primary,
+                                                        .secondary,
                                                 textStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .titleSmall
@@ -2758,11 +2757,6 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               onPressed: !FFAppState().ONLINE
                                                   ? null
                                                   : () async {
-                                                      currentUserLocationValue =
-                                                          await getCurrentUserLocation(
-                                                              defaultLocation:
-                                                                  const LatLng(0.0,
-                                                                      0.0));
                                                       _model.isReFTPClicked =
                                                           true;
                                                       setState(() {});
@@ -2788,16 +2782,6 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           false;
                                                       setState(() {});
                                                       if (_model.isFtpSaved!) {
-                                                        await UserLogsTable()
-                                                            .insert({
-                                                          'user_id':
-                                                              currentUserUid,
-                                                          'activity':
-                                                              'Resubmit Success',
-                                                          'longlat':
-                                                              '${functions.getLng(currentUserLocationValue).toString()}${functions.getLat(currentUserLocationValue).toString()}',
-                                                        });
-
                                                         context.pushNamed(
                                                           'successProfile',
                                                           queryParameters: {
@@ -2823,15 +2807,6 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           },
                                                         );
                                                       } else {
-                                                        await UserLogsTable()
-                                                            .insert({
-                                                          'user_id':
-                                                              currentUserUid,
-                                                          'activity':
-                                                              'Resubmit Error',
-                                                          'longlat':
-                                                              '${functions.getLng(currentUserLocationValue).toString()}${functions.getLat(currentUserLocationValue).toString()}',
-                                                        });
                                                         await showDialog(
                                                           context: context,
                                                           builder:

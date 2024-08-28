@@ -59,51 +59,57 @@ class _ConnectivityWidgetState extends State<ConnectivityWidget>
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 100),
-      curve: Curves.easeInOutQuint,
-      width: 30.0,
-      height: 30.0,
-      decoration: BoxDecoration(
-        color: FlutterFlowTheme.of(context).primaryBackground,
-        boxShadow: const [
-          BoxShadow(
-            blurRadius: 4.0,
-            color: Color(0x33000000),
-            offset: Offset(
-              0.0,
-              2.0,
-            ),
-          )
-        ],
-        shape: BoxShape.circle,
-        border: Border.all(
-          color: FFAppState().ONLINE
-              ? FlutterFlowTheme.of(context).primary
-              : FlutterFlowTheme.of(context).warning,
+    return Material(
+      color: Colors.transparent,
+      elevation: 1.0,
+      shape: const CircleBorder(),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 100),
+        curve: Curves.easeInOutQuint,
+        width: 30.0,
+        height: 30.0,
+        decoration: BoxDecoration(
+          color: FlutterFlowTheme.of(context).info,
+          boxShadow: const [
+            BoxShadow(
+              blurRadius: 4.0,
+              color: Color(0x33000000),
+              offset: Offset(
+                0.0,
+                2.0,
+              ),
+            )
+          ],
+          shape: BoxShape.circle,
+          border: Border.all(
+            color: FFAppState().ONLINE
+                ? FlutterFlowTheme.of(context).success
+                : FlutterFlowTheme.of(context).warning,
+            width: 0.5,
+          ),
         ),
-      ),
-      child: Stack(
-        children: [
-          if (FFAppState().ONLINE)
-            Align(
-              alignment: const AlignmentDirectional(0.0, 0.0),
-              child: Icon(
-                Icons.wifi,
-                color: FlutterFlowTheme.of(context).primary,
-                size: 24.0,
+        child: Stack(
+          children: [
+            if (FFAppState().ONLINE)
+              Align(
+                alignment: const AlignmentDirectional(0.0, 0.0),
+                child: Icon(
+                  Icons.wifi,
+                  color: FlutterFlowTheme.of(context).primary,
+                  size: 24.0,
+                ),
               ),
-            ),
-          if (!FFAppState().ONLINE)
-            Align(
-              alignment: const AlignmentDirectional(0.0, 0.0),
-              child: Icon(
-                Icons.wifi_off,
-                color: FlutterFlowTheme.of(context).error,
-                size: 24.0,
+            if (!FFAppState().ONLINE)
+              Align(
+                alignment: const AlignmentDirectional(0.0, 0.0),
+                child: Icon(
+                  Icons.wifi_off,
+                  color: FlutterFlowTheme.of(context).error,
+                  size: 24.0,
+                ),
               ),
-            ),
-        ],
+          ],
+        ),
       ),
     ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation']!);
   }

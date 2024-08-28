@@ -7,7 +7,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/page_loader/page_loader_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -28,7 +27,6 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
   late SyncKing4TheWinModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  LatLng? currentUserLocationValue;
 
   final animationsMap = <String, AnimationInfo>{};
 
@@ -38,11 +36,7 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
     _model = createModel(context, () => SyncKing4TheWinModel());
 
     // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await actions.updateUserLogs(
-        context,
-      );
-    });
+    SchedulerBinding.instance.addPostFrameCallback((_) async {});
 
     animationsMap.addAll({
       'iconOnPageLoadAnimation': AnimationInfo(
@@ -181,9 +175,6 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          currentUserLocationValue =
-                              await getCurrentUserLocation(
-                                  defaultLocation: const LatLng(0.0, 0.0));
                           if (!_model.isSync) {
                             await SQLiteManager.instance
                                 .dELETEAllRowsForTASKSAndPPIR();
@@ -419,12 +410,6 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                             _model.startSync = false;
                             _model.isSynced = true;
                             setState(() {});
-                            await UserLogsTable().insert({
-                              'user_id': currentUserUid,
-                              'activity': 'Syncing Tasks',
-                              'longlat':
-                                  '${functions.getLng(currentUserLocationValue).toString()}${functions.getLat(currentUserLocationValue).toString()}',
-                            });
                           }
 
                           setState(() {});
