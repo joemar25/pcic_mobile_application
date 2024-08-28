@@ -35,6 +35,9 @@ class _SettingsWidgetState extends State<SettingsWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await actions.updateUserLogs(
+        context,
+      );
       _model.getProfilePic = await actions.getTheSavedLocalProfile();
       _model.isDirtyCounter = await actions.isDirtyCount();
       FFAppState().syncCount = 0;

@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/page_loader/page_loader_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -34,6 +35,13 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
   void initState() {
     super.initState();
     _model = createModel(context, () => SyncKing4TheWinModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await actions.updateUserLogs(
+        context,
+      );
+    });
 
     animationsMap.addAll({
       'iconOnPageLoadAnimation': AnimationInfo(

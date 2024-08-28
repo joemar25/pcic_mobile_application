@@ -54,6 +54,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
       FFAppState().mapLoadedWithInternet = FFAppState().ONLINE;
       FFAppState().routeStarted = false;
       setState(() {});
+      await actions.updateUserLogs(
+        context,
+      );
     });
 
     _model.gpxBlobFocusNode ??= FocusNode();

@@ -6,6 +6,7 @@ import '/utils/components/empty_lists/empty_lists_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'pcic_map_model.dart';
@@ -28,6 +29,13 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
   void initState() {
     super.initState();
     _model = createModel(context, () => PcicMapModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await actions.updateUserLogs(
+        context,
+      );
+    });
 
     _model.tabBarController = TabController(
       vsync: this,

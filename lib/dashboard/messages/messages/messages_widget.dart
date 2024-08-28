@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -41,6 +42,9 @@ class _MessagesWidgetState extends State<MessagesWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await actions.updateUserLogs(
+        context,
+      );
       await UserLogsTable().insert({
         'activity': 'Chatting with [...]',
         'user_id': currentUserUid,

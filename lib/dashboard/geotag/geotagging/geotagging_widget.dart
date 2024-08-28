@@ -54,6 +54,9 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       currentUserLocationValue =
           await getCurrentUserLocation(defaultLocation: const LatLng(0.0, 0.0));
+      await actions.updateUserLogs(
+        context,
+      );
       _model.getCurrentLocationAddress =
           await actions.fetchAddressFromCoordinates(
         functions.getLng(currentUserLocationValue),

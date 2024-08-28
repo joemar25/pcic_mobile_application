@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/chat_list_container/chat_list_container_widget.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/user_chats/user_chats_widget.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -32,6 +33,9 @@ class _ChatsWidgetState extends State<ChatsWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await actions.updateUserLogs(
+        context,
+      );
       _model.messageQuery = await ChatsTable().queryRows(
         queryFn: (q) => q,
       );
