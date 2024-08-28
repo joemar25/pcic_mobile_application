@@ -19,7 +19,12 @@ import 'login_model.dart';
 export 'login_model.dart';
 
 class LoginWidget extends StatefulWidget {
-  const LoginWidget({super.key});
+  const LoginWidget({
+    super.key,
+    String? routeName,
+  }) : routeName = routeName ?? '/login';
+
+  final String routeName;
 
   @override
   State<LoginWidget> createState() => _LoginWidgetState();
@@ -40,9 +45,9 @@ class _LoginWidgetState extends State<LoginWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await actions.updateUserLogs(
-        context,
-      );
+      FFAppState().whatPage = widget.routeName;
+      setState(() {});
+      await actions.updateUserLogs();
     });
 
     _model.emailFieldTextController ??= TextEditingController();

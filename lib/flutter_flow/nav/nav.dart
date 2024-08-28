@@ -93,7 +93,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
         FFRoute(
           name: 'login',
           path: '/login',
-          builder: (context, params) => const LoginWidget(),
+          builder: (context, params) => LoginWidget(
+            routeName: params.getParam(
+              'routeName',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: 'settings',
