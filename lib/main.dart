@@ -116,15 +116,20 @@ class _MyAppState extends State<MyApp> {
           thumbVisibility: WidgetStateProperty.all(true),
           trackVisibility: WidgetStateProperty.all(false),
           interactive: false,
+          thickness: WidgetStateProperty.all(1.0),
+          radius: const Radius.circular(1.0),
           thumbColor: WidgetStateProperty.resolveWith((states) {
             if (states.contains(WidgetState.dragged)) {
-              return const Color(0xff1cc680);
+              return const Color(0xff4fce40);
             }
             if (states.contains(WidgetState.hovered)) {
-              return const Color(0xff1cc680);
+              return const Color(0xff4fce40);
             }
-            return const Color(0xff1cc680);
+            return const Color(0xff4fce40);
           }),
+          minThumbLength: 1.0,
+          crossAxisMargin: 1.0,
+          mainAxisMargin: 1.0,
         ),
       ),
       darkTheme: ThemeData(
@@ -133,15 +138,20 @@ class _MyAppState extends State<MyApp> {
           thumbVisibility: WidgetStateProperty.all(true),
           trackVisibility: WidgetStateProperty.all(false),
           interactive: false,
+          thickness: WidgetStateProperty.all(1.0),
+          radius: const Radius.circular(1.0),
           thumbColor: WidgetStateProperty.resolveWith((states) {
             if (states.contains(WidgetState.dragged)) {
-              return const Color(0xff19db8a);
+              return const Color(0xff53d84b);
             }
             if (states.contains(WidgetState.hovered)) {
-              return const Color(0xff19db8a);
+              return const Color(0xff53d84b);
             }
-            return const Color(0xff19db8a);
+            return const Color(0xff53d84b);
           }),
+          minThumbLength: 1.0,
+          crossAxisMargin: 1.0,
+          mainAxisMargin: 1.0,
         ),
       ),
       themeMode: _themeMode,

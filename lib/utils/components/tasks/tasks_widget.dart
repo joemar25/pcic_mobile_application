@@ -153,7 +153,7 @@ class _TasksWidgetState extends State<TasksWidget>
               child: Container(
                 width: MediaQuery.sizeOf(context).width * 1.0,
                 decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).primaryBackground,
+                  color: FlutterFlowTheme.of(context).alternate,
                   boxShadow: const [
                     BoxShadow(
                       blurRadius: 5.0,
@@ -561,34 +561,38 @@ class _TasksWidgetState extends State<TasksWidget>
                                             letterSpacing: 0.0,
                                           ),
                                     ),
-                                    Text(
-                                      valueOrDefault<String>(
-                                                _model.isDirty,
-                                                'false',
-                                              ) ==
-                                              'true'
-                                          ? 'This task has unsaved changes. Please sync to save your progress.'
-                                          : 'This task is up to date. No unsaved changes.',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            color: valueOrDefault<Color>(
-                                              valueOrDefault<String>(
-                                                        _model.isDirty,
-                                                        'false',
-                                                      ) ==
-                                                      'true'
-                                                  ? FlutterFlowTheme.of(context)
-                                                      .warning
-                                                  : FlutterFlowTheme.of(context)
-                                                      .secondary,
-                                              FlutterFlowTheme.of(context)
-                                                  .secondary,
+                                    Expanded(
+                                      child: Text(
+                                        valueOrDefault<String>(
+                                                  _model.isDirty,
+                                                  'false',
+                                                ) ==
+                                                'true'
+                                            ? 'This task has unsaved changes. Please sync to save your progress.'
+                                            : 'This task is up to date. No unsaved changes.',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              color: valueOrDefault<Color>(
+                                                valueOrDefault<String>(
+                                                          _model.isDirty,
+                                                          'false',
+                                                        ) ==
+                                                        'true'
+                                                    ? FlutterFlowTheme.of(
+                                                            context)
+                                                        .warning
+                                                    : FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondary,
+                                                FlutterFlowTheme.of(context)
+                                                    .secondary,
+                                              ),
+                                              fontSize: 12.0,
+                                              letterSpacing: 0.0,
                                             ),
-                                            fontSize: 12.0,
-                                            letterSpacing: 0.0,
-                                          ),
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -621,42 +625,46 @@ class _TasksWidgetState extends State<TasksWidget>
                                             letterSpacing: 0.0,
                                           ),
                                     ),
-                                    Text(
-                                      (containerSelectPpirFormsRowList
-                                                      .first.gpx ==
-                                                  ' ') ||
-                                              (containerSelectPpirFormsRowList
-                                                      .first.gpx ==
-                                                  'null') ||
-                                              (containerSelectPpirFormsRowList
-                                                      .first.gpx ==
-                                                  '')
-                                          ? 'No GPX data found.'
-                                          : 'Has GPX data.',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            color: valueOrDefault<Color>(
-                                              (containerSelectPpirFormsRowList.first
-                                                              .gpx ==
-                                                          ' ') ||
-                                                      (containerSelectPpirFormsRowList
-                                                              .first.gpx ==
-                                                          'null') ||
-                                                      (containerSelectPpirFormsRowList
-                                                              .first.gpx ==
-                                                          '')
-                                                  ? FlutterFlowTheme.of(context)
-                                                      .warning
-                                                  : FlutterFlowTheme.of(context)
-                                                      .secondary,
-                                              FlutterFlowTheme.of(context)
-                                                  .secondary,
+                                    Expanded(
+                                      child: Text(
+                                        (containerSelectPpirFormsRowList
+                                                        .first.gpx ==
+                                                    ' ') ||
+                                                (containerSelectPpirFormsRowList
+                                                        .first.gpx ==
+                                                    'null') ||
+                                                (containerSelectPpirFormsRowList
+                                                        .first.gpx ==
+                                                    '')
+                                            ? 'No GPX data found.'
+                                            : 'Has GPX data.',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              color: valueOrDefault<Color>(
+                                                (containerSelectPpirFormsRowList
+                                                                .first.gpx ==
+                                                            ' ') ||
+                                                        (containerSelectPpirFormsRowList
+                                                                .first.gpx ==
+                                                            'null') ||
+                                                        (containerSelectPpirFormsRowList
+                                                                .first.gpx ==
+                                                            '')
+                                                    ? FlutterFlowTheme.of(
+                                                            context)
+                                                        .warning
+                                                    : FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondary,
+                                                FlutterFlowTheme.of(context)
+                                                    .secondary,
+                                              ),
+                                              fontSize: 12.0,
+                                              letterSpacing: 0.0,
                                             ),
-                                            fontSize: 12.0,
-                                            letterSpacing: 0.0,
-                                          ),
+                                      ),
                                     ),
                                   ],
                                 ),

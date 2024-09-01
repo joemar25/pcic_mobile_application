@@ -171,8 +171,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                     .titleSmall
                                     .override(
                                       fontFamily: 'Readex Pro',
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
+                                      color:
+                                          FlutterFlowTheme.of(context).accent4,
                                       fontSize: 12.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w600,
@@ -1370,19 +1370,6 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ],
                                             ),
                                           ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 16.0, 0.0, 16.0),
-                                            child: StyledDivider(
-                                              thickness: 2.0,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              lineStyle:
-                                                  DividerLineStyle.dashed,
-                                            ),
-                                          ),
                                           if (widget.taskStatus == 'completed')
                                             SingleChildScrollView(
                                               child: Column(
@@ -1392,6 +1379,22 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.stretch,
                                                 children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 16.0,
+                                                                0.0, 16.0),
+                                                    child: StyledDivider(
+                                                      thickness: 2.0,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      lineStyle:
+                                                          DividerLineStyle
+                                                              .dashed,
+                                                    ),
+                                                  ),
                                                   Row(
                                                     mainAxisSize:
                                                         MainAxisSize.max,

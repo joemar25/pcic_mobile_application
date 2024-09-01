@@ -614,7 +614,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                           ).animateOnPageLoad(
                               animationsMap['containerOnPageLoadAnimation6']!),
                         ),
-                      ],
+                      ].addToEnd(const SizedBox(height: 8.0)),
                     ),
                   ),
                 ),

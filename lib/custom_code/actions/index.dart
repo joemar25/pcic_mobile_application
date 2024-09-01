@@ -14,7 +14,6 @@ export 'upload_photo_url_to_asset.dart' show uploadPhotoUrlToAsset;
 export 'get_the_saved_local_profile.dart' show getTheSavedLocalProfile;
 export 'fetch_store_stats.dart' show fetchStoreStats;
 export 'delete_map_store.dart' show deleteMapStore;
-export 'sync_online_offline_db.dart' show syncOnlineOfflineDb;
 export 'change_password.dart' show changePassword;
 export 'verify_password.dart' show verifyPassword;
 export 'update_password.dart' show updatePassword;
@@ -24,6 +23,8 @@ export 'sync_online_task_and_ppir_to_offline.dart'
 export 'edit_password.dart' show editPassword;
 export 'check_password_strength.dart' show checkPasswordStrength;
 export 'compare_passwords.dart' show comparePasswords;
+export 'sync_online_task_and_ppir_to_offline_copy.dart'
+    show syncOnlineTaskAndPpirToOfflineCopy;
 export 'update_inspector_name.dart' show updateInspectorName;
 export 'save_blob_to_bucket.dart' show saveBlobToBucket;
 export 'update_user_online_status.dart' show updateUserOnlineStatus;

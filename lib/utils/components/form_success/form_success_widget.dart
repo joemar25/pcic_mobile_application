@@ -488,12 +488,13 @@ class _FormSuccessWidgetState extends State<FormSuccessWidget>
                                 ),
                               ],
                             ),
-                            Divider(
-                              height: 44.0,
-                              thickness: 2.0,
-                              color: FlutterFlowTheme.of(context).primary,
-                            ).animateOnPageLoad(
-                                animationsMap['dividerOnPageLoadAnimation']!),
+                            if (false)
+                              Divider(
+                                height: 44.0,
+                                thickness: 2.0,
+                                color: FlutterFlowTheme.of(context).primary,
+                              ).animateOnPageLoad(
+                                  animationsMap['dividerOnPageLoadAnimation']!),
                             Expanded(
                               child: Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(

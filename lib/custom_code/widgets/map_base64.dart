@@ -236,6 +236,8 @@ class _MapBase64State extends State<MapBase64> {
           child: FlutterMap(
             mapController: _mapController,
             options: MapOptions(
+              minZoom: 18,
+              maxZoom: 22,
               initialCenter: _coordinates.isNotEmpty
                   ? _coordinates.first
                   : latlong.LatLng(0, 0),

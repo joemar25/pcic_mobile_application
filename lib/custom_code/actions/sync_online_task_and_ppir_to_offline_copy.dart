@@ -13,40 +13,14 @@ import 'package:flutter/material.dart';
 
 import '/auth/supabase_auth/auth_util.dart';
 
-Future<String> syncOnlineTaskAndPpirToOffline() async {
+Future<String> syncOnlineTaskAndPpirToOfflineCopy() async {
   try {
-    int updatedOnlineTasksCount = 0;
     int updatedOnlinePPIRFormsCount = 0;
     int newOfflineTasksCount = 0;
     int newOfflinePPIRFormsCount = 0;
 
-    // Step 1a: Sync offline tasks to online (status only)
-    print('Starting Step 1a: Sync offline tasks to online');
-    List<OFFLINESelectAllTasksByAssigneeRow> offlineTasks =
-        await SQLiteManager.instance.oFFLINESelectAllTasksByAssignee(
-      assignee: currentUserUid,
-    );
-    print('Fetched ${offlineTasks.length} offline tasks.');
-
-    for (var offlineTask in offlineTasks) {
-      var onlineTaskExists = await TasksTable().queryRows(
-        queryFn: (q) => q.eq('id', offlineTask.id),
-      );
-
-      if (onlineTaskExists.isNotEmpty) {
-        print('Updating online task status for task ID: ${offlineTask.id}');
-        await TasksTable().update(
-          data: {'status': offlineTask.status},
-          matchingRows: (row) => row.eq('id', offlineTask.id),
-        );
-        updatedOnlineTasksCount++;
-      }
-    }
-
-    print('Updated $updatedOnlineTasksCount online task statuses.');
-
-    // Step 1b: Sync offline PPIR forms to online
-    print('Starting Step 1b: Sync offline PPIR forms to online');
+    // Step 1: Sync offline PPIR forms to online
+    print('Starting Step 1: Sync offline PPIR forms to online');
     List<SELECTPPIRFormsByAssigneeRow> offlinePPIRForms =
         await SQLiteManager.instance.sELECTPPIRFormsByAssignee(
       assignee: currentUserUid,

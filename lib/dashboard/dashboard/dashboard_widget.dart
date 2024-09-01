@@ -57,13 +57,9 @@ class _DashboardWidgetState extends State<DashboardWidget>
         _model.isSyncDone = false;
         setState(() {});
         _model.messagexxxx = await actions.syncOnlineTaskAndPpirToOffline();
-        _model.statusOutput = _model.messagexxxx;
-        _model.isSyncDone = true;
+        _model.statusOutput = 'Tasks are updated';
         setState(() {});
-        await Future.delayed(const Duration(milliseconds: 5000));
       }
-      _model.statusOutput = 'Tasks are updated';
-      setState(() {});
     });
 
     _model.tabBarController = TabController(
@@ -223,15 +219,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                     _model.message = await actions
                                                         .syncOnlineTaskAndPpirToOffline();
                                                     _model.statusOutput =
-                                                        _model.message;
-                                                    _model.isSyncDone = true;
-                                                    setState(() {});
-                                                    await Future.delayed(
-                                                        const Duration(
-                                                            milliseconds:
-                                                                5000));
-                                                    _model.statusOutput =
                                                         'Tasks are updated';
+                                                    _model.isSyncDone = true;
                                                     setState(() {});
                                                   }
 
@@ -245,9 +234,10 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                       .override(
                                                         fontFamily:
                                                             'Readex Pro',
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .secondaryBackground,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .accent4,
                                                         fontSize: 12.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
@@ -310,7 +300,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                     Container(
                                       width: double.infinity,
                                       decoration: BoxDecoration(
-                                        color: const Color(0x3F00A651),
+                                        color: const Color(0x3F53D84B),
                                         borderRadius:
                                             BorderRadius.circular(12.0),
                                       ),
@@ -1177,7 +1167,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                     child:
                                                                         EmptyListsWidget(
                                                                       type:
-                                                                          'For Dispatch Tasks',
+                                                                          'Ongoing Tasks',
                                                                     ),
                                                                   );
                                                                 }
@@ -1274,7 +1264,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                     child:
                                                                         EmptyListsWidget(
                                                                       type:
-                                                                          'For Dispatch Tasks',
+                                                                          'Completed Tasks',
                                                                     ),
                                                                   );
                                                                 }

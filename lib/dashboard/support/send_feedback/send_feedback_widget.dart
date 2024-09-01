@@ -203,7 +203,7 @@ class _SendFeedbackWidgetState extends State<SendFeedbackWidget> {
                                               'hfdktwd5' /* Suggestion */,
                                             ),
                                             FFLocalizations.of(context).getText(
-                                              'z3u9d6fz' /* Bug Report */,
+                                              'z3u9d6fz' /* Bug Encountered */,
                                             )
                                           ],
                                           onChanged: (val) => setState(() =>
