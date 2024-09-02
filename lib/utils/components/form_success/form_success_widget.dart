@@ -717,7 +717,7 @@ class _FormSuccessWidgetState extends State<FormSuccessWidget>
                                     ),
                                 elevation: 0.0,
                                 borderSide: const BorderSide(
-                                  width: 1.0,
+                                  width: 0.0,
                                 ),
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
