@@ -60,21 +60,36 @@ Future<bool> saveToFTP(String? taskId) async {
 
     final String insuranceId = ppirResponse.data['ppir_insuranceid'] ?? '';
 
-    // 3. Get all files from the Supabase bucket
-    final bucketPath = '$serviceGroup/$userEmail/${taskNumber}_$insuranceId';
-    final fileList = await listAllFiles(bucketPath);
+    // 3. Find the latest folder for this task and insurance ID
+    final String basePath = '$serviceGroup/$userEmail';
+    final String folderPrefix = '${taskNumber}_$insuranceId';
 
-    // 4. Create a temporary directory to store the .task file
+    print('Searching for latest folder with basePath: $basePath');
+    print('Folder prefix: $folderPrefix');
+
+    final latestFolder = await findLatestFolder(basePath, folderPrefix);
+
+    if (latestFolder == null) {
+      print('No matching folder found for the task');
+      throw Exception('No matching folder found for the task');
+    }
+
+    print('Latest folder found: $latestFolder');
+
+    // 4. Get all files from the latest folder in the Supabase bucket
+    final fileList = await listAllFiles(latestFolder);
+
+    // 5. Create a temporary directory to store the .task file
     final tempDir = await getTemporaryDirectory();
 
-    // 5. Download files and create archive
+    // 6. Download files and create archive
     final archive = Archive();
     for (final filePath in fileList) {
       final fileData =
           await SupaFlow.client.storage.from('for_ftp').download(filePath);
 
       // Extract the relative path within the taskNumber folder
-      final relativePath = filePath.substring(bucketPath.length + 1);
+      final relativePath = filePath.substring(latestFolder.length + 1);
 
       final archiveFile = ArchiveFile(
         relativePath,
@@ -84,17 +99,16 @@ Future<bool> saveToFTP(String? taskId) async {
       archive.addFile(archiveFile);
     }
 
-    // 6. Create the .task file with the new naming convention
+    // 7. Create the .task file with the new naming convention
     final taskFile = File('${tempDir.path}/${taskNumber}_${insuranceId}.task');
     final zipBytes = ZipEncoder().encode(archive) ?? [];
     await taskFile.writeAsBytes(zipBytes);
 
-    // 7. Upload to SFTP
+    // 8. Upload to SFTP
     final socket = await SSHSocket.connect('122.55.242.110', 22);
     client = SSHClient(
       socket,
-      username:
-          'k2c_User2', // MAR: This would be changed depending on what region the user is in
+      username: 'k2c_User2',
       onPasswordRequest: () => 'K2C@PC!C2024',
     );
 
@@ -102,7 +116,6 @@ Future<bool> saveToFTP(String? taskId) async {
     final sftp = await client.sftp();
 
     // Construct the remote path with the new file name
-    // final remotePath = '/taskarchive/$bucketPath/${taskNumber}_${insuranceId}.task';
     final remotePath = '/taskarchive/${taskNumber}_${insuranceId}.task';
 
     // Ensure the remote directory exists
@@ -120,7 +133,7 @@ Future<bool> saveToFTP(String? taskId) async {
     await remoteFile.write(taskFile.openRead().cast<Uint8List>());
     await remoteFile.close();
 
-    // 8. Clean up: delete the temporary .task file
+    // 9. Clean up: delete the temporary .task file
     await taskFile.delete();
 
     return true;

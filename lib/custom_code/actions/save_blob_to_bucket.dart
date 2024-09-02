@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'dart:typed_data';
 import 'package:uuid/uuid.dart';
+import 'package:intl/intl.dart';
 
 Future<String> saveBlobToBucket(String? taskId) async {
   if (taskId == null || taskId.isEmpty) {
@@ -53,9 +54,13 @@ Future<String> saveBlobToBucket(String? taskId) async {
 
     final String insuranceId = ppirResponse.data['ppir_insuranceid'] ?? '';
 
-    // Define attachments folder path with insuranceId included
+    // Get the current date and time
+    final now = DateTime.now();
+    final formattedDateTime = DateFormat('yyyyMMdd_HHmmss').format(now);
+
+    // Define attachments folder path with insuranceId and timestamp included
     final String attachmentsPath =
-        '$serviceGroup/$userEmail/${taskNumber}_$insuranceId/attachments/';
+        '$serviceGroup/$userEmail/${taskNumber}_${insuranceId}_$formattedDateTime/attachments/';
 
     // List existing files in the attachments folder
     final listResult = await SupaFlow.client.storage

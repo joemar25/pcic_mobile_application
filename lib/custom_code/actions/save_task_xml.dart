@@ -59,18 +59,24 @@ Future<String> saveTaskXml(String? generatedTaskXml, String? taskId) async {
 
     final String insuranceId = ppirResponse.data['ppir_insuranceid'] ?? '';
 
-    // Update the file path to include insuranceId
-    final String fileName = 'Task.xml';
-    final String filePath =
-        '$serviceGroup/$userEmail/${taskNumber}_$insuranceId/$fileName';
+    // Find the latest folder for this task and insurance ID
+    final String basePath = '$serviceGroup/$userEmail';
+    final String folderPrefix = '${taskNumber}_$insuranceId';
 
-    // Delete existing XML file from Supabase storage
-    try {
-      await SupaFlow.client.storage.from('for_ftp').remove([filePath]);
-      print('Existing XML file deleted from Supabase storage');
-    } catch (e) {
-      print('No existing XML file in Supabase storage or error deleting: $e');
+    print('Searching for latest folder with basePath: $basePath');
+    print('Folder prefix: $folderPrefix');
+
+    final latestFolder = await findLatestFolder(basePath, folderPrefix);
+
+    if (latestFolder == null) {
+      print('No matching folder found for the task');
+      throw Exception('No matching folder found for the task');
     }
+
+    print('Latest folder found: $latestFolder');
+
+    final String fileName = 'Task.xml';
+    final String filePath = '$latestFolder/$fileName';
 
     final Uint8List xmlBytes =
         Uint8List.fromList(utf8.encode(generatedTaskXml));
@@ -81,8 +87,7 @@ Future<String> saveTaskXml(String? generatedTaskXml, String? taskId) async {
           xmlBytes,
           fileOptions: FileOptions(
             contentType: 'application/xml',
-            upsert:
-                false, // Changed to false as we're explicitly deleting first
+            upsert: true, // Use upsert to overwrite if file exists
           ),
         );
 
@@ -90,9 +95,8 @@ Future<String> saveTaskXml(String? generatedTaskXml, String? taskId) async {
       throw Exception('Error uploading XML file to Supabase');
     }
 
-    // Save XML locally (this will overwrite if it exists)
-    await _saveXmlLocally(serviceGroup, userEmail, '${taskNumber}_$insuranceId',
-        fileName, generatedTaskXml);
+    // Save XML locally
+    await _saveXmlLocally(latestFolder, fileName, generatedTaskXml);
 
     return 'XML saved successfully both in Supabase and locally';
   } catch (e) {
@@ -102,23 +106,12 @@ Future<String> saveTaskXml(String? generatedTaskXml, String? taskId) async {
 }
 
 Future<void> _saveXmlLocally(
-    String serviceGroup,
-    String userEmail,
-    String taskNumberWithInsuranceId,
-    String fileName,
-    String xmlContent) async {
+    String folderPath, String fileName, String xmlContent) async {
   try {
     final directory = await getApplicationDocumentsDirectory();
-    final folderPath =
-        '${directory.path}/$serviceGroup/$userEmail/$taskNumberWithInsuranceId';
-    await Directory(folderPath).create(recursive: true);
-    final file = File('$folderPath/$fileName');
-
-    // Delete existing local XML file
-    if (await file.exists()) {
-      await file.delete();
-      print('Existing local XML file deleted');
-    }
+    final fullFolderPath = '${directory.path}/$folderPath';
+    await Directory(fullFolderPath).create(recursive: true);
+    final file = File('$fullFolderPath/$fileName');
 
     // Write new XML content
     await file.writeAsString(xmlContent);
