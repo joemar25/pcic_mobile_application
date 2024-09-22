@@ -128,7 +128,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
           children: [
             wrapWithModel(
               model: _model.connectivityModel,
-              updateCallback: () => setState(() {}),
+              updateCallback: () => safeSetState(() {}),
               child: const ConnectivityWidget(),
             ),
           ],
@@ -254,7 +254,8 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                                 ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).primary,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
                                 width: 2.0,
                               ),
                               borderRadius: BorderRadius.circular(12.0),
@@ -286,7 +287,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                             contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                 15.0, 10.0, 15.0, 10.0),
                             suffixIcon: InkWell(
-                              onTap: () => setState(
+                              onTap: () => safeSetState(
                                 () => _model.oldPasswordVisibility =
                                     !_model.oldPasswordVisibility,
                               ),
@@ -300,13 +301,16 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                               ),
                             ),
                           ),
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.normal,
-                                    lineHeight: 2.5,
-                                  ),
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: 'Readex Pro',
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                letterSpacing: 0.0,
+                                fontWeight: FontWeight.normal,
+                                lineHeight: 2.5,
+                              ),
                           keyboardType: TextInputType.visiblePassword,
                           validator: _model.oldPasswordTextControllerValidator
                               .asValidator(context),
@@ -343,7 +347,8 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                                 ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).primary,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
                                 width: 2.0,
                               ),
                               borderRadius: BorderRadius.circular(12.0),
@@ -375,7 +380,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                             contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                 15.0, 10.0, 15.0, 10.0),
                             suffixIcon: InkWell(
-                              onTap: () => setState(
+                              onTap: () => safeSetState(
                                 () => _model.newPasswordVisibility =
                                     !_model.newPasswordVisibility,
                               ),
@@ -431,7 +436,8 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                                 ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).primary,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
                                 width: 2.0,
                               ),
                               borderRadius: BorderRadius.circular(12.0),
@@ -463,7 +469,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                             contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                 15.0, 10.0, 15.0, 10.0),
                             suffixIcon: InkWell(
-                              onTap: () => setState(
+                              onTap: () => safeSetState(
                                 () => _model.confirmNewPasswordVisibility =
                                     !_model.confirmNewPasswordVisibility,
                               ),

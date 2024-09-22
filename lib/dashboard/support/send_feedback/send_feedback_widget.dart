@@ -83,8 +83,7 @@ class _SendFeedbackWidgetState extends State<SendFeedbackWidget> {
             children: [
               Expanded(
                 child: Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+                  padding: const EdgeInsets.all(12.0),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
@@ -126,21 +125,7 @@ class _SendFeedbackWidgetState extends State<SendFeedbackWidget> {
                                 ),
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 5.0, 0.0, 10.0),
-                              child: Container(
-                                decoration: const BoxDecoration(),
-                              ),
-                            ),
                           ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 5.0, 0.0, 10.0),
-                          child: Container(
-                            decoration: const BoxDecoration(),
-                          ),
                         ),
                         Form(
                           key: _model.formKey,
@@ -206,7 +191,7 @@ class _SendFeedbackWidgetState extends State<SendFeedbackWidget> {
                                               'z3u9d6fz' /* Bug Encountered */,
                                             )
                                           ],
-                                          onChanged: (val) => setState(() =>
+                                          onChanged: (val) => safeSetState(() =>
                                               _model.purposeDropDownValue =
                                                   val),
                                           height: 56.0,
@@ -232,7 +217,7 @@ class _SendFeedbackWidgetState extends State<SendFeedbackWidget> {
                                           ),
                                           fillColor:
                                               FlutterFlowTheme.of(context)
-                                                  .primaryBackground,
+                                                  .secondaryBackground,
                                           elevation: 2.0,
                                           borderColor:
                                               FlutterFlowTheme.of(context)
@@ -361,6 +346,10 @@ class _SendFeedbackWidgetState extends State<SendFeedbackWidget> {
                                               borderRadius:
                                                   BorderRadius.circular(8.0),
                                             ),
+                                            filled: true,
+                                            fillColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryBackground,
                                           ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
@@ -386,7 +375,8 @@ class _SendFeedbackWidgetState extends State<SendFeedbackWidget> {
                                   if (_model.formKey.currentState == null ||
                                       !_model.formKey.currentState!
                                           .validate()) {
-                                    setState(() => _model.isValidated = false);
+                                    safeSetState(
+                                        () => _model.isValidated = false);
                                     return;
                                   }
                                   await ContactTable().insert({
@@ -415,7 +405,7 @@ class _SendFeedbackWidgetState extends State<SendFeedbackWidget> {
                                     },
                                   );
 
-                                  setState(() {});
+                                  safeSetState(() {});
                                 },
                                 text: FFLocalizations.of(context).getText(
                                   'e112gj5d' /* Submit */,
@@ -446,7 +436,7 @@ class _SendFeedbackWidgetState extends State<SendFeedbackWidget> {
                               ),
                             ]
                                 .divide(const SizedBox(height: 20.0))
-                                .addToEnd(const SizedBox(height: 50.0)),
+                                .around(const SizedBox(height: 20.0)),
                           ),
                         ),
                       ],

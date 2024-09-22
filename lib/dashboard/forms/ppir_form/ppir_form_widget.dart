@@ -57,7 +57,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       FFAppState().mapLoadedWithInternet = FFAppState().ONLINE;
       FFAppState().routeStarted = false;
-      setState(() {});
+      safeSetState(() {});
       await actions.updateUserLogs(
         context,
       );
@@ -125,7 +125,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
               key: scaffoldKey,
               backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
               appBar: AppBar(
-                backgroundColor: FlutterFlowTheme.of(context).primary,
+                backgroundColor: FlutterFlowTheme.of(context).accent1,
                 automaticallyImplyLeading: false,
                 leading: Builder(
                   builder: (context) => FlutterFlowIconButton(
@@ -217,7 +217,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                         }
                       }
 
-                      setState(() {});
+                      safeSetState(() {});
                     },
                   ),
                 ),
@@ -235,7 +235,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                     ),
                     wrapWithModel(
                       model: _model.connectivityModel,
-                      updateCallback: () => setState(() {}),
+                      updateCallback: () => safeSetState(() {}),
                       child: const ConnectivityWidget(),
                     ),
                   ],
@@ -360,7 +360,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         );
                                                       }
 
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     },
                                                     child: Text(
                                                       FFLocalizations.of(
@@ -377,7 +377,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     'Readex Pro',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .primary,
+                                                                    .primaryText,
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
@@ -471,7 +471,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                       () async {
                                                                     _model.isMapDownloaded =
                                                                         false;
-                                                                    setState(
+                                                                    safeSetState(
                                                                         () {});
                                                                   },
                                                                   child: Text(
@@ -612,7 +612,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                       () async {
                                                                     _model.isMapDownloaded =
                                                                         true;
-                                                                    setState(
+                                                                    safeSetState(
                                                                         () {});
                                                                   },
                                                                   child: Text(
@@ -689,7 +689,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                             0.0));
                                                                 _model.hasGpx =
                                                                     true;
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                                 await showDialog(
                                                                   context:
                                                                       context,
@@ -810,7 +811,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   );
                                                                 }
 
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                               },
                                                               text: FFLocalizations
                                                                       .of(context)
@@ -892,7 +894,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     _model
                                                                         .gpxLink!);
 
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                               },
                                                               text: FFLocalizations
                                                                       .of(context)
@@ -999,7 +1002,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               'Readex Pro',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .primary,
+                                                              .primaryText,
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -1679,7 +1682,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                       '_model.ppirTrackFarmlocTextController',
                                                       const Duration(
                                                           milliseconds: 2000),
-                                                      () => setState(() {}),
+                                                      () => safeSetState(() {}),
                                                     ),
                                                     autofocus: false,
                                                     obscureText: false,
@@ -1843,7 +1846,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               'Readex Pro',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .primary,
+                                                              .primaryText,
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -1860,7 +1863,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     )
                                                   ].toList(),
                                                   onChanged: (val) =>
-                                                      setState(() {}),
+                                                      safeSetState(() {}),
                                                   controller: _model
                                                           .ppirSvpActSelectionValueController ??=
                                                       FormFieldController<
@@ -2014,7 +2017,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     .withoutNulls
                                                                     .toList(),
                                                             onChanged: (val) =>
-                                                                setState(() =>
+                                                                safeSetState(() =>
                                                                     _model.riceDropdownValue =
                                                                         val),
                                                             width: MediaQuery
@@ -2213,7 +2216,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     .withoutNulls
                                                                     .toList(),
                                                             onChanged: (val) =>
-                                                                setState(() =>
+                                                                safeSetState(() =>
                                                                     _model.cornDropdownValue =
                                                                         val),
                                                             width: MediaQuery
@@ -2360,7 +2363,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               'Readex Pro',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .primary,
+                                                              .primaryText,
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -2385,7 +2388,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                       '_model.ppirAreaActFieldTextController',
                                                       const Duration(
                                                           milliseconds: 2000),
-                                                      () => setState(() {}),
+                                                      () => safeSetState(() {}),
                                                     ),
                                                     autofocus: false,
                                                     textInputAction:
@@ -2529,8 +2532,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                             const Duration(
                                                                 milliseconds:
                                                                     2000),
-                                                            () =>
-                                                                setState(() {}),
+                                                            () => safeSetState(
+                                                                () {}),
                                                           ),
                                                           autofocus: false,
                                                           textCapitalization:
@@ -2705,7 +2708,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                             );
                                                           });
                                                         }
-                                                        setState(() {
+                                                        safeSetState(() {
                                                           _model.ppirAreaDopDsFieldTextController
                                                                   ?.text =
                                                               dateTimeFormat(
@@ -2754,7 +2757,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                           const Duration(
                                                               milliseconds:
                                                                   2000),
-                                                          () => setState(() {}),
+                                                          () => safeSetState(
+                                                              () {}),
                                                         ),
                                                         autofocus: false,
                                                         textCapitalization:
@@ -2929,7 +2933,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                             );
                                                           });
                                                         }
-                                                        setState(() {
+                                                        safeSetState(() {
                                                           _model.ppirAreaDopTpFieldTextController
                                                                   ?.text =
                                                               dateTimeFormat(
@@ -3002,7 +3006,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               'Readex Pro',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .primary,
+                                                              .primaryText,
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
@@ -3027,7 +3031,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                       '_model.ppirRemarksFieldTextController',
                                                       const Duration(
                                                           milliseconds: 2000),
-                                                      () => setState(() {}),
+                                                      () => safeSetState(() {}),
                                                     ),
                                                     autofocus: false,
                                                     textInputAction:
@@ -3172,7 +3176,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                       '_model.ppirPreparedByNameFieldTextController',
                                                       const Duration(
                                                           milliseconds: 2000),
-                                                      () => setState(() {}),
+                                                      () => safeSetState(() {}),
                                                     ),
                                                     autofocus: false,
                                                     textInputAction:
@@ -3369,7 +3373,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
 
                                                             _model.hasSigInsured =
                                                                 true;
-                                                            setState(() {});
+                                                            safeSetState(() {});
                                                           },
                                                           child: Column(
                                                             mainAxisSize:
@@ -3497,7 +3501,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                       '_model.ppirConfirmedByNameFieldTextController',
                                                       const Duration(
                                                           milliseconds: 2000),
-                                                      () => setState(() {}),
+                                                      () => safeSetState(() {}),
                                                     ),
                                                     autofocus: false,
                                                     textCapitalization:
@@ -3696,7 +3700,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
 
                                                             _model.hasSigIuia =
                                                                 true;
-                                                            setState(() {});
+                                                            safeSetState(() {});
                                                           },
                                                           child: Column(
                                                             mainAxisSize:
@@ -3899,7 +3903,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                     }
                                   }
 
-                                  setState(() {});
+                                  safeSetState(() {});
                                 },
                                 text: FFLocalizations.of(context).getText(
                                   'aae0jxzm' /* Cancel */,
@@ -4074,7 +4078,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                     );
                                   }
 
-                                  setState(() {});
+                                  safeSetState(() {});
                                 },
                                 text: FFLocalizations.of(context).getText(
                                   'lgxphrlo' /* Save */,
@@ -4131,7 +4135,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     null ||
                                                 !_model.formKey.currentState!
                                                     .validate()) {
-                                              setState(() =>
+                                              safeSetState(() =>
                                                   _model.isValidated = false);
                                               return;
                                             }
@@ -4139,7 +4143,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     .ppirSvpActSelectionValue ==
                                                 null) {
                                               _model.isValidated = false;
-                                              setState(() {});
+                                              safeSetState(() {});
                                               return;
                                             }
                                             if (_model.isValidated!) {
@@ -4411,7 +4415,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                 ppirFormSelectPpirFormsRowList
                                                         .first.ppirSigIuia !=
                                                     'null';
-                                            setState(() {});
+                                            safeSetState(() {});
                                             await showDialog(
                                               context: context,
                                               builder: (dialogContext) {
@@ -4438,7 +4442,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                             );
                                           }
 
-                                          setState(() {});
+                                          safeSetState(() {});
                                         },
                                   text: FFLocalizations.of(context).getText(
                                     'wrod6how' /* Submit */,

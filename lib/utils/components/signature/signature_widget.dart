@@ -190,68 +190,35 @@ class _SignatureWidgetState extends State<SignatureWidget>
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    if (!FFAppConstants.DEBUG)
-                                      Expanded(
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 16.0),
-                                          child: Container(
-                                            decoration: BoxDecoration(
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 16.0),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(16.0),
+                                            border: Border.all(
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                              borderRadius:
-                                                  BorderRadius.circular(16.0),
-                                              border: Border.all(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                              ),
-                                            ),
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                              child: Image.network(
-                                                _model.signatureUrlPath!,
-                                                height: 300.0,
-                                                fit: BoxFit.cover,
-                                              ),
+                                                      .secondaryText,
                                             ),
                                           ),
-                                        ),
-                                      ),
-                                    if (FFAppConstants.DEBUG)
-                                      Expanded(
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 16.0),
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(16.0),
-                                              border: Border.all(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                              ),
-                                            ),
-                                            child: SizedBox(
+                                          child: SizedBox(
+                                            width: double.infinity,
+                                            height: 300.0,
+                                            child:
+                                                custom_widgets.CustomSignature(
                                               width: double.infinity,
                                               height: 300.0,
-                                              child: custom_widgets
-                                                  .CustomSignature(
-                                                width: double.infinity,
-                                                height: 300.0,
-                                                taskId: widget.taskId!,
-                                                signatureFor:
-                                                    widget.signatureFor,
-                                              ),
+                                              taskId: widget.taskId!,
+                                              signatureFor:
+                                                  widget.signatureFor,
                                             ),
                                           ),
                                         ),
                                       ),
+                                    ),
                                   ],
                                 ),
                               ],

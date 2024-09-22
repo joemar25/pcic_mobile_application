@@ -58,7 +58,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
         onWillPop: () async => false,
         child: Scaffold(
           key: scaffoldKey,
-          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+          backgroundColor: FlutterFlowTheme.of(context).alternate,
           floatingActionButton: Visibility(
             visible: FFAppState().ONLINE,
             child: FloatingActionButton.extended(
@@ -82,14 +82,14 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                   },
                 ).then((value) => safeSetState(() {}));
               },
-              backgroundColor: FlutterFlowTheme.of(context).primary,
+              backgroundColor: FlutterFlowTheme.of(context).accent1,
               elevation: 8.0,
               label: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Icon(
                     Icons.edit_rounded,
-                    color: FlutterFlowTheme.of(context).primaryBackground,
+                    color: FlutterFlowTheme.of(context).info,
                     size: 24.0,
                   ),
                   Row(
@@ -101,8 +101,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
-                              color: FlutterFlowTheme.of(context)
-                                  .primaryBackground,
+                              color: FlutterFlowTheme.of(context).info,
                               letterSpacing: 0.0,
                             ),
                       ),
@@ -116,7 +115,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
             width: double.infinity,
             height: double.infinity,
             decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).primary,
+              color: FlutterFlowTheme.of(context).accent1,
             ),
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(0.0, 60.0, 0.0, 0.0),
@@ -143,8 +142,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                   children: [
                                     Icon(
                                       Icons.message_rounded,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
+                                      color: FlutterFlowTheme.of(context).info,
                                       size: 30.0,
                                     ),
                                     Align(
@@ -159,7 +157,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                               fontFamily: 'Inter',
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .primaryBackground,
+                                                      .info,
                                               fontSize: 28.0,
                                               letterSpacing: 0.0,
                                             ),
@@ -171,7 +169,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                             ),
                             wrapWithModel(
                               model: _model.connectivityModel,
-                              updateCallback: () => setState(() {}),
+                              updateCallback: () => safeSetState(() {}),
                               child: const ConnectivityWidget(),
                             ),
                           ],
@@ -179,7 +177,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                       ],
                     ),
                   ),
-                  Expanded(
+                  Flexible(
                     child: Stack(
                       children: [
                         if (FFAppState().ONLINE)
@@ -261,12 +259,8 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                   snapshot.data!;
 
                                               return ListView.separated(
-                                                padding: const EdgeInsets.fromLTRB(
-                                                  0,
-                                                  0,
-                                                  0,
-                                                  80.0,
-                                                ),
+                                                padding: const EdgeInsets.symmetric(
+                                                    vertical: 20.0),
                                                 shrinkWrap: true,
                                                 scrollDirection: Axis.vertical,
                                                 itemCount:
@@ -286,7 +280,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                       listViewIndex,
                                                     ),
                                                     updateCallback: () =>
-                                                        setState(() {}),
+                                                        safeSetState(() {}),
                                                     child:
                                                         ChatListContainerWidget(
                                                       key: Key(

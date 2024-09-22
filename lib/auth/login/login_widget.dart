@@ -130,7 +130,7 @@ class _LoginWidgetState extends State<LoginWidget>
         onWillPop: () async => false,
         child: Scaffold(
           key: scaffoldKey,
-          backgroundColor: FlutterFlowTheme.of(context).primary,
+          backgroundColor: FlutterFlowTheme.of(context).accent1,
           body: Container(
             width: double.infinity,
             height: double.infinity,
@@ -188,6 +188,8 @@ class _LoginWidgetState extends State<LoginWidget>
                                           .displaySmall
                                           .override(
                                             fontFamily: 'Inter',
+                                            color: FlutterFlowTheme.of(context)
+                                                .info,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -384,7 +386,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                             borderSide: BorderSide(
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .primary,
+                                                      .secondaryText,
                                               width: 2.0,
                                             ),
                                             borderRadius:
@@ -477,7 +479,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                 context.pop();
                                               }
                                               context.pushNamedAuth(
-                                                'syncKing4TheWin',
+                                                'sync',
                                                 context.mounted,
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
@@ -559,7 +561,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                               borderSide: BorderSide(
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .primary,
+                                                        .secondaryText,
                                                 width: 2.0,
                                               ),
                                               borderRadius:
@@ -604,7 +606,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     15.0, 10.0, 15.0, 10.0),
                                             suffixIcon: InkWell(
-                                              onTap: () => setState(
+                                              onTap: () => safeSetState(
                                                 () => _model
                                                         .passwordFieldVisibility =
                                                     !_model
@@ -709,7 +711,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                     context.pop();
                                                   }
                                                   context.pushNamedAuth(
-                                                    'syncKing4TheWin',
+                                                    'sync',
                                                     context.mounted,
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
@@ -803,7 +805,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                               );
                                             }
 
-                                            setState(() {});
+                                            safeSetState(() {});
                                           },
                                           text: FFLocalizations.of(context)
                                               .getText(

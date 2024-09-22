@@ -1,9 +1,9 @@
 import '/backend/sqlite/sqlite_manager.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'sync_king4_the_win_widget.dart' show SyncKing4TheWinWidget;
+import 'sync_widget.dart' show SyncWidget;
 import 'package:flutter/material.dart';
 
-class SyncKing4TheWinModel extends FlutterFlowModel<SyncKing4TheWinWidget> {
+class SyncModel extends FlutterFlowModel<SyncWidget> {
   ///  Local state fields for this page.
 
   int? limit = 0;
@@ -18,7 +18,6 @@ class SyncKing4TheWinModel extends FlutterFlowModel<SyncKing4TheWinWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - SQLite (OFFLINE select REGION CODE)] action in Container widget.
   List<OFFLINESelectREGIONCODERow>? regionCode;
   // Stores action output result for [Custom Action - syncFromFTP] action in Container widget.

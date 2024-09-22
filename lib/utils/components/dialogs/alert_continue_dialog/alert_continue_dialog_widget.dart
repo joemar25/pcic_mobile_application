@@ -179,6 +179,7 @@ class _AlertContinueDialogWidgetState extends State<AlertContinueDialogWidget> {
                                 ),
                         elevation: 0.0,
                         borderSide: const BorderSide(
+                          color: Colors.transparent,
                           width: 1.0,
                         ),
                         borderRadius: BorderRadius.circular(12.0),

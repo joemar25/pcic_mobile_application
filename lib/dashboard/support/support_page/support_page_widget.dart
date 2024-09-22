@@ -276,7 +276,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                                           Icon(
                                             Icons.local_phone,
                                             color: FlutterFlowTheme.of(context)
-                                                .primary,
+                                                .accent1,
                                             size: 36.0,
                                           ),
                                           Padding(
@@ -346,7 +346,7 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
                                           Icon(
                                             Icons.email_outlined,
                                             color: FlutterFlowTheme.of(context)
-                                                .primary,
+                                                .accent1,
                                             size: 36.0,
                                           ),
                                           Padding(

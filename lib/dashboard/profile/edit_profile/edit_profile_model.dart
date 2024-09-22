@@ -13,7 +13,6 @@ class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
   // Stores action output result for [Custom Action - getTheSavedLocalProfile] action in editProfile widget.
   FFUploadedFile? loadLocalProfile;

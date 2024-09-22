@@ -178,6 +178,7 @@ class _ContinueReGeotagDialogWidgetState
                                 ),
                         elevation: 0.0,
                         borderSide: const BorderSide(
+                          color: Colors.transparent,
                           width: 1.0,
                         ),
                         borderRadius: BorderRadius.circular(12.0),

@@ -167,6 +167,17 @@ class SQLiteManager {
         assignee: assignee,
       );
 
+  Future<List<SELECTPPIRFormsByAssigneeAndTaskStatusRow>>
+      sELECTPPIRFormsByAssigneeAndTaskStatus({
+    String? assignee,
+    String? status,
+  }) =>
+          performSELECTPPIRFormsByAssigneeAndTaskStatus(
+            _database,
+            assignee: assignee,
+            status: status,
+          );
+
   /// END READ QUERY CALLS
 
   /// START UPDATE QUERY CALLS

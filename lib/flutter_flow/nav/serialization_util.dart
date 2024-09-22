@@ -227,20 +227,14 @@ dynamic deserializeParam<T>(
             return FileReadRow(data);
           case AttemptsRow:
             return AttemptsRow(data);
-          case SyncLogRow:
-            return SyncLogRow(data);
           case ChatsRow:
             return ChatsRow(data);
           case UserLogsRow:
             return UserLogsRow(data);
-          case SyncQueueRow:
-            return SyncQueueRow(data);
           case TasksRow:
             return TasksRow(data);
           case ContactRow:
             return ContactRow(data);
-          case SyncStatusRow:
-            return SyncStatusRow(data);
           case PpirFormsRow:
             return PpirFormsRow(data);
           case MessagesRow:
@@ -302,6 +296,8 @@ dynamic deserializeParam<T>(
             return COUNTIsDirtyRow(data);
           case SELECTPPIRFormsByAssigneeRow:
             return SELECTPPIRFormsByAssigneeRow(data);
+          case SELECTPPIRFormsByAssigneeAndTaskStatusRow:
+            return SELECTPPIRFormsByAssigneeAndTaskStatusRow(data);
           default:
             return null;
         }

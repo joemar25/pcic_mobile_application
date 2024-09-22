@@ -11,19 +11,18 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'sync_king4_the_win_model.dart';
-export 'sync_king4_the_win_model.dart';
+import 'sync_model.dart';
+export 'sync_model.dart';
 
-class SyncKing4TheWinWidget extends StatefulWidget {
-  const SyncKing4TheWinWidget({super.key});
+class SyncWidget extends StatefulWidget {
+  const SyncWidget({super.key});
 
   @override
-  State<SyncKing4TheWinWidget> createState() => _SyncKing4TheWinWidgetState();
+  State<SyncWidget> createState() => _SyncWidgetState();
 }
 
-class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
-    with TickerProviderStateMixin {
-  late SyncKing4TheWinModel _model;
+class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
+  late SyncModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   LatLng? currentUserLocationValue;
@@ -33,7 +32,7 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => SyncKing4TheWinModel());
+    _model = createModel(context, () => SyncModel());
 
     animationsMap.addAll({
       'iconOnPageLoadAnimation': AnimationInfo(
@@ -139,7 +138,7 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
             body: const PageLoaderWidget(),
           );
         }
-        final syncKing4TheWinSelectProfileRowList = snapshot.data!;
+        final syncSelectProfileRowList = snapshot.data!;
 
         return GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -180,11 +179,10 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                             _model.startSync = true;
                             _model.isSync = true;
                             _model.isSynced = false;
-                            setState(() {});
+                            safeSetState(() {});
                             _model.regionCode = await SQLiteManager.instance
                                 .oFFLINESelectREGIONCODE(
-                              id: syncKing4TheWinSelectProfileRowList
-                                  .first.regionId,
+                              id: syncSelectProfileRowList.first.regionId,
                             );
                             _model.isSyced = await actions.syncFromFTP(
                               _model.regionCode?.first.regionCode,
@@ -200,10 +198,10 @@ class _SyncKing4TheWinWidgetState extends State<SyncKing4TheWinWidget>
                             _model.isSync = false;
                             _model.startSync = false;
                             _model.isSynced = true;
-                            setState(() {});
+                            safeSetState(() {});
                           }
 
-                          setState(() {});
+                          safeSetState(() {});
                         },
                         child: Container(
                           width: 300.0,

@@ -22,8 +22,7 @@ export '/dashboard/geotag/geotagging/geotagging_widget.dart'
 export '/utils/test/map_test/map_test_widget.dart' show MapTestWidget;
 export '/dashboard/geotag/pcic_map/pcic_map_widget.dart' show PcicMapWidget;
 export '/auth/onboarding/onboarding_widget.dart' show OnboardingWidget;
-export '/dashboard/sync_king4_the_win/sync_king4_the_win_widget.dart'
-    show SyncKing4TheWinWidget;
+export '/dashboard/utils/sync/sync_widget.dart' show SyncWidget;
 export '/dashboard/forms/ppir_form/ppir_form_widget.dart' show PpirFormWidget;
 export '/dashboard/support/support_page/support_page_widget.dart'
     show SupportPageWidget;
@@ -32,3 +31,4 @@ export '/dashboard/support/send_feedback/send_feedback_widget.dart'
     show SendFeedbackWidget;
 export '/utils/components/gpx_success/gpx_success_widget.dart'
     show GpxSuccessWidget;
+export '/dashboard/forms/all_tasks/all_tasks_widget.dart' show AllTasksWidget;

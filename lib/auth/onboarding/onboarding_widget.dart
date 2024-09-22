@@ -155,7 +155,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget>
         onWillPop: () async => false,
         child: Scaffold(
           key: scaffoldKey,
-          backgroundColor: FlutterFlowTheme.of(context).primary,
+          backgroundColor: FlutterFlowTheme.of(context).accent1,
           body: Align(
             alignment: const AlignmentDirectional(0.0, 0.0),
             child: Stack(
@@ -177,11 +177,11 @@ class _OnboardingWidgetState extends State<OnboardingWidget>
                             width: 120.0,
                             height: 120.0,
                             decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context).accent4,
+                              color: FlutterFlowTheme.of(context).alternate,
                               shape: BoxShape.circle,
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(5.0),
                               child: Image.asset(
                                 'assets/images/PCIC-Logo.png',
                                 width: 100.0,
@@ -298,6 +298,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget>
                                             ),
                                         elevation: 15.0,
                                         borderSide: const BorderSide(
+                                          color: Colors.transparent,
                                           width: 1.0,
                                         ),
                                         borderRadius:
@@ -336,6 +337,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget>
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Readex Pro',
+                                      color: FlutterFlowTheme.of(context).info,
                                       fontSize: 10.0,
                                       letterSpacing: 0.0,
                                     ),
@@ -352,6 +354,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget>
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Readex Pro',
+                                      color: FlutterFlowTheme.of(context).info,
                                       fontSize: 12.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w600,

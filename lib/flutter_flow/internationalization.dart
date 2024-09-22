@@ -214,10 +214,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Sync FTP',
       'tl': 'Nandito si Mar - Nagsi-sync Mula sa FTP',
     },
-    'i3u5yib7': {
-      'en': 'DONT TOUCH THE TAT BUTTON ',
-      'tl': '',
-    },
     'yttqc4w2': {
       'en': 'Sign Out',
       'tl': 'Mag-sign Out',
@@ -270,7 +266,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter Old Password...',
       'tl': 'Ilagay ang Lumang Password...',
     },
-    'w6rle6qo': {
+    'tazvk7pb': {
       'en': '',
       'tl': '',
     },
@@ -282,7 +278,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter New Password...',
       'tl': 'Maglagay ng Bagong Password...',
     },
-    'l8ojp148': {
+    'jyov0g3q': {
       'en': '',
       'tl': '',
     },
@@ -294,7 +290,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Confirm New Password...',
       'tl': 'Kumpirmahin ang Bagong Password...',
     },
-    'dhxo2era': {
+    'dj4grxau': {
       'en': '',
       'tl': '',
     },
@@ -369,7 +365,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'I-type ang iyong mensahe dito',
     },
     'f9pdwlqc': {
-      'en': 'Send',
+      'en': '',
       'tl': 'Ipadala',
     },
     'zxojetjq': {
@@ -640,13 +636,25 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'For Dispatch',
       'tl': 'Para sa Dispatch',
     },
+    'rtv7xf2z': {
+      'en': 'View All',
+      'tl': '',
+    },
     'nxy1vlhk': {
       'en': 'Ongoing',
       'tl': 'Patuloy',
     },
+    'qkt2eqsh': {
+      'en': 'View All',
+      'tl': '',
+    },
     'c0a56ui1': {
       'en': 'Completed',
       'tl': 'Nakumpleto',
+    },
+    't3rlbw2l': {
+      'en': 'View All',
+      'tl': '',
     },
     '67jgj8w9': {
       'en': 'Home',
@@ -785,7 +793,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Bahay',
     },
   },
-  // syncKing4TheWin
+  // sync
   {
     'nzwziy9t': {
       'en': 'Dashboard',
@@ -1238,6 +1246,37 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
+  // allTasks
+  {
+    'm52pegan': {
+      'en': 'Active',
+      'tl': '',
+    },
+    'zbzuwaqs': {
+      'en': 'Task Number',
+      'tl': '',
+    },
+    'siy1e1ix': {
+      'en': 'Farmer Name',
+      'tl': '',
+    },
+    'tblcfd51': {
+      'en': 'GPX',
+      'tl': '',
+    },
+    'eahrpm1f': {
+      'en': 'Archieve',
+      'tl': '',
+    },
+    'pth8q3fx': {
+      'en': 'Not in the Feature List',
+      'tl': '',
+    },
+    'flnyt26u': {
+      'en': 'Home',
+      'tl': '',
+    },
+  },
   // tasks
   {
     '83q8pggh': {
@@ -1613,18 +1652,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // Miscellaneous
   {
-    '6afd8gwy': {
-      'en': 'Label here...',
-      'tl': 'Label dito...',
-    },
-    'x8lsse0f': {
-      'en': 'Hint text here ...',
-      'tl': 'Hint text dito...',
-    },
-    '3gp3iqd8': {
-      'en': 'Button',
-      'tl': 'Pindutan',
-    },
     '0ftylq1b': {
       'en':
           '\"PCIC Mobile Application requires access to your camera to enable geotagging. This feature will allow us to accurately tag photos with your current location, improving service delivery and documentation. Please grant camera access to continue.\"',
@@ -1642,6 +1669,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           '\"PCIC Mobile Application requires access to your location to enable geotagging. This will allow us to accurately obtain GPX data with your current location, improving our service. Please grant location access to continue.\"',
       'tl':
           '\"Ang PCI Mobile Application ay nangangailangan ng access sa iyong lokasyon upang paganahin ang geotagging. Ito ay magbibigay-daan sa amin na tumpak na makakuha ng data ng GPX sa iyong kasalukuyang lokasyon, pagpapabuti ng aming serbisyo. Mangyaring bigyan ng access sa lokasyon upang magpatuloy.\"',
+    },
+    'v9s5k3mv': {
+      'en': '',
+      'tl': '',
     },
     'klzb3gt7': {
       'en': '',

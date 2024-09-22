@@ -237,6 +237,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
         FFRoute(
           name: 'pcicMap',
           path: '/pcicMap',
+          requireAuth: true,
           builder: (context, params) => const PcicMapWidget(),
         ),
         FFRoute(
@@ -245,14 +246,15 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           builder: (context, params) => const OnboardingWidget(),
         ),
         FFRoute(
-          name: 'syncKing4TheWin',
-          path: '/syncKing4TheWin',
+          name: 'sync',
+          path: '/sync',
           requireAuth: true,
-          builder: (context, params) => const SyncKing4TheWinWidget(),
+          builder: (context, params) => const SyncWidget(),
         ),
         FFRoute(
           name: 'ppirForm',
           path: '/ppirForm',
+          requireAuth: true,
           builder: (context, params) => PpirFormWidget(
             taskId: params.getParam(
               'taskId',
@@ -263,16 +265,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
         FFRoute(
           name: 'supportPage',
           path: '/supportPage',
+          requireAuth: true,
           builder: (context, params) => const SupportPageWidget(),
         ),
         FFRoute(
           name: 'callUs',
           path: '/callUs',
+          requireAuth: true,
           builder: (context, params) => const CallUsWidget(),
         ),
         FFRoute(
           name: 'sendFeedback',
           path: '/sendFeedback',
+          requireAuth: true,
           builder: (context, params) => const SendFeedbackWidget(),
         ),
         FFRoute(
@@ -282,6 +287,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           builder: (context, params) => GpxSuccessWidget(
             taskId: params.getParam(
               'taskId',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'allTasks',
+          path: '/allTasks',
+          requireAuth: true,
+          builder: (context, params) => AllTasksWidget(
+            taskStatus: params.getParam(
+              'taskStatus',
               ParamType.String,
             ),
           ),

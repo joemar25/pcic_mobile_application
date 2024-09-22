@@ -40,7 +40,7 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
       vsync: this,
       length: 2,
       initialIndex: 0,
-    )..addListener(() => setState(() {}));
+    )..addListener(() => safeSetState(() {}));
   }
 
   @override
@@ -60,7 +60,7 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primary,
+          backgroundColor: FlutterFlowTheme.of(context).accent1,
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
@@ -69,7 +69,7 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
             buttonSize: 60.0,
             icon: Icon(
               Icons.chevron_left,
-              color: FlutterFlowTheme.of(context).primaryBackground,
+              color: FlutterFlowTheme.of(context).info,
               size: 30.0,
             ),
             onPressed: () async {
@@ -95,13 +95,13 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                 ),
                 style: FlutterFlowTheme.of(context).titleSmall.override(
                       fontFamily: 'Readex Pro',
-                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      color: FlutterFlowTheme.of(context).info,
                       letterSpacing: 0.0,
                     ),
               ),
               wrapWithModel(
                 model: _model.connectivityModel,
-                updateCallback: () => setState(() {}),
+                updateCallback: () => safeSetState(() {}),
                 child: const ConnectivityWidget(),
               ),
             ],
@@ -267,7 +267,7 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                                               FFAppState()
                                                   .removeAtIndexFromListOfMapDownloads(
                                                       listOfDownloadsIndex);
-                                              setState(() {});
+                                              safeSetState(() {});
                                             },
                                           ),
                                         ),

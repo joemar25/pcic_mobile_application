@@ -134,3 +134,8 @@ bool? checkIfNull(String? attribute) {
     return false;
   }
 }
+
+String? convertDateToString(String? date) {
+  // update the date string like this 2024-08-04 10:05:58 to a proper date format
+  return "";
+}

@@ -285,13 +285,13 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                                           .titleSmall
                                           .override(
                                             fontFamily: 'Readex Pro',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
+                                            color: Colors.white,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
                                           ),
                                       elevation: 0.0,
                                       borderSide: const BorderSide(
+                                        color: Colors.transparent,
                                         width: 1.0,
                                       ),
                                       borderRadius: BorderRadius.circular(12.0),

@@ -86,11 +86,11 @@ class _MyAppState extends State<MyApp> {
   }
 
   void setLocale(String language) {
-    setState(() => _locale = createLocale(language));
+    safeSetState(() => _locale = createLocale(language));
     FFLocalizations.storeLocale(language);
   }
 
-  void setThemeMode(ThemeMode mode) => setState(() {
+  void setThemeMode(ThemeMode mode) => safeSetState(() {
         _themeMode = mode;
         FlutterFlowTheme.saveThemeMode(mode);
       });
@@ -120,12 +120,12 @@ class _MyAppState extends State<MyApp> {
           radius: const Radius.circular(1.0),
           thumbColor: WidgetStateProperty.resolveWith((states) {
             if (states.contains(WidgetState.dragged)) {
-              return const Color(0xff4fce40);
+              return const Color(0xff2e865f);
             }
             if (states.contains(WidgetState.hovered)) {
-              return const Color(0xff4fce40);
+              return const Color(0xff2e865f);
             }
-            return const Color(0xff4fce40);
+            return const Color(0xff2e865f);
           }),
           minThumbLength: 1.0,
           crossAxisMargin: 1.0,
@@ -142,12 +142,12 @@ class _MyAppState extends State<MyApp> {
           radius: const Radius.circular(1.0),
           thumbColor: WidgetStateProperty.resolveWith((states) {
             if (states.contains(WidgetState.dragged)) {
-              return const Color(0xff53d84b);
+              return const Color(0xff2e865f);
             }
             if (states.contains(WidgetState.hovered)) {
-              return const Color(0xff53d84b);
+              return const Color(0xff2e865f);
             }
-            return const Color(0xff53d84b);
+            return const Color(0xff2e865f);
           }),
           minThumbLength: 1.0,
           crossAxisMargin: 1.0,
@@ -195,11 +195,11 @@ class _NavBarPageState extends State<NavBarPage> {
       body: _currentPage ?? tabs[_currentPageName],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
-        onTap: (i) => setState(() {
+        onTap: (i) => safeSetState(() {
           _currentPage = null;
           _currentPageName = tabs.keys.toList()[i];
         }),
-        backgroundColor: FlutterFlowTheme.of(context).primary,
+        backgroundColor: FlutterFlowTheme.of(context).accent1,
         selectedItemColor: FlutterFlowTheme.of(context).primaryText,
         unselectedItemColor: FlutterFlowTheme.of(context).alternate,
         showSelectedLabels: true,

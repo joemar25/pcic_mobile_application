@@ -101,7 +101,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             appBar: AppBar(
-              backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+              backgroundColor: FlutterFlowTheme.of(context).accent1,
               automaticallyImplyLeading: false,
               leading: FlutterFlowIconButton(
                 borderColor: Colors.transparent,
@@ -110,7 +110,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                 buttonSize: 60.0,
                 icon: Icon(
                   Icons.chevron_left,
-                  color: FlutterFlowTheme.of(context).primaryText,
+                  color: FlutterFlowTheme.of(context).info,
                   size: 30.0,
                 ),
                 onPressed: () async {
@@ -165,6 +165,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                         style:
                             FlutterFlowTheme.of(context).displaySmall.override(
                                   fontFamily: 'Inter',
+                                  color: FlutterFlowTheme.of(context).info,
                                   fontSize: 18.0,
                                   letterSpacing: 0.0,
                                 ),
@@ -173,7 +174,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                   ),
                   wrapWithModel(
                     model: _model.connectivityModel,
-                    updateCallback: () => setState(() {}),
+                    updateCallback: () => safeSetState(() {}),
                     child: const ConnectivityWidget(),
                   ),
                 ],
@@ -420,6 +421,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                       padding: const EdgeInsets.all(10.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Expanded(
                             child: Padding(
@@ -433,7 +435,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.inputChatTextController',
                                     const Duration(milliseconds: 0),
-                                    () => setState(() {}),
+                                    () => safeSetState(() {}),
                                   ),
                                   autofocus: false,
                                   textInputAction: TextInputAction.send,
@@ -517,22 +519,26 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                 'timestamp': supaSerialize<DateTime>(
                                     getCurrentTimestamp),
                               });
-                              setState(() {
+                              safeSetState(() {
                                 _model.inputChatTextController?.clear();
                               });
-                              setState(() => _model.requestCompleter = null);
+                              safeSetState(
+                                  () => _model.requestCompleter = null);
                               await _model.waitForRequestCompleted();
                             },
                             text: FFLocalizations.of(context).getText(
-                              'f9pdwlqc' /* Send */,
+                              'f9pdwlqc' /*  */,
+                            ),
+                            icon: Icon(
+                              Icons.send_sharp,
+                              color: FlutterFlowTheme.of(context).info,
+                              size: 15.0,
                             ),
                             options: FFButtonOptions(
-                              width: 100.0,
+                              width: 50.0,
                               height: 50.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
+                              padding: const EdgeInsets.all(20.0),
+                              iconPadding: const EdgeInsets.all(0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall

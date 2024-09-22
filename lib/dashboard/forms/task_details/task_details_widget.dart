@@ -52,15 +52,15 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
           context,
         );
         FFAppState().mapLoadedWithInternet = false;
-        setState(() {});
+        safeSetState(() {});
         _model.statusOutput = 'Syncing...';
-        setState(() {});
+        safeSetState(() {});
         _model.message =
             await actions.updateOnlinePpirFormsFromOfflinePpirForms(
           widget.taskId,
         );
         _model.statusOutput = _model.message!;
-        setState(() {});
+        safeSetState(() {});
       }
     });
   }
@@ -99,7 +99,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
               key: scaffoldKey,
               backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
               appBar: AppBar(
-                backgroundColor: FlutterFlowTheme.of(context).primary,
+                backgroundColor: FlutterFlowTheme.of(context).accent1,
                 automaticallyImplyLeading: false,
                 leading: FlutterFlowIconButton(
                   borderColor: Colors.transparent,
@@ -108,7 +108,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                   buttonSize: 60.0,
                   icon: Icon(
                     Icons.chevron_left,
-                    color: FlutterFlowTheme.of(context).primaryBackground,
+                    color: FlutterFlowTheme.of(context).info,
                     size: 30.0,
                   ),
                   onPressed: () async {
@@ -136,8 +136,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                         '${functions.capitalizeWords(widget.taskStatus)} Task',
                         style: FlutterFlowTheme.of(context).titleSmall.override(
                               fontFamily: 'Readex Pro',
-                              color: FlutterFlowTheme.of(context)
-                                  .primaryBackground,
+                              color: FlutterFlowTheme.of(context).info,
                               letterSpacing: 0.0,
                             ),
                       ),
@@ -155,15 +154,15 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 _model.statusOutput = 'Syncing...';
-                                setState(() {});
+                                safeSetState(() {});
                                 _model.messageCopy = await actions
                                     .updateOnlinePpirFormsFromOfflinePpirForms(
                                   widget.taskId,
                                 );
                                 _model.statusOutput = _model.messageCopy!;
-                                setState(() {});
+                                safeSetState(() {});
 
-                                setState(() {});
+                                safeSetState(() {});
                               },
                               child: Text(
                                 '[ ${taskDetailsSELECTTASKSAndPPIRByAssigneeRowList.first.ppirIsDirty == '1' ? 'Outdated. Tap to sync' : _model.statusOutput} ]',
@@ -171,8 +170,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                     .titleSmall
                                     .override(
                                       fontFamily: 'Readex Pro',
-                                      color:
-                                          FlutterFlowTheme.of(context).accent4,
+                                      color: FlutterFlowTheme.of(context).info,
                                       fontSize: 12.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w600,
@@ -194,7 +192,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                             ),
                           wrapWithModel(
                             model: _model.connectivityModel,
-                            updateCallback: () => setState(() {}),
+                            updateCallback: () => safeSetState(() {}),
                             child: const ConnectivityWidget(),
                           ),
                         ].divide(const SizedBox(width: 5.0)),
@@ -231,8 +229,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      20.0, 20.0, 20.0, 0.0),
+                                  padding: const EdgeInsets.all(22.0),
                                   child: Container(
                                     width: 600.0,
                                     constraints: const BoxConstraints(
@@ -244,7 +241,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
+                                      padding: const EdgeInsets.all(24.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -268,7 +265,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     fontFamily: 'Readex Pro',
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .primary,
+                                                        .primaryText,
                                                     letterSpacing: 0.0,
                                                   ),
                                             ),
@@ -941,7 +938,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     fontFamily: 'Readex Pro',
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .primary,
+                                                        .primaryText,
                                                     letterSpacing: 0.0,
                                                   ),
                                             ),
@@ -1169,7 +1166,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     fontFamily: 'Readex Pro',
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .primary,
+                                                        .primaryText,
                                                     letterSpacing: 0.0,
                                                   ),
                                             ),
@@ -1421,7 +1418,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     'Readex Pro',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .primary,
+                                                                    .primaryText,
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
@@ -1901,6 +1898,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               .override(
                                                                 fontFamily:
                                                                     'Readex Pro',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
@@ -2125,6 +2125,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               .override(
                                                                 fontFamily:
                                                                     'Readex Pro',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
@@ -2447,7 +2450,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     'Readex Pro',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .primary,
+                                                                    .primaryText,
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
@@ -2508,7 +2511,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                 ],
                                               ),
                                             ),
-                                        ].divide(const SizedBox(height: 10.0)),
+                                        ]
+                                            .divide(const SizedBox(height: 10.0))
+                                            .around(const SizedBox(height: 10.0)),
                                       ),
                                     ),
                                   ),
@@ -2787,7 +2792,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                       0.0));
                                                       _model.isReFTPClicked =
                                                           true;
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                       await actions
                                                           .saveBlobToBucket(
                                                         widget.taskId,
@@ -2817,7 +2822,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       });
                                                       _model.isReFTPClicked =
                                                           false;
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                       if (_model.isFtpSaved!) {
                                                         context.pushNamed(
                                                           'successProfile',
@@ -2875,7 +2880,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                         );
                                                       }
 
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     },
                                               text: FFLocalizations.of(context)
                                                   .getText(
@@ -2900,7 +2905,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             0.0, 0.0, 0.0, 0.0),
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .warning,
+                                                        .tertiary,
                                                 textStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .titleSmall
@@ -3062,7 +3067,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                         alignment: const AlignmentDirectional(0.0, 0.0),
                         child: wrapWithModel(
                           model: _model.savingModeModel,
-                          updateCallback: () => setState(() {}),
+                          updateCallback: () => safeSetState(() {}),
                           child: const SavingModeWidget(
                             savingWhat: 'Loading...',
                           ),

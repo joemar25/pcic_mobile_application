@@ -38,13 +38,6 @@ class FileReadRow extends SupabaseDataRow {
   String? get syncStatus => getField<String>('sync_status');
   set syncStatus(String? value) => setField<String>('sync_status', value);
 
-  DateTime? get lastSyncedAt => getField<DateTime>('last_synced_at');
-  set lastSyncedAt(DateTime? value) =>
-      setField<DateTime>('last_synced_at', value);
-
-  String? get localId => getField<String>('local_id');
-  set localId(String? value) => setField<String>('local_id', value);
-
   bool? get isDirty => getField<bool>('is_dirty');
   set isDirty(bool? value) => setField<bool>('is_dirty', value);
 }

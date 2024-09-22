@@ -145,7 +145,7 @@ class _UserChatsWidgetState extends State<UserChatsWidget> {
                               },
                             );
 
-                            setState(() {});
+                            safeSetState(() {});
                           },
                           child: Row(
                             mainAxisSize: MainAxisSize.max,

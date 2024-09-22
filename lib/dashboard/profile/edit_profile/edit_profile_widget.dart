@@ -104,7 +104,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                 children: [
                   wrapWithModel(
                     model: _model.connectivityModel,
-                    updateCallback: () => setState(() {}),
+                    updateCallback: () => safeSetState(() {}),
                     child: const ConnectivityWidget(),
                   ),
                 ],
@@ -217,7 +217,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                     validateFileFormat(
                                                         m.storagePath,
                                                         context))) {
-                                              setState(() => _model
+                                              safeSetState(() => _model
                                                   .isDataUploading = true);
                                               var selectedUploadedFiles =
                                                   <FFUploadedFile>[];
@@ -258,7 +258,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                       selectedMedia.length &&
                                                   downloadUrls.length ==
                                                       selectedMedia.length) {
-                                                setState(() {
+                                                safeSetState(() {
                                                   _model.uploadedLocalFile =
                                                       selectedUploadedFiles
                                                           .first;
@@ -266,7 +266,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                       downloadUrls.first;
                                                 });
                                               } else {
-                                                setState(() {});
+                                                safeSetState(() {});
                                                 return;
                                               }
                                             }
@@ -304,18 +304,20 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                     .override(
                                       fontFamily: 'Readex Pro',
                                       letterSpacing: 0.0,
-                                      fontWeight: FontWeight.normal,
                                     ),
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
                                       fontFamily: 'Readex Pro',
+                                      color:
+                                          FlutterFlowTheme.of(context).accent4,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.normal,
                                     ),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).primary,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
                                     width: 2.0,
                                   ),
                                   borderRadius: BorderRadius.circular(12.0),
@@ -345,15 +347,16 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                 fillColor: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
                                 contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 10.0, 15.0, 10.0),
+                                    15.0, 20.0, 15.0, 20.0),
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Readex Pro',
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
-                                    lineHeight: 2.5,
                                   ),
                               validator: _model
                                   .displayNameTextControllerValidator
@@ -424,7 +427,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                       );
                                     }
 
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                   text: FFLocalizations.of(context).getText(
                                     'ntj2ozhk' /* Save Changes */,
@@ -447,6 +450,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                         ),
                                     elevation: 0.0,
                                     borderSide: const BorderSide(
+                                      color: Colors.transparent,
                                       width: 1.0,
                                     ),
                                     borderRadius: BorderRadius.circular(12.0),

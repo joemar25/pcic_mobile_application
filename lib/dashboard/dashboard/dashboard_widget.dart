@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/empty_lists/empty_lists_widget.dart';
 import '/utils/components/page_loader/page_loader_widget.dart';
@@ -51,14 +52,15 @@ class _DashboardWidgetState extends State<DashboardWidget>
       _model.isDirtyCounter = await actions.isDirtyCount();
       _model.statusOutput =
           _model.isDirtyCounter != '0' ? 'Tap to update' : 'Tasks are updated';
-      setState(() {});
+      safeSetState(() {});
       if (FFAppState().ONLINE && (_model.isDirtyCounter != '0')) {
         _model.statusOutput = 'Syncing...';
         _model.isSyncDone = false;
-        setState(() {});
+        safeSetState(() {});
         _model.messagexxxx = await actions.syncOnlineTaskAndPpirToOffline();
         _model.statusOutput = 'Tasks are updated';
-        setState(() {});
+        _model.isSyncDone = true;
+        safeSetState(() {});
       }
     });
 
@@ -66,7 +68,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
       vsync: this,
       length: 3,
       initialIndex: 1,
-    )..addListener(() => setState(() {}));
+    )..addListener(() => safeSetState(() {}));
     animationsMap.addAll({
       'circleImageOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
@@ -127,7 +129,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
           return Scaffold(
-            backgroundColor: FlutterFlowTheme.of(context).primary,
+            backgroundColor: FlutterFlowTheme.of(context).accent1,
             body: const PageLoaderWidget(),
           );
         }
@@ -139,14 +141,14 @@ class _DashboardWidgetState extends State<DashboardWidget>
             onWillPop: () async => false,
             child: Scaffold(
               key: scaffoldKey,
-              backgroundColor: FlutterFlowTheme.of(context).primary,
+              backgroundColor: FlutterFlowTheme.of(context).accent1,
               body: Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 60.0, 0.0, 0.0),
                 child: Container(
                   width: double.infinity,
                   height: double.infinity,
                   decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).primary,
+                    color: FlutterFlowTheme.of(context).accent1,
                   ),
                   child: Stack(
                     children: [
@@ -174,7 +176,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                           Icon(
                                             Icons.home_rounded,
                                             color: FlutterFlowTheme.of(context)
-                                                .primaryBackground,
+                                                .info,
                                             size: 34.0,
                                           ),
                                           Text(
@@ -187,7 +189,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                   fontFamily: 'Inter',
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .primaryBackground,
+                                                      .info,
                                                   fontSize: 28.0,
                                                   letterSpacing: 0.0,
                                                 ),
@@ -215,16 +217,16 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                     _model.statusOutput =
                                                         'Syncing...';
                                                     _model.isSyncDone = false;
-                                                    setState(() {});
+                                                    safeSetState(() {});
                                                     _model.message = await actions
                                                         .syncOnlineTaskAndPpirToOffline();
                                                     _model.statusOutput =
                                                         'Tasks are updated';
                                                     _model.isSyncDone = true;
-                                                    setState(() {});
+                                                    safeSetState(() {});
                                                   }
 
-                                                  setState(() {});
+                                                  safeSetState(() {});
                                                 },
                                                 child: Text(
                                                   '[ ${_model.statusOutput} ]',
@@ -237,7 +239,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .accent4,
+                                                                .info,
                                                         fontSize: 12.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
@@ -269,7 +271,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                     ),
                                     wrapWithModel(
                                       model: _model.connectivityModel,
-                                      updateCallback: () => setState(() {}),
+                                      updateCallback: () => safeSetState(() {}),
                                       child: const ConnectivityWidget(),
                                     ),
                                   ],
@@ -300,7 +302,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                     Container(
                                       width: double.infinity,
                                       decoration: BoxDecoration(
-                                        color: const Color(0x3F53D84B),
+                                        color: FlutterFlowTheme.of(context)
+                                            .alternate,
                                         borderRadius:
                                             BorderRadius.circular(12.0),
                                       ),
@@ -573,7 +576,34 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
-                                                  setState(() {});
+                                                  if (dashboardOFFLINESelectAllTasksByAssigneeRowList
+                                                          .where((e) =>
+                                                              e.status ==
+                                                              'for dispatch')
+                                                          .toList().isNotEmpty) {
+                                                    context.pushNamed(
+                                                      'allTasks',
+                                                      queryParameters: {
+                                                        'taskStatus':
+                                                            serializeParam(
+                                                          'for dispatch',
+                                                          ParamType.String,
+                                                        ),
+                                                      }.withoutNulls,
+                                                      extra: <String, dynamic>{
+                                                        kTransitionInfoKey:
+                                                            const TransitionInfo(
+                                                          hasTransition: true,
+                                                          transitionType:
+                                                              PageTransitionType
+                                                                  .fade,
+                                                          duration: Duration(
+                                                              milliseconds:
+                                                                  300),
+                                                        ),
+                                                      },
+                                                    );
+                                                  }
                                                 },
                                                 child: Material(
                                                   color: Colors.transparent,
@@ -627,6 +657,9 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                 .override(
                                                                   fontFamily:
                                                                       'Inter',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .info,
                                                                   fontSize:
                                                                       30.0,
                                                                   letterSpacing:
@@ -648,6 +681,9 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                   .toList()
                                                                   .length
                                                                   .toString(),
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
                                                             ),
                                                           ),
                                                           Icon(
@@ -699,239 +735,325 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                   'containerOnPageLoadAnimation1']!),
                                             ),
                                             Expanded(
-                                              child: Material(
-                                                color: Colors.transparent,
-                                                elevation: 10.0,
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
-                                                ),
-                                                child: Container(
-                                                  width:
-                                                      MediaQuery.sizeOf(context)
-                                                              .width *
-                                                          0.3,
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
+                                              child: InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  if (dashboardOFFLINESelectAllTasksByAssigneeRowList
+                                                          .where((e) =>
+                                                              e.status ==
+                                                              'ongoing')
+                                                          .toList().isNotEmpty) {
+                                                    context.pushNamed(
+                                                      'allTasks',
+                                                      queryParameters: {
+                                                        'taskStatus':
+                                                            serializeParam(
+                                                          'ongoing',
+                                                          ParamType.String,
+                                                        ),
+                                                      }.withoutNulls,
+                                                      extra: <String, dynamic>{
+                                                        kTransitionInfoKey:
+                                                            const TransitionInfo(
+                                                          hasTransition: true,
+                                                          transitionType:
+                                                              PageTransitionType
+                                                                  .fade,
+                                                          duration: Duration(
+                                                              milliseconds:
+                                                                  300),
+                                                        ),
+                                                      },
+                                                    );
+                                                  }
+                                                },
+                                                child: Material(
+                                                  color: Colors.transparent,
+                                                  elevation: 10.0,
+                                                  shape: RoundedRectangleBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8.0),
-                                                    border: Border.all(
+                                                  ),
+                                                  child: Container(
+                                                    width: MediaQuery.sizeOf(
+                                                                context)
+                                                            .width *
+                                                        0.3,
+                                                    decoration: BoxDecoration(
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .primary,
-                                                      width: 2.0,
-                                                    ),
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(12.0),
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        AnimatedDefaultTextStyle(
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .displaySmall
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Inter',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                                fontSize: 30.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                              ),
-                                                          duration: const Duration(
-                                                              milliseconds:
-                                                                  600),
-                                                          curve: Curves.easeIn,
-                                                          child: Text(
-                                                            dashboardOFFLINESelectAllTasksByAssigneeRowList
-                                                                .where((e) =>
-                                                                    e.status ==
-                                                                    'ongoing')
-                                                                .toList()
-                                                                .length
-                                                                .toString(),
-                                                          ),
-                                                        ),
-                                                        Icon(
-                                                          Icons
-                                                              .incomplete_circle,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          size: 15.0,
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      4.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            FFLocalizations.of(
+                                                              .accent1,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                      border: Border.all(
+                                                        color:
+                                                            FlutterFlowTheme.of(
                                                                     context)
-                                                                .getText(
-                                                              'qvw65nm7' /* Ongoing */,
-                                                            ),
+                                                                .accent1,
+                                                        width: 2.0,
+                                                      ),
+                                                    ),
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(12.0),
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          AnimatedDefaultTextStyle(
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .labelMedium
+                                                                .displaySmall
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Inter',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .primaryText,
+                                                                      .info,
                                                                   fontSize:
-                                                                      10.0,
+                                                                      30.0,
                                                                   letterSpacing:
                                                                       0.0,
                                                                   fontWeight:
                                                                       FontWeight
-                                                                          .w600,
+                                                                          .bold,
                                                                 ),
+                                                            duration: const Duration(
+                                                                milliseconds:
+                                                                    600),
+                                                            curve:
+                                                                Curves.easeIn,
+                                                            child: Text(
+                                                              dashboardOFFLINESelectAllTasksByAssigneeRowList
+                                                                  .where((e) =>
+                                                                      e.status ==
+                                                                      'ongoing')
+                                                                  .toList()
+                                                                  .length
+                                                                  .toString(),
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                            ),
                                                           ),
-                                                        ),
-                                                      ],
+                                                          Icon(
+                                                            Icons
+                                                                .incomplete_circle,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryText,
+                                                            size: 15.0,
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        4.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child: Text(
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .getText(
+                                                                'qvw65nm7' /* Ongoing */,
+                                                              ),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .labelMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryText,
+                                                                    fontSize:
+                                                                        10.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
                                               ),
                                             ),
                                             Expanded(
-                                              child: Material(
-                                                color: Colors.transparent,
-                                                elevation: 10.0,
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
-                                                ),
-                                                child: Container(
-                                                  width:
-                                                      MediaQuery.sizeOf(context)
-                                                              .width *
-                                                          0.3,
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .tertiary,
+                                              child: InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  if (dashboardOFFLINESelectAllTasksByAssigneeRowList
+                                                          .where((e) =>
+                                                              e.status ==
+                                                              'completed')
+                                                          .toList().isNotEmpty) {
+                                                    context.pushNamed(
+                                                      'allTasks',
+                                                      queryParameters: {
+                                                        'taskStatus':
+                                                            serializeParam(
+                                                          'completed',
+                                                          ParamType.String,
+                                                        ),
+                                                      }.withoutNulls,
+                                                      extra: <String, dynamic>{
+                                                        kTransitionInfoKey:
+                                                            const TransitionInfo(
+                                                          hasTransition: true,
+                                                          transitionType:
+                                                              PageTransitionType
+                                                                  .fade,
+                                                          duration: Duration(
+                                                              milliseconds:
+                                                                  300),
+                                                        ),
+                                                      },
+                                                    );
+                                                  }
+                                                },
+                                                child: Material(
+                                                  color: Colors.transparent,
+                                                  elevation: 10.0,
+                                                  shape: RoundedRectangleBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8.0),
-                                                    border: Border.all(
+                                                  ),
+                                                  child: Container(
+                                                    width: MediaQuery.sizeOf(
+                                                                context)
+                                                            .width *
+                                                        0.3,
+                                                    decoration: BoxDecoration(
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .tertiary,
-                                                      width: 2.0,
-                                                    ),
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(12.0),
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        AnimatedDefaultTextStyle(
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .displaySmall
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Inter',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                                fontSize: 30.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                              ),
-                                                          duration: const Duration(
-                                                              milliseconds:
-                                                                  600),
-                                                          curve: Curves.easeIn,
-                                                          child: Text(
-                                                            dashboardOFFLINESelectAllTasksByAssigneeRowList
-                                                                .where((e) =>
-                                                                    e.status ==
-                                                                    'completed')
-                                                                .toList()
-                                                                .length
-                                                                .toString(),
-                                                          ),
-                                                        ),
-                                                        Icon(
-                                                          Icons.check_circle,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          size: 15.0,
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      4.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            FFLocalizations.of(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                      border: Border.all(
+                                                        color:
+                                                            FlutterFlowTheme.of(
                                                                     context)
-                                                                .getText(
-                                                              'gtnjyr06' /* Completed */,
-                                                            ),
+                                                                .tertiary,
+                                                        width: 2.0,
+                                                      ),
+                                                    ),
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(12.0),
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          AnimatedDefaultTextStyle(
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .labelMedium
+                                                                .displaySmall
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Readex Pro',
+                                                                      'Inter',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .primaryText,
+                                                                      .info,
                                                                   fontSize:
-                                                                      10.0,
+                                                                      30.0,
                                                                   letterSpacing:
                                                                       0.0,
                                                                   fontWeight:
                                                                       FontWeight
-                                                                          .w600,
+                                                                          .bold,
                                                                 ),
+                                                            duration: const Duration(
+                                                                milliseconds:
+                                                                    600),
+                                                            curve:
+                                                                Curves.easeIn,
+                                                            child: Text(
+                                                              dashboardOFFLINESelectAllTasksByAssigneeRowList
+                                                                  .where((e) =>
+                                                                      e.status ==
+                                                                      'completed')
+                                                                  .toList()
+                                                                  .length
+                                                                  .toString(),
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                            ),
                                                           ),
-                                                        ),
-                                                      ],
+                                                          Icon(
+                                                            Icons.check_circle,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryText,
+                                                            size: 15.0,
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        4.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child: Text(
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .getText(
+                                                                'gtnjyr06' /* Completed */,
+                                                              ),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .labelMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryText,
+                                                                    fontSize:
+                                                                        10.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
@@ -1008,7 +1130,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .primary,
+                                                                .accent1,
                                                       ),
                                                     ),
                                                     Tab(
@@ -1043,296 +1165,557 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                   controller:
                                                       _model.tabBarController,
                                                   children: [
-                                                    Row(
+                                                    Column(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
                                                       children: [
                                                         Expanded(
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        12.0,
-                                                                        0.0,
-                                                                        12.0),
-                                                            child: Builder(
-                                                              builder:
-                                                                  (context) {
-                                                                final forDispatchTasks = dashboardOFFLINESelectAllTasksByAssigneeRowList
-                                                                    .where((e) =>
-                                                                        e.status ==
-                                                                        'for dispatch')
-                                                                    .toList();
-                                                                if (forDispatchTasks
-                                                                    .isEmpty) {
-                                                                  return const Center(
+                                                          child: Builder(
+                                                            builder: (context) {
+                                                              final forDispatchTasks =
+                                                                  dashboardOFFLINESelectAllTasksByAssigneeRowList
+                                                                      .where((e) =>
+                                                                          e.status ==
+                                                                          'for dispatch')
+                                                                      .toList()
+                                                                      .take(5)
+                                                                      .toList();
+                                                              if (forDispatchTasks
+                                                                  .isEmpty) {
+                                                                return const Center(
+                                                                  child:
+                                                                      EmptyListsWidget(
+                                                                    type:
+                                                                        'Dispatch Tasks',
+                                                                  ),
+                                                                );
+                                                              }
+
+                                                              return ListView
+                                                                  .separated(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .zero,
+                                                                primary: false,
+                                                                shrinkWrap:
+                                                                    true,
+                                                                scrollDirection:
+                                                                    Axis.vertical,
+                                                                itemCount:
+                                                                    forDispatchTasks
+                                                                        .length,
+                                                                separatorBuilder: (_,
+                                                                        __) =>
+                                                                    const SizedBox(
+                                                                        height:
+                                                                            15.0),
+                                                                itemBuilder:
+                                                                    (context,
+                                                                        forDispatchTasksIndex) {
+                                                                  final forDispatchTasksItem =
+                                                                      forDispatchTasks[
+                                                                          forDispatchTasksIndex];
+                                                                  return Align(
+                                                                    alignment:
+                                                                        const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
                                                                     child:
-                                                                        EmptyListsWidget(
-                                                                      type:
-                                                                          'Dispatch Tasks',
+                                                                        wrapWithModel(
+                                                                      model: _model
+                                                                          .tasksModels1
+                                                                          .getModel(
+                                                                        forDispatchTasksIndex
+                                                                            .toString(),
+                                                                        forDispatchTasksIndex,
+                                                                      ),
+                                                                      updateCallback:
+                                                                          () =>
+                                                                              safeSetState(() {}),
+                                                                      updateOnChange:
+                                                                          true,
+                                                                      child:
+                                                                          TasksWidget(
+                                                                        key:
+                                                                            Key(
+                                                                          'Key6rs_${forDispatchTasksIndex.toString()}',
+                                                                        ),
+                                                                        task: forDispatchTasksItem
+                                                                            .id!,
+                                                                        status:
+                                                                            forDispatchTasksItem.status!,
+                                                                        index:
+                                                                            forDispatchTasksIndex,
+                                                                      ),
                                                                     ),
                                                                   );
-                                                                }
-
-                                                                return ListView
-                                                                    .separated(
-                                                                  padding:
-                                                                      EdgeInsets
-                                                                          .zero,
-                                                                  primary:
-                                                                      false,
-                                                                  scrollDirection:
-                                                                      Axis.vertical,
-                                                                  itemCount:
-                                                                      forDispatchTasks
-                                                                          .length,
-                                                                  separatorBuilder: (_,
-                                                                          __) =>
-                                                                      const SizedBox(
-                                                                          height:
-                                                                              15.0),
-                                                                  itemBuilder:
-                                                                      (context,
-                                                                          forDispatchTasksIndex) {
-                                                                    final forDispatchTasksItem =
-                                                                        forDispatchTasks[
-                                                                            forDispatchTasksIndex];
-                                                                    return Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          wrapWithModel(
-                                                                        model: _model
-                                                                            .tasksModels1
-                                                                            .getModel(
-                                                                          forDispatchTasksIndex
-                                                                              .toString(),
-                                                                          forDispatchTasksIndex,
-                                                                        ),
-                                                                        updateCallback:
-                                                                            () =>
-                                                                                setState(() {}),
-                                                                        updateOnChange:
-                                                                            true,
-                                                                        child:
-                                                                            TasksWidget(
-                                                                          key:
-                                                                              Key(
-                                                                            'Key6rs_${forDispatchTasksIndex.toString()}',
-                                                                          ),
-                                                                          task:
-                                                                              forDispatchTasksItem.id!,
-                                                                          status:
-                                                                              forDispatchTasksItem.status!,
-                                                                          index:
-                                                                              forDispatchTasksIndex,
-                                                                        ),
-                                                                      ),
-                                                                    );
-                                                                  },
-                                                                );
-                                                              },
-                                                            ),
+                                                                },
+                                                              );
+                                                            },
                                                           ),
                                                         ),
-                                                      ],
+                                                        if (dashboardOFFLINESelectAllTasksByAssigneeRowList
+                                                                .where((e) =>
+                                                                    e.status ==
+                                                                    'for dispatch')
+                                                                .toList()
+                                                                .length >
+                                                            5)
+                                                          FFButtonWidget(
+                                                            onPressed:
+                                                                () async {
+                                                              context.pushNamed(
+                                                                'allTasks',
+                                                                queryParameters:
+                                                                    {
+                                                                  'taskStatus':
+                                                                      serializeParam(
+                                                                    'for dispatch',
+                                                                    ParamType
+                                                                        .String,
+                                                                  ),
+                                                                }.withoutNulls,
+                                                                extra: <String,
+                                                                    dynamic>{
+                                                                  kTransitionInfoKey:
+                                                                      const TransitionInfo(
+                                                                    hasTransition:
+                                                                        true,
+                                                                    transitionType:
+                                                                        PageTransitionType
+                                                                            .fade,
+                                                                    duration: Duration(
+                                                                        milliseconds:
+                                                                            300),
+                                                                  ),
+                                                                },
+                                                              );
+                                                            },
+                                                            text: FFLocalizations
+                                                                    .of(context)
+                                                                .getText(
+                                                              'rtv7xf2z' /* View All */,
+                                                            ),
+                                                            options:
+                                                                FFButtonOptions(
+                                                              height: 40.0,
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          16.0,
+                                                                          0.0,
+                                                                          16.0,
+                                                                          0.0),
+                                                              iconPadding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              color: const Color(
+                                                                  0x00FFFFFF),
+                                                              textStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Readex Pro',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                      ),
+                                                              elevation: 0.0,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                              hoverTextColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondary,
+                                                            ),
+                                                            showLoadingIndicator:
+                                                                false,
+                                                          ),
+                                                      ]
+                                                          .divide(const SizedBox(
+                                                              height: 15.0))
+                                                          .around(const SizedBox(
+                                                              height: 15.0)),
                                                     ),
-                                                    Row(
+                                                    Column(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
                                                       children: [
                                                         Expanded(
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        12.0,
-                                                                        0.0,
-                                                                        12.0),
-                                                            child: Builder(
-                                                              builder:
-                                                                  (context) {
-                                                                final ongoingTasks = dashboardOFFLINESelectAllTasksByAssigneeRowList
-                                                                    .where((e) =>
-                                                                        e.status ==
-                                                                        'ongoing')
-                                                                    .toList();
-                                                                if (ongoingTasks
-                                                                    .isEmpty) {
-                                                                  return const Center(
+                                                          child: Builder(
+                                                            builder: (context) {
+                                                              final forDispatchTasks =
+                                                                  dashboardOFFLINESelectAllTasksByAssigneeRowList
+                                                                      .where((e) =>
+                                                                          e.status ==
+                                                                          'ongoing')
+                                                                      .toList()
+                                                                      .take(5)
+                                                                      .toList();
+                                                              if (forDispatchTasks
+                                                                  .isEmpty) {
+                                                                return const Center(
+                                                                  child:
+                                                                      EmptyListsWidget(
+                                                                    type:
+                                                                        'Ongoing Tasks',
+                                                                  ),
+                                                                );
+                                                              }
+
+                                                              return ListView
+                                                                  .separated(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .zero,
+                                                                primary: false,
+                                                                shrinkWrap:
+                                                                    true,
+                                                                scrollDirection:
+                                                                    Axis.vertical,
+                                                                itemCount:
+                                                                    forDispatchTasks
+                                                                        .length,
+                                                                separatorBuilder: (_,
+                                                                        __) =>
+                                                                    const SizedBox(
+                                                                        height:
+                                                                            15.0),
+                                                                itemBuilder:
+                                                                    (context,
+                                                                        forDispatchTasksIndex) {
+                                                                  final forDispatchTasksItem =
+                                                                      forDispatchTasks[
+                                                                          forDispatchTasksIndex];
+                                                                  return Align(
+                                                                    alignment:
+                                                                        const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
                                                                     child:
-                                                                        EmptyListsWidget(
-                                                                      type:
-                                                                          'Ongoing Tasks',
+                                                                        wrapWithModel(
+                                                                      model: _model
+                                                                          .tasksModels2
+                                                                          .getModel(
+                                                                        forDispatchTasksIndex
+                                                                            .toString(),
+                                                                        forDispatchTasksIndex,
+                                                                      ),
+                                                                      updateCallback:
+                                                                          () =>
+                                                                              safeSetState(() {}),
+                                                                      updateOnChange:
+                                                                          true,
+                                                                      child:
+                                                                          TasksWidget(
+                                                                        key:
+                                                                            Key(
+                                                                          'Keyjo5_${forDispatchTasksIndex.toString()}',
+                                                                        ),
+                                                                        task: forDispatchTasksItem
+                                                                            .id!,
+                                                                        status:
+                                                                            forDispatchTasksItem.status!,
+                                                                        index:
+                                                                            forDispatchTasksIndex,
+                                                                      ),
                                                                     ),
                                                                   );
-                                                                }
-
-                                                                return ListView
-                                                                    .separated(
-                                                                  padding:
-                                                                      EdgeInsets
-                                                                          .zero,
-                                                                  primary:
-                                                                      false,
-                                                                  scrollDirection:
-                                                                      Axis.vertical,
-                                                                  itemCount:
-                                                                      ongoingTasks
-                                                                          .length,
-                                                                  separatorBuilder: (_,
-                                                                          __) =>
-                                                                      const SizedBox(
-                                                                          height:
-                                                                              15.0),
-                                                                  itemBuilder:
-                                                                      (context,
-                                                                          ongoingTasksIndex) {
-                                                                    final ongoingTasksItem =
-                                                                        ongoingTasks[
-                                                                            ongoingTasksIndex];
-                                                                    return Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          wrapWithModel(
-                                                                        model: _model
-                                                                            .tasksModels2
-                                                                            .getModel(
-                                                                          ongoingTasksIndex
-                                                                              .toString(),
-                                                                          ongoingTasksIndex,
-                                                                        ),
-                                                                        updateCallback:
-                                                                            () =>
-                                                                                setState(() {}),
-                                                                        updateOnChange:
-                                                                            true,
-                                                                        child:
-                                                                            TasksWidget(
-                                                                          key:
-                                                                              Key(
-                                                                            'Keyxn6_${ongoingTasksIndex.toString()}',
-                                                                          ),
-                                                                          task:
-                                                                              ongoingTasksItem.id!,
-                                                                          status:
-                                                                              ongoingTasksItem.status!,
-                                                                          index:
-                                                                              ongoingTasksIndex,
-                                                                        ),
-                                                                      ),
-                                                                    );
-                                                                  },
-                                                                );
-                                                              },
-                                                            ),
+                                                                },
+                                                              );
+                                                            },
                                                           ),
                                                         ),
-                                                      ],
+                                                        if (dashboardOFFLINESelectAllTasksByAssigneeRowList
+                                                                .where((e) =>
+                                                                    e.status ==
+                                                                    'ongoing')
+                                                                .toList()
+                                                                .length >
+                                                            5)
+                                                          FFButtonWidget(
+                                                            onPressed:
+                                                                () async {
+                                                              context.pushNamed(
+                                                                'allTasks',
+                                                                queryParameters:
+                                                                    {
+                                                                  'taskStatus':
+                                                                      serializeParam(
+                                                                    'ongoing',
+                                                                    ParamType
+                                                                        .String,
+                                                                  ),
+                                                                }.withoutNulls,
+                                                                extra: <String,
+                                                                    dynamic>{
+                                                                  kTransitionInfoKey:
+                                                                      const TransitionInfo(
+                                                                    hasTransition:
+                                                                        true,
+                                                                    transitionType:
+                                                                        PageTransitionType
+                                                                            .fade,
+                                                                    duration: Duration(
+                                                                        milliseconds:
+                                                                            300),
+                                                                  ),
+                                                                },
+                                                              );
+                                                            },
+                                                            text: FFLocalizations
+                                                                    .of(context)
+                                                                .getText(
+                                                              'qkt2eqsh' /* View All */,
+                                                            ),
+                                                            options:
+                                                                FFButtonOptions(
+                                                              height: 40.0,
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          16.0,
+                                                                          0.0,
+                                                                          16.0,
+                                                                          0.0),
+                                                              iconPadding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              color: const Color(
+                                                                  0x00FFFFFF),
+                                                              textStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Readex Pro',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                      ),
+                                                              elevation: 0.0,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                              hoverTextColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondary,
+                                                            ),
+                                                            showLoadingIndicator:
+                                                                false,
+                                                          ),
+                                                      ]
+                                                          .divide(const SizedBox(
+                                                              height: 15.0))
+                                                          .around(const SizedBox(
+                                                              height: 15.0)),
                                                     ),
-                                                    Row(
+                                                    Column(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
                                                       children: [
                                                         Expanded(
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        12.0,
-                                                                        0.0,
-                                                                        12.0),
-                                                            child: Builder(
-                                                              builder:
-                                                                  (context) {
-                                                                final completedTasks = dashboardOFFLINESelectAllTasksByAssigneeRowList
-                                                                    .where((e) =>
-                                                                        e.status ==
-                                                                        'completed')
-                                                                    .toList();
-                                                                if (completedTasks
-                                                                    .isEmpty) {
-                                                                  return const Center(
+                                                          child: Builder(
+                                                            builder: (context) {
+                                                              final completedTasks =
+                                                                  dashboardOFFLINESelectAllTasksByAssigneeRowList
+                                                                      .where((e) =>
+                                                                          e.status ==
+                                                                          'completed')
+                                                                      .toList()
+                                                                      .take(5)
+                                                                      .toList();
+                                                              if (completedTasks
+                                                                  .isEmpty) {
+                                                                return const Center(
+                                                                  child:
+                                                                      EmptyListsWidget(
+                                                                    type:
+                                                                        'Completed Tasks',
+                                                                  ),
+                                                                );
+                                                              }
+
+                                                              return ListView
+                                                                  .separated(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .zero,
+                                                                primary: false,
+                                                                shrinkWrap:
+                                                                    true,
+                                                                scrollDirection:
+                                                                    Axis.vertical,
+                                                                itemCount:
+                                                                    completedTasks
+                                                                        .length,
+                                                                separatorBuilder: (_,
+                                                                        __) =>
+                                                                    const SizedBox(
+                                                                        height:
+                                                                            15.0),
+                                                                itemBuilder:
+                                                                    (context,
+                                                                        completedTasksIndex) {
+                                                                  final completedTasksItem =
+                                                                      completedTasks[
+                                                                          completedTasksIndex];
+                                                                  return Align(
+                                                                    alignment:
+                                                                        const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
                                                                     child:
-                                                                        EmptyListsWidget(
-                                                                      type:
-                                                                          'Completed Tasks',
+                                                                        wrapWithModel(
+                                                                      model: _model
+                                                                          .tasksModels3
+                                                                          .getModel(
+                                                                        completedTasksIndex
+                                                                            .toString(),
+                                                                        completedTasksIndex,
+                                                                      ),
+                                                                      updateCallback:
+                                                                          () =>
+                                                                              safeSetState(() {}),
+                                                                      updateOnChange:
+                                                                          true,
+                                                                      child:
+                                                                          TasksWidget(
+                                                                        key:
+                                                                            Key(
+                                                                          'Keyim2_${completedTasksIndex.toString()}',
+                                                                        ),
+                                                                        task: completedTasksItem
+                                                                            .id!,
+                                                                        status:
+                                                                            completedTasksItem.status!,
+                                                                        index:
+                                                                            completedTasksIndex,
+                                                                      ),
                                                                     ),
                                                                   );
-                                                                }
-
-                                                                return ListView
-                                                                    .separated(
-                                                                  padding:
-                                                                      EdgeInsets
-                                                                          .zero,
-                                                                  primary:
-                                                                      false,
-                                                                  scrollDirection:
-                                                                      Axis.vertical,
-                                                                  itemCount:
-                                                                      completedTasks
-                                                                          .length,
-                                                                  separatorBuilder: (_,
-                                                                          __) =>
-                                                                      const SizedBox(
-                                                                          height:
-                                                                              15.0),
-                                                                  itemBuilder:
-                                                                      (context,
-                                                                          completedTasksIndex) {
-                                                                    final completedTasksItem =
-                                                                        completedTasks[
-                                                                            completedTasksIndex];
-                                                                    return Align(
-                                                                      alignment:
-                                                                          const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          wrapWithModel(
-                                                                        model: _model
-                                                                            .tasksModels3
-                                                                            .getModel(
-                                                                          completedTasksIndex
-                                                                              .toString(),
-                                                                          completedTasksIndex,
-                                                                        ),
-                                                                        updateCallback:
-                                                                            () =>
-                                                                                setState(() {}),
-                                                                        updateOnChange:
-                                                                            true,
-                                                                        child:
-                                                                            TasksWidget(
-                                                                          key:
-                                                                              Key(
-                                                                            'Keyim2_${completedTasksIndex.toString()}',
-                                                                          ),
-                                                                          task:
-                                                                              completedTasksItem.id!,
-                                                                          status:
-                                                                              completedTasksItem.status!,
-                                                                          index:
-                                                                              completedTasksIndex,
-                                                                        ),
-                                                                      ),
-                                                                    );
-                                                                  },
-                                                                );
-                                                              },
-                                                            ),
+                                                                },
+                                                              );
+                                                            },
                                                           ),
                                                         ),
-                                                      ],
+                                                        if (dashboardOFFLINESelectAllTasksByAssigneeRowList
+                                                                .where((e) =>
+                                                                    e.status ==
+                                                                    'completed')
+                                                                .toList()
+                                                                .length >
+                                                            5)
+                                                          FFButtonWidget(
+                                                            onPressed:
+                                                                () async {
+                                                              context.pushNamed(
+                                                                'allTasks',
+                                                                queryParameters:
+                                                                    {
+                                                                  'taskStatus':
+                                                                      serializeParam(
+                                                                    'for dispatch',
+                                                                    ParamType
+                                                                        .String,
+                                                                  ),
+                                                                }.withoutNulls,
+                                                                extra: <String,
+                                                                    dynamic>{
+                                                                  kTransitionInfoKey:
+                                                                      const TransitionInfo(
+                                                                    hasTransition:
+                                                                        true,
+                                                                    transitionType:
+                                                                        PageTransitionType
+                                                                            .fade,
+                                                                    duration: Duration(
+                                                                        milliseconds:
+                                                                            300),
+                                                                  ),
+                                                                },
+                                                              );
+                                                            },
+                                                            text: FFLocalizations
+                                                                    .of(context)
+                                                                .getText(
+                                                              't3rlbw2l' /* View All */,
+                                                            ),
+                                                            options:
+                                                                FFButtonOptions(
+                                                              height: 40.0,
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          16.0,
+                                                                          0.0,
+                                                                          16.0,
+                                                                          0.0),
+                                                              iconPadding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              color: const Color(
+                                                                  0x00FFFFFF),
+                                                              textStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Readex Pro',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                      ),
+                                                              elevation: 0.0,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                              hoverTextColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondary,
+                                                            ),
+                                                            showLoadingIndicator:
+                                                                false,
+                                                          ),
+                                                      ]
+                                                          .divide(const SizedBox(
+                                                              height: 15.0))
+                                                          .around(const SizedBox(
+                                                              height: 15.0)),
                                                     ),
                                                   ],
                                                 ),
@@ -1352,7 +1735,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                       if (_model.isSyncDone == false)
                         wrapWithModel(
                           model: _model.savingModeModel,
-                          updateCallback: () => setState(() {}),
+                          updateCallback: () => safeSetState(() {}),
                           child: const SavingModeWidget(
                             savingWhat: 'Loading...',
                           ),

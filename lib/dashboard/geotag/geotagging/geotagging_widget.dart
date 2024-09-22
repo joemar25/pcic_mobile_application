@@ -65,15 +65,15 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
       );
       _model.isGeotagStart = false;
       _model.isFinished = false;
-      setState(() {});
+      safeSetState(() {});
       if (FFAppState().ONLINE) {
         FFAppState().mapLoadedWithInternet = true;
-        setState(() {});
+        safeSetState(() {});
       }
     });
 
     getCurrentUserLocation(defaultLocation: const LatLng(0.0, 0.0), cached: true)
-        .then((loc) => setState(() => currentUserLocationValue = loc));
+        .then((loc) => safeSetState(() => currentUserLocationValue = loc));
     animationsMap.addAll({
       'iconOnPageLoadAnimation': AnimationInfo(
         loop: true,
@@ -146,7 +146,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                               onTap: () async {
                                 if (FFAppState().ONLINE) {
                                   FFAppState().mapLoadedWithInternet = true;
-                                  setState(() {});
+                                  safeSetState(() {});
                                 }
                               },
                               child: SizedBox(
@@ -188,10 +188,12 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                               buttonSize: 40.0,
                                               fillColor:
                                                   FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              icon: const Icon(
+                                                      .accent1,
+                                              icon: Icon(
                                                 Icons.chevron_left_rounded,
-                                                color: Colors.white,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .info,
                                                 size: 20.0,
                                               ),
                                               onPressed: () async {
@@ -280,7 +282,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                                     false;
                                                 FFAppState().update(() {});
 
-                                                setState(() {});
+                                                safeSetState(() {});
                                               },
                                             ),
                                           ),
@@ -314,7 +316,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                     .override(
                                       fontFamily: 'Inter',
                                       color:
-                                          FlutterFlowTheme.of(context).primary,
+                                          FlutterFlowTheme.of(context).accent1,
                                       letterSpacing: 0.0,
                                     ),
                               ),
@@ -322,7 +324,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                 height: 32.0,
                                 decoration: BoxDecoration(
                                   color: _model.isGeotagStart == false
-                                      ? FlutterFlowTheme.of(context).primary
+                                      ? FlutterFlowTheme.of(context).accent1
                                       : FlutterFlowTheme.of(context).warning,
                                   borderRadius: BorderRadius.circular(12.0),
                                   border: Border.all(
@@ -387,20 +389,28 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                           letterSpacing: 0.0,
                                         ),
                                   ),
-                                  Text(
-                                    FFAppState().ONLINE
-                                        ? valueOrDefault<String>(
-                                            functions.getAddress(_model
-                                                .getCurrentLocationAddress),
-                                            '{}',
-                                          )
-                                        : 'No Adress to fetch because you are offline.',
-                                    style: FlutterFlowTheme.of(context)
-                                        .labelSmall
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0.0,
+                                  SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Text(
+                                          FFAppState().ONLINE
+                                              ? valueOrDefault<String>(
+                                                  functions.getAddress(_model
+                                                      .getCurrentLocationAddress),
+                                                  '{}',
+                                                )
+                                              : 'No Adress to fetch because you are offline.',
+                                          style: FlutterFlowTheme.of(context)
+                                              .labelSmall
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                letterSpacing: 0.0,
+                                              ),
                                         ),
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),
@@ -501,9 +511,9 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                       if (FFAppState().ONLINE) {
                         _model.isGeotagStart = true;
                         _model.isFinished = false;
-                        setState(() {});
+                        safeSetState(() {});
                         FFAppState().routeStarted = true;
-                        setState(() {});
+                        safeSetState(() {});
                         unawaited(
                           () async {
                             await UserLogsTable().insert({
@@ -517,9 +527,9 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                       } else {
                         _model.isGeotagStart = true;
                         _model.isFinished = false;
-                        setState(() {});
+                        safeSetState(() {});
                         FFAppState().routeStarted = true;
-                        setState(() {});
+                        safeSetState(() {});
                       }
                     }
                   },
@@ -528,7 +538,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                     height: 80.0,
                     decoration: BoxDecoration(
                       color: _model.isGeotagStart == false
-                          ? FlutterFlowTheme.of(context).primary
+                          ? FlutterFlowTheme.of(context).accent1
                           : FlutterFlowTheme.of(context).warning,
                       boxShadow: const [
                         BoxShadow(
@@ -595,7 +605,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                     currentUserLocationValue = await getCurrentUserLocation(
                         defaultLocation: const LatLng(0.0, 0.0));
                     FFAppState().routeStarted = false;
-                    setState(() {});
+                    safeSetState(() {});
                     if (FFAppState().ONLINE) {
                       unawaited(
                         () async {
@@ -624,7 +634,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                     );
                     _model.isGeotagStart = false;
                     _model.isFinished = true;
-                    setState(() {});
+                    safeSetState(() {});
 
                     context.pushNamed(
                       'gpxSuccess',
@@ -649,7 +659,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                     height: 80.0,
                     decoration: BoxDecoration(
                       color: _model.isGeotagStart == false
-                          ? FlutterFlowTheme.of(context).primary
+                          ? FlutterFlowTheme.of(context).accent1
                           : FlutterFlowTheme.of(context).warning,
                       boxShadow: const [
                         BoxShadow(
