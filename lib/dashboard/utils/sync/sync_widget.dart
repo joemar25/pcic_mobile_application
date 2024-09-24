@@ -185,6 +185,24 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
                                 .oFFLINESelectREGIONCODE(
                               id: syncSelectProfileRowList.first.regionId,
                             );
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  valueOrDefault<String>(
+                                    _model.regionCode?.first.regionCode,
+                                    'vvv',
+                                  ),
+                                  style: GoogleFonts.getFont(
+                                    'Roboto',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                                ),
+                                duration: const Duration(milliseconds: 4000),
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).secondary,
+                              ),
+                            );
                             _model.isSyced = await actions.syncFromFTP(
                               _model.regionCode?.first.regionCode,
                             );
