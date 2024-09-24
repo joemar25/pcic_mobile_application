@@ -622,7 +622,7 @@ Future performOfflineInsertUsers(
   String? regionId,
 }) {
   final query = '''
-INSERT OR REPLACE INTO public.users (
+INSERT OR REPLACE INTO users (
     id,
     role,
     email,
