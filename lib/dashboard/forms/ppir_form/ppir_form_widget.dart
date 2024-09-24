@@ -1980,7 +1980,14 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                             .instance
                                                             .sELECTRiceSEEDS(
                                                           regionId:
-                                                              '256c6ab8-65b9-4574-a19b-bfe8b34cee51',
+                                                              valueOrDefault<
+                                                                  String>(
+                                                            _model
+                                                                .profile
+                                                                ?.first
+                                                                .regionId,
+                                                            '256c6ab8-65b9-4574-a19b-bfe8b34cee51',
+                                                          ),
                                                         ),
                                                         builder: (context,
                                                             snapshot) {
@@ -2182,7 +2189,14 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                             .instance
                                                             .sELECTCornSEEDS(
                                                           regionId:
-                                                              '256c6ab8-65b9-4574-a19b-bfe8b34cee51',
+                                                              valueOrDefault<
+                                                                  String>(
+                                                            _model
+                                                                .profile
+                                                                ?.first
+                                                                .regionId,
+                                                            '256c6ab8-65b9-4574-a19b-bfe8b34cee51',
+                                                          ),
                                                         ),
                                                         builder: (context,
                                                             snapshot) {

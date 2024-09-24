@@ -1,8 +1,6 @@
-import '/backend/supabase/supabase.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'chat_list_container_model.dart';
@@ -12,11 +10,11 @@ class ChatListContainerWidget extends StatefulWidget {
   const ChatListContainerWidget({
     super.key,
     required this.chatId,
-    required this.receiverId,
+    required this.userId,
   });
 
   final String? chatId;
-  final String? receiverId;
+  final String? userId;
 
   @override
   State<ChatListContainerWidget> createState() =>
@@ -47,14 +45,9 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<MessagesRow>>(
-      future: MessagesTable().querySingleRow(
-        queryFn: (q) => q
-            .eq(
-              'chat_id',
-              widget.chatId,
-            )
-            .order('timestamp'),
+    return FutureBuilder<ApiCallResponse>(
+      future: GetUserLastConversationsCall.call(
+        pUserId: widget.userId,
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
@@ -70,11 +63,7 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
             ),
           );
         }
-        List<MessagesRow> containerMessagesRowList = snapshot.data!;
-
-        final containerMessagesRow = containerMessagesRowList.isNotEmpty
-            ? containerMessagesRowList.first
-            : null;
+        final containerGetUserLastConversationsResponse = snapshot.data!;
 
         return InkWell(
           splashColor: Colors.transparent,
@@ -86,11 +75,13 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
               'messages',
               queryParameters: {
                 'chatId': serializeParam(
-                  containerMessagesRow?.chatId,
+                  GetUserLastConversationsCall.chatId(
+                    containerGetUserLastConversationsResponse.jsonBody,
+                  )?.first,
                   ParamType.String,
                 ),
                 'recieverId': serializeParam(
-                  widget.receiverId,
+                  widget.userId,
                   ParamType.String,
                 ),
               }.withoutNulls,
@@ -107,143 +98,76 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(0.0),
             ),
-            child: FutureBuilder<List<UsersRow>>(
-              future: UsersTable().querySingleRow(
-                queryFn: (q) => q.eq(
-                  'id',
-                  widget.receiverId,
-                ),
-              ),
-              builder: (context, snapshot) {
-                // Customize what your widget looks like when it's loading.
-                if (!snapshot.hasData) {
-                  return Center(
-                    child: SizedBox(
-                      width: 100.0,
-                      height: 100.0,
-                      child: SpinKitRipple(
-                        color: FlutterFlowTheme.of(context).primary,
-                        size: 100.0,
-                      ),
-                    ),
-                  );
-                }
-                List<UsersRow> rowUsersRowList = snapshot.data!;
-
-                final rowUsersRow =
-                    rowUsersRowList.isNotEmpty ? rowUsersRowList.first : null;
-
-                return Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 60.0,
-                      height: 60.0,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).accent1,
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: FlutterFlowTheme.of(context).primary,
-                          width: 2.0,
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(2.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(40.0),
-                          child: CachedNetworkImage(
-                            fadeInDuration: const Duration(milliseconds: 900000),
-                            fadeOutDuration: const Duration(milliseconds: 900000),
-                            imageUrl: rowUsersRow!.photoUrl!,
-                            width: 44.0,
-                            height: 44.0,
-                            fit: BoxFit.cover,
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          FFLocalizations.of(context).getText(
+                            '9xu4id6x' /* Mar */,
                           ),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              valueOrDefault<String>(
-                                functions
-                                    .sentenceCaseWords(valueOrDefault<String>(
-                                  rowUsersRow.inspectorName,
-                                  'Inspector Name',
-                                )),
-                                'Inspector Name',
-                              ),
-                              textAlign: TextAlign.start,
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyLarge
-                                  .override(
+                          textAlign: TextAlign.start,
+                          style:
+                              FlutterFlowTheme.of(context).bodyLarge.override(
                                     fontFamily: 'Readex Pro',
                                     fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 4.0, 0.0, 0.0),
-                              child: Text(
-                                valueOrDefault<String>(
-                                  containerMessagesRow?.content,
-                                  'Message',
-                                ),
-                                textAlign: TextAlign.start,
-                                style: FlutterFlowTheme.of(context)
-                                    .labelMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      fontSize: 12.0,
-                                      letterSpacing: 0.0,
-                                    ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 4.0, 0.0, 0.0),
-                              child: Text(
-                                valueOrDefault<String>(
-                                  dateTimeFormat(
-                                    "yMMMd",
-                                    containerMessagesRow?.timestamp,
-                                    locale: FFLocalizations.of(context)
-                                        .languageCode,
-                                  ),
-                                  'Last Seen',
-                                ),
-                                textAlign: TextAlign.start,
-                                style: FlutterFlowTheme.of(context)
-                                    .labelSmall
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      fontSize: 10.0,
-                                      letterSpacing: 0.0,
-                                    ),
-                              ),
-                            ),
-                          ],
                         ),
-                      ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 4.0, 0.0, 0.0),
+                          child: Text(
+                            FFLocalizations.of(context).getText(
+                              'z2n2xbni' /* This was really great, i'm so ... */,
+                            ),
+                            textAlign: TextAlign.start,
+                            style: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  fontSize: 12.0,
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 4.0, 0.0, 0.0),
+                          child: Text(
+                            FFLocalizations.of(context).getText(
+                              'icvt2mol' /* Mon. July 3rd - 4:12pm */,
+                            ),
+                            textAlign: TextAlign.start,
+                            style: FlutterFlowTheme.of(context)
+                                .labelSmall
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  fontSize: 10.0,
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
+                        ),
+                      ],
                     ),
-                    Icon(
-                      Icons.chevron_right_rounded,
-                      color: FlutterFlowTheme.of(context).secondaryText,
-                      size: 24.0,
-                    ),
-                  ],
-                );
-              },
+                  ),
+                ),
+                Icon(
+                  Icons.chevron_right_rounded,
+                  color: FlutterFlowTheme.of(context).secondaryText,
+                  size: 24.0,
+                ),
+              ],
             ),
           ),
         );

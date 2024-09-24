@@ -1,4 +1,5 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -6,6 +7,7 @@ import '/utils/components/chat_list_container/chat_list_container_widget.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/user_chats/user_chats_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -233,10 +235,16 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                             0.0, 15.0, 0.0, 0.0),
                                         child: Container(
                                           decoration: const BoxDecoration(),
-                                          child: FutureBuilder<List<ChatsRow>>(
-                                            future: ChatsTable().queryRows(
-                                              queryFn: (q) => q,
-                                            ),
+                                          child: FutureBuilder<ApiCallResponse>(
+                                            future: (_model
+                                                        .apiRequestCompleter ??=
+                                                    Completer<ApiCallResponse>()
+                                                      ..complete(
+                                                          GetUserLastConversationsCall
+                                                              .call(
+                                                        pUserId: currentUserUid,
+                                                      )))
+                                                .future,
                                             builder: (context, snapshot) {
                                               // Customize what your widget looks like when it's loading.
                                               if (!snapshot.hasData) {
@@ -254,51 +262,51 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                   ),
                                                 );
                                               }
-                                              List<ChatsRow>
-                                                  listViewChatsRowList =
+                                              final listViewGetUserLastConversationsResponse =
                                                   snapshot.data!;
 
-                                              return ListView.separated(
-                                                padding: const EdgeInsets.symmetric(
-                                                    vertical: 20.0),
-                                                shrinkWrap: true,
-                                                scrollDirection: Axis.vertical,
-                                                itemCount:
-                                                    listViewChatsRowList.length,
-                                                separatorBuilder: (_, __) =>
-                                                    const SizedBox(height: 20.0),
-                                                itemBuilder:
-                                                    (context, listViewIndex) {
-                                                  final listViewChatsRow =
-                                                      listViewChatsRowList[
-                                                          listViewIndex];
-                                                  return wrapWithModel(
-                                                    model: _model
-                                                        .chatListContainerModels
-                                                        .getModel(
-                                                      listViewChatsRow.id,
-                                                      listViewIndex,
-                                                    ),
-                                                    updateCallback: () =>
-                                                        safeSetState(() {}),
-                                                    child:
-                                                        ChatListContainerWidget(
-                                                      key: Key(
-                                                        'Keyma7_${listViewChatsRow.id}',
-                                                      ),
-                                                      chatId:
-                                                          listViewChatsRow.id,
-                                                      receiverId:
-                                                          listViewChatsRow
-                                                                      .user1Id ==
-                                                                  currentUserUid
-                                                              ? listViewChatsRow
-                                                                  .user2Id!
-                                                              : listViewChatsRow
-                                                                  .user1Id!,
-                                                    ),
-                                                  );
+                                              return RefreshIndicator(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                                strokeWidth: 2.0,
+                                                onRefresh: () async {
+                                                  safeSetState(() => _model
+                                                          .apiRequestCompleter =
+                                                      null);
+                                                  await _model
+                                                      .waitForApiRequestCompleted();
                                                 },
+                                                child: ListView(
+                                                  padding: const EdgeInsets.symmetric(
+                                                      vertical: 20.0),
+                                                  shrinkWrap: true,
+                                                  scrollDirection:
+                                                      Axis.vertical,
+                                                  children: [
+                                                    wrapWithModel(
+                                                      model: _model
+                                                          .chatListContainerModel,
+                                                      updateCallback: () =>
+                                                          safeSetState(() {}),
+                                                      child:
+                                                          ChatListContainerWidget(
+                                                        chatId:
+                                                            GetUserLastConversationsCall
+                                                                    .chatId(
+                                                          listViewGetUserLastConversationsResponse
+                                                              .jsonBody,
+                                                        )!
+                                                                .first,
+                                                        userId: currentUserUid,
+                                                      ),
+                                                    ),
+                                                  ].divide(
+                                                      const SizedBox(height: 20.0)),
+                                                ),
                                               );
                                             },
                                           ),

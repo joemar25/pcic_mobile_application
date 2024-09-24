@@ -1373,6 +1373,22 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Address',
     },
   },
+  // chatListContainer
+  {
+    '9xu4id6x': {
+      'en': 'Mar',
+      'tl': '',
+    },
+    'z2n2xbni': {
+      'en':
+          'This was really great, i\'m so glad that we could  catchup this weekend.',
+      'tl': '',
+    },
+    'icvt2mol': {
+      'en': 'Mon. July 3rd - 4:12pm',
+      'tl': '',
+    },
+  },
   // signoutDialog
   {
     'pd2yz8ne': {

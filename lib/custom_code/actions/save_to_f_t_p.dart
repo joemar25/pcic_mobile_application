@@ -11,15 +11,16 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'package:ftpconnect/ftpconnect.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:archive/archive.dart';
+import 'package:dartssh2/dartssh2.dart';
 
 Future<bool> saveToFTP(String? taskId) async {
+  // mar is here
   if (taskId == null) return false;
 
-  FTPConnect? ftpClient;
+  SSHClient? client;
 
   try {
     // 1. Query task data
@@ -103,14 +104,34 @@ Future<bool> saveToFTP(String? taskId) async {
     final zipBytes = ZipEncoder().encode(archive) ?? [];
     await taskFile.writeAsBytes(zipBytes);
 
-    // 8. Upload to FTP
-    ftpClient =
-        FTPConnect('122.55.242.110', user: 'k2c_User2', pass: 'K2c#%!pc!c');
-    await ftpClient.connect();
+    // 8. Upload to SFTP
+    final socket = await SSHSocket.connect('122.55.242.110', 22);
+    client = SSHClient(
+      socket,
+      username: 'k2c_User2',
+      onPasswordRequest: () => 'K2C@PC!C2024',
+    );
 
-    // Ensure the remote directory exists and upload the file
+    await client.authenticated;
+    final sftp = await client.sftp();
+
+    // Construct the remote path with the new file name
     final remotePath = '/taskarchive/${taskNumber}_${insuranceId}.task';
-    await ftpClient.uploadFile(taskFile, sRemoteName: remotePath);
+
+    // Ensure the remote directory exists
+    await createRemoteDirectoryIfNotExists(sftp, remotePath);
+
+    // Open the remote file with create and truncate flags
+    final remoteFile = await sftp.open(
+      remotePath,
+      mode: SftpFileOpenMode.create |
+          SftpFileOpenMode.truncate |
+          SftpFileOpenMode.write,
+    );
+
+    // Upload the file
+    await remoteFile.write(taskFile.openRead().cast<Uint8List>());
+    await remoteFile.close();
 
     // 9. Clean up: delete the temporary .task file
     await taskFile.delete();
@@ -120,8 +141,8 @@ Future<bool> saveToFTP(String? taskId) async {
     print('Error in saveToFTP: $e');
     return false;
   } finally {
-    // Close the FTP connection in the finally block
-    await ftpClient?.disconnect();
+    // Close the client in the finally block
+    client?.close();
   }
 }
 
@@ -140,4 +161,21 @@ Future<List<String>> listAllFiles(String path) async {
   }
 
   return allFiles;
+}
+
+Future<void> createRemoteDirectoryIfNotExists(
+    SftpClient sftp, String path) async {
+  final dirs = path.split('/').where((dir) => dir.isNotEmpty).toList();
+  String currentPath = '';
+
+  for (final dir in dirs.sublist(0, dirs.length - 1)) {
+    // Exclude the file name
+    currentPath += '/$dir';
+    try {
+      await sftp.stat(currentPath);
+    } catch (e) {
+      // Directory doesn't exist, create it
+      await sftp.mkdir(currentPath);
+    }
+  }
 }
