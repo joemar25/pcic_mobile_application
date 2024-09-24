@@ -12,10 +12,11 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 import '/auth/supabase_auth/auth_util.dart';
-import 'package:dartssh2/dartssh2.dart';
+import 'package:ftpconnect/ftpconnect.dart';
 import 'package:csv/csv.dart';
 import 'dart:convert';
 import 'package:uuid/uuid.dart';
+import 'dart:io';
 
 Future<bool> syncFromFTP(String? region) async {
   print("hello from syncFromFTP");
