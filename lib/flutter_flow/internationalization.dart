@@ -930,6 +930,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Actual Date of Planting (TP)',
       'tl': 'Aktwal na Petsa ng Pagtatanim (TP)',
     },
+    's5kw04iw': {
+      'en': 'Capture Area',
+      'tl': '',
+    },
+    'g6bs1u02': {
+      'en': 'Capture Area',
+      'tl': '',
+    },
+    'lirkz8bm': {
+      'en': 'Capture',
+      'tl': '',
+    },
     'f5is9k8s': {
       'en': 'Report Confirmation',
       'tl': 'Pagkumpirma ng Ulat',

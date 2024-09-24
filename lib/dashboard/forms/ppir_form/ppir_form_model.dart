@@ -1,3 +1,4 @@
+import '/backend/sqlite/sqlite_manager.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
@@ -19,6 +20,8 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
+  // Stores action output result for [Backend Call - SQLite (SELECT PROFILE)] action in ppirForm widget.
+  List<SelectProfileRow>? profile;
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in IconButton widget.
@@ -185,6 +188,10 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
   }
 
   DateTime? datePicked2;
+  bool isDataUploading = false;
+  FFUploadedFile uploadedLocalFile =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+
   // State field(s) for ppir_remarks_field widget.
   FocusNode? ppirRemarksFieldFocusNode;
   TextEditingController? ppirRemarksFieldTextController;

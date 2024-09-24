@@ -256,8 +256,6 @@ dynamic deserializeParam<T>(
         switch (T) {
           case SELECTUSERSInSameRegionRow:
             return SELECTUSERSInSameRegionRow(data);
-          case SelectSeedsRow:
-            return SelectSeedsRow(data);
           case SelectPpirFormsRow:
             return SelectPpirFormsRow(data);
           case SelectMessagesRow:

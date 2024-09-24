@@ -23,7 +23,7 @@ class SQLiteManager {
     }
     _database = await initializeDatabaseFromDbFile(
       'db_sync',
-      'offline_db.db',
+      'offline_db_edited.db',
     );
   }
 
@@ -35,10 +35,6 @@ class SQLiteManager {
       performSELECTUSERSInSameRegion(
         _database,
         regionId: regionId,
-      );
-
-  Future<List<SelectSeedsRow>> selectSeeds() => performSelectSeeds(
-        _database,
       );
 
   Future<List<SelectPpirFormsRow>> selectPpirForms({
@@ -119,12 +115,20 @@ class SQLiteManager {
         assignee: assignee,
       );
 
-  Future<List<SELECTRiceSEEDSRow>> sELECTRiceSEEDS() => performSELECTRiceSEEDS(
+  Future<List<SELECTRiceSEEDSRow>> sELECTRiceSEEDS({
+    String? regionId,
+  }) =>
+      performSELECTRiceSEEDS(
         _database,
+        regionId: regionId,
       );
 
-  Future<List<SELECTCornSEEDSRow>> sELECTCornSEEDS() => performSELECTCornSEEDS(
+  Future<List<SELECTCornSEEDSRow>> sELECTCornSEEDS({
+    String? regionId,
+  }) =>
+      performSELECTCornSEEDS(
         _database,
+        regionId: regionId,
       );
 
   Future<List<SELECTPPIRFORMSSignaturesRow>> sELECTPPIRFORMSSignatures({

@@ -38,30 +38,6 @@ class SELECTUSERSInSameRegionRow extends SqliteRow {
 
 /// END SELECT USERS IN SAME REGION
 
-/// BEGIN SELECT SEEDS
-Future<List<SelectSeedsRow>> performSelectSeeds(
-  Database database,
-) {
-  const query = '''
-SELECT * FROM seeds
-''';
-  return _readQuery(database, query, (d) => SelectSeedsRow(d));
-}
-
-class SelectSeedsRow extends SqliteRow {
-  SelectSeedsRow(super.data);
-
-  String? get id => data['id'] as String?;
-  String? get seed => data['seed'] as String?;
-  String? get seedType => data['seed_type'] as String?;
-  String? get syncStatus => data['sync_status'] as String?;
-  DateTime? get lastSyncedAt => data['last_synced_at'] as DateTime?;
-  String? get localId => data['local_id'] as String?;
-  bool? get isDirty => data['is_dirty'] as bool?;
-}
-
-/// END SELECT SEEDS
-
 /// BEGIN SELECT PPIR FORMS
 Future<List<SelectPpirFormsRow>> performSelectPpirForms(
   Database database, {
@@ -546,10 +522,11 @@ class SELECTTASKSAndPPIRByAssigneeRow extends SqliteRow {
 
 /// BEGIN SELECT RICE SEEDS
 Future<List<SELECTRiceSEEDSRow>> performSELECTRiceSEEDS(
-  Database database,
-) {
-  const query = '''
-SELECT * FROM seeds WHERE seed_type = 'rice';
+  Database database, {
+  String? regionId,
+}) {
+  final query = '''
+SELECT * FROM seeds WHERE seed_type = 'rice' AND region_id = '$regionId';
 ''';
   return _readQuery(database, query, (d) => SELECTRiceSEEDSRow(d));
 }
@@ -565,10 +542,11 @@ class SELECTRiceSEEDSRow extends SqliteRow {
 
 /// BEGIN SELECT CORN SEEDS
 Future<List<SELECTCornSEEDSRow>> performSELECTCornSEEDS(
-  Database database,
-) {
-  const query = '''
-SELECT * FROM seeds WHERE seed_type = 'corn';
+  Database database, {
+  String? regionId,
+}) {
+  final query = '''
+SELECT * FROM seeds WHERE seed_type = 'corn' AND region_id = '$regionId';
 ''';
   return _readQuery(database, query, (d) => SELECTCornSEEDSRow(d));
 }
