@@ -11,6 +11,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'sync_model.dart';
 export 'sync_model.dart';
 
@@ -199,6 +200,22 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
                             _model.startSync = false;
                             _model.isSynced = true;
                             safeSetState(() {});
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Already Syncing',
+                                  style: GoogleFonts.getFont(
+                                    'Roboto',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                                ),
+                                duration: const Duration(milliseconds: 4000),
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).secondary,
+                              ),
+                            );
                           }
 
                           safeSetState(() {});
