@@ -164,26 +164,6 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        valueOrDefault<String>(
-                          syncSelectProfileRowList.first.email,
-                          'aa',
-                        ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
-                              letterSpacing: 0.0,
-                            ),
-                      ),
-                      Text(
-                        valueOrDefault<String>(
-                          _model.isSynced.toString(),
-                          'a',
-                        ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
-                              letterSpacing: 0.0,
-                            ),
-                      ),
                       InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
@@ -204,24 +184,6 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
                             _model.regionCode = await SQLiteManager.instance
                                 .oFFLINESelectREGIONCODE(
                               id: syncSelectProfileRowList.first.regionId,
-                            );
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  valueOrDefault<String>(
-                                    _model.regionCode?.first.regionCode,
-                                    'vvv',
-                                  ),
-                                  style: GoogleFonts.getFont(
-                                    'Roboto',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                  ),
-                                ),
-                                duration: const Duration(milliseconds: 4000),
-                                backgroundColor:
-                                    FlutterFlowTheme.of(context).secondary,
-                              ),
                             );
                             _model.isSyced = await actions.syncFromFTP(
                               _model.regionCode?.first.regionCode,

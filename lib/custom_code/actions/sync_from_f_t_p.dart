@@ -12,15 +12,13 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 import '/auth/supabase_auth/auth_util.dart';
-// import '/backend/supabase/database/tables/tasks.dart';
-// import '/backend/supabase/database/tables/ppir_forms.dart';
-// import '/backend/supabase/database/tables/regions.dart';
 import 'package:dartssh2/dartssh2.dart';
 import 'package:csv/csv.dart';
 import 'dart:convert';
 import 'package:uuid/uuid.dart';
 
 Future<bool> syncFromFTP(String? region) async {
+  print("hello from syncFromFTP");
   if (region == null) {
     print('Error: Region is null');
     return false;
@@ -32,7 +30,7 @@ Future<bool> syncFromFTP(String? region) async {
   print('Processing region: $transformedRegionCode');
   print('Original region code for file matching: $originalRegionCode');
 
-  SSHClient? client;
+  FTPConnect? ftpClient;
   int newTasksCount = 0;
   int newPPIRFormsCount = 0;
 
@@ -56,29 +54,23 @@ Future<bool> syncFromFTP(String? region) async {
     }
     final regionName = regionQuery.first.regionName + ' PPIR';
 
-    final socket = await SSHSocket.connect('122.55.242.110', 22);
-    client = SSHClient(
-      socket,
-      username: 'k2c_User1',
-      onPasswordRequest: () => 'K2C@PC!C2024',
-    );
-
-    await client.authenticated;
-    final sftp = await client.sftp();
+    ftpClient = FTPConnect('122.55.242.110',
+        user: 'k2c_User1', pass: 'K2c#%!pc!c', port: 21);
+    await ftpClient.connect();
 
     const remotePath = '/Work';
-    final List<SftpName> files = await sftp.listdir(remotePath);
+    final List<FTPEntry> files = await ftpClient.listDirectoryContent();
 
     print('All files in directory:');
     for (var file in files) {
-      print(file.filename);
+      print(file.name);
     }
 
     final List<String> filesToProcess = files
         .where((file) =>
-            file.filename.startsWith('$originalRegionCode RICE Region') &&
-            file.filename.endsWith('.csv'))
-        .map((file) => file.filename)
+            file.name.startsWith('$originalRegionCode RICE Region') &&
+            file.name.endsWith('.csv'))
+        .map((file) => file.name)
         .toList();
 
     print('Files to process: ${filesToProcess.join(", ")}');
@@ -90,9 +82,14 @@ Future<bool> syncFromFTP(String? region) async {
 
     for (final filename in filesToProcess) {
       print('Processing file: $filename');
-      final remoteFile = await sftp.open('$remotePath/$filename');
-      final String contents = utf8.decode(await remoteFile.readBytes());
-      await remoteFile.close();
+      File tempFile = File('${Directory.systemTemp.path}/$filename');
+      bool downloadSuccess =
+          await ftpClient.downloadFile('$remotePath/$filename', tempFile);
+      if (!downloadSuccess) {
+        print('Failed to download file: $filename');
+        continue;
+      }
+      final String contents = await tempFile.readAsString();
 
       List<List<dynamic>> rowsAsListOfValues =
           const CsvToListConverter().convert(contents, eol: '\n');
@@ -238,22 +235,20 @@ Future<bool> syncFromFTP(String? region) async {
           }
         }
       }
+      await tempFile.delete();
     }
-
-    // print for count
     print(
         'Sync completed: $newTasksCount new tasks, $newPPIRFormsCount new PPIR forms');
 
-    // mar: Update sync count in app state
     print("Before FFAppState().syncCount -> ${FFAppState().syncCount}");
     FFAppState().syncCount = FFAppState().syncCount + newTasksCount;
-    print("AfterFFAppState().syncCount -> ${FFAppState().syncCount}");
+    print("After FFAppState().syncCount -> ${FFAppState().syncCount}");
 
     return true;
   } catch (e) {
     print('Sync Error: $e');
     return false;
   } finally {
-    client?.close();
+    await ftpClient?.disconnect();
   }
 }
