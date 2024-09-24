@@ -1,4 +1,5 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/backend/sqlite/sqlite_manager.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -700,6 +701,45 @@ class _LoginWidgetState extends State<LoginWidget>
                                                             '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
                                                       });
                                                     }(),
+                                                  );
+                                                  await SQLiteManager.instance
+                                                      .offlineInsertUsers(
+                                                    id: _model.authUserQuery
+                                                        ?.first.id,
+                                                    role: _model.authUserQuery
+                                                        ?.first.role,
+                                                    email: _model.authUserQuery
+                                                        ?.first.email,
+                                                    photoUrl: _model
+                                                        .authUserQuery
+                                                        ?.first
+                                                        .photoUrl,
+                                                    inspectorName: _model
+                                                        .authUserQuery
+                                                        ?.first
+                                                        .inspectorName,
+                                                    mobileNumber: _model
+                                                        .authUserQuery
+                                                        ?.first
+                                                        .mobileNumber,
+                                                    authUserId: _model
+                                                        .authUserQuery
+                                                        ?.first
+                                                        .authUserId,
+                                                    createdAt: _model
+                                                        .authUserQuery
+                                                        ?.first
+                                                        .createdAt
+                                                        ?.toString(),
+                                                    updatedAt: _model
+                                                        .authUserQuery
+                                                        ?.first
+                                                        .updatedAt
+                                                        ?.toString(),
+                                                    regionId: _model
+                                                        .authUserQuery
+                                                        ?.first
+                                                        .regionId,
                                                   );
                                                   _model.save = await actions
                                                       .uploadPhotoUrlToAsset(

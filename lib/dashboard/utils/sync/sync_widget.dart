@@ -166,6 +166,16 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
                     children: [
                       Text(
                         valueOrDefault<String>(
+                          syncSelectProfileRowList.first.email,
+                          'aa',
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Readex Pro',
+                              letterSpacing: 0.0,
+                            ),
+                      ),
+                      Text(
+                        valueOrDefault<String>(
                           _model.isSynced.toString(),
                           'a',
                         ),

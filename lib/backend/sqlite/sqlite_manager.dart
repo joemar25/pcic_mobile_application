@@ -674,5 +674,31 @@ class SQLiteManager {
         _database,
       );
 
+  Future offlineInsertUsers({
+    String? id,
+    String? role,
+    String? email,
+    String? photoUrl,
+    String? inspectorName,
+    String? mobileNumber,
+    String? authUserId,
+    String? createdAt,
+    String? updatedAt,
+    String? regionId,
+  }) =>
+      performOfflineInsertUsers(
+        _database,
+        id: id,
+        role: role,
+        email: email,
+        photoUrl: photoUrl,
+        inspectorName: inspectorName,
+        mobileNumber: mobileNumber,
+        authUserId: authUserId,
+        createdAt: createdAt,
+        updatedAt: updatedAt,
+        regionId: regionId,
+      );
+
   /// END UPDATE QUERY CALLS
 }

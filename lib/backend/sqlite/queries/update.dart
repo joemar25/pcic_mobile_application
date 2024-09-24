@@ -606,3 +606,49 @@ DELETE FROM ppir_forms;
 }
 
 /// END DELETE ALL ROWS FOR TASKS AND PPIR
+
+/// BEGIN OFFLINE INSERT USERS
+Future performOfflineInsertUsers(
+  Database database, {
+  String? id,
+  String? role,
+  String? email,
+  String? photoUrl,
+  String? inspectorName,
+  String? mobileNumber,
+  String? authUserId,
+  String? createdAt,
+  String? updatedAt,
+  String? regionId,
+}) {
+  final query = '''
+INSERT OR REPLACE INTO public.users (
+    id,
+    role,
+    email,
+    photo_url,
+    inspector_name,
+    mobile_number,
+    auth_user_id,
+    created_at,
+    updated_at,
+    region_id
+) 
+VALUES (
+    '$id', 
+    '$role', 
+    '$email', 
+    '$photoUrl', 
+    '$inspectorName', 
+    '$mobileNumber', 
+    '$authUserId', 
+    '$createdAt', 
+    '$updatedAt', 
+    '$regionId'
+);
+
+''';
+  return database.rawQuery(query);
+}
+
+/// END OFFLINE INSERT USERS
