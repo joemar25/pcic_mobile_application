@@ -164,6 +164,16 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      Text(
+                        valueOrDefault<String>(
+                          _model.isSynced.toString(),
+                          'a',
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Readex Pro',
+                              letterSpacing: 0.0,
+                            ),
+                      ),
                       InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
