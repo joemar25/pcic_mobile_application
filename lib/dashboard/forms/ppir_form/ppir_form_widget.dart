@@ -4434,6 +4434,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                         'activity': 'Save Task',
                                         'longlat':
                                             '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                                        'id': widget.taskId,
                                       });
                                     }
                                     await SQLiteManager.instance.updatePPIRForm(
@@ -4746,6 +4747,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                           'Submitted a Task',
                                                       'longlat':
                                                           '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                                                      'task_id': widget.taskId,
                                                     });
                                                   }(),
                                                 );

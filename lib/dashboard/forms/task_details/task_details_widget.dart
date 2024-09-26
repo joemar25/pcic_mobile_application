@@ -2819,6 +2819,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             'Resubmit a Task',
                                                         'longlat':
                                                             '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                                                        'task_id':
+                                                            widget.taskId,
                                                       });
                                                       _model.isReFTPClicked =
                                                           false;
@@ -2948,6 +2950,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     'activity': 'Repeat Geotag',
                                                     'longlat':
                                                         '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                                                    'task_id': widget.taskId,
                                                   });
                                                   await TasksTable().update(
                                                     data: {
