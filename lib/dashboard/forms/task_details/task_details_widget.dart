@@ -254,28 +254,6 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 12.0),
                                             child: Text(
-                                              valueOrDefault<String>(
-                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                    .first.capturedArea,
-                                                'Captured Area',
-                                              ),
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyLarge
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                    letterSpacing: 0.0,
-                                                  ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 12.0),
-                                            child: Text(
                                               FFLocalizations.of(context)
                                                   .getText(
                                                 'mdd6huf5' /* Form Details */,

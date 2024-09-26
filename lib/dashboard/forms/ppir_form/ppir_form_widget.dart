@@ -91,8 +91,6 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
 
     _model.ppirAreaDopTpFieldFocusNode ??= FocusNode();
 
-    _model.capturedImageBlobInputTextController ??=
-        TextEditingController(text: _model.capturedBlobOutput);
     _model.capturedImageBlobInputFocusNode ??= FocusNode();
 
     _model.ppirRemarksFieldFocusNode ??= FocusNode();
@@ -3245,7 +3243,12 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                       Expanded(
                                                         child: TextFormField(
                                                           controller: _model
-                                                              .capturedImageBlobInputTextController,
+                                                                  .capturedImageBlobInputTextController ??=
+                                                              TextEditingController(
+                                                            text: ppirFormSelectPpirFormsRowList
+                                                                .first
+                                                                .capturedArea,
+                                                          ),
                                                           focusNode: _model
                                                               .capturedImageBlobInputFocusNode,
                                                           onChanged: (_) =>
@@ -3574,19 +3577,6 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     validator: _model
                                                         .ppirRemarksFieldTextControllerValidator
                                                         .asValidator(context),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 16.0, 0.0, 16.0),
-                                                  child: StyledDivider(
-                                                    thickness: 2.0,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                    lineStyle:
-                                                        DividerLineStyle.dashed,
                                                   ),
                                                 ),
                                                 Padding(
@@ -4477,23 +4467,6 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                       capturedArea: _model
                                           .capturedImageBlobInputTextController
                                           .text,
-                                    );
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          _model
-                                              .capturedImageBlobInputTextController
-                                              .text,
-                                          style: TextStyle(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                          ),
-                                        ),
-                                        duration: const Duration(milliseconds: 4000),
-                                        backgroundColor:
-                                            FlutterFlowTheme.of(context)
-                                                .secondary,
-                                      ),
                                     );
                                     await SQLiteManager.instance
                                         .updateTaskStatus(
