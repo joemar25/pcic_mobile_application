@@ -85,6 +85,7 @@ Future<String> saveBlobToBucket(String? taskId) async {
     final String? gpxBase64 = ppirForm.gpx;
     final String? insuredSignatureBase64 = ppirForm.ppirSigInsured;
     final String? iuiaSignatureBase64 = ppirForm.ppirSigIuia;
+    final String? capturedArea = ppirForm.capturedArea;
 
     // Generate unique IDs for the files
     final uuid = Uuid();
@@ -96,6 +97,8 @@ Future<String> saveBlobToBucket(String? taskId) async {
         '${attachmentsPath}${randomId}_ppir_sig_insured.png';
     final String iuiaSigPath =
         '${attachmentsPath}${randomId}_ppir_sig_iuia.png';
+    final String capturedAreaPath =
+        '${attachmentsPath}${randomId}_captured_area.png';
 
     // Save GPX file
     if (gpxBase64 != null) {
@@ -123,6 +126,16 @@ Future<String> saveBlobToBucket(String? taskId) async {
       await SupaFlow.client.storage.from('for_ftp').uploadBinary(
             iuiaSigPath,
             iuiaSigBytes,
+            fileOptions: FileOptions(contentType: 'image/png'),
+          );
+    }
+
+    // Save Captured area
+    if (capturedArea != null) {
+      final Uint8List capturedAreaBytes = base64.decode(capturedArea);
+      await SupaFlow.client.storage.from('for_ftp').uploadBinary(
+            capturedAreaPath,
+            capturedAreaBytes,
             fileOptions: FileOptions(contentType: 'image/png'),
           );
     }
