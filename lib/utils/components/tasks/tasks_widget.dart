@@ -118,6 +118,7 @@ class _TasksWidgetState extends State<TasksWidget>
                     'activity': 'Select a Task',
                     'longlat':
                         '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                    'task_id': widget.task,
                   });
                 }(),
               );

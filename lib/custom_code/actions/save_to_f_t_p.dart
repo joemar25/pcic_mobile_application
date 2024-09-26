@@ -139,32 +139,32 @@ Future<String> getInsuranceId(String taskId) async {
 
 Future<(String, String, String)> getFtpSettings(String serviceGroup) async {
   switch (serviceGroup) {
-    case 'P01':
+    case 'PO1':
       return ('k2c_Ro1', 'RO_1/taskarchive', 'RO1');
-    case 'P02':
+    case 'PO2':
       return ('k2c_Ro2', 'RO_2/taskarchive', 'RO2');
-    case 'P03':
+    case 'PO3':
       return ('k2c_Ro3', 'RO_3/taskarchive', 'RO3');
-    case 'P04A':
-    case 'P04B':
+    case 'PO4A':
+    case 'PO4B':
       return ('k2c_Ro4', 'RO_4/taskarchive', 'RO4');
     case 'PO5':
       return ('k2c_Ro5', 'RO_5/taskarchive', 'RO5');
-    case 'P06':
+    case 'PO6':
       return ('k2c_Ro6', 'RO_6/taskarchive', 'RO6');
-    case 'P07':
+    case 'PO7':
       return ('k2c_Ro7', 'RO_7/taskarchive', 'RO7');
-    case 'P08':
+    case 'PO8':
       return ('k2c_Ro8', 'RO_8/taskarchive', 'RO8');
-    case 'P09':
+    case 'PO9':
       return ('k2c_Ro9', 'RO_9/taskarchive', 'RO9');
-    case 'P010':
+    case 'PO10':
       return ('k2c_Ro10', 'RO_10/taskarchive', 'RO10');
-    case 'P011':
+    case 'PO11':
       return ('k2c_Ro11', 'RO_11/taskarchive', 'RO11');
-    case 'P012':
+    case 'PO12':
       return ('k2c_Ro12', 'RO_12/taskarchive', 'RO12');
-    case 'P013':
+    case 'PO13':
       return ('k2c_Ro13', 'RO_13/taskarchive', 'RO13');
     default:
       throw Exception('Invalid service group: $serviceGroup');
