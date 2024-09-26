@@ -140,6 +140,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
               'recieverId',
               ParamType.String,
             ),
+            recieverName: params.getParam(
+              'recieverName',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(

@@ -23,8 +23,6 @@ void main() async {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   setUpAll(() async {
-    _overrideOnError();
-
     await SupaFlow.initialize();
 
     await SQLiteManager.initialize();
@@ -47,6 +45,7 @@ void main() async {
     });
 
     testWidgets('login', (WidgetTester tester) async {
+      _overrideOnError();
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: 'joemar', password: 'password1');
       await tester.pumpWidget(ChangeNotifierProvider(

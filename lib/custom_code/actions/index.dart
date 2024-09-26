@@ -35,3 +35,5 @@ export 'is_dirty.dart' show isDirty;
 export 'is_dirty_count.dart' show isDirtyCount;
 export 'update_user_logs.dart' show updateUserLogs;
 export 'find_latest_folder.dart' show findLatestFolder;
+export 'convert_captured_image_to_base64.dart'
+    show convertCapturedImageToBase64;

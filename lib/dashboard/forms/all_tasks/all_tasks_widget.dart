@@ -758,7 +758,7 @@ class _AllTasksWidgetState extends State<AllTasksWidget>
                                           hidePaginator: false,
                                           showFirstLastButtons: false,
                                           headingRowHeight: 56.0,
-                                          dataRowHeight: 40.0,
+                                          dataRowHeight: 70.0,
                                           columnSpacing: 20.0,
                                           headingRowColor:
                                               FlutterFlowTheme.of(context)

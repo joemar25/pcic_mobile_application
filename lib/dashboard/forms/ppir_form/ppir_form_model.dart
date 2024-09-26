@@ -17,11 +17,15 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
 
   bool hasSigIuia = true;
 
+  String? capturedBlobOutput;
+
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
   // Stores action output result for [Backend Call - SQLite (SELECT PROFILE)] action in ppirForm widget.
   List<SelectProfileRow>? profile;
+  // Stores action output result for [Backend Call - SQLite (SELECT PPIR FORMS)] action in ppirForm widget.
+  List<SelectPpirFormsRow>? qCapturedImage;
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in IconButton widget.
@@ -192,6 +196,24 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
   FFUploadedFile uploadedLocalFile =
       FFUploadedFile(bytes: Uint8List.fromList([]));
 
+  // Stores action output result for [Custom Action - convertCapturedImageToBase64] action in saveButton widget.
+  String? base64;
+  // State field(s) for capturedImageBlobInput widget.
+  FocusNode? capturedImageBlobInputFocusNode;
+  TextEditingController? capturedImageBlobInputTextController;
+  String? Function(BuildContext, String?)?
+      capturedImageBlobInputTextControllerValidator;
+  String? _capturedImageBlobInputTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        'c2yh7kit' /* Must have a captured Image */,
+      );
+    }
+
+    return null;
+  }
+
   // State field(s) for ppir_remarks_field widget.
   FocusNode? ppirRemarksFieldFocusNode;
   TextEditingController? ppirRemarksFieldTextController;
@@ -275,6 +297,8 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
         _ppirAreaDopDsFieldTextControllerValidator;
     ppirAreaDopTpFieldTextControllerValidator =
         _ppirAreaDopTpFieldTextControllerValidator;
+    capturedImageBlobInputTextControllerValidator =
+        _capturedImageBlobInputTextControllerValidator;
     ppirRemarksFieldTextControllerValidator =
         _ppirRemarksFieldTextControllerValidator;
     ppirPreparedByNameFieldTextControllerValidator =
@@ -312,6 +336,9 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
 
     ppirAreaDopTpFieldFocusNode?.dispose();
     ppirAreaDopTpFieldTextController?.dispose();
+
+    capturedImageBlobInputFocusNode?.dispose();
+    capturedImageBlobInputTextController?.dispose();
 
     ppirRemarksFieldFocusNode?.dispose();
     ppirRemarksFieldTextController?.dispose();

@@ -134,6 +134,10 @@ class _UserChatsWidgetState extends State<UserChatsWidget> {
                                   listViewUsersRow.id,
                                   ParamType.String,
                                 ),
+                                'recieverName': serializeParam(
+                                  listViewUsersRow.inspectorName,
+                                  ParamType.String,
+                                ),
                               }.withoutNulls,
                               extra: <String, dynamic>{
                                 kTransitionInfoKey: const TransitionInfo(

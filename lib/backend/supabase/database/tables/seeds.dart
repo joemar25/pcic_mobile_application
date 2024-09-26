@@ -32,4 +32,7 @@ class SeedsRow extends SupabaseDataRow {
 
   bool? get isDirty => getField<bool>('is_dirty');
   set isDirty(bool? value) => setField<bool>('is_dirty', value);
+
+  String? get regionId => getField<String>('region_id');
+  set regionId(String? value) => setField<String>('region_id', value);
 }

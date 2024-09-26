@@ -21,6 +21,7 @@ import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/flutter_flow/permissions_util.dart';
 import 'package:styled_divider/styled_divider.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/foundation.dart';
@@ -65,7 +66,10 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
       _model.profile = await SQLiteManager.instance.selectProfile(
         email: currentUserEmail,
       );
-
+      _model.qCapturedImage = await SQLiteManager.instance.selectPpirForms(
+        taskId: widget.taskId,
+      );
+      _model.capturedBlobOutput = _model.qCapturedImage?.first.capturedArea;
       safeSetState(() {});
     });
 
@@ -86,6 +90,10 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
     _model.ppirAreaDopDsFieldFocusNode ??= FocusNode();
 
     _model.ppirAreaDopTpFieldFocusNode ??= FocusNode();
+
+    _model.capturedImageBlobInputTextController ??=
+        TextEditingController(text: _model.capturedBlobOutput);
+    _model.capturedImageBlobInputFocusNode ??= FocusNode();
 
     _model.ppirRemarksFieldFocusNode ??= FocusNode();
 
@@ -2531,6 +2539,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                 Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                   children: [
                                                     Expanded(
                                                       child: Padding(
@@ -2762,7 +2773,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                       MainAxisSize.max,
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
-                                                          .spaceAround,
+                                                          .spaceBetween,
                                                   children: [
                                                     Expanded(
                                                       child: TextFormField(
@@ -3022,7 +3033,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   child: Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      'g6bs1u02' /* Capture Area */,
+                                                      'g6bs1u02' /* Area */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -3037,6 +3048,44 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         ),
                                                   ),
                                                 ),
+                                                if ((_model.capturedBlobOutput !=
+                                                        '') &&
+                                                    (_model.capturedBlobOutput !=
+                                                        'null'))
+                                                  Container(
+                                                    width: MediaQuery.sizeOf(
+                                                                context)
+                                                            .width *
+                                                        1.0,
+                                                    height: 250.0,
+                                                    decoration: const BoxDecoration(),
+                                                    child: SizedBox(
+                                                      width: MediaQuery.sizeOf(
+                                                                  context)
+                                                              .width *
+                                                          1.0,
+                                                      height: MediaQuery.sizeOf(
+                                                                  context)
+                                                              .height *
+                                                          1.0,
+                                                      child: custom_widgets
+                                                          .Base64ImageLoader(
+                                                        width:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .width *
+                                                                1.0,
+                                                        height:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .height *
+                                                                1.0,
+                                                        taskId: widget.taskId,
+                                                        imageBase64: _model
+                                                            .capturedBlobOutput,
+                                                      ),
+                                                    ),
+                                                  ),
                                                 Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -3045,67 +3094,105 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   children: [
                                                     FFButtonWidget(
                                                       onPressed: () async {
-                                                        final selectedMedia =
-                                                            await selectMedia(
-                                                          multiImage: false,
-                                                        );
-                                                        if (selectedMedia !=
-                                                                null &&
-                                                            selectedMedia.every((m) =>
-                                                                validateFileFormat(
-                                                                    m.storagePath,
-                                                                    context))) {
-                                                          safeSetState(() =>
-                                                              _model.isDataUploading =
-                                                                  true);
-                                                          var selectedUploadedFiles =
-                                                              <FFUploadedFile>[];
+                                                        await requestPermission(
+                                                            cameraPermission);
+                                                        if (await getPermissionStatus(
+                                                            cameraPermission)) {
+                                                          final selectedMedia =
+                                                              await selectMedia(
+                                                            imageQuality: 30,
+                                                            multiImage: false,
+                                                          );
+                                                          if (selectedMedia !=
+                                                                  null &&
+                                                              selectedMedia.every((m) =>
+                                                                  validateFileFormat(
+                                                                      m.storagePath,
+                                                                      context))) {
+                                                            safeSetState(() =>
+                                                                _model.isDataUploading =
+                                                                    true);
+                                                            var selectedUploadedFiles =
+                                                                <FFUploadedFile>[];
 
-                                                          try {
-                                                            selectedUploadedFiles =
+                                                            try {
+                                                              selectedUploadedFiles =
+                                                                  selectedMedia
+                                                                      .map((m) =>
+                                                                          FFUploadedFile(
+                                                                            name:
+                                                                                m.storagePath.split('/').last,
+                                                                            bytes:
+                                                                                m.bytes,
+                                                                            height:
+                                                                                m.dimensions?.height,
+                                                                            width:
+                                                                                m.dimensions?.width,
+                                                                            blurHash:
+                                                                                m.blurHash,
+                                                                          ))
+                                                                      .toList();
+                                                            } finally {
+                                                              _model.isDataUploading =
+                                                                  false;
+                                                            }
+                                                            if (selectedUploadedFiles
+                                                                    .length ==
                                                                 selectedMedia
-                                                                    .map((m) =>
-                                                                        FFUploadedFile(
-                                                                          name: m
-                                                                              .storagePath
-                                                                              .split('/')
-                                                                              .last,
-                                                                          bytes:
-                                                                              m.bytes,
-                                                                          height: m
-                                                                              .dimensions
-                                                                              ?.height,
-                                                                          width: m
-                                                                              .dimensions
-                                                                              ?.width,
-                                                                          blurHash:
-                                                                              m.blurHash,
-                                                                        ))
-                                                                    .toList();
-                                                          } finally {
+                                                                    .length) {
+                                                              safeSetState(() {
+                                                                _model.uploadedLocalFile =
+                                                                    selectedUploadedFiles
+                                                                        .first;
+                                                              });
+                                                            } else {
+                                                              safeSetState(
+                                                                  () {});
+                                                              return;
+                                                            }
+                                                          }
+
+                                                          _model.base64 =
+                                                              await actions
+                                                                  .convertCapturedImageToBase64(
+                                                            _model
+                                                                .uploadedLocalFile,
+                                                          );
+                                                          _model.capturedBlobOutput =
+                                                              _model.base64;
+                                                          safeSetState(() {});
+                                                          safeSetState(() {
+                                                            _model.capturedImageBlobInputTextController
+                                                                    ?.text =
+                                                                _model
+                                                                    .capturedBlobOutput!;
+                                                            _model.capturedImageBlobInputTextController
+                                                                    ?.selection =
+                                                                TextSelection.collapsed(
+                                                                    offset: _model
+                                                                        .capturedImageBlobInputTextController!
+                                                                        .text
+                                                                        .length);
+                                                          });
+                                                          safeSetState(() {
                                                             _model.isDataUploading =
                                                                 false;
-                                                          }
-                                                          if (selectedUploadedFiles
-                                                                  .length ==
-                                                              selectedMedia
-                                                                  .length) {
-                                                            safeSetState(() {
-                                                              _model.uploadedLocalFile =
-                                                                  selectedUploadedFiles
-                                                                      .first;
-                                                            });
-                                                          } else {
-                                                            safeSetState(() {});
-                                                            return;
-                                                          }
+                                                            _model.uploadedLocalFile =
+                                                                FFUploadedFile(
+                                                                    bytes: Uint8List
+                                                                        .fromList(
+                                                                            []));
+                                                          });
                                                         }
+
+                                                        safeSetState(() {});
                                                       },
-                                                      text: FFLocalizations.of(
-                                                              context)
-                                                          .getText(
-                                                        'lirkz8bm' /* Capture */,
-                                                      ),
+                                                      text: (_model.capturedBlobOutput !=
+                                                                  '') &&
+                                                              (_model.capturedBlobOutput !=
+                                                                  'null')
+                                                          ? 'Re-Capture'
+                                                          : 'Capture',
                                                       icon: const Icon(
                                                         Icons.camera_alt,
                                                         size: 15.0,
@@ -3154,6 +3241,151 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                 .circular(8.0),
                                                       ),
                                                     ),
+                                                    if (kDebugMode)
+                                                      Expanded(
+                                                        child: TextFormField(
+                                                          controller: _model
+                                                              .capturedImageBlobInputTextController,
+                                                          focusNode: _model
+                                                              .capturedImageBlobInputFocusNode,
+                                                          onChanged: (_) =>
+                                                              EasyDebounce
+                                                                  .debounce(
+                                                            '_model.capturedImageBlobInputTextController',
+                                                            const Duration(
+                                                                milliseconds:
+                                                                    2000),
+                                                            () => safeSetState(
+                                                                () {}),
+                                                          ),
+                                                          autofocus: false,
+                                                          textCapitalization:
+                                                              TextCapitalization
+                                                                  .none,
+                                                          textInputAction:
+                                                              TextInputAction
+                                                                  .next,
+                                                          readOnly: true,
+                                                          obscureText: false,
+                                                          decoration:
+                                                              InputDecoration(
+                                                            labelText:
+                                                                FFLocalizations.of(
+                                                                        context)
+                                                                    .getText(
+                                                              'w9s8lti0' /* Base 64 (debug only) */,
+                                                            ),
+                                                            labelStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Readex Pro',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                            hintStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Readex Pro',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                            enabledBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                width: 2.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          12.0),
+                                                            ),
+                                                            focusedBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                                width: 2.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          12.0),
+                                                            ),
+                                                            errorBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .error,
+                                                                width: 2.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          12.0),
+                                                            ),
+                                                            focusedErrorBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .error,
+                                                                width: 2.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          12.0),
+                                                            ),
+                                                            filled: true,
+                                                            fillColor: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
+                                                            contentPadding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        16.0,
+                                                                        12.0,
+                                                                        16.0,
+                                                                        12.0),
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                          maxLines: 5,
+                                                          keyboardType:
+                                                              TextInputType
+                                                                  .datetime,
+                                                          cursorColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .primary,
+                                                          validator: _model
+                                                              .capturedImageBlobInputTextControllerValidator
+                                                              .asValidator(
+                                                                  context),
+                                                        ),
+                                                      ),
                                                   ].divide(
                                                       const SizedBox(width: 4.0)),
                                                 ),
@@ -3650,26 +3882,22 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                         ),
                                                                       ),
                                                                       child:
-                                                                          Padding(
-                                                                        padding:
-                                                                            const EdgeInsets.all(10.0),
-                                                                        child:
-                                                                            SizedBox(
+                                                                          SizedBox(
+                                                                        width: MediaQuery.sizeOf(context).width *
+                                                                            1.0,
+                                                                        height: MediaQuery.sizeOf(context).height *
+                                                                            1.0,
+                                                                        child: custom_widgets
+                                                                            .Base64ImageLoader(
                                                                           width:
                                                                               MediaQuery.sizeOf(context).width * 1.0,
                                                                           height:
                                                                               MediaQuery.sizeOf(context).height * 1.0,
-                                                                          child:
-                                                                              custom_widgets.Signaturebase64(
-                                                                            width:
-                                                                                MediaQuery.sizeOf(context).width * 1.0,
-                                                                            height:
-                                                                                MediaQuery.sizeOf(context).height * 1.0,
-                                                                            taskId:
-                                                                                widget.taskId,
-                                                                            signatureBlob:
-                                                                                ppirFormSelectPpirFormsRowList.first.ppirSigInsured,
-                                                                          ),
+                                                                          taskId:
+                                                                              widget.taskId,
+                                                                          imageBase64: ppirFormSelectPpirFormsRowList
+                                                                              .first
+                                                                              .ppirSigInsured,
                                                                         ),
                                                                       ),
                                                                     ),
@@ -3977,26 +4205,22 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                         ),
                                                                       ),
                                                                       child:
-                                                                          Padding(
-                                                                        padding:
-                                                                            const EdgeInsets.all(10.0),
-                                                                        child:
-                                                                            SizedBox(
+                                                                          SizedBox(
+                                                                        width: MediaQuery.sizeOf(context).width *
+                                                                            1.0,
+                                                                        height: MediaQuery.sizeOf(context).height *
+                                                                            1.0,
+                                                                        child: custom_widgets
+                                                                            .Base64ImageLoader(
                                                                           width:
                                                                               MediaQuery.sizeOf(context).width * 1.0,
                                                                           height:
                                                                               MediaQuery.sizeOf(context).height * 1.0,
-                                                                          child:
-                                                                              custom_widgets.Signaturebase64(
-                                                                            width:
-                                                                                MediaQuery.sizeOf(context).width * 1.0,
-                                                                            height:
-                                                                                MediaQuery.sizeOf(context).height * 1.0,
-                                                                            taskId:
-                                                                                widget.taskId,
-                                                                            signatureBlob:
-                                                                                ppirFormSelectPpirFormsRowList.first.ppirSigIuia,
-                                                                          ),
+                                                                          taskId:
+                                                                              widget.taskId,
+                                                                          imageBase64: ppirFormSelectPpirFormsRowList
+                                                                              .first
+                                                                              .ppirSigIuia,
                                                                         ),
                                                                       ),
                                                                     ),
@@ -4197,6 +4421,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                       'rice'
                                                   ? _model.riceDropdownValue
                                                   : _model.cornDropdownValue,
+                                          'captured_area': _model
+                                              .capturedImageBlobInputTextController
+                                              .text,
                                         },
                                         matchingRows: (rows) => rows.eq(
                                           'task_id',
@@ -4247,6 +4474,26 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                               ? _model.riceDropdownValue
                                               : _model.cornDropdownValue,
                                       isDirty: !FFAppState().ONLINE,
+                                      capturedArea: _model
+                                          .capturedImageBlobInputTextController
+                                          .text,
+                                    );
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          _model
+                                              .capturedImageBlobInputTextController
+                                              .text,
+                                          style: TextStyle(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                          ),
+                                        ),
+                                        duration: const Duration(milliseconds: 4000),
+                                        backgroundColor:
+                                            FlutterFlowTheme.of(context)
+                                                .secondary,
+                                      ),
                                     );
                                     await SQLiteManager.instance
                                         .updateTaskStatus(
@@ -4412,6 +4659,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                           : _model
                                                               .cornDropdownValue,
                                                   isDirty: false,
+                                                  capturedArea: _model
+                                                      .capturedImageBlobInputTextController
+                                                      .text,
                                                 );
                                                 await PpirFormsTable().update(
                                                   data: {
@@ -4466,6 +4716,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         .text,
                                                     'track_total_distance': _model
                                                         .ppirTrackTotalAreaTextController2
+                                                        .text,
+                                                    'captured_area': _model
+                                                        .capturedImageBlobInputTextController
                                                         .text,
                                                   },
                                                   matchingRows: (rows) =>

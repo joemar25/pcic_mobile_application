@@ -23,7 +23,7 @@ class SQLiteManager {
     }
     _database = await initializeDatabaseFromDbFile(
       'db_sync',
-      'offline_db_edited.db',
+      'offline_db.db',
     );
   }
 
@@ -570,6 +570,7 @@ class SQLiteManager {
     String? ppirAreaAct,
     String? ppirVariety,
     bool? isDirty,
+    String? capturedArea,
   }) =>
       performUpdatePPIRForm(
         _database,
@@ -584,6 +585,7 @@ class SQLiteManager {
         ppirAreaAct: ppirAreaAct,
         ppirVariety: ppirVariety,
         isDirty: isDirty,
+        capturedArea: capturedArea,
       );
 
   Future updateTaskStatus({

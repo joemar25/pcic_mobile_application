@@ -18,7 +18,7 @@ Future<String> isDirtyCount() async {
   List<COUNTIsDirtyRow> ppirList =
       await SQLiteManager.instance.cOUNTIsDirty(assignee: currentUserUid);
 
-  // Initialize a counter for dirty records
+  // Initialize a counter for dirty recordssz
   int dirtyCount = 0;
 
   // Iterate through the list and count how many are dirty

@@ -74,6 +74,7 @@ Future<String> updateOnlinePpirFormsFromOfflinePpirForms(String? taskId) async {
         'track_date_time': offlinePPIR.trackDateTime,
         'track_total_area': offlinePPIR.trackTotalArea,
         'track_total_distance': offlinePPIR.trackTotalDistance,
+        'captured_area': offlinePPIR.capturedArea,
         'sync_status': 'synced',
         'is_dirty': false,
         'updated_at': DateTime.now().toIso8601String(),
@@ -93,6 +94,7 @@ Future<String> updateOnlinePpirFormsFromOfflinePpirForms(String? taskId) async {
       ppirFarmloc: offlinePPIR.ppirFarmloc,
       ppirAreaAct: offlinePPIR.ppirAreaAct,
       ppirVariety: offlinePPIR.ppirVariety,
+      capturedArea: offlinePPIR.capturedArea,
       isDirty: false,
     );
 

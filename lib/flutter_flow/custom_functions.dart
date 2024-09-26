@@ -139,3 +139,16 @@ String? convertDateToString(String? date) {
   // update the date string like this 2024-08-04 10:05:58 to a proper date format
   return "";
 }
+
+String? timesStampConverter(String? date) {
+  // convert this 2024-08-08T15:37:33.806799+00:00 to this Mon. August 08, 2024 - 4:12pm - goods
+  if (date == null) {
+    return null;
+  }
+
+  DateTime dateTime = DateTime.parse(date);
+  String formattedDate =
+      DateFormat('E. MMMM dd, yyyy - h:mma').format(dateTime);
+
+  return formattedDate;
+}

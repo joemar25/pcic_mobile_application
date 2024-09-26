@@ -1,4 +1,5 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -6,7 +7,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
-import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -20,10 +20,12 @@ class MessagesWidget extends StatefulWidget {
     super.key,
     required this.chatId,
     required this.recieverId,
+    required this.recieverName,
   });
 
   final String? chatId;
   final String? recieverId;
+  final String? recieverName;
 
   @override
   State<MessagesWidget> createState() => _MessagesWidgetState();
@@ -48,6 +50,14 @@ class _MessagesWidgetState extends State<MessagesWidget> {
         'activity': 'Chatting with [...]',
         'user_id': currentUserUid,
       });
+      _model.apiResultw5j = await UpdateLastSeenAndReadCall.call(
+        chatId: widget.chatId,
+        userId: currentUserUid,
+      );
+
+      if ((_model.apiResultw5j?.succeeded ?? true)) {
+        safeSetState(() {});
+      }
     });
 
     _model.inputChatTextController ??= TextEditingController();
@@ -159,8 +169,8 @@ class _MessagesWidgetState extends State<MessagesWidget> {
 
                       return Text(
                         valueOrDefault<String>(
-                          textUsersRow?.inspectorName,
-                          'Inspector Name',
+                          widget.recieverName,
+                          'Reciever',
                         ),
                         style:
                             FlutterFlowTheme.of(context).displaySmall.override(
@@ -191,17 +201,14 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                 children: [
                   Expanded(
                     child: FutureBuilder<List<MessagesRow>>(
-                      future: (_model.requestCompleter ??=
-                              Completer<List<MessagesRow>>()
-                                ..complete(MessagesTable().queryRows(
-                                  queryFn: (q) => q
-                                      .eq(
-                                        'chat_id',
-                                        widget.chatId,
-                                      )
-                                      .order('timestamp', ascending: true),
-                                )))
-                          .future,
+                      future: MessagesTable().queryRows(
+                        queryFn: (q) => q
+                            .eq(
+                              'chat_id',
+                              widget.chatId,
+                            )
+                            .order('timestamp', ascending: true),
+                      ),
                       builder: (context, snapshot) {
                         // Customize what your widget looks like when it's loading.
                         if (!snapshot.hasData) {
@@ -243,7 +250,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                           ),
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
-                                                .accent1,
+                                                .secondary,
                                             borderRadius: const BorderRadius.only(
                                               bottomLeft: Radius.circular(6.0),
                                               bottomRight:
@@ -413,20 +420,18 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                   ),
                   Container(
                     width: MediaQuery.sizeOf(context).width * 1.0,
-                    height: 80.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  8.0, 0.0, 8.0, 0.0),
+                    child: Form(
+                      key: _model.formKey,
+                      autovalidateMode: AutovalidateMode.disabled,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Expanded(
                               child: SizedBox(
                                 width: MediaQuery.sizeOf(context).width * 1.0,
                                 child: TextFormField(
@@ -443,7 +448,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                   decoration: InputDecoration(
                                     labelText:
                                         FFLocalizations.of(context).getText(
-                                      'of52etyq' /* Message.. */,
+                                      '6z1j9pzp' /* Message.. */,
                                     ),
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
@@ -453,7 +458,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                         ),
                                     hintText:
                                         FFLocalizations.of(context).getText(
-                                      'wjgzxgkw' /* Type your message here */,
+                                      'd1j92j9g' /* Type your message here */,
                                     ),
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
@@ -507,56 +512,55 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                 ),
                               ),
                             ),
-                          ),
-                          FFButtonWidget(
-                            onPressed: () async {
-                              await MessagesTable().insert({
-                                'chat_id': widget.chatId,
-                                'content': _model.inputChatTextController.text,
-                                'sender_name': currentUserUid,
-                                'receiver_name':
-                                    messagesMessagesRow?.receiverName,
-                                'timestamp': supaSerialize<DateTime>(
-                                    getCurrentTimestamp),
-                              });
-                              safeSetState(() {
-                                _model.inputChatTextController?.clear();
-                              });
-                              safeSetState(
-                                  () => _model.requestCompleter = null);
-                              await _model.waitForRequestCompleted();
-                            },
-                            text: FFLocalizations.of(context).getText(
-                              'f9pdwlqc' /*  */,
-                            ),
-                            icon: Icon(
-                              Icons.send_sharp,
-                              color: FlutterFlowTheme.of(context).info,
-                              size: 15.0,
-                            ),
-                            options: FFButtonOptions(
-                              width: 50.0,
-                              height: 50.0,
-                              padding: const EdgeInsets.all(20.0),
-                              iconPadding: const EdgeInsets.all(0.0),
-                              color: FlutterFlowTheme.of(context).primary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                    letterSpacing: 0.0,
-                                  ),
-                              elevation: 3.0,
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
+                            FFButtonWidget(
+                              onPressed: () async {
+                                await MessagesTable().insert({
+                                  'chat_id': widget.chatId,
+                                  'content':
+                                      _model.inputChatTextController.text,
+                                  'sender_name': currentUserUid,
+                                  'receiver_name':
+                                      messagesMessagesRow?.receiverName,
+                                  'timestamp': supaSerialize<DateTime>(
+                                      getCurrentTimestamp),
+                                  'last_seen_by': currentUserUid,
+                                });
+                                safeSetState(() {
+                                  _model.inputChatTextController?.clear();
+                                });
+                              },
+                              text: FFLocalizations.of(context).getText(
+                                'e855r75w' /*  */,
                               ),
-                              borderRadius: BorderRadius.circular(8.0),
+                              icon: Icon(
+                                Icons.send_sharp,
+                                color: FlutterFlowTheme.of(context).info,
+                                size: 15.0,
+                              ),
+                              options: FFButtonOptions(
+                                padding: const EdgeInsets.all(20.0),
+                                iconPadding: const EdgeInsets.all(0.0),
+                                color: FlutterFlowTheme.of(context).primary,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      letterSpacing: 0.0,
+                                    ),
+                                elevation: 3.0,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
                             ),
-                          ),
-                        ],
+                          ]
+                              .divide(const SizedBox(width: 8.0))
+                              .around(const SizedBox(width: 8.0)),
+                        ),
                       ),
                     ),
                   ),

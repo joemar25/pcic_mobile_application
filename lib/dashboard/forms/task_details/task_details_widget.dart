@@ -254,9 +254,31 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 12.0),
                                             child: Text(
+                                              valueOrDefault<String>(
+                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                    .first.capturedArea,
+                                                'Captured Area',
+                                              ),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyLarge
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 12.0),
+                                            child: Text(
                                               FFLocalizations.of(context)
                                                   .getText(
-                                                '7l5eyyx5' /* Form Details */,
+                                                'mdd6huf5' /* Form Details */,
                                               ),
                                               style: FlutterFlowTheme.of(
                                                       context)
@@ -2279,7 +2301,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     .height *
                                                                 0.2,
                                                             child: custom_widgets
-                                                                .Signaturebase64(
+                                                                .Base64ImageLoader(
                                                               width: MediaQuery
                                                                           .sizeOf(
                                                                               context)
@@ -2292,7 +2314,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   0.2,
                                                               taskId: widget
                                                                   .taskId,
-                                                              signatureBlob:
+                                                              imageBase64:
                                                                   taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                                       .first
                                                                       .ppirSigInsured,
@@ -2385,7 +2407,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     .height *
                                                                 0.2,
                                                             child: custom_widgets
-                                                                .Signaturebase64(
+                                                                .Base64ImageLoader(
                                                               width: MediaQuery
                                                                           .sizeOf(
                                                                               context)
@@ -2398,7 +2420,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   0.2,
                                                               taskId: widget
                                                                   .taskId,
-                                                              signatureBlob:
+                                                              imageBase64:
                                                                   taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                                       .first
                                                                       .ppirSigIuia,

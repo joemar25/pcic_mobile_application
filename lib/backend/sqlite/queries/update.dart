@@ -444,6 +444,7 @@ Future performUpdatePPIRForm(
   String? ppirAreaAct,
   String? ppirVariety,
   bool? isDirty,
+  String? capturedArea,
 }) {
   final query = '''
 UPDATE ppir_forms
@@ -457,6 +458,7 @@ SET
   ppir_farmloc = '$ppirFarmloc',
   ppir_area_act = '$ppirAreaAct',
   ppir_variety = '$ppirVariety',
+  captured_area = '$capturedArea',
   is_dirty = $isDirty
 WHERE task_id = '$taskId';
 ''';

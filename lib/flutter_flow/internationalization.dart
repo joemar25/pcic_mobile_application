@@ -356,17 +356,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // messages
   {
-    'of52etyq': {
+    '6z1j9pzp': {
       'en': 'Message..',
-      'tl': 'Mensahe..',
+      'tl': '',
     },
-    'wjgzxgkw': {
+    'd1j92j9g': {
       'en': 'Type your message here',
-      'tl': 'I-type ang iyong mensahe dito',
+      'tl': '',
     },
-    'f9pdwlqc': {
+    'e855r75w': {
       'en': '',
-      'tl': 'Ipadala',
+      'tl': '',
     },
     'zxojetjq': {
       'en': 'Home',
@@ -375,9 +375,9 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // taskDetails
   {
-    '7l5eyyx5': {
+    'mdd6huf5': {
       'en': 'Form Details',
-      'tl': 'Mga Detalye ng Form',
+      'tl': '',
     },
     'zvbf8lkk': {
       'en': 'Assignment Id',
@@ -931,11 +931,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Aktwal na Petsa ng Pagtatanim (TP)',
     },
     'g6bs1u02': {
-      'en': 'Capture Area',
+      'en': 'Area',
       'tl': '',
     },
-    'lirkz8bm': {
-      'en': 'Capture',
+    'w9s8lti0': {
+      'en': 'Base 64 (debug only)',
       'tl': '',
     },
     'f5is9k8s': {
@@ -1035,6 +1035,14 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Kinakailangan ang field',
     },
     'p8ha20p3': {
+      'en': 'Please choose an option from the dropdown',
+      'tl': 'Mangyaring pumili ng opsyon mula sa dropdown',
+    },
+    'doqqwpwl': {
+      'en': 'Must have a captured Image',
+      'tl': 'Kinakailangan ang field',
+    },
+    'pi8ty7oh': {
       'en': 'Please choose an option from the dropdown',
       'tl': 'Mangyaring pumili ng opsyon mula sa dropdown',
     },
@@ -1371,22 +1379,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'ftz1qs3j': {
       'en': 'Address',
       'tl': 'Address',
-    },
-  },
-  // chatListContainer
-  {
-    '9xu4id6x': {
-      'en': 'Mar',
-      'tl': '',
-    },
-    'z2n2xbni': {
-      'en':
-          'This was really great, i\'m so glad that we could  catchup this weekend.',
-      'tl': '',
-    },
-    'icvt2mol': {
-      'en': 'Mon. July 3rd - 4:12pm',
-      'tl': '',
     },
   },
   // signoutDialog

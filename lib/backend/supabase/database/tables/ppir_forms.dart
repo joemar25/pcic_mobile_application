@@ -165,4 +165,7 @@ class PpirFormsRow extends SupabaseDataRow {
 
   bool? get isDirty => getField<bool>('is_dirty');
   set isDirty(bool? value) => setField<bool>('is_dirty', value);
+
+  String? get capturedArea => getField<String>('captured_area');
+  set capturedArea(String? value) => setField<String>('captured_area', value);
 }
