@@ -14,53 +14,20 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:archive/archive.dart';
-import 'package:dartssh2/dartssh2.dart';
+import 'package:ftpconnect/ftpconnect.dart';
 
 Future<bool> saveToFTP(String? taskId) async {
-  // mar is here
   if (taskId == null) return false;
 
-  SSHClient? client;
+  FTPConnect? ftpClient;
 
   try {
-    // 1. Query task data
-    final taskResponse = await SupaFlow.client
-        .from('tasks')
-        .select('service_group, task_number, assignee')
-        .eq('id', taskId)
-        .single()
-        .execute();
-
-    if (taskResponse.status != 200 || taskResponse.data == null) {
-      throw Exception('Error querying tasks table: ${taskResponse.status}');
-    }
-
-    final taskData = taskResponse.data as Map<String, dynamic>;
+    final taskData = await getTaskData(taskId);
     final String serviceGroup = taskData['service_group'] ?? '';
     final String taskNumber = taskData['task_number'] ?? '';
-    final String userEmail =
-        SupaFlow.client.auth.currentUser?.email ?? taskData['assignee'] ?? '';
+    final String userEmail = taskData['user_email'] ?? '';
+    final String insuranceId = await getInsuranceId(taskId);
 
-    if (userEmail.isEmpty) {
-      throw Exception('Unable to get user email');
-    }
-
-    // 2. Query insurance ID from ppir_forms
-    final ppirResponse = await SupaFlow.client
-        .from('ppir_forms')
-        .select('ppir_insuranceid')
-        .eq('task_id', taskId)
-        .single()
-        .execute();
-
-    if (ppirResponse.status != 200 || ppirResponse.data == null) {
-      throw Exception(
-          'Error querying ppir_forms table: ${ppirResponse.status}');
-    }
-
-    final String insuranceId = ppirResponse.data['ppir_insuranceid'] ?? '';
-
-    // 3. Find the latest folder for this task and insurance ID
     final String basePath = '$serviceGroup/$userEmail';
     final String folderPrefix = '${taskNumber}_$insuranceId';
 
@@ -76,19 +43,15 @@ Future<bool> saveToFTP(String? taskId) async {
 
     print('Latest folder found: $latestFolder');
 
-    // 4. Get all files from the latest folder in the Supabase bucket
     final fileList = await listAllFiles(latestFolder);
-
-    // 5. Create a temporary directory to store the .task file
     final tempDir = await getTemporaryDirectory();
+    final zipFile = File('${tempDir.path}/${taskNumber}_${insuranceId}.zip');
 
-    // 6. Download files and create archive
     final archive = Archive();
     for (final filePath in fileList) {
       final fileData =
           await SupaFlow.client.storage.from('for_ftp').download(filePath);
 
-      // Extract the relative path within the taskNumber folder
       final relativePath = filePath.substring(latestFolder.length + 1);
 
       final archiveFile = ArchiveFile(
@@ -99,50 +62,112 @@ Future<bool> saveToFTP(String? taskId) async {
       archive.addFile(archiveFile);
     }
 
-    // 7. Create the .task file with the new naming convention
-    final taskFile = File('${tempDir.path}/${taskNumber}_${insuranceId}.task');
-    final zipBytes = ZipEncoder().encode(archive) ?? [];
-    await taskFile.writeAsBytes(zipBytes);
+    final zipOutput = ZipEncoder().encode(archive);
+    await zipFile.writeAsBytes(zipOutput!);
 
-    // 8. Upload to SFTP
-    final socket = await SSHSocket.connect('122.55.242.110', 22);
-    client = SSHClient(
-      socket,
-      username: 'k2c_User2',
-      onPasswordRequest: () => 'K2C@PC!C2024',
-    );
+    final (ftpUsername, remoteBasePath, fileNamePrefix) =
+        await getFtpSettings(serviceGroup);
 
-    await client.authenticated;
-    final sftp = await client.sftp();
+    ftpClient = FTPConnect('122.55.242.110',
+        user: ftpUsername, pass: 'K2c#%!pc!c', port: 21);
+    await ftpClient.connect();
 
-    // Construct the remote path with the new file name
-    final remotePath = '/taskarchive/${taskNumber}_${insuranceId}.task';
+    final fileName = '$fileNamePrefix-$taskNumber-$insuranceId.task';
+    final remotePath = '/$remoteBasePath/$fileName';
 
-    // Ensure the remote directory exists
-    await createRemoteDirectoryIfNotExists(sftp, remotePath);
+    try {
+      await ftpClient.makeDirectory(remoteBasePath);
+    } catch (e) {
+      if (!e.toString().contains('Directory already exists')) {
+        rethrow;
+      }
+    }
+    await ftpClient.changeDirectory(remoteBasePath);
 
-    // Open the remote file with create and truncate flags
-    final remoteFile = await sftp.open(
-      remotePath,
-      mode: SftpFileOpenMode.create |
-          SftpFileOpenMode.truncate |
-          SftpFileOpenMode.write,
-    );
+    await ftpClient.uploadFile(zipFile, sRemoteName: fileName);
+    print('File uploaded successfully to FTP: $fileName');
 
-    // Upload the file
-    await remoteFile.write(taskFile.openRead().cast<Uint8List>());
-    await remoteFile.close();
-
-    // 9. Clean up: delete the temporary .task file
-    await taskFile.delete();
+    await zipFile.delete();
 
     return true;
   } catch (e) {
     print('Error in saveToFTP: $e');
     return false;
   } finally {
-    // Close the client in the finally block
-    client?.close();
+    await ftpClient?.disconnect();
+  }
+}
+
+Future<Map<String, String>> getTaskData(String taskId) async {
+  final taskResponse = await SupaFlow.client
+      .from('tasks')
+      .select('service_group, task_number, assignee')
+      .eq('id', taskId)
+      .single()
+      .execute();
+
+  if (taskResponse.status != 200 || taskResponse.data == null) {
+    throw Exception('Error querying tasks table: ${taskResponse.status}');
+  }
+
+  final taskData = taskResponse.data as Map<String, dynamic>;
+  final String userEmail =
+      SupaFlow.client.auth.currentUser?.email ?? taskData['assignee'] ?? '';
+
+  if (userEmail.isEmpty) {
+    throw Exception('Unable to get user email');
+  }
+
+  taskData['user_email'] = userEmail;
+  return taskData.cast<String, String>();
+}
+
+Future<String> getInsuranceId(String taskId) async {
+  final ppirResponse = await SupaFlow.client
+      .from('ppir_forms')
+      .select('ppir_insuranceid')
+      .eq('task_id', taskId)
+      .single()
+      .execute();
+
+  if (ppirResponse.status != 200 || ppirResponse.data == null) {
+    throw Exception('Error querying ppir_forms table: ${ppirResponse.status}');
+  }
+
+  return ppirResponse.data['ppir_insuranceid'] ?? '';
+}
+
+Future<(String, String, String)> getFtpSettings(String serviceGroup) async {
+  switch (serviceGroup) {
+    case 'P01':
+      return ('k2c_Ro1', 'RO_1/taskarchive', 'RO1');
+    case 'P02':
+      return ('k2c_Ro2', 'RO_2/taskarchive', 'RO2');
+    case 'P03':
+      return ('k2c_Ro3', 'RO_3/taskarchive', 'RO3');
+    case 'P04A':
+    case 'P04B':
+      return ('k2c_Ro4', 'RO_4/taskarchive', 'RO4');
+    case 'PO5':
+      return ('k2c_Ro5', 'RO_5/taskarchive', 'RO5');
+    case 'P06':
+      return ('k2c_Ro6', 'RO_6/taskarchive', 'RO6');
+    case 'P07':
+      return ('k2c_Ro7', 'RO_7/taskarchive', 'RO7');
+    case 'P08':
+      return ('k2c_Ro8', 'RO_8/taskarchive', 'RO8');
+    case 'P09':
+      return ('k2c_Ro9', 'RO_9/taskarchive', 'RO9');
+    case 'P010':
+      return ('k2c_Ro10', 'RO_10/taskarchive', 'RO10');
+    case 'P011':
+      return ('k2c_Ro11', 'RO_11/taskarchive', 'RO11');
+    case 'P012':
+      return ('k2c_Ro12', 'RO_12/taskarchive', 'RO12');
+    case 'P013':
+      return ('k2c_Ro13', 'RO_13/taskarchive', 'RO13');
+    default:
+      throw Exception('Invalid service group: $serviceGroup');
   }
 }
 
@@ -153,7 +178,6 @@ Future<List<String>> listAllFiles(String path) async {
 
   for (final item in response) {
     if (item.name.contains('.')) {
-      // Assuming files have extensions and folders don't
       allFiles.add('$path/${item.name}');
     } else {
       allFiles.addAll(await listAllFiles('$path/${item.name}'));
@@ -161,21 +185,4 @@ Future<List<String>> listAllFiles(String path) async {
   }
 
   return allFiles;
-}
-
-Future<void> createRemoteDirectoryIfNotExists(
-    SftpClient sftp, String path) async {
-  final dirs = path.split('/').where((dir) => dir.isNotEmpty).toList();
-  String currentPath = '';
-
-  for (final dir in dirs.sublist(0, dirs.length - 1)) {
-    // Exclude the file name
-    currentPath += '/$dir';
-    try {
-      await sftp.stat(currentPath);
-    } catch (e) {
-      // Directory doesn't exist, create it
-      await sftp.mkdir(currentPath);
-    }
-  }
 }
