@@ -4475,6 +4475,71 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                       status: 'ongoing',
                                       isDirty: !FFAppState().ONLINE,
                                     );
+                                    await showDialog(
+                                      context: context,
+                                      builder: (dialogContext) {
+                                        return Dialog(
+                                          elevation: 0,
+                                          insetPadding: EdgeInsets.zero,
+                                          backgroundColor: Colors.transparent,
+                                          alignment: const AlignmentDirectional(
+                                                  0.0, 0.0)
+                                              .resolve(
+                                                  Directionality.of(context)),
+                                          child: GestureDetector(
+                                            onTap: () =>
+                                                FocusScope.of(dialogContext)
+                                                    .unfocus(),
+                                            child: ContinueSubmitDialogWidget(
+                                              taskId: widget.taskId,
+                                              ppirSvpAct: _model
+                                                  .ppirSvpActSelectionValue,
+                                              ppirDopdsAct: '',
+                                              ppirDoptpAct: '',
+                                              ppirRemarks: '',
+                                              ppirNameInsured:
+                                                  ppirFormSelectPpirFormsRowList
+                                                      .first.ppirSigInsured,
+                                              ppirNameIuia: '',
+                                              ppirFarmloc: '',
+                                              ppirAreaAct: '',
+                                              ppirVariety: '',
+                                              isDirty: false,
+                                              capturedArea: _model
+                                                  .capturedImageBlobInputTextController
+                                                  .text,
+                                              riceDropdown:
+                                                  _model.riceDropdownValue,
+                                              cordDropDown:
+                                                  _model.cornDropdownValue,
+                                              gpx: _model
+                                                  .gpxBlobTextController.text,
+                                              ppirSigInsured:
+                                                  ppirFormSelectPpirFormsRowList
+                                                      .first.ppirSigInsured,
+                                              trackLastCoord: _model
+                                                  .ppirTrackCoordinatesTextController
+                                                  .text,
+                                              trackDateTime: _model
+                                                  .ppirTrackDateTimeTextController
+                                                  .text,
+                                              trackTotalArea: _model
+                                                  .ppirTrackTotalAreaTextController1
+                                                  .text,
+                                              trackTotalDistance: _model
+                                                  .ppirTrackTotalAreaTextController2
+                                                  .text,
+                                              ppirSigIuia:
+                                                  ppirFormSelectPpirFormsRowList
+                                                      .first.ppirSigIuia,
+                                              generatedXMLFile:
+                                                  _model.generatedTaskXmlFile,
+                                              isFtpSaved: _model.isFtpSaved,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
 
                                     context.pushNamed(
                                       'formSuccess',
@@ -4594,11 +4659,19 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     ),
                                                   );
                                                 },
-                                              ).then((value) => safeSetState(
-                                                  () => _model.continueSubmit =
-                                                      value));
+                                              );
 
-                                              if (_model.continueSubmit!) {
+                                              if (!((_model
+                                                          .gpxBlobTextController
+                                                          .text ==
+                                                      ' ') ||
+                                                  (ppirFormSelectPpirFormsRowList
+                                                          .first.ppirSigIuia ==
+                                                      'null') ||
+                                                  (ppirFormSelectPpirFormsRowList
+                                                          .first
+                                                          .ppirSigInsured ==
+                                                      'null'))) {
                                                 await SQLiteManager.instance
                                                     .updatePPIRForm(
                                                   taskId: widget.taskId,

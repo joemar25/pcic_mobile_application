@@ -1531,7 +1531,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // continueSubmitDialog
   {
     '2gqa0lrn': {
-      'en': 'Info',
+      'en': 'Task Saved',
       'tl': 'Impormasyon',
     },
     'x6p50a5s': {
@@ -1542,9 +1542,9 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Cancel',
       'tl': 'Kanselahin',
     },
-    '8vm8xjo5': {
-      'en': 'Continue',
-      'tl': 'Magpatuloy',
+    'i4fw1nx7': {
+      'en': 'Submit',
+      'tl': '',
     },
   },
   // continueSaveDialog
