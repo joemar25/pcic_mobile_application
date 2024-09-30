@@ -268,6 +268,8 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
   bool? continueSave;
   // Stores action output result for [Validate Form] action in submitButton widget.
   bool? isValidated;
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in submitButton widget.
+  bool? continueSubmit;
   // Stores action output result for [Backend Call - Update Row(s)] action in submitButton widget.
   List<PpirFormsRow>? savePPIRCopy;
   // Stores action output result for [Custom Action - generateTaskXml] action in submitButton widget.

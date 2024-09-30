@@ -1542,8 +1542,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Cancel',
       'tl': 'Kanselahin',
     },
-    'i4fw1nx7': {
-      'en': 'Submit',
+    'w7005adq': {
+      'en': 'Continue',
       'tl': '',
     },
   },
