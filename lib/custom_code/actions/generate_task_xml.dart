@@ -13,6 +13,8 @@ import 'package:flutter/material.dart';
 
 import 'index.dart'; // Imports other custom actions
 
+import 'index.dart'; // Imports other custom actions
+
 import 'package:xml/xml.dart';
 import 'package:dart_ipify/dart_ipify.dart';
 import 'dart:convert';
@@ -50,6 +52,20 @@ Future<String> generateTaskXml(String? taskId) async {
     String serviceGroup = data['service_group']?.toString() ?? '';
     String userEmail = data['users']['email']?.toString() ?? '';
     String taskNumber = data['task_number']?.toString() ?? '';
+    String rawDateTime = ppirForm['track_date_time']?.toString() ?? '';
+    String formattedDateTime = '';
+    String insuranceId = ppirForm['insurance_id']?.toString() ??
+        ''; // Ensure you get insuranceId
+
+    if (rawDateTime.isNotEmpty) {
+      DateTime parsedDateTime = DateTime.parse(rawDateTime);
+
+      // Format the DateTime object to the desired format
+      formattedDateTime = DateFormat('MM/dd/yyyy HH:mm').format(parsedDateTime);
+
+      // Use formattedDateTime as needed
+      print(formattedDateTime);
+    }
 
     print('Service Type: $serviceType');
     print('Track Last Coord: $trackLastcoord');
@@ -57,10 +73,34 @@ Future<String> generateTaskXml(String? taskId) async {
     print('User Email: $userEmail');
     print('Task Number: $taskNumber');
 
-    final bucketPath = '$serviceGroup/$userEmail/$taskNumber';
-    final fileList = await listAllFiles(bucketPath);
+    final basePath = '$serviceGroup/$userEmail';
+    final folderPrefix =
+        '${taskNumber}_${insuranceId}'; // Use taskNumber as prefix for folder search
+    print('LOREMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM ------------- ${folderPrefix}');
 
-    print('File list from bucket path: $fileList');
+    // Find the latest folder
+    final latestFolder = await findLatestFolder(basePath, folderPrefix);
+
+    if (latestFolder == null) {
+      print('No matching folder found for the task');
+    }
+
+    print('Latest folder found: $latestFolder');
+
+    // Append /attachments to the latest folder
+    final attachmentsPath = '$latestFolder/attachments';
+    print('Attachments path: $attachmentsPath'); // Debugging output
+
+    // List files in the attachments directory
+    final fileList = await listAllFiles(attachmentsPath);
+    print('File list from attachments path: $fileList');
+
+    // final bucketPath = '$serviceGroup/$userEmail/$taskNumber';
+    // print(
+    //     'Bucket----------------------------------------------------------- path: $bucketPath');
+    // final fileList = await listAllFiles(bucketPath);
+
+    // print('File list from bucket path: $fileList');
 
     String? signatureInsured;
     String? signatureIuia;
@@ -599,9 +639,7 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('TaskId',
               nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
-          builder.element('UpdatedValue',
-              nest: ppirForm['track_date_time']?.toString() ??
-                  '04/08/2024 1:29:22 pm');
+          builder.element('UpdatedValue', nest: formattedDateTime);
           builder.element('FieldId', nest: '');
           builder.element('FormTitle', nest: 'Tracked Farm');
           builder.element('FieldLabel', nest: 'Date and Time');
@@ -662,8 +700,7 @@ Future<String> generateTaskXml(String? taskId) async {
               nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue',
-              nest:
-                  'Date/Time|track_coord_timestamp|${ppirForm['track_date_time']?.toString() ?? '04/08/2024 1:29:02 pm'}');
+              nest: 'Date/Time|track_coord_timestamp|${formattedDateTime}');
           builder.element('FormTitle', nest: 'Tracked Farm');
           builder.element('FieldLabel', nest: 'Field');
           builder.element('IPAddress', nest: '');
@@ -2131,7 +2168,8 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Attachment', nest: () {
                 builder.element('AuthorId', nest: '53111');
                 builder.element('Blob',
-                    nest: ppirForm['ppir_sig_insured']?.toString() ?? '');
+                    nest: ppirForm['ppir_sig_insured']?.toString() ??
+                        'SIG INSURED NO VALUE');
                 builder.element('BlobLocation',
                     nest: '2cba2e43-122c-4f9a-b7a7-3e97fcd3183d');
                 builder.element('CapturedDateTime',
@@ -2190,7 +2228,8 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Attachment', nest: () {
                 builder.element('AuthorId', nest: '53111');
                 builder.element('Blob',
-                    nest: ppirForm['ppir_sig_iuia']?.toString() ?? '');
+                    nest: ppirForm['ppir_sig_iuia']?.toString() ??
+                        'SIG IUAI NO VALUE');
                 builder.element('BlobLocation',
                     nest: '3ef6459c-3634-4bc1-b048-e1c0247cb6a1');
                 builder.element('CapturedDateTime',
@@ -2385,7 +2424,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '42');
               builder.element('Type', nest: 'Date');
               builder.element('Value',
-                  nest: ppirForm['ppir_dopdp_act']?.toString() ?? '');
+                  nest: ppirForm['ppir_doptp_act']?.toString() ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -3142,7 +3181,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '5');
               builder.element('Type', nest: 'Number');
               builder.element('Value',
-                  nest: ppirForm['track_totalarea']?.toString() ?? '');
+                  nest: ppirForm['track_total_area']?.toString() ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -3167,8 +3206,8 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '6');
               builder.element('Type', nest: 'Text');
               builder.element('Value',
-                  nest: ppirForm['track_date_time']?.toString() ??
-                      ''); // last value is 04/08/2024 1:29:22 pm
+                  nest:
+                      formattedDateTime); // last value is 04/08/2024 1:29:22 pm
             });
 
             builder.element('FormFieldZipModel', nest: () {
