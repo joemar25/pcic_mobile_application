@@ -55,8 +55,8 @@ Future<bool> syncFromFTP(String? region) async {
       return false;
     }
     final regionName = regionQuery.first.regionName + ' PPIR';
-
-    ftpClient = FTPConnect('122.55.242.110',
+    // 122.55.242.110
+    ftpClient = FTPConnect('103.82.46.134',
         user: 'k2c_User1', pass: 'K2c#%!pc!c', port: 21);
     await ftpClient.connect();
 
