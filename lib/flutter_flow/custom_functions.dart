@@ -152,3 +152,18 @@ String? timesStampConverter(String? date) {
 
   return formattedDate;
 }
+
+String formatDate(String? input) {
+  if (input == null || input.isEmpty) return '';
+  try {
+    final parts = input.split('/');
+    if (parts.length != 3) return input;
+    final day = int.parse(parts[0]);
+    final month = int.parse(parts[1]);
+    final year = int.parse(parts[2]);
+    final date = DateTime(year, month, day);
+    return DateFormat('MM/dd/yyyy').format(date);
+  } catch (e) {
+    return input; // Return original string if parsing fails
+  }
+}

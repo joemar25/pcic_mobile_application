@@ -54,6 +54,8 @@ Future<String> generateTaskXml(String? taskId) async {
     String taskNumber = data['task_number']?.toString() ?? '';
     String rawDateTime = ppirForm['track_date_time']?.toString() ?? '';
     String formattedDateTime = '';
+    String formattedDopdsAct = '';
+    String formattedDoptpAct = '';
     String insuranceId = ppirForm['insurance_id']?.toString() ??
         ''; // Ensure you get insuranceId
 
@@ -66,6 +68,11 @@ Future<String> generateTaskXml(String? taskId) async {
       // Use formattedDateTime as needed
       print(formattedDateTime);
     }
+
+    formattedDopdsAct =
+        formatDate(ppirForm['ppir_dopds_act']?.toString() ?? '');
+    formattedDoptpAct =
+        formatDate(ppirForm['ppir_doptp_act']?.toString() ?? '');
 
     print('Service Type: $serviceType');
     print('Track Last Coord: $trackLastcoord');
@@ -2375,8 +2382,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Options', nest: '');
               builder.element('Sequence', nest: '37');
               builder.element('Type', nest: 'Date');
-              builder.element('Value',
-                  nest: ppirForm['ppir_dopds_act']?.toString() ?? '');
+              builder.element('Value', nest: formattedDoptpAct);
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -2423,8 +2429,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Options', nest: '');
               builder.element('Sequence', nest: '42');
               builder.element('Type', nest: 'Date');
-              builder.element('Value',
-                  nest: ppirForm['ppir_doptp_act']?.toString() ?? '');
+              builder.element('Value', nest: formattedDoptpAct);
             });
 
             builder.element('FormFieldZipModel', nest: () {
@@ -2919,7 +2924,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '54');
               builder.element('Type', nest: 'List');
               builder.element('Value',
-                  nest: ppirForm['ppir_svp_act']?.toString() ?? '');
+                  nest: ppirForm['ppir_variety']?.toString() ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {
