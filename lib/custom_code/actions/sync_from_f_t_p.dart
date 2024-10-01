@@ -36,6 +36,21 @@ Future<bool> syncFromFTP(String? region) async {
   int newTasksCount = 0;
   int newPPIRFormsCount = 0;
 
+  final List<Map<String, dynamic>> ftpServers = [
+    {
+      'host': '103.82.46.134',
+      'user': 'k2c_User1',
+      'pass': 'K2c#%!pc!c',
+      'port': 21
+    },
+    {
+      'host': '122.55.242.110',
+      'user': 'k2c_User1',
+      'pass': 'K2c#%!pc!c',
+      'port': 21
+    },
+  ];
+
   try {
     final userQuery = await UsersTable().queryRows(
       queryFn: (q) => q.eq('email', currentUserEmail),
@@ -56,9 +71,29 @@ Future<bool> syncFromFTP(String? region) async {
     }
     final regionName = regionQuery.first.regionName + ' PPIR';
     // 122.55.242.110
-    ftpClient = FTPConnect('103.82.46.134',
-        user: 'k2c_User1', pass: 'K2c#%!pc!c', port: 21);
-    await ftpClient.connect();
+    // ftpClient = FTPConnect('103.82.46.134',
+    //     user: 'k2c_User1', pass: 'K2c#%!pc!c', port: 21);
+    // await ftpClient.connect();
+
+    bool connected = false;
+    for (var server in ftpServers) {
+      try {
+        ftpClient = FTPConnect(server['host'],
+            user: server['user'], pass: server['pass'], port: server['port']);
+        await ftpClient.connect();
+        connected = true;
+        print('Connected to FTP server: ${server['host']}');
+        break;
+      } catch (e) {
+        print('Failed to connect to FTP server ${server['host']}: $e');
+        continue;
+      }
+    }
+
+    if (!connected) {
+      print('Failed to connect to any FTP server');
+      return false;
+    }
 
     const remotePath = '/Work';
     final List<FTPEntry> files = await ftpClient.listDirectoryContent();
