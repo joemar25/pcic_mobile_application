@@ -11,6 +11,9 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'index.dart'; // Imports other custom actions
+
+// Additional imports
 import '/auth/supabase_auth/auth_util.dart';
 import 'package:ftpconnect/ftpconnect.dart';
 import 'package:csv/csv.dart';
@@ -35,7 +38,6 @@ Future<bool> syncFromFTP(String? region) async {
   int newTasksCount = 0;
   int newPPIRFormsCount = 0;
 
-  // Define FTP server endpoints
   final List<Map<String, dynamic>> ftpServers = [
     {
       'host': '103.82.46.134',
@@ -71,7 +73,6 @@ Future<bool> syncFromFTP(String? region) async {
     }
     final regionName = regionQuery.first.regionName + ' PPIR';
 
-    // Try connecting to FTP servers
     bool connected = false;
     for (var server in ftpServers) {
       try {
@@ -93,9 +94,22 @@ Future<bool> syncFromFTP(String? region) async {
     }
 
     const remotePath = '/Work';
-    final List<FTPEntry> files = await ftpClient!.listDirectoryContent();
+    try {
+      await ftpClient!.changeDirectory(remotePath);
+    } catch (e) {
+      print('Error changing to directory $remotePath: $e');
+      return false;
+    }
 
-    print('All files in directory:');
+    List<FTPEntry> files;
+    try {
+      files = await ftpClient.listDirectoryContent();
+    } catch (e) {
+      print('Error listing directory content: $e');
+      return false;
+    }
+
+    print('All files in /Work directory:');
     for (var file in files) {
       print(file.name);
     }
@@ -117,8 +131,13 @@ Future<bool> syncFromFTP(String? region) async {
     for (final filename in filesToProcess) {
       print('Processing file: $filename');
       File tempFile = File('${Directory.systemTemp.path}/$filename');
-      bool downloadSuccess =
-          await ftpClient.downloadFile('$remotePath/$filename', tempFile);
+      bool downloadSuccess = false;
+      try {
+        downloadSuccess = await ftpClient.downloadFile(filename, tempFile);
+      } catch (e) {
+        print('Error downloading file $filename: $e');
+        continue;
+      }
       if (!downloadSuccess) {
         print('Failed to download file: $filename');
         continue;
