@@ -19,7 +19,6 @@ import 'package:uuid/uuid.dart';
 import 'dart:io';
 
 Future<bool> syncFromFTP(String? region) async {
-  //
   print("hello from syncFromFTP");
   if (region == null) {
     print('Error: Region is null');
@@ -36,6 +35,7 @@ Future<bool> syncFromFTP(String? region) async {
   int newTasksCount = 0;
   int newPPIRFormsCount = 0;
 
+  // Define FTP server endpoints
   final List<Map<String, dynamic>> ftpServers = [
     {
       'host': '103.82.46.134',
@@ -70,11 +70,8 @@ Future<bool> syncFromFTP(String? region) async {
       return false;
     }
     final regionName = regionQuery.first.regionName + ' PPIR';
-    // 122.55.242.110
-    // ftpClient = FTPConnect('103.82.46.134',
-    //     user: 'k2c_User1', pass: 'K2c#%!pc!c', port: 21);
-    // await ftpClient.connect();
 
+    // Try connecting to FTP servers
     bool connected = false;
     for (var server in ftpServers) {
       try {
@@ -96,7 +93,7 @@ Future<bool> syncFromFTP(String? region) async {
     }
 
     const remotePath = '/Work';
-    final List<FTPEntry> files = await ftpClient.listDirectoryContent();
+    final List<FTPEntry> files = await ftpClient!.listDirectoryContent();
 
     print('All files in directory:');
     for (var file in files) {
