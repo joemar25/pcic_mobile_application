@@ -283,7 +283,63 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                 Text(
                                                   FFLocalizations.of(context)
                                                       .getText(
-                                                    'zvbf8lkk' /* Assignment Id */,
+                                                    'zvbf8lkk' /* Capture Img */,
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .labelMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .tertiary,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                                AnimatedDefaultTextStyle(
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .tertiary,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                  duration: const Duration(
+                                                      milliseconds: 600),
+                                                  curve: Curves.easeIn,
+                                                  child: Text(
+                                                    valueOrDefault<String>(
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                          .first.capturedArea,
+                                                      'No Value',
+                                                    ),
+                                                    maxLines: 3,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 8.0, 0.0, 0.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'vv9uawbi' /* Assignment Id */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)

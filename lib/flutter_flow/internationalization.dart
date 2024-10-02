@@ -380,8 +380,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     'zvbf8lkk': {
-      'en': 'Assignment Id',
+      'en': 'Capture Img',
       'tl': 'Assignment Id',
+    },
+    'vv9uawbi': {
+      'en': 'Assignment Id',
+      'tl': '',
     },
     'x8d6g468': {
       'en': 'Farmer Name',

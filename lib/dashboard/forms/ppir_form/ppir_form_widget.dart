@@ -3222,7 +3222,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                 .circular(8.0),
                                                       ),
                                                     ),
-                                                    if (!kDebugMode)
+                                                    if (kDebugMode)
                                                       Expanded(
                                                         child: TextFormField(
                                                           controller: _model
