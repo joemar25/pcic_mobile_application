@@ -2023,14 +2023,10 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     .riceDropdownValueController ??=
                                                                 FormFieldController<
                                                                     String>(
-                                                              _model
-                                                                  .riceDropdownValue ??= _model
-                                                                          .ppirSvpActSelectionValue ==
-                                                                      'corn'
-                                                                  ? ppirFormSelectPpirFormsRowList
+                                                              _model.riceDropdownValue ??=
+                                                                  ppirFormSelectPpirFormsRowList
                                                                       .first
-                                                                      .ppirVariety
-                                                                  : ' ',
+                                                                      .ppirVariety,
                                                             ),
                                                             options:
                                                                 riceDropdownSELECTRiceSEEDSRowList
@@ -2232,14 +2228,10 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     .cornDropdownValueController ??=
                                                                 FormFieldController<
                                                                     String>(
-                                                              _model
-                                                                  .cornDropdownValue ??= _model
-                                                                          .ppirSvpActSelectionValue ==
-                                                                      'corn'
-                                                                  ? ppirFormSelectPpirFormsRowList
+                                                              _model.cornDropdownValue ??=
+                                                                  ppirFormSelectPpirFormsRowList
                                                                       .first
-                                                                      .ppirVariety
-                                                                  : ' ',
+                                                                      .ppirVariety,
                                                             ),
                                                             options:
                                                                 cornDropdownSELECTCornSEEDSRowList
@@ -3172,15 +3164,6 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                         .text
                                                                         .length);
                                                           });
-                                                          safeSetState(() {
-                                                            _model.isDataUploading =
-                                                                false;
-                                                            _model.uploadedLocalFile =
-                                                                FFUploadedFile(
-                                                                    bytes: Uint8List
-                                                                        .fromList(
-                                                                            []));
-                                                          });
                                                         }
 
                                                         safeSetState(() {});
@@ -3239,7 +3222,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                 .circular(8.0),
                                                       ),
                                                     ),
-                                                    if (kDebugMode)
+                                                    if (!kDebugMode)
                                                       Expanded(
                                                         child: TextFormField(
                                                           controller: _model
@@ -4380,6 +4363,44 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                       () => _model.continueSave = value));
 
                                   if (_model.continueSave!) {
+                                    await SQLiteManager.instance.updatePPIRForm(
+                                      taskId: widget.taskId,
+                                      ppirSvpAct:
+                                          _model.ppirSvpActSelectionValue,
+                                      ppirDopdsAct: _model
+                                          .ppirAreaDopDsFieldTextController
+                                          .text,
+                                      ppirDoptpAct: _model
+                                          .ppirAreaDopTpFieldTextController
+                                          .text,
+                                      ppirRemarks: _model
+                                          .ppirRemarksFieldTextController.text,
+                                      ppirNameInsured: _model
+                                          .ppirPreparedByNameFieldTextController
+                                          .text,
+                                      ppirNameIuia: _model
+                                          .ppirConfirmedByNameFieldTextController
+                                          .text,
+                                      ppirFarmloc: _model
+                                          .ppirTrackFarmlocTextController.text,
+                                      ppirAreaAct: _model
+                                          .ppirAreaActFieldTextController.text,
+                                      ppirVariety:
+                                          _model.ppirSvpActSelectionValue ==
+                                                  'rice'
+                                              ? _model.riceDropdownValue
+                                              : _model.cornDropdownValue,
+                                      isDirty: !FFAppState().ONLINE,
+                                      capturedArea: _model
+                                          .capturedImageBlobInputTextController
+                                          .text,
+                                    );
+                                    await SQLiteManager.instance
+                                        .updateTaskStatus(
+                                      taskId: widget.taskId,
+                                      status: 'ongoing',
+                                      isDirty: !FFAppState().ONLINE,
+                                    );
                                     if (FFAppState().ONLINE) {
                                       await PpirFormsTable().update(
                                         data: {
@@ -4437,44 +4458,6 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                         'task_id': widget.taskId,
                                       });
                                     }
-                                    await SQLiteManager.instance.updatePPIRForm(
-                                      taskId: widget.taskId,
-                                      ppirSvpAct:
-                                          _model.ppirSvpActSelectionValue,
-                                      ppirDopdsAct: _model
-                                          .ppirAreaDopDsFieldTextController
-                                          .text,
-                                      ppirDoptpAct: _model
-                                          .ppirAreaDopTpFieldTextController
-                                          .text,
-                                      ppirRemarks: _model
-                                          .ppirRemarksFieldTextController.text,
-                                      ppirNameInsured: _model
-                                          .ppirPreparedByNameFieldTextController
-                                          .text,
-                                      ppirNameIuia: _model
-                                          .ppirConfirmedByNameFieldTextController
-                                          .text,
-                                      ppirFarmloc: _model
-                                          .ppirTrackFarmlocTextController.text,
-                                      ppirAreaAct: _model
-                                          .ppirAreaActFieldTextController.text,
-                                      ppirVariety:
-                                          _model.ppirSvpActSelectionValue ==
-                                                  'rice'
-                                              ? _model.riceDropdownValue
-                                              : _model.cornDropdownValue,
-                                      isDirty: !FFAppState().ONLINE,
-                                      capturedArea: _model
-                                          .capturedImageBlobInputTextController
-                                          .text,
-                                    );
-                                    await SQLiteManager.instance
-                                        .updateTaskStatus(
-                                      taskId: widget.taskId,
-                                      status: 'ongoing',
-                                      isDirty: !FFAppState().ONLINE,
-                                    );
 
                                     context.pushNamed(
                                       'formSuccess',
@@ -4499,6 +4482,11 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                       },
                                     );
                                   }
+                                  safeSetState(() {
+                                    _model.isDataUploading = false;
+                                    _model.uploadedLocalFile = FFUploadedFile(
+                                        bytes: Uint8List.fromList([]));
+                                  });
 
                                   safeSetState(() {});
                                 },
@@ -4880,6 +4868,14 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                               },
                                             );
                                           }
+
+                                          safeSetState(() {
+                                            _model.isDataUploading = false;
+                                            _model.uploadedLocalFile =
+                                                FFUploadedFile(
+                                                    bytes:
+                                                        Uint8List.fromList([]));
+                                          });
 
                                           safeSetState(() {});
                                         },
