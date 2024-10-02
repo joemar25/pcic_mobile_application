@@ -496,6 +496,7 @@ class SQLiteManager {
     String? lastSyncedAt,
     String? localId,
     String? isDirty,
+    String? capturedArea,
   }) =>
       performInsertOfflinePPIRForm(
         _database,
@@ -546,6 +547,7 @@ class SQLiteManager {
         lastSyncedAt: lastSyncedAt,
         localId: localId,
         isDirty: isDirty,
+        capturedArea: capturedArea,
       );
 
   Future updatePPIRSetABlankGpx({

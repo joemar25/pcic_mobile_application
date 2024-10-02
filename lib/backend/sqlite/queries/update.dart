@@ -382,6 +382,7 @@ Future performInsertOfflinePPIRForm(
   String? lastSyncedAt,
   String? localId,
   String? isDirty,
+  String? capturedArea,
 }) {
   final query = '''
 INSERT OR REPLACE INTO ppir_forms (
@@ -394,7 +395,7 @@ INSERT OR REPLACE INTO ppir_forms (
     ppir_svp_aci, ppir_svp_act, ppir_variety, ppir_stagecrop, ppir_remarks, 
     ppir_name_insured, ppir_name_iuia, ppir_sig_insured, ppir_sig_iuia, 
     track_last_coord, track_date_time, track_total_area, track_total_distance, 
-    created_at, updated_at, sync_status, last_synced_at, local_id, is_dirty
+    created_at, updated_at, sync_status, last_synced_at, local_id, is_dirty, captured_area
 ) VALUES (
     '$taskId', '$ppirAssignmentId', '$gpx', '$ppirInsuranceId', '$ppirFarmerName', 
     '$ppirAddress', '$ppirFarmerType', '$ppirMobileNo', '$ppirGroupName', 
@@ -406,7 +407,7 @@ INSERT OR REPLACE INTO ppir_forms (
     '$ppirStageCrop', '$ppirRemarks', '$ppirNameInsured', '$ppirNameIUIA', 
     '$ppirSigInsured', '$ppirSigIUIA', '$trackLastCoord', '$trackDateTime', 
     '$trackTotalArea', '$trackTotalDistance', '$createdAt', '$updatedAt', 
-    '$syncStatus', '$lastSyncedAt', '$localId', '$isDirty'
+    '$syncStatus', '$lastSyncedAt', '$localId', '$isDirty', '$capturedArea'
 );
 ''';
   return database.rawQuery(query);
