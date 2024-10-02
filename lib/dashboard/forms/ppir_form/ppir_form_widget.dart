@@ -2026,7 +2026,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               _model
                                                                   .riceDropdownValue ??= _model
                                                                           .ppirSvpActSelectionValue ==
-                                                                      'rice'
+                                                                      'corn'
                                                                   ? ppirFormSelectPpirFormsRowList
                                                                       .first
                                                                       .ppirVariety

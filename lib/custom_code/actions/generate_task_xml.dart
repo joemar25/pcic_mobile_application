@@ -2433,10 +2433,8 @@ Future<String> generateTaskXml(String? taskId) async {
             });
 
             builder.element('FormFieldZipModel', nest: () {
-              builder.element('FieldId',
-                  nest: ppirForm['ppir_svp_aci']?.toString() ?? '');
-              builder.element('ContentId',
-                  nest: ppirForm['ppir_svp_aci']?.toString() ?? '');
+              builder.element('FieldId', nest: 'ppir_svp_aci');
+              builder.element('ContentId', nest: 'ppir_svp_aci');
               builder.element('Indicator', nest: () {
                 builder.attribute('xsi:nil', 'true');
               });
