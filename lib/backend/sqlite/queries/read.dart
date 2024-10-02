@@ -709,6 +709,7 @@ SELECT
     COALESCE(p.track_date_time, '1970-01-01 00:00:00') AS track_date_time,
     COALESCE(p.track_total_area, 'No Value') AS track_total_area,
     COALESCE(p.track_total_distance, 'No Value') AS track_total_distance,
+    COALESCE(p.captured_area, 'No Value') AS captured_area,
     COALESCE(CAST(p.created_at AS TEXT), '1970-01-01 00:00:00') AS ppir_created_at,
     COALESCE(CAST(p.updated_at AS TEXT), '1970-01-01 00:00:00') AS ppir_updated_at,
     COALESCE(p.sync_status, 'No Value') AS ppir_sync_status,
@@ -789,6 +790,7 @@ class SELECTPPIRFormsByAssigneeRow extends SqliteRow {
   String? get ppirLastSyncedAt => data['ppir_last_synced_at'] as String?;
   String? get ppirLocalId => data['ppir_local_id'] as String?;
   String? get ppirIsDirty => data['ppir_is_dirty'] as String?;
+  String? get capturedArea => data['captured_area'] as String?;
 }
 
 /// END SELECT PPIR FORMS BY ASSIGNEE
