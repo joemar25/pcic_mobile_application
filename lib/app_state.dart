@@ -145,6 +145,12 @@ class FFAppState extends ChangeNotifier {
   set whatPage(String value) {
     _whatPage = value;
   }
+
+  String _captureImageBlob = '';
+  String get captureImageBlob => _captureImageBlob;
+  set captureImageBlob(String value) {
+    _captureImageBlob = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {

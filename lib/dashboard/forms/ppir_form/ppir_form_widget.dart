@@ -3151,6 +3151,10 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                           _model.capturedBlobOutput =
                                                               _model.base64;
                                                           safeSetState(() {});
+                                                          FFAppState()
+                                                                  .captureImageBlob =
+                                                              _model.base64!;
+                                                          safeSetState(() {});
                                                           safeSetState(() {
                                                             _model.capturedImageBlobInputTextController
                                                                     ?.text =
