@@ -4715,13 +4715,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   status: 'completed',
                                                   isDirty: false,
                                                 );
-                                                unawaited(
-                                                  () async {
-                                                    await actions
-                                                        .saveBlobToBucket(
-                                                      widget.taskId,
-                                                    );
-                                                  }(),
+                                                await actions.saveBlobToBucket(
+                                                  widget.taskId,
                                                 );
                                                 _model.generatedXML =
                                                     await actions
