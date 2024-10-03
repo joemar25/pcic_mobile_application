@@ -3819,8 +3819,21 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                       child: Image
                                                                           .asset(
                                                                         'assets/images/signature.png',
-                                                                        width: MediaQuery.sizeOf(context).width *
-                                                                            0.6,
+                                                                        width:
+                                                                            () {
+                                                                          if (MediaQuery.sizeOf(context).width <
+                                                                              kBreakpointSmall) {
+                                                                            return 60.0;
+                                                                          } else if (MediaQuery.sizeOf(context).width <
+                                                                              kBreakpointMedium) {
+                                                                            return 75.0;
+                                                                          } else if (MediaQuery.sizeOf(context).width <
+                                                                              kBreakpointLarge) {
+                                                                            return 75.0;
+                                                                          } else {
+                                                                            return 80.0;
+                                                                          }
+                                                                        }(),
                                                                         height: MediaQuery.sizeOf(context).height *
                                                                             0.15,
                                                                         fit: BoxFit
@@ -4142,8 +4155,21 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                       child: Image
                                                                           .asset(
                                                                         'assets/images/signature.png',
-                                                                        width: MediaQuery.sizeOf(context).width *
-                                                                            0.6,
+                                                                        width:
+                                                                            () {
+                                                                          if (MediaQuery.sizeOf(context).width <
+                                                                              kBreakpointSmall) {
+                                                                            return 60.0;
+                                                                          } else if (MediaQuery.sizeOf(context).width <
+                                                                              kBreakpointMedium) {
+                                                                            return 75.0;
+                                                                          } else if (MediaQuery.sizeOf(context).width <
+                                                                              kBreakpointLarge) {
+                                                                            return 75.0;
+                                                                          } else {
+                                                                            return 80.0;
+                                                                          }
+                                                                        }(),
                                                                         height: MediaQuery.sizeOf(context).height *
                                                                             0.15,
                                                                         fit: BoxFit
