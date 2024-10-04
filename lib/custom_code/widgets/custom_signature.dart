@@ -319,10 +319,10 @@ class _CustomSignatureState extends State<CustomSignature>
               onPressed: _isLoading ? null : _clearSignature,
               child: const Text('Clear'),
             ),
-            ElevatedButton(
-              onPressed: _isLoading ? null : _pickImageAndConvertToBase64,
-              child: const Text('Upload Signature'),
-            ),
+            // ElevatedButton(
+            //   onPressed: _isLoading ? null : _pickImageAndConvertToBase64,
+            //   child: const Text('Upload Signature'),
+            // ),
             ElevatedButton(
               onPressed: _isLoading
                   ? null
