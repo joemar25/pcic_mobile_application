@@ -3148,8 +3148,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                             _model
                                                                 .uploadedLocalFile,
                                                           );
-                                                          _model.capturedBlobOutput =
-                                                              _model.base64;
+                                                          FFAppState()
+                                                                  .capturedArea =
+                                                              _model.base64!;
                                                           safeSetState(() {});
                                                           safeSetState(() {
                                                             _model.capturedImageBlobInputTextController
@@ -4661,9 +4662,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                           : _model
                                                               .cornDropdownValue,
                                                   isDirty: false,
-                                                  capturedArea: _model
-                                                      .capturedImageBlobInputTextController
-                                                      .text,
+                                                  capturedArea:
+                                                      FFAppState().capturedArea,
                                                 );
                                                 await PpirFormsTable().update(
                                                   data: {
@@ -4719,9 +4719,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     'track_total_distance': _model
                                                         .ppirTrackTotalAreaTextController2
                                                         .text,
-                                                    'captured_area': _model
-                                                        .capturedImageBlobInputTextController
-                                                        .text,
+                                                    'captured_area':
+                                                        FFAppState()
+                                                            .capturedArea,
                                                   },
                                                   matchingRows: (rows) =>
                                                       rows.eq(

@@ -2,7 +2,6 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
-import '/utils/components/empty_lists/empty_lists_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
@@ -131,13 +130,6 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                           .listOfMapDownloads
                           .map((e) => e)
                           .toList();
-                      if (listOfDownloads.isEmpty) {
-                        return const Center(
-                          child: EmptyListsWidget(
-                            type: 'downloaded maps',
-                          ),
-                        );
-                      }
 
                       return RefreshIndicator(
                         color: FlutterFlowTheme.of(context).primary,
