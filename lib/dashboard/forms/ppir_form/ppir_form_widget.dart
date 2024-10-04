@@ -3164,6 +3164,15 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                         .text
                                                                         .length);
                                                           });
+                                                          safeSetState(() {
+                                                            _model.isDataUploading =
+                                                                false;
+                                                            _model.uploadedLocalFile =
+                                                                FFUploadedFile(
+                                                                    bytes: Uint8List
+                                                                        .fromList(
+                                                                            []));
+                                                          });
                                                         }
 
                                                         safeSetState(() {});
@@ -4508,11 +4517,6 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                       },
                                     );
                                   }
-                                  safeSetState(() {
-                                    _model.isDataUploading = false;
-                                    _model.uploadedLocalFile = FFUploadedFile(
-                                        bytes: Uint8List.fromList([]));
-                                  });
 
                                   safeSetState(() {});
                                 },
@@ -4889,14 +4893,6 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                               },
                                             );
                                           }
-
-                                          safeSetState(() {
-                                            _model.isDataUploading = false;
-                                            _model.uploadedLocalFile =
-                                                FFUploadedFile(
-                                                    bytes:
-                                                        Uint8List.fromList([]));
-                                          });
 
                                           safeSetState(() {});
                                         },
