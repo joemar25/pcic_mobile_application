@@ -814,30 +814,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Geotag',
       'tl': 'Geotag',
     },
-    'le02hvs2': {
-      'en': 'Tap here to dismiss map',
-      'tl': 'Mag-tap dito para i-dismiss ang mapa',
-    },
-    '8bwk8let': {
-      'en': 'Cannot view GPX because you are offline.',
-      'tl': 'Hindi matingnan ang GPX dahil offline ka.',
-    },
-    'tmnposi8': {
-      'en': 'or',
-      'tl': 'o',
-    },
-    '2mqikph7': {
-      'en': 'If you download the map, ',
-      'tl': 'Kung ida-download mo ang mapa,',
-    },
-    'frbq9zj2': {
-      'en': 'TAP HERE',
-      'tl': 'I-tap DITO',
-    },
-    '3wv9swhr': {
-      'en': '.',
-      'tl': '.',
-    },
     'vlpe8yky': {
       'en': 'Repeat Geotag',
       'tl': 'Ulitin ang Geotag',
