@@ -139,11 +139,12 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                         );
                       }
 
-                      return RefreshIndicator(
-                        color: FlutterFlowTheme.of(context).primary,
-                        backgroundColor: FlutterFlowTheme.of(context).alternate,
-                        strokeWidth: 2.0,
-                        onRefresh: () async {
+                      return InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onDoubleTap: () async {
                           await actions.fetchStoreStats();
                         },
                         child: ListView.builder(
