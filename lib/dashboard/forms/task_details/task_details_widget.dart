@@ -1386,7 +1386,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                 Text(
                                                   FFLocalizations.of(context)
                                                       .getText(
-                                                    'nzua63mv' /* Seed Variety Planted */,
+                                                    'nzua63mv' /* ACI Variety */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -1621,10 +1621,15 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           child: Text(
                                                             valueOrDefault<
                                                                 String>(
-                                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                  .first
-                                                                  .trackDateTime,
-                                                              'Track Date',
+                                                              functions.timesStampConverter(
+                                                                  valueOrDefault<
+                                                                      String>(
+                                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                    .first
+                                                                    .trackDateTime,
+                                                                'Track Date',
+                                                              )),
+                                                              '\'\'',
                                                             ),
                                                           ),
                                                         ),
@@ -1813,7 +1818,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           FFLocalizations.of(
                                                                   context)
                                                               .getText(
-                                                            '762mtpey' /* Type */,
+                                                            '762mtpey' /* Actual Variety */,
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -1871,7 +1876,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           FFLocalizations.of(
                                                                   context)
                                                               .getText(
-                                                            'veh8acpl' /* Variety */,
+                                                            'veh8acpl' /* Actual Seed Variety Planted - ... */,
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)

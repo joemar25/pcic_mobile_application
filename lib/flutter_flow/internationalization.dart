@@ -472,7 +472,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Petsa ng Pagtatanim (TP)',
     },
     'nzua63mv': {
-      'en': 'Seed Variety Planted',
+      'en': 'ACI Variety',
       'tl': 'Iba\'t-ibang Binhi na Nakatanim',
     },
     'dgbzqn0h': {
@@ -504,11 +504,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Mga Detalye ng Binhi',
     },
     '762mtpey': {
-      'en': 'Type',
+      'en': 'Actual Variety',
       'tl': 'Uri',
     },
     'veh8acpl': {
-      'en': 'Variety',
+      'en': 'Actual Seed Variety Planted - Corn/Rice',
       'tl': 'Iba\'t-ibang',
     },
     'anco0w5m': {
@@ -926,13 +926,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Remarks',
       'tl': 'Remarks',
     },
-    '0wibdp4s': {
-      'en': 'Confirm by',
-      'tl': '',
-    },
     '2slf6a8t': {
-      'en': 'Prepared by',
+      'en': 'Farmer Full Name',
       'tl': 'Inihanda ni',
+    },
+    '0wibdp4s': {
+      'en': 'Inspector Full Name',
+      'tl': '',
     },
     'aae0jxzm': {
       'en': 'Cancel',

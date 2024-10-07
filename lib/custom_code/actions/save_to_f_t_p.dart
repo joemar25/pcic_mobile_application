@@ -73,7 +73,7 @@ Future<bool> saveToFTP(String? taskId) async {
         user: ftpUsername, pass: 'K2c#%!pc!c', port: 21);
     await ftpClient.connect();
 
-    final fileName = '$fileNamePrefix-$taskNumber-$insuranceId.task';
+    final fileName = '$taskNumber.task';
     final remotePath = '/$remoteBasePath/$fileName';
 
     try {

@@ -45,12 +45,12 @@ Future<bool> syncFromFTP(String? region) async {
       'pass': 'K2c#%!pc!c',
       'port': 21
     },
-    // {
-    //   'host': '122.55.242.110',
-    //   'user': 'k2c_User1',
-    //   'pass': 'K2c#%!pc!c',
-    //   'port': 21
-    // },
+    {
+      'host': '122.55.242.110',
+      'user': 'k2c_User1',
+      'pass': 'K2c#%!pc!c',
+      'port': 21
+    },
   ];
 
   try {
@@ -243,6 +243,7 @@ Future<bool> syncFromFTP(String? region) async {
               'ppir_dopds_act': row['ppir_dopds_act']?.toString() ?? '',
               'ppir_doptp_aci': row['ppir_doptp_aci']?.toString() ?? '',
               'ppir_doptp_act': row['ppir_doptp_act']?.toString() ?? '',
+              'ppir_svp_aci': row['ppir_svp_aci']?.toString() ?? '',
               'ppir_variety': row['ppir_variety']?.toString() ?? '',
               'ppir_stagecrop': row['ppir_stagecrop']?.toString() ?? '',
               'created_at': DateTime.now().toIso8601String(),
@@ -275,6 +276,7 @@ Future<bool> syncFromFTP(String? region) async {
               ppirDopdsAct: row['ppir_dopds_act']?.toString() ?? '',
               ppirDoptpAci: row['ppir_doptp_aci']?.toString() ?? '',
               ppirDoptpAct: row['ppir_doptp_act']?.toString() ?? '',
+              ppirSvpAci: row['ppir_svp_aci']?.toString() ?? '',
               ppirVariety: row['ppir_variety']?.toString() ?? '',
               ppirStageCrop: row['ppir_stagecrop']?.toString() ?? '',
               createdAt: DateTime.now().toIso8601String(),
