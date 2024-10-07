@@ -45,12 +45,12 @@ Future<bool> syncFromFTP(String? region) async {
       'pass': 'K2c#%!pc!c',
       'port': 21
     },
-    {
-      'host': '122.55.242.110',
-      'user': 'k2c_User1',
-      'pass': 'K2c#%!pc!c',
-      'port': 21
-    },
+    // {
+    //   'host': '122.55.242.110',
+    //   'user': 'k2c_User1',
+    //   'pass': 'K2c#%!pc!c',
+    //   'port': 21
+    // },
   ];
 
   try {

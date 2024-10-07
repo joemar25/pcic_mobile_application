@@ -460,15 +460,15 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Plano ng Sketch ng Lokasyon',
     },
     '792xrz3k': {
-      'en': 'Area Planted',
+      'en': 'ACI Area',
       'tl': 'Lugar na Nakatanim',
     },
     'zxmreuh1': {
-      'en': 'Date of Planting (DS)',
+      'en': 'ACI - Date of Planting (DS)',
       'tl': 'Petsa ng Pagtanim (DS)',
     },
     'ncrtgoe1': {
-      'en': 'Date of Planting (TP)',
+      'en': 'ACI - Date of Planting (TP)',
       'tl': 'Petsa ng Pagtatanim (TP)',
     },
     'nzua63mv': {
@@ -520,11 +520,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Petsa ng Pagtanim (DS)',
     },
     '4s2psn11': {
-      'en': 'Date of Planting (DS)',
+      'en': 'Actual - Date of Planting (DS)',
       'tl': '',
     },
     '3zj0x11r': {
-      'en': 'Date of Planting (TP)',
+      'en': 'Actual - Date of Planting (TP)',
       'tl': 'Petsa ng Pagtatanim (TP)',
     },
     'lnj6pjl7': {
@@ -536,11 +536,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Remarks',
     },
     '7ftdujb6': {
-      'en': 'Confirmed By',
+      'en': 'Farmer Full Name:',
       'tl': 'Kinumpirma ni',
     },
     '8bdkh9n1': {
-      'en': 'Prepared By',
+      'en': 'Inspector Full Name:',
       'tl': 'Inihanda Ni',
     },
     'ahzx9d2y': {

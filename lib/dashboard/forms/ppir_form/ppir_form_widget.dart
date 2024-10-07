@@ -1221,10 +1221,11 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     controller: _model
                                                             .ppirTrackDateTimeTextController ??=
                                                         TextEditingController(
-                                                      text:
-                                                          ppirFormSelectPpirFormsRowList
-                                                              .first
-                                                              .trackDateTime,
+                                                      text: functions
+                                                          .timesStampConverter(
+                                                              ppirFormSelectPpirFormsRowList
+                                                                  .first
+                                                                  .trackDateTime),
                                                     ),
                                                     focusNode: _model
                                                         .ppirTrackDateTimeFocusNode,
@@ -2952,6 +2953,15 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                         .capturedImageBlobInputTextController!
                                                                         .text
                                                                         .length);
+                                                          });
+                                                          safeSetState(() {
+                                                            _model.isDataUploading =
+                                                                false;
+                                                            _model.uploadedLocalFile =
+                                                                FFUploadedFile(
+                                                                    bytes: Uint8List
+                                                                        .fromList(
+                                                                            []));
                                                           });
                                                         }
 

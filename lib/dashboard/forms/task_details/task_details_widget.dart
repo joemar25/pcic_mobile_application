@@ -1239,7 +1239,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                 Text(
                                                   FFLocalizations.of(context)
                                                       .getText(
-                                                    '792xrz3k' /* Area Planted */,
+                                                    '792xrz3k' /* ACI Area */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -1288,7 +1288,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                 Text(
                                                   FFLocalizations.of(context)
                                                       .getText(
-                                                    'zxmreuh1' /* Date of Planting (DS) */,
+                                                    'zxmreuh1' /* ACI - Date of Planting (DS) */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -1337,7 +1337,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                 Text(
                                                   FFLocalizations.of(context)
                                                       .getText(
-                                                    'ncrtgoe1' /* Date of Planting (TP) */,
+                                                    'ncrtgoe1' /* ACI - Date of Planting (TP) */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -2040,7 +2040,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           FFLocalizations.of(
                                                                   context)
                                                               .getText(
-                                                            '4s2psn11' /* Date of Planting (DS) */,
+                                                            '4s2psn11' /* Actual - Date of Planting (DS) */,
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -2098,7 +2098,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           FFLocalizations.of(
                                                                   context)
                                                               .getText(
-                                                            '3zj0x11r' /* Date of Planting (TP) */,
+                                                            '3zj0x11r' /* Actual - Date of Planting (TP) */,
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -2267,7 +2267,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           FFLocalizations.of(
                                                                   context)
                                                               .getText(
-                                                            '7ftdujb6' /* Confirmed By */,
+                                                            '7ftdujb6' /* Farmer Full Name: */,
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -2373,7 +2373,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           FFLocalizations.of(
                                                                   context)
                                                               .getText(
-                                                            '8bdkh9n1' /* Prepared By */,
+                                                            '8bdkh9n1' /* Inspector Full Name: */,
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
