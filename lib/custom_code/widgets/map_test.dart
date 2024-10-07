@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'package:mbtiles/mbtiles.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'dart:typed_data';
@@ -33,6 +34,23 @@ class MapTest extends StatefulWidget {
 class _MapTestState extends State<MapTest> {
   String? _filePath;
   bool _isDownloading = false;
+  MbTiles? _mbTiles;
+  MbTilesMetadata? _metadata;
+  Uint8List? _currentTile;
+
+  @override
+  void initState() {
+    super.initState();
+    _initMbTiles();
+  }
+
+  Future<void> _initMbTiles() async {
+    final directory = await getApplicationDocumentsDirectory();
+    _filePath = '${directory.path}/trails.mbtiles';
+    if (await File(_filePath!).exists()) {
+      await _loadMbTiles();
+    }
+  }
 
   Future<void> downloadMbTiles() async {
     setState(() {
@@ -51,7 +69,8 @@ class _MapTestState extends State<MapTest> {
       if (bytes != null) {
         print(
             'Successfully fetched $fileName. File size: ${bytes.length} bytes');
-        await saveMbTiles(bytes);
+        await File(_filePath!).writeAsBytes(bytes);
+        await _loadMbTiles();
       } else {
         print('Failed to fetch $fileName. The downloaded data is null.');
       }
@@ -64,19 +83,38 @@ class _MapTestState extends State<MapTest> {
     }
   }
 
-  Future<void> saveMbTiles(Uint8List bytes) async {
+  Future<void> _loadMbTiles() async {
     try {
-      final directory = await getApplicationDocumentsDirectory();
-      final filePath = '${directory.path}/trails.mbtiles';
-      final file = await File(filePath).writeAsBytes(bytes);
+      // Ensure SQLite is initialized
+      await SQLiteManager.initialize();
 
-      print('MBTiles file saved at: $filePath');
-      setState(() {
-        _filePath = file.path;
-      });
+      _mbTiles = MbTiles(mbtilesPath: _filePath!);
+      _metadata = await _mbTiles!.getMetadata();
+      await _loadTile(0, 0, 0); // Load the first tile as an example
+      setState(() {});
+      print('MBTiles loaded successfully. Metadata: $_metadata');
     } catch (e) {
-      print('Error saving MBTiles: $e');
+      print('Error loading MBTiles: $e');
     }
+  }
+
+  Future<void> _loadTile(int z, int x, int y) async {
+    try {
+      final tileData = await _mbTiles?.getTile(z: z, x: x, y: y);
+      if (tileData != null) {
+        setState(() {
+          _currentTile = tileData;
+        });
+      }
+    } catch (e) {
+      print('Error loading tile: $e');
+    }
+  }
+
+  @override
+  void dispose() {
+    _mbTiles?.dispose();
+    super.dispose();
   }
 
   @override
@@ -85,7 +123,6 @@ class _MapTestState extends State<MapTest> {
       width: widget.width,
       height: widget.height,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ElevatedButton(
             onPressed: _isDownloading ? null : downloadMbTiles,
@@ -93,10 +130,12 @@ class _MapTestState extends State<MapTest> {
                 ? CircularProgressIndicator()
                 : Text('Download MBTiles'),
           ),
-          SizedBox(height: 20),
-          Text(_filePath == null
-              ? 'MBTiles file not downloaded yet'
-              : 'MBTiles file saved at: $_filePath'),
+          Expanded(
+            child: _currentTile == null
+                ? Center(
+                    child: Text('Download and load MBTiles to view the map'))
+                : Image.memory(_currentTile!, fit: BoxFit.contain),
+          ),
         ],
       ),
     );
