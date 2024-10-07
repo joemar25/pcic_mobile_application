@@ -2,7 +2,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'map_test_model.dart';
 export 'map_test_model.dart';
 
@@ -33,8 +32,6 @@ class _MapTestWidgetState extends State<MapTestWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -58,22 +55,18 @@ class _MapTestWidgetState extends State<MapTestWidget> {
           centerTitle: false,
           elevation: 2.0,
         ),
-        body: SafeArea(
+        body: const SafeArea(
           top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(
-                child: SizedBox(
+              SizedBox(
+                width: double.infinity,
+                height: 700.0,
+                child: custom_widgets.MapTest(
                   width: double.infinity,
-                  height: double.infinity,
-                  child: custom_widgets.MapBox(
-                    width: double.infinity,
-                    height: double.infinity,
-                    accessToken: FFAppState().accessToken,
-                    taskId: '33fd8684-a9fd-4914-a28d-c879eff8604c',
-                  ),
+                  height: 700.0,
                 ),
               ),
             ],

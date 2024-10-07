@@ -151,6 +151,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Forgot Password ?',
       'tl': 'Nakalimutan ang Password ?',
     },
+    '57sqdh1w': {
+      'en': 'DON\'T DELETE TAT TESTING!',
+      'tl': '',
+    },
     'ze2n4vlq': {
       'en': 'Field is required',
       'tl': 'Kinakailangan ang field',
