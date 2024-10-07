@@ -230,22 +230,6 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
     return null;
   }
 
-  // State field(s) for ppir_prepared_by_name_field widget.
-  FocusNode? ppirPreparedByNameFieldFocusNode;
-  TextEditingController? ppirPreparedByNameFieldTextController;
-  String? Function(BuildContext, String?)?
-      ppirPreparedByNameFieldTextControllerValidator;
-  String? _ppirPreparedByNameFieldTextControllerValidator(
-      BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return FFLocalizations.of(context).getText(
-        'hxfm3oxy' /* Field is required */,
-      );
-    }
-
-    return null;
-  }
-
   // State field(s) for ppir_confirmed_by_name_field widget.
   FocusNode? ppirConfirmedByNameFieldFocusNode;
   TextEditingController? ppirConfirmedByNameFieldTextController;
@@ -256,6 +240,22 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
         'gug2f3ir' /* Field is required */,
+      );
+    }
+
+    return null;
+  }
+
+  // State field(s) for ppir_prepared_by_name_field widget.
+  FocusNode? ppirPreparedByNameFieldFocusNode;
+  TextEditingController? ppirPreparedByNameFieldTextController;
+  String? Function(BuildContext, String?)?
+      ppirPreparedByNameFieldTextControllerValidator;
+  String? _ppirPreparedByNameFieldTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        'hxfm3oxy' /* Field is required */,
       );
     }
 
@@ -301,10 +301,10 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
         _capturedImageBlobInputTextControllerValidator;
     ppirRemarksFieldTextControllerValidator =
         _ppirRemarksFieldTextControllerValidator;
-    ppirPreparedByNameFieldTextControllerValidator =
-        _ppirPreparedByNameFieldTextControllerValidator;
     ppirConfirmedByNameFieldTextControllerValidator =
         _ppirConfirmedByNameFieldTextControllerValidator;
+    ppirPreparedByNameFieldTextControllerValidator =
+        _ppirPreparedByNameFieldTextControllerValidator;
   }
 
   @override
@@ -343,11 +343,11 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
     ppirRemarksFieldFocusNode?.dispose();
     ppirRemarksFieldTextController?.dispose();
 
-    ppirPreparedByNameFieldFocusNode?.dispose();
-    ppirPreparedByNameFieldTextController?.dispose();
-
     ppirConfirmedByNameFieldFocusNode?.dispose();
     ppirConfirmedByNameFieldTextController?.dispose();
+
+    ppirPreparedByNameFieldFocusNode?.dispose();
+    ppirPreparedByNameFieldTextController?.dispose();
   }
 
   /// Additional helper methods.

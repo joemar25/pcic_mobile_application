@@ -926,13 +926,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Remarks',
       'tl': 'Remarks',
     },
-    '2slf6a8t': {
-      'en': 'Prepared by',
-      'tl': 'Inihanda ni',
-    },
     '0wibdp4s': {
       'en': 'Confirm by',
       'tl': '',
+    },
+    '2slf6a8t': {
+      'en': 'Prepared by',
+      'tl': 'Inihanda ni',
     },
     'aae0jxzm': {
       'en': 'Cancel',

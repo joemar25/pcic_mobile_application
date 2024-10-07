@@ -95,9 +95,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
 
     _model.ppirRemarksFieldFocusNode ??= FocusNode();
 
-    _model.ppirPreparedByNameFieldFocusNode ??= FocusNode();
-
     _model.ppirConfirmedByNameFieldFocusNode ??= FocusNode();
+
+    _model.ppirPreparedByNameFieldFocusNode ??= FocusNode();
   }
 
   @override
@@ -2527,7 +2527,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                           _model.ppirAreaDopDsFieldTextController
                                                                   ?.text =
                                                               dateTimeFormat(
-                                                            "d/M/y",
+                                                            "yMd",
                                                             _model.datePicked1,
                                                             locale: FFLocalizations
                                                                     .of(context)
@@ -2752,7 +2752,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                           _model.ppirAreaDopTpFieldTextController
                                                                   ?.text =
                                                               dateTimeFormat(
-                                                            "d/M/y",
+                                                            "yMd",
                                                             _model.datePicked2,
                                                             locale: FFLocalizations
                                                                     .of(context)
@@ -3366,32 +3366,34 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                           0.0, 10.0, 0.0, 10.0),
                                                   child: TextFormField(
                                                     controller: _model
-                                                            .ppirPreparedByNameFieldTextController ??=
+                                                            .ppirConfirmedByNameFieldTextController ??=
                                                         TextEditingController(
                                                       text:
                                                           ppirFormSelectPpirFormsRowList
                                                               .first
-                                                              .ppirNameInsured,
+                                                              .ppirNameIuia,
                                                     ),
                                                     focusNode: _model
-                                                        .ppirPreparedByNameFieldFocusNode,
+                                                        .ppirConfirmedByNameFieldFocusNode,
                                                     onChanged: (_) =>
                                                         EasyDebounce.debounce(
-                                                      '_model.ppirPreparedByNameFieldTextController',
+                                                      '_model.ppirConfirmedByNameFieldTextController',
                                                       const Duration(
                                                           milliseconds: 2000),
                                                       () => safeSetState(() {}),
                                                     ),
                                                     autofocus: false,
+                                                    textCapitalization:
+                                                        TextCapitalization.none,
                                                     textInputAction:
-                                                        TextInputAction.next,
+                                                        TextInputAction.done,
                                                     obscureText: false,
                                                     decoration: InputDecoration(
                                                       labelText:
                                                           FFLocalizations.of(
                                                                   context)
                                                               .getText(
-                                                        '2slf6a8t' /* Prepared by */,
+                                                        '0wibdp4s' /* Confirm by */,
                                                       ),
                                                       labelStyle:
                                                           FlutterFlowTheme.of(
@@ -3486,7 +3488,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                 context)
                                                             .primary,
                                                     validator: _model
-                                                        .ppirPreparedByNameFieldTextControllerValidator
+                                                        .ppirConfirmedByNameFieldTextControllerValidator
                                                         .asValidator(context),
                                                   ),
                                                 ),
@@ -3700,34 +3702,32 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                           0.0, 10.0, 0.0, 10.0),
                                                   child: TextFormField(
                                                     controller: _model
-                                                            .ppirConfirmedByNameFieldTextController ??=
+                                                            .ppirPreparedByNameFieldTextController ??=
                                                         TextEditingController(
                                                       text:
                                                           ppirFormSelectPpirFormsRowList
                                                               .first
-                                                              .ppirNameIuia,
+                                                              .ppirNameInsured,
                                                     ),
                                                     focusNode: _model
-                                                        .ppirConfirmedByNameFieldFocusNode,
+                                                        .ppirPreparedByNameFieldFocusNode,
                                                     onChanged: (_) =>
                                                         EasyDebounce.debounce(
-                                                      '_model.ppirConfirmedByNameFieldTextController',
+                                                      '_model.ppirPreparedByNameFieldTextController',
                                                       const Duration(
                                                           milliseconds: 2000),
                                                       () => safeSetState(() {}),
                                                     ),
                                                     autofocus: false,
-                                                    textCapitalization:
-                                                        TextCapitalization.none,
                                                     textInputAction:
-                                                        TextInputAction.done,
+                                                        TextInputAction.next,
                                                     obscureText: false,
                                                     decoration: InputDecoration(
                                                       labelText:
                                                           FFLocalizations.of(
                                                                   context)
                                                               .getText(
-                                                        '0wibdp4s' /* Confirm by */,
+                                                        '2slf6a8t' /* Prepared by */,
                                                       ),
                                                       labelStyle:
                                                           FlutterFlowTheme.of(
@@ -3822,7 +3822,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                 context)
                                                             .primary,
                                                     validator: _model
-                                                        .ppirConfirmedByNameFieldTextControllerValidator
+                                                        .ppirPreparedByNameFieldTextControllerValidator
                                                         .asValidator(context),
                                                   ),
                                                 ),
