@@ -937,7 +937,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                       ),
                                     FFButtonWidget(
                                       onPressed: () async {
-                                        context.pushNamed('mapTest');
+                                        await actions.fetchMbTiles();
                                       },
                                       text: FFLocalizations.of(context).getText(
                                         '57sqdh1w' /* DON'T DELETE TAT TESTING! */,

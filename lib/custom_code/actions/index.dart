@@ -35,3 +35,4 @@ export 'update_user_logs.dart' show updateUserLogs;
 export 'find_latest_folder.dart' show findLatestFolder;
 export 'convert_captured_image_to_base64.dart'
     show convertCapturedImageToBase64;
+export 'fetch_mb_tiles.dart' show fetchMbTiles;

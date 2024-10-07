@@ -438,6 +438,25 @@ class GetUserLastConversationsCall {
           .toList();
 }
 
+class FetchMbTilesCall {
+  static Future<ApiCallResponse> call() async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'fetchMbTiles',
+      apiUrl:
+          'https://vnsnxkhiyguywgggwdau.supabase.co/storage/v1/object/public/mb-files/trails.mbtiles',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;
