@@ -40,7 +40,7 @@ Future<bool> syncFromFTP(String? region) async {
 
   final List<Map<String, dynamic>> ftpServers = [
     {
-      'host': '34.143.129.187',
+      'host': '103.82.46.134',
       'user': 'k2c_User1',
       'pass': 'K2c#%!pc!c',
       'port': 21

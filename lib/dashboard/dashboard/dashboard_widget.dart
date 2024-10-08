@@ -1641,7 +1641,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                     {
                                                                   'taskStatus':
                                                                       serializeParam(
-                                                                    'for dispatch',
+                                                                    'completed',
                                                                     ParamType
                                                                         .String,
                                                                   ),

@@ -58,9 +58,9 @@ class _MapBoxState extends State<MapBox> {
 
   String? _errorMessage;
 
-  static const double _currentZoom = 21.0;
+  static const double _currentZoom = 19.0;
   static const int _positionStreamIntervalMs = 100;
-  static const int _initialPositionSamples = 25;
+  static const int _initialPositionSamples = 20;
   static const double _highAccuracyThreshold = 10.0;
   static const double _stationarySpeedThreshold = 0.1;
   static const double _significantMovementThreshold = 0.5;
