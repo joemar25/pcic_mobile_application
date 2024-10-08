@@ -380,7 +380,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // taskDetails
   {
     'mdd6huf5': {
-      'en': 'Form Details',
+      'en': 'ACI Form Details',
       'tl': '',
     },
     'zvbf8lkk': {
@@ -440,7 +440,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Lokasyon ng Bukid',
     },
     'hvb7985g': {
-      'en': 'Location Sketch Plan',
+      'en': 'ACI Location Sketch Plan',
       'tl': 'Plano ng Sketch ng Lokasyon',
     },
     'cat2uvtb': {
@@ -460,7 +460,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Kanluran',
     },
     'tsu0lxo2': {
-      'en': 'Location Sketch Plan',
+      'en': 'ACI Form Details',
       'tl': 'Plano ng Sketch ng Lokasyon',
     },
     '792xrz3k': {
@@ -480,7 +480,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Iba\'t-ibang Binhi na Nakatanim',
     },
     'dgbzqn0h': {
-      'en': 'Completed Task  Details',
+      'en': 'Completed Actual  Details',
       'tl': 'Mga Detalye ng Nakumpletong Gawain',
     },
     'nd1fqdu9': {
@@ -514,10 +514,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'veh8acpl': {
       'en': 'Actual Seed Variety Planted - Corn/Rice',
       'tl': 'Iba\'t-ibang',
-    },
-    'anco0w5m': {
-      'en': 'Date Details',
-      'tl': 'Mga Detalye ng Petsa',
     },
     '27rka9jx': {
       'en': 'Actual Area Planted',

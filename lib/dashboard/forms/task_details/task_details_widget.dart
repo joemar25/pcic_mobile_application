@@ -257,7 +257,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             child: Text(
                                               FFLocalizations.of(context)
                                                   .getText(
-                                                'mdd6huf5' /* Form Details */,
+                                                'mdd6huf5' /* ACI Form Details */,
                                               ),
                                               style: FlutterFlowTheme.of(
                                                       context)
@@ -984,7 +984,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             child: Text(
                                               FFLocalizations.of(context)
                                                   .getText(
-                                                'hvb7985g' /* Location Sketch Plan */,
+                                                'hvb7985g' /* ACI Location Sketch Plan */,
                                               ),
                                               style: FlutterFlowTheme.of(
                                                       context)
@@ -1212,7 +1212,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             child: Text(
                                               FFLocalizations.of(context)
                                                   .getText(
-                                                'tsu0lxo2' /* Location Sketch Plan */,
+                                                'tsu0lxo2' /* ACI Form Details */,
                                               ),
                                               style: FlutterFlowTheme.of(
                                                       context)
@@ -1463,7 +1463,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           FFLocalizations.of(
                                                                   context)
                                                               .getText(
-                                                            'dgbzqn0h' /* Completed Task  Details */,
+                                                            'dgbzqn0h' /* Completed Actual  Details */,
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -1932,43 +1932,6 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       lineStyle:
                                                           DividerLineStyle
                                                               .dashed,
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 8.0,
-                                                                0.0, 0.0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Text(
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                            'anco0w5m' /* Date Details */,
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .labelMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .normal,
-                                                              ),
-                                                        ),
-                                                      ],
                                                     ),
                                                   ),
                                                   Padding(

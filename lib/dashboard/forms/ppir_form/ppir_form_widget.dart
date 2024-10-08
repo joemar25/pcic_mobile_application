@@ -3595,8 +3595,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                             .first
                                                                             .ppirSigInsured !=
                                                                         'null'
-                                                                    ? 'Tap to change Signature'
-                                                                    : 'Tap to Signature',
+                                                                    ? 'Tap to change farmer signature'
+                                                                    : 'Farmer Signature',
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
@@ -3931,8 +3931,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                             .first
                                                                             .ppirSigIuia !=
                                                                         'null'
-                                                                    ? 'Tap to change Signature'
-                                                                    : 'Tap to Signature',
+                                                                    ? 'Tap to change inspector signature'
+                                                                    : 'Inspector Signature',
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
