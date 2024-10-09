@@ -269,7 +269,7 @@ class _CustomSignatureState extends State<CustomSignature>
     return Column(
       children: [
         Container(
-          height: 230,
+          height: 350,
           width: widget.width ?? double.infinity,
           decoration: BoxDecoration(
             border: Border.all(color: Colors.grey),

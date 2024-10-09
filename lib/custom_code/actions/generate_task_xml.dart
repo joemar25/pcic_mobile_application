@@ -2257,8 +2257,7 @@ Future<String> generateTaskXml(String? taskId) async {
                   });
                   builder.element('ZipCode', nest: '1100');
                 });
-                builder.element('FileName',
-                    nest: signatureIuia?.split('.').first ?? '');
+                builder.element('FileName', nest: signatureIuia ?? '');
                 builder.element('FromMobile', nest: 'false');
                 builder.element('Height', nest: '0');
                 builder.element('LastModifiedDate',
@@ -2289,8 +2288,7 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Options', nest: '');
               builder.element('Sequence', nest: '64');
               builder.element('Type', nest: 'ESignature');
-              builder.element('Value',
-                  nest: signatureIuia?.split('.').first ?? '');
+              builder.element('Value', nest: signatureIuia ?? '');
             });
 
             builder.element('FormFieldZipModel', nest: () {

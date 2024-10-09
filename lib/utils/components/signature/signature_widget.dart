@@ -99,7 +99,7 @@ class _SignatureWidgetState extends State<SignatureWidget>
                 child: Container(
                   width: double.infinity,
                   constraints: const BoxConstraints(
-                    maxWidth: 670.0,
+                    maxWidth: 800.0,
                   ),
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -206,11 +206,11 @@ class _SignatureWidgetState extends State<SignatureWidget>
                                           ),
                                           child: SizedBox(
                                             width: double.infinity,
-                                            height: 300.0,
+                                            height: 450.0,
                                             child:
                                                 custom_widgets.CustomSignature(
                                               width: double.infinity,
-                                              height: 300.0,
+                                              height: 450.0,
                                               taskId: widget.taskId!,
                                               signatureFor:
                                                   widget.signatureFor,

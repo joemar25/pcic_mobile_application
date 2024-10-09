@@ -87,7 +87,9 @@ class _AllTasksWidgetState extends State<AllTasksWidget>
         if (!snapshot.hasData) {
           return Scaffold(
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            body: const PageLoaderWidget(),
+            body: const Center(
+              child: PageLoaderWidget(),
+            ),
           );
         }
         final allTasksSELECTPPIRFormsByAssigneeAndTaskStatusRowList =
@@ -274,7 +276,7 @@ class _AllTasksWidgetState extends State<AllTasksWidget>
                             ),
                             Tab(
                               text: FFLocalizations.of(context).getText(
-                                'eahrpm1f' /* Archieve */,
+                                'eahrpm1f' /* Archive */,
                               ),
                               icon: const FaIcon(
                                 FontAwesomeIcons.archive,
