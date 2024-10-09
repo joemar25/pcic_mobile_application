@@ -296,8 +296,6 @@ dynamic deserializeParam<T>(
             return SELECTPPIRFormsByAssigneeRow(data);
           case SELECTPPIRFormsByAssigneeAndTaskStatusRow:
             return SELECTPPIRFormsByAssigneeAndTaskStatusRow(data);
-          case GetInsuranceIdAndFarmernameRow:
-            return GetInsuranceIdAndFarmernameRow(data);
           default:
             return null;
         }

@@ -944,23 +944,3 @@ class SELECTPPIRFormsByAssigneeAndTaskStatusRow extends SqliteRow {
 }
 
 /// END SELECT PPIR FORMS BY ASSIGNEE AND TASK STATUS
-
-/// BEGIN GETINSURANCEIDANDFARMERNAME
-Future<List<GetInsuranceIdAndFarmernameRow>> performGetInsuranceIdAndFarmername(
-  Database database, {
-  String? taskId,
-}) {
-  final query = '''
-SELECT ppir_insuranceid, ppir_farmername FROM ppir_forms WHERE task_id='$taskId'
-''';
-  return _readQuery(database, query, (d) => GetInsuranceIdAndFarmernameRow(d));
-}
-
-class GetInsuranceIdAndFarmernameRow extends SqliteRow {
-  GetInsuranceIdAndFarmernameRow(super.data);
-
-  String? get insuranceId => data['insuranceId'] as String?;
-  String? get farmername => data['farmername'] as String?;
-}
-
-/// END GETINSURANCEIDANDFARMERNAME

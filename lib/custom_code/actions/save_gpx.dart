@@ -32,9 +32,27 @@ Future saveGpx(
   }
 
   try {
+    // Fetch farmer name and insurance ID
+    final List<SelectPpirFormsRow> result =
+        await SQLiteManager.instance.selectPpirForms(
+      taskId: taskId,
+    );
+
+    String farmerName = '';
+    String insuranceId = '';
+
+    if (result.isNotEmpty) {
+      farmerName = result[0].ppirFarmername ?? '';
+      insuranceId = result[0].ppirInsuranceid ?? '';
+      print('Farmer Name: $farmerName');
+      print('Insurance ID: $insuranceId');
+    } else {
+      print('No insurance ID and farmer name found for taskId: $taskId');
+    }
+
     // Generate GPX content
     print('Generating GPX content');
-    final gpx = _generateGpx(routeCoordinates);
+    final gpx = _generateGpx(routeCoordinates, insuranceId, farmerName);
     print('GPX content generated successfully');
 
     // Convert the GPX string to Uint8List
@@ -59,6 +77,7 @@ Future saveGpx(
       gpx: base64Gpx,
       isDirty: !isOnline,
     );
+
     print('Saved to local SQLite database successfully');
 
     // Only proceed with online saving if the app is online
@@ -84,7 +103,8 @@ Future saveGpx(
   }
 }
 
-String _generateGpx(String routeCoordinates) {
+String _generateGpx(
+    String routeCoordinates, String insuranceId, String farmerName) {
   print('Starting _generateGpx function');
   final builder = xml.XmlBuilder();
   builder.processing('xml', 'version="1.0" encoding="UTF-8"');
@@ -93,7 +113,7 @@ String _generateGpx(String routeCoordinates) {
     builder.attribute('creator', 'PCIC-QUANBY');
     builder.attribute('xmlns', 'http://www.topografix.com/GPX/1/1');
     builder.element('trk', nest: () {
-      builder.element('name', nest: 'PCIC-QUANBY Track');
+      builder.element('name', nest: '$insuranceId $farmerName');
       builder.element('trkseg', nest: () {
         final coordinates = routeCoordinates.split(' ');
         for (final coord in coordinates) {

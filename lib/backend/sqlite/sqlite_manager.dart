@@ -182,14 +182,6 @@ class SQLiteManager {
             status: status,
           );
 
-  Future<List<GetInsuranceIdAndFarmernameRow>> getInsuranceIdAndFarmername({
-    String? taskId,
-  }) =>
-      performGetInsuranceIdAndFarmername(
-        _database,
-        taskId: taskId,
-      );
-
   /// END READ QUERY CALLS
 
   /// START UPDATE QUERY CALLS
