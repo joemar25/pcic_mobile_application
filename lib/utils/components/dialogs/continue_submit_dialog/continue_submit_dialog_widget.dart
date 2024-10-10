@@ -55,7 +55,7 @@ class _ContinueSubmitDialogWidgetState
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Lottie.asset(
-                'assets/lottie_animations/confirmSubmit.json',
+                'assets/jsons/confirmSubmit.json',
                 width: 150.0,
                 height: 150.0,
                 fit: BoxFit.contain,

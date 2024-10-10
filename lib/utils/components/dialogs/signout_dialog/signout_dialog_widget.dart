@@ -65,7 +65,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Lottie.asset(
-                'assets/lottie_animations/Logout_lottie_red.json',
+                'assets/jsons/Logout_lottie_red.json',
                 width: 140.0,
                 height: 120.0,
                 fit: BoxFit.cover,

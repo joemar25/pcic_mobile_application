@@ -54,7 +54,7 @@ class _UploadFailedDialogWidgetState extends State<UploadFailedDialogWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Lottie.asset(
-                'assets/lottie_animations/failedUpload.json',
+                'assets/jsons/failedUpload.json',
                 width: 150.0,
                 height: 150.0,
                 fit: BoxFit.contain,

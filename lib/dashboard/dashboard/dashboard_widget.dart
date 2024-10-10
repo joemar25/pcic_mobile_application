@@ -405,7 +405,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                       0.0,
                                                                       0.0),
                                                           child: Lottie.asset(
-                                                            'assets/lottie_animations/Animation_-_1720082435989.json',
+                                                            'assets/jsons/Animation_-_1720082435989.json',
                                                             width: 30.0,
                                                             height: 30.0,
                                                             fit: BoxFit.contain,

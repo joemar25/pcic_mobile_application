@@ -183,7 +183,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                             color: Color(0x00FFFFFF),
                           ),
                           child: Lottie.asset(
-                            'assets/lottie_animations/edit_password.json',
+                            'assets/jsons/edit_password.json',
                             width: 150.0,
                             height: 130.0,
                             fit: BoxFit.contain,

@@ -55,7 +55,7 @@ class _FillOutAllFieldsDialogWidgetState
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Lottie.asset(
-                'assets/lottie_animations/fillOutAllFields.json',
+                'assets/jsons/fillOutAllFields.json',
                 width: 150.0,
                 height: 150.0,
                 fit: BoxFit.cover,

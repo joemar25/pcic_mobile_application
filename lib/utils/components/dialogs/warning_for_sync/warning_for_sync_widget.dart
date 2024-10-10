@@ -58,7 +58,7 @@ class _WarningForSyncWidgetState extends State<WarningForSyncWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Lottie.asset(
-                'assets/lottie_animations/confirmCancel.json',
+                'assets/jsons/confirmCancel.json',
                 width: 150.0,
                 height: 150.0,
                 fit: BoxFit.contain,

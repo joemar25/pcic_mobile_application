@@ -121,7 +121,7 @@ class _CallUsWidgetState extends State<CallUsWidget>
                         Container(
                           decoration: const BoxDecoration(),
                           child: Lottie.asset(
-                            'assets/lottie_animations/callUs.json',
+                            'assets/jsons/callUs.json',
                             width: 125.0,
                             height: 125.0,
                             fit: BoxFit.cover,

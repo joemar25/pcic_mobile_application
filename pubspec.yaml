@@ -173,9 +173,9 @@ flutter:
     - assets/images/
     - assets/videos/
     - assets/audios/
-    - assets/lottie_animations/
     - assets/rive_animations/
     - assets/pdfs/
+    - assets/jsons/
 
     - assets/sqlite_db_files/
   fonts:
@@ -189,7 +189,7 @@ flutter:
       fonts:
         - asset: assets/fonts/Loading.ttf
 
-  
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

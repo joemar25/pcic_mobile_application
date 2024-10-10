@@ -54,7 +54,7 @@ class _EmptyListsWidgetState extends State<EmptyListsWidget> {
                 child: Container(
                   decoration: const BoxDecoration(),
                   child: Lottie.asset(
-                    'assets/lottie_animations/Animation_-_1721726542727.json',
+                    'assets/jsons/Animation_-_1721726542727.json',
                     width: 150.0,
                     height: 130.0,
                     fit: BoxFit.contain,

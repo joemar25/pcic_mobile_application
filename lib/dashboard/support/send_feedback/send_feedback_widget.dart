@@ -96,7 +96,7 @@ class _SendFeedbackWidgetState extends State<SendFeedbackWidget> {
                             Container(
                               decoration: const BoxDecoration(),
                               child: Lottie.asset(
-                                'assets/lottie_animations/emailUs.json',
+                                'assets/jsons/emailUs.json',
                                 width: 125.0,
                                 height: 125.0,
                                 fit: BoxFit.cover,

@@ -55,7 +55,7 @@ class _ContinueReGeotagDialogWidgetState
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Lottie.asset(
-                'assets/lottie_animations/continueRepeatGeotag.json',
+                'assets/jsons/continueRepeatGeotag.json',
                 width: 150.0,
                 height: 150.0,
                 fit: BoxFit.cover,

@@ -380,7 +380,7 @@ class _FormSuccessWidgetState extends State<FormSuccessWidget>
                             Align(
                               alignment: const AlignmentDirectional(0.0, 0.0),
                               child: Lottie.asset(
-                                'assets/lottie_animations/Animation_-_1721724548119.json',
+                                'assets/jsons/Animation_-_1721724548119.json',
                                 width: 250.0,
                                 height: 194.0,
                                 fit: BoxFit.cover,

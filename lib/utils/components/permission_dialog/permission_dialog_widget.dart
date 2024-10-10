@@ -57,7 +57,7 @@ class _PermissionDialogWidgetState extends State<PermissionDialogWidget> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Lottie.asset(
-                    'assets/lottie_animations/xZO2U5ItRT.json',
+                    'assets/jsons/xZO2U5ItRT.json',
                     width: 100.0,
                     height: 100.0,
                     fit: BoxFit.contain,
@@ -65,7 +65,7 @@ class _PermissionDialogWidgetState extends State<PermissionDialogWidget> {
                     animate: true,
                   ),
                   Lottie.asset(
-                    'assets/lottie_animations/sev9ruk9ef.json',
+                    'assets/jsons/sev9ruk9ef.json',
                     width: 100.0,
                     height: 100.0,
                     fit: BoxFit.cover,

@@ -214,7 +214,7 @@ class _FailWidgetState extends State<FailWidget> with TickerProviderStateMixin {
                                 Align(
                                   alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: Lottie.asset(
-                                    'assets/lottie_animations/Animation_-_1721725004110.json',
+                                    'assets/jsons/Animation_-_1721725004110.json',
                                     width: 150.0,
                                     height: 149.0,
                                     fit: BoxFit.cover,

@@ -55,7 +55,7 @@ class _ContinueGoBackDialogWidgetState
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Lottie.asset(
-                'assets/lottie_animations/confirmBack.json',
+                'assets/jsons/confirmBack.json',
                 width: 150.0,
                 height: 150.0,
                 fit: BoxFit.cover,

@@ -54,7 +54,7 @@ class _ContinueSaveGeotagWidgetState extends State<ContinueSaveGeotagWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Lottie.asset(
-                'assets/lottie_animations/confirmSave.json',
+                'assets/jsons/confirmSave.json',
                 width: 150.0,
                 height: 150.0,
                 fit: BoxFit.contain,

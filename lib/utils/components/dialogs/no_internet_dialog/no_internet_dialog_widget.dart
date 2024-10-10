@@ -53,7 +53,7 @@ class _NoInternetDialogWidgetState extends State<NoInternetDialogWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Lottie.asset(
-                'assets/lottie_animations/tZsu2uNXgs.json',
+                'assets/jsons/tZsu2uNXgs.json',
                 width: 150.0,
                 height: 150.0,
                 fit: BoxFit.cover,

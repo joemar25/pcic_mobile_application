@@ -53,7 +53,7 @@ class _NoGpxDialogWidgetState extends State<NoGpxDialogWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Lottie.asset(
-                'assets/lottie_animations/Alert_lottie_(2).json',
+                'assets/jsons/Alert_lottie_(2).json',
                 width: 150.0,
                 height: 150.0,
                 fit: BoxFit.cover,
