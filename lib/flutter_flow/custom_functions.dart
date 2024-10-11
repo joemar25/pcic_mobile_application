@@ -141,16 +141,27 @@ String? convertDateToString(String? date) {
 }
 
 String? timesStampConverter(String? date) {
-  // convert this 2024-08-08T15:37:33.806799+00:00 to this Mon. August 08, 2024 - 4:12pm - goods
-  if (date == null) {
+  // If date is null or empty, return null
+  if (date == null || date.isEmpty) {
     return null;
   }
 
-  DateTime dateTime = DateTime.parse(date);
-  String formattedDate =
-      DateFormat('E. MMMM dd, yyyy - h:mma').format(dateTime);
+  // Check if the date is already in the desired format
+  final RegExp formattedPattern = RegExp(
+      r'^(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\. [A-Z][a-z]+ \d{2}, \d{4} - \d{1,2}:\d{2}(am|pm)$');
+  if (formattedPattern.hasMatch(date)) {
+    return date; // Already formatted, return as is
+  }
 
-  return formattedDate;
+  try {
+    DateTime dateTime = DateTime.parse(date);
+    String formattedDate =
+        DateFormat('E. MMMM dd, yyyy - h:mma').format(dateTime);
+    return formattedDate;
+  } catch (e) {
+    print('Error parsing date: $date');
+    return date; // Return original string if parsing fails
+  }
 }
 
 String formatDate(String? input) {
