@@ -50,22 +50,22 @@ Future<String> generateTaskXml(String? taskId) async {
     String serviceGroup = data['service_group']?.toString() ?? '';
     String userEmail = data['users']['email']?.toString() ?? '';
     String taskNumber = data['task_number']?.toString() ?? '';
-    String rawDateTime = ppirForm['track_date_time']?.toString() ?? '';
-    String formattedDateTime = '';
+
+    // String formattedDateTime = '';
     // String formattedDopdsAct = '';
     // String formattedDoptpAct = '';
     String insuranceId = ppirForm['insurance_id']?.toString() ??
         ''; // Ensure you get insuranceId
 
-    if (rawDateTime.isNotEmpty) {
-      DateTime parsedDateTime = DateTime.parse(rawDateTime);
+    // if (rawDateTime.isNotEmpty) {
+    //   DateTime parsedDateTime = DateTime.parse(rawDateTime);
 
-      // Format the DateTime object to the desired format
-      formattedDateTime = DateFormat('MM/dd/yyyy HH:mm').format(parsedDateTime);
+    //   // Format the DateTime object to the desired format
+    //   formattedDateTime = DateFormat('MM/dd/yyyy HH:mm').format(parsedDateTime);
 
-      // Use formattedDateTime as needed
-      print(formattedDateTime);
-    }
+    //   // Use formattedDateTime as needed
+    //   print(formattedDateTime);
+    // }
 
     // formattedDopdsAct =
     //     formatDate(ppirForm['ppir_dopds_act']?.toString() ?? '');
@@ -3210,8 +3210,8 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '6');
               builder.element('Type', nest: 'Text');
               builder.element('Value',
-                  nest:
-                      formattedDateTime); // last value is 04/08/2024 1:29:22 pm
+                  nest: ppirForm['track_date_time']?.toString() ??
+                      ''); // last value is 04/08/2024 1:29:22 pm
             });
 
             builder.element('FormFieldZipModel', nest: () {
