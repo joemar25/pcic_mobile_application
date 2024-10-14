@@ -32,3 +32,5 @@ export '/dashboard/support/send_feedback/send_feedback_widget.dart'
 export '/utils/components/gpx_success/gpx_success_widget.dart'
     show GpxSuccessWidget;
 export '/dashboard/forms/all_tasks/all_tasks_widget.dart' show AllTasksWidget;
+export '/utils/test/map_test_test/map_test_test_widget.dart'
+    show MapTestTestWidget;

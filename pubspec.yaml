@@ -46,6 +46,7 @@ dependencies:
   flutter_cache_manager: 3.3.1
   flutter_compass: ^0.8.0
   flutter_map: ^7.0.2
+  flutter_map_geojson: ^1.0.8
   flutter_map_location_marker: ^9.0.0
   flutter_map_tile_caching: ^9.1.1
   flutter_native_splash: 2.3.1

@@ -305,6 +305,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
               ParamType.String,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'mapTestTest',
+          path: '/mapTestTest',
+          builder: (context, params) => const MapTestTestWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

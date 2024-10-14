@@ -4,3 +4,4 @@ export 'map_box.dart' show MapBox;
 export 'custom_signature.dart' show CustomSignature;
 export 'searchable_map_widget.dart' show SearchableMapWidget;
 export 'map_test.dart' show MapTest;
+export 'geo_json.dart' show GeoJson;

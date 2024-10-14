@@ -155,6 +155,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'DON\'T DELETE TAT TESTING!',
       'tl': '',
     },
+    'jldei9fa': {
+      'en': 'DON\'T DELETE Mar TESTING!',
+      'tl': '',
+    },
     'ze2n4vlq': {
       'en': 'Field is required',
       'tl': 'Kinakailangan ang field',
@@ -1269,6 +1273,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     'flnyt26u': {
+      'en': 'Home',
+      'tl': '',
+    },
+  },
+  // mapTestTest
+  {
+    'seuh16v7': {
+      'en': 'Offline Map K',
+      'tl': '',
+    },
+    'tg8n88l3': {
       'en': 'Home',
       'tl': '',
     },

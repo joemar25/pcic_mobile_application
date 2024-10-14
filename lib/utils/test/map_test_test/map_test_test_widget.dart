@@ -2,26 +2,25 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'map_test_model.dart';
-export 'map_test_model.dart';
+import 'map_test_test_model.dart';
+export 'map_test_test_model.dart';
 
-class MapTestWidget extends StatefulWidget {
-  const MapTestWidget({super.key});
+class MapTestTestWidget extends StatefulWidget {
+  const MapTestTestWidget({super.key});
 
   @override
-  State<MapTestWidget> createState() => _MapTestWidgetState();
+  State<MapTestTestWidget> createState() => _MapTestTestWidgetState();
 }
 
-class _MapTestWidgetState extends State<MapTestWidget> {
-  late MapTestModel _model;
+class _MapTestTestWidgetState extends State<MapTestTestWidget> {
+  late MapTestTestModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => MapTestModel());
+    _model = createModel(context, () => MapTestTestModel());
   }
 
   @override
@@ -33,8 +32,6 @@ class _MapTestWidgetState extends State<MapTestWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -45,7 +42,7 @@ class _MapTestWidgetState extends State<MapTestWidget> {
           automaticallyImplyLeading: false,
           title: Text(
             FFLocalizations.of(context).getText(
-              'yigfujp5' /* Offline Map */,
+              'seuh16v7' /* Offline Map K */,
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Inter',
@@ -65,12 +62,11 @@ class _MapTestWidgetState extends State<MapTestWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
-                width: double.infinity,
-                height: 700.0,
-                child: custom_widgets.MapTest(
-                  width: double.infinity,
-                  height: 700.0,
-                  accessToken: FFAppState().accessToken,
+                width: MediaQuery.sizeOf(context).width * 1.0,
+                height: MediaQuery.sizeOf(context).height * 1.0,
+                child: custom_widgets.GeoJson(
+                  width: MediaQuery.sizeOf(context).width * 1.0,
+                  height: MediaQuery.sizeOf(context).height * 1.0,
                 ),
               ),
             ],
