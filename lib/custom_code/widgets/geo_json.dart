@@ -5,17 +5,17 @@ import '/backend/sqlite/sqlite_manager.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'index.dart'; // Imports other custom widgets
+import '/custom_code/widgets/index.dart'; // Imports other custom widgets
 import '/custom_code/actions/index.dart'; // Imports custom actions
 import '/flutter_flow/custom_functions.dart'; // Imports custom functions
 import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
-
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_geojson/flutter_map_geojson.dart';
 import 'package:latlong2/latlong.dart' as latlong2;
 import 'package:flutter/services.dart' show rootBundle;
+import 'dart:convert';
 
 class GeoJson extends StatefulWidget {
   const GeoJson({
@@ -43,18 +43,26 @@ class _GeoJsonState extends State<GeoJson> {
 
   Future<void> _loadGeoJson() async {
     try {
-      // Load the GeoJSON data from the asset
       print('DEBUG: Attempting to load GeoJSON file...');
       final String geoJsonString = await rootBundle
-          .loadString('assets/lottie_animations/philippines-with-regions.json');
+          .loadString('assets/jsons/philippines-with-regions.json');
       print('DEBUG: GeoJSON file loaded successfully.');
 
-      // Parse the GeoJSON data
       print('DEBUG: Parsing GeoJSON data...');
-      _geoJsonParser.parseGeoJsonAsString(geoJsonString);
-      print('DEBUG: GeoJSON data parsed successfully.');
 
-      // Print some information about the parsed data
+      // Parse the JSON manually to handle type casting
+      final jsonData = json.decode(geoJsonString);
+      final features = jsonData['features'] as List;
+
+      for (var feature in features) {
+        if (feature['geometry']['type'] == 'MultiPolygon') {
+          var coordinates = feature['geometry']['coordinates'] as List;
+          _processMultiPolygon(coordinates);
+        }
+        // Add more conditions here for other geometry types if needed
+      }
+
+      print('DEBUG: GeoJSON data parsed successfully.');
       print('DEBUG: Number of polygons: ${_geoJsonParser.polygons.length}');
       print('DEBUG: Number of polylines: ${_geoJsonParser.polylines.length}');
       print('DEBUG: Number of markers: ${_geoJsonParser.markers.length}');
@@ -66,6 +74,27 @@ class _GeoJsonState extends State<GeoJson> {
     }
   }
 
+  void _processMultiPolygon(List coordinates) {
+    for (var polygon in coordinates) {
+      for (var ring in polygon) {
+        List<latlong2.LatLng> points = [];
+        for (var coord in ring) {
+          double lat =
+              (coord[1] is int) ? (coord[1] as int).toDouble() : coord[1];
+          double lng =
+              (coord[0] is int) ? (coord[0] as int).toDouble() : coord[0];
+          points.add(latlong2.LatLng(lat, lng));
+        }
+        _geoJsonParser.polygons.add(Polygon(
+          points: points,
+          color: Colors.blue.withOpacity(0.3),
+          borderColor: Colors.blue,
+          borderStrokeWidth: 2,
+        ));
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -73,13 +102,14 @@ class _GeoJsonState extends State<GeoJson> {
       height: widget.height ?? 400,
       child: FlutterMap(
         options: MapOptions(
-          initialCenter: latlong2.LatLng(14.60905, 121.02226),
-          initialZoom: 14,
+          initialCenter:
+              latlong2.LatLng(12.8797, 121.7740), // Center of Philippines
+          initialZoom: 6, // Adjusted to show more of the Philippines
         ),
         children: [
           TileLayer(
-            urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-            subdomains: const ['a', 'b', 'c'],
+            urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+            userAgentPackageName: 'com.example.app',
           ),
           PolygonLayer(polygons: _geoJsonParser.polygons),
           PolylineLayer(polylines: _geoJsonParser.polylines),
