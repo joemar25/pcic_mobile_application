@@ -647,7 +647,8 @@ Future<String> generateTaskXml(String? taskId) async {
           builder.element('Assignment Id',
               nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
-          builder.element('UpdatedValue', nest: rawDateTime);
+          builder.element('UpdatedValue',
+              nest: ppirForm['track_date_time']?.toString() ?? '');
           builder.element('FieldId', nest: '');
           builder.element('FormTitle', nest: 'Tracked Farm');
           builder.element('FieldLabel', nest: 'Date and Time');
@@ -708,7 +709,8 @@ Future<String> generateTaskXml(String? taskId) async {
               nest: ppirForm['ppir_assignmentid']?.toString() ?? '');
           builder.element('Timestamp', nest: '2024-04-08T05:29:28.281Z');
           builder.element('UpdatedValue',
-              nest: 'Date/Time|track_coord_timestamp|${rawDateTime}');
+              nest:
+                  'Date/Time|track_coord_timestamp|${ppirForm['track_date_time']?.toString() ?? ''}');
           builder.element('FormTitle', nest: 'Tracked Farm');
           builder.element('FieldLabel', nest: 'Field');
           builder.element('IPAddress', nest: '');
