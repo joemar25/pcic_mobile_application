@@ -11,6 +11,14 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+/// The function `syncOnlineTaskAndPpirToOffline` synchronizes offline tasks and PPIR forms with online
+/// data and updates the local database accordingly.
+///
+/// Returns:
+///   The function `syncOnlineTaskAndPpirToOffline` returns a `Future<String>` which contains a message
+/// indicating the result of the synchronization process. If the synchronization is successful, it
+/// returns a message stating the number of updated online PPIR forms and the count of new offline tasks
+/// and PPIR forms added. If the synchronization fails, it returns a message stating "Sync failed".
 import '/auth/supabase_auth/auth_util.dart';
 
 Future<String> syncOnlineTaskAndPpirToOffline() async {
@@ -20,7 +28,6 @@ Future<String> syncOnlineTaskAndPpirToOffline() async {
     int newOfflineTasksCount = 0;
     int newOfflinePPIRFormsCount = 0;
 
-    // Step 1a: Sync offline tasks to online (status only)
     print('Starting Step 1a: Sync offline tasks to online');
     List<OFFLINESelectAllTasksByAssigneeRow> offlineTasks =
         await SQLiteManager.instance.oFFLINESelectAllTasksByAssignee(
@@ -34,7 +41,6 @@ Future<String> syncOnlineTaskAndPpirToOffline() async {
       );
 
       if (onlineTaskExists.isNotEmpty) {
-        print('Updating online task status for task ID: ${offlineTask.id}');
         await TasksTable().update(
           data: {'status': offlineTask.status},
           matchingRows: (row) => row.eq('id', offlineTask.id),
@@ -45,7 +51,6 @@ Future<String> syncOnlineTaskAndPpirToOffline() async {
 
     print('Updated $updatedOnlineTasksCount online task statuses.');
 
-    // Step 1b: Sync offline PPIR forms to online
     print('Starting Step 1b: Sync offline PPIR forms to online');
     List<SELECTPPIRFormsByAssigneeRow> offlinePPIRForms =
         await SQLiteManager.instance.sELECTPPIRFormsByAssignee(
@@ -63,7 +68,6 @@ Future<String> syncOnlineTaskAndPpirToOffline() async {
         );
 
         if (onlinePPIRFormExists.isNotEmpty) {
-          print('Updating online PPIR form for task ID: ${offlinePPIR.taskId}');
           await PpirFormsTable().update(
             data: {
               'ppir_assignmentid': offlinePPIR.ppirAssignmentid,
@@ -83,10 +87,6 @@ Future<String> syncOnlineTaskAndPpirToOffline() async {
               'ppir_south': offlinePPIR.ppirSouth,
               'ppir_east': offlinePPIR.ppirEast,
               'ppir_west': offlinePPIR.ppirWest,
-              // 'ppir_att_1': offlinePPIR.ppirAt,
-              // 'ppir_att_2': offlinePPIR.ppirAtt2,
-              // 'ppir_att_3': offlinePPIR.ppirAtt3,
-              // 'ppir_att_4': offlinePPIR.ppirAtt4,
               'ppir_area_aci': offlinePPIR.ppirAreaAci,
               'ppir_area_act': offlinePPIR.ppirAreaAct,
               'ppir_dopds_aci': offlinePPIR.ppirDopdsAci,
@@ -94,7 +94,6 @@ Future<String> syncOnlineTaskAndPpirToOffline() async {
               'ppir_doptp_aci': offlinePPIR.ppirDoptpAci,
               'ppir_doptp_act': offlinePPIR.ppirDoptpAct,
               'ppir_svp_aci': offlinePPIR.ppirSvpAci,
-              'ppir_svp_act': offlinePPIR.ppirSvpAct,
               'ppir_variety': offlinePPIR.ppirVariety,
               'ppir_stagecrop': offlinePPIR.ppirStagecrop,
               'ppir_remarks': offlinePPIR.ppirRemarks,
@@ -117,12 +116,10 @@ Future<String> syncOnlineTaskAndPpirToOffline() async {
       }
     }
 
-    // Step 2: Clear offline database
     print('Starting Step 2: Clearing offline database');
     await SQLiteManager.instance.dELETEAllRowsForTASKSAndPPIR();
     print('Cleared offline database');
 
-    // Step 3: Sync online data to offline
     print('Starting Step 3: Sync online data to offline');
     List<TasksRow> onlineTasks = await TasksTable().queryRows(
       queryFn: (q) => q.eq('assignee', currentUserUid),
@@ -197,7 +194,58 @@ Future<String> syncOnlineTaskAndPpirToOffline() async {
           updatedAt: ppir.updatedAt?.toIso8601String() ?? '',
           syncStatus: 'synced',
           lastSyncedAt: DateTime.now().toIso8601String(),
-          // localId: ppir.localId ?? '', -- no use
+          isDirty: 'false',
+        );
+        newOfflinePPIRFormsCount++;
+      } else {
+        // Insert a placeholder PPIR form if none exists
+        await SQLiteManager.instance.insertOfflinePPIRForm(
+          taskId: onlineTask.id,
+          ppirAssignmentId: '',
+          gpx: '',
+          ppirInsuranceId: '',
+          ppirFarmerName: '',
+          ppirAddress: '',
+          ppirFarmerType: '',
+          ppirMobileNo: '',
+          ppirGroupName: '',
+          ppirGroupAddress: '',
+          ppirLenderName: '',
+          ppirLenderAddress: '',
+          ppirCICNo: '',
+          ppirFarmLoc: '',
+          ppirNorth: '',
+          ppirSouth: '',
+          ppirEast: '',
+          ppirWest: '',
+          ppirAtt1: '',
+          ppirAtt2: '',
+          ppirAtt3: '',
+          ppirAtt4: '',
+          ppirAreaAci: '',
+          ppirAreaAct: '',
+          ppirDopdsAci: '',
+          ppirDopdsAct: '',
+          ppirDoptpAci: '',
+          ppirDoptpAct: '',
+          ppirSvpAci: '',
+          ppirSvpAct: '',
+          ppirVariety: '',
+          ppirStageCrop: '',
+          ppirRemarks: '',
+          ppirNameInsured: '',
+          ppirNameIUIA: '',
+          ppirSigInsured: '',
+          ppirSigIUIA: '',
+          trackLastCoord: '',
+          trackDateTime: '',
+          trackTotalArea: '',
+          trackTotalDistance: '',
+          capturedArea: '',
+          createdAt: DateTime.now().toIso8601String(),
+          updatedAt: DateTime.now().toIso8601String(),
+          syncStatus: 'synced',
+          lastSyncedAt: DateTime.now().toIso8601String(),
           isDirty: 'false',
         );
         newOfflinePPIRFormsCount++;
@@ -207,7 +255,6 @@ Future<String> syncOnlineTaskAndPpirToOffline() async {
     print('Sync completed successfully');
     return 'Updated $updatedOnlinePPIRFormsCount, Added $newOfflineTasksCount/$newOfflinePPIRFormsCount';
   } catch (e) {
-    print('Sync Error: $e');
     return 'Sync failed';
   }
 }

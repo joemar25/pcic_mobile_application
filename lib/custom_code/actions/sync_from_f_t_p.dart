@@ -11,9 +11,17 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'index.dart'; // Imports other custom actions
-
-// Additional imports
+/// The function `syncFromFTP` retrieves CSV files from FTP servers, processes the data, and creates
+/// tasks and forms based on certain conditions.
+///
+/// Args:
+///   region (String): The `syncFromFTP` function you provided seems to be a Dart function that
+/// synchronizes data from FTP servers based on a given region. The function takes a `region` parameter,
+/// which is used to filter and process files from FTP servers.
+///
+/// Returns:
+///   The function `syncFromFTP` returns a `Future<bool>`. It returns `true` if the synchronization
+/// process is successful, and `false` if there are any errors or if the process fails at any point.
 import '/auth/supabase_auth/auth_util.dart';
 import 'package:ftpconnect/ftpconnect.dart';
 import 'package:csv/csv.dart';
@@ -22,23 +30,17 @@ import 'package:uuid/uuid.dart';
 import 'dart:io';
 
 Future<bool> syncFromFTP(String? region) async {
-  print("hello from syncFromFTP");
-  if (region == null) {
-    print('Error: Region is null');
-    return false;
-  }
+  if (region == null) return false;
 
   String transformedRegionCode =
-      'PO${region.replaceAll(RegExp(r'[POpo]'), '')}';
-  String originalRegionCode = 'P0${region.replaceAll(RegExp(r'[POpo]'), '')}';
-  print('Processing region: $transformedRegionCode');
-  print('Original region code for file matching: $originalRegionCode');
+      'P${region.replaceAll(RegExp(r'^[POpo]+'), '').padLeft(2, '0')}';
+  String originalRegionCode = region;
 
   FTPConnect? ftpClient;
   int newTasksCount = 0;
   int newPPIRFormsCount = 0;
 
-  final List<Map<String, dynamic>> ftpServers = [
+  final ftpServers = [
     {
       'host': '103.82.46.134',
       'user': 'k2c_User1',
@@ -54,146 +56,85 @@ Future<bool> syncFromFTP(String? region) async {
   ];
 
   try {
-    final userQuery = await UsersTable().queryRows(
-      queryFn: (q) => q.eq('email', currentUserEmail),
-    );
-    if (userQuery.isEmpty) {
-      print('Error: Current user not found in the database');
-      return false;
-    }
+    final userQuery = await UsersTable()
+        .queryRows(queryFn: (q) => q.eq('email', currentUserEmail));
+    if (userQuery.isEmpty) return false;
     final currentUserId = userQuery.first.id;
-    print('Current user ID: $currentUserId');
 
-    final regionQuery = await RegionsTable().queryRows(
-      queryFn: (q) => q.eq('region_code', transformedRegionCode),
-    );
-    if (regionQuery.isEmpty) {
-      print('Error: Region not found in the database');
-      return false;
-    }
+    final regionQuery = await RegionsTable()
+        .queryRows(queryFn: (q) => q.eq('region_code', originalRegionCode));
+    if (regionQuery.isEmpty) return false;
     final regionName = regionQuery.first.regionName + ' PPIR';
 
     bool connected = false;
     for (var server in ftpServers) {
       try {
-        ftpClient = FTPConnect(server['host'],
-            user: server['user'], pass: server['pass'], port: server['port']);
+        ftpClient = FTPConnect(
+          server['host'] as String,
+          user: server['user'] as String,
+          pass: server['pass'] as String,
+          port: server['port'] as int?,
+        );
         await ftpClient.connect();
         connected = true;
-        print('Connected to FTP server: ${server['host']}');
         break;
       } catch (e) {
-        print('Failed to connect to FTP server ${server['host']}: $e');
         continue;
       }
     }
 
-    if (!connected) {
-      print('Failed to connect to any FTP server');
-      return false;
-    }
+    if (!connected) return false;
 
-    const remotePath = '/Work';
-    try {
-      await ftpClient!.changeDirectory(remotePath);
-    } catch (e) {
-      print('Error changing to directory $remotePath: $e');
-      return false;
-    }
+    await ftpClient!.changeDirectory('/Work');
 
-    List<FTPEntry> files;
-    try {
-      files = await ftpClient.listDirectoryContent();
-    } catch (e) {
-      print('Error listing directory content: $e');
-      return false;
-    }
-
-    print('All files in /Work directory:');
-    for (var file in files) {
-      print(file.name);
-    }
-
-    final List<String> filesToProcess = files
+    List<FTPEntry> files = await ftpClient.listDirectoryContent();
+    final filesToProcess = files
         .where((file) =>
-            file.name.startsWith('$originalRegionCode RICE Region') &&
+            file.name.startsWith('$transformedRegionCode RICE Region') &&
             file.name.endsWith('.csv'))
         .map((file) => file.name)
         .toList();
 
-    print('Files to process: ${filesToProcess.join(", ")}');
-
-    if (filesToProcess.isEmpty) {
-      print('No matching files found for region $originalRegionCode');
-      return false;
-    }
+    if (filesToProcess.isEmpty) return false;
 
     for (final filename in filesToProcess) {
-      print('Processing file: $filename');
       File tempFile = File('${Directory.systemTemp.path}/$filename');
-      bool downloadSuccess = false;
-      try {
-        downloadSuccess = await ftpClient.downloadFile(filename, tempFile);
-      } catch (e) {
-        print('Error downloading file $filename: $e');
-        continue;
-      }
-      if (!downloadSuccess) {
-        print('Failed to download file: $filename');
-        continue;
-      }
-      final String contents = await tempFile.readAsString();
+      bool downloadSuccess = await ftpClient.downloadFile(filename, tempFile);
+      if (!downloadSuccess) continue;
 
-      List<List<dynamic>> rowsAsListOfValues =
+      final contents = await tempFile.readAsString();
+      List<List<dynamic>> rows =
           const CsvToListConverter().convert(contents, eol: '\n');
-      List<String> headers =
-          rowsAsListOfValues.first.map((e) => e.toString()).toList();
+      List<String> headers = rows.first.map((e) => e.toString()).toList();
       int assigneeIndex = headers.indexOf('Assignee');
 
-      print('CSV Headers: ${headers.join(", ")}');
-      print('Assignee index: $assigneeIndex');
-
       if (assigneeIndex != -1) {
-        List<Map<String, dynamic>> filteredRows = rowsAsListOfValues
+        List<Map<String, dynamic>> filteredRows = rows
             .skip(1)
-            .where((row) {
-              if (row.length <= assigneeIndex) return false;
-              String assigneeValue =
-                  row[assigneeIndex].toString().trim().toLowerCase();
-              return assigneeValue == currentUserEmail.trim().toLowerCase();
-            })
+            .where((row) =>
+                row.length > assigneeIndex &&
+                row[assigneeIndex].toString().trim().toLowerCase() ==
+                    currentUserEmail.trim().toLowerCase())
             .map((row) => Map.fromIterables(headers, row))
             .toList();
 
-        print('Filtered rows count: ${filteredRows.length}');
-
         for (var row in filteredRows) {
-          String taskNumber = row['Task Number']?.toString().trim() ?? '';
-          if (taskNumber.isEmpty) {
-            taskNumber = 'PPIR-${row['ppir_assignmentid']?.toString() ?? ''}';
-          }
-
-          var onlineTasks = await TasksTable().queryRows(
-            queryFn: (q) => q.eq('task_number', taskNumber),
-          );
-
-          var offlineTasks =
-              await SQLiteManager.instance.oFFLINESelectAllTasksByAssignee(
-            assignee: currentUserId,
-          );
+          String taskNumber = row['Task Number']?.toString().trim() ??
+              'PPIR-${row['ppir_assignmentid']?.toString() ?? ''}';
+          var onlineTasks = await TasksTable()
+              .queryRows(queryFn: (q) => q.eq('task_number', taskNumber));
+          var offlineTasks = await SQLiteManager.instance
+              .oFFLINESelectAllTasksByAssignee(assignee: currentUserId);
 
           bool taskExists = onlineTasks.isNotEmpty ||
               offlineTasks.any((task) => task.taskNumber == taskNumber);
-
           if (!taskExists) {
-            print('Inserting new task: $taskNumber');
-
             String taskId = const Uuid().v4();
 
             await TasksTable().insert({
               'id': taskId,
               'task_number': taskNumber,
-              'service_group': transformedRegionCode,
+              'service_group': originalRegionCode,
               'status':
                   row['Task Status']?.toString().toLowerCase() ?? 'pending',
               'service_type': regionName,
@@ -207,7 +148,7 @@ Future<bool> syncFromFTP(String? region) async {
             await SQLiteManager.instance.insertOfflineTask(
               id: taskId,
               taskNumber: taskNumber,
-              serviceGroup: transformedRegionCode,
+              serviceGroup: originalRegionCode,
               status: row['Task Status']?.toString().toLowerCase() ?? 'pending',
               serviceType: regionName,
               priority: row['Priority']?.toString() ?? 'medium',
@@ -216,8 +157,6 @@ Future<bool> syncFromFTP(String? region) async {
               dateAccess: DateTime.now().toIso8601String(),
               fileId: filename,
             );
-
-            newTasksCount++;
 
             await PpirFormsTable().insert({
               'task_id': taskId,
@@ -249,59 +188,20 @@ Future<bool> syncFromFTP(String? region) async {
               'created_at': DateTime.now().toIso8601String(),
               'updated_at': DateTime.now().toIso8601String(),
               'sync_status': 'synced',
-              'is_dirty': false,
+              'is_dirty': 'false',
             });
 
-            await SQLiteManager.instance.insertOfflinePPIRForm(
-              taskId: taskId,
-              ppirAssignmentId: row['ppir_assignmentid']?.toString() ?? '',
-              ppirInsuranceId: row['ppir_insuranceid']?.toString() ?? '',
-              ppirFarmerName: row['ppir_farmername']?.toString() ?? '',
-              ppirAddress: row['ppir_address']?.toString() ?? '',
-              ppirFarmerType: row['ppir_farmertype']?.toString() ?? '',
-              ppirMobileNo: row['ppir_mobileno']?.toString() ?? '',
-              ppirGroupName: row['ppir_groupname']?.toString() ?? '',
-              ppirGroupAddress: row['ppir_groupaddress']?.toString() ?? '',
-              ppirLenderName: row['ppir_lendername']?.toString() ?? '',
-              ppirLenderAddress: row['ppir_lenderaddress']?.toString() ?? '',
-              ppirCICNo: row['ppir_cicno']?.toString() ?? '',
-              ppirFarmLoc: row['ppir_farmloc']?.toString() ?? '',
-              ppirNorth: row['ppir_north']?.toString() ?? '',
-              ppirSouth: row['ppir_south']?.toString() ?? '',
-              ppirEast: row['ppir_east']?.toString() ?? '',
-              ppirWest: row['ppir_west']?.toString() ?? '',
-              ppirAreaAci: row['ppir_area_aci']?.toString() ?? '',
-              ppirAreaAct: row['ppir_area_act']?.toString() ?? '',
-              ppirDopdsAci: row['ppir_dopds_aci']?.toString() ?? '',
-              ppirDopdsAct: row['ppir_dopds_act']?.toString() ?? '',
-              ppirDoptpAci: row['ppir_doptp_aci']?.toString() ?? '',
-              ppirDoptpAct: row['ppir_doptp_act']?.toString() ?? '',
-              ppirSvpAci: row['ppir_svp_aci']?.toString() ?? '',
-              ppirVariety: row['ppir_variety']?.toString() ?? '',
-              ppirStageCrop: row['ppir_stagecrop']?.toString() ?? '',
-              createdAt: DateTime.now().toIso8601String(),
-              updatedAt: DateTime.now().toIso8601String(),
-              syncStatus: 'synced',
-              lastSyncedAt: DateTime.now().toIso8601String(),
-              isDirty: 'false',
-            );
-
             newPPIRFormsCount++;
+            newTasksCount++;
           }
         }
       }
       await tempFile.delete();
     }
-    print(
-        'Sync completed: $newTasksCount new tasks, $newPPIRFormsCount new PPIR forms');
 
-    print("Before FFAppState().syncCount -> ${FFAppState().syncCount}");
-    FFAppState().syncCount = FFAppState().syncCount + newTasksCount;
-    print("After FFAppState().syncCount -> ${FFAppState().syncCount}");
-
+    FFAppState().syncCount += newTasksCount;
     return true;
   } catch (e) {
-    print('Sync Error: $e');
     return false;
   } finally {
     await ftpClient?.disconnect();
