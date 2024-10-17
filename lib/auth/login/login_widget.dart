@@ -112,8 +112,6 @@ class _LoginWidgetState extends State<LoginWidget>
           !anim.applyInitialState),
       this,
     );
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

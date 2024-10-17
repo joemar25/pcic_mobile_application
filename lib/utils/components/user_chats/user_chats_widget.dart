@@ -27,8 +27,6 @@ class _UserChatsWidgetState extends State<UserChatsWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => UserChatsModel());
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

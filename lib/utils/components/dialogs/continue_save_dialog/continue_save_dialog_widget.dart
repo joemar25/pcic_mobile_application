@@ -27,8 +27,6 @@ class _ContinueSaveDialogWidgetState extends State<ContinueSaveDialogWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ContinueSaveDialogModel());
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

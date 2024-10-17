@@ -31,8 +31,6 @@ class _WarningForSyncWidgetState extends State<WarningForSyncWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => WarningForSyncModel());
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

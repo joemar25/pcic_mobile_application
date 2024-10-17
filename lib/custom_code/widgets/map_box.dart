@@ -106,6 +106,8 @@ class _MapBoxState extends State<MapBox> {
       setState(() {
         _errorMessage = "No internet connection.";
       });
+    } else {
+      FFAppState().mapLoadedWithInternet = true;
     }
   }
 
@@ -681,7 +683,7 @@ class _MapBoxState extends State<MapBox> {
       return const Center(child: CircularProgressIndicator());
     }
 
-    if (storeFound == false) {
+    if (!appState.mapLoadedWithInternet && storeFound == false) {
       return _buildOfflineMessageBox(this.context);
     }
 

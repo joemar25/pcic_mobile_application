@@ -27,8 +27,6 @@ class _UploadFailedDialogWidgetState extends State<UploadFailedDialogWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => UploadFailedDialogModel());
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

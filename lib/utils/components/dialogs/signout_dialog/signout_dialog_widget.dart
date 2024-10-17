@@ -34,8 +34,6 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => SignoutDialogModel());
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

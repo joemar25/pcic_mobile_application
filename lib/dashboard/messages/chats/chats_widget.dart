@@ -37,8 +37,6 @@ class _ChatsWidgetState extends State<ChatsWidget> {
         context,
       );
     });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

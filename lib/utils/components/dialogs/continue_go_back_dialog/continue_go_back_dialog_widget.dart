@@ -28,8 +28,6 @@ class _ContinueGoBackDialogWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => ContinueGoBackDialogModel());
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

@@ -40,8 +40,6 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
     });
 
     _model.displayNameFocusNode ??= FocusNode();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

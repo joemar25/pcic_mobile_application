@@ -1,6 +1,7 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/sqlite/sqlite_manager.dart';
 import '/backend/supabase/supabase.dart';
+import '/components/search_widget.dart';
 import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -64,7 +65,6 @@ class _AllTasksWidgetState extends State<AllTasksWidget>
       length: 2,
       initialIndex: 0,
     )..addListener(() => safeSetState(() {}));
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -235,575 +235,620 @@ class _AllTasksWidgetState extends State<AllTasksWidget>
                 centerTitle: false,
                 elevation: 0.0,
               ),
-              body: Padding(
-                padding: const EdgeInsets.all(18.0),
-                child: Container(
-                  width: 100.0,
-                  height: 100.0,
-                  constraints: BoxConstraints(
-                    minWidth: MediaQuery.sizeOf(context).width * 1.0,
-                    minHeight: MediaQuery.sizeOf(context).height * 1.0,
+              body: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  wrapWithModel(
+                    model: _model.searchModel,
+                    updateCallback: () => safeSetState(() {}),
+                    child: const SearchWidget(),
                   ),
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).primaryBackground,
-                  ),
-                  child: Column(
-                    children: [
-                      Align(
-                        alignment: const Alignment(0.0, 0),
-                        child: TabBar(
-                          labelColor: FlutterFlowTheme.of(context).primaryText,
-                          unselectedLabelColor:
-                              FlutterFlowTheme.of(context).secondaryText,
-                          labelStyle:
-                              FlutterFlowTheme.of(context).titleMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
-                                  ),
-                          unselectedLabelStyle:
-                              FlutterFlowTheme.of(context).titleMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
-                                  ),
-                          indicatorColor: FlutterFlowTheme.of(context).primary,
-                          tabs: [
-                            Tab(
-                              text: FFLocalizations.of(context).getText(
-                                'm52pegan' /* Active */,
-                              ),
-                              icon: const FaIcon(
-                                FontAwesomeIcons.box,
-                              ),
-                            ),
-                            Tab(
-                              text: FFLocalizations.of(context).getText(
-                                'eahrpm1f' /* Archive */,
-                              ),
-                              icon: const FaIcon(
-                                FontAwesomeIcons.archive,
-                              ),
-                            ),
-                          ],
-                          controller: _model.tabBarController,
-                          onTap: (i) async {
-                            [() async {}, () async {}][i]();
-                          },
-                        ),
+                  Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: Container(
+                      width: 100.0,
+                      height: MediaQuery.sizeOf(context).height * 1.0,
+                      constraints: BoxConstraints(
+                        minWidth: MediaQuery.sizeOf(context).width * 1.0,
+                        minHeight: MediaQuery.sizeOf(context).height * 1.0,
                       ),
-                      Expanded(
-                        child: TabBarView(
-                          controller: _model.tabBarController,
-                          children: [
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(2.0),
-                                    child: Builder(
-                                      builder: (context) {
-                                        final tasks =
-                                            allTasksSELECTPPIRFormsByAssigneeAndTaskStatusRowList
-                                                .where((e) =>
-                                                    e.status ==
-                                                    widget.taskStatus)
-                                                .toList();
-                                        if (tasks.isEmpty) {
-                                          return Center(
-                                            child: EmptyListsWidget(
-                                              type: '${() {
-                                                if (widget.taskStatus ==
-                                                    'for dispatch') {
-                                                  return 'Dispatch';
-                                                } else if (widget.taskStatus ==
-                                                    'ongoing') {
-                                                  return 'Ongoing';
-                                                } else {
-                                                  return 'Completed';
-                                                }
-                                              }()} Tasks',
-                                            ),
-                                          );
-                                        }
-
-                                        return FlutterFlowDataTable<
-                                            SELECTPPIRFormsByAssigneeAndTaskStatusRow>(
-                                          controller: _model
-                                              .paginatedDataTableController,
-                                          data: tasks,
-                                          columnsBuilder: (onSortChanged) => [
-                                            DataColumn2(
-                                              label: DefaultTextStyle.merge(
-                                                softWrap: true,
-                                                child: SingleChildScrollView(
-                                                  scrollDirection:
-                                                      Axis.horizontal,
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Text(
-                                                        FFLocalizations.of(
-                                                                context)
-                                                            .getText(
-                                                          'zbzuwaqs' /* Task Number */,
-                                                        ),
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelLarge
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .info,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            DataColumn2(
-                                              label: DefaultTextStyle.merge(
-                                                softWrap: true,
-                                                child: SingleChildScrollView(
-                                                  scrollDirection:
-                                                      Axis.horizontal,
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Text(
-                                                        FFLocalizations.of(
-                                                                context)
-                                                            .getText(
-                                                          'siy1e1ix' /* Farmer Name */,
-                                                        ),
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelLarge
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .info,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            DataColumn2(
-                                              label: DefaultTextStyle.merge(
-                                                softWrap: true,
-                                                child: SingleChildScrollView(
-                                                  scrollDirection:
-                                                      Axis.horizontal,
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Text(
-                                                        FFLocalizations.of(
-                                                                context)
-                                                            .getText(
-                                                          'tblcfd51' /* GPX */,
-                                                        ),
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelLarge
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .info,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                          dataRowBuilder: (tasksItem,
-                                                  tasksIndex,
-                                                  selected,
-                                                  onSelectChanged) =>
-                                              DataRow(
-                                            color: WidgetStateProperty.all(
-                                              tasksIndex % 2 == 0
-                                                  ? FlutterFlowTheme.of(context)
-                                                      .secondaryBackground
-                                                  : FlutterFlowTheme.of(context)
-                                                      .primaryBackground,
-                                            ),
-                                            cells: [
-                                              SingleChildScrollView(
-                                                scrollDirection:
-                                                    Axis.horizontal,
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    InkWell(
-                                                      splashColor:
-                                                          Colors.transparent,
-                                                      focusColor:
-                                                          Colors.transparent,
-                                                      hoverColor:
-                                                          Colors.transparent,
-                                                      highlightColor:
-                                                          Colors.transparent,
-                                                      onTap: () async {
-                                                        currentUserLocationValue =
-                                                            await getCurrentUserLocation(
-                                                                defaultLocation:
-                                                                    const LatLng(0.0,
-                                                                        0.0));
-                                                        unawaited(
-                                                          () async {
-                                                            await UserLogsTable()
-                                                                .insert({
-                                                              'user_id':
-                                                                  currentUserUid,
-                                                              'activity':
-                                                                  'Select a Task',
-                                                              'longlat':
-                                                                  '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
-                                                            });
-                                                          }(),
-                                                        );
-
-                                                        context.pushNamed(
-                                                          'taskDetails',
-                                                          queryParameters: {
-                                                            'taskId':
-                                                                serializeParam(
-                                                              tasksItem.taskId,
-                                                              ParamType.String,
-                                                            ),
-                                                            'taskStatus':
-                                                                serializeParam(
-                                                              widget
-                                                                  .taskStatus,
-                                                              ParamType.String,
-                                                            ),
-                                                          }.withoutNulls,
-                                                          extra: <String,
-                                                              dynamic>{
-                                                            kTransitionInfoKey:
-                                                                const TransitionInfo(
-                                                              hasTransition:
-                                                                  true,
-                                                              transitionType:
-                                                                  PageTransitionType
-                                                                      .scale,
-                                                              alignment: Alignment
-                                                                  .bottomCenter,
-                                                              duration: Duration(
-                                                                  milliseconds:
-                                                                      200),
-                                                            ),
-                                                          },
-                                                        );
-                                                      },
-                                                      child: Text(
-                                                        valueOrDefault<String>(
-                                                          tasksItem.taskNumber,
-                                                          'task number',
-                                                        ),
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              SingleChildScrollView(
-                                                scrollDirection:
-                                                    Axis.horizontal,
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  children: [
-                                                    InkWell(
-                                                      splashColor:
-                                                          Colors.transparent,
-                                                      focusColor:
-                                                          Colors.transparent,
-                                                      hoverColor:
-                                                          Colors.transparent,
-                                                      highlightColor:
-                                                          Colors.transparent,
-                                                      onTap: () async {
-                                                        currentUserLocationValue =
-                                                            await getCurrentUserLocation(
-                                                                defaultLocation:
-                                                                    const LatLng(0.0,
-                                                                        0.0));
-                                                        unawaited(
-                                                          () async {
-                                                            await UserLogsTable()
-                                                                .insert({
-                                                              'user_id':
-                                                                  currentUserUid,
-                                                              'activity':
-                                                                  'Select a Task',
-                                                              'longlat':
-                                                                  '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
-                                                            });
-                                                          }(),
-                                                        );
-
-                                                        context.pushNamed(
-                                                          'taskDetails',
-                                                          queryParameters: {
-                                                            'taskId':
-                                                                serializeParam(
-                                                              tasksItem.taskId,
-                                                              ParamType.String,
-                                                            ),
-                                                            'taskStatus':
-                                                                serializeParam(
-                                                              widget
-                                                                  .taskStatus,
-                                                              ParamType.String,
-                                                            ),
-                                                          }.withoutNulls,
-                                                          extra: <String,
-                                                              dynamic>{
-                                                            kTransitionInfoKey:
-                                                                const TransitionInfo(
-                                                              hasTransition:
-                                                                  true,
-                                                              transitionType:
-                                                                  PageTransitionType
-                                                                      .scale,
-                                                              alignment: Alignment
-                                                                  .bottomCenter,
-                                                              duration: Duration(
-                                                                  milliseconds:
-                                                                      200),
-                                                            ),
-                                                          },
-                                                        );
-                                                      },
-                                                      child: Text(
-                                                        valueOrDefault<String>(
-                                                          tasksItem
-                                                              .ppirFarmername,
-                                                          'task number',
-                                                        ),
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  InkWell(
-                                                    splashColor:
-                                                        Colors.transparent,
-                                                    focusColor:
-                                                        Colors.transparent,
-                                                    hoverColor:
-                                                        Colors.transparent,
-                                                    highlightColor:
-                                                        Colors.transparent,
-                                                    onTap: () async {
-                                                      currentUserLocationValue =
-                                                          await getCurrentUserLocation(
-                                                              defaultLocation:
-                                                                  const LatLng(0.0,
-                                                                      0.0));
-                                                      unawaited(
-                                                        () async {
-                                                          await UserLogsTable()
-                                                              .insert({
-                                                            'user_id':
-                                                                currentUserUid,
-                                                            'activity':
-                                                                'Select a Task',
-                                                            'longlat':
-                                                                '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
-                                                          });
-                                                        }(),
-                                                      );
-
-                                                      context.pushNamed(
-                                                        'taskDetails',
-                                                        queryParameters: {
-                                                          'taskId':
-                                                              serializeParam(
-                                                            tasksItem.taskId,
-                                                            ParamType.String,
-                                                          ),
-                                                          'taskStatus':
-                                                              serializeParam(
-                                                            widget.taskStatus,
-                                                            ParamType.String,
-                                                          ),
-                                                        }.withoutNulls,
-                                                        extra: <String,
-                                                            dynamic>{
-                                                          kTransitionInfoKey:
-                                                              const TransitionInfo(
-                                                            hasTransition: true,
-                                                            transitionType:
-                                                                PageTransitionType
-                                                                    .scale,
-                                                            alignment: Alignment
-                                                                .bottomCenter,
-                                                            duration: Duration(
-                                                                milliseconds:
-                                                                    200),
-                                                          ),
-                                                        },
-                                                      );
-                                                    },
-                                                    child: Text(
-                                                      (allTasksSELECTPPIRFormsByAssigneeAndTaskStatusRowList.first
-                                                                      .gpx ==
-                                                                  ' ') ||
-                                                              (allTasksSELECTPPIRFormsByAssigneeAndTaskStatusRowList
-                                                                      .first
-                                                                      .gpx ==
-                                                                  'null') ||
-                                                              (allTasksSELECTPPIRFormsByAssigneeAndTaskStatusRowList
-                                                                      .first
-                                                                      .gpx ==
-                                                                  '')
-                                                          ? 'No GPX'
-                                                          : 'Has GPX',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ].map((c) => DataCell(c)).toList(),
-                                          ),
-                                          emptyBuilder: () => Center(
-                                            child: EmptyListsWidget(
-                                              type: '${() {
-                                                if (widget.taskStatus ==
-                                                    'for dispatch') {
-                                                  return 'Dispatch';
-                                                } else if (widget.taskStatus ==
-                                                    'ongoing') {
-                                                  return 'Ongoing';
-                                                } else {
-                                                  return 'Completed';
-                                                }
-                                              }()} Tasks',
-                                            ),
-                                          ),
-                                          paginated: true,
-                                          selectable: false,
-                                          hidePaginator: false,
-                                          showFirstLastButtons: false,
-                                          headingRowHeight: 56.0,
-                                          dataRowHeight: 70.0,
-                                          columnSpacing: 20.0,
-                                          headingRowColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .primary,
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          addHorizontalDivider: false,
-                                          addTopAndBottomDivider: false,
-                                          hideDefaultHorizontalDivider: true,
-                                          addVerticalDivider: false,
-                                        );
-                                      },
-                                    ),
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).primaryBackground,
+                      ),
+                      child: Column(
+                        children: [
+                          Align(
+                            alignment: const Alignment(0.0, 0),
+                            child: TabBar(
+                              labelColor:
+                                  FlutterFlowTheme.of(context).primaryText,
+                              unselectedLabelColor:
+                                  FlutterFlowTheme.of(context).secondaryText,
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .titleMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                              unselectedLabelStyle: FlutterFlowTheme.of(context)
+                                  .titleMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                              indicatorColor:
+                                  FlutterFlowTheme.of(context).primary,
+                              tabs: [
+                                Tab(
+                                  text: FFLocalizations.of(context).getText(
+                                    'm52pegan' /* Active */,
+                                  ),
+                                  icon: const FaIcon(
+                                    FontAwesomeIcons.box,
                                   ),
                                 ),
-                              ]
-                                  .divide(const SizedBox(height: 20.0))
-                                  .around(const SizedBox(height: 20.0)),
-                            ),
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  FFLocalizations.of(context).getText(
-                                    'pth8q3fx' /* Not in the Feature List */,
+                                Tab(
+                                  text: FFLocalizations.of(context).getText(
+                                    'eahrpm1f' /* Archive */,
                                   ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        letterSpacing: 0.0,
+                                  icon: const FaIcon(
+                                    FontAwesomeIcons.archive,
+                                  ),
+                                ),
+                              ],
+                              controller: _model.tabBarController,
+                              onTap: (i) async {
+                                [() async {}, () async {}][i]();
+                              },
+                            ),
+                          ),
+                          Expanded(
+                            child: TabBarView(
+                              controller: _model.tabBarController,
+                              children: [
+                                Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(2.0),
+                                        child: Builder(
+                                          builder: (context) {
+                                            final tasks =
+                                                allTasksSELECTPPIRFormsByAssigneeAndTaskStatusRowList
+                                                    .where((e) =>
+                                                        e.status ==
+                                                        widget.taskStatus)
+                                                    .toList();
+                                            if (tasks.isEmpty) {
+                                              return Center(
+                                                child: EmptyListsWidget(
+                                                  type: '${() {
+                                                    if (widget.taskStatus ==
+                                                        'for dispatch') {
+                                                      return 'Dispatch';
+                                                    } else if (widget
+                                                            .taskStatus ==
+                                                        'ongoing') {
+                                                      return 'Ongoing';
+                                                    } else {
+                                                      return 'Completed';
+                                                    }
+                                                  }()} Tasks',
+                                                ),
+                                              );
+                                            }
+
+                                            return FlutterFlowDataTable<
+                                                SELECTPPIRFormsByAssigneeAndTaskStatusRow>(
+                                              controller: _model
+                                                  .paginatedDataTableController,
+                                              data: tasks,
+                                              columnsBuilder: (onSortChanged) =>
+                                                  [
+                                                DataColumn2(
+                                                  label: DefaultTextStyle.merge(
+                                                    softWrap: true,
+                                                    child:
+                                                        SingleChildScrollView(
+                                                      scrollDirection:
+                                                          Axis.horizontal,
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Text(
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .getText(
+                                                              'zbzuwaqs' /* Task Number */,
+                                                            ),
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelLarge
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .info,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                DataColumn2(
+                                                  label: DefaultTextStyle.merge(
+                                                    softWrap: true,
+                                                    child:
+                                                        SingleChildScrollView(
+                                                      scrollDirection:
+                                                          Axis.horizontal,
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Text(
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .getText(
+                                                              'siy1e1ix' /* Farmer Name */,
+                                                            ),
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelLarge
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .info,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                DataColumn2(
+                                                  label: DefaultTextStyle.merge(
+                                                    softWrap: true,
+                                                    child:
+                                                        SingleChildScrollView(
+                                                      scrollDirection:
+                                                          Axis.horizontal,
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Text(
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .getText(
+                                                              'tblcfd51' /* GPX */,
+                                                            ),
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelLarge
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .info,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                              dataRowBuilder: (tasksItem,
+                                                      tasksIndex,
+                                                      selected,
+                                                      onSelectChanged) =>
+                                                  DataRow(
+                                                color:
+                                                    WidgetStateProperty.all(
+                                                  tasksIndex % 2 == 0
+                                                      ? FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondaryBackground
+                                                      : FlutterFlowTheme.of(
+                                                              context)
+                                                          .primaryBackground,
+                                                ),
+                                                cells: [
+                                                  SingleChildScrollView(
+                                                    scrollDirection:
+                                                        Axis.horizontal,
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            currentUserLocationValue =
+                                                                await getCurrentUserLocation(
+                                                                    defaultLocation:
+                                                                        const LatLng(
+                                                                            0.0,
+                                                                            0.0));
+                                                            unawaited(
+                                                              () async {
+                                                                await UserLogsTable()
+                                                                    .insert({
+                                                                  'user_id':
+                                                                      currentUserUid,
+                                                                  'activity':
+                                                                      'Select a Task',
+                                                                  'longlat':
+                                                                      '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                                                                });
+                                                              }(),
+                                                            );
+
+                                                            context.pushNamed(
+                                                              'taskDetails',
+                                                              queryParameters: {
+                                                                'taskId':
+                                                                    serializeParam(
+                                                                  tasksItem
+                                                                      .taskId,
+                                                                  ParamType
+                                                                      .String,
+                                                                ),
+                                                                'taskStatus':
+                                                                    serializeParam(
+                                                                  widget
+                                                                      .taskStatus,
+                                                                  ParamType
+                                                                      .String,
+                                                                ),
+                                                              }.withoutNulls,
+                                                              extra: <String,
+                                                                  dynamic>{
+                                                                kTransitionInfoKey:
+                                                                    const TransitionInfo(
+                                                                  hasTransition:
+                                                                      true,
+                                                                  transitionType:
+                                                                      PageTransitionType
+                                                                          .scale,
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .bottomCenter,
+                                                                  duration: Duration(
+                                                                      milliseconds:
+                                                                          200),
+                                                                ),
+                                                              },
+                                                            );
+                                                          },
+                                                          child: Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              tasksItem
+                                                                  .taskNumber,
+                                                              'task number',
+                                                            ),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  SingleChildScrollView(
+                                                    scrollDirection:
+                                                        Axis.horizontal,
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            currentUserLocationValue =
+                                                                await getCurrentUserLocation(
+                                                                    defaultLocation:
+                                                                        const LatLng(
+                                                                            0.0,
+                                                                            0.0));
+                                                            unawaited(
+                                                              () async {
+                                                                await UserLogsTable()
+                                                                    .insert({
+                                                                  'user_id':
+                                                                      currentUserUid,
+                                                                  'activity':
+                                                                      'Select a Task',
+                                                                  'longlat':
+                                                                      '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                                                                });
+                                                              }(),
+                                                            );
+
+                                                            context.pushNamed(
+                                                              'taskDetails',
+                                                              queryParameters: {
+                                                                'taskId':
+                                                                    serializeParam(
+                                                                  tasksItem
+                                                                      .taskId,
+                                                                  ParamType
+                                                                      .String,
+                                                                ),
+                                                                'taskStatus':
+                                                                    serializeParam(
+                                                                  widget
+                                                                      .taskStatus,
+                                                                  ParamType
+                                                                      .String,
+                                                                ),
+                                                              }.withoutNulls,
+                                                              extra: <String,
+                                                                  dynamic>{
+                                                                kTransitionInfoKey:
+                                                                    const TransitionInfo(
+                                                                  hasTransition:
+                                                                      true,
+                                                                  transitionType:
+                                                                      PageTransitionType
+                                                                          .scale,
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .bottomCenter,
+                                                                  duration: Duration(
+                                                                      milliseconds:
+                                                                          200),
+                                                                ),
+                                                              },
+                                                            );
+                                                          },
+                                                          child: Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              tasksItem
+                                                                  .ppirFarmername,
+                                                              'task number',
+                                                            ),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    children: [
+                                                      InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          currentUserLocationValue =
+                                                              await getCurrentUserLocation(
+                                                                  defaultLocation:
+                                                                      const LatLng(
+                                                                          0.0,
+                                                                          0.0));
+                                                          unawaited(
+                                                            () async {
+                                                              await UserLogsTable()
+                                                                  .insert({
+                                                                'user_id':
+                                                                    currentUserUid,
+                                                                'activity':
+                                                                    'Select a Task',
+                                                                'longlat':
+                                                                    '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                                                              });
+                                                            }(),
+                                                          );
+
+                                                          context.pushNamed(
+                                                            'taskDetails',
+                                                            queryParameters: {
+                                                              'taskId':
+                                                                  serializeParam(
+                                                                tasksItem
+                                                                    .taskId,
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                              'taskStatus':
+                                                                  serializeParam(
+                                                                widget
+                                                                    .taskStatus,
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                            }.withoutNulls,
+                                                            extra: <String,
+                                                                dynamic>{
+                                                              kTransitionInfoKey:
+                                                                  const TransitionInfo(
+                                                                hasTransition:
+                                                                    true,
+                                                                transitionType:
+                                                                    PageTransitionType
+                                                                        .scale,
+                                                                alignment: Alignment
+                                                                    .bottomCenter,
+                                                                duration: Duration(
+                                                                    milliseconds:
+                                                                        200),
+                                                              ),
+                                                            },
+                                                          );
+                                                        },
+                                                        child: Text(
+                                                          (allTasksSELECTPPIRFormsByAssigneeAndTaskStatusRowList
+                                                                          .first
+                                                                          .gpx ==
+                                                                      ' ') ||
+                                                                  (allTasksSELECTPPIRFormsByAssigneeAndTaskStatusRowList
+                                                                          .first
+                                                                          .gpx ==
+                                                                      'null') ||
+                                                                  (allTasksSELECTPPIRFormsByAssigneeAndTaskStatusRowList
+                                                                          .first
+                                                                          .gpx ==
+                                                                      '')
+                                                              ? 'No GPX'
+                                                              : 'Has GPX',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ]
+                                                    .map((c) => DataCell(c))
+                                                    .toList(),
+                                              ),
+                                              emptyBuilder: () => Center(
+                                                child: EmptyListsWidget(
+                                                  type: '${() {
+                                                    if (widget.taskStatus ==
+                                                        'for dispatch') {
+                                                      return 'Dispatch';
+                                                    } else if (widget
+                                                            .taskStatus ==
+                                                        'ongoing') {
+                                                      return 'Ongoing';
+                                                    } else {
+                                                      return 'Completed';
+                                                    }
+                                                  }()} Tasks',
+                                                ),
+                                              ),
+                                              paginated: true,
+                                              selectable: false,
+                                              hidePaginator: false,
+                                              showFirstLastButtons: false,
+                                              headingRowHeight: 56.0,
+                                              dataRowHeight: 70.0,
+                                              columnSpacing: 20.0,
+                                              headingRowColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                              addHorizontalDivider: false,
+                                              addTopAndBottomDivider: false,
+                                              hideDefaultHorizontalDivider:
+                                                  true,
+                                              addVerticalDivider: false,
+                                            );
+                                          },
+                                        ),
                                       ),
+                                    ),
+                                  ]
+                                      .divide(const SizedBox(height: 20.0))
+                                      .around(const SizedBox(height: 20.0)),
+                                ),
+                                Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      FFLocalizations.of(context).getText(
+                                        'pth8q3fx' /* Not in the Feature List */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
             ),
           ),

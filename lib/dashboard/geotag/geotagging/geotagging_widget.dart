@@ -89,8 +89,6 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
         ],
       ),
     });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

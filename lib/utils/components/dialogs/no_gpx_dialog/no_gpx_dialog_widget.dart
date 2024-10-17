@@ -26,8 +26,6 @@ class _NoGpxDialogWidgetState extends State<NoGpxDialogWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => NoGpxDialogModel());
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

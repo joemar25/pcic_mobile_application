@@ -42,8 +42,6 @@ class _SettingsWidgetState extends State<SettingsWidget> {
       FFAppState().syncCount = 0;
       FFAppState().update(() {});
     });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

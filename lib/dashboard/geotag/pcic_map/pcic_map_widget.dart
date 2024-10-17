@@ -41,7 +41,6 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
       length: 2,
       initialIndex: 0,
     )..addListener(() => safeSetState(() {}));
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -278,10 +277,6 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                                                   listOfDownloadsItem
                                                       .rawStoreName,
                                                 );
-                                                FFAppState()
-                                                    .removeAtIndexFromListOfMapDownloads(
-                                                        listOfDownloadsIndex);
-                                                safeSetState(() {});
                                               },
                                             ),
                                           ),

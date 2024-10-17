@@ -116,8 +116,6 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
           !anim.applyInitialState),
       this,
     );
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

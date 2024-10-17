@@ -27,8 +27,6 @@ class _ContinueSaveGeotagWidgetState extends State<ContinueSaveGeotagWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ContinueSaveGeotagModel());
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

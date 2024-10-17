@@ -156,8 +156,6 @@ class _SuccessProfileWidgetState extends State<SuccessProfileWidget>
         ],
       ),
     });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

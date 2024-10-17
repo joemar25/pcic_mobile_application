@@ -28,8 +28,6 @@ class _ContinueSubmitDialogWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => ContinueSubmitDialogModel());
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

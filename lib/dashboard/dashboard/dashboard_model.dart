@@ -1,3 +1,4 @@
+import '/components/search_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/saving_mode/saving_mode_widget.dart';
@@ -24,6 +25,8 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   String? message;
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
+  // Model for search component.
+  late SearchModel searchModel;
   // State field(s) for TabBar widget.
   TabController? tabBarController;
   int get tabBarCurrentIndex =>
@@ -41,6 +44,7 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   @override
   void initState(BuildContext context) {
     connectivityModel = createModel(context, () => ConnectivityModel());
+    searchModel = createModel(context, () => SearchModel());
     tasksModels1 = FlutterFlowDynamicModels(() => TasksModel());
     tasksModels2 = FlutterFlowDynamicModels(() => TasksModel());
     tasksModels3 = FlutterFlowDynamicModels(() => TasksModel());
@@ -50,6 +54,7 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   @override
   void dispose() {
     connectivityModel.dispose();
+    searchModel.dispose();
     tabBarController?.dispose();
     tasksModels1.dispose();
     tasksModels2.dispose();

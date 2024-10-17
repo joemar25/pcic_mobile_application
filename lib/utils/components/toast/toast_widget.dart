@@ -66,8 +66,6 @@ class _ToastWidgetState extends State<ToastWidget>
         ],
       ),
     });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

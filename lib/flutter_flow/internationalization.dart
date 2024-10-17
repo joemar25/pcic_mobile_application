@@ -1616,6 +1616,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
+  // search
+  {
+    '0kax5ncr': {
+      'en': 'Search...',
+      'tl': '',
+    },
+  },
   // Miscellaneous
   {
     '0ftylq1b': {

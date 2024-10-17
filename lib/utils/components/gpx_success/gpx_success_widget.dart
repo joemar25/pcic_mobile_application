@@ -128,8 +128,6 @@ class _GpxSuccessWidgetState extends State<GpxSuccessWidget>
         ],
       ),
     });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

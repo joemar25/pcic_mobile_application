@@ -1,4 +1,5 @@
 import '/backend/sqlite/sqlite_manager.dart';
+import '/components/search_widget.dart';
 import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
@@ -22,6 +23,8 @@ class AllTasksModel extends FlutterFlowModel<AllTasksWidget> {
   String? message;
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
+  // Model for search component.
+  late SearchModel searchModel;
   // State field(s) for TabBar widget.
   TabController? tabBarController;
   int get tabBarCurrentIndex =>
@@ -34,11 +37,13 @@ class AllTasksModel extends FlutterFlowModel<AllTasksWidget> {
   @override
   void initState(BuildContext context) {
     connectivityModel = createModel(context, () => ConnectivityModel());
+    searchModel = createModel(context, () => SearchModel());
   }
 
   @override
   void dispose() {
     connectivityModel.dispose();
+    searchModel.dispose();
     tabBarController?.dispose();
     paginatedDataTableController.dispose();
   }

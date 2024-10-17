@@ -64,8 +64,6 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
         safeSetState(() {});
       }
     });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
