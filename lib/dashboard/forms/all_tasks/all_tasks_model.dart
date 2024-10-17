@@ -27,11 +27,6 @@ class AllTasksModel extends FlutterFlowModel<AllTasksWidget> {
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
   List<String> simpleSearchResults = [];
-  // State field(s) for TabBar widget.
-  TabController? tabBarController;
-  int get tabBarCurrentIndex =>
-      tabBarController != null ? tabBarController!.index : 0;
-
   // State field(s) for PaginatedDataTable widget.
   final paginatedDataTableController = FlutterFlowDataTableController<
       SELECTPPIRFormsByAssigneeAndTaskStatusRow>();
@@ -47,7 +42,6 @@ class AllTasksModel extends FlutterFlowModel<AllTasksWidget> {
     textFieldFocusNode?.dispose();
     textController?.dispose();
 
-    tabBarController?.dispose();
     paginatedDataTableController.dispose();
   }
 }

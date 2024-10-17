@@ -151,6 +151,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'DON\'T DELETE TAT TESTING!',
       'tl': '',
     },
+    'nt9k80kj': {
+      'en': 'FOR BETTER MAP',
+      'tl': '',
+    },
     'jldei9fa': {
       'en': 'DON\'T DELETE Mar TESTING!',
       'tl': '',
@@ -1203,32 +1207,24 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // allTasks
   {
-    'q2ma3u37': {
-      'en': 'TextField',
-      'tl': '',
-    },
-    'm52pegan': {
-      'en': 'Active',
-      'tl': '',
-    },
-    'zbzuwaqs': {
-      'en': 'Task Number',
-      'tl': '',
-    },
-    'siy1e1ix': {
+    'agvkb82b': {
       'en': 'Farmer Name',
       'tl': '',
     },
-    'tblcfd51': {
+    'q2ma3u37': {
+      'en': 'Farmer Name',
+      'tl': '',
+    },
+    'hialfg9h': {
+      'en': 'Task Number',
+      'tl': '',
+    },
+    'n3zqay7i': {
+      'en': 'Farmer Name',
+      'tl': '',
+    },
+    'xpwbz0mf': {
       'en': 'GPX',
-      'tl': '',
-    },
-    'eahrpm1f': {
-      'en': 'Archive',
-      'tl': '',
-    },
-    'pth8q3fx': {
-      'en': 'Not in the Feature List',
       'tl': '',
     },
     'flnyt26u': {
