@@ -24,6 +24,8 @@ class _PageLoaderWidgetState extends State<PageLoaderWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => PageLoaderModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

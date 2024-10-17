@@ -178,6 +178,7 @@ flutter:
     - assets/pdfs/
     - assets/jsons/
 
+    - assets/environment_values/
     - assets/sqlite_db_files/
   fonts:
     - family: Home

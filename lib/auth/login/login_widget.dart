@@ -112,6 +112,8 @@ class _LoginWidgetState extends State<LoginWidget>
           !anim.applyInitialState),
       this,
     );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -348,6 +350,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                     SizedBox(
                                       width: double.infinity,
                                       child: TextFormField(
+                                        key: const ValueKey('emailField_vg1w'),
                                         controller:
                                             _model.emailFieldTextController,
                                         focusNode: _model.emailFieldFocusNode,
@@ -451,6 +454,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                       builder: (context) => SizedBox(
                                         width: double.infinity,
                                         child: TextFormField(
+                                          key: const ValueKey('passwordField_5h9n'),
                                           controller: _model
                                               .passwordFieldTextController,
                                           focusNode:
@@ -645,6 +649,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                       alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Builder(
                                         builder: (context) => FFButtonWidget(
+                                          key: const ValueKey('loginButton_f3dh'),
                                           onPressed: () async {
                                             currentUserLocationValue =
                                                 await getCurrentUserLocation(
@@ -882,59 +887,6 @@ class _LoginWidgetState extends State<LoginWidget>
                                         ),
                                       ),
                                     ),
-                                    if (kDebugMode)
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Align(
-                                            alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
-                                            child: InkWell(
-                                              splashColor: Colors.transparent,
-                                              focusColor: Colors.transparent,
-                                              hoverColor: Colors.transparent,
-                                              highlightColor:
-                                                  Colors.transparent,
-                                              onTap: () async {
-                                                context.pushNamed(
-                                                  'forgotPassword',
-                                                  extra: <String, dynamic>{
-                                                    kTransitionInfoKey:
-                                                        const TransitionInfo(
-                                                      hasTransition: true,
-                                                      transitionType:
-                                                          PageTransitionType
-                                                              .bottomToTop,
-                                                      duration: Duration(
-                                                          milliseconds: 250),
-                                                    ),
-                                                  },
-                                                );
-                                              },
-                                              child: Text(
-                                                FFLocalizations.of(context)
-                                                    .getText(
-                                                  'p48qx3c2' /* Forgot Password ? */,
-                                                ),
-                                                textAlign: TextAlign.center,
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily: 'Readex Pro',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondary,
-                                                      letterSpacing: 0.0,
-                                                    ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
                                     if (kDebugMode)
                                       FFButtonWidget(
                                         onPressed: () async {

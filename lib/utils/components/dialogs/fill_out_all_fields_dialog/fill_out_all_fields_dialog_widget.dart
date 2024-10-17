@@ -28,6 +28,8 @@ class _FillOutAllFieldsDialogWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => FillOutAllFieldsDialogModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

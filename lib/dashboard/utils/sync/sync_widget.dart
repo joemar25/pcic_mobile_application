@@ -116,6 +116,8 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
           !anim.applyInitialState),
       this,
     );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -161,6 +163,7 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
                   ),
                   decoration: const BoxDecoration(),
                   child: Column(
+                    key: const ValueKey('Column_d3zz'),
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

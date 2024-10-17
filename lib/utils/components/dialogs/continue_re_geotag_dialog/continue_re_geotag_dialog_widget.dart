@@ -28,6 +28,8 @@ class _ContinueReGeotagDialogWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => ContinueReGeotagDialogModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

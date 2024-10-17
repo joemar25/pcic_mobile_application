@@ -26,6 +26,8 @@ class _NoInternetDialogWidgetState extends State<NoInternetDialogWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => NoInternetDialogModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

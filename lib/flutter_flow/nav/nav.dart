@@ -206,11 +206,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           ),
         ),
         FFRoute(
-          name: 'forgotPassword',
-          path: '/forgotPassword',
-          builder: (context, params) => const ForgotPasswordWidget(),
-        ),
-        FFRoute(
           name: 'geotagging',
           path: '/geotagging',
           requireAuth: true,

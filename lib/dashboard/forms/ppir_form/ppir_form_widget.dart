@@ -98,6 +98,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
     _model.ppirPreparedByNameFieldFocusNode ??= FocusNode();
 
     _model.ppirConfirmedByNameFieldFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

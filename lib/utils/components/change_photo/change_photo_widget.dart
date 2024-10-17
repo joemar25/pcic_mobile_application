@@ -30,6 +30,8 @@ class _ChangePhotoWidgetState extends State<ChangePhotoWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ChangePhotoModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

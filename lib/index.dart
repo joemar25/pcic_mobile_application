@@ -15,8 +15,6 @@ export '/utils/components/fail/fail_widget.dart' show FailWidget;
 export '/dashboard/dashboard/dashboard_widget.dart' show DashboardWidget;
 export '/utils/components/success_profile/success_profile_widget.dart'
     show SuccessProfileWidget;
-export '/utils/unused/forgot_password/forgot_password_widget.dart'
-    show ForgotPasswordWidget;
 export '/dashboard/geotag/geotagging/geotagging_widget.dart'
     show GeotaggingWidget;
 export '/utils/test/map_test/map_test_widget.dart' show MapTestWidget;

@@ -147,10 +147,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Log in',
       'tl': 'Mag-log in',
     },
-    'p48qx3c2': {
-      'en': 'Forgot Password ?',
-      'tl': 'Nakalimutan ang Password ?',
-    },
     '57sqdh1w': {
       'en': 'DON\'T DELETE TAT TESTING!',
       'tl': '',
@@ -680,47 +676,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Bahay',
     },
   },
-  // forgotPassword
-  {
-    'ajwqbdpu': {
-      'en': 'Forgot Password',
-      'tl': 'Nakalimutan ang Password',
-    },
-    'owzqo8qh': {
-      'en':
-          'We will send you an email with a link to reset your password, please enter the email associated with your account below.',
-      'tl':
-          'Padadalhan ka namin ng email na may link para i-reset ang iyong password, mangyaring ilagay ang email na nauugnay sa iyong account sa ibaba.',
-    },
-    '7xh7q3rt': {
-      'en': 'Email Address',
-      'tl': 'Email Address',
-    },
-    'a29ygr1c': {
-      'en': 'Enter your email...',
-      'tl': 'Ilagay ang iyong email...',
-    },
-    'l0mxal5w': {
-      'en': '',
-      'tl': '',
-    },
-    'x3d82sua': {
-      'en': 'Send Link',
-      'tl': 'Ipadala ang Link',
-    },
-    'q79tvmns': {
-      'en': 'Field is required',
-      'tl': 'Kinakailangan ang field',
-    },
-    '7uv8ljni': {
-      'en': 'Please choose an option from the dropdown',
-      'tl': 'Mangyaring pumili ng opsyon mula sa dropdown',
-    },
-    '2stfj7a7': {
-      'en': 'Home',
-      'tl': 'Bahay',
-    },
-  },
   // geotagging
   {
     'qx4ly86s': {
@@ -1026,7 +981,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Must have a captured Image',
       'tl': 'Kinakailangan ang field',
     },
-    'pi8ty7oh': {
+    '7uv8ljni': {
       'en': 'Please choose an option from the dropdown',
       'tl': 'Mangyaring pumili ng opsyon mula sa dropdown',
     },
@@ -1799,6 +1754,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'yciz7fe5': {
       'en': '',
+      'tl': '',
+    },
+    'fybxjr1q': {
+      'en': 'login',
       'tl': '',
     },
   },

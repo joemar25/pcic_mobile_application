@@ -149,6 +149,8 @@ class _SupportPageWidgetState extends State<SupportPageWidget>
           !anim.applyInitialState),
       this,
     );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

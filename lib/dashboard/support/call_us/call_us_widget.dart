@@ -56,6 +56,8 @@ class _CallUsWidgetState extends State<CallUsWidget>
           !anim.applyInitialState),
       this,
     );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

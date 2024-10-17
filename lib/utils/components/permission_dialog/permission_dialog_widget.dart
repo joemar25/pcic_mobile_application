@@ -26,6 +26,8 @@ class _PermissionDialogWidgetState extends State<PermissionDialogWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => PermissionDialogModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

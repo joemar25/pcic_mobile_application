@@ -30,6 +30,8 @@ class _SendFeedbackWidgetState extends State<SendFeedbackWidget> {
 
     _model.inputMessageTextController ??= TextEditingController();
     _model.inputMessageFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

@@ -20,6 +20,9 @@ void main() async {
   GoRouter.optionURLReflectsImperativeAPIs = true;
   usePathUrlStrategy();
 
+  final environmentValues = FFDevEnvironmentValues();
+  await environmentValues.initialize();
+
   // Start initial custom actions code
   await actions.initializeFMTCBackend();
   await actions.connected();

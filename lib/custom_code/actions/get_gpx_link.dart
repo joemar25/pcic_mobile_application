@@ -11,56 +11,6 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-// Future<String> getGpxLink(String? taskId) async {
-//   if (taskId == null || taskId.isEmpty) {
-//     return '';
-//   }
-
-//   try {
-//     // Query the tasks table to get service_group and task_number
-//     final taskResponse = await SupaFlow.client
-//         .from('tasks')
-//         .select('service_group, task_number, assignee')
-//         .eq('id', taskId)
-//         .single()
-//         .execute();
-
-//     if (taskResponse.status != 200 || taskResponse.data == null) {
-//       throw Exception('Error querying tasks table: ${taskResponse.status}');
-//     }
-
-//     final taskData = taskResponse.data as Map<String, dynamic>;
-//     final String serviceGroup = taskData['service_group'] ?? '';
-//     final String taskNumber = taskData['task_number'] ?? '';
-
-//     // Get the current user's email
-//     final currentUser = SupaFlow.client.auth.currentUser;
-//     final String userEmail = currentUser?.email ?? taskData['assignee'] ?? '';
-
-//     if (userEmail.isEmpty) {
-//       throw Exception('Unable to get user email');
-//     }
-
-//     // Define the file path in the bucket
-//     final filePath =
-//         '$serviceGroup/$userEmail/$taskNumber/attachments/geotag.gpx';
-//     print('Supabase file path: $filePath');
-
-//     // Get the download URL
-//     final String downloadUrl = await SupaFlow.client.storage
-//         .from('for_ftp')
-//         .createSignedUrl(filePath, 3600); // URL valid for 1 hour
-
-//     print('GPX download URL: $downloadUrl');
-//     return downloadUrl;
-//   } catch (e) {
-//     print('Error in getGpxLink: $e');
-//     return '';
-//   }
-// }
-
-// dynamic filename - mar
-
 Future<String> getGpxLink(String? taskId) async {
   if (taskId == null || taskId.isEmpty) {
     return '';

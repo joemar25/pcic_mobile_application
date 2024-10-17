@@ -68,6 +68,8 @@ class _SignatureWidgetState extends State<SignatureWidget>
         ],
       ),
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

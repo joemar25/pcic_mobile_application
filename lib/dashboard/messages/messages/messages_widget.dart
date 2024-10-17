@@ -62,6 +62,8 @@ class _MessagesWidgetState extends State<MessagesWidget> {
 
     _model.inputChatTextController ??= TextEditingController();
     _model.inputChatFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

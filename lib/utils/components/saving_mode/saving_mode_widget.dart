@@ -63,6 +63,8 @@ class _SavingModeWidgetState extends State<SavingModeWidget>
         ],
       ),
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

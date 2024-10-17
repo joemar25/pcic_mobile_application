@@ -38,21 +38,29 @@ void main() async {
     await appState.initializePersistedState();
   });
 
-  group('offline', () {
-    setUp(() async {
-      await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: 'joemar', password: 'password1');
-    });
+  testWidgets('Login', (WidgetTester tester) async {
+    _overrideOnError();
 
-    testWidgets('login', (WidgetTester tester) async {
-      _overrideOnError();
-      await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: 'joemar', password: 'password1');
-      await tester.pumpWidget(ChangeNotifierProvider(
-        create: (context) => FFAppState(),
-        child: MyApp(),
-      ));
-    });
+    await tester.pumpWidget(ChangeNotifierProvider(
+      create: (context) => FFAppState(),
+      child: MyApp(
+        entryPage: LoginWidget(
+          routeName: FFLocalizations.of(context).getText(
+            'fybxjr1q' /* login */,
+          ),
+        ),
+      ),
+    ));
+
+    await tester.enterText(
+        find.byKey(ValueKey('emailField_vg1w')), 'sean@gmail.com');
+    FocusManager.instance.primaryFocus?.unfocus();
+    await tester.enterText(
+        find.byKey(ValueKey('passwordField_5h9n')), 'password');
+    FocusManager.instance.primaryFocus?.unfocus();
+    await tester.tap(find.byKey(ValueKey('loginButton_f3dh')));
+    await tester.pumpAndSettle(Duration(milliseconds: 5000));
+    expect(find.byKey(ValueKey('Column_d3zz')), findsOneWidget);
   });
 }
 

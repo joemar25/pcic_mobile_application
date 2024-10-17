@@ -28,6 +28,8 @@ class _ContinueCancelDialogWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => ContinueCancelDialogModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

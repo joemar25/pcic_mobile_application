@@ -27,5 +27,5 @@ Future<bool> verifyPassword(String currentPassword) async {
   } else {
     return false;
   }
-  //
+  // a
 }
