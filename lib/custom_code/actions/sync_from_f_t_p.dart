@@ -31,10 +31,17 @@ import 'dart:io';
 
 Future<bool> syncFromFTP(String? region) async {
   if (region == null) return false;
+  debugPrint("region -> $region");
 
-  String transformedRegionCode =
-      'P${region.replaceAll(RegExp(r'^[POpo]+'), '').padLeft(2, '0')}';
+  String numericPart = region
+      .replaceAll(RegExp(r'^[POpo]+'), '')
+      .replaceAll(RegExp(r'[^\d]+.*$'), '');
+
+  String transformedRegionCode = 'P${numericPart.padLeft(2, '0')}';
+
   String originalRegionCode = region;
+  debugPrint("originalRegionCode -> $originalRegionCode");
+  debugPrint("transformedRegionCode -> $transformedRegionCode");
 
   FTPConnect? ftpClient;
   int newTasksCount = 0;

@@ -238,7 +238,10 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '${ppirFormSelectPpirFormsRowList.first.ppirAssignmentid} Form',
+                      valueOrDefault<String>(
+                        ppirFormSelectPpirFormsRowList.first.ppirFarmername,
+                        'Farmer Name',
+                      ),
                       style: FlutterFlowTheme.of(context).titleSmall.override(
                             fontFamily: 'Readex Pro',
                             color: FlutterFlowTheme.of(context).info,
@@ -264,535 +267,117 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              10.0, 10.0, 10.0, 0.0),
-                          child: SingleChildScrollView(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Container(
-                                    width:
-                                        MediaQuery.sizeOf(context).width * 1.0,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                      borderRadius: BorderRadius.circular(15.0),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(24.0),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Container(
-                                            width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                1.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                            ),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 0.0, 12.0),
-                                                  child: InkWell(
-                                                    splashColor:
-                                                        Colors.transparent,
-                                                    focusColor:
-                                                        Colors.transparent,
-                                                    hoverColor:
-                                                        Colors.transparent,
-                                                    highlightColor:
-                                                        Colors.transparent,
-                                                    onTap: () async {
-                                                      // Generation of XML
-                                                      _model.generatedTaskXmlFile =
-                                                          await actions
-                                                              .generateTaskXml(
-                                                        widget.taskId,
-                                                      );
-                                                      if (_model.generatedTaskXmlFile !=
-                                                              null &&
-                                                          _model.generatedTaskXmlFile !=
-                                                              '') {
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                          SnackBar(
-                                                            content: Text(
-                                                              ' no value',
-                                                              style: TextStyle(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                              ),
-                                                            ),
-                                                            duration: const Duration(
-                                                                milliseconds:
-                                                                    4000),
-                                                            backgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondary,
-                                                          ),
-                                                        );
-                                                      } else {
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                          SnackBar(
-                                                            content: Text(
-                                                              _model
-                                                                  .generatedTaskXmlFile!,
-                                                              style: TextStyle(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                              ),
-                                                            ),
-                                                            duration: const Duration(
-                                                                milliseconds:
-                                                                    4000),
-                                                            backgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondary,
-                                                          ),
-                                                        );
-                                                      }
-
-                                                      safeSetState(() {});
-                                                    },
-                                                    child: Text(
-                                                      FFLocalizations.of(
-                                                              context)
-                                                          .getText(
-                                                        'oco9wa86' /* Geotag */,
-                                                      ),
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyLarge
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                    ),
-                                                  ),
-                                                ),
-                                                Stack(
-                                                  children: [
-                                                    Container(
-                                                      width: MediaQuery.sizeOf(
-                                                                  context)
-                                                              .width *
-                                                          1.0,
-                                                      decoration: BoxDecoration(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .alternate,
-                                                        border: Border.all(
-                                                          color: _model.hasGpx
-                                                              ? FlutterFlowTheme
-                                                                      .of(
-                                                                          context)
-                                                                  .primary
-                                                              : FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .error,
-                                                        ),
-                                                      ),
-                                                      child: Stack(
-                                                        children: [
-                                                          if (FFAppState()
-                                                                  .ONLINE ||
-                                                              _model
-                                                                  .isMapDownloaded)
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .all(2.0),
-                                                              child: SizedBox(
-                                                                width: MediaQuery.sizeOf(
-                                                                            context)
-                                                                        .width *
-                                                                    1.0,
-                                                                height: MediaQuery.sizeOf(
-                                                                            context)
-                                                                        .height *
-                                                                    0.2,
-                                                                child: custom_widgets
-                                                                    .MapBase64(
-                                                                  width: MediaQuery.sizeOf(
-                                                                              context)
-                                                                          .width *
-                                                                      1.0,
-                                                                  height: MediaQuery.sizeOf(
-                                                                              context)
-                                                                          .height *
-                                                                      0.2,
-                                                                  blob:
-                                                                      ppirFormSelectPpirFormsRowList
-                                                                          .first
-                                                                          .gpx,
-                                                                  accessToken:
-                                                                      FFAppState()
-                                                                          .accessToken,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsets.all(10.0),
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Flexible(
-                                                        child: Align(
-                                                          alignment:
-                                                              const AlignmentDirectional(
-                                                                  0.0, 0.0),
-                                                          child: Builder(
-                                                            builder: (context) =>
-                                                                FFButtonWidget(
-                                                              onPressed:
-                                                                  () async {
-                                                                currentUserLocationValue =
-                                                                    await getCurrentUserLocation(
-                                                                        defaultLocation: const LatLng(
-                                                                            0.0,
-                                                                            0.0));
-                                                                _model.hasGpx =
-                                                                    true;
-                                                                safeSetState(
-                                                                    () {});
-                                                                await showDialog(
-                                                                  context:
-                                                                      context,
-                                                                  builder:
-                                                                      (dialogContext) {
-                                                                    return Dialog(
-                                                                      elevation:
-                                                                          0,
-                                                                      insetPadding:
-                                                                          EdgeInsets
-                                                                              .zero,
-                                                                      backgroundColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      alignment: const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0)
-                                                                          .resolve(
-                                                                              Directionality.of(context)),
-                                                                      child:
-                                                                          GestureDetector(
-                                                                        onTap: () =>
-                                                                            FocusScope.of(dialogContext).unfocus(),
-                                                                        child:
-                                                                            const ContinueReGeotagDialogWidget(),
-                                                                      ),
-                                                                    );
-                                                                  },
-                                                                ).then((value) =>
-                                                                    safeSetState(() =>
-                                                                        _model.confirmReGeotag =
-                                                                            value));
-
-                                                                if (_model
-                                                                    .confirmReGeotag!) {
-                                                                  if (FFAppState()
-                                                                      .ONLINE) {
-                                                                    await UserLogsTable()
-                                                                        .insert({
-                                                                      'user_id':
-                                                                          currentUserUid,
-                                                                      'activity':
-                                                                          'Repeat Geotag',
-                                                                      'longlat':
-                                                                          '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
-                                                                    });
-                                                                    await PpirFormsTable()
-                                                                        .update(
-                                                                      data: {
-                                                                        'gpx':
-                                                                            '',
-                                                                      },
-                                                                      matchingRows:
-                                                                          (rows) =>
-                                                                              rows.eq(
-                                                                        'task_id',
-                                                                        widget
-                                                                            .taskId,
-                                                                      ),
-                                                                    );
-                                                                  }
-                                                                  await SQLiteManager
-                                                                      .instance
-                                                                      .updatePPIRFormGpx(
-                                                                    taskId: widget
-                                                                        .taskId,
-                                                                    gpx: ' ',
-                                                                    isDirty:
-                                                                        FFAppState()
-                                                                            .ONLINE,
-                                                                  );
-
-                                                                  context
-                                                                      .pushNamed(
-                                                                    'geotagging',
-                                                                    queryParameters:
-                                                                        {
-                                                                      'taskId':
-                                                                          serializeParam(
-                                                                        widget
-                                                                            .taskId,
-                                                                        ParamType
-                                                                            .String,
-                                                                      ),
-                                                                      'taskType':
-                                                                          serializeParam(
-                                                                        'ppir',
-                                                                        ParamType
-                                                                            .String,
-                                                                      ),
-                                                                      'taskStatus':
-                                                                          serializeParam(
-                                                                        'ongoing',
-                                                                        ParamType
-                                                                            .String,
-                                                                      ),
-                                                                      'assignmentId':
-                                                                          serializeParam(
-                                                                        ppirFormSelectPpirFormsRowList
-                                                                            .first
-                                                                            .ppirAssignmentid,
-                                                                        ParamType
-                                                                            .String,
-                                                                      ),
-                                                                    }.withoutNulls,
-                                                                    extra: <String,
-                                                                        dynamic>{
-                                                                      kTransitionInfoKey:
-                                                                          const TransitionInfo(
-                                                                        hasTransition:
-                                                                            true,
-                                                                        transitionType:
-                                                                            PageTransitionType.fade,
-                                                                        duration:
-                                                                            Duration(milliseconds: 200),
-                                                                      ),
-                                                                    },
-                                                                  );
-                                                                }
-
-                                                                safeSetState(
-                                                                    () {});
-                                                              },
-                                                              text: FFLocalizations
-                                                                      .of(context)
-                                                                  .getText(
-                                                                'vlpe8yky' /* Repeat Geotag */,
-                                                              ),
-                                                              icon: const Icon(
-                                                                Icons
-                                                                    .map_outlined,
-                                                                size: 15.0,
-                                                              ),
-                                                              options:
-                                                                  FFButtonOptions(
-                                                                height: 40.0,
-                                                                padding: const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        24.0,
-                                                                        0.0,
-                                                                        24.0,
-                                                                        0.0),
-                                                                iconPadding:
-                                                                    const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primary,
-                                                                textStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Readex Pro',
-                                                                      color: Colors
-                                                                          .white,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
-                                                                elevation: 3.0,
-                                                                borderSide:
-                                                                    const BorderSide(
-                                                                  color: Colors
-                                                                      .transparent,
-                                                                  width: 1.0,
-                                                                ),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      if (kDebugMode)
-                                                        Flexible(
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        20.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            child:
-                                                                FFButtonWidget(
-                                                              onPressed:
-                                                                  () async {
-                                                                _model.gpxLink =
-                                                                    await actions
-                                                                        .getGpxLink(
-                                                                  widget
-                                                                      .taskId,
-                                                                );
-                                                                await launchURL(
-                                                                    _model
-                                                                        .gpxLink!);
-
-                                                                safeSetState(
-                                                                    () {});
-                                                              },
-                                                              text: FFLocalizations
-                                                                      .of(context)
-                                                                  .getText(
-                                                                '0er41e9i' /* Download */,
-                                                              ),
-                                                              icon: const Icon(
-                                                                Icons
-                                                                    .download_outlined,
-                                                                size: 15.0,
-                                                              ),
-                                                              options:
-                                                                  FFButtonOptions(
-                                                                height: 40.0,
-                                                                padding: const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        24.0,
-                                                                        0.0,
-                                                                        24.0,
-                                                                        0.0),
-                                                                iconPadding:
-                                                                    const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .success,
-                                                                textStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Readex Pro',
-                                                                      color: Colors
-                                                                          .white,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
-                                                                elevation: 3.0,
-                                                                borderSide:
-                                                                    const BorderSide(
-                                                                  color: Colors
-                                                                      .transparent,
-                                                                  width: 1.0,
-                                                                ),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            8.0),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 16.0, 0.0, 16.0),
-                                                  child: StyledDivider(
-                                                    thickness: 2.0,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                    lineStyle:
-                                                        DividerLineStyle.dashed,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            10.0, 10.0, 10.0, 0.0),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Container(
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
+                                  decoration: BoxDecoration(
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    borderRadius: BorderRadius.circular(15.0),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(24.0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Container(
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  1.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .alternate,
                                           ),
-                                          Container(
-                                            width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                1.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                            ),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 0.0, 12.0),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 12.0),
+                                                child: InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    // Generation of XML
+                                                    _model.generatedTaskXmlFile =
+                                                        await actions
+                                                            .generateTaskXml(
+                                                      widget.taskId,
+                                                    );
+                                                    if (_model.generatedTaskXmlFile !=
+                                                            null &&
+                                                        _model.generatedTaskXmlFile !=
+                                                            '') {
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .showSnackBar(
+                                                        SnackBar(
+                                                          content: Text(
+                                                            ' no value',
+                                                            style: TextStyle(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryText,
+                                                            ),
+                                                          ),
+                                                          duration: const Duration(
+                                                              milliseconds:
+                                                                  4000),
+                                                          backgroundColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .secondary,
+                                                        ),
+                                                      );
+                                                    } else {
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .showSnackBar(
+                                                        SnackBar(
+                                                          content: Text(
+                                                            _model
+                                                                .generatedTaskXmlFile!,
+                                                            style: TextStyle(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryText,
+                                                            ),
+                                                          ),
+                                                          duration: const Duration(
+                                                              milliseconds:
+                                                                  4000),
+                                                          backgroundColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .secondary,
+                                                        ),
+                                                      );
+                                                    }
+
+                                                    safeSetState(() {});
+                                                  },
                                                   child: Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      'riev7l1c' /* Geotag Information */,
+                                                      'oco9wa86' /* Geotag */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -807,172 +392,442 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         ),
                                                   ),
                                                 ),
-                                                if (kDebugMode)
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 10.0,
-                                                                0.0, 10.0),
-                                                    child: TextFormField(
-                                                      controller: _model
-                                                              .gpxBlobTextController ??=
-                                                          TextEditingController(
-                                                        text: ppirFormSelectPpirFormsRowList
-                                                                    .first
-                                                                    .gpx ==
-                                                                'null'
-                                                            ? ' '
-                                                            : ppirFormSelectPpirFormsRowList
-                                                                .first.gpx,
-                                                      ),
-                                                      focusNode: _model
-                                                          .gpxBlobFocusNode,
-                                                      autofocus: false,
-                                                      readOnly: true,
-                                                      obscureText: false,
-                                                      decoration:
-                                                          InputDecoration(
-                                                        isDense: false,
-                                                        labelText:
-                                                            FFLocalizations.of(
-                                                                    context)
-                                                                .getText(
-                                                          'g8oor25r' /* GPX (debug mode only) */,
-                                                        ),
-                                                        labelStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                        alignLabelWithHint:
-                                                            false,
-                                                        hintStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                        enabledBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .alternate,
-                                                            width: 2.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      12.0),
-                                                        ),
-                                                        focusedBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primary,
-                                                            width: 2.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      12.0),
-                                                        ),
-                                                        errorBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .error,
-                                                            width: 2.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      12.0),
-                                                        ),
-                                                        focusedErrorBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .error,
-                                                            width: 2.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      12.0),
-                                                        ),
-                                                        filled: true,
-                                                        fillColor: FlutterFlowTheme
-                                                                .of(context)
-                                                            .secondaryBackground,
-                                                        contentPadding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    16.0,
-                                                                    12.0,
-                                                                    16.0,
-                                                                    12.0),
-                                                      ),
-                                                      style:
+                                              ),
+                                              Stack(
+                                                children: [
+                                                  Container(
+                                                    width: MediaQuery.sizeOf(
+                                                                context)
+                                                            .width *
+                                                        1.0,
+                                                    decoration: BoxDecoration(
+                                                      color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                letterSpacing:
-                                                                    0.0,
+                                                              .alternate,
+                                                      border: Border.all(
+                                                        color: _model.hasGpx
+                                                            ? FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primary
+                                                            : FlutterFlowTheme
+                                                                    .of(context)
+                                                                .error,
+                                                      ),
+                                                    ),
+                                                    child: Stack(
+                                                      children: [
+                                                        if (FFAppState()
+                                                                .ONLINE ||
+                                                            _model
+                                                                .isMapDownloaded)
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets.all(
+                                                                    2.0),
+                                                            child: SizedBox(
+                                                              width: MediaQuery
+                                                                          .sizeOf(
+                                                                              context)
+                                                                      .width *
+                                                                  1.0,
+                                                              height: MediaQuery
+                                                                          .sizeOf(
+                                                                              context)
+                                                                      .height *
+                                                                  0.2,
+                                                              child:
+                                                                  custom_widgets
+                                                                      .MapBase64(
+                                                                width: MediaQuery.sizeOf(
+                                                                            context)
+                                                                        .width *
+                                                                    1.0,
+                                                                height: MediaQuery.sizeOf(
+                                                                            context)
+                                                                        .height *
+                                                                    0.2,
+                                                                blob:
+                                                                    ppirFormSelectPpirFormsRowList
+                                                                        .first
+                                                                        .gpx,
+                                                                accessToken:
+                                                                    FFAppState()
+                                                                        .accessToken,
                                                               ),
-                                                      maxLines: 10,
-                                                      keyboardType:
-                                                          TextInputType
-                                                              .multiline,
-                                                      cursorColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                      validator: _model
-                                                          .gpxBlobTextControllerValidator
-                                                          .asValidator(context),
+                                                            ),
+                                                          ),
+                                                      ],
                                                     ),
                                                   ),
+                                                ],
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.all(10.0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Flexible(
+                                                      child: Align(
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: Builder(
+                                                          builder: (context) =>
+                                                              FFButtonWidget(
+                                                            onPressed:
+                                                                () async {
+                                                              currentUserLocationValue =
+                                                                  await getCurrentUserLocation(
+                                                                      defaultLocation:
+                                                                          const LatLng(
+                                                                              0.0,
+                                                                              0.0));
+                                                              _model.hasGpx =
+                                                                  true;
+                                                              safeSetState(
+                                                                  () {});
+                                                              await showDialog(
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (dialogContext) {
+                                                                  return Dialog(
+                                                                    elevation:
+                                                                        0,
+                                                                    insetPadding:
+                                                                        EdgeInsets
+                                                                            .zero,
+                                                                    backgroundColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0)
+                                                                        .resolve(
+                                                                            Directionality.of(context)),
+                                                                    child:
+                                                                        GestureDetector(
+                                                                      onTap: () =>
+                                                                          FocusScope.of(dialogContext)
+                                                                              .unfocus(),
+                                                                      child:
+                                                                          const ContinueReGeotagDialogWidget(),
+                                                                    ),
+                                                                  );
+                                                                },
+                                                              ).then((value) =>
+                                                                  safeSetState(() =>
+                                                                      _model.confirmReGeotag =
+                                                                          value));
+
+                                                              if (_model
+                                                                  .confirmReGeotag!) {
+                                                                if (FFAppState()
+                                                                    .ONLINE) {
+                                                                  await UserLogsTable()
+                                                                      .insert({
+                                                                    'user_id':
+                                                                        currentUserUid,
+                                                                    'activity':
+                                                                        'Repeat Geotag',
+                                                                    'longlat':
+                                                                        '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                                                                  });
+                                                                  await PpirFormsTable()
+                                                                      .update(
+                                                                    data: {
+                                                                      'gpx': '',
+                                                                    },
+                                                                    matchingRows:
+                                                                        (rows) =>
+                                                                            rows.eq(
+                                                                      'task_id',
+                                                                      widget
+                                                                          .taskId,
+                                                                    ),
+                                                                  );
+                                                                }
+                                                                await SQLiteManager
+                                                                    .instance
+                                                                    .updatePPIRFormGpx(
+                                                                  taskId: widget
+                                                                      .taskId,
+                                                                  gpx: ' ',
+                                                                  isDirty:
+                                                                      FFAppState()
+                                                                          .ONLINE,
+                                                                );
+
+                                                                context
+                                                                    .pushNamed(
+                                                                  'geotagging',
+                                                                  queryParameters:
+                                                                      {
+                                                                    'taskId':
+                                                                        serializeParam(
+                                                                      widget
+                                                                          .taskId,
+                                                                      ParamType
+                                                                          .String,
+                                                                    ),
+                                                                    'taskType':
+                                                                        serializeParam(
+                                                                      'ppir',
+                                                                      ParamType
+                                                                          .String,
+                                                                    ),
+                                                                    'taskStatus':
+                                                                        serializeParam(
+                                                                      'ongoing',
+                                                                      ParamType
+                                                                          .String,
+                                                                    ),
+                                                                    'assignmentId':
+                                                                        serializeParam(
+                                                                      ppirFormSelectPpirFormsRowList
+                                                                          .first
+                                                                          .ppirAssignmentid,
+                                                                      ParamType
+                                                                          .String,
+                                                                    ),
+                                                                  }.withoutNulls,
+                                                                  extra: <String,
+                                                                      dynamic>{
+                                                                    kTransitionInfoKey:
+                                                                        const TransitionInfo(
+                                                                      hasTransition:
+                                                                          true,
+                                                                      transitionType:
+                                                                          PageTransitionType
+                                                                              .fade,
+                                                                      duration: Duration(
+                                                                          milliseconds:
+                                                                              200),
+                                                                    ),
+                                                                  },
+                                                                );
+                                                              }
+
+                                                              safeSetState(
+                                                                  () {});
+                                                            },
+                                                            text: FFLocalizations
+                                                                    .of(context)
+                                                                .getText(
+                                                              'vlpe8yky' /* Repeat Geotag */,
+                                                            ),
+                                                            icon: const Icon(
+                                                              Icons
+                                                                  .map_outlined,
+                                                              size: 15.0,
+                                                            ),
+                                                            options:
+                                                                FFButtonOptions(
+                                                              height: 40.0,
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          24.0,
+                                                                          0.0,
+                                                                          24.0,
+                                                                          0.0),
+                                                              iconPadding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primary,
+                                                              textStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Readex Pro',
+                                                                        color: Colors
+                                                                            .white,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                      ),
+                                                              elevation: 3.0,
+                                                              borderSide:
+                                                                  const BorderSide(
+                                                                color: Colors
+                                                                    .transparent,
+                                                                width: 1.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    if (kDebugMode)
+                                                      Flexible(
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      20.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: FFButtonWidget(
+                                                            onPressed:
+                                                                () async {
+                                                              _model.gpxLink =
+                                                                  await actions
+                                                                      .getGpxLink(
+                                                                widget.taskId,
+                                                              );
+                                                              await launchURL(
+                                                                  _model
+                                                                      .gpxLink!);
+
+                                                              safeSetState(
+                                                                  () {});
+                                                            },
+                                                            text: FFLocalizations
+                                                                    .of(context)
+                                                                .getText(
+                                                              '0er41e9i' /* Download */,
+                                                            ),
+                                                            icon: const Icon(
+                                                              Icons
+                                                                  .download_outlined,
+                                                              size: 15.0,
+                                                            ),
+                                                            options:
+                                                                FFButtonOptions(
+                                                              height: 40.0,
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          24.0,
+                                                                          0.0,
+                                                                          24.0,
+                                                                          0.0),
+                                                              iconPadding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .success,
+                                                              textStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Readex Pro',
+                                                                        color: Colors
+                                                                            .white,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                      ),
+                                                              elevation: 3.0,
+                                                              borderSide:
+                                                                  const BorderSide(
+                                                                color: Colors
+                                                                    .transparent,
+                                                                width: 1.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 16.0, 0.0, 16.0),
+                                                child: StyledDivider(
+                                                  thickness: 2.0,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  lineStyle:
+                                                      DividerLineStyle.dashed,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  1.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .alternate,
+                                          ),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 12.0),
+                                                child: Text(
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'riev7l1c' /* Geotag Information */,
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              ),
+                                              if (kDebugMode)
                                                 Padding(
                                                   padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 10.0),
                                                   child: TextFormField(
                                                     controller: _model
-                                                            .ppirTrackCoordinatesTextController ??=
+                                                            .gpxBlobTextController ??=
                                                         TextEditingController(
-                                                      text:
-                                                          ppirFormSelectPpirFormsRowList
-                                                              .first
-                                                              .trackLastCoord,
+                                                      text: ppirFormSelectPpirFormsRowList
+                                                                  .first.gpx ==
+                                                              'null'
+                                                          ? ' '
+                                                          : ppirFormSelectPpirFormsRowList
+                                                              .first.gpx,
                                                     ),
-                                                    focusNode: _model
-                                                        .ppirTrackCoordinatesFocusNode,
+                                                    focusNode:
+                                                        _model.gpxBlobFocusNode,
                                                     autofocus: false,
                                                     readOnly: true,
                                                     obscureText: false,
@@ -982,7 +837,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                           FFLocalizations.of(
                                                                   context)
                                                               .getText(
-                                                        'si0nigj1' /* Last Coordinates */,
+                                                        'g8oor25r' /* GPX (debug mode only) */,
                                                       ),
                                                       labelStyle:
                                                           FlutterFlowTheme.of(
@@ -1079,1098 +934,561 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               .secondaryText,
                                                           letterSpacing: 0.0,
                                                         ),
+                                                    maxLines: 10,
+                                                    keyboardType:
+                                                        TextInputType.multiline,
                                                     cursorColor:
                                                         FlutterFlowTheme.of(
                                                                 context)
                                                             .primary,
                                                     validator: _model
-                                                        .ppirTrackCoordinatesTextControllerValidator
+                                                        .gpxBlobTextControllerValidator
                                                         .asValidator(context),
                                                   ),
                                                 ),
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 10.0, 0.0, 10.0),
-                                                  child: TextFormField(
-                                                    controller: _model
-                                                            .ppirTrackTotalAreaTextController1 ??=
-                                                        TextEditingController(
-                                                      text:
-                                                          ppirFormSelectPpirFormsRowList
-                                                              .first
-                                                              .trackTotalArea,
-                                                    ),
-                                                    focusNode: _model
-                                                        .ppirTrackTotalAreaFocusNode1,
-                                                    autofocus: false,
-                                                    readOnly: true,
-                                                    obscureText: false,
-                                                    decoration: InputDecoration(
-                                                      labelText:
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                        'j4k9ydv4' /* Total Area (ha) */,
-                                                      ),
-                                                      labelStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                      hintStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                      enabledBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .alternate,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      focusedBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      errorBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .error,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      focusedErrorBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .error,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      filled: true,
-                                                      fillColor: FlutterFlowTheme
-                                                              .of(context)
-                                                          .secondaryBackground,
-                                                      contentPadding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  16.0,
-                                                                  12.0,
-                                                                  16.0,
-                                                                  12.0),
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                    cursorColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primary,
-                                                    validator: _model
-                                                        .ppirTrackTotalAreaTextController1Validator
-                                                        .asValidator(context),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 10.0, 0.0, 10.0),
-                                                  child: TextFormField(
-                                                    controller: _model
-                                                            .ppirTrackDateTimeTextController ??=
-                                                        TextEditingController(
-                                                      text: functions
-                                                          .timesStampConverter(
-                                                              ppirFormSelectPpirFormsRowList
-                                                                  .first
-                                                                  .trackDateTime),
-                                                    ),
-                                                    focusNode: _model
-                                                        .ppirTrackDateTimeFocusNode,
-                                                    autofocus: false,
-                                                    readOnly: true,
-                                                    obscureText: false,
-                                                    decoration: InputDecoration(
-                                                      labelText:
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                        'bcn0bfjf' /* Date Time */,
-                                                      ),
-                                                      labelStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                      hintStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                      enabledBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .alternate,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      focusedBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      errorBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .error,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      focusedErrorBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .error,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      filled: true,
-                                                      fillColor: FlutterFlowTheme
-                                                              .of(context)
-                                                          .secondaryBackground,
-                                                      contentPadding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  16.0,
-                                                                  12.0,
-                                                                  16.0,
-                                                                  12.0),
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                    cursorColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primary,
-                                                    validator: _model
-                                                        .ppirTrackDateTimeTextControllerValidator
-                                                        .asValidator(context),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 10.0, 0.0, 10.0),
-                                                  child: TextFormField(
-                                                    controller: _model
-                                                            .ppirTrackTotalAreaTextController2 ??=
-                                                        TextEditingController(
-                                                      text: ppirFormSelectPpirFormsRowList
-                                                          .first
-                                                          .trackTotalDistance,
-                                                    ),
-                                                    focusNode: _model
-                                                        .ppirTrackTotalAreaFocusNode2,
-                                                    autofocus: false,
-                                                    readOnly: true,
-                                                    obscureText: false,
-                                                    decoration: InputDecoration(
-                                                      labelText:
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                        'wr9xhmty' /* Total Distance */,
-                                                      ),
-                                                      labelStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                      hintStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                      enabledBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .alternate,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      focusedBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      errorBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .error,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      focusedErrorBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .error,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      filled: true,
-                                                      fillColor: FlutterFlowTheme
-                                                              .of(context)
-                                                          .secondaryBackground,
-                                                      contentPadding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  16.0,
-                                                                  12.0,
-                                                                  16.0,
-                                                                  12.0),
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                    cursorColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primary,
-                                                    validator: _model
-                                                        .ppirTrackTotalAreaTextController2Validator
-                                                        .asValidator(context),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 10.0, 0.0, 10.0),
-                                                  child: TextFormField(
-                                                    controller: _model
-                                                            .ppirTrackFarmlocTextController ??=
-                                                        TextEditingController(
-                                                      text:
-                                                          ppirFormSelectPpirFormsRowList
-                                                              .first
-                                                              .ppirFarmloc,
-                                                    ),
-                                                    focusNode: _model
-                                                        .ppirTrackFarmlocFocusNode,
-                                                    onChanged: (_) =>
-                                                        EasyDebounce.debounce(
-                                                      '_model.ppirTrackFarmlocTextController',
-                                                      const Duration(
-                                                          milliseconds: 2000),
-                                                      () => safeSetState(() {}),
-                                                    ),
-                                                    autofocus: false,
-                                                    obscureText: false,
-                                                    decoration: InputDecoration(
-                                                      labelText:
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                        'opc4bpk1' /* Farm Location */,
-                                                      ),
-                                                      labelStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                      hintStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                      enabledBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      focusedBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      errorBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .error,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      focusedErrorBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .error,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      filled: true,
-                                                      fillColor: FlutterFlowTheme
-                                                              .of(context)
-                                                          .secondaryBackground,
-                                                      contentPadding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  16.0,
-                                                                  12.0,
-                                                                  16.0,
-                                                                  12.0),
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                    cursorColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primary,
-                                                    validator: _model
-                                                        .ppirTrackFarmlocTextControllerValidator
-                                                        .asValidator(context),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 16.0, 0.0, 16.0),
-                                                  child: StyledDivider(
-                                                    thickness: 2.0,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                    lineStyle:
-                                                        DividerLineStyle.dashed,
-                                                  ),
-                                                ),
-                                              ]
-                                                  .divide(const SizedBox(height: 5.0))
-                                                  .around(
-                                                      const SizedBox(height: 5.0)),
-                                            ),
-                                          ),
-                                          Container(
-                                            width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                1.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                            ),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 0.0, 12.0),
-                                                  child: Text(
-                                                    FFLocalizations.of(context)
-                                                        .getText(
-                                                      'l6pbtiio' /* Seed Variety */,
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyLarge
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                  ),
-                                                ),
-                                                FlutterFlowRadioButton(
-                                                  options: [
-                                                    FFLocalizations.of(context)
-                                                        .getText(
-                                                      'n2eymfb9' /* rice */,
-                                                    ),
-                                                    FFLocalizations.of(context)
-                                                        .getText(
-                                                      '2fy8z531' /* corn */,
-                                                    )
-                                                  ].toList(),
-                                                  onChanged: (val) =>
-                                                      safeSetState(() {}),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 10.0, 0.0, 10.0),
+                                                child: TextFormField(
                                                   controller: _model
-                                                          .ppirSvpActSelectionValueController ??=
-                                                      FormFieldController<
-                                                          String>((ppirFormSelectPpirFormsRowList
-                                                                      .first
-                                                                      .ppirSvpAct ==
-                                                                  'null') ||
-                                                              (ppirFormSelectPpirFormsRowList
-                                                                      .first
-                                                                      .ppirSvpAct ==
-                                                                  '')
-                                                          ? 'rice'
-                                                          : ppirFormSelectPpirFormsRowList
-                                                              .first
-                                                              .ppirSvpAct!),
-                                                  optionHeight: 32.0,
-                                                  textStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                  selectedTextStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                  buttonPosition:
-                                                      RadioButtonPosition.left,
-                                                  direction: Axis.horizontal,
-                                                  radioButtonColor:
+                                                          .ppirTrackCoordinatesTextController ??=
+                                                      TextEditingController(
+                                                    text:
+                                                        ppirFormSelectPpirFormsRowList
+                                                            .first
+                                                            .trackLastCoord,
+                                                  ),
+                                                  focusNode: _model
+                                                      .ppirTrackCoordinatesFocusNode,
+                                                  autofocus: false,
+                                                  readOnly: true,
+                                                  obscureText: false,
+                                                  decoration: InputDecoration(
+                                                    isDense: false,
+                                                    labelText:
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                      'si0nigj1' /* Last Coordinates */,
+                                                    ),
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryText,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    alignLabelWithHint: false,
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    errorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    focusedErrorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    filled: true,
+                                                    fillColor: FlutterFlowTheme
+                                                            .of(context)
+                                                        .secondaryBackground,
+                                                    contentPadding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                16.0,
+                                                                12.0,
+                                                                16.0,
+                                                                12.0),
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                  cursorColor:
                                                       FlutterFlowTheme.of(
                                                               context)
                                                           .primary,
-                                                  inactiveRadioButtonColor:
+                                                  validator: _model
+                                                      .ppirTrackCoordinatesTextControllerValidator
+                                                      .asValidator(context),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 10.0, 0.0, 10.0),
+                                                child: TextFormField(
+                                                  controller: _model
+                                                          .ppirTrackTotalAreaTextController1 ??=
+                                                      TextEditingController(
+                                                    text:
+                                                        ppirFormSelectPpirFormsRowList
+                                                            .first
+                                                            .trackTotalArea,
+                                                  ),
+                                                  focusNode: _model
+                                                      .ppirTrackTotalAreaFocusNode1,
+                                                  autofocus: false,
+                                                  readOnly: true,
+                                                  obscureText: false,
+                                                  decoration: InputDecoration(
+                                                    labelText:
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                      'j4k9ydv4' /* Total Area (ha) */,
+                                                    ),
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    errorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    focusedErrorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    filled: true,
+                                                    fillColor: FlutterFlowTheme
+                                                            .of(context)
+                                                        .secondaryBackground,
+                                                    contentPadding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                16.0,
+                                                                12.0,
+                                                                16.0,
+                                                                12.0),
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                  cursorColor:
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .secondaryText,
-                                                  toggleable: false,
-                                                  horizontalAlignment:
-                                                      WrapAlignment.start,
-                                                  verticalAlignment:
-                                                      WrapCrossAlignment.start,
+                                                          .primary,
+                                                  validator: _model
+                                                      .ppirTrackTotalAreaTextController1Validator
+                                                      .asValidator(context),
                                                 ),
-                                                Container(
-                                                  decoration: const BoxDecoration(),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          Text(
-                                                            FFLocalizations.of(
-                                                                    context)
-                                                                .getText(
-                                                              'fd5vtp4q' /* Select the Type of Rice  */,
-                                                            ),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .labelSmall
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                          ),
-                                                          Text(
-                                                            _model.ppirSvpActSelectionValue ==
-                                                                    'rice'
-                                                                ? '(enabled)'
-                                                                : '(disabled)',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .labelSmall
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: _model
-                                                                              .ppirSvpActSelectionValue ==
-                                                                          'rice'
-                                                                      ? FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primary
-                                                                      : FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondaryText,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      FutureBuilder<
-                                                          List<
-                                                              SELECTRiceSEEDSRow>>(
-                                                        future: SQLiteManager
-                                                            .instance
-                                                            .sELECTRiceSEEDS(
-                                                          regionId:
-                                                              valueOrDefault<
-                                                                  String>(
-                                                            _model
-                                                                .profile
-                                                                ?.first
-                                                                .regionId,
-                                                            '256c6ab8-65b9-4574-a19b-bfe8b34cee51',
-                                                          ),
-                                                        ),
-                                                        builder: (context,
-                                                            snapshot) {
-                                                          // Customize what your widget looks like when it's loading.
-                                                          if (!snapshot
-                                                              .hasData) {
-                                                            return Center(
-                                                              child: SizedBox(
-                                                                width: 100.0,
-                                                                height: 100.0,
-                                                                child:
-                                                                    SpinKitRipple(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                                  size: 100.0,
-                                                                ),
-                                                              ),
-                                                            );
-                                                          }
-                                                          final riceDropdownSELECTRiceSEEDSRowList =
-                                                              snapshot.data!;
-
-                                                          return FlutterFlowDropDown<
-                                                              String>(
-                                                            controller: _model
-                                                                    .riceDropdownValueController ??=
-                                                                FormFieldController<
-                                                                    String>(
-                                                              _model.riceDropdownValue ??=
-                                                                  ppirFormSelectPpirFormsRowList
-                                                                      .first
-                                                                      .ppirVariety,
-                                                            ),
-                                                            options:
-                                                                riceDropdownSELECTRiceSEEDSRowList
-                                                                    .map((e) =>
-                                                                        e.seed)
-                                                                    .withoutNulls
-                                                                    .toList(),
-                                                            onChanged: (val) =>
-                                                                safeSetState(() =>
-                                                                    _model.riceDropdownValue =
-                                                                        val),
-                                                            width: MediaQuery
-                                                                        .sizeOf(
-                                                                            context)
-                                                                    .width *
-                                                                1.0,
-                                                            height: 56.0,
-                                                            searchHintTextStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Readex Pro',
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
-                                                            searchTextStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Readex Pro',
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
-                                                            textStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Readex Pro',
-                                                                      color: _model.ppirSvpActSelectionValue ==
-                                                                              'corn'
-                                                                          ? FlutterFlowTheme.of(context)
-                                                                              .secondaryText
-                                                                          : FlutterFlowTheme.of(context)
-                                                                              .primaryText,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
-                                                            hintText:
-                                                                FFLocalizations.of(
-                                                                        context)
-                                                                    .getText(
-                                                              'svwg4lfn' /* Please select... */,
-                                                            ),
-                                                            searchHintText:
-                                                                FFLocalizations.of(
-                                                                        context)
-                                                                    .getText(
-                                                              'wx9ezblr' /* Search for an item... */,
-                                                            ),
-                                                            icon: Icon(
-                                                              Icons
-                                                                  .keyboard_arrow_down_rounded,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryText,
-                                                              size: 24.0,
-                                                            ),
-                                                            fillColor: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryBackground,
-                                                            elevation: 2.0,
-                                                            borderColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                            borderWidth: 2.0,
-                                                            borderRadius: 8.0,
-                                                            margin:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        16.0,
-                                                                        4.0,
-                                                                        16.0,
-                                                                        4.0),
-                                                            hidesUnderline:
-                                                                true,
-                                                            disabled: _model
-                                                                    .ppirSvpActSelectionValue ==
-                                                                'corn',
-                                                            isOverButton: true,
-                                                            isSearchable: true,
-                                                            isMultiSelect:
-                                                                false,
-                                                          );
-                                                        },
-                                                      ),
-                                                    ],
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 10.0, 0.0, 10.0),
+                                                child: TextFormField(
+                                                  controller: _model
+                                                          .ppirTrackDateTimeTextController ??=
+                                                      TextEditingController(
+                                                    text: functions
+                                                        .timesStampConverter(
+                                                            ppirFormSelectPpirFormsRowList
+                                                                .first
+                                                                .trackDateTime),
                                                   ),
-                                                ),
-                                                Container(
-                                                  decoration: const BoxDecoration(),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          Text(
-                                                            FFLocalizations.of(
-                                                                    context)
-                                                                .getText(
-                                                              'aqzhnbj5' /* Select the Type of Corn  */,
-                                                            ),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .labelSmall
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                          ),
-                                                          Text(
-                                                            _model.ppirSvpActSelectionValue ==
-                                                                    'corn'
-                                                                ? '(enabled)'
-                                                                : '(disabled)',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .labelSmall
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: _model
-                                                                              .ppirSvpActSelectionValue ==
-                                                                          'corn'
-                                                                      ? FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primary
-                                                                      : FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondaryText,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      FutureBuilder<
-                                                          List<
-                                                              SELECTCornSEEDSRow>>(
-                                                        future: SQLiteManager
-                                                            .instance
-                                                            .sELECTCornSEEDS(
-                                                          regionId:
-                                                              valueOrDefault<
-                                                                  String>(
-                                                            _model
-                                                                .profile
-                                                                ?.first
-                                                                .regionId,
-                                                            '256c6ab8-65b9-4574-a19b-bfe8b34cee51',
-                                                          ),
-                                                        ),
-                                                        builder: (context,
-                                                            snapshot) {
-                                                          // Customize what your widget looks like when it's loading.
-                                                          if (!snapshot
-                                                              .hasData) {
-                                                            return Center(
-                                                              child: SizedBox(
-                                                                width: 100.0,
-                                                                height: 100.0,
-                                                                child:
-                                                                    SpinKitRipple(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                                  size: 100.0,
-                                                                ),
-                                                              ),
-                                                            );
-                                                          }
-                                                          final cornDropdownSELECTCornSEEDSRowList =
-                                                              snapshot.data!;
-
-                                                          return FlutterFlowDropDown<
-                                                              String>(
-                                                            controller: _model
-                                                                    .cornDropdownValueController ??=
-                                                                FormFieldController<
-                                                                    String>(
-                                                              _model.cornDropdownValue ??=
-                                                                  ppirFormSelectPpirFormsRowList
-                                                                      .first
-                                                                      .ppirVariety,
-                                                            ),
-                                                            options:
-                                                                cornDropdownSELECTCornSEEDSRowList
-                                                                    .map((e) =>
-                                                                        e.seed)
-                                                                    .withoutNulls
-                                                                    .toList(),
-                                                            onChanged: (val) =>
-                                                                safeSetState(() =>
-                                                                    _model.cornDropdownValue =
-                                                                        val),
-                                                            width: MediaQuery
-                                                                        .sizeOf(
-                                                                            context)
-                                                                    .width *
-                                                                1.0,
-                                                            height: 56.0,
-                                                            searchHintTextStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Readex Pro',
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
-                                                            searchTextStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Readex Pro',
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
-                                                            textStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Readex Pro',
-                                                                      color: _model.ppirSvpActSelectionValue ==
-                                                                              'rice'
-                                                                          ? FlutterFlowTheme.of(context)
-                                                                              .secondaryText
-                                                                          : FlutterFlowTheme.of(context)
-                                                                              .primaryText,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
-                                                            hintText:
-                                                                FFLocalizations.of(
-                                                                        context)
-                                                                    .getText(
-                                                              'frfbun0t' /* Please select... */,
-                                                            ),
-                                                            searchHintText:
-                                                                FFLocalizations.of(
-                                                                        context)
-                                                                    .getText(
-                                                              'vkwu56pa' /* Search for an item... */,
-                                                            ),
-                                                            icon: Icon(
-                                                              Icons
-                                                                  .keyboard_arrow_down_rounded,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryText,
-                                                              size: 24.0,
-                                                            ),
-                                                            fillColor: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryBackground,
-                                                            elevation: 2.0,
-                                                            borderColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                            borderWidth: 2.0,
-                                                            borderRadius: 8.0,
-                                                            margin:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        16.0,
-                                                                        4.0,
-                                                                        16.0,
-                                                                        4.0),
-                                                            hidesUnderline:
-                                                                true,
-                                                            disabled: _model
-                                                                    .ppirSvpActSelectionValue ==
-                                                                'rice',
-                                                            isOverButton: true,
-                                                            isSearchable: true,
-                                                            isMultiSelect:
-                                                                false,
-                                                          );
-                                                        },
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 16.0, 0.0, 16.0),
-                                                  child: StyledDivider(
-                                                    thickness: 2.0,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                    lineStyle:
-                                                        DividerLineStyle.dashed,
-                                                  ),
-                                                ),
-                                              ]
-                                                  .divide(const SizedBox(height: 5.0))
-                                                  .around(
-                                                      const SizedBox(height: 5.0)),
-                                            ),
-                                          ),
-                                          Container(
-                                            width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                1.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                            ),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 0.0, 12.0),
-                                                  child: Text(
-                                                    FFLocalizations.of(context)
-                                                        .getText(
-                                                      'n872ktx2' /* Area */,
+                                                  focusNode: _model
+                                                      .ppirTrackDateTimeFocusNode,
+                                                  autofocus: false,
+                                                  readOnly: true,
+                                                  obscureText: false,
+                                                  decoration: InputDecoration(
+                                                    labelText:
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                      'bcn0bfjf' /* Date Time */,
                                                     ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyLarge
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    errorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    focusedErrorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    filled: true,
+                                                    fillColor: FlutterFlowTheme
+                                                            .of(context)
+                                                        .secondaryBackground,
+                                                    contentPadding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                16.0,
+                                                                12.0,
+                                                                16.0,
+                                                                12.0),
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                  cursorColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary,
+                                                  validator: _model
+                                                      .ppirTrackDateTimeTextControllerValidator
+                                                      .asValidator(context),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 10.0, 0.0, 10.0),
+                                                child: TextFormField(
+                                                  controller: _model
+                                                          .ppirTrackTotalAreaTextController2 ??=
+                                                      TextEditingController(
+                                                    text:
+                                                        ppirFormSelectPpirFormsRowList
+                                                            .first
+                                                            .trackTotalDistance,
+                                                  ),
+                                                  focusNode: _model
+                                                      .ppirTrackTotalAreaFocusNode2,
+                                                  autofocus: false,
+                                                  readOnly: true,
+                                                  obscureText: false,
+                                                  decoration: InputDecoration(
+                                                    labelText:
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                      'wr9xhmty' /* Total Distance */,
+                                                    ),
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    errorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    focusedErrorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    filled: true,
+                                                    fillColor: FlutterFlowTheme
+                                                            .of(context)
+                                                        .secondaryBackground,
+                                                    contentPadding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                16.0,
+                                                                12.0,
+                                                                16.0,
+                                                                12.0),
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                  cursorColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary,
+                                                  validator: _model
+                                                      .ppirTrackTotalAreaTextController2Validator
+                                                      .asValidator(context),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 10.0, 0.0, 10.0),
+                                                child: TextFormField(
+                                                  controller: _model
+                                                          .ppirTrackFarmlocTextController ??=
+                                                      TextEditingController(
+                                                    text:
+                                                        ppirFormSelectPpirFormsRowList
+                                                            .first.ppirFarmloc,
+                                                  ),
+                                                  focusNode: _model
+                                                      .ppirTrackFarmlocFocusNode,
+                                                  onChanged: (_) =>
+                                                      EasyDebounce.debounce(
+                                                    '_model.ppirTrackFarmlocTextController',
+                                                    const Duration(
+                                                        milliseconds: 2000),
+                                                    () => safeSetState(() {}),
+                                                  ),
+                                                  autofocus: false,
+                                                  obscureText: false,
+                                                  decoration: InputDecoration(
+                                                    labelText:
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                      'opc4bpk1' /* Farm Location */,
+                                                    ),
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
@@ -2179,397 +1497,828 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               .primaryText,
                                                           letterSpacing: 0.0,
                                                         ),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 10.0, 0.0, 10.0),
-                                                  child: TextFormField(
-                                                    controller: _model
-                                                            .ppirAreaActFieldTextController ??=
-                                                        TextEditingController(
-                                                      text:
-                                                          ppirFormSelectPpirFormsRowList
-                                                              .first
-                                                              .ppirAreaAct,
-                                                    ),
-                                                    focusNode: _model
-                                                        .ppirAreaActFieldFocusNode,
-                                                    onChanged: (_) =>
-                                                        EasyDebounce.debounce(
-                                                      '_model.ppirAreaActFieldTextController',
-                                                      const Duration(
-                                                          milliseconds: 2000),
-                                                      () => safeSetState(() {}),
-                                                    ),
-                                                    autofocus: false,
-                                                    textInputAction:
-                                                        TextInputAction.next,
-                                                    obscureText: false,
-                                                    decoration: InputDecoration(
-                                                      labelText:
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                        'nuiqbq4u' /* Actual Area Planted */,
-                                                      ),
-                                                      labelStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                      hintStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                      enabledBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      focusedBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      errorBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .error,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      focusedErrorBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .error,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      filled: true,
-                                                      fillColor: FlutterFlowTheme
-                                                              .of(context)
-                                                          .secondaryBackground,
-                                                      contentPadding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  16.0,
-                                                                  12.0,
-                                                                  16.0,
-                                                                  12.0),
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryText,
                                                           letterSpacing: 0.0,
                                                         ),
-                                                    keyboardType:
-                                                        const TextInputType
-                                                            .numberWithOptions(
-                                                            decimal: true),
-                                                    cursorColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primary,
-                                                    validator: _model
-                                                        .ppirAreaActFieldTextControllerValidator
-                                                        .asValidator(context),
-                                                  ),
-                                                ),
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Expanded(
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    10.0,
-                                                                    0.0,
-                                                                    10.0),
-                                                        child: TextFormField(
-                                                          controller: _model
-                                                                  .ppirAreaDopDsFieldTextController ??=
-                                                              TextEditingController(
-                                                            text: ppirFormSelectPpirFormsRowList
-                                                                .first
-                                                                .ppirDopdsAct,
-                                                          ),
-                                                          focusNode: _model
-                                                              .ppirAreaDopDsFieldFocusNode,
-                                                          onChanged: (_) =>
-                                                              EasyDebounce
-                                                                  .debounce(
-                                                            '_model.ppirAreaDopDsFieldTextController',
-                                                            const Duration(
-                                                                milliseconds:
-                                                                    2000),
-                                                            () => safeSetState(
-                                                                () {}),
-                                                          ),
-                                                          autofocus: false,
-                                                          textCapitalization:
-                                                              TextCapitalization
-                                                                  .none,
-                                                          textInputAction:
-                                                              TextInputAction
-                                                                  .next,
-                                                          readOnly: true,
-                                                          obscureText: false,
-                                                          decoration:
-                                                              InputDecoration(
-                                                            labelText:
-                                                                FFLocalizations.of(
-                                                                        context)
-                                                                    .getText(
-                                                              'of9zu2fh' /* Actual Date of Planting (DS) */,
-                                                            ),
-                                                            labelStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Readex Pro',
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
-                                                            hintStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Readex Pro',
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
-                                                            enabledBorder:
-                                                                OutlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                width: 2.0,
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          12.0),
-                                                            ),
-                                                            focusedBorder:
-                                                                OutlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primary,
-                                                                width: 2.0,
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          12.0),
-                                                            ),
-                                                            errorBorder:
-                                                                OutlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .error,
-                                                                width: 2.0,
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          12.0),
-                                                            ),
-                                                            focusedErrorBorder:
-                                                                OutlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .error,
-                                                                width: 2.0,
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          12.0),
-                                                            ),
-                                                            filled: true,
-                                                            fillColor: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryBackground,
-                                                            contentPadding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        16.0,
-                                                                        12.0,
-                                                                        16.0,
-                                                                        12.0),
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                          keyboardType:
-                                                              TextInputType
-                                                                  .datetime,
-                                                          cursorColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .primary,
-                                                          validator: _model
-                                                              .ppirAreaDopDsFieldTextControllerValidator
-                                                              .asValidator(
-                                                                  context),
-                                                        ),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        width: 2.0,
                                                       ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
                                                     ),
-                                                    FlutterFlowIconButton(
-                                                      borderColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
-                                                      borderRadius: 12.0,
-                                                      borderWidth: 2.0,
-                                                      buttonSize: 48.0,
-                                                      fillColor: FlutterFlowTheme
-                                                              .of(context)
-                                                          .secondaryBackground,
-                                                      icon: Icon(
-                                                        Icons.calendar_month,
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    errorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    focusedErrorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    filled: true,
+                                                    fillColor: FlutterFlowTheme
+                                                            .of(context)
+                                                        .secondaryBackground,
+                                                    contentPadding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                16.0,
+                                                                12.0,
+                                                                16.0,
+                                                                12.0),
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                  cursorColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary,
+                                                  validator: _model
+                                                      .ppirTrackFarmlocTextControllerValidator
+                                                      .asValidator(context),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 16.0, 0.0, 16.0),
+                                                child: StyledDivider(
+                                                  thickness: 2.0,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  lineStyle:
+                                                      DividerLineStyle.dashed,
+                                                ),
+                                              ),
+                                            ]
+                                                .divide(const SizedBox(height: 5.0))
+                                                .around(const SizedBox(height: 5.0)),
+                                          ),
+                                        ),
+                                        Container(
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  1.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .alternate,
+                                          ),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 12.0),
+                                                child: Text(
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'l6pbtiio' /* Seed Variety */,
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
-                                                        size: 20.0,
+                                                        letterSpacing: 0.0,
                                                       ),
-                                                      onPressed: () async {
-                                                        final datePicked1Date =
-                                                            await showDatePicker(
-                                                          context: context,
-                                                          initialDate:
-                                                              getCurrentTimestamp,
-                                                          firstDate:
-                                                              DateTime(1900),
-                                                          lastDate:
-                                                              DateTime(2050),
-                                                        );
-
-                                                        if (datePicked1Date !=
-                                                            null) {
-                                                          safeSetState(() {
-                                                            _model.datePicked1 =
-                                                                DateTime(
-                                                              datePicked1Date
-                                                                  .year,
-                                                              datePicked1Date
-                                                                  .month,
-                                                              datePicked1Date
-                                                                  .day,
-                                                            );
-                                                          });
-                                                        }
-                                                        safeSetState(() {
-                                                          _model.ppirAreaDopDsFieldTextController
-                                                                  ?.text =
-                                                              dateTimeFormat(
-                                                            "yMd",
-                                                            _model.datePicked1,
-                                                            locale: FFLocalizations
-                                                                    .of(context)
-                                                                .languageCode,
-                                                          );
-                                                          _model.ppirAreaDopDsFieldTextController
-                                                                  ?.selection =
-                                                              TextSelection.collapsed(
-                                                                  offset: _model
-                                                                      .ppirAreaDopDsFieldTextController!
-                                                                      .text
-                                                                      .length);
-                                                        });
-                                                      },
-                                                    ),
-                                                  ].divide(
-                                                      const SizedBox(width: 4.0)),
                                                 ),
-                                                Row(
+                                              ),
+                                              FlutterFlowRadioButton(
+                                                options: [
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'n2eymfb9' /* rice */,
+                                                  ),
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    '2fy8z531' /* corn */,
+                                                  )
+                                                ].toList(),
+                                                onChanged: (val) =>
+                                                    safeSetState(() {}),
+                                                controller: _model
+                                                        .ppirSvpActSelectionValueController ??=
+                                                    FormFieldController<
+                                                        String>((ppirFormSelectPpirFormsRowList
+                                                                    .first
+                                                                    .ppirSvpAct ==
+                                                                'null') ||
+                                                            (ppirFormSelectPpirFormsRowList
+                                                                    .first
+                                                                    .ppirSvpAct ==
+                                                                '')
+                                                        ? 'rice'
+                                                        : ppirFormSelectPpirFormsRowList
+                                                            .first.ppirSvpAct!),
+                                                optionHeight: 32.0,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                selectedTextStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                buttonPosition:
+                                                    RadioButtonPosition.left,
+                                                direction: Axis.horizontal,
+                                                radioButtonColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                inactiveRadioButtonColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                                toggleable: false,
+                                                horizontalAlignment:
+                                                    WrapAlignment.start,
+                                                verticalAlignment:
+                                                    WrapCrossAlignment.start,
+                                              ),
+                                              Container(
+                                                decoration: const BoxDecoration(),
+                                                child: Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
                                                   children: [
-                                                    Expanded(
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Text(
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                            'fd5vtp4q' /* Select the Type of Rice  */,
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .labelSmall
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                        ),
+                                                        Text(
+                                                          _model.ppirSvpActSelectionValue ==
+                                                                  'rice'
+                                                              ? '(enabled)'
+                                                              : '(disabled)',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .labelSmall
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                color: _model
+                                                                            .ppirSvpActSelectionValue ==
+                                                                        'rice'
+                                                                    ? FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary
+                                                                    : FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    FutureBuilder<
+                                                        List<
+                                                            SELECTRiceSEEDSRow>>(
+                                                      future: SQLiteManager
+                                                          .instance
+                                                          .sELECTRiceSEEDS(
+                                                        regionId:
+                                                            valueOrDefault<
+                                                                String>(
+                                                          _model.profile?.first
+                                                              .regionId,
+                                                          '256c6ab8-65b9-4574-a19b-bfe8b34cee51',
+                                                        ),
+                                                      ),
+                                                      builder:
+                                                          (context, snapshot) {
+                                                        // Customize what your widget looks like when it's loading.
+                                                        if (!snapshot.hasData) {
+                                                          return Center(
+                                                            child: SizedBox(
+                                                              width: 100.0,
+                                                              height: 100.0,
+                                                              child:
+                                                                  SpinKitRipple(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                                size: 100.0,
+                                                              ),
+                                                            ),
+                                                          );
+                                                        }
+                                                        final riceDropdownSELECTRiceSEEDSRowList =
+                                                            snapshot.data!;
+
+                                                        return FlutterFlowDropDown<
+                                                            String>(
+                                                          controller: _model
+                                                                  .riceDropdownValueController ??=
+                                                              FormFieldController<
+                                                                  String>(
+                                                            _model.riceDropdownValue ??=
+                                                                ppirFormSelectPpirFormsRowList
+                                                                    .first
+                                                                    .ppirVariety,
+                                                          ),
+                                                          options:
+                                                              riceDropdownSELECTRiceSEEDSRowList
+                                                                  .map((e) =>
+                                                                      e.seed)
+                                                                  .withoutNulls
+                                                                  .toList(),
+                                                          onChanged: (val) =>
+                                                              safeSetState(() =>
+                                                                  _model.riceDropdownValue =
+                                                                      val),
+                                                          width:
+                                                              MediaQuery.sizeOf(
+                                                                          context)
+                                                                      .width *
+                                                                  1.0,
+                                                          height: 56.0,
+                                                          searchHintTextStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                          searchTextStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                          textStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: _model.ppirSvpActSelectionValue ==
+                                                                            'corn'
+                                                                        ? FlutterFlowTheme.of(context)
+                                                                            .secondaryText
+                                                                        : FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                          hintText:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .getText(
+                                                            'svwg4lfn' /* Please select... */,
+                                                          ),
+                                                          searchHintText:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .getText(
+                                                            'wx9ezblr' /* Search for an item... */,
+                                                          ),
+                                                          icon: Icon(
+                                                            Icons
+                                                                .keyboard_arrow_down_rounded,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryText,
+                                                            size: 24.0,
+                                                          ),
+                                                          fillColor: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                          elevation: 2.0,
+                                                          borderColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .secondaryText,
+                                                          borderWidth: 2.0,
+                                                          borderRadius: 8.0,
+                                                          margin:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      16.0,
+                                                                      4.0,
+                                                                      16.0,
+                                                                      4.0),
+                                                          hidesUnderline: true,
+                                                          disabled: _model
+                                                                  .ppirSvpActSelectionValue ==
+                                                              'corn',
+                                                          isOverButton: true,
+                                                          isSearchable: true,
+                                                          isMultiSelect: false,
+                                                        );
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Container(
+                                                decoration: const BoxDecoration(),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Text(
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                            'aqzhnbj5' /* Select the Type of Corn  */,
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .labelSmall
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                        ),
+                                                        Text(
+                                                          _model.ppirSvpActSelectionValue ==
+                                                                  'corn'
+                                                              ? '(enabled)'
+                                                              : '(disabled)',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .labelSmall
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                color: _model
+                                                                            .ppirSvpActSelectionValue ==
+                                                                        'corn'
+                                                                    ? FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary
+                                                                    : FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    FutureBuilder<
+                                                        List<
+                                                            SELECTCornSEEDSRow>>(
+                                                      future: SQLiteManager
+                                                          .instance
+                                                          .sELECTCornSEEDS(
+                                                        regionId:
+                                                            valueOrDefault<
+                                                                String>(
+                                                          _model.profile?.first
+                                                              .regionId,
+                                                          '256c6ab8-65b9-4574-a19b-bfe8b34cee51',
+                                                        ),
+                                                      ),
+                                                      builder:
+                                                          (context, snapshot) {
+                                                        // Customize what your widget looks like when it's loading.
+                                                        if (!snapshot.hasData) {
+                                                          return Center(
+                                                            child: SizedBox(
+                                                              width: 100.0,
+                                                              height: 100.0,
+                                                              child:
+                                                                  SpinKitRipple(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                                size: 100.0,
+                                                              ),
+                                                            ),
+                                                          );
+                                                        }
+                                                        final cornDropdownSELECTCornSEEDSRowList =
+                                                            snapshot.data!;
+
+                                                        return FlutterFlowDropDown<
+                                                            String>(
+                                                          controller: _model
+                                                                  .cornDropdownValueController ??=
+                                                              FormFieldController<
+                                                                  String>(
+                                                            _model.cornDropdownValue ??=
+                                                                ppirFormSelectPpirFormsRowList
+                                                                    .first
+                                                                    .ppirVariety,
+                                                          ),
+                                                          options:
+                                                              cornDropdownSELECTCornSEEDSRowList
+                                                                  .map((e) =>
+                                                                      e.seed)
+                                                                  .withoutNulls
+                                                                  .toList(),
+                                                          onChanged: (val) =>
+                                                              safeSetState(() =>
+                                                                  _model.cornDropdownValue =
+                                                                      val),
+                                                          width:
+                                                              MediaQuery.sizeOf(
+                                                                          context)
+                                                                      .width *
+                                                                  1.0,
+                                                          height: 56.0,
+                                                          searchHintTextStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                          searchTextStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                          textStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    color: _model.ppirSvpActSelectionValue ==
+                                                                            'rice'
+                                                                        ? FlutterFlowTheme.of(context)
+                                                                            .secondaryText
+                                                                        : FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                          hintText:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .getText(
+                                                            'frfbun0t' /* Please select... */,
+                                                          ),
+                                                          searchHintText:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .getText(
+                                                            'vkwu56pa' /* Search for an item... */,
+                                                          ),
+                                                          icon: Icon(
+                                                            Icons
+                                                                .keyboard_arrow_down_rounded,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryText,
+                                                            size: 24.0,
+                                                          ),
+                                                          fillColor: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                          elevation: 2.0,
+                                                          borderColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .secondaryText,
+                                                          borderWidth: 2.0,
+                                                          borderRadius: 8.0,
+                                                          margin:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      16.0,
+                                                                      4.0,
+                                                                      16.0,
+                                                                      4.0),
+                                                          hidesUnderline: true,
+                                                          disabled: _model
+                                                                  .ppirSvpActSelectionValue ==
+                                                              'rice',
+                                                          isOverButton: true,
+                                                          isSearchable: true,
+                                                          isMultiSelect: false,
+                                                        );
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 16.0, 0.0, 16.0),
+                                                child: StyledDivider(
+                                                  thickness: 2.0,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  lineStyle:
+                                                      DividerLineStyle.dashed,
+                                                ),
+                                              ),
+                                            ]
+                                                .divide(const SizedBox(height: 5.0))
+                                                .around(const SizedBox(height: 5.0)),
+                                          ),
+                                        ),
+                                        Container(
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  1.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .alternate,
+                                          ),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 12.0),
+                                                child: Text(
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'n872ktx2' /* Area */,
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 10.0, 0.0, 10.0),
+                                                child: TextFormField(
+                                                  controller: _model
+                                                          .ppirAreaActFieldTextController ??=
+                                                      TextEditingController(
+                                                    text:
+                                                        ppirFormSelectPpirFormsRowList
+                                                            .first.ppirAreaAct,
+                                                  ),
+                                                  focusNode: _model
+                                                      .ppirAreaActFieldFocusNode,
+                                                  onChanged: (_) =>
+                                                      EasyDebounce.debounce(
+                                                    '_model.ppirAreaActFieldTextController',
+                                                    const Duration(
+                                                        milliseconds: 2000),
+                                                    () => safeSetState(() {}),
+                                                  ),
+                                                  autofocus: false,
+                                                  textInputAction:
+                                                      TextInputAction.next,
+                                                  obscureText: false,
+                                                  decoration: InputDecoration(
+                                                    labelText:
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                      'nuiqbq4u' /* Actual Area Planted */,
+                                                    ),
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    errorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    focusedErrorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    filled: true,
+                                                    fillColor: FlutterFlowTheme
+                                                            .of(context)
+                                                        .secondaryBackground,
+                                                    contentPadding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                16.0,
+                                                                12.0,
+                                                                16.0,
+                                                                12.0),
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                  keyboardType:
+                                                      const TextInputType
+                                                          .numberWithOptions(
+                                                          decimal: true),
+                                                  cursorColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary,
+                                                  validator: _model
+                                                      .ppirAreaActFieldTextControllerValidator
+                                                      .asValidator(context),
+                                                ),
+                                              ),
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Expanded(
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  10.0,
+                                                                  0.0,
+                                                                  10.0),
                                                       child: TextFormField(
                                                         controller: _model
-                                                                .ppirAreaDopTpFieldTextController ??=
+                                                                .ppirAreaDopDsFieldTextController ??=
                                                             TextEditingController(
                                                           text:
                                                               ppirFormSelectPpirFormsRowList
                                                                   .first
-                                                                  .ppirDoptpAct,
+                                                                  .ppirDopdsAct,
                                                         ),
                                                         focusNode: _model
-                                                            .ppirAreaDopTpFieldFocusNode,
+                                                            .ppirAreaDopDsFieldFocusNode,
                                                         onChanged: (_) =>
                                                             EasyDebounce
                                                                 .debounce(
-                                                          '_model.ppirAreaDopTpFieldTextController',
+                                                          '_model.ppirAreaDopDsFieldTextController',
                                                           const Duration(
                                                               milliseconds:
                                                                   2000),
@@ -2591,7 +2340,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               FFLocalizations.of(
                                                                       context)
                                                                   .getText(
-                                                            'a0a2mg8u' /* Actual Date of Planting (TP) */,
+                                                            'of9zu2fh' /* Actual Date of Planting (DS) */,
                                                           ),
                                                           labelStyle:
                                                               FlutterFlowTheme.of(
@@ -2699,146 +2448,374 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     context)
                                                                 .primary,
                                                         validator: _model
-                                                            .ppirAreaDopTpFieldTextControllerValidator
+                                                            .ppirAreaDopDsFieldTextControllerValidator
                                                             .asValidator(
                                                                 context),
                                                       ),
                                                     ),
-                                                    FlutterFlowIconButton(
-                                                      borderColor:
+                                                  ),
+                                                  FlutterFlowIconButton(
+                                                    borderColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .secondaryText,
+                                                    borderRadius: 12.0,
+                                                    borderWidth: 2.0,
+                                                    buttonSize: 48.0,
+                                                    fillColor: FlutterFlowTheme
+                                                            .of(context)
+                                                        .secondaryBackground,
+                                                    icon: Icon(
+                                                      Icons.calendar_month,
+                                                      color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .secondaryText,
-                                                      borderRadius: 12.0,
-                                                      borderWidth: 2.0,
-                                                      buttonSize: 48.0,
-                                                      fillColor: FlutterFlowTheme
+                                                              .primaryText,
+                                                      size: 20.0,
+                                                    ),
+                                                    onPressed: () async {
+                                                      final datePicked1Date =
+                                                          await showDatePicker(
+                                                        context: context,
+                                                        initialDate:
+                                                            getCurrentTimestamp,
+                                                        firstDate:
+                                                            DateTime(1900),
+                                                        lastDate:
+                                                            DateTime(2050),
+                                                      );
+
+                                                      if (datePicked1Date !=
+                                                          null) {
+                                                        safeSetState(() {
+                                                          _model.datePicked1 =
+                                                              DateTime(
+                                                            datePicked1Date
+                                                                .year,
+                                                            datePicked1Date
+                                                                .month,
+                                                            datePicked1Date
+                                                                .day,
+                                                          );
+                                                        });
+                                                      }
+                                                      safeSetState(() {
+                                                        _model.ppirAreaDopDsFieldTextController
+                                                                ?.text =
+                                                            dateTimeFormat(
+                                                          "yMd",
+                                                          _model.datePicked1,
+                                                          locale:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .languageCode,
+                                                        );
+                                                        _model.ppirAreaDopDsFieldTextController
+                                                                ?.selection =
+                                                            TextSelection.collapsed(
+                                                                offset: _model
+                                                                    .ppirAreaDopDsFieldTextController!
+                                                                    .text
+                                                                    .length);
+                                                      });
+                                                    },
+                                                  ),
+                                                ].divide(const SizedBox(width: 4.0)),
+                                              ),
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Expanded(
+                                                    child: TextFormField(
+                                                      controller: _model
+                                                              .ppirAreaDopTpFieldTextController ??=
+                                                          TextEditingController(
+                                                        text:
+                                                            ppirFormSelectPpirFormsRowList
+                                                                .first
+                                                                .ppirDoptpAct,
+                                                      ),
+                                                      focusNode: _model
+                                                          .ppirAreaDopTpFieldFocusNode,
+                                                      onChanged: (_) =>
+                                                          EasyDebounce.debounce(
+                                                        '_model.ppirAreaDopTpFieldTextController',
+                                                        const Duration(
+                                                            milliseconds: 2000),
+                                                        () =>
+                                                            safeSetState(() {}),
+                                                      ),
+                                                      autofocus: false,
+                                                      textCapitalization:
+                                                          TextCapitalization
+                                                              .none,
+                                                      textInputAction:
+                                                          TextInputAction.next,
+                                                      readOnly: true,
+                                                      obscureText: false,
+                                                      decoration:
+                                                          InputDecoration(
+                                                        labelText:
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .getText(
+                                                          'a0a2mg8u' /* Actual Date of Planting (TP) */,
+                                                        ),
+                                                        labelStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                        hintStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                        enabledBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryText,
+                                                            width: 2.0,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      12.0),
+                                                        ),
+                                                        focusedBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primary,
+                                                            width: 2.0,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      12.0),
+                                                        ),
+                                                        errorBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .error,
+                                                            width: 2.0,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      12.0),
+                                                        ),
+                                                        focusedErrorBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .error,
+                                                            width: 2.0,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      12.0),
+                                                        ),
+                                                        filled: true,
+                                                        fillColor: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                        contentPadding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    16.0,
+                                                                    12.0,
+                                                                    16.0,
+                                                                    12.0),
+                                                      ),
+                                                      style: FlutterFlowTheme
                                                               .of(context)
-                                                          .secondaryBackground,
-                                                      icon: Icon(
-                                                        Icons.calendar_month,
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                      keyboardType:
+                                                          TextInputType
+                                                              .datetime,
+                                                      cursorColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      validator: _model
+                                                          .ppirAreaDopTpFieldTextControllerValidator
+                                                          .asValidator(context),
+                                                    ),
+                                                  ),
+                                                  FlutterFlowIconButton(
+                                                    borderColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .secondaryText,
+                                                    borderRadius: 12.0,
+                                                    borderWidth: 2.0,
+                                                    buttonSize: 48.0,
+                                                    fillColor: FlutterFlowTheme
+                                                            .of(context)
+                                                        .secondaryBackground,
+                                                    icon: Icon(
+                                                      Icons.calendar_month,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                      size: 20.0,
+                                                    ),
+                                                    onPressed: () async {
+                                                      final datePicked2Date =
+                                                          await showDatePicker(
+                                                        context: context,
+                                                        initialDate:
+                                                            getCurrentTimestamp,
+                                                        firstDate:
+                                                            DateTime(1900),
+                                                        lastDate:
+                                                            DateTime(2050),
+                                                      );
+
+                                                      if (datePicked2Date !=
+                                                          null) {
+                                                        safeSetState(() {
+                                                          _model.datePicked2 =
+                                                              DateTime(
+                                                            datePicked2Date
+                                                                .year,
+                                                            datePicked2Date
+                                                                .month,
+                                                            datePicked2Date
+                                                                .day,
+                                                          );
+                                                        });
+                                                      }
+                                                      safeSetState(() {
+                                                        _model.ppirAreaDopTpFieldTextController
+                                                                ?.text =
+                                                            dateTimeFormat(
+                                                          "yMd",
+                                                          _model.datePicked2,
+                                                          locale:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .languageCode,
+                                                        );
+                                                        _model.ppirAreaDopTpFieldTextController
+                                                                ?.selection =
+                                                            TextSelection.collapsed(
+                                                                offset: _model
+                                                                    .ppirAreaDopTpFieldTextController!
+                                                                    .text
+                                                                    .length);
+                                                      });
+                                                    },
+                                                  ),
+                                                ].divide(const SizedBox(width: 4.0)),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 16.0, 0.0, 16.0),
+                                                child: StyledDivider(
+                                                  thickness: 2.0,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  lineStyle:
+                                                      DividerLineStyle.dashed,
+                                                ),
+                                              ),
+                                            ]
+                                                .divide(const SizedBox(height: 5.0))
+                                                .around(const SizedBox(height: 5.0)),
+                                          ),
+                                        ),
+                                        Container(
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  1.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .alternate,
+                                          ),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 12.0),
+                                                child: Text(
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'g6bs1u02' /* Area */,
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryText,
-                                                        size: 20.0,
+                                                        letterSpacing: 0.0,
                                                       ),
-                                                      onPressed: () async {
-                                                        final datePicked2Date =
-                                                            await showDatePicker(
-                                                          context: context,
-                                                          initialDate:
-                                                              getCurrentTimestamp,
-                                                          firstDate:
-                                                              DateTime(1900),
-                                                          lastDate:
-                                                              DateTime(2050),
-                                                        );
-
-                                                        if (datePicked2Date !=
-                                                            null) {
-                                                          safeSetState(() {
-                                                            _model.datePicked2 =
-                                                                DateTime(
-                                                              datePicked2Date
-                                                                  .year,
-                                                              datePicked2Date
-                                                                  .month,
-                                                              datePicked2Date
-                                                                  .day,
-                                                            );
-                                                          });
-                                                        }
-                                                        safeSetState(() {
-                                                          _model.ppirAreaDopTpFieldTextController
-                                                                  ?.text =
-                                                              dateTimeFormat(
-                                                            "yMd",
-                                                            _model.datePicked2,
-                                                            locale: FFLocalizations
-                                                                    .of(context)
-                                                                .languageCode,
-                                                          );
-                                                          _model.ppirAreaDopTpFieldTextController
-                                                                  ?.selection =
-                                                              TextSelection.collapsed(
-                                                                  offset: _model
-                                                                      .ppirAreaDopTpFieldTextController!
-                                                                      .text
-                                                                      .length);
-                                                        });
-                                                      },
-                                                    ),
-                                                  ].divide(
-                                                      const SizedBox(width: 4.0)),
                                                 ),
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 16.0, 0.0, 16.0),
-                                                  child: StyledDivider(
-                                                    thickness: 2.0,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                    lineStyle:
-                                                        DividerLineStyle.dashed,
-                                                  ),
-                                                ),
-                                              ]
-                                                  .divide(const SizedBox(height: 5.0))
-                                                  .around(
-                                                      const SizedBox(height: 5.0)),
-                                            ),
-                                          ),
-                                          Container(
-                                            width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                1.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                            ),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 0.0, 12.0),
-                                                  child: Text(
-                                                    FFLocalizations.of(context)
-                                                        .getText(
-                                                      'g6bs1u02' /* Area */,
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyLarge
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                  ),
-                                                ),
-                                                if ((_model.capturedBlobOutput !=
-                                                        '') &&
-                                                    (_model.capturedBlobOutput !=
-                                                        'null'))
-                                                  Container(
+                                              ),
+                                              if ((_model.capturedBlobOutput !=
+                                                      '') &&
+                                                  (_model.capturedBlobOutput !=
+                                                      'null'))
+                                                Container(
+                                                  width:
+                                                      MediaQuery.sizeOf(context)
+                                                              .width *
+                                                          1.0,
+                                                  height: 250.0,
+                                                  decoration: const BoxDecoration(),
+                                                  child: SizedBox(
                                                     width: MediaQuery.sizeOf(
                                                                 context)
                                                             .width *
                                                         1.0,
-                                                    height: 250.0,
-                                                    decoration: const BoxDecoration(),
-                                                    child: SizedBox(
+                                                    height: MediaQuery.sizeOf(
+                                                                context)
+                                                            .height *
+                                                        1.0,
+                                                    child: custom_widgets
+                                                        .Base64ImageLoader(
                                                       width: MediaQuery.sizeOf(
                                                                   context)
                                                               .width *
@@ -2847,1209 +2824,1195 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   context)
                                                               .height *
                                                           1.0,
-                                                      child: custom_widgets
-                                                          .Base64ImageLoader(
-                                                        width:
-                                                            MediaQuery.sizeOf(
-                                                                        context)
-                                                                    .width *
-                                                                1.0,
-                                                        height:
-                                                            MediaQuery.sizeOf(
-                                                                        context)
-                                                                    .height *
-                                                                1.0,
-                                                        taskId: widget.taskId,
-                                                        imageBase64: _model
-                                                            .capturedBlobOutput,
-                                                      ),
+                                                      taskId: widget.taskId,
+                                                      imageBase64: _model
+                                                          .capturedBlobOutput,
                                                     ),
                                                   ),
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    FFButtonWidget(
-                                                      onPressed: () async {
-                                                        await requestPermission(
-                                                            cameraPermission);
-                                                        if (await getPermissionStatus(
-                                                            cameraPermission)) {
-                                                          final selectedMedia =
-                                                              await selectMedia(
-                                                            imageQuality: 30,
-                                                            multiImage: false,
-                                                          );
-                                                          if (selectedMedia !=
-                                                                  null &&
-                                                              selectedMedia.every((m) =>
-                                                                  validateFileFormat(
-                                                                      m.storagePath,
-                                                                      context))) {
-                                                            safeSetState(() =>
-                                                                _model.isDataUploading =
-                                                                    true);
-                                                            var selectedUploadedFiles =
-                                                                <FFUploadedFile>[];
-
-                                                            try {
-                                                              selectedUploadedFiles =
-                                                                  selectedMedia
-                                                                      .map((m) =>
-                                                                          FFUploadedFile(
-                                                                            name:
-                                                                                m.storagePath.split('/').last,
-                                                                            bytes:
-                                                                                m.bytes,
-                                                                            height:
-                                                                                m.dimensions?.height,
-                                                                            width:
-                                                                                m.dimensions?.width,
-                                                                            blurHash:
-                                                                                m.blurHash,
-                                                                          ))
-                                                                      .toList();
-                                                            } finally {
+                                                ),
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  FFButtonWidget(
+                                                    onPressed: () async {
+                                                      await requestPermission(
+                                                          cameraPermission);
+                                                      if (await getPermissionStatus(
+                                                          cameraPermission)) {
+                                                        final selectedMedia =
+                                                            await selectMedia(
+                                                          imageQuality: 30,
+                                                          multiImage: false,
+                                                        );
+                                                        if (selectedMedia !=
+                                                                null &&
+                                                            selectedMedia.every((m) =>
+                                                                validateFileFormat(
+                                                                    m.storagePath,
+                                                                    context))) {
+                                                          safeSetState(() =>
                                                               _model.isDataUploading =
-                                                                  false;
-                                                            }
-                                                            if (selectedUploadedFiles
-                                                                    .length ==
-                                                                selectedMedia
-                                                                    .length) {
-                                                              safeSetState(() {
-                                                                _model.uploadedLocalFile =
-                                                                    selectedUploadedFiles
-                                                                        .first;
-                                                              });
-                                                            } else {
-                                                              safeSetState(
-                                                                  () {});
-                                                              return;
-                                                            }
-                                                          }
+                                                                  true);
+                                                          var selectedUploadedFiles =
+                                                              <FFUploadedFile>[];
 
-                                                          _model.base64 =
-                                                              await actions
-                                                                  .convertCapturedImageToBase64(
-                                                            _model
-                                                                .uploadedLocalFile,
-                                                          );
-                                                          FFAppState()
-                                                                  .capturedArea =
-                                                              _model.base64!;
-                                                          safeSetState(() {});
-                                                          _model.capturedBlobOutput =
-                                                              _model.base64;
-                                                          safeSetState(() {});
-                                                          safeSetState(() {
-                                                            _model.capturedImageBlobInputTextController
-                                                                    ?.text =
-                                                                _model.base64!;
-                                                            _model.capturedImageBlobInputTextController
-                                                                    ?.selection =
-                                                                TextSelection.collapsed(
-                                                                    offset: _model
-                                                                        .capturedImageBlobInputTextController!
-                                                                        .text
-                                                                        .length);
-                                                          });
-                                                          safeSetState(() {
+                                                          try {
+                                                            selectedUploadedFiles =
+                                                                selectedMedia
+                                                                    .map((m) =>
+                                                                        FFUploadedFile(
+                                                                          name: m
+                                                                              .storagePath
+                                                                              .split('/')
+                                                                              .last,
+                                                                          bytes:
+                                                                              m.bytes,
+                                                                          height: m
+                                                                              .dimensions
+                                                                              ?.height,
+                                                                          width: m
+                                                                              .dimensions
+                                                                              ?.width,
+                                                                          blurHash:
+                                                                              m.blurHash,
+                                                                        ))
+                                                                    .toList();
+                                                          } finally {
                                                             _model.isDataUploading =
                                                                 false;
-                                                            _model.uploadedLocalFile =
-                                                                FFUploadedFile(
-                                                                    bytes: Uint8List
-                                                                        .fromList(
-                                                                            []));
-                                                          });
+                                                          }
+                                                          if (selectedUploadedFiles
+                                                                  .length ==
+                                                              selectedMedia
+                                                                  .length) {
+                                                            safeSetState(() {
+                                                              _model.uploadedLocalFile =
+                                                                  selectedUploadedFiles
+                                                                      .first;
+                                                            });
+                                                          } else {
+                                                            safeSetState(() {});
+                                                            return;
+                                                          }
                                                         }
 
+                                                        _model.base64 =
+                                                            await actions
+                                                                .convertCapturedImageToBase64(
+                                                          _model
+                                                              .uploadedLocalFile,
+                                                        );
+                                                        FFAppState()
+                                                                .capturedArea =
+                                                            _model.base64!;
                                                         safeSetState(() {});
-                                                      },
-                                                      text: (_model.capturedBlobOutput !=
-                                                                  '') &&
-                                                              (_model.capturedBlobOutput !=
-                                                                  'null')
-                                                          ? 'Re-Capture'
-                                                          : 'Capture',
-                                                      icon: const Icon(
-                                                        Icons.camera_alt,
-                                                        size: 15.0,
+                                                        _model.capturedBlobOutput =
+                                                            _model.base64;
+                                                        safeSetState(() {});
+                                                        safeSetState(() {
+                                                          _model.capturedImageBlobInputTextController
+                                                                  ?.text =
+                                                              _model.base64!;
+                                                          _model.capturedImageBlobInputTextController
+                                                                  ?.selection =
+                                                              TextSelection.collapsed(
+                                                                  offset: _model
+                                                                      .capturedImageBlobInputTextController!
+                                                                      .text
+                                                                      .length);
+                                                        });
+                                                        safeSetState(() {
+                                                          _model.isDataUploading =
+                                                              false;
+                                                          _model.uploadedLocalFile =
+                                                              FFUploadedFile(
+                                                                  bytes: Uint8List
+                                                                      .fromList(
+                                                                          []));
+                                                        });
+                                                      }
+
+                                                      safeSetState(() {});
+                                                    },
+                                                    text: (_model.capturedBlobOutput !=
+                                                                '') &&
+                                                            (_model.capturedBlobOutput !=
+                                                                'null')
+                                                        ? 'Re-Capture'
+                                                        : 'Capture',
+                                                    icon: const Icon(
+                                                      Icons.camera_alt,
+                                                      size: 15.0,
+                                                    ),
+                                                    options: FFButtonOptions(
+                                                      width: 120.0,
+                                                      height: 40.0,
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      iconPadding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      textStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmall
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                color: Colors
+                                                                    .white,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                      elevation: 3.0,
+                                                      borderSide: const BorderSide(
+                                                        color:
+                                                            Colors.transparent,
+                                                        width: 1.0,
                                                       ),
-                                                      options: FFButtonOptions(
-                                                        width: 120.0,
-                                                        height: 40.0,
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        iconPadding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                    ),
+                                                  ),
+                                                  if (kDebugMode)
+                                                    Expanded(
+                                                      child: TextFormField(
+                                                        controller: _model
+                                                                .capturedImageBlobInputTextController ??=
+                                                            TextEditingController(
+                                                          text:
+                                                              ppirFormSelectPpirFormsRowList
+                                                                  .first
+                                                                  .capturedArea,
+                                                        ),
+                                                        focusNode: _model
+                                                            .capturedImageBlobInputFocusNode,
+                                                        onChanged: (_) =>
+                                                            EasyDebounce
+                                                                .debounce(
+                                                          '_model.capturedImageBlobInputTextController',
+                                                          const Duration(
+                                                              milliseconds:
+                                                                  2000),
+                                                          () => safeSetState(
+                                                              () {}),
+                                                        ),
+                                                        autofocus: false,
+                                                        textCapitalization:
+                                                            TextCapitalization
+                                                                .none,
+                                                        textInputAction:
+                                                            TextInputAction
+                                                                .next,
+                                                        readOnly: true,
+                                                        obscureText: false,
+                                                        decoration:
+                                                            InputDecoration(
+                                                          labelText:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .getText(
+                                                            'w9s8lti0' /* Base 64 (debug only) */,
+                                                          ),
+                                                          labelStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                          hintStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                          enabledBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryText,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        12.0),
+                                                          ),
+                                                          focusedBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primary,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        12.0),
+                                                          ),
+                                                          errorBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .error,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        12.0),
+                                                          ),
+                                                          focusedErrorBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .error,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        12.0),
+                                                          ),
+                                                          filled: true,
+                                                          fillColor: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                          contentPadding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      16.0,
+                                                                      12.0,
+                                                                      16.0,
+                                                                      12.0),
+                                                        ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                        maxLines: 5,
+                                                        keyboardType:
+                                                            TextInputType
+                                                                .datetime,
+                                                        cursorColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        validator: _model
+                                                            .capturedImageBlobInputTextControllerValidator
+                                                            .asValidator(
+                                                                context),
+                                                      ),
+                                                    ),
+                                                ].divide(const SizedBox(width: 4.0)),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 16.0, 0.0, 16.0),
+                                                child: StyledDivider(
+                                                  thickness: 2.0,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  lineStyle:
+                                                      DividerLineStyle.dashed,
+                                                ),
+                                              ),
+                                            ]
+                                                .divide(const SizedBox(height: 5.0))
+                                                .around(const SizedBox(height: 5.0)),
+                                          ),
+                                        ),
+                                        Container(
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  1.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .alternate,
+                                          ),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 12.0),
+                                                child: Text(
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'f5is9k8s' /* Report Confirmation */,
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 10.0, 0.0, 10.0),
+                                                child: TextFormField(
+                                                  controller: _model
+                                                          .ppirRemarksFieldTextController ??=
+                                                      TextEditingController(
+                                                    text:
+                                                        ppirFormSelectPpirFormsRowList
+                                                            .first.ppirRemarks,
+                                                  ),
+                                                  focusNode: _model
+                                                      .ppirRemarksFieldFocusNode,
+                                                  onChanged: (_) =>
+                                                      EasyDebounce.debounce(
+                                                    '_model.ppirRemarksFieldTextController',
+                                                    const Duration(
+                                                        milliseconds: 2000),
+                                                    () => safeSetState(() {}),
+                                                  ),
+                                                  autofocus: false,
+                                                  textInputAction:
+                                                      TextInputAction.next,
+                                                  obscureText: false,
+                                                  decoration: InputDecoration(
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    hintText:
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                      'xd5quvbx' /* Remarks */,
+                                                    ),
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primary,
-                                                        textStyle:
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    errorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .titleSmall
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: Colors
-                                                                      .white,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                        elevation: 3.0,
-                                                        borderSide: const BorderSide(
-                                                          color: Colors
-                                                              .transparent,
-                                                          width: 1.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
+                                                                .error,
+                                                        width: 2.0,
                                                       ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
                                                     ),
-                                                    if (kDebugMode)
-                                                      Expanded(
-                                                        child: TextFormField(
-                                                          controller: _model
-                                                                  .capturedImageBlobInputTextController ??=
-                                                              TextEditingController(
-                                                            text: ppirFormSelectPpirFormsRowList
-                                                                .first
-                                                                .capturedArea,
-                                                          ),
-                                                          focusNode: _model
-                                                              .capturedImageBlobInputFocusNode,
-                                                          onChanged: (_) =>
-                                                              EasyDebounce
-                                                                  .debounce(
-                                                            '_model.capturedImageBlobInputTextController',
-                                                            const Duration(
-                                                                milliseconds:
-                                                                    2000),
-                                                            () => safeSetState(
-                                                                () {}),
-                                                          ),
-                                                          autofocus: false,
-                                                          textCapitalization:
-                                                              TextCapitalization
-                                                                  .none,
-                                                          textInputAction:
-                                                              TextInputAction
-                                                                  .next,
-                                                          readOnly: true,
-                                                          obscureText: false,
-                                                          decoration:
-                                                              InputDecoration(
-                                                            labelText:
-                                                                FFLocalizations.of(
-                                                                        context)
-                                                                    .getText(
-                                                              'w9s8lti0' /* Base 64 (debug only) */,
-                                                            ),
-                                                            labelStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Readex Pro',
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
-                                                            hintStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Readex Pro',
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
-                                                            enabledBorder:
-                                                                OutlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                width: 2.0,
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          12.0),
-                                                            ),
-                                                            focusedBorder:
-                                                                OutlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primary,
-                                                                width: 2.0,
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          12.0),
-                                                            ),
-                                                            errorBorder:
-                                                                OutlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .error,
-                                                                width: 2.0,
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          12.0),
-                                                            ),
-                                                            focusedErrorBorder:
-                                                                OutlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .error,
-                                                                width: 2.0,
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          12.0),
-                                                            ),
-                                                            filled: true,
-                                                            fillColor: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryBackground,
-                                                            contentPadding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        16.0,
-                                                                        12.0,
-                                                                        16.0,
-                                                                        12.0),
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                          maxLines: 5,
-                                                          keyboardType:
-                                                              TextInputType
-                                                                  .datetime,
-                                                          cursorColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .primary,
-                                                          validator: _model
-                                                              .capturedImageBlobInputTextControllerValidator
-                                                              .asValidator(
-                                                                  context),
-                                                        ),
+                                                    focusedErrorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
                                                       ),
-                                                  ].divide(
-                                                      const SizedBox(width: 4.0)),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 16.0, 0.0, 16.0),
-                                                  child: StyledDivider(
-                                                    thickness: 2.0,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                    lineStyle:
-                                                        DividerLineStyle.dashed,
-                                                  ),
-                                                ),
-                                              ]
-                                                  .divide(const SizedBox(height: 5.0))
-                                                  .around(
-                                                      const SizedBox(height: 5.0)),
-                                            ),
-                                          ),
-                                          Container(
-                                            width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                1.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                            ),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 0.0, 12.0),
-                                                  child: Text(
-                                                    FFLocalizations.of(context)
-                                                        .getText(
-                                                      'f5is9k8s' /* Report Confirmation */,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
                                                     ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyLarge
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 10.0, 0.0, 10.0),
-                                                  child: TextFormField(
-                                                    controller: _model
-                                                            .ppirRemarksFieldTextController ??=
-                                                        TextEditingController(
-                                                      text:
-                                                          ppirFormSelectPpirFormsRowList
-                                                              .first
-                                                              .ppirRemarks,
-                                                    ),
-                                                    focusNode: _model
-                                                        .ppirRemarksFieldFocusNode,
-                                                    onChanged: (_) =>
-                                                        EasyDebounce.debounce(
-                                                      '_model.ppirRemarksFieldTextController',
-                                                      const Duration(
-                                                          milliseconds: 2000),
-                                                      () => safeSetState(() {}),
-                                                    ),
-                                                    autofocus: false,
-                                                    textInputAction:
-                                                        TextInputAction.next,
-                                                    obscureText: false,
-                                                    decoration: InputDecoration(
-                                                      labelStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                      hintText:
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                        'xd5quvbx' /* Remarks */,
-                                                      ),
-                                                      hintStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                      enabledBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      focusedBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      errorBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .error,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      focusedErrorBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .error,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      filled: true,
-                                                      fillColor: FlutterFlowTheme
-                                                              .of(context)
-                                                          .secondaryBackground,
-                                                      contentPadding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  16.0,
-                                                                  24.0,
-                                                                  16.0,
-                                                                  12.0),
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                    maxLines: 16,
-                                                    minLines: 10,
-                                                    cursorColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primary,
-                                                    validator: _model
-                                                        .ppirRemarksFieldTextControllerValidator
-                                                        .asValidator(context),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 10.0, 0.0, 10.0),
-                                                  child: TextFormField(
-                                                    controller: _model
-                                                            .ppirPreparedByNameFieldTextController ??=
-                                                        TextEditingController(
-                                                      text:
-                                                          ppirFormSelectPpirFormsRowList
-                                                              .first
-                                                              .ppirNameInsured,
-                                                    ),
-                                                    focusNode: _model
-                                                        .ppirPreparedByNameFieldFocusNode,
-                                                    onChanged: (_) =>
-                                                        EasyDebounce.debounce(
-                                                      '_model.ppirPreparedByNameFieldTextController',
-                                                      const Duration(
-                                                          milliseconds: 2000),
-                                                      () => safeSetState(() {}),
-                                                    ),
-                                                    autofocus: false,
-                                                    textInputAction:
-                                                        TextInputAction.next,
-                                                    obscureText: false,
-                                                    decoration: InputDecoration(
-                                                      labelText:
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                        '2slf6a8t' /* Farmer Full Name */,
-                                                      ),
-                                                      labelStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                      hintStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                      enabledBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      focusedBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      errorBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .error,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      focusedErrorBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .error,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      filled: true,
-                                                      fillColor: FlutterFlowTheme
-                                                              .of(context)
-                                                          .secondaryBackground,
-                                                      contentPadding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  16.0,
-                                                                  12.0,
-                                                                  16.0,
-                                                                  12.0),
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                    cursorColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primary,
-                                                    validator: _model
-                                                        .ppirPreparedByNameFieldTextControllerValidator
-                                                        .asValidator(context),
-                                                  ),
-                                                ),
-                                                Align(
-                                                  alignment:
-                                                      const AlignmentDirectional(
-                                                          0.0, 0.0),
-                                                  child: Padding(
-                                                    padding:
+                                                    filled: true,
+                                                    fillColor: FlutterFlowTheme
+                                                            .of(context)
+                                                        .secondaryBackground,
+                                                    contentPadding:
                                                         const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 10.0,
-                                                                0.0, 10.0),
-                                                    child: Container(
-                                                      height: MediaQuery.sizeOf(
-                                                                  context)
-                                                              .height *
-                                                          0.2,
-                                                      decoration: BoxDecoration(
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .secondaryBackground,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10.0),
-                                                        border: Border.all(
-                                                          color: valueOrDefault<
-                                                              Color>(
-                                                            _model.hasSigInsured
-                                                                ? FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText
-                                                                : FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .error,
+                                                            .fromSTEB(
+                                                                16.0,
+                                                                24.0,
+                                                                16.0,
+                                                                12.0),
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                  maxLines: 16,
+                                                  minLines: 10,
+                                                  cursorColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary,
+                                                  validator: _model
+                                                      .ppirRemarksFieldTextControllerValidator
+                                                      .asValidator(context),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 10.0, 0.0, 10.0),
+                                                child: TextFormField(
+                                                  controller: _model
+                                                          .ppirPreparedByNameFieldTextController ??=
+                                                      TextEditingController(
+                                                    text:
+                                                        ppirFormSelectPpirFormsRowList
+                                                            .first
+                                                            .ppirNameInsured,
+                                                  ),
+                                                  focusNode: _model
+                                                      .ppirPreparedByNameFieldFocusNode,
+                                                  onChanged: (_) =>
+                                                      EasyDebounce.debounce(
+                                                    '_model.ppirPreparedByNameFieldTextController',
+                                                    const Duration(
+                                                        milliseconds: 2000),
+                                                    () => safeSetState(() {}),
+                                                  ),
+                                                  autofocus: false,
+                                                  textInputAction:
+                                                      TextInputAction.next,
+                                                  obscureText: false,
+                                                  decoration: InputDecoration(
+                                                    labelText:
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                      '2slf6a8t' /* Farmer Full Name */,
+                                                    ),
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primary,
-                                                          ),
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    errorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    focusedErrorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    filled: true,
+                                                    fillColor: FlutterFlowTheme
+                                                            .of(context)
+                                                        .secondaryBackground,
+                                                    contentPadding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                16.0,
+                                                                12.0,
+                                                                16.0,
+                                                                12.0),
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                  cursorColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary,
+                                                  validator: _model
+                                                      .ppirPreparedByNameFieldTextControllerValidator
+                                                      .asValidator(context),
+                                                ),
+                                              ),
+                                              Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 10.0, 0.0, 10.0),
+                                                  child: Container(
+                                                    height: MediaQuery.sizeOf(
+                                                                context)
+                                                            .height *
+                                                        0.2,
+                                                    decoration: BoxDecoration(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.0),
+                                                      border: Border.all(
+                                                        color: valueOrDefault<
+                                                            Color>(
+                                                          _model.hasSigInsured
+                                                              ? FlutterFlowTheme
+                                                                      .of(
+                                                                          context)
+                                                                  .secondaryText
+                                                              : FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .error,
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
                                                         ),
                                                       ),
-                                                      child: Align(
-                                                        alignment:
-                                                            const AlignmentDirectional(
-                                                                0.0, 0.0),
-                                                        child: InkWell(
-                                                          splashColor: Colors
-                                                              .transparent,
-                                                          focusColor: Colors
-                                                              .transparent,
-                                                          hoverColor: Colors
-                                                              .transparent,
-                                                          highlightColor: Colors
-                                                              .transparent,
-                                                          onTap: () async {
-                                                            await showModalBottomSheet(
-                                                              isScrollControlled:
-                                                                  true,
-                                                              backgroundColor:
-                                                                  Colors
-                                                                      .transparent,
-                                                              enableDrag: false,
-                                                              context: context,
-                                                              builder:
-                                                                  (context) {
-                                                                return GestureDetector(
-                                                                  onTap: () =>
-                                                                      FocusScope.of(
-                                                                              context)
-                                                                          .unfocus(),
+                                                    ),
+                                                    child: Align(
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          await showModalBottomSheet(
+                                                            isScrollControlled:
+                                                                true,
+                                                            backgroundColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            enableDrag: false,
+                                                            context: context,
+                                                            builder: (context) {
+                                                              return GestureDetector(
+                                                                onTap: () =>
+                                                                    FocusScope.of(
+                                                                            context)
+                                                                        .unfocus(),
+                                                                child: Padding(
+                                                                  padding: MediaQuery
+                                                                      .viewInsetsOf(
+                                                                          context),
                                                                   child:
-                                                                      Padding(
-                                                                    padding: MediaQuery
-                                                                        .viewInsetsOf(
-                                                                            context),
-                                                                    child:
-                                                                        SignatureWidget(
-                                                                      taskId: widget
-                                                                          .taskId!,
-                                                                      signatureFor:
-                                                                          'insured',
-                                                                    ),
+                                                                      SignatureWidget(
+                                                                    taskId: widget
+                                                                        .taskId!,
+                                                                    signatureFor:
+                                                                        'insured',
                                                                   ),
-                                                                );
-                                                              },
-                                                            ).then((value) =>
-                                                                safeSetState(
-                                                                    () {}));
+                                                                ),
+                                                              );
+                                                            },
+                                                          ).then((value) =>
+                                                              safeSetState(
+                                                                  () {}));
 
-                                                            _model.hasSigInsured =
-                                                                true;
-                                                            safeSetState(() {});
-                                                          },
-                                                          child: Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              Text(
-                                                                ppirFormSelectPpirFormsRowList
-                                                                            .first
-                                                                            .ppirSigInsured !=
-                                                                        'null'
-                                                                    ? 'Tap to change farmer signature'
-                                                                    : 'Farmer Signature',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Readex Pro',
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
-                                                              ),
-                                                              Stack(
-                                                                children: [
-                                                                  if (ppirFormSelectPpirFormsRowList
-                                                                          .first
-                                                                          .ppirSigInsured ==
-                                                                      'null')
-                                                                    ClipRRect(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              8.0),
-                                                                      child: Image
-                                                                          .asset(
-                                                                        'assets/images/signature.png',
-                                                                        width:
-                                                                            () {
-                                                                          if (MediaQuery.sizeOf(context).width <
-                                                                              kBreakpointSmall) {
-                                                                            return 60.0;
-                                                                          } else if (MediaQuery.sizeOf(context).width <
-                                                                              kBreakpointMedium) {
-                                                                            return 75.0;
-                                                                          } else if (MediaQuery.sizeOf(context).width <
-                                                                              kBreakpointLarge) {
-                                                                            return 75.0;
-                                                                          } else {
-                                                                            return 80.0;
-                                                                          }
-                                                                        }(),
-                                                                        height: MediaQuery.sizeOf(context).height *
-                                                                            0.15,
-                                                                        fit: BoxFit
-                                                                            .contain,
-                                                                      ),
-                                                                    ),
-                                                                  if (ppirFormSelectPpirFormsRowList
+                                                          _model.hasSigInsured =
+                                                              true;
+                                                          safeSetState(() {});
+                                                        },
+                                                        child: Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Text(
+                                                              ppirFormSelectPpirFormsRowList
                                                                           .first
                                                                           .ppirSigInsured !=
-                                                                      'null')
-                                                                    Container(
+                                                                      'null'
+                                                                  ? 'Tap to change farmer signature'
+                                                                  : 'Farmer Signature',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                            ),
+                                                            Stack(
+                                                              children: [
+                                                                if (ppirFormSelectPpirFormsRowList
+                                                                        .first
+                                                                        .ppirSigInsured ==
+                                                                    'null')
+                                                                  ClipRRect(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            8.0),
+                                                                    child: Image
+                                                                        .asset(
+                                                                      'assets/images/signature.png',
+                                                                      width:
+                                                                          () {
+                                                                        if (MediaQuery.sizeOf(context).width <
+                                                                            kBreakpointSmall) {
+                                                                          return 60.0;
+                                                                        } else if (MediaQuery.sizeOf(context).width <
+                                                                            kBreakpointMedium) {
+                                                                          return 75.0;
+                                                                        } else if (MediaQuery.sizeOf(context).width <
+                                                                            kBreakpointLarge) {
+                                                                          return 75.0;
+                                                                        } else {
+                                                                          return 80.0;
+                                                                        }
+                                                                      }(),
+                                                                      height: MediaQuery.sizeOf(context)
+                                                                              .height *
+                                                                          0.15,
+                                                                      fit: BoxFit
+                                                                          .contain,
+                                                                    ),
+                                                                  ),
+                                                                if (ppirFormSelectPpirFormsRowList
+                                                                        .first
+                                                                        .ppirSigInsured !=
+                                                                    'null')
+                                                                  Container(
+                                                                    width: MediaQuery.sizeOf(context)
+                                                                            .width *
+                                                                        1.0,
+                                                                    height: MediaQuery.sizeOf(context)
+                                                                            .height *
+                                                                        0.175,
+                                                                    decoration:
+                                                                        const BoxDecoration(
+                                                                      color: Colors
+                                                                          .white,
+                                                                      borderRadius:
+                                                                          BorderRadius
+                                                                              .only(
+                                                                        bottomLeft:
+                                                                            Radius.circular(10.0),
+                                                                        bottomRight:
+                                                                            Radius.circular(10.0),
+                                                                        topLeft:
+                                                                            Radius.circular(0.0),
+                                                                        topRight:
+                                                                            Radius.circular(0.0),
+                                                                      ),
+                                                                    ),
+                                                                    child:
+                                                                        SizedBox(
                                                                       width: MediaQuery.sizeOf(context)
                                                                               .width *
                                                                           1.0,
-                                                                      height: MediaQuery.sizeOf(context)
-                                                                              .height *
-                                                                          0.175,
-                                                                      decoration:
-                                                                          const BoxDecoration(
-                                                                        color: Colors
-                                                                            .white,
-                                                                        borderRadius:
-                                                                            BorderRadius.only(
-                                                                          bottomLeft:
-                                                                              Radius.circular(10.0),
-                                                                          bottomRight:
-                                                                              Radius.circular(10.0),
-                                                                          topLeft:
-                                                                              Radius.circular(0.0),
-                                                                          topRight:
-                                                                              Radius.circular(0.0),
-                                                                        ),
-                                                                      ),
-                                                                      child:
-                                                                          SizedBox(
+                                                                      height:
+                                                                          MediaQuery.sizeOf(context).height *
+                                                                              1.0,
+                                                                      child: custom_widgets
+                                                                          .Base64ImageLoader(
                                                                         width: MediaQuery.sizeOf(context).width *
                                                                             1.0,
                                                                         height: MediaQuery.sizeOf(context).height *
                                                                             1.0,
-                                                                        child: custom_widgets
-                                                                            .Base64ImageLoader(
-                                                                          width:
-                                                                              MediaQuery.sizeOf(context).width * 1.0,
-                                                                          height:
-                                                                              MediaQuery.sizeOf(context).height * 1.0,
-                                                                          taskId:
-                                                                              widget.taskId,
-                                                                          imageBase64: ppirFormSelectPpirFormsRowList
-                                                                              .first
-                                                                              .ppirSigInsured,
-                                                                        ),
+                                                                        taskId:
+                                                                            widget.taskId,
+                                                                        imageBase64: ppirFormSelectPpirFormsRowList
+                                                                            .first
+                                                                            .ppirSigInsured,
                                                                       ),
                                                                     ),
-                                                                ],
-                                                              ),
-                                                            ],
-                                                          ),
+                                                                  ),
+                                                              ],
+                                                            ),
+                                                          ],
                                                         ),
                                                       ),
                                                     ),
                                                   ),
                                                 ),
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 10.0, 0.0, 10.0),
-                                                  child: TextFormField(
-                                                    controller: _model
-                                                            .ppirConfirmedByNameFieldTextController ??=
-                                                        TextEditingController(
-                                                      text:
-                                                          ppirFormSelectPpirFormsRowList
-                                                              .first
-                                                              .ppirNameIuia,
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 10.0, 0.0, 10.0),
+                                                child: TextFormField(
+                                                  controller: _model
+                                                          .ppirConfirmedByNameFieldTextController ??=
+                                                      TextEditingController(
+                                                    text:
+                                                        ppirFormSelectPpirFormsRowList
+                                                            .first.ppirNameIuia,
+                                                  ),
+                                                  focusNode: _model
+                                                      .ppirConfirmedByNameFieldFocusNode,
+                                                  onChanged: (_) =>
+                                                      EasyDebounce.debounce(
+                                                    '_model.ppirConfirmedByNameFieldTextController',
+                                                    const Duration(
+                                                        milliseconds: 2000),
+                                                    () => safeSetState(() {}),
+                                                  ),
+                                                  autofocus: false,
+                                                  textCapitalization:
+                                                      TextCapitalization.none,
+                                                  textInputAction:
+                                                      TextInputAction.done,
+                                                  obscureText: false,
+                                                  decoration: InputDecoration(
+                                                    labelText:
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                      '0wibdp4s' /* Inspector Full Name */,
                                                     ),
-                                                    focusNode: _model
-                                                        .ppirConfirmedByNameFieldFocusNode,
-                                                    onChanged: (_) =>
-                                                        EasyDebounce.debounce(
-                                                      '_model.ppirConfirmedByNameFieldTextController',
-                                                      const Duration(
-                                                          milliseconds: 2000),
-                                                      () => safeSetState(() {}),
-                                                    ),
-                                                    autofocus: false,
-                                                    textCapitalization:
-                                                        TextCapitalization.none,
-                                                    textInputAction:
-                                                        TextInputAction.done,
-                                                    obscureText: false,
-                                                    decoration: InputDecoration(
-                                                      labelText:
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                        '0wibdp4s' /* Inspector Full Name */,
-                                                      ),
-                                                      labelStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                      hintStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                      enabledBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      focusedBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      errorBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .error,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      focusedErrorBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .error,
-                                                          width: 2.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12.0),
-                                                      ),
-                                                      filled: true,
-                                                      fillColor: FlutterFlowTheme
-                                                              .of(context)
-                                                          .secondaryBackground,
-                                                      contentPadding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  16.0,
-                                                                  12.0,
-                                                                  16.0,
-                                                                  12.0),
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
+                                                    labelStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
                                                           letterSpacing: 0.0,
                                                         ),
-                                                    cursorColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primary,
-                                                    validator: _model
-                                                        .ppirConfirmedByNameFieldTextControllerValidator
-                                                        .asValidator(context),
-                                                  ),
-                                                ),
-                                                Align(
-                                                  alignment:
-                                                      const AlignmentDirectional(
-                                                          0.0, 0.0),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 10.0,
-                                                                0.0, 10.0),
-                                                    child: Container(
-                                                      height: MediaQuery.sizeOf(
-                                                                  context)
-                                                              .height *
-                                                          0.2,
-                                                      decoration: BoxDecoration(
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .secondaryBackground,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10.0),
-                                                        border: Border.all(
-                                                          color: valueOrDefault<
-                                                              Color>(
-                                                            _model.hasSigIuia
-                                                                ? FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText
-                                                                : FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .error,
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primary,
-                                                          ),
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    errorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    focusedErrorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                    ),
+                                                    filled: true,
+                                                    fillColor: FlutterFlowTheme
+                                                            .of(context)
+                                                        .secondaryBackground,
+                                                    contentPadding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                16.0,
+                                                                12.0,
+                                                                16.0,
+                                                                12.0),
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                  cursorColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary,
+                                                  validator: _model
+                                                      .ppirConfirmedByNameFieldTextControllerValidator
+                                                      .asValidator(context),
+                                                ),
+                                              ),
+                                              Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 10.0, 0.0, 10.0),
+                                                  child: Container(
+                                                    height: MediaQuery.sizeOf(
+                                                                context)
+                                                            .height *
+                                                        0.2,
+                                                    decoration: BoxDecoration(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.0),
+                                                      border: Border.all(
+                                                        color: valueOrDefault<
+                                                            Color>(
+                                                          _model.hasSigIuia
+                                                              ? FlutterFlowTheme
+                                                                      .of(
+                                                                          context)
+                                                                  .secondaryText
+                                                              : FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .error,
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
                                                         ),
                                                       ),
-                                                      child: Align(
-                                                        alignment:
-                                                            const AlignmentDirectional(
-                                                                0.0, 0.0),
-                                                        child: InkWell(
-                                                          splashColor: Colors
-                                                              .transparent,
-                                                          focusColor: Colors
-                                                              .transparent,
-                                                          hoverColor: Colors
-                                                              .transparent,
-                                                          highlightColor: Colors
-                                                              .transparent,
-                                                          onTap: () async {
-                                                            await showModalBottomSheet(
-                                                              isScrollControlled:
-                                                                  true,
-                                                              backgroundColor:
-                                                                  Colors
-                                                                      .transparent,
-                                                              enableDrag: false,
-                                                              context: context,
-                                                              builder:
-                                                                  (context) {
-                                                                return GestureDetector(
-                                                                  onTap: () =>
-                                                                      FocusScope.of(
-                                                                              context)
-                                                                          .unfocus(),
+                                                    ),
+                                                    child: Align(
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          await showModalBottomSheet(
+                                                            isScrollControlled:
+                                                                true,
+                                                            backgroundColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            enableDrag: false,
+                                                            context: context,
+                                                            builder: (context) {
+                                                              return GestureDetector(
+                                                                onTap: () =>
+                                                                    FocusScope.of(
+                                                                            context)
+                                                                        .unfocus(),
+                                                                child: Padding(
+                                                                  padding: MediaQuery
+                                                                      .viewInsetsOf(
+                                                                          context),
                                                                   child:
-                                                                      Padding(
-                                                                    padding: MediaQuery
-                                                                        .viewInsetsOf(
-                                                                            context),
-                                                                    child:
-                                                                        SignatureWidget(
-                                                                      taskId: widget
-                                                                          .taskId!,
-                                                                      signatureFor:
-                                                                          'iuia',
-                                                                    ),
+                                                                      SignatureWidget(
+                                                                    taskId: widget
+                                                                        .taskId!,
+                                                                    signatureFor:
+                                                                        'iuia',
                                                                   ),
-                                                                );
-                                                              },
-                                                            ).then((value) =>
-                                                                safeSetState(
-                                                                    () {}));
+                                                                ),
+                                                              );
+                                                            },
+                                                          ).then((value) =>
+                                                              safeSetState(
+                                                                  () {}));
 
-                                                            _model.hasSigIuia =
-                                                                true;
-                                                            safeSetState(() {});
-                                                          },
-                                                          child: Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              Text(
-                                                                ppirFormSelectPpirFormsRowList
-                                                                            .first
-                                                                            .ppirSigIuia !=
-                                                                        'null'
-                                                                    ? 'Tap to change inspector signature'
-                                                                    : 'Inspector Signature',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Readex Pro',
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
-                                                              ),
-                                                              Stack(
-                                                                children: [
-                                                                  if (ppirFormSelectPpirFormsRowList
-                                                                          .first
-                                                                          .ppirSigIuia ==
-                                                                      'null')
-                                                                    ClipRRect(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              8.0),
-                                                                      child: Image
-                                                                          .asset(
-                                                                        'assets/images/signature.png',
-                                                                        width:
-                                                                            () {
-                                                                          if (MediaQuery.sizeOf(context).width <
-                                                                              kBreakpointSmall) {
-                                                                            return 60.0;
-                                                                          } else if (MediaQuery.sizeOf(context).width <
-                                                                              kBreakpointMedium) {
-                                                                            return 75.0;
-                                                                          } else if (MediaQuery.sizeOf(context).width <
-                                                                              kBreakpointLarge) {
-                                                                            return 75.0;
-                                                                          } else {
-                                                                            return 80.0;
-                                                                          }
-                                                                        }(),
-                                                                        height: MediaQuery.sizeOf(context).height *
-                                                                            0.15,
-                                                                        fit: BoxFit
-                                                                            .contain,
-                                                                      ),
-                                                                    ),
-                                                                  if (ppirFormSelectPpirFormsRowList
+                                                          _model.hasSigIuia =
+                                                              true;
+                                                          safeSetState(() {});
+                                                        },
+                                                        child: Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Text(
+                                                              ppirFormSelectPpirFormsRowList
                                                                           .first
                                                                           .ppirSigIuia !=
-                                                                      'null')
-                                                                    Container(
+                                                                      'null'
+                                                                  ? 'Tap to change inspector signature'
+                                                                  : 'Inspector Signature',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                            ),
+                                                            Stack(
+                                                              children: [
+                                                                if (ppirFormSelectPpirFormsRowList
+                                                                        .first
+                                                                        .ppirSigIuia ==
+                                                                    'null')
+                                                                  ClipRRect(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            8.0),
+                                                                    child: Image
+                                                                        .asset(
+                                                                      'assets/images/signature.png',
+                                                                      width:
+                                                                          () {
+                                                                        if (MediaQuery.sizeOf(context).width <
+                                                                            kBreakpointSmall) {
+                                                                          return 60.0;
+                                                                        } else if (MediaQuery.sizeOf(context).width <
+                                                                            kBreakpointMedium) {
+                                                                          return 75.0;
+                                                                        } else if (MediaQuery.sizeOf(context).width <
+                                                                            kBreakpointLarge) {
+                                                                          return 75.0;
+                                                                        } else {
+                                                                          return 80.0;
+                                                                        }
+                                                                      }(),
+                                                                      height: MediaQuery.sizeOf(context)
+                                                                              .height *
+                                                                          0.15,
+                                                                      fit: BoxFit
+                                                                          .contain,
+                                                                    ),
+                                                                  ),
+                                                                if (ppirFormSelectPpirFormsRowList
+                                                                        .first
+                                                                        .ppirSigIuia !=
+                                                                    'null')
+                                                                  Container(
+                                                                    width: MediaQuery.sizeOf(context)
+                                                                            .width *
+                                                                        1.0,
+                                                                    height: MediaQuery.sizeOf(context)
+                                                                            .height *
+                                                                        0.178,
+                                                                    decoration:
+                                                                        const BoxDecoration(
+                                                                      color: Colors
+                                                                          .white,
+                                                                      borderRadius:
+                                                                          BorderRadius
+                                                                              .only(
+                                                                        bottomLeft:
+                                                                            Radius.circular(10.0),
+                                                                        bottomRight:
+                                                                            Radius.circular(10.0),
+                                                                        topLeft:
+                                                                            Radius.circular(0.0),
+                                                                        topRight:
+                                                                            Radius.circular(0.0),
+                                                                      ),
+                                                                    ),
+                                                                    child:
+                                                                        SizedBox(
                                                                       width: MediaQuery.sizeOf(context)
                                                                               .width *
                                                                           1.0,
-                                                                      height: MediaQuery.sizeOf(context)
-                                                                              .height *
-                                                                          0.178,
-                                                                      decoration:
-                                                                          const BoxDecoration(
-                                                                        color: Colors
-                                                                            .white,
-                                                                        borderRadius:
-                                                                            BorderRadius.only(
-                                                                          bottomLeft:
-                                                                              Radius.circular(10.0),
-                                                                          bottomRight:
-                                                                              Radius.circular(10.0),
-                                                                          topLeft:
-                                                                              Radius.circular(0.0),
-                                                                          topRight:
-                                                                              Radius.circular(0.0),
-                                                                        ),
-                                                                      ),
-                                                                      child:
-                                                                          SizedBox(
+                                                                      height:
+                                                                          MediaQuery.sizeOf(context).height *
+                                                                              1.0,
+                                                                      child: custom_widgets
+                                                                          .Base64ImageLoader(
                                                                         width: MediaQuery.sizeOf(context).width *
                                                                             1.0,
                                                                         height: MediaQuery.sizeOf(context).height *
                                                                             1.0,
-                                                                        child: custom_widgets
-                                                                            .Base64ImageLoader(
-                                                                          width:
-                                                                              MediaQuery.sizeOf(context).width * 1.0,
-                                                                          height:
-                                                                              MediaQuery.sizeOf(context).height * 1.0,
-                                                                          taskId:
-                                                                              widget.taskId,
-                                                                          imageBase64: ppirFormSelectPpirFormsRowList
-                                                                              .first
-                                                                              .ppirSigIuia,
-                                                                        ),
+                                                                        taskId:
+                                                                            widget.taskId,
+                                                                        imageBase64: ppirFormSelectPpirFormsRowList
+                                                                            .first
+                                                                            .ppirSigIuia,
                                                                       ),
                                                                     ),
-                                                                ],
-                                                              ),
-                                                            ],
-                                                          ),
+                                                                  ),
+                                                              ],
+                                                            ),
+                                                          ],
                                                         ),
                                                       ),
                                                     ),
                                                   ),
                                                 ),
-                                              ]
-                                                  .divide(const SizedBox(height: 5.0))
-                                                  .around(
-                                                      const SizedBox(height: 5.0)),
-                                            ),
+                                              ),
+                                            ]
+                                                .divide(const SizedBox(height: 5.0))
+                                                .around(const SizedBox(height: 5.0)),
                                           ),
-                                        ]
-                                            .divide(const SizedBox(height: 5.0))
-                                            .around(const SizedBox(height: 5.0)),
-                                      ),
+                                        ),
+                                      ]
+                                          .divide(const SizedBox(height: 5.0))
+                                          .around(const SizedBox(height: 5.0)),
                                     ),
                                   ),
                                 ),
-                              ]
-                                  .divide(const SizedBox(height: 5.0))
-                                  .around(const SizedBox(height: 5.0)),
-                            ),
+                              ),
+                            ]
+                                .divide(const SizedBox(height: 5.0))
+                                .around(const SizedBox(height: 5.0)),
                           ),
                         ),
                       ),

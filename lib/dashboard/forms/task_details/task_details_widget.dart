@@ -134,7 +134,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
                       child: Text(
-                        '${functions.capitalizeWords(widget.taskStatus)} Task',
+                        valueOrDefault<String>(
+                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                              .first.ppirFarmername,
+                          'Farmer Name',
+                        ),
                         style: FlutterFlowTheme.of(context).titleSmall.override(
                               fontFamily: 'Readex Pro',
                               color: FlutterFlowTheme.of(context).info,

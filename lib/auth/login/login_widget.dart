@@ -5,7 +5,7 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/utils/components/dialogs/no_internet_dialog/no_internet_dialog_widget.dart';
+import '/utils/components/no_internet_dialog/no_internet_dialog_widget.dart';
 import '/utils/components/permission_dialog/permission_dialog_widget.dart';
 import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
