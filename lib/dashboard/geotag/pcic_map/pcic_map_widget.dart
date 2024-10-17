@@ -272,11 +272,50 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                                                 size: 20.0,
                                               ),
                                               onPressed: () async {
-                                                await actions.deleteMapStore(
-                                                  context,
-                                                  listOfDownloadsItem
-                                                      .rawStoreName,
-                                                );
+                                                var confirmDialogResponse =
+                                                    await showDialog<bool>(
+                                                          context: context,
+                                                          builder:
+                                                              (alertDialogContext) {
+                                                            return AlertDialog(
+                                                              title: const Text(
+                                                                  'Delete Map'),
+                                                              content: const Text(
+                                                                  'Are you sure you want to delete this map?'),
+                                                              actions: [
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext,
+                                                                          false),
+                                                                  child: const Text(
+                                                                      'Cancel'),
+                                                                ),
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext,
+                                                                          true),
+                                                                  child: const Text(
+                                                                      'Confirm'),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          },
+                                                        ) ??
+                                                        false;
+                                                if (confirmDialogResponse) {
+                                                  await actions.deleteMapStore(
+                                                    listOfDownloadsItem
+                                                        .rawStoreName,
+                                                  );
+                                                  FFAppState()
+                                                      .removeAtIndexFromListOfMapDownloads(
+                                                          listOfDownloadsIndex);
+                                                  safeSetState(() {});
+                                                } else {
+                                                  Navigator.pop(context);
+                                                }
                                               },
                                             ),
                                           ),

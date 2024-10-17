@@ -239,10 +239,18 @@ class _AllTasksWidgetState extends State<AllTasksWidget>
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  wrapWithModel(
-                    model: _model.searchModel,
-                    updateCallback: () => safeSetState(() {}),
-                    child: const SearchWidget(),
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                    child: wrapWithModel(
+                      model: _model.searchModel,
+                      updateCallback: () => safeSetState(() {}),
+                      child: const SearchWidget(),
+                    ),
+                  ),
+                  Divider(
+                    thickness: 2.0,
+                    color: FlutterFlowTheme.of(context).alternate,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(18.0),

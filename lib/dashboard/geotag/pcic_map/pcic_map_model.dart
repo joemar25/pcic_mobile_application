@@ -8,6 +8,8 @@ class PcicMapModel extends FlutterFlowModel<PcicMapWidget> {
 
   bool isLoading = true;
 
+  bool? isMapDeleted;
+
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for TabBar widget.
