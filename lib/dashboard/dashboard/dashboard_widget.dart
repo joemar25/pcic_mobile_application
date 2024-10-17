@@ -1,6 +1,5 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/sqlite/sqlite_manager.dart';
-import '/components/search_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -300,11 +299,6 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    wrapWithModel(
-                                      model: _model.searchModel,
-                                      updateCallback: () => safeSetState(() {}),
-                                      child: const SearchWidget(),
-                                    ),
                                     Container(
                                       width: double.infinity,
                                       decoration: BoxDecoration(

@@ -224,10 +224,6 @@ class _MapBase64State extends State<MapBase64> {
       return Center(child: Text('No GPS data available'));
     }
 
-    if (!FFAppState().mapLoadedWithInternet && _tileProvider == null) {
-      return _buildOfflineMessageBox(this.context);
-    }
-
     return Stack(
       children: [
         Container(
@@ -285,80 +281,6 @@ class _MapBase64State extends State<MapBase64> {
           ),
         ),
       ],
-    );
-  }
-
-  Widget _buildOfflineMessageBox(BuildContext context) {
-    return Center(
-      child: Container(
-        width: MediaQuery.of(context).size.width * 0.8,
-        padding: EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: Colors.green,
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 5,
-              blurRadius: 7,
-              offset: Offset(0, 3),
-            ),
-          ],
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'Map not downloaded',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 14, // Reduced font size
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-            SizedBox(height: 6),
-            Text(
-              'Please download the map to view offline.',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 12, // Reduced font size
-                color: Colors.white,
-              ),
-            ),
-            SizedBox(height: 12),
-            ElevatedButton(
-              onPressed: () {
-                context.pushNamed(
-                  'pcicMap',
-                  extra: <String, dynamic>{
-                    kTransitionInfoKey: const TransitionInfo(
-                      hasTransition: true,
-                      transitionType: PageTransitionType.rightToLeft,
-                      duration: Duration(milliseconds: 200),
-                    ),
-                  },
-                );
-              },
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.white),
-                foregroundColor: MaterialStateProperty.all(Colors.green),
-                padding: MaterialStateProperty.all(EdgeInsets.symmetric(
-                    horizontal: 10, vertical: 6)), // Smaller padding
-                shape: MaterialStateProperty.all(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                ),
-              ),
-              child: Text(
-                'Download Map',
-                style: TextStyle(fontSize: 12), // Smaller text size
-              ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
