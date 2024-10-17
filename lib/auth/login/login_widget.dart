@@ -920,39 +920,6 @@ class _LoginWidgetState extends State<LoginWidget>
                                     if (kDebugMode)
                                       FFButtonWidget(
                                         onPressed: () async {
-                                          await actions
-                                              .fetchProcessAndExportStores();
-                                        },
-                                        text:
-                                            FFLocalizations.of(context).getText(
-                                          'nt9k80kj' /* FOR BETTER MAP */,
-                                        ),
-                                        options: FFButtonOptions(
-                                          height: 40.0,
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 0.0, 16.0, 0.0),
-                                          iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 0.0),
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          textStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmall
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: Colors.white,
-                                                    letterSpacing: 0.0,
-                                                  ),
-                                          elevation: 0.0,
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                      ),
-                                    if (kDebugMode)
-                                      FFButtonWidget(
-                                        onPressed: () async {
                                           context.pushNamed('mapTestTest');
                                         },
                                         text:

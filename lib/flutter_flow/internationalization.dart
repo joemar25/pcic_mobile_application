@@ -151,10 +151,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'DON\'T DELETE TAT TESTING!',
       'tl': '',
     },
-    'nt9k80kj': {
-      'en': 'FOR BETTER MAP',
-      'tl': '',
-    },
     'jldei9fa': {
       'en': 'DON\'T DELETE Mar TESTING!',
       'tl': '',
@@ -221,6 +217,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'xliyfzs6': {
       'en': 'Sync FTP',
       'tl': 'Nandito si Mar - Nagsi-sync Mula sa FTP',
+    },
+    'fe2gwbkx': {
+      'en': 'FOR BETTER MAP',
+      'tl': '',
     },
     'yttqc4w2': {
       'en': 'Sign Out',
