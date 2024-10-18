@@ -1,8 +1,16 @@
 {
     "cSpell.words": [
+        "Dopds",
+        "Doptp",
+        "Farmloc",
+        "Groupname",
         "listdir",
+        "REGIONCODE",
+        "SELECTPPIR",
         "spinkit",
+        "Syced",
         "trkpt"
     ],
-    "java.configuration.updateBuildConfiguration": "automatic"
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "git.ignoreLimitWarning": true
 }
