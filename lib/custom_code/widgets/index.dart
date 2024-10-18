@@ -6,3 +6,4 @@ export 'searchable_map_widget.dart' show SearchableMapWidget;
 export 'map_test.dart' show MapTest;
 export 'geo_json.dart' show GeoJson;
 export 'individual_blob_image_loader.dart' show IndividualBlobImageLoader;
+export 'mb_tiles_widget.dart' show MbTilesWidget;

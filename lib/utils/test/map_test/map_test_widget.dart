@@ -64,13 +64,15 @@ class _MapTestWidgetState extends State<MapTestWidget> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(
-                width: double.infinity,
-                height: 700.0,
-                child: custom_widgets.MapTest(
+              Expanded(
+                child: SizedBox(
                   width: double.infinity,
-                  height: 700.0,
-                  accessToken: FFAppState().accessToken,
+                  height: 600.0,
+                  child: custom_widgets.MbTilesWidget(
+                    width: double.infinity,
+                    height: 600.0,
+                    accessToken: FFAppState().accessToken,
+                  ),
                 ),
               ),
             ],
