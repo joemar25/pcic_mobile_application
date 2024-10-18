@@ -655,3 +655,41 @@ VALUES (
 }
 
 /// END OFFLINE INSERT USERS
+
+/// BEGIN UPDATE OFFLINE PPIR FORM SYNC STATUS
+Future performUpdateOfflinePPIRFormSyncStatus(
+  Database database, {
+  String? taskId,
+  String? syncStatus,
+  String? isDirty,
+}) {
+  final query = '''
+UPDATE ppir_forms
+SET 
+  sync_status = '$syncStatus',
+  is_dirty = '$isDirty'
+WHERE task_id = '$taskId';
+''';
+  return database.rawQuery(query);
+}
+
+/// END UPDATE OFFLINE PPIR FORM SYNC STATUS
+
+/// BEGIN UPDATE OFFLINE TASK SYNC STATUS
+Future performUpdateOfflineTaskSyncStatus(
+  Database database, {
+  String? taskId,
+  String? syncStatus,
+  String? isDirty,
+}) {
+  final query = '''
+UPDATE tasks
+SET 
+  sync_status = '$syncStatus',
+  is_dirty = '$isDirty'
+WHERE id = '$taskId';
+''';
+  return database.rawQuery(query);
+}
+
+/// END UPDATE OFFLINE TASK SYNC STATUS

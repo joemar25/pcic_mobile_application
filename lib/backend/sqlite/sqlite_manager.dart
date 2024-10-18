@@ -704,5 +704,29 @@ class SQLiteManager {
         regionId: regionId,
       );
 
+  Future updateOfflinePPIRFormSyncStatus({
+    String? taskId,
+    String? syncStatus,
+    String? isDirty,
+  }) =>
+      performUpdateOfflinePPIRFormSyncStatus(
+        _database,
+        taskId: taskId,
+        syncStatus: syncStatus,
+        isDirty: isDirty,
+      );
+
+  Future updateOfflineTaskSyncStatus({
+    String? taskId,
+    String? syncStatus,
+    String? isDirty,
+  }) =>
+      performUpdateOfflineTaskSyncStatus(
+        _database,
+        taskId: taskId,
+        syncStatus: syncStatus,
+        isDirty: isDirty,
+      );
+
   /// END UPDATE QUERY CALLS
 }
