@@ -1,8 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'map_test_model.dart';
 export 'map_test_model.dart';
 
@@ -33,8 +31,6 @@ class _MapTestWidgetState extends State<MapTestWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -58,24 +54,12 @@ class _MapTestWidgetState extends State<MapTestWidget> {
           centerTitle: false,
           elevation: 2.0,
         ),
-        body: SafeArea(
+        body: const SafeArea(
           top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: SizedBox(
-                  width: double.infinity,
-                  height: 600.0,
-                  child: custom_widgets.MbTilesWidget(
-                    width: double.infinity,
-                    height: 600.0,
-                    accessToken: FFAppState().accessToken,
-                  ),
-                ),
-              ),
-            ],
+            children: [],
           ),
         ),
       ),
