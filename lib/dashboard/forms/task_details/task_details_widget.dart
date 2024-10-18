@@ -1426,6 +1426,98 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ],
                                             ),
                                           ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 16.0, 0.0, 16.0),
+                                            child: StyledDivider(
+                                              thickness: 2.0,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              lineStyle:
+                                                  DividerLineStyle.dashed,
+                                            ),
+                                          ),
+                                          Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 8.0, 0.0, 0.0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .getText(
+                                                        'p26su2ne' /* Captured Area */,
+                                                      ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyLarge
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Flexible(
+                                                    child: SizedBox(
+                                                      width: MediaQuery.sizeOf(
+                                                                  context)
+                                                              .width *
+                                                          1.0,
+                                                      height: MediaQuery.sizeOf(
+                                                                  context)
+                                                              .height *
+                                                          0.3,
+                                                      child: custom_widgets
+                                                          .IndividualBlobImageLoader(
+                                                        width:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .width *
+                                                                1.0,
+                                                        height:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .height *
+                                                                0.3,
+                                                        imageBlob:
+                                                            valueOrDefault<
+                                                                String>(
+                                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                              .first
+                                                              .capturedArea,
+                                                          'No Value',
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
                                           if (widget.taskStatus == 'completed')
                                             SingleChildScrollView(
                                               child: Column(
@@ -1950,25 +2042,6 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           MainAxisAlignment
                                                               .spaceBetween,
                                                       children: [
-                                                        Text(
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                            '27rka9jx' /* Actual Area Planted */,
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .labelMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .normal,
-                                                              ),
-                                                        ),
                                                         AnimatedDefaultTextStyle(
                                                           style: FlutterFlowTheme
                                                                   .of(context)
@@ -2467,7 +2540,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           FFLocalizations.of(
                                                                   context)
                                                               .getText(
-                                                            'ahzx9d2y' /* Geotag */,
+                                                            'x4kj8jn6' /* Geotag */,
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)

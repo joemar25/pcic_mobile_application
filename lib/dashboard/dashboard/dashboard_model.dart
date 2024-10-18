@@ -14,8 +14,6 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  // Stores action output result for [Custom Action - getTheSavedLocalProfile] action in dashboard widget.
-  FFUploadedFile? loadLocalProfile;
   // Stores action output result for [Custom Action - isDirtyCount] action in dashboard widget.
   String? isDirtyCounter;
   // Stores action output result for [Custom Action - syncOnlineTaskAndPpirToOffline] action in dashboard widget.

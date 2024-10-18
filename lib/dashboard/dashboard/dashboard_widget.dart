@@ -48,7 +48,6 @@ class _DashboardWidgetState extends State<DashboardWidget>
       if (RootPageContext.isInactiveRootPage(context)) {
         return;
       }
-      _model.loadLocalProfile = await actions.getTheSavedLocalProfile();
       _model.isDirtyCounter = await actions.isDirtyCount();
       _model.statusOutput =
           _model.isDirtyCounter != '0' ? 'Tap to update' : 'Tasks are updated';
@@ -340,18 +339,9 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                   decoration: const BoxDecoration(
                                                     shape: BoxShape.circle,
                                                   ),
-                                                  child: Image.memory(
-                                                    _model.loadLocalProfile
-                                                            ?.bytes ??
-                                                        Uint8List.fromList([]),
+                                                  child: Image.asset(
+                                                    'assets/images/default-profile.png',
                                                     fit: BoxFit.cover,
-                                                    errorBuilder: (context,
-                                                            error,
-                                                            stackTrace) =>
-                                                        Image.asset(
-                                                      'assets/images/error_image.gif',
-                                                      fit: BoxFit.cover,
-                                                    ),
                                                   ),
                                                 ).animateOnPageLoad(animationsMap[
                                                     'circleImageOnPageLoadAnimation']!),

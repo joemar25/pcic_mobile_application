@@ -59,8 +59,6 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
 
   // Stores action output result for [Backend Call - Query Rows] action in loginButton widget.
   List<UsersRow>? authUserQuery;
-  // Stores action output result for [Custom Action - uploadPhotoUrlToAsset] action in loginButton widget.
-  String? save;
 
   @override
   void initState(BuildContext context) {

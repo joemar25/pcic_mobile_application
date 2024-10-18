@@ -744,11 +744,6 @@ class _LoginWidgetState extends State<LoginWidget>
                                                         ?.first
                                                         .regionId,
                                                   );
-                                                  _model.save = await actions
-                                                      .uploadPhotoUrlToAsset(
-                                                    _model.authUserQuery?.first
-                                                        .photoUrl,
-                                                  );
                                                   if (Navigator.of(context)
                                                       .canPop()) {
                                                     context.pop();

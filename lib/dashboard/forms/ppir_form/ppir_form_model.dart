@@ -196,7 +196,7 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
   FFUploadedFile uploadedLocalFile =
       FFUploadedFile(bytes: Uint8List.fromList([]));
 
-  // Stores action output result for [Custom Action - convertCapturedImageToBase64] action in saveButton widget.
+  // Stores action output result for [Custom Action - convertCapturedImageToBase64] action in captureButton widget.
   String? base64;
   // State field(s) for capturedImageBlobInput widget.
   FocusNode? capturedImageBlobInputFocusNode;

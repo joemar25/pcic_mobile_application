@@ -483,6 +483,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'ACI Variety',
       'tl': 'Iba\'t-ibang Binhi na Nakatanim',
     },
+    'p26su2ne': {
+      'en': 'Captured Area',
+      'tl': '',
+    },
     'dgbzqn0h': {
       'en': 'Completed Actual  Details',
       'tl': 'Mga Detalye ng Nakumpletong Gawain',
@@ -519,10 +523,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Actual Seed Variety Planted - Corn/Rice',
       'tl': 'Iba\'t-ibang',
     },
-    '27rka9jx': {
-      'en': 'Actual Area Planted',
-      'tl': 'Petsa ng Pagtanim (DS)',
-    },
     '4s2psn11': {
       'en': 'Actual - Date of Planting (DS)',
       'tl': '',
@@ -547,9 +547,9 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Inspector Full Name:',
       'tl': 'Inihanda Ni',
     },
-    'ahzx9d2y': {
+    'x4kj8jn6': {
       'en': 'Geotag',
-      'tl': 'Geotag',
+      'tl': '',
     },
     '65kky15n': {
       'en': 'Geotag',

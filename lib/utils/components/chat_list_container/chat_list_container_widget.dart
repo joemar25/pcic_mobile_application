@@ -69,47 +69,84 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    valueOrDefault<String>(
-                      widget.recieverName,
-                      'Reciever Name',
-                    ),
-                    textAlign: TextAlign.start,
-                    style: FlutterFlowTheme.of(context).bodyLarge.override(
-                          fontFamily: 'Readex Pro',
-                          fontSize: 14.0,
-                          letterSpacing: 0.0,
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                        child: Container(
+                          width: 60.0,
+                          height: 60.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: Image.asset(
+                                'assets/images/default-profile.png',
+                              ).image,
+                            ),
+                            shape: BoxShape.circle,
+                          ),
                         ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
-                    child: Text(
-                      valueOrDefault<String>(
-                        widget.lastConvo,
-                        'Last convo.',
                       ),
-                      textAlign: TextAlign.start,
-                      style: FlutterFlowTheme.of(context).labelMedium.override(
-                            fontFamily: 'Readex Pro',
-                            fontSize: 12.0,
-                            letterSpacing: 0.0,
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            valueOrDefault<String>(
+                              widget.recieverName,
+                              'Reciever Name',
+                            ),
+                            textAlign: TextAlign.start,
+                            style:
+                                FlutterFlowTheme.of(context).bodyLarge.override(
+                                      fontFamily: 'Readex Pro',
+                                      fontSize: 14.0,
+                                      letterSpacing: 0.0,
+                                    ),
                           ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
-                    child: Text(
-                      valueOrDefault<String>(
-                        functions.timesStampConverter(widget.date),
-                        'Date',
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 4.0, 0.0, 0.0),
+                            child: Text(
+                              valueOrDefault<String>(
+                                widget.lastConvo,
+                                'Last convo.',
+                              ),
+                              textAlign: TextAlign.start,
+                              style: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: 12.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 4.0, 0.0, 0.0),
+                            child: Text(
+                              valueOrDefault<String>(
+                                functions.timesStampConverter(widget.date),
+                                'Date',
+                              ),
+                              textAlign: TextAlign.start,
+                              style: FlutterFlowTheme.of(context)
+                                  .labelSmall
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: 10.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                          ),
+                        ],
                       ),
-                      textAlign: TextAlign.start,
-                      style: FlutterFlowTheme.of(context).labelSmall.override(
-                            fontFamily: 'Readex Pro',
-                            fontSize: 10.0,
-                            letterSpacing: 0.0,
-                          ),
-                    ),
+                    ],
                   ),
                 ],
               ),
