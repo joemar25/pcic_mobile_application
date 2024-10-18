@@ -611,7 +611,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                   shape: RoundedRectangleBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            8.0),
+                                                            12.0),
                                                   ),
                                                   child: Container(
                                                     width: MediaQuery.sizeOf(
@@ -625,7 +625,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                               .secondary,
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              8.0),
+                                                              12.0),
                                                       border: Border.all(
                                                         color:
                                                             FlutterFlowTheme.of(
@@ -777,7 +777,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                   shape: RoundedRectangleBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            8.0),
+                                                            12.0),
                                                   ),
                                                   child: Container(
                                                     width: MediaQuery.sizeOf(
@@ -791,7 +791,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                               .accent1,
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              8.0),
+                                                              12.0),
                                                       border: Border.all(
                                                         color:
                                                             FlutterFlowTheme.of(
@@ -940,7 +940,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                   shape: RoundedRectangleBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            8.0),
+                                                            12.0),
                                                   ),
                                                   child: Container(
                                                     width: MediaQuery.sizeOf(
@@ -954,7 +954,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                               .tertiary,
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              8.0),
+                                                              12.0),
                                                       border: Border.all(
                                                         color:
                                                             FlutterFlowTheme.of(

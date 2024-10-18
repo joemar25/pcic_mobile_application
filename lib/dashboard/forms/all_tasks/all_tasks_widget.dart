@@ -750,7 +750,7 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                                 columnSpacing: 2.0,
                                 headingRowColor:
                                     FlutterFlowTheme.of(context).primary,
-                                borderRadius: BorderRadius.circular(6.0),
+                                borderRadius: BorderRadius.circular(12.0),
                                 addHorizontalDivider: false,
                                 addTopAndBottomDivider: false,
                                 hideDefaultHorizontalDivider: true,

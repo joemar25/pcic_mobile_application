@@ -914,7 +914,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                   ),
                                           elevation: 0.0,
                                           borderRadius:
-                                              BorderRadius.circular(8.0),
+                                              BorderRadius.circular(12.0),
                                         ),
                                       ),
                                     if (kDebugMode)
@@ -946,7 +946,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                   ),
                                           elevation: 0.0,
                                           borderRadius:
-                                              BorderRadius.circular(8.0),
+                                              BorderRadius.circular(12.0),
                                         ),
                                       ),
                                   ]

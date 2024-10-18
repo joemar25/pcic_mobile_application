@@ -141,7 +141,7 @@ Future<void> fetchProcessAndExportStores() async {
     final file = File(exportPath);
     final fileName = 'exported_tiles.fmtc';
 
-    final response = await supabase.storage.from('mb-files').upload(
+    final response = await supabase.storage.from('map-tiles').upload(
           fileName,
           file,
           fileOptions: FileOptions(

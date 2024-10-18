@@ -1056,7 +1056,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                   ),
                                           elevation: 0.0,
                                           borderRadius:
-                                              BorderRadius.circular(8.0),
+                                              BorderRadius.circular(12.0),
                                         ),
                                       ),
                                   ]

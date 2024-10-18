@@ -282,7 +282,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                   decoration: BoxDecoration(
                                     color:
                                         FlutterFlowTheme.of(context).alternate,
-                                    borderRadius: BorderRadius.circular(15.0),
+                                    borderRadius: BorderRadius.circular(12.0),
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsets.all(24.0),
@@ -667,7 +667,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
-                                                                          8.0),
+                                                                          12.0),
                                                             ),
                                                           ),
                                                         ),
@@ -4120,7 +4120,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(8.0),
+                                  borderRadius: BorderRadius.circular(12.0),
                                 ),
                               ),
                             ),
@@ -4302,7 +4302,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(8.0),
+                                  borderRadius: BorderRadius.circular(12.0),
                                 ),
                               ),
                             ),
@@ -4677,7 +4677,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(8.0),
+                                    borderRadius: BorderRadius.circular(12.0),
                                     disabledColor:
                                         FlutterFlowTheme.of(context).error,
                                     disabledTextColor:

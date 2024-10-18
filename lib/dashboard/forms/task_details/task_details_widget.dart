@@ -2692,7 +2692,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   width: 1.0,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(8.0),
+                                                    BorderRadius.circular(12.0),
                                               ),
                                             ),
                                           ),
@@ -2784,7 +2784,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   width: 1.0,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(8.0),
+                                                    BorderRadius.circular(12.0),
                                               ),
                                             ),
                                           ),
@@ -3077,7 +3077,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   width: 1.0,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(8.0),
+                                                    BorderRadius.circular(12.0),
                                               ),
                                             ),
                                           ),
