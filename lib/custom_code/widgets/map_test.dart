@@ -12,6 +12,17 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'index.dart';
+import '/custom_code/actions/index.dart';
+import '/flutter_flow/custom_functions.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_map_tile_caching/flutter_map_tile_caching.dart' as FMTC;
+import 'package:geolocator/geolocator.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
+import 'package:latlong2/latlong.dart' as ll;
+
 class MapTest extends StatefulWidget {
   const MapTest({
     super.key,
@@ -29,175 +40,177 @@ class MapTest extends StatefulWidget {
 }
 
 class _MapTestState extends State<MapTest> {
+  final MapController _mapController = MapController();
+  TileProvider? _tileProvider;
+  ll.LatLng? _currentLocation;
+  String? _errorMessage;
+  bool _isMapReady = false;
+
   @override
-  Widget build(BuildContext context) {
-    return Container();
+  void initState() {
+    super.initState();
+    print('Initializing map...');
+    _initializeMap();
   }
-}
 
-/*
-import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong2/latlong.dart';
-import 'dart:convert';
+  Future<void> _initializeMap() async {
+    await _getCurrentLocation();
+    await _downloadAndLoadMap();
+    if (mounted) {
+      setState(() {
+        _isMapReady = true;
+        print('Map is ready to display.');
+      });
+    }
+  }
 
-class MapTest extends StatefulWidget {
-  const MapTest({
-    Key? key,
-    this.width,
-    this.height,
-    this.accessToken,
-  }) : super(key: key);
+  Future<void> _getCurrentLocation() async {
+    try {
+      print('Fetching current location...');
+      bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+      if (!serviceEnabled) {
+        throw Exception('Location services are disabled.');
+      }
 
-  final double? width;
-  final double? height;
-  final String? accessToken;
+      LocationPermission permission = await Geolocator.checkPermission();
+      if (permission == LocationPermission.denied) {
+        print('Requesting location permissions...');
+        permission = await Geolocator.requestPermission();
+        if (permission == LocationPermission.denied) {
+          throw Exception('Location permissions are denied.');
+        }
+      }
 
-  @override
-  State<MapTest> createState() => _MapTestState();
-}
+      Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high,
+      );
+      _currentLocation = ll.LatLng(position.latitude, position.longitude);
+      print('Current location obtained: $_currentLocation');
+    } catch (e) {
+      setState(() {
+        _errorMessage = 'Failed to get current location: $e';
+      });
+      print('Error getting location: $e');
+    }
+  }
 
-class _MapTestState extends State<MapTest> {
+  Future<void> _downloadAndLoadMap() async {
+    try {
+      print('Starting map download and load...');
+      final supabase = Supabase.instance.client;
+      final fileName = 'exported_tiles.fmtc';
+      final bucketName = 'mb-files';
+
+      // Define local file path.
+      final directory = await getApplicationDocumentsDirectory();
+      final localFilePath = '${directory.path}/$fileName';
+      print('Local file path: $localFilePath');
+
+      // Check if the file exists locally; if not, download it.
+      if (!File(localFilePath).existsSync()) {
+        print('File not found locally, starting download...');
+        final response =
+            await supabase.storage.from(bucketName).download(fileName);
+        print('Download completed, writing to file...');
+        await File(localFilePath).writeAsBytes(response);
+        print('File downloaded and saved to $localFilePath');
+      } else {
+        print('File already exists locally. Skipping download.');
+      }
+
+      // Set up the RootExternal from the local file.
+      print('Setting up RootExternal from $localFilePath...');
+      final rootExternal = FMTC.FMTCRoot.external(pathToArchive: localFilePath);
+
+      // Import all stores from the file.
+      final importResult = rootExternal.import(
+        storeNames: null, // Import all stores.
+        strategy: FMTC.ImportConflictStrategy.rename,
+      );
+      await importResult.complete;
+      print('Stores imported successfully.');
+
+      // Log available stores using RootStats.
+      final stats = FMTC.FMTCRoot.stats;
+      final storesAvailable = await stats.storesAvailable;
+      print('Available stores:');
+      for (final store in storesAvailable) {
+        print('- ${store.storeName}');
+      }
+
+      // Check if the current location falls within any available store region.
+      String? matchedStoreName;
+      for (final store in storesAvailable) {
+        // Replace with actual logic to match location to store.
+        if (_isLocationWithinStoreRegion(_currentLocation!, store.storeName)) {
+          matchedStoreName = store.storeName;
+          break;
+        }
+      }
+
+      // Set up the TileProvider based on the matched store.
+      if (matchedStoreName != null) {
+        print('Using offline store: $matchedStoreName');
+        final store = FMTC.FMTCStore(matchedStoreName);
+        _tileProvider = store.getTileProvider(
+          settings: FMTC.FMTCTileProviderSettings(
+            behavior: FMTC.CacheBehavior.cacheFirst,
+          ),
+        );
+      } else {
+        print('No matched store found. Using online fallback.');
+        // Optionally, handle a fallback here.
+      }
+
+      print('TileProvider set up successfully.');
+    } catch (e) {
+      setState(() {
+        _errorMessage = 'Error loading map: $e';
+      });
+      print('Error loading map: $e');
+    }
+  }
+
+  bool _isLocationWithinStoreRegion(ll.LatLng location, String storeName) {
+    // Implement your logic to check if the location falls within the store region.
+    // For simplicity, returning true here.
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (_errorMessage != null) {
+      return Center(
+        child: Text('Error: $_errorMessage'),
+      );
+    }
+
+    if (!_isMapReady || _currentLocation == null) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    print('Rendering map with current location: $_currentLocation');
+
     return SizedBox(
-      width: widget.width,
-      height: widget.height,
+      width: widget.width ?? MediaQuery.of(context).size.width,
+      height: widget.height ?? MediaQuery.of(context).size.height,
       child: FlutterMap(
+        mapController: _mapController,
         options: MapOptions(
-          center: LatLng(13.4215, 123.4437),
-          zoom: 8,
+          initialCenter: _currentLocation ?? ll.LatLng(0, 0),
+          initialZoom: 18.0,
+          minZoom: 13.0,
+          maxZoom: 22.0,
         ),
         children: [
-          TileLayer(
-            urlTemplate:
-                'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}@2x?access_token=${widget.accessToken}',
-            additionalOptions: {
-              'accessToken': widget.accessToken ?? '',
-            },
-          ),
-          PolygonLayer(
-            polygons: [
-              Polygon(
-                points: _convertCoordinates(),
-                color: Colors.blue.withOpacity(0.3),
-                borderColor: Colors.blue,
-                borderStrokeWidth: 2,
-              ),
-            ],
-          ),
+          if (_tileProvider != null)
+            TileLayer(
+              urlTemplate:
+                  'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}@2x?access_token=${widget.accessToken}',
+              tileProvider: _tileProvider!,
+            ),
         ],
       ),
     );
   }
-
-  List<LatLng> _convertCoordinates() {
-    const String geoJsonString = '''
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Region V (Bicol Region)"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [124.0785, 13.6606],
-            [123.9723, 13.8899],
-            [123.7547, 13.3236],
-            [123.6592, 13.5259],
-            [123.5306, 13.5759],
-            [123.5855, 13.4404],
-            [123.5816, 13.3966],
-            [123.4129, 13.3469],
-            [123.2669, 13.4341],
-            [123.1886, 13.4341],
-            [122.8873, 13.5766],
-            [122.7982, 13.6505],
-            [122.8614, 13.6903],
-            [122.8358, 13.7349],
-            [122.7423, 13.7771],
-            [122.7779, 13.7871],
-            [122.7264, 13.8203],
-            [122.6535, 13.8206],
-            [122.6399, 13.883],
-            [122.5669, 13.9051],
-            [122.5853, 13.9258],
-            [122.5547, 13.9217],
-            [122.5483, 13.9495],
-            [122.7926, 14.0145],
-            [123.0592, 13.8371],
-            [123.0479, 13.774],
-            [123.1229, 13.7264],
-            [123.2301, 13.7298],
-            [123.3218, 13.8014],
-            [123.3286, 13.7853],
-            [123.2842, 13.8965],
-            [123.3325, 13.9393],
-            [123.3411, 13.9715],
-            [123.2939, 13.927],
-            [123.265, 13.9622],
-            [123.2321, 13.968],
-            [123.2286, 14.0034],
-            [123.2642, 14.0133],
-            [123.2311, 14.0253],
-            [123.2872, 14.0317],
-            [123.2576, 14.0736],
-            [123.3178, 14.0344],
-            [123.3086, 14.0675],
-            [123.3467, 14.0686],
-            [123.3286, 14.0908],
-            [123.3414, 14.1056],
-            [123.3744, 14.0411],
-            [123.3528, 14.0386],
-            [123.3433, 14.0136],
-            [123.388, 14.0351],
-            [123.3939, 13.987],
-            [123.4162, 13.9844],
-            [123.4296, 13.9148],
-            [123.4165, 13.8858],
-            [123.4563, 13.9329],
-            [123.4483, 13.9701],
-            [123.5018, 13.941],
-            [123.4895, 13.9127],
-            [123.5165, 13.9303],
-            [123.5427, 13.9088],
-            [123.5447, 13.9329],
-            [123.5669, 13.9019],
-            [123.6797, 13.8777],
-            [123.7141, 13.8833],
-            [123.7076, 13.943],
-            [123.7816, 13.8604],
-            [123.7756, 13.8505],
-            [123.8475, 13.8107],
-            [123.8671, 13.8257],
-            [123.9417, 13.7954],
-            [123.9484, 13.7539],
-            [123.9755, 13.7399],
-            [123.9692, 13.7087],
-            [123.8732, 13.7375],
-            [123.8023, 13.6877],
-            [123.56, 13.7359],
-            [123.5839, 13.7235],
-            [123.5304, 13.5759],
-            [123.6021, 13.5282],
-            [123.5431, 13.5042],
-            [123.5855, 13.4404],
-            [123.5816, 13.3966],
-            [123.4129, 13.3469],
-            [124.0785, 13.6606]
-          ]
-        ]
-      }
-    }
-    ''';
-
-    final geoJson = json.decode(geoJsonString);
-    final coordinates = geoJson['geometry']['coordinates'][0] as List<dynamic>;
-
-    return coordinates.map((coord) {
-      return LatLng(coord[1] as double, coord[0] as double);
-    }).toList();
-  }
 }
-
-*/
