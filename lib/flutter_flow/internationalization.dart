@@ -148,6 +148,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': 'Mag-log in',
     },
     '57sqdh1w': {
+      'en': 'DOWNLOAD MAP',
+      'tl': '',
+    },
+    '69j89hws': {
       'en': 'DON\'T DELETE TAT TESTING!',
       'tl': '',
     },

@@ -37,3 +37,4 @@ export 'convert_captured_image_to_base64.dart'
     show convertCapturedImageToBase64;
 export 'fetch_mb_tiles.dart' show fetchMbTiles;
 export 'fetch_process_and_export_stores.dart' show fetchProcessAndExportStores;
+export 'download_map.dart' show downloadMap;
