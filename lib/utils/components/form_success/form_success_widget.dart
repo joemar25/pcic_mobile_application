@@ -591,7 +591,7 @@ class _FormSuccessWidgetState extends State<FormSuccessWidget>
                                                 borderRadius:
                                                     BorderRadius.circular(40.0),
                                                 child: Image.asset(
-                                                  'assets/images/default-avatar.jpg',
+                                                  'assets/images/default-profile.png',
                                                   width: 60.0,
                                                   height: 60.0,
                                                   fit: BoxFit.cover,

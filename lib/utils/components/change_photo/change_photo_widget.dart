@@ -222,7 +222,7 @@ class _ChangePhotoWidgetState extends State<ChangePhotoWidget> {
                                               shape: BoxShape.circle,
                                             ),
                                             child: Image.asset(
-                                              'assets/images/default-avatar.jpg',
+                                              'assets/images/default-profile.png',
                                               fit: BoxFit.cover,
                                             ),
                                           ),

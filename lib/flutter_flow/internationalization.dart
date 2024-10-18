@@ -387,10 +387,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'ACI Form Details',
       'tl': '',
     },
-    'zvbf8lkk': {
-      'en': 'Capture Img',
-      'tl': 'Assignment Id',
-    },
     'vv9uawbi': {
       'en': 'Assignment Id',
       'tl': '',

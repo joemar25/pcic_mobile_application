@@ -159,8 +159,8 @@ class _UserChatsWidgetState extends State<UserChatsWidget> {
                                     0.0, 0.0, 8.0, 0.0),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(40.0),
-                                  child: Image.network(
-                                    listViewUsersRow.photoUrl!,
+                                  child: Image.asset(
+                                    'assets/images/default-profile.png',
                                     width: 32.0,
                                     height: 32.0,
                                     fit: BoxFit.cover,
