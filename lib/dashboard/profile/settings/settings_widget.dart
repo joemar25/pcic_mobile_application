@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/dialogs/signout_dialog/signout_dialog_widget.dart';
-import '/utils/components/dialogs/warning_for_sync/warning_for_sync_widget.dart';
 import '/utils/components/page_loader/page_loader_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -39,7 +38,6 @@ class _SettingsWidgetState extends State<SettingsWidget> {
         context,
       );
       _model.getProfilePic = await actions.getTheSavedLocalProfile();
-      _model.isDirtyCounter = await actions.isDirtyCount();
       FFAppState().syncCount = 0;
       FFAppState().update(() {});
     });
@@ -880,149 +878,73 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                       ),
                                     ),
                                     if (FFAppState().ONLINE)
-                                      Builder(
-                                        builder: (context) => Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 10.0, 0.0, 10.0),
-                                          child: InkWell(
-                                            splashColor: Colors.transparent,
-                                            focusColor: Colors.transparent,
-                                            hoverColor: Colors.transparent,
-                                            highlightColor: Colors.transparent,
-                                            onTap: () async {
-                                              if (_model.isDirtyCounter ==
-                                                  '0') {
-                                                context.pushNamed(
-                                                  'sync',
-                                                  extra: <String, dynamic>{
-                                                    kTransitionInfoKey:
-                                                        const TransitionInfo(
-                                                      hasTransition: true,
-                                                      transitionType:
-                                                          PageTransitionType
-                                                              .scale,
-                                                      alignment: Alignment
-                                                          .bottomCenter,
-                                                      duration: Duration(
-                                                          milliseconds: 200),
-                                                    ),
-                                                  },
-                                                );
-                                              } else {
-                                                await showDialog(
-                                                  context: context,
-                                                  builder: (dialogContext) {
-                                                    return Dialog(
-                                                      elevation: 0,
-                                                      insetPadding:
-                                                          EdgeInsets.zero,
-                                                      backgroundColor:
-                                                          Colors.transparent,
-                                                      alignment:
-                                                          const AlignmentDirectional(
-                                                                  0.0, 0.0)
-                                                              .resolve(
-                                                                  Directionality.of(
-                                                                      context)),
-                                                      child:
-                                                          WarningForSyncWidget(
-                                                        dirtyNumbers: _model
-                                                            .isDirtyCounter!,
-                                                      ),
-                                                    );
-                                                  },
-                                                ).then((value) => safeSetState(
-                                                    () => _model.answerKey =
-                                                        value));
-
-                                                if (_model.answerKey!) {
-                                                  context.pushNamed(
-                                                    'sync',
-                                                    extra: <String, dynamic>{
-                                                      kTransitionInfoKey:
-                                                          const TransitionInfo(
-                                                        hasTransition: true,
-                                                        transitionType:
-                                                            PageTransitionType
-                                                                .scale,
-                                                        alignment: Alignment
-                                                            .bottomCenter,
-                                                        duration: Duration(
-                                                            milliseconds: 200),
-                                                      ),
-                                                    },
-                                                  );
-                                                }
-                                              }
-
-                                              safeSetState(() {});
-                                            },
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Stack(
-                                                      children: [
-                                                        if (_model
-                                                                .isDirtyCounter ==
-                                                            '0')
-                                                          Icon(
-                                                            Icons.sync_sharp,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryText,
-                                                            size: 30.0,
-                                                          ),
-                                                        if (_model
-                                                                .isDirtyCounter !=
-                                                            '0')
-                                                          Icon(
-                                                            Icons.sync_problem,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryText,
-                                                            size: 30.0,
-                                                          ),
-                                                      ],
-                                                    ),
-                                                    Text(
-                                                      FFLocalizations.of(
-                                                              context)
-                                                          .getText(
-                                                        'xliyfzs6' /* Sync FTP */,
-                                                      ),
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
-                                                            fontSize: 16.0,
-                                                            letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
-                                                          ),
-                                                    ),
-                                                  ].divide(
-                                                      const SizedBox(width: 10.0)),
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 10.0, 0.0, 10.0),
+                                        child: InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            context.pushNamed(
+                                              'sync',
+                                              extra: <String, dynamic>{
+                                                kTransitionInfoKey:
+                                                    const TransitionInfo(
+                                                  hasTransition: true,
+                                                  transitionType:
+                                                      PageTransitionType.scale,
+                                                  alignment:
+                                                      Alignment.bottomCenter,
+                                                  duration: Duration(
+                                                      milliseconds: 200),
                                                 ),
-                                                Icon(
-                                                  Icons.chevron_right_rounded,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
-                                                  size: 24.0,
-                                                ),
-                                              ],
-                                            ),
+                                              },
+                                            );
+                                          },
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Icon(
+                                                    Icons.sync_sharp,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                    size: 30.0,
+                                                  ),
+                                                  Text(
+                                                    FFLocalizations.of(context)
+                                                        .getText(
+                                                      'xliyfzs6' /* Sync FTP */,
+                                                    ),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          fontSize: 16.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                        ),
+                                                  ),
+                                                ].divide(const SizedBox(width: 10.0)),
+                                              ),
+                                              Icon(
+                                                Icons.chevron_right_rounded,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                                size: 24.0,
+                                              ),
+                                            ],
                                           ),
                                         ),
                                       ),

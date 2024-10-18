@@ -48,18 +48,21 @@ class _DashboardWidgetState extends State<DashboardWidget>
       if (RootPageContext.isInactiveRootPage(context)) {
         return;
       }
-      _model.isDirtyCounter = await actions.isDirtyCount();
-      _model.statusOutput =
-          _model.isDirtyCounter != '0' ? 'Tap to update' : 'Tasks are updated';
-      safeSetState(() {});
-      if (FFAppState().ONLINE && (_model.isDirtyCounter != '0')) {
-        _model.statusOutput = 'Syncing...';
-        _model.isSyncDone = false;
+      if (FFAppState().ONLINE) {
+        _model.isDirtyCounter = await actions.isDirtyCount();
+        _model.statusOutput = _model.isDirtyCounter != '0'
+            ? 'Tap to update'
+            : 'Tasks are updated';
         safeSetState(() {});
-        _model.messagexxxx = await actions.syncOnlineTaskAndPpirToOffline();
-        _model.statusOutput = 'Tasks are updated';
-        _model.isSyncDone = true;
-        safeSetState(() {});
+        if (_model.isDirtyCounter != '0') {
+          _model.statusOutput = 'Syncing...';
+          _model.isSyncDone = false;
+          safeSetState(() {});
+          _model.messagexxxx = await actions.syncOnlineTaskAndPpirToOffline();
+          _model.statusOutput = 'Tasks are updated';
+          _model.isSyncDone = true;
+          safeSetState(() {});
+        }
       }
     });
 
