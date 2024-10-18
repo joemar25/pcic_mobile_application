@@ -883,9 +883,8 @@ class _LoginWidgetState extends State<LoginWidget>
                                     if (kDebugMode)
                                       FFButtonWidget(
                                         onPressed: () async {
-                                          await actions.downloadMap(
+                                          await actions.mbTileRenderer(
                                             context,
-                                            FFAppState().accessToken,
                                           );
                                         },
                                         text:
