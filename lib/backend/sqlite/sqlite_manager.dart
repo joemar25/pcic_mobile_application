@@ -29,18 +29,18 @@ class SQLiteManager {
 
   /// START READ QUERY CALLS
 
-  Future<List<RetrieveAllUsersByRegionIDRow>> retrieveAllUsersByRegionID({
+  Future<List<RetrieveAllUsersByRegionIdRow>> retrieveAllUsersByRegionId({
     String? regionId,
   }) =>
-      performRetrieveAllUsersByRegionID(
+      performRetrieveAllUsersByRegionId(
         _database,
         regionId: regionId,
       );
 
-  Future<List<RetrieveAllPPIRFormsByTaskIDRow>> retrieveAllPPIRFormsByTaskID({
+  Future<List<RetrieveAllPpirFormsByTaskIdRow>> retrieveAllPpirFormsByTaskId({
     String? taskId,
   }) =>
-      performRetrieveAllPPIRFormsByTaskID(
+      performRetrieveAllPpirFormsByTaskId(
         _database,
         taskId: taskId,
       );
@@ -74,12 +74,6 @@ class SQLiteManager {
             _database,
           );
 
-  Future<List<RetrieveTasksModifiedAfterASpecificDateRow>>
-      retrieveTasksModifiedAfterASpecificDate() =>
-          performRetrieveTasksModifiedAfterASpecificDate(
-            _database,
-          );
-
   Future<List<RetrieveAllTasksAssignedToASpecificAssigneeRow>>
       retrieveAllTasksAssignedToASpecificAssignee({
     String? assignee,
@@ -98,81 +92,82 @@ class SQLiteManager {
             assignee: assignee,
           );
 
-  Future<List<RetrieveTaskDetailsByTaskIDRow>> retrieveTaskDetailsByTaskID({
+  Future<List<RetrieveTaskDetailsByTaskIdRow>> retrieveTaskDetailsByTaskId({
     String? taskId,
   }) =>
-      performRetrieveTaskDetailsByTaskID(
+      performRetrieveTaskDetailsByTaskId(
         _database,
         taskId: taskId,
       );
 
-  Future<List<SELECTTASKSAndPPIRByAssigneeRow>> sELECTTASKSAndPPIRByAssignee({
+  Future<List<SelectAllTaskAndPpirByAssigneeRow>>
+      selectAllTaskAndPpirByAssignee({
     String? taskId,
     String? assignee,
   }) =>
-      performSELECTTASKSAndPPIRByAssignee(
-        _database,
-        taskId: taskId,
-        assignee: assignee,
-      );
+          performSelectAllTaskAndPpirByAssignee(
+            _database,
+            taskId: taskId,
+            assignee: assignee,
+          );
 
-  Future<List<RetrieveAllRiceSeedsByRegionIDRow>>
-      retrieveAllRiceSeedsByRegionID({
+  Future<List<RetrieveAllRiceSeedsByRegionIdRow>>
+      retrieveAllRiceSeedsByRegionId({
     String? regionId,
   }) =>
-          performRetrieveAllRiceSeedsByRegionID(
+          performRetrieveAllRiceSeedsByRegionId(
             _database,
             regionId: regionId,
           );
 
-  Future<List<RetrieveAllCornSeedsByRegionIDRow>>
-      retrieveAllCornSeedsByRegionID({
+  Future<List<RetrieveAllCornSeedsByRegionIdRow>>
+      retrieveAllCornSeedsByRegionId({
     String? regionId,
   }) =>
-          performRetrieveAllCornSeedsByRegionID(
+          performRetrieveAllCornSeedsByRegionId(
             _database,
             regionId: regionId,
           );
 
-  Future<List<RetrievePPIRFormsByTaskIDRow>> retrievePPIRFormsByTaskID({
+  Future<List<RetrievePpirFormsByTaskIdRow>> retrievePpirFormsByTaskId({
     String? taskId,
   }) =>
-      performRetrievePPIRFormsByTaskID(
+      performRetrievePpirFormsByTaskId(
         _database,
         taskId: taskId,
       );
 
-  Future<List<RetrieveRegionCodeByRegionIDRow>> retrieveRegionCodeByRegionID({
+  Future<List<RetrieveRegionCodeByRegionIdRow>> retrieveRegionCodeByRegionId({
     String? id,
   }) =>
-      performRetrieveRegionCodeByRegionID(
+      performRetrieveRegionCodeByRegionId(
         _database,
         id: id,
       );
 
-  Future<List<RetrieveGPXDataFromPPIRFormsByTaskIDRow>>
-      retrieveGPXDataFromPPIRFormsByTaskID({
+  Future<List<RetrieveGPXDataFromPPIRFormsByPpirIdRow>>
+      retrieveGPXDataFromPPIRFormsByPpirId({
     String? taskId,
   }) =>
-          performRetrieveGPXDataFromPPIRFormsByTaskID(
+          performRetrieveGPXDataFromPPIRFormsByPpirId(
             _database,
             taskId: taskId,
           );
 
-  Future<List<RetrievePPIRIsDirtyStatusForTasksAssignedToASpecificAssigneeRow>>
-      retrievePPIRIsDirtyStatusForTasksAssignedToASpecificAssignee({
+  Future<List<RetrievePpirIsDirtyStatusForTasksAssignedToASpecificAssigneeRow>>
+      retrievePpirIsDirtyStatusForTasksAssignedToASpecificAssignee({
     String? assignee,
   }) =>
-          performRetrievePPIRIsDirtyStatusForTasksAssignedToASpecificAssignee(
+          performRetrievePpirIsDirtyStatusForTasksAssignedToASpecificAssignee(
             _database,
             assignee: assignee,
           );
 
-  Future<List<RetrieveDetailedTaskAndPPIRFormDataForASpecificAssigneeRow>>
-      retrieveDetailedTaskAndPPIRFormDataForASpecificAssignee({
+  Future<List<RetrieveDetailedTaskAndPpirFormDataForASpecificAssigneeRow>>
+      retrieveDetailedTaskAndPpirFormDataForASpecificAssignee({
     String? assignee,
   }) =>
-          performRetrieveDetailedTaskAndPPIRFormDataForASpecificAssignee(
+          performRetrieveDetailedTaskAndPpirFormDataForASpecificAssignee(
             _database,
             assignee: assignee,
           );
@@ -218,7 +213,7 @@ class SQLiteManager {
         fileId: fileId,
       );
 
-  Future insertOrReplacePPIRFormRecord({
+  Future insertOrReplacePpirFormRecord({
     String? taskId,
     String? ppirAssignmentId,
     String? gpx,
@@ -268,7 +263,7 @@ class SQLiteManager {
     String? isDirty,
     String? capturedArea,
   }) =>
-      performInsertOrReplacePPIRFormRecord(
+      performInsertOrReplacePpirFormRecord(
         _database,
         taskId: taskId,
         ppirAssignmentId: ppirAssignmentId,
@@ -320,17 +315,17 @@ class SQLiteManager {
         capturedArea: capturedArea,
       );
 
-  Future clearGPXDataInPPIRFormByTaskID({
+  Future clearGPXDataInPpirFormByTaskId({
     String? taskId,
     bool? isDirty,
   }) =>
-      performClearGPXDataInPPIRFormByTaskID(
+      performClearGPXDataInPpirFormByTaskId(
         _database,
         taskId: taskId,
         isDirty: isDirty,
       );
 
-  Future updatePPIRFormDetailsAndDirtyFlagByTaskID({
+  Future updatePpirFormDetailsAndDirtyFlagByTaskId({
     String? taskId,
     String? ppirSvpAct,
     String? ppirDopdsAct,
@@ -344,7 +339,7 @@ class SQLiteManager {
     bool? isDirty,
     String? capturedArea,
   }) =>
-      performUpdatePPIRFormDetailsAndDirtyFlagByTaskID(
+      performUpdatePpirFormDetailsAndDirtyFlagByTaskId(
         _database,
         taskId: taskId,
         ppirSvpAct: ppirSvpAct,
@@ -360,23 +355,23 @@ class SQLiteManager {
         capturedArea: capturedArea,
       );
 
-  Future updateTaskStatusAndDirtyFlagByID({
+  Future updateTaskStatusAndDirtyFlagById({
     String? taskId,
     String? status,
     bool? isDirty,
   }) =>
-      performUpdateTaskStatusAndDirtyFlagByID(
+      performUpdateTaskStatusAndDirtyFlagById(
         _database,
         taskId: taskId,
         status: status,
         isDirty: isDirty,
       );
 
-  Future updatePPIRFormDirtyFlagByTaskID({
+  Future updatePPIRFormDirtyFlagByTaskId({
     String? taskId,
     bool? isDirty,
   }) =>
-      performUpdatePPIRFormDirtyFlagByTaskID(
+      performUpdatePPIRFormDirtyFlagByTaskId(
         _database,
         taskId: taskId,
         isDirty: isDirty,
@@ -394,7 +389,7 @@ class SQLiteManager {
         isDirty: isDirty,
       );
 
-  Future updatePPIRFormTrackingDataByTaskID({
+  Future updatePPIRFormTrackingDataByTaskId({
     String? taskId,
     String? trackLastCoord,
     String? trackDateTime,
@@ -403,7 +398,7 @@ class SQLiteManager {
     String? gpx,
     bool? isDirty,
   }) =>
-      performUpdatePPIRFormTrackingDataByTaskID(
+      performUpdatePPIRFormTrackingDataByTaskId(
         _database,
         taskId: taskId,
         trackLastCoord: trackLastCoord,
@@ -414,38 +409,38 @@ class SQLiteManager {
         isDirty: isDirty,
       );
 
-  Future updatePPIRIUAISignatureByTaskID({
+  Future updatePpirIuiaSignatureByTaskId({
     String? taskId,
     String? signatureBlob,
   }) =>
-      performUpdatePPIRIUAISignatureByTaskID(
+      performUpdatePpirIuiaSignatureByTaskId(
         _database,
         taskId: taskId,
         signatureBlob: signatureBlob,
       );
 
-  Future updatePPIRInsuredSignatureByTaskID({
+  Future updatePpirInsuredSignatureByTaskId({
     String? taskId,
     String? signatureBlob,
   }) =>
-      performUpdatePPIRInsuredSignatureByTaskID(
+      performUpdatePpirInsuredSignatureByTaskId(
         _database,
         taskId: taskId,
         signatureBlob: signatureBlob,
       );
 
-  Future updateInspectorNameByUserID({
+  Future updateInspectorNameByUserId({
     String? id,
     String? inspectorName,
   }) =>
-      performUpdateInspectorNameByUserID(
+      performUpdateInspectorNameByUserId(
         _database,
         id: id,
         inspectorName: inspectorName,
       );
 
-  Future deleteAllRecordsFromTasksAndPPIRForms() =>
-      performDeleteAllRecordsFromTasksAndPPIRForms(
+  Future deleteAllRecordsFromTasksAndPpirForms() =>
+      performDeleteAllRecordsFromTasksAndPpirForms(
         _database,
       );
 
@@ -475,24 +470,24 @@ class SQLiteManager {
         regionId: regionId,
       );
 
-  Future updatePPIRFormSyncStatusAndDirtyFlagByTaskID({
+  Future updatePpirFormSyncStatusAndDirtyFlagByTaskId({
     String? taskId,
     String? syncStatus,
     String? isDirty,
   }) =>
-      performUpdatePPIRFormSyncStatusAndDirtyFlagByTaskID(
+      performUpdatePpirFormSyncStatusAndDirtyFlagByTaskId(
         _database,
         taskId: taskId,
         syncStatus: syncStatus,
         isDirty: isDirty,
       );
 
-  Future updateTaskSyncStatusAndDirtyFlagByID({
+  Future updateTaskSyncStatusAndDirtyFlagById({
     String? taskId,
     String? syncStatus,
     String? isDirty,
   }) =>
-      performUpdateTaskSyncStatusAndDirtyFlagByID(
+      performUpdateTaskSyncStatusAndDirtyFlagById(
         _database,
         taskId: taskId,
         syncStatus: syncStatus,

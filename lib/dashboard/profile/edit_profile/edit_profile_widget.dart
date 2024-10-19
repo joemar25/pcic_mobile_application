@@ -380,7 +380,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                         ),
                                       );
                                       await SQLiteManager.instance
-                                          .updateInspectorNameByUserID(
+                                          .updateInspectorNameByUserId(
                                         id: currentUserUid,
                                         inspectorName: _model
                                             .displayNameTextController.text,

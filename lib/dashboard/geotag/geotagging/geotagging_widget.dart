@@ -628,7 +628,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                       );
                     }
                     await SQLiteManager.instance
-                        .updateTaskStatusAndDirtyFlagByID(
+                        .updateTaskStatusAndDirtyFlagById(
                       taskId: widget.taskId,
                       status: 'ongoing',
                       isDirty: !FFAppState().ONLINE,

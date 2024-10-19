@@ -176,14 +176,14 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
                                   defaultLocation: const LatLng(0.0, 0.0));
                           if (!_model.isSync) {
                             await SQLiteManager.instance
-                                .deleteAllRecordsFromTasksAndPPIRForms();
+                                .deleteAllRecordsFromTasksAndPpirForms();
                             // Number Iteration
                             _model.startSync = true;
                             _model.isSync = true;
                             _model.isSynced = false;
                             safeSetState(() {});
                             _model.regionCode = await SQLiteManager.instance
-                                .retrieveRegionCodeByRegionID(
+                                .retrieveRegionCodeByRegionId(
                               id: syncRetrieveProfileRowList.first.regionId,
                             );
                             _model.isSyced = await actions.syncFromFTP(

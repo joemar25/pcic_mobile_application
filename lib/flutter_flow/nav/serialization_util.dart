@@ -254,10 +254,10 @@ dynamic deserializeParam<T>(
       case ParamType.SqliteRow:
         final data = json.decode(param) as Map<String, dynamic>;
         switch (T) {
-          case RetrieveAllUsersByRegionIDRow:
-            return RetrieveAllUsersByRegionIDRow(data);
-          case RetrieveAllPPIRFormsByTaskIDRow:
-            return RetrieveAllPPIRFormsByTaskIDRow(data);
+          case RetrieveAllUsersByRegionIdRow:
+            return RetrieveAllUsersByRegionIdRow(data);
+          case RetrieveAllPpirFormsByTaskIdRow:
+            return RetrieveAllPpirFormsByTaskIdRow(data);
           case RetrieveAllMessagesRow:
             return RetrieveAllMessagesRow(data);
           case RetrieveAllSyncLogsRow:
@@ -268,31 +268,29 @@ dynamic deserializeParam<T>(
             return RetrieveProfileRow(data);
           case RetrieveAndSortSyncQueueByOldestTimestampRow:
             return RetrieveAndSortSyncQueueByOldestTimestampRow(data);
-          case RetrieveTasksModifiedAfterASpecificDateRow:
-            return RetrieveTasksModifiedAfterASpecificDateRow(data);
           case RetrieveAllTasksAssignedToASpecificAssigneeRow:
             return RetrieveAllTasksAssignedToASpecificAssigneeRow(data);
           case CountOfTasksForDispatchAssignedToASpecificAssigneeRow:
             return CountOfTasksForDispatchAssignedToASpecificAssigneeRow(data);
-          case RetrieveTaskDetailsByTaskIDRow:
-            return RetrieveTaskDetailsByTaskIDRow(data);
-          case SELECTTASKSAndPPIRByAssigneeRow:
-            return SELECTTASKSAndPPIRByAssigneeRow(data);
-          case RetrieveAllRiceSeedsByRegionIDRow:
-            return RetrieveAllRiceSeedsByRegionIDRow(data);
-          case RetrieveAllCornSeedsByRegionIDRow:
-            return RetrieveAllCornSeedsByRegionIDRow(data);
-          case RetrievePPIRFormsByTaskIDRow:
-            return RetrievePPIRFormsByTaskIDRow(data);
-          case RetrieveRegionCodeByRegionIDRow:
-            return RetrieveRegionCodeByRegionIDRow(data);
-          case RetrieveGPXDataFromPPIRFormsByTaskIDRow:
-            return RetrieveGPXDataFromPPIRFormsByTaskIDRow(data);
-          case RetrievePPIRIsDirtyStatusForTasksAssignedToASpecificAssigneeRow:
-            return RetrievePPIRIsDirtyStatusForTasksAssignedToASpecificAssigneeRow(
+          case RetrieveTaskDetailsByTaskIdRow:
+            return RetrieveTaskDetailsByTaskIdRow(data);
+          case SelectAllTaskAndPpirByAssigneeRow:
+            return SelectAllTaskAndPpirByAssigneeRow(data);
+          case RetrieveAllRiceSeedsByRegionIdRow:
+            return RetrieveAllRiceSeedsByRegionIdRow(data);
+          case RetrieveAllCornSeedsByRegionIdRow:
+            return RetrieveAllCornSeedsByRegionIdRow(data);
+          case RetrievePpirFormsByTaskIdRow:
+            return RetrievePpirFormsByTaskIdRow(data);
+          case RetrieveRegionCodeByRegionIdRow:
+            return RetrieveRegionCodeByRegionIdRow(data);
+          case RetrieveGPXDataFromPPIRFormsByPpirIdRow:
+            return RetrieveGPXDataFromPPIRFormsByPpirIdRow(data);
+          case RetrievePpirIsDirtyStatusForTasksAssignedToASpecificAssigneeRow:
+            return RetrievePpirIsDirtyStatusForTasksAssignedToASpecificAssigneeRow(
                 data);
-          case RetrieveDetailedTaskAndPPIRFormDataForASpecificAssigneeRow:
-            return RetrieveDetailedTaskAndPPIRFormDataForASpecificAssigneeRow(
+          case RetrieveDetailedTaskAndPpirFormDataForASpecificAssigneeRow:
+            return RetrieveDetailedTaskAndPpirFormDataForASpecificAssigneeRow(
                 data);
           case SelectPpirFormsByAssigneeAndTaskStatusRow:
             return SelectPpirFormsByAssigneeAndTaskStatusRow(data);

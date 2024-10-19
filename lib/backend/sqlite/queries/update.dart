@@ -24,7 +24,7 @@ VALUES ('$id', '$taskNumber', '$serviceGroup', '$status', '$serviceType', '$prio
 /// END INSERT OR REPLACE TASK RECORD
 
 /// BEGIN INSERT OR REPLACE PPIR FORM RECORD
-Future performInsertOrReplacePPIRFormRecord(
+Future performInsertOrReplacePpirFormRecord(
   Database database, {
   String? taskId,
   String? ppirAssignmentId,
@@ -107,7 +107,7 @@ INSERT OR REPLACE INTO ppir_forms (
 /// END INSERT OR REPLACE PPIR FORM RECORD
 
 /// BEGIN CLEAR GPX DATA IN PPIR FORM BY TASK ID
-Future performClearGPXDataInPPIRFormByTaskID(
+Future performClearGPXDataInPpirFormByTaskId(
   Database database, {
   String? taskId,
   bool? isDirty,
@@ -123,7 +123,7 @@ WHERE task_id = '$taskId';
 /// END CLEAR GPX DATA IN PPIR FORM BY TASK ID
 
 /// BEGIN UPDATE PPIR FORM DETAILS AND DIRTY FLAG BY TASK ID
-Future performUpdatePPIRFormDetailsAndDirtyFlagByTaskID(
+Future performUpdatePpirFormDetailsAndDirtyFlagByTaskId(
   Database database, {
   String? taskId,
   String? ppirSvpAct,
@@ -160,7 +160,7 @@ WHERE task_id = '$taskId';
 /// END UPDATE PPIR FORM DETAILS AND DIRTY FLAG BY TASK ID
 
 /// BEGIN UPDATE TASK STATUS AND DIRTY FLAG BY ID
-Future performUpdateTaskStatusAndDirtyFlagByID(
+Future performUpdateTaskStatusAndDirtyFlagById(
   Database database, {
   String? taskId,
   String? status,
@@ -179,7 +179,7 @@ WHERE id = '$taskId';
 /// END UPDATE TASK STATUS AND DIRTY FLAG BY ID
 
 /// BEGIN UPDATE PPIR FORM DIRTY FLAG BY TASK ID
-Future performUpdatePPIRFormDirtyFlagByTaskID(
+Future performUpdatePPIRFormDirtyFlagByTaskId(
   Database database, {
   String? taskId,
   bool? isDirty,
@@ -214,7 +214,7 @@ WHERE task_id = '$taskId';
 /// END UPDATE PPIR FORM GPX DATA BY TASK ID
 
 /// BEGIN UPDATE PPIR FORM TRACKING DATA BY TASK ID
-Future performUpdatePPIRFormTrackingDataByTaskID(
+Future performUpdatePPIRFormTrackingDataByTaskId(
   Database database, {
   String? taskId,
   String? trackLastCoord,
@@ -240,8 +240,8 @@ WHERE task_id = '$taskId';
 
 /// END UPDATE PPIR FORM TRACKING DATA BY TASK ID
 
-/// BEGIN UPDATE PPIR IUAI SIGNATURE BY TASK ID
-Future performUpdatePPIRIUAISignatureByTaskID(
+/// BEGIN UPDATE PPIR IUIA SIGNATURE BY TASK ID
+Future performUpdatePpirIuiaSignatureByTaskId(
   Database database, {
   String? taskId,
   String? signatureBlob,
@@ -254,10 +254,10 @@ WHERE task_id = '$taskId';
   return database.rawQuery(query);
 }
 
-/// END UPDATE PPIR IUAI SIGNATURE BY TASK ID
+/// END UPDATE PPIR IUIA SIGNATURE BY TASK ID
 
 /// BEGIN UPDATE PPIR INSURED SIGNATURE BY TASK ID
-Future performUpdatePPIRInsuredSignatureByTaskID(
+Future performUpdatePpirInsuredSignatureByTaskId(
   Database database, {
   String? taskId,
   String? signatureBlob,
@@ -273,7 +273,7 @@ WHERE task_id = '$taskId';
 /// END UPDATE PPIR INSURED SIGNATURE BY TASK ID
 
 /// BEGIN UPDATE INSPECTOR NAME BY USER ID
-Future performUpdateInspectorNameByUserID(
+Future performUpdateInspectorNameByUserId(
   Database database, {
   String? id,
   String? inspectorName,
@@ -289,7 +289,7 @@ WHERE id = '$id';
 /// END UPDATE INSPECTOR NAME BY USER ID
 
 /// BEGIN DELETE ALL RECORDS FROM TASKS AND PPIR FORMS
-Future performDeleteAllRecordsFromTasksAndPPIRForms(
+Future performDeleteAllRecordsFromTasksAndPpirForms(
   Database database,
 ) {
   const query = '''
@@ -348,7 +348,7 @@ VALUES (
 /// END INSERT OR REPLACE USER DATA
 
 /// BEGIN UPDATE PPIR FORM SYNC STATUS AND DIRTY FLAG BY TASK ID
-Future performUpdatePPIRFormSyncStatusAndDirtyFlagByTaskID(
+Future performUpdatePpirFormSyncStatusAndDirtyFlagByTaskId(
   Database database, {
   String? taskId,
   String? syncStatus,
@@ -367,7 +367,7 @@ WHERE task_id = '$taskId';
 /// END UPDATE PPIR FORM SYNC STATUS AND DIRTY FLAG BY TASK ID
 
 /// BEGIN UPDATE TASK SYNC STATUS AND DIRTY FLAG BY ID
-Future performUpdateTaskSyncStatusAndDirtyFlagByID(
+Future performUpdateTaskSyncStatusAndDirtyFlagById(
   Database database, {
   String? taskId,
   String? syncStatus,
