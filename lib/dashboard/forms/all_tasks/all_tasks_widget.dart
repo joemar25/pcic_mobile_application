@@ -76,8 +76,8 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return FutureBuilder<List<SelectPpirFormsByAssigneeAndTaskStatusRow>>(
-      future: SQLiteManager.instance.selectPpirFormsByAssigneeAndTaskStatus(
+    return FutureBuilder<List<SELECTPPIRFormsByAssigneeAndTaskStatusRow>>(
+      future: SQLiteManager.instance.sELECTPPIRFormsByAssigneeAndTaskStatus(
         assignee: currentUserUid,
         status: widget.taskStatus,
       ),
@@ -91,7 +91,7 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
             ),
           );
         }
-        final allTasksSelectPpirFormsByAssigneeAndTaskStatusRowList =
+        final allTasksSELECTPPIRFormsByAssigneeAndTaskStatusRowList =
             snapshot.data!;
 
         return GestureDetector(
@@ -263,7 +263,7 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                           );
                           safeSetState(() {
                             _model.simpleSearchResults = TextSearch(
-                                    allTasksSelectPpirFormsByAssigneeAndTaskStatusRowList
+                                    allTasksSELECTPPIRFormsByAssigneeAndTaskStatusRowList
                                         .map((e) => e.ppirFarmername)
                                         .withoutNulls
                                         .toList()
@@ -368,7 +368,7 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                         child: Builder(
                           builder: (context) {
                             final tasks =
-                                allTasksSelectPpirFormsByAssigneeAndTaskStatusRowList
+                                allTasksSELECTPPIRFormsByAssigneeAndTaskStatusRowList
                                     .where(
                                         (e) => e.status == widget.taskStatus)
                                     .toList();
@@ -390,7 +390,7 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                             }
 
                             return FlutterFlowDataTable<
-                                SelectPpirFormsByAssigneeAndTaskStatusRow>(
+                                SELECTPPIRFormsByAssigneeAndTaskStatusRow>(
                               controller: _model.paginatedDataTableController,
                               data: tasks,
                               columnsBuilder: (onSortChanged) => [
@@ -686,13 +686,13 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                                           );
                                         },
                                         child: Text(
-                                          (allTasksSelectPpirFormsByAssigneeAndTaskStatusRowList
+                                          (allTasksSELECTPPIRFormsByAssigneeAndTaskStatusRowList
                                                           .first.gpx ==
                                                       ' ') ||
-                                                  (allTasksSelectPpirFormsByAssigneeAndTaskStatusRowList
+                                                  (allTasksSELECTPPIRFormsByAssigneeAndTaskStatusRowList
                                                           .first.gpx ==
                                                       'null') ||
-                                                  (allTasksSelectPpirFormsByAssigneeAndTaskStatusRowList
+                                                  (allTasksSELECTPPIRFormsByAssigneeAndTaskStatusRowList
                                                           .first.gpx ==
                                                       '')
                                               ? 'No GPX'

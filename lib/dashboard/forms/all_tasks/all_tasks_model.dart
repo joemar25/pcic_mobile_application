@@ -29,7 +29,7 @@ class AllTasksModel extends FlutterFlowModel<AllTasksWidget> {
   List<String> simpleSearchResults = [];
   // State field(s) for PaginatedDataTable widget.
   final paginatedDataTableController = FlutterFlowDataTableController<
-      SelectPpirFormsByAssigneeAndTaskStatusRow>();
+      SELECTPPIRFormsByAssigneeAndTaskStatusRow>();
 
   @override
   void initState(BuildContext context) {

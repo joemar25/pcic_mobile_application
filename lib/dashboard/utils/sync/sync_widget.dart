@@ -183,7 +183,7 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
                             _model.isSynced = false;
                             safeSetState(() {});
                             _model.regionCode = await SQLiteManager.instance
-                                .selectRegionCodeById(
+                                .oFFLINESelectREGIONCODE(
                               id: syncSelectProfileRowList.first.regionId,
                             );
                             _model.isSyced = await actions.syncFromFTP(

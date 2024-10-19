@@ -18,8 +18,8 @@ class SyncModel extends FlutterFlowModel<SyncWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  // Stores action output result for [Backend Call - SQLite (Select Region Code By Id)] action in Container widget.
-  List<SelectRegionCodeByIdRow>? regionCode;
+  // Stores action output result for [Backend Call - SQLite (OFFLINE select REGION CODE)] action in Container widget.
+  List<OFFLINESelectREGIONCODERow>? regionCode;
   // Stores action output result for [Custom Action - syncFromFTP] action in Container widget.
   bool? isSyced;
   // Stores action output result for [Custom Action - syncOnlineTaskAndPpirToOffline] action in Container widget.

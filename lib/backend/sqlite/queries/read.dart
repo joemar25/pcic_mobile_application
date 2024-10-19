@@ -8,19 +8,19 @@ Future<List<T>> _readQuery<T>(
 ) =>
     database.rawQuery(query).then((r) => r.map((e) => create(e)).toList());
 
-/// BEGIN RETRIEVE ALL USERS BY REGION ID
-Future<List<RetrieveAllUsersByRegionIDRow>> performRetrieveAllUsersByRegionID(
+/// BEGIN SELECT USERS IN SAME REGION
+Future<List<SelectUsersInSameRegionRow>> performSelectUsersInSameRegion(
   Database database, {
   String? regionId,
 }) {
   final query = '''
 SELECT * FROM users WHERE region_id='$regionId'
 ''';
-  return _readQuery(database, query, (d) => RetrieveAllUsersByRegionIDRow(d));
+  return _readQuery(database, query, (d) => SelectUsersInSameRegionRow(d));
 }
 
-class RetrieveAllUsersByRegionIDRow extends SqliteRow {
-  RetrieveAllUsersByRegionIDRow(super.data);
+class SelectUsersInSameRegionRow extends SqliteRow {
+  SelectUsersInSameRegionRow(super.data);
 
   String? get id => data['id'] as String?;
   String? get role => data['role'] as String?;
@@ -36,22 +36,21 @@ class RetrieveAllUsersByRegionIDRow extends SqliteRow {
   String? get regionId => data['region_id'] as String?;
 }
 
-/// END RETRIEVE ALL USERS BY REGION ID
+/// END SELECT USERS IN SAME REGION
 
-/// BEGIN RETRIEVE ALL PPIR FORMS BY TASK ID
-Future<List<RetrieveAllPPIRFormsByTaskIDRow>>
-    performRetrieveAllPPIRFormsByTaskID(
+/// BEGIN SELECT PPIR FORMS
+Future<List<SelectPpirFormsRow>> performSelectPpirForms(
   Database database, {
   String? taskId,
 }) {
   final query = '''
 SELECT * FROM ppir_forms WHERE task_id='$taskId'
 ''';
-  return _readQuery(database, query, (d) => RetrieveAllPPIRFormsByTaskIDRow(d));
+  return _readQuery(database, query, (d) => SelectPpirFormsRow(d));
 }
 
-class RetrieveAllPPIRFormsByTaskIDRow extends SqliteRow {
-  RetrieveAllPPIRFormsByTaskIDRow(super.data);
+class SelectPpirFormsRow extends SqliteRow {
+  SelectPpirFormsRow(super.data);
 
   String? get taskId => data['task_id'] as String?;
   String? get ppirAssignmentid => data['ppir_assignmentid'] as String?;
@@ -102,7 +101,7 @@ class RetrieveAllPPIRFormsByTaskIDRow extends SqliteRow {
   String? get gpx => data['gpx'] as String?;
 }
 
-/// END RETRIEVE ALL PPIR FORMS BY TASK ID
+/// END SELECT PPIR FORMS
 
 /// BEGIN SELECT ALL MESSAGES
 Future<List<SelectAllMessagesRow>> performSelectAllMessages(
@@ -584,46 +583,46 @@ class SELECTPPIRFORMSSignaturesRow extends SqliteRow {
 
 /// END SELECT PPIR FORMS SIGNATURES
 
-/// BEGIN SELECT REGION CODE BY ID
-Future<List<SelectRegionCodeByIdRow>> performSelectRegionCodeById(
+/// BEGIN OFFLINE SELECT REGION CODE
+Future<List<OFFLINESelectREGIONCODERow>> performOFFLINESelectREGIONCODE(
   Database database, {
   String? id,
 }) {
   final query = '''
 SELECT region_code FROM regions WHERE id = '$id'
 ''';
-  return _readQuery(database, query, (d) => SelectRegionCodeByIdRow(d));
+  return _readQuery(database, query, (d) => OFFLINESelectREGIONCODERow(d));
 }
 
-class SelectRegionCodeByIdRow extends SqliteRow {
-  SelectRegionCodeByIdRow(super.data);
+class OFFLINESelectREGIONCODERow extends SqliteRow {
+  OFFLINESelectREGIONCODERow(super.data);
 
   String? get regionCode => data['region_code'] as String?;
 }
 
-/// END SELECT REGION CODE BY ID
+/// END OFFLINE SELECT REGION CODE
 
 /// BEGIN SELECT PPIR FORMS GPX
-Future<List<SelectPpirFormsGpxRow>> performSelectPpirFormsGpx(
+Future<List<SELECTPPIRFORMSGpxRow>> performSELECTPPIRFORMSGpx(
   Database database, {
   String? taskId,
 }) {
   final query = '''
 SELECT gpx FROM ppir_forms WHERE task_id='$taskId'
 ''';
-  return _readQuery(database, query, (d) => SelectPpirFormsGpxRow(d));
+  return _readQuery(database, query, (d) => SELECTPPIRFORMSGpxRow(d));
 }
 
-class SelectPpirFormsGpxRow extends SqliteRow {
-  SelectPpirFormsGpxRow(super.data);
+class SELECTPPIRFORMSGpxRow extends SqliteRow {
+  SELECTPPIRFORMSGpxRow(super.data);
 
   String? get gpx => data['gpx'] as String?;
 }
 
 /// END SELECT PPIR FORMS GPX
 
-/// BEGIN COUNT IS DIRTY
-Future<List<CountIsDirtyRow>> performCountIsDirty(
+/// BEGIN COUNT ISDIRTY
+Future<List<COUNTIsDirtyRow>> performCOUNTIsDirty(
   Database database, {
   String? assignee,
 }) {
@@ -637,19 +636,19 @@ JOIN
 WHERE 
     t.assignee = '$assignee';
 ''';
-  return _readQuery(database, query, (d) => CountIsDirtyRow(d));
+  return _readQuery(database, query, (d) => COUNTIsDirtyRow(d));
 }
 
-class CountIsDirtyRow extends SqliteRow {
-  CountIsDirtyRow(super.data);
+class COUNTIsDirtyRow extends SqliteRow {
+  COUNTIsDirtyRow(super.data);
 
   String? get ppirIsDirty => data['ppir_is_dirty'] as String?;
 }
 
-/// END COUNT IS DIRTY
+/// END COUNT ISDIRTY
 
 /// BEGIN SELECT PPIR FORMS BY ASSIGNEE
-Future<List<SelectPpirFormsByAssigneeRow>> performSelectPpirFormsByAssignee(
+Future<List<SELECTPPIRFormsByAssigneeRow>> performSELECTPPIRFormsByAssignee(
   Database database, {
   String? assignee,
 }) {
@@ -724,11 +723,11 @@ LEFT JOIN
 WHERE 
     t.assignee = '$assignee';
 ''';
-  return _readQuery(database, query, (d) => SelectPpirFormsByAssigneeRow(d));
+  return _readQuery(database, query, (d) => SELECTPPIRFormsByAssigneeRow(d));
 }
 
-class SelectPpirFormsByAssigneeRow extends SqliteRow {
-  SelectPpirFormsByAssigneeRow(super.data);
+class SELECTPPIRFormsByAssigneeRow extends SqliteRow {
+  SELECTPPIRFormsByAssigneeRow(super.data);
 
   String? get taskId => data['task_id'] as String?;
   String? get taskNumber => data['task_number'] as String?;
@@ -797,8 +796,8 @@ class SelectPpirFormsByAssigneeRow extends SqliteRow {
 /// END SELECT PPIR FORMS BY ASSIGNEE
 
 /// BEGIN SELECT PPIR FORMS BY ASSIGNEE AND TASK STATUS
-Future<List<SelectPpirFormsByAssigneeAndTaskStatusRow>>
-    performSelectPpirFormsByAssigneeAndTaskStatus(
+Future<List<SELECTPPIRFormsByAssigneeAndTaskStatusRow>>
+    performSELECTPPIRFormsByAssigneeAndTaskStatus(
   Database database, {
   String? assignee,
   String? status,
@@ -875,11 +874,11 @@ WHERE
     AND t.status = '$status';
 ''';
   return _readQuery(
-      database, query, (d) => SelectPpirFormsByAssigneeAndTaskStatusRow(d));
+      database, query, (d) => SELECTPPIRFormsByAssigneeAndTaskStatusRow(d));
 }
 
-class SelectPpirFormsByAssigneeAndTaskStatusRow extends SqliteRow {
-  SelectPpirFormsByAssigneeAndTaskStatusRow(super.data);
+class SELECTPPIRFormsByAssigneeAndTaskStatusRow extends SqliteRow {
+  SELECTPPIRFormsByAssigneeAndTaskStatusRow(super.data);
 
   String? get taskId => data['task_id'] as String?;
   String? get taskNumber => data['task_number'] as String?;

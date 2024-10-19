@@ -29,18 +29,18 @@ class SQLiteManager {
 
   /// START READ QUERY CALLS
 
-  Future<List<RetrieveAllUsersByRegionIDRow>> retrieveAllUsersByRegionID({
+  Future<List<SelectUsersInSameRegionRow>> selectUsersInSameRegion({
     String? regionId,
   }) =>
-      performRetrieveAllUsersByRegionID(
+      performSelectUsersInSameRegion(
         _database,
         regionId: regionId,
       );
 
-  Future<List<RetrieveAllPPIRFormsByTaskIDRow>> retrieveAllPPIRFormsByTaskID({
+  Future<List<SelectPpirFormsRow>> selectPpirForms({
     String? taskId,
   }) =>
-      performRetrieveAllPPIRFormsByTaskID(
+      performSelectPpirForms(
         _database,
         taskId: taskId,
       );
@@ -140,44 +140,44 @@ class SQLiteManager {
         taskId: taskId,
       );
 
-  Future<List<SelectRegionCodeByIdRow>> selectRegionCodeById({
+  Future<List<OFFLINESelectREGIONCODERow>> oFFLINESelectREGIONCODE({
     String? id,
   }) =>
-      performSelectRegionCodeById(
+      performOFFLINESelectREGIONCODE(
         _database,
         id: id,
       );
 
-  Future<List<SelectPpirFormsGpxRow>> selectPpirFormsGpx({
+  Future<List<SELECTPPIRFORMSGpxRow>> sELECTPPIRFORMSGpx({
     String? taskId,
   }) =>
-      performSelectPpirFormsGpx(
+      performSELECTPPIRFORMSGpx(
         _database,
         taskId: taskId,
       );
 
-  Future<List<CountIsDirtyRow>> countIsDirty({
+  Future<List<COUNTIsDirtyRow>> cOUNTIsDirty({
     String? assignee,
   }) =>
-      performCountIsDirty(
+      performCOUNTIsDirty(
         _database,
         assignee: assignee,
       );
 
-  Future<List<SelectPpirFormsByAssigneeRow>> selectPpirFormsByAssignee({
+  Future<List<SELECTPPIRFormsByAssigneeRow>> sELECTPPIRFormsByAssignee({
     String? assignee,
   }) =>
-      performSelectPpirFormsByAssignee(
+      performSELECTPPIRFormsByAssignee(
         _database,
         assignee: assignee,
       );
 
-  Future<List<SelectPpirFormsByAssigneeAndTaskStatusRow>>
-      selectPpirFormsByAssigneeAndTaskStatus({
+  Future<List<SELECTPPIRFormsByAssigneeAndTaskStatusRow>>
+      sELECTPPIRFormsByAssigneeAndTaskStatus({
     String? assignee,
     String? status,
   }) =>
-          performSelectPpirFormsByAssigneeAndTaskStatus(
+          performSELECTPPIRFormsByAssigneeAndTaskStatus(
             _database,
             assignee: assignee,
             status: status,

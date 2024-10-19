@@ -254,10 +254,10 @@ dynamic deserializeParam<T>(
       case ParamType.SqliteRow:
         final data = json.decode(param) as Map<String, dynamic>;
         switch (T) {
-          case RetrieveAllUsersByRegionIDRow:
-            return RetrieveAllUsersByRegionIDRow(data);
-          case RetrieveAllPPIRFormsByTaskIDRow:
-            return RetrieveAllPPIRFormsByTaskIDRow(data);
+          case SelectUsersInSameRegionRow:
+            return SelectUsersInSameRegionRow(data);
+          case SelectPpirFormsRow:
+            return SelectPpirFormsRow(data);
           case SelectAllMessagesRow:
             return SelectAllMessagesRow(data);
           case SelectSyncLogsRow:
@@ -286,16 +286,16 @@ dynamic deserializeParam<T>(
             return SELECTCornSEEDSRow(data);
           case SELECTPPIRFORMSSignaturesRow:
             return SELECTPPIRFORMSSignaturesRow(data);
-          case SelectRegionCodeByIdRow:
-            return SelectRegionCodeByIdRow(data);
-          case SelectPpirFormsGpxRow:
-            return SelectPpirFormsGpxRow(data);
-          case CountIsDirtyRow:
-            return CountIsDirtyRow(data);
-          case SelectPpirFormsByAssigneeRow:
-            return SelectPpirFormsByAssigneeRow(data);
-          case SelectPpirFormsByAssigneeAndTaskStatusRow:
-            return SelectPpirFormsByAssigneeAndTaskStatusRow(data);
+          case OFFLINESelectREGIONCODERow:
+            return OFFLINESelectREGIONCODERow(data);
+          case SELECTPPIRFORMSGpxRow:
+            return SELECTPPIRFORMSGpxRow(data);
+          case COUNTIsDirtyRow:
+            return COUNTIsDirtyRow(data);
+          case SELECTPPIRFormsByAssigneeRow:
+            return SELECTPPIRFormsByAssigneeRow(data);
+          case SELECTPPIRFormsByAssigneeAndTaskStatusRow:
+            return SELECTPPIRFormsByAssigneeAndTaskStatusRow(data);
           default:
             return null;
         }
