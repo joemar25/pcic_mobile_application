@@ -66,8 +66,10 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
       _model.profile = await SQLiteManager.instance.selectProfile(
         email: currentUserEmail,
       );
-      _model.capturedBlobOutput =
-          _model.capturedImageBlobInputTextController.text;
+      _model.qCapturedImage = await SQLiteManager.instance.selectPpirForms(
+        taskId: widget.taskId,
+      );
+      _model.capturedBlobOutput = _model.qCapturedImage?.first.capturedArea;
       safeSetState(() {});
     });
 

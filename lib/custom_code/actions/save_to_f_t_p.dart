@@ -67,7 +67,8 @@ Future<bool> saveToFTP(String? taskId) async {
     final (ftpUsername, remoteBasePath, fileNamePrefix) =
         await getFtpSettings(serviceGroup);
 
-    ftpClient = FTPConnect('34.143.129.187',
+    // old 34.143.129.187
+    ftpClient = FTPConnect('34.124.202.22',
         user: ftpUsername, pass: 'K2c#%!pc!c', port: 21);
 
     try {
