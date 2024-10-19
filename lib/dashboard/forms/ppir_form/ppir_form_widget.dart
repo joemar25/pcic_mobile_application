@@ -4307,8 +4307,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                           : _model
                                                               .cornDropdownValue,
                                                   isDirty: false,
-                                                  capturedArea:
-                                                      FFAppState().capturedArea,
+                                                  capturedArea: _model
+                                                      .capturedImageBlobInputTextController
+                                                      .text,
                                                 );
                                                 await PpirFormsTable().update(
                                                   data: {
@@ -4364,9 +4365,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     'track_total_distance': _model
                                                         .ppirTrackTotalAreaTextController2
                                                         .text,
-                                                    'captured_area':
-                                                        FFAppState()
-                                                            .capturedArea,
+                                                    'captured_area': _model
+                                                        .capturedImageBlobInputTextController
+                                                        .text,
                                                   },
                                                   matchingRows: (rows) =>
                                                       rows.eq(
@@ -4447,6 +4448,23 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     },
                                                   );
                                                 } else {
+                                                  await SQLiteManager.instance
+                                                      .updateTaskStatus(
+                                                    taskId: widget.taskId,
+                                                    status: 'ongoing',
+                                                    isDirty: false,
+                                                  );
+                                                  await TasksTable().update(
+                                                    data: {
+                                                      'status': 'ongoing',
+                                                    },
+                                                    matchingRows: (rows) =>
+                                                        rows.eq(
+                                                      'id',
+                                                      widget.taskId,
+                                                    ),
+                                                  );
+
                                                   context.goNamed(
                                                     'fail',
                                                     queryParameters: {
