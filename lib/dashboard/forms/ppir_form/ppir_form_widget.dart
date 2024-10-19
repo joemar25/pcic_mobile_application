@@ -28,7 +28,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'ppir_form_model.dart';
 export 'ppir_form_model.dart';
@@ -4412,30 +4411,23 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     });
                                                   }(),
                                                 );
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(
-                                                  SnackBar(
-                                                    content: Text(
-                                                      'isFtpSaved=${_model.isFtpSaved?.toString()}',
-                                                      style:
-                                                          GoogleFonts.getFont(
-                                                        'Roboto',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                        fontSize: 14.0,
-                                                      ),
-                                                    ),
-                                                    duration: const Duration(
-                                                        milliseconds: 4000),
-                                                    backgroundColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .secondary,
-                                                  ),
-                                                );
                                                 if (_model.isFtpSaved!) {
+                                                  unawaited(
+                                                    () async {
+                                                      await UserLogsTable()
+                                                          .insert({
+                                                        'user_id':
+                                                            currentUserUid,
+                                                        'activity':
+                                                            'Submitted a Task',
+                                                        'longlat':
+                                                            '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                                                        'task_id':
+                                                            widget.taskId,
+                                                      });
+                                                    }(),
+                                                  );
+
                                                   context.goNamed(
                                                     'formSuccess',
                                                     queryParameters: {
@@ -4463,6 +4455,21 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     },
                                                   );
                                                 } else {
+                                                  unawaited(
+                                                    () async {
+                                                      await UserLogsTable()
+                                                          .insert({
+                                                        'user_id':
+                                                            currentUserUid,
+                                                        'activity':
+                                                            'Fail to submitted a Task',
+                                                        'longlat':
+                                                            '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                                                        'task_id':
+                                                            widget.taskId,
+                                                      });
+                                                    }(),
+                                                  );
                                                   await SQLiteManager.instance
                                                       .updateTaskStatus(
                                                     taskId: widget.taskId,
