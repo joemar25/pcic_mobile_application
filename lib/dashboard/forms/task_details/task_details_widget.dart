@@ -1390,7 +1390,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               Padding(
                                                 padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
-                                                        0.0, 8.0, 0.0, 0.0),
+                                                        0.0, 8.0, 0.0, 8.0),
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -1402,7 +1402,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       FFLocalizations.of(
                                                               context)
                                                           .getText(
-                                                        'p26su2ne' /* Captured Area */,
+                                                        'x4kj8jn6' /* Captured Area */,
                                                       ),
                                                       style:
                                                           FlutterFlowTheme.of(
@@ -1460,6 +1460,79 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     ),
                                                   ),
                                                 ],
+                                              ),
+                                            ],
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 8.0, 0.0, 0.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'yesr8tfi' /* Geotag */,
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Flexible(
+                                                child: SizedBox(
+                                                  width:
+                                                      MediaQuery.sizeOf(context)
+                                                              .width *
+                                                          1.0,
+                                                  height:
+                                                      MediaQuery.sizeOf(context)
+                                                              .height *
+                                                          0.3,
+                                                  child:
+                                                      custom_widgets.MapBase64(
+                                                    width: MediaQuery.sizeOf(
+                                                                context)
+                                                            .width *
+                                                        1.0,
+                                                    height: MediaQuery.sizeOf(
+                                                                context)
+                                                            .height *
+                                                        0.3,
+                                                    blob: valueOrDefault<
+                                                                String>(
+                                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                  .first.gpx,
+                                                              'null',
+                                                            ) ==
+                                                            'null'
+                                                        ? ' '
+                                                        : taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                            .first.gpx,
+                                                    accessToken: FFAppState()
+                                                        .accessToken,
+                                                  ),
+                                                ),
                                               ),
                                             ],
                                           ),
@@ -2453,106 +2526,6 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ],
                                                     ),
                                                   ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 16.0,
-                                                                0.0, 16.0),
-                                                    child: StyledDivider(
-                                                      thickness: 2.0,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
-                                                      lineStyle:
-                                                          DividerLineStyle
-                                                              .dashed,
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 8.0,
-                                                                0.0, 0.0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Text(
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .getText(
-                                                            'x4kj8jn6' /* Geotag */,
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyLarge
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Flexible(
-                                                        child: SizedBox(
-                                                          width:
-                                                              MediaQuery.sizeOf(
-                                                                          context)
-                                                                      .width *
-                                                                  1.0,
-                                                          height:
-                                                              MediaQuery.sizeOf(
-                                                                          context)
-                                                                      .height *
-                                                                  0.3,
-                                                          child: custom_widgets
-                                                              .MapBase64(
-                                                            width: MediaQuery
-                                                                        .sizeOf(
-                                                                            context)
-                                                                    .width *
-                                                                1.0,
-                                                            height: MediaQuery
-                                                                        .sizeOf(
-                                                                            context)
-                                                                    .height *
-                                                                0.3,
-                                                            blob: valueOrDefault<
-                                                                        String>(
-                                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                          .first
-                                                                          .gpx,
-                                                                      'null',
-                                                                    ) ==
-                                                                    'null'
-                                                                ? 'PD94bWwgdmVyc2lvbj0iMS4wIj8+DQo8Z3B4IHZlcnNpb249IjEuMCIgeG1sbnM9Imh0dHA6Ly93d3cudG9wb2dyYWZpeC5jb20vR1BYLzEvMCI+DQogIDx0cms+DQogICAgPHRya3NlZz4NCiAgICAgIDx0cmtwdCBsYXQ9IjU1Ljc1MzU3MiIgbG9uPSIzNy44MDgyNTAiPg0KICAgICAgICA8ZWxlPjEzNS4wMDwvZWxlPg0KICAgICAgICA8dGltZT4yMDA5LTA1LTE5VDA0OjAwOjMwWjwvdGltZT4NCiAgICAgIDwvdHJrcHQ+DQogICAgICA8dHJrcHQgbGF0PSI1NS43NTM2MjIiIGxvbj0iMzcuODA4MjU1Ij4NCiAgICAgICAgPGVsZT4xMzUuMDA8L2VsZT4NCiAgICAgICAgPHRpbWU+MjAwOS0wNS0xOVQwNDowMDozMVo8L3RpbWU+DQogICAgICA8L3Rya3B0Pg0KICAgICAgPHRya3B0IGxhdD0iNTUuNzUzNTkzIiBsb249IjM3LjgwODE1OCI+DQogICAgICAgIDxlbGU+MTM1LjAwPC9lbGU+DQogICAgICAgIDx0aW1lPjIwMDktMDUtMTlUMDQ6MDA6MzJaPC90aW1lPg0KICAgICAgPC90cmtwdD4NCiAgICAgIDx0cmtwdCBsYXQ9IjU1Ljc1ODE3NyIgbG9uPSIzNy42Nzc4MDIiPg0KICAgICAgICA8ZWxlPjE1Mi4wMDwvZWxlPg0KICAgICAgICA8dGltZT4yMDA5LTA1LTE5VDA0OjQ2OjI3WjwvdGltZT4NCiAgICAgIDwvdHJrcHQ+DQogICAgPC90cmtzZWc+DQogIDwvdHJrPg0KPC9ncHg+'
-                                                                : taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                    .first.gpx,
-                                                            accessToken:
-                                                                FFAppState()
-                                                                    .accessToken,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
                                                 ],
                                               ),
                                             ),
@@ -2631,7 +2604,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   isDirty: !FFAppState().ONLINE,
                                                 );
 
-                                                context.pushNamed(
+                                                context.goNamed(
                                                   'geotagging',
                                                   queryParameters: {
                                                     'taskId': serializeParam(
@@ -2666,7 +2639,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       alignment: Alignment
                                                           .bottomCenter,
                                                       duration: Duration(
-                                                          milliseconds: 200),
+                                                          milliseconds: 300),
                                                     ),
                                                   },
                                                 );
@@ -2740,7 +2713,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     16.0, 8.0, 16.0, 8.0),
                                             child: FFButtonWidget(
                                               onPressed: () async {
-                                                context.pushNamed(
+                                                context.goNamed(
                                                   'ppirForm',
                                                   queryParameters: {
                                                     'taskId': serializeParam(
@@ -2758,7 +2731,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       alignment: Alignment
                                                           .bottomCenter,
                                                       duration: Duration(
-                                                          milliseconds: 200),
+                                                          milliseconds: 300),
                                                     ),
                                                   },
                                                 );
@@ -2977,129 +2950,6 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           ),
                                         ),
                                       ),
-                                      if (false)
-                                        Flexible(
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    16.0, 8.0, 16.0, 8.0),
-                                            child: FFButtonWidget(
-                                              onPressed: () async {
-                                                currentUserLocationValue =
-                                                    await getCurrentUserLocation(
-                                                        defaultLocation:
-                                                            const LatLng(0.0, 0.0));
-                                                if (FFAppState().ONLINE) {
-                                                  await UserLogsTable().insert({
-                                                    'user_id': currentUserUid,
-                                                    'activity': 'Repeat Geotag',
-                                                    'longlat':
-                                                        '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
-                                                    'task_id': widget.taskId,
-                                                  });
-                                                  await TasksTable().update(
-                                                    data: {
-                                                      'status': 'ongoing',
-                                                    },
-                                                    matchingRows: (rows) =>
-                                                        rows.eq(
-                                                      'id',
-                                                      widget.taskId,
-                                                    ),
-                                                  );
-                                                }
-                                                await SQLiteManager.instance
-                                                    .updateTaskStatus(
-                                                  taskId: widget.taskId,
-                                                  status: 'ongoing',
-                                                  isDirty: FFAppState().ONLINE,
-                                                );
-
-                                                context.pushNamed(
-                                                  'geotagging',
-                                                  queryParameters: {
-                                                    'taskId': serializeParam(
-                                                      widget.taskId,
-                                                      ParamType.String,
-                                                    ),
-                                                    'taskType': serializeParam(
-                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                          .first.taskType,
-                                                      ParamType.String,
-                                                    ),
-                                                    'taskStatus':
-                                                        serializeParam(
-                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                          .first.status,
-                                                      ParamType.String,
-                                                    ),
-                                                    'assignmentId':
-                                                        serializeParam(
-                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                          .first
-                                                          .ppirAssignmentid,
-                                                      ParamType.String,
-                                                    ),
-                                                  }.withoutNulls,
-                                                  extra: <String, dynamic>{
-                                                    kTransitionInfoKey:
-                                                        const TransitionInfo(
-                                                      hasTransition: true,
-                                                      transitionType:
-                                                          PageTransitionType
-                                                              .scale,
-                                                      alignment: Alignment
-                                                          .bottomCenter,
-                                                      duration: Duration(
-                                                          milliseconds: 200),
-                                                    ),
-                                                  },
-                                                );
-                                              },
-                                              text: FFLocalizations.of(context)
-                                                  .getText(
-                                                '0mkqs892' /* Geotag Again */,
-                                              ),
-                                              icon: const Icon(
-                                                Icons.swap_vert_sharp,
-                                                size: 15.0,
-                                              ),
-                                              options: FFButtonOptions(
-                                                width:
-                                                    MediaQuery.sizeOf(context)
-                                                            .width *
-                                                        0.35,
-                                                height: 50.0,
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        24.0, 0.0, 24.0, 0.0),
-                                                iconPadding:
-                                                    const EdgeInsetsDirectional
-                                                        .fromSTEB(
-                                                            0.0, 0.0, 0.0, 0.0),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color: Colors.white,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                elevation: 3.0,
-                                                borderSide: const BorderSide(
-                                                  color: Colors.transparent,
-                                                  width: 1.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(12.0),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
                                     ],
                                   ),
                               ]

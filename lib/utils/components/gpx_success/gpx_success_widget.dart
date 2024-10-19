@@ -36,11 +36,11 @@ class _GpxSuccessWidgetState extends State<GpxSuccessWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await Future.delayed(const Duration(milliseconds: 3000));
+      await Future.delayed(const Duration(milliseconds: 5000));
       FFAppState().routeStarted = false;
       FFAppState().update(() {});
 
-      context.pushNamed(
+      context.goNamed(
         'ppirForm',
         queryParameters: {
           'taskId': serializeParam(
@@ -52,7 +52,7 @@ class _GpxSuccessWidgetState extends State<GpxSuccessWidget>
           kTransitionInfoKey: const TransitionInfo(
             hasTransition: true,
             transitionType: PageTransitionType.fade,
-            duration: Duration(milliseconds: 200),
+            duration: Duration(milliseconds: 300),
           ),
         },
       );

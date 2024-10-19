@@ -479,8 +479,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'ACI Variety',
       'tl': 'Iba\'t-ibang Binhi na Nakatanim',
     },
-    'p26su2ne': {
+    'x4kj8jn6': {
       'en': 'Captured Area',
+      'tl': '',
+    },
+    'yesr8tfi': {
+      'en': 'Geotag',
       'tl': '',
     },
     'dgbzqn0h': {
@@ -543,10 +547,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Inspector Full Name:',
       'tl': 'Inihanda Ni',
     },
-    'x4kj8jn6': {
-      'en': 'Geotag',
-      'tl': '',
-    },
     '65kky15n': {
       'en': 'Geotag',
       'tl': 'Geotag',
@@ -558,10 +558,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'auvo0ea6': {
       'en': 'Resubmit',
       'tl': 'Muling isumite',
-    },
-    '0mkqs892': {
-      'en': 'Geotag Again',
-      'tl': 'Geotag Muli',
     },
     '4jnx5njc': {
       'en': 'Home',
@@ -784,10 +780,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'riev7l1c': {
       'en': 'Geotag Information',
       'tl': 'Impormasyon sa Geotag',
-    },
-    'g8oor25r': {
-      'en': 'GPX (debug mode only)',
-      'tl': 'GPX',
     },
     'si0nigj1': {
       'en': 'Last Coordinates',
@@ -1249,10 +1241,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Address',
       'tl': 'Address',
     },
-    'e0z31xxp': {
-      'en': 'Note: ',
-      'tl': '',
-    },
   },
   // chat
   {
@@ -1605,13 +1593,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'mcwvr395': {
       'en': 'Continue',
-      'tl': '',
-    },
-  },
-  // search
-  {
-    '0kax5ncr': {
-      'en': 'Search...',
       'tl': '',
     },
   },

@@ -43,13 +43,13 @@ class _FormSuccessWidgetState extends State<FormSuccessWidget>
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await Future.delayed(const Duration(milliseconds: 5000));
 
-      context.pushNamed(
+      context.goNamed(
         'dashboard',
         extra: <String, dynamic>{
           kTransitionInfoKey: const TransitionInfo(
             hasTransition: true,
             transitionType: PageTransitionType.fade,
-            duration: Duration(milliseconds: 200),
+            duration: Duration(milliseconds: 300),
           ),
         },
       );

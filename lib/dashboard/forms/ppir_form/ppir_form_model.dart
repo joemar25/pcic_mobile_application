@@ -24,8 +24,6 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
   final formKey = GlobalKey<FormState>();
   // Stores action output result for [Backend Call - SQLite (SELECT PROFILE)] action in ppirForm widget.
   List<SelectProfileRow>? profile;
-  // Stores action output result for [Backend Call - SQLite (SELECT PPIR FORMS)] action in ppirForm widget.
-  List<SelectPpirFormsRow>? qCapturedImage;
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in IconButton widget.
@@ -36,24 +34,6 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
   bool? confirmReGeotag;
   // Stores action output result for [Custom Action - getGpxLink] action in downloadButton widget.
   String? gpxLink;
-  // State field(s) for gpx_blob widget.
-  FocusNode? gpxBlobFocusNode;
-  TextEditingController? gpxBlobTextController;
-  String? Function(BuildContext, String?)? gpxBlobTextControllerValidator;
-  String? _gpxBlobTextControllerValidator(BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return FFLocalizations.of(context).getText(
-        'o22az3b7' /* Field is required */,
-      );
-    }
-
-    if (val.length < 4) {
-      return 'Requires at least 4 characters.';
-    }
-
-    return null;
-  }
-
   // State field(s) for ppir_track_coordinates widget.
   FocusNode? ppirTrackCoordinatesFocusNode;
   TextEditingController? ppirTrackCoordinatesTextController;
@@ -280,7 +260,6 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
   @override
   void initState(BuildContext context) {
     connectivityModel = createModel(context, () => ConnectivityModel());
-    gpxBlobTextControllerValidator = _gpxBlobTextControllerValidator;
     ppirTrackCoordinatesTextControllerValidator =
         _ppirTrackCoordinatesTextControllerValidator;
     ppirTrackTotalAreaTextController1Validator =
@@ -310,9 +289,6 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
   @override
   void dispose() {
     connectivityModel.dispose();
-    gpxBlobFocusNode?.dispose();
-    gpxBlobTextController?.dispose();
-
     ppirTrackCoordinatesFocusNode?.dispose();
     ppirTrackCoordinatesTextController?.dispose();
 

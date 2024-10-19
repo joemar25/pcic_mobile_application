@@ -252,7 +252,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                                     }(),
                                                   );
 
-                                                  context.pushNamed(
+                                                  context.goNamed(
                                                     'taskDetails',
                                                     queryParameters: {
                                                       'taskId': serializeParam(
@@ -273,7 +273,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                                             PageTransitionType
                                                                 .bottomToTop,
                                                         duration: Duration(
-                                                            milliseconds: 200),
+                                                            milliseconds: 300),
                                                       ),
                                                     },
                                                   );
@@ -636,7 +636,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                     _model.isFinished = true;
                     safeSetState(() {});
 
-                    context.pushNamed(
+                    context.goNamed(
                       'gpxSuccess',
                       queryParameters: {
                         'taskId': serializeParam(

@@ -7,11 +7,6 @@ class TasksModel extends FlutterFlowModel<TasksWidget> {
 
   String? isDirty = 'false';
 
-  ///  State fields for stateful widgets in this component.
-
-  // Stores action output result for [Custom Action - isDirty] action in tasks widget.
-  String? output;
-
   @override
   void initState(BuildContext context) {}
 

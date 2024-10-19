@@ -40,13 +40,13 @@ class _SuccessProfileWidgetState extends State<SuccessProfileWidget>
       // get the saved local profile
       _model.latestProfileData = await actions.getTheSavedLocalProfile();
 
-      context.pushNamed(
+      context.goNamed(
         'dashboard',
         extra: <String, dynamic>{
           kTransitionInfoKey: const TransitionInfo(
             hasTransition: true,
             transitionType: PageTransitionType.fade,
-            duration: Duration(milliseconds: 200),
+            duration: Duration(milliseconds: 300),
           ),
         },
       );

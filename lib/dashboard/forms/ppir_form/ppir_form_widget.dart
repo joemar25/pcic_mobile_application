@@ -66,14 +66,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
       _model.profile = await SQLiteManager.instance.selectProfile(
         email: currentUserEmail,
       );
-      _model.qCapturedImage = await SQLiteManager.instance.selectPpirForms(
-        taskId: widget.taskId,
-      );
-      _model.capturedBlobOutput = _model.qCapturedImage?.first.capturedArea;
-      safeSetState(() {});
     });
-
-    _model.gpxBlobFocusNode ??= FocusNode();
 
     _model.ppirTrackCoordinatesFocusNode ??= FocusNode();
 
@@ -564,7 +557,12 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                         FFAppState()
                                                                             .ONLINE,
                                                                   );
-
+                                                                  if (Navigator.of(
+                                                                          context)
+                                                                      .canPop()) {
+                                                                    context
+                                                                        .pop();
+                                                                  }
                                                                   context
                                                                       .pushNamed(
                                                                     'geotagging',
@@ -607,7 +605,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                         transitionType:
                                                                             PageTransitionType.fade,
                                                                         duration:
-                                                                            Duration(milliseconds: 200),
+                                                                            Duration(milliseconds: 300),
                                                                       ),
                                                                     },
                                                                   );
@@ -809,157 +807,6 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         ),
                                                   ),
                                                 ),
-                                                if (kDebugMode)
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 10.0,
-                                                                0.0, 10.0),
-                                                    child: TextFormField(
-                                                      controller: _model
-                                                              .gpxBlobTextController ??=
-                                                          TextEditingController(
-                                                        text: ppirFormSelectPpirFormsRowList
-                                                                    .first
-                                                                    .gpx ==
-                                                                'null'
-                                                            ? ' '
-                                                            : ppirFormSelectPpirFormsRowList
-                                                                .first.gpx,
-                                                      ),
-                                                      focusNode: _model
-                                                          .gpxBlobFocusNode,
-                                                      autofocus: false,
-                                                      readOnly: true,
-                                                      obscureText: false,
-                                                      decoration:
-                                                          InputDecoration(
-                                                        isDense: false,
-                                                        labelText:
-                                                            FFLocalizations.of(
-                                                                    context)
-                                                                .getText(
-                                                          'g8oor25r' /* GPX (debug mode only) */,
-                                                        ),
-                                                        labelStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                        alignLabelWithHint:
-                                                            false,
-                                                        hintStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                        enabledBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .alternate,
-                                                            width: 2.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      12.0),
-                                                        ),
-                                                        focusedBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primary,
-                                                            width: 2.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      12.0),
-                                                        ),
-                                                        errorBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .error,
-                                                            width: 2.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      12.0),
-                                                        ),
-                                                        focusedErrorBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .error,
-                                                            width: 2.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      12.0),
-                                                        ),
-                                                        filled: true,
-                                                        fillColor: FlutterFlowTheme
-                                                                .of(context)
-                                                            .secondaryBackground,
-                                                        contentPadding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    16.0,
-                                                                    12.0,
-                                                                    16.0,
-                                                                    12.0),
-                                                      ),
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                      maxLines: 10,
-                                                      keyboardType:
-                                                          TextInputType
-                                                              .multiline,
-                                                      cursorColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                      validator: _model
-                                                          .gpxBlobTextControllerValidator
-                                                          .asValidator(context),
-                                                    ),
-                                                  ),
                                                 Padding(
                                                   padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
@@ -2865,8 +2712,10 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                         context)
                                                                     .height *
                                                                 1.0,
-                                                        imageBlob: _model
-                                                            .capturedBlobOutput,
+                                                        imageBlob:
+                                                            ppirFormSelectPpirFormsRowList
+                                                                .first
+                                                                .capturedArea,
                                                       ),
                                                     ),
                                                   ),
@@ -4309,7 +4158,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                           transitionType:
                                               PageTransitionType.scale,
                                           alignment: Alignment.bottomCenter,
-                                          duration: Duration(milliseconds: 200),
+                                          duration: Duration(milliseconds: 300),
                                         ),
                                       },
                                     );
@@ -4358,8 +4207,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                               await getCurrentUserLocation(
                                                   defaultLocation:
                                                       const LatLng(0.0, 0.0));
-                                          if (!((_model.gpxBlobTextController
-                                                      .text ==
+                                          if (!((ppirFormSelectPpirFormsRowList
+                                                      .first.gpx ==
                                                   ' ') ||
                                               (ppirFormSelectPpirFormsRowList
                                                       .first.ppirSigIuia ==
@@ -4413,9 +4262,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   () => _model.continueSubmit =
                                                       value));
 
-                                              if (!((_model
-                                                          .gpxBlobTextController
-                                                          .text ==
+                                              if (!((ppirFormSelectPpirFormsRowList
+                                                          .first.gpx ==
                                                       ' ') ||
                                                   (ppirFormSelectPpirFormsRowList
                                                           .first.ppirSigIuia ==
@@ -4493,9 +4341,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                             .riceDropdownValue
                                                         : _model
                                                             .cornDropdownValue,
-                                                    'gpx': _model
-                                                        .gpxBlobTextController
-                                                        .text,
+                                                    'gpx':
+                                                        ppirFormSelectPpirFormsRowList
+                                                            .first.gpx,
                                                     'ppir_sig_iuia':
                                                         ppirFormSelectPpirFormsRowList
                                                             .first.ppirSigIuia,
@@ -4593,12 +4441,12 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         alignment: Alignment
                                                             .bottomCenter,
                                                         duration: Duration(
-                                                            milliseconds: 200),
+                                                            milliseconds: 300),
                                                       ),
                                                     },
                                                   );
                                                 } else {
-                                                  context.pushNamed(
+                                                  context.goNamed(
                                                     'fail',
                                                     queryParameters: {
                                                       'error': serializeParam(
@@ -4616,7 +4464,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         alignment: Alignment
                                                             .bottomCenter,
                                                         duration: Duration(
-                                                            milliseconds: 3000),
+                                                            milliseconds: 300),
                                                       ),
                                                     },
                                                   );
@@ -4651,10 +4499,10 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                               );
                                             }
                                           } else {
-                                            _model.hasGpx = _model
-                                                    .gpxBlobTextController
-                                                    .text !=
-                                                ' ';
+                                            _model.hasGpx =
+                                                ppirFormSelectPpirFormsRowList
+                                                        .first.gpx !=
+                                                    ' ';
                                             _model.hasSigInsured =
                                                 ppirFormSelectPpirFormsRowList
                                                         .first.ppirSigInsured !=

@@ -887,7 +887,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            context.pushNamed(
+                                            context.goNamed(
                                               'sync',
                                               extra: <String, dynamic>{
                                                 kTransitionInfoKey:
@@ -898,7 +898,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                   alignment:
                                                       Alignment.bottomCenter,
                                                   duration: Duration(
-                                                      milliseconds: 200),
+                                                      milliseconds: 300),
                                                 ),
                                               },
                                             );

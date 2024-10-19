@@ -301,7 +301,7 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
                             ),
                             FFButtonWidget(
                               onPressed: () async {
-                                context.pushNamed(
+                                context.goNamed(
                                   'dashboard',
                                   extra: <String, dynamic>{
                                     kTransitionInfoKey: const TransitionInfo(

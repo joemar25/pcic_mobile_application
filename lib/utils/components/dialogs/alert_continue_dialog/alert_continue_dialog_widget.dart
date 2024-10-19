@@ -159,6 +159,8 @@ class _AlertContinueDialogWidgetState extends State<AlertContinueDialogWidget> {
                         GoRouter.of(context).prepareAuthEvent();
                         await authManager.signOut();
                         GoRouter.of(context).clearRedirectLocation();
+
+                        context.goNamedAuth('onboarding', context.mounted);
                       },
                       text: FFLocalizations.of(context).getText(
                         '6qtpudw1' /* Sign Out */,

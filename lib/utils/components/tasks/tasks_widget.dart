@@ -5,11 +5,8 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:async';
-import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'tasks_model.dart';
 export 'tasks_model.dart';
@@ -49,15 +46,6 @@ class _TasksWidgetState extends State<TasksWidget>
   void initState() {
     super.initState();
     _model = createModel(context, () => TasksModel());
-
-    // On component load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.output = await actions.isDirty(
-        widget.task,
-      );
-      _model.isDirty = _model.output;
-      _model.updatePage(() {});
-    });
 
     animationsMap.addAll({
       'containerOnPageLoadAnimation': AnimationInfo(
@@ -124,7 +112,7 @@ class _TasksWidgetState extends State<TasksWidget>
                 }(),
               );
 
-              context.pushNamed(
+              context.goNamed(
                 'taskDetails',
                 queryParameters: {
                   'taskId': serializeParam(
@@ -141,7 +129,7 @@ class _TasksWidgetState extends State<TasksWidget>
                     hasTransition: true,
                     transitionType: PageTransitionType.scale,
                     alignment: Alignment.bottomCenter,
-                    duration: Duration(milliseconds: 200),
+                    duration: Duration(milliseconds: 300),
                   ),
                 },
               );
@@ -542,73 +530,6 @@ class _TasksWidgetState extends State<TasksWidget>
                                   ),
                                 ],
                               ),
-                              if (kDebugMode)
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 10.0, 0.0, 0.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        FFLocalizations.of(context).getText(
-                                          'e0z31xxp' /* Note:  */,
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              fontSize: 12.0,
-                                              letterSpacing: 0.0,
-                                            ),
-                                      ),
-                                      Expanded(
-                                        child: Text(
-                                          (containerSelectPpirFormsRowList
-                                                          .first.gpx ==
-                                                      ' ') ||
-                                                  (containerSelectPpirFormsRowList
-                                                          .first.gpx ==
-                                                      'null') ||
-                                                  (containerSelectPpirFormsRowList
-                                                          .first.gpx ==
-                                                      '')
-                                              ? 'No GPX data found.'
-                                              : 'Has GPX data.',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Readex Pro',
-                                                color: valueOrDefault<Color>(
-                                                  (containerSelectPpirFormsRowList
-                                                                  .first.gpx ==
-                                                              ' ') ||
-                                                          (containerSelectPpirFormsRowList
-                                                                  .first.gpx ==
-                                                              'null') ||
-                                                          (containerSelectPpirFormsRowList
-                                                                  .first.gpx ==
-                                                              '')
-                                                      ? FlutterFlowTheme.of(
-                                                              context)
-                                                          .warning
-                                                      : FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondary,
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondary,
-                                                ),
-                                                fontSize: 12.0,
-                                                letterSpacing: 0.0,
-                                              ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
                             ],
                           ),
                         ),

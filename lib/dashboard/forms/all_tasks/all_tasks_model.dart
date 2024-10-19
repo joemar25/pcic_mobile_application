@@ -15,9 +15,9 @@ class AllTasksModel extends FlutterFlowModel<AllTasksWidget> {
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Custom Action - isDirtyCount] action in allTasks widget.
-  String? isDirtyCounter;
+  String? isDirtyCounterr;
   // Stores action output result for [Custom Action - syncOnlineTaskAndPpirToOffline] action in allTasks widget.
-  String? messagexxxx;
+  String? outputMsg;
   // Stores action output result for [Custom Action - syncOnlineTaskAndPpirToOffline] action in Text widget.
   String? message;
   // Model for connectivity component.
