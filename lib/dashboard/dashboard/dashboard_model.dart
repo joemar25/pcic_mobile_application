@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   ///  Local state fields for this page.
 
-  String? statusOutput = 'Loading..';
+  String? statusOutput = 'Tap to update';
 
   bool isSyncDone = true;
 
