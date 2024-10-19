@@ -12,20 +12,16 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'package:mapbox_gl/mapbox_gl.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:io';
-import 'package:image/image.dart';
 
 class MBTilesMapView extends StatefulWidget {
-  const MBTilesMapView({
-    Key? key,
-    this.width,
-    this.height,
-    this.accessToken,
-  }) : super(key: key);
+  const MBTilesMapView({Key? key, this.width, this.height, this.accessToken})
+      : super(key: key);
 
   final double? width;
   final double? height;
@@ -36,8 +32,8 @@ class MBTilesMapView extends StatefulWidget {
 }
 
 class _MBTilesMapViewState extends State<MBTilesMapView> {
-  MapboxMapController? mapController;
   String? selectedFilePath;
+  LatLngBounds? mapBounds;
 
   @override
   Widget build(BuildContext context) {
@@ -52,14 +48,19 @@ class _MBTilesMapViewState extends State<MBTilesMapView> {
           ),
           Expanded(
             child: selectedFilePath != null
-                ? MapboxMap(
-                    accessToken:
-                        'YOUR_MAPBOX_ACCESS_TOKEN', // Replace with your token
-                    onMapCreated: _onMapCreated,
-                    initialCameraPosition: CameraPosition(
-                      target: LatLng(0, 0),
-                      zoom: 1,
+                ? FlutterMap(
+                    options: MapOptions(
+                      bounds: mapBounds,
+                      boundsOptions:
+                          FitBoundsOptions(padding: EdgeInsets.all(8.0)),
                     ),
+                    children: [
+                      TileLayer(
+                        urlTemplate:
+                            'file://${selectedFilePath}/{z}/{x}/{y}.png',
+                        tileProvider: MBTilesTileProvider(selectedFilePath!),
+                      ),
+                    ],
                   )
                 : Center(child: Text('No file selected')),
           ),
@@ -78,20 +79,11 @@ class _MBTilesMapViewState extends State<MBTilesMapView> {
       setState(() {
         selectedFilePath = result.files.single.path;
       });
-      if (mapController != null) {
-        _loadMBTiles();
-      }
+      _loadMBTilesBounds();
     }
   }
 
-  void _onMapCreated(MapboxMapController controller) {
-    mapController = controller;
-    if (selectedFilePath != null) {
-      _loadMBTiles();
-    }
-  }
-
-  Future<void> _loadMBTiles() async {
+  Future<void> _loadMBTilesBounds() async {
     if (selectedFilePath == null) return;
 
     if (!await File(selectedFilePath!).exists()) {
@@ -107,25 +99,46 @@ class _MBTilesMapViewState extends State<MBTilesMapView> {
           .firstWhere((row) => row['name'] == 'bounds')['value'] as String;
       final bounds = boundsString.split(',').map(double.parse).toList();
 
-      await mapController?.addSource(
-          'mbtiles-source', MBTilesSource(selectedFilePath!));
-
-      await mapController?.addLayer(
-        'mbtiles-source',
-        'mbtiles-layer',
-        RasterLayerProperties(),
-      );
-
-      await mapController?.fitBounds(
-        LatLngBounds(
-          southwest: LatLng(bounds[1], bounds[0]),
-          northeast: LatLng(bounds[3], bounds[2]),
-        ),
-      );
+      setState(() {
+        mapBounds = LatLngBounds(
+          LatLng(bounds[1], bounds[0]),
+          LatLng(bounds[3], bounds[2]),
+        );
+      });
     } catch (e) {
-      print('Error loading MBTiles: $e');
+      print('Error loading MBTiles bounds: $e');
     } finally {
       await db.close();
     }
+  }
+}
+
+class MBTilesTileProvider extends TileProvider {
+  final String mbtilesPath;
+
+  MBTilesTileProvider(this.mbtilesPath);
+
+  @override
+  Future<Tile> getTile(int x, int y, int z) async {
+    final db = await openDatabase(mbtilesPath);
+    try {
+      final List<Map> result = await db.query(
+        'tiles',
+        columns: ['tile_data'],
+        where: 'zoom_level = ? AND tile_column = ? AND tile_row = ?',
+        whereArgs: [z, x, (1 << z) - 1 - y],
+      );
+
+      if (result.isNotEmpty) {
+        final tileData = result.first['tile_data'] as List<int>;
+        return Tile.byteData(x, y, z, Uint8List.fromList(tileData));
+      }
+    } catch (e) {
+      print('Error fetching tile: $e');
+    } finally {
+      await db.close();
+    }
+
+    return Tile.empty(x, y, z);
   }
 }
