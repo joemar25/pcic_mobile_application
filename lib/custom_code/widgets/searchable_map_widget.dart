@@ -11,6 +11,10 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import '/actions/actions.dart' as action_blocks;
+import 'index.dart'; // Imports other custom widgets
+
+import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
@@ -49,6 +53,12 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
   final FocusNode _focusNode = FocusNode();
   bool _mounted = true;
   bool _hasInternet = true;
+  StreamSubscription? _downloadSubscription;
+  bool _showDownloadDialog = false;
+  int _tilesToDownload = 0;
+  Object _downloadInstanceId = 0;
+  bool _showMapInstructions = false;
+  Timer? _instructionsTimer;
 
   @override
   void initState() {
@@ -140,6 +150,49 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
     });
   }
 
+  void _startInstructionsTimer() {
+    _instructionsTimer?.cancel();
+    _instructionsTimer = Timer(Duration(seconds: 5), () {
+      if (_mounted) {
+        setState(() {
+          _showMapInstructions = false;
+        });
+      }
+    });
+  }
+
+  Widget _buildMapInstructions() {
+    return AnimatedOpacity(
+      opacity: _showMapInstructions ? 1.0 : 0.0,
+      duration: Duration(milliseconds: 500),
+      child: Container(
+        padding: EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: Colors.black.withOpacity(0.7),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.touch_app, color: Colors.white, size: 24),
+            SizedBox(height: 4),
+            Text(
+              'Swipe to move',
+              style: TextStyle(color: Colors.white, fontSize: 12),
+            ),
+            SizedBox(height: 8),
+            Icon(Icons.zoom_in, color: Colors.white, size: 24),
+            SizedBox(height: 4),
+            Text(
+              'Pinch-in to zoom.\nPinch-out to expand.',
+              style: TextStyle(color: Colors.white, fontSize: 12),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   void _updateBoundaryBox() {
     if (!_mounted) return;
     setState(() {
@@ -153,7 +206,32 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
         ll.LatLng(
             center.latitude + height * 0.45, center.longitude + width * 0.45),
       );
+
+      // Show instructions when the boundary box is first created
+      if (!_showMapInstructions) {
+        _showMapInstructions = true;
+        _startInstructionsTimer();
+      }
     });
+    print("Bounding box updated: ${_boundaryBox?.toString()}");
+    _updateAddressFromBoundaryBox();
+  }
+
+  Future<void> _updateAddressFromBoundaryBox() async {
+    if (_boundaryBox == null) return;
+
+    final center = _boundaryBox!.center;
+    print("Updating address for center: ${center.toString()}");
+
+    final address = await reverseGeocoding(center.latitude, center.longitude);
+
+    print("Reverse geocoding result: $address");
+
+    setState(() {
+      _selectedAddress = address['formatted']!;
+      _typeAheadController.text = _selectedAddress;
+    });
+    print("Address updated to: $_selectedAddress");
   }
 
   Future<void> _getCurrentLocation() async {
@@ -235,52 +313,68 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
     }
   }
 
-  String _formatAddress(Map<String, dynamic> addressInfo) {
-    List<String> addressParts = [];
-    if (addressInfo['street'] != '') addressParts.add(addressInfo['street']);
-    if (addressInfo['barangayVillage'] != '')
-      addressParts.add(addressInfo['barangayVillage']);
-    if (addressInfo['city'] != '') addressParts.add(addressInfo['city']);
-    if (addressInfo['province'] != '')
-      addressParts.add(addressInfo['province']);
-
-    return addressParts.join(', ');
-  }
-
   Future<Map<String, String>> reverseGeocoding(double lat, double lon) async {
     final String url =
-        'https://api.mapbox.com/geocoding/v5/mapbox.places/$lon,$lat.json?access_token=${widget.accessToken}&types=place,locality,neighborhood,address&limit=1';
+        'https://nominatim.openstreetmap.org/reverse?format=json&lat=$lat&lon=$lon&addressdetails=1&countrycodes=PH';
+
     try {
-      final response = await http.get(Uri.parse(url));
+      final response = await http.get(
+        Uri.parse(url),
+        headers: {'User-Agent': 'PCIC Tracking App'},
+      );
+
       if (response.statusCode == 200) {
-        final data = json.decode(response.body);
-        final features = data['features'] as List;
-        if (features.isNotEmpty) {
-          final feature = features[0];
-          final List<String> addressParts = [];
+        final Map data = json.decode(response.body);
+        final address = data['address'] as Map;
 
-          if (feature['text'] != null) addressParts.add(feature['text']);
+        // Extract address components.
+        String street = address['road'] ?? '';
+        String barangayVillage = address['village'] ?? address['suburb'] ?? '';
+        String town = address['town'] ?? '';
+        String city = address['city'] ?? address['city_district'] ?? '';
+        String province = address['state'] ?? address['state_district'] ?? '';
 
-          final context = feature['context'] as List? ?? [];
-          for (var item in context) {
-            if (item['id'].startsWith('neighborhood') ||
-                item['id'].startsWith('locality') ||
-                item['id'].startsWith('place') ||
-                item['id'].startsWith('region')) {
-              addressParts.add(item['text']);
-            }
-          }
+        // Format the address as "street, barangayVillage, town, city, province".
+        String formattedAddress = [
+          street,
+          barangayVillage,
+          town,
+          city,
+          province,
+        ].where((part) => part.isNotEmpty).join(', ');
 
-          String formattedAddress = addressParts.join(', ');
-
-          return {
-            'formatted': formattedAddress,
-            'raw': feature['place_name'],
-          };
+        // Default to 'Loading...' if the address cannot be determined.
+        if (formattedAddress.isEmpty) {
+          formattedAddress = 'Loading...';
         }
+
+        // Print the raw JSON for debugging.
+        print('Reverse geocoding result: ${json.encode(data)}');
+
+        // Return the formatted address and additional details.
+        return {
+          'formatted': formattedAddress,
+          'barangayVillage': barangayVillage,
+          'buildingName': address['building'] ?? '',
+          'historic': address['historic'] ?? '',
+          'city': city,
+          'town': town,
+          'province': province,
+          'street': street,
+          'raw': json.encode(data),
+        };
+      } else {
+        print('Failed to fetch address: ${response.statusCode}');
+        return {'formatted': 'Unknown location', 'raw': ''};
       }
-    } catch (e) {}
-    return {'formatted': 'Unknown location', 'raw': ''};
+    } catch (e) {
+      print('Error fetching address: $e');
+      return {'formatted': 'Unknown location', 'raw': ''};
+    }
+  }
+
+  String _formatAddress(Map<String, dynamic> addressInfo) {
+    return addressInfo['formatted'] ?? 'Loading...';
   }
 
   void _refreshLocation() async {
@@ -317,6 +411,7 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
       _center = newCenter;
     });
     _mapController.move(newCenter, 17);
+    _updateBoundaryBox(); // This will also trigger _updateAddressFromBoundaryBox()
   }
 
   Future<void> _saveMap() async {
@@ -354,10 +449,6 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
       return;
     }
 
-    setState(() {
-      _isDownloading = true;
-    });
-
     final String storeName = sanitizeStoreName(_selectedAddress);
 
     try {
@@ -374,10 +465,23 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
             'accessToken': widget.accessToken,
             'id': 'mapbox/satellite-v9',
           },
+          userAgentPackageName: 'com.example.app',
         ),
       );
 
-      await FMTC.FMTCStore(storeName)
+      _tilesToDownload =
+          await FMTC.FMTCStore(storeName).download.check(downloadableRegion);
+      print('Number of tiles to download: $_tilesToDownload');
+
+      setState(() {
+        _isDownloading = true;
+        _showDownloadDialog = true;
+        _downloadProgress = 0.0;
+      });
+
+      _downloadInstanceId = DateTime.now().millisecondsSinceEpoch;
+
+      _downloadSubscription = FMTC.FMTCStore(storeName)
           .download
           .startForeground(
             region: downloadableRegion,
@@ -386,7 +490,7 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
             skipExistingTiles: true,
             skipSeaTiles: true,
             maxReportInterval: Duration(seconds: 1),
-            instanceId: DateTime.now().millisecondsSinceEpoch,
+            instanceId: _downloadInstanceId,
           )
           .listen((progress) {
         setState(() {
@@ -402,12 +506,15 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
           setState(() {
             _downloadProgress = 0.0;
             _isDownloading = false;
+            _showDownloadDialog = false;
           });
+          _downloadSubscription?.cancel();
         }
       });
     } catch (e) {
       setState(() {
         _isDownloading = false;
+        _showDownloadDialog = false;
       });
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Failed to save map: $e')),
@@ -415,114 +522,168 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
     }
   }
 
+  void _cancelDownload() async {
+    await FMTC.FMTCStore(_selectedAddress)
+        .download
+        .cancel(instanceId: _downloadInstanceId);
+
+    _downloadSubscription?.cancel();
+    setState(() {
+      _isDownloading = false;
+      _showDownloadDialog = false;
+      _downloadProgress = 0.0;
+    });
+    final mgmt = FMTC.FMTCStore(_selectedAddress).manage;
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Map download cancelled')),
+    );
+  }
+
+  Widget _buildDownloadProgressDialog() {
+    return AlertDialog(
+      title: Text('Downloading Map'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          LinearProgressIndicator(value: _downloadProgress),
+          SizedBox(height: 16),
+          Text('${(_downloadProgress * 100).toStringAsFixed(2)}%'),
+          Text(
+              'Tiles: ${(_downloadProgress * _tilesToDownload).toInt()} / $_tilesToDownload'),
+        ],
+      ),
+      actions: [
+        TextButton(
+          onPressed: _cancelDownload,
+          child: Text('Cancel'),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: widget.width,
-      height: widget.height,
-      child: !_hasInternet
-          ? Center(child: _buildNoInternetMessage())
-          : Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TypeAheadField<Map<String, dynamic>>(
-                          controller: _typeAheadController,
-                          focusNode: _focusNode,
-                          suggestionsCallback: (pattern) async {
-                            if (pattern.isEmpty) return [];
-                            return await forwardGeocoding(pattern);
-                          },
-                          itemBuilder: (context, suggestion) {
-                            return ListTile(
-                                title: Text(suggestion['place_name']));
-                          },
-                          onSelected: (suggestion) {
-                            setState(() {
-                              _selectedAddress = suggestion['place_name'];
-                              _typeAheadController.text = _selectedAddress;
-                            });
-                            final lon = suggestion['coordinates'][0];
-                            final lat = suggestion['coordinates'][1];
-                            _moveMap(ll.LatLng(lat, lon));
-                          },
-                        ),
-                      ),
-                      IconButton(
-                        icon: Icon(Icons.refresh),
-                        onPressed: _refreshLocation,
-                      ),
-                      IconButton(
-                        icon: Icon(Icons.save),
-                        onPressed: _saveMap,
-                      ),
-                    ],
-                  ),
-                ),
-                if (_isDownloading)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: LinearProgressIndicator(
-                      value: _downloadProgress,
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
-                    ),
-                  ),
-                Expanded(
-                  child: _isLoading
-                      ? Center(child: CircularProgressIndicator())
-                      : FlutterMap(
-                          mapController: _mapController,
-                          options: MapOptions(
-                            initialCenter: _center,
-                            initialZoom: 17,
-                            maxZoom: 22,
-                          ),
-                          children: [
-                            TileLayer(
-                              urlTemplate:
-                                  'https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v12/tiles/{z}/{x}/{y}?access_token={accessToken}',
-                              additionalOptions: {
-                                'accessToken': widget.accessToken,
+    return Stack(
+      children: [
+        Container(
+          width: widget.width,
+          height: widget.height,
+          child: !_hasInternet
+              ? Center(child: _buildNoInternetMessage())
+              : Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: TypeAheadField<Map<String, dynamic>>(
+                              controller: _typeAheadController,
+                              focusNode: _focusNode,
+                              suggestionsCallback: (pattern) async {
+                                if (pattern.isEmpty) return [];
+                                return await forwardGeocoding(pattern);
+                              },
+                              itemBuilder: (context, suggestion) {
+                                return ListTile(
+                                    title: Text(suggestion['place_name']));
+                              },
+                              onSelected: (suggestion) {
+                                setState(() {
+                                  _selectedAddress = suggestion['place_name'];
+                                  _typeAheadController.text = _selectedAddress;
+                                });
+                                final lon = suggestion['coordinates'][0];
+                                final lat = suggestion['coordinates'][1];
+                                _moveMap(ll.LatLng(lat, lon));
                               },
                             ),
-                            MarkerLayer(
-                              markers: [
-                                fmap.Marker(
-                                  width: 80.0,
-                                  height: 80.0,
-                                  point: _center,
-                                  child: Icon(
-                                    Icons.location_on,
-                                    color: Colors.red,
-                                    size: 40.0,
-                                  ),
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.refresh),
+                            onPressed: _refreshLocation,
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.save),
+                            onPressed: _saveMap,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: _isLoading
+                          ? Center(child: CircularProgressIndicator())
+                          : FlutterMap(
+                              mapController: _mapController,
+                              options: MapOptions(
+                                initialCenter: _center,
+                                initialZoom: 17,
+                                minZoom: 16,
+                                maxZoom: 22,
+                              ),
+                              children: [
+                                TileLayer(
+                                  urlTemplate:
+                                      'https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v12/tiles/{z}/{x}/{y}?access_token={accessToken}',
+                                  additionalOptions: {
+                                    'accessToken': widget.accessToken,
+                                  },
+                                ),
+                                MarkerLayer(
+                                  markers: [
+                                    fmap.Marker(
+                                      width: 80.0,
+                                      height: 80.0,
+                                      point: _center,
+                                      child: Icon(
+                                        Icons.location_on,
+                                        color: Colors.red,
+                                        size: 40.0,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                PolygonLayer(
+                                  polygons: [
+                                    if (_boundaryBox != null)
+                                      Polygon(
+                                        points: [
+                                          _boundaryBox!.northWest,
+                                          _boundaryBox!.northEast,
+                                          _boundaryBox!.southEast,
+                                          _boundaryBox!.southWest,
+                                        ],
+                                        color: Colors.blue.withOpacity(0.2),
+                                        borderColor: Colors.blue,
+                                        borderStrokeWidth: 2,
+                                      ),
+                                  ],
                                 ),
                               ],
                             ),
-                            PolygonLayer(
-                              polygons: [
-                                if (_boundaryBox != null)
-                                  Polygon(
-                                    points: [
-                                      _boundaryBox!.northWest,
-                                      _boundaryBox!.northEast,
-                                      _boundaryBox!.southEast,
-                                      _boundaryBox!.southWest,
-                                    ],
-                                    color: Colors.blue.withOpacity(0.2),
-                                    borderColor: Colors.blue,
-                                    borderStrokeWidth: 2,
-                                  ),
-                              ],
-                            ),
-                          ],
-                        ),
+                    ),
+                  ],
                 ),
-              ],
+        ),
+        if (_showDownloadDialog)
+          Positioned.fill(
+            child: Container(
+              color: Colors.black54,
+              child: Center(
+                child: _buildDownloadProgressDialog(),
+              ),
             ),
+          ),
+        Positioned(
+          bottom: 16,
+          left: 0,
+          right: 0,
+          child: Center(
+            child: _buildMapInstructions(),
+          ),
+        ),
+      ],
     );
   }
 
@@ -531,6 +692,7 @@ class _SearchableMapWidgetState extends State<SearchableMapWidget> {
     _mounted = false;
     _focusNode.dispose();
     _mapController.dispose();
+    _downloadSubscription?.cancel();
     super.dispose();
   }
 }

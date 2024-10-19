@@ -1529,15 +1529,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   context)
                                                               .height *
                                                           0.3,
-                                                      blob: valueOrDefault<
-                                                                  String>(
-                                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                    .first.gpx,
-                                                                'null',
-                                                              ) ==
-                                                              'null'
-                                                          ? ' '
-                                                          : taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                      blob:
+                                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                               .first.gpx,
                                                       accessToken: FFAppState()
                                                           .accessToken,
