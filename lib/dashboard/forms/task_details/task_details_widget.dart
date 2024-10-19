@@ -1474,10 +1474,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .spaceBetween,
                                               children: [
                                                 Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    'yesr8tfi' /* Geotag */,
-                                                  ),
+                                                  (valueOrDefault<String>(
+                                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                .first.gpx,
+                                                            'null',
+                                                          ) ==
+                                                          'null')
+                                                      .toString(),
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyLarge
@@ -1529,8 +1532,15 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   context)
                                                               .height *
                                                           0.3,
-                                                      blob:
-                                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                      blob: valueOrDefault<
+                                                                  String>(
+                                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                    .first.gpx,
+                                                                'null',
+                                                              ) ==
+                                                              'null'
+                                                          ? 'null'
+                                                          : taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                               .first.gpx,
                                                       accessToken: FFAppState()
                                                           .accessToken,

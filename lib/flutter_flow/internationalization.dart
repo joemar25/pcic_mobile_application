@@ -483,10 +483,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Captured Area',
       'tl': '',
     },
-    'yesr8tfi': {
-      'en': 'Geotag',
-      'tl': '',
-    },
     'dgbzqn0h': {
       'en': 'Completed Actual  Details',
       'tl': 'Mga Detalye ng Nakumpletong Gawain',
