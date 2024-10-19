@@ -65,7 +65,13 @@ class _SettingsWidgetState extends State<SettingsWidget> {
         if (!snapshot.hasData) {
           return Scaffold(
             backgroundColor: FlutterFlowTheme.of(context).accent1,
-            body: const PageLoaderWidget(),
+            body: Center(
+              child: SizedBox(
+                width: MediaQuery.sizeOf(context).width * 1.0,
+                height: MediaQuery.sizeOf(context).height * 1.0,
+                child: const PageLoaderWidget(),
+              ),
+            ),
           );
         }
         final settingsSelectProfileRowList = snapshot.data!;
@@ -115,7 +121,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                           .override(
                                             fontFamily: 'Inter',
                                             color: FlutterFlowTheme.of(context)
-                                                .primaryText,
+                                                .info,
                                             fontSize: 20.0,
                                             letterSpacing: 0.0,
                                           ),
@@ -672,6 +678,9 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          if (Navigator.of(context).canPop()) {
+                                            context.pop();
+                                          }
                                           context.pushNamed(
                                             'editPassword',
                                             extra: <String, dynamic>{
@@ -682,7 +691,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                     PageTransitionType
                                                         .rightToLeft,
                                                 duration:
-                                                    Duration(milliseconds: 200),
+                                                    Duration(milliseconds: 800),
                                               ),
                                             },
                                           );
@@ -741,6 +750,9 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          if (Navigator.of(context).canPop()) {
+                                            context.pop();
+                                          }
                                           context.pushNamed(
                                             'pcicMap',
                                             extra: <String, dynamic>{
@@ -751,7 +763,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                     PageTransitionType
                                                         .rightToLeft,
                                                 duration:
-                                                    Duration(milliseconds: 200),
+                                                    Duration(milliseconds: 800),
                                               ),
                                             },
                                           );
@@ -810,6 +822,9 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          if (Navigator.of(context).canPop()) {
+                                            context.pop();
+                                          }
                                           context.pushNamed(
                                             'supportPage',
                                             extra: <String, dynamic>{
@@ -820,7 +835,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                     PageTransitionType
                                                         .topToBottom,
                                                 duration:
-                                                    Duration(milliseconds: 200),
+                                                    Duration(milliseconds: 800),
                                               ),
                                             },
                                           );
@@ -880,7 +895,11 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            context.goNamed(
+                                            if (Navigator.of(context)
+                                                .canPop()) {
+                                              context.pop();
+                                            }
+                                            context.pushNamed(
                                               'sync',
                                               extra: <String, dynamic>{
                                                 kTransitionInfoKey:
@@ -891,7 +910,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                   alignment:
                                                       Alignment.bottomCenter,
                                                   duration: Duration(
-                                                      milliseconds: 300),
+                                                      milliseconds: 800),
                                                 ),
                                               },
                                             );
@@ -1057,8 +1076,8 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                   hasTransition: true,
                                                   transitionType:
                                                       PageTransitionType.fade,
-                                                  duration: Duration(
-                                                      milliseconds: 300),
+                                                  duration:
+                                                      Duration(milliseconds: 0),
                                                 ),
                                               },
                                             );

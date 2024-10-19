@@ -111,8 +111,10 @@ class _TasksWidgetState extends State<TasksWidget>
                   });
                 }(),
               );
-
-              context.goNamed(
+              if (Navigator.of(context).canPop()) {
+                context.pop();
+              }
+              context.pushNamed(
                 'taskDetails',
                 queryParameters: {
                   'taskId': serializeParam(
@@ -127,9 +129,8 @@ class _TasksWidgetState extends State<TasksWidget>
                 extra: <String, dynamic>{
                   kTransitionInfoKey: const TransitionInfo(
                     hasTransition: true,
-                    transitionType: PageTransitionType.scale,
-                    alignment: Alignment.bottomCenter,
-                    duration: Duration(milliseconds: 300),
+                    transitionType: PageTransitionType.bottomToTop,
+                    duration: Duration(milliseconds: 800),
                   ),
                 },
               );

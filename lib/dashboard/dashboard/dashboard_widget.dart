@@ -58,14 +58,13 @@ class _DashboardWidgetState extends State<DashboardWidget>
           _model.statusOutput = 'Syncing...';
           _model.isSyncDone = false;
           safeSetState(() {});
-          _model.messagexxxx = await actions.syncOnlineTaskAndPpirToOffline();
+          _model.syncOnlineTaskAndPpirToOfflineOutput =
+              await actions.syncOnlineTaskAndPpirToOffline();
           _model.statusOutput = 'Tasks are updated';
           _model.isSyncDone = true;
           safeSetState(() {});
         }
       }
-
-      safeSetState(() {});
     });
 
     _model.tabBarController = TabController(
@@ -134,7 +133,13 @@ class _DashboardWidgetState extends State<DashboardWidget>
         if (!snapshot.hasData) {
           return Scaffold(
             backgroundColor: FlutterFlowTheme.of(context).accent1,
-            body: const PageLoaderWidget(),
+            body: Center(
+              child: SizedBox(
+                width: MediaQuery.sizeOf(context).width * 1.0,
+                height: MediaQuery.sizeOf(context).height * 1.0,
+                child: const PageLoaderWidget(),
+              ),
+            ),
           );
         }
         final dashboardOFFLINESelectAllTasksByAssigneeRowList = snapshot.data!;
@@ -576,6 +581,10 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                               e.status ==
                                                               'for dispatch')
                                                           .toList().isNotEmpty) {
+                                                    if (Navigator.of(context)
+                                                        .canPop()) {
+                                                      context.pop();
+                                                    }
                                                     context.pushNamed(
                                                       'allTasks',
                                                       queryParameters: {
@@ -591,10 +600,12 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                           hasTransition: true,
                                                           transitionType:
                                                               PageTransitionType
-                                                                  .fade,
+                                                                  .scale,
+                                                          alignment: Alignment
+                                                              .bottomCenter,
                                                           duration: Duration(
                                                               milliseconds:
-                                                                  300),
+                                                                  800),
                                                         ),
                                                       },
                                                     );
@@ -685,7 +696,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                             Icons.timer_sharp,
                                                             color: FlutterFlowTheme
                                                                     .of(context)
-                                                                .primaryText,
+                                                                .info,
                                                             size: 15.0,
                                                           ),
                                                           Padding(
@@ -710,7 +721,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                         'Readex Pro',
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .primaryText,
+                                                                        .info,
                                                                     fontSize:
                                                                         10.0,
                                                                     letterSpacing:
@@ -742,6 +753,10 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                               e.status ==
                                                               'ongoing')
                                                           .toList().isNotEmpty) {
+                                                    if (Navigator.of(context)
+                                                        .canPop()) {
+                                                      context.pop();
+                                                    }
                                                     context.pushNamed(
                                                       'allTasks',
                                                       queryParameters: {
@@ -757,10 +772,12 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                           hasTransition: true,
                                                           transitionType:
                                                               PageTransitionType
-                                                                  .fade,
+                                                                  .scale,
+                                                          alignment: Alignment
+                                                              .bottomCenter,
                                                           duration: Duration(
                                                               milliseconds:
-                                                                  300),
+                                                                  800),
                                                         ),
                                                       },
                                                     );
@@ -849,7 +866,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                 .incomplete_circle,
                                                             color: FlutterFlowTheme
                                                                     .of(context)
-                                                                .primaryText,
+                                                                .info,
                                                             size: 15.0,
                                                           ),
                                                           Padding(
@@ -874,7 +891,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                         'Readex Pro',
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .primaryText,
+                                                                        .info,
                                                                     fontSize:
                                                                         10.0,
                                                                     letterSpacing:
@@ -905,6 +922,10 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                               e.status ==
                                                               'completed')
                                                           .toList().isNotEmpty) {
+                                                    if (Navigator.of(context)
+                                                        .canPop()) {
+                                                      context.pop();
+                                                    }
                                                     context.pushNamed(
                                                       'allTasks',
                                                       queryParameters: {
@@ -920,10 +941,12 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                           hasTransition: true,
                                                           transitionType:
                                                               PageTransitionType
-                                                                  .fade,
+                                                                  .scale,
+                                                          alignment: Alignment
+                                                              .bottomCenter,
                                                           duration: Duration(
                                                               milliseconds:
-                                                                  300),
+                                                                  800),
                                                         ),
                                                       },
                                                     );
@@ -1011,7 +1034,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                             Icons.check_circle,
                                                             color: FlutterFlowTheme
                                                                     .of(context)
-                                                                .primaryText,
+                                                                .info,
                                                             size: 15.0,
                                                           ),
                                                           Padding(
@@ -1036,7 +1059,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                         'Readex Pro',
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .primaryText,
+                                                                        .info,
                                                                     fontSize:
                                                                         10.0,
                                                                     letterSpacing:

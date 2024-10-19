@@ -17,7 +17,7 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   // Stores action output result for [Custom Action - isDirtyCount] action in dashboard widget.
   String? isDirtyCounter;
   // Stores action output result for [Custom Action - syncOnlineTaskAndPpirToOffline] action in dashboard widget.
-  String? messagexxxx;
+  String? syncOnlineTaskAndPpirToOfflineOutput;
   // Stores action output result for [Custom Action - syncOnlineTaskAndPpirToOffline] action in Text widget.
   String? message;
   // Model for connectivity component.

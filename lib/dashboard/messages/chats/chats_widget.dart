@@ -59,7 +59,13 @@ class _ChatsWidgetState extends State<ChatsWidget> {
         if (!snapshot.hasData) {
           return Scaffold(
             backgroundColor: FlutterFlowTheme.of(context).alternate,
-            body: const PageLoaderWidget(),
+            body: Center(
+              child: SizedBox(
+                width: MediaQuery.sizeOf(context).width * 1.0,
+                height: MediaQuery.sizeOf(context).height * 1.0,
+                child: const PageLoaderWidget(),
+              ),
+            ),
           );
         }
         final chatsGetUserLastConversationsResponse = snapshot.data!;

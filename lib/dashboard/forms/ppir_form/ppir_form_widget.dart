@@ -118,10 +118,12 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
         if (!snapshot.hasData) {
           return Scaffold(
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            body: SizedBox(
-              width: MediaQuery.sizeOf(context).width * 1.0,
-              height: MediaQuery.sizeOf(context).height * 1.0,
-              child: const PageLoaderWidget(),
+            body: Center(
+              child: SizedBox(
+                width: MediaQuery.sizeOf(context).width * 1.0,
+                height: MediaQuery.sizeOf(context).height * 1.0,
+                child: const PageLoaderWidget(),
+              ),
             ),
           );
         }
@@ -182,49 +184,28 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                               });
                             }(),
                           );
-
-                          context.goNamed(
-                            'taskDetails',
-                            queryParameters: {
-                              'taskId': serializeParam(
-                                widget.taskId,
-                                ParamType.String,
-                              ),
-                              'taskStatus': serializeParam(
-                                'ongoing',
-                                ParamType.String,
-                              ),
-                            }.withoutNulls,
-                            extra: <String, dynamic>{
-                              kTransitionInfoKey: const TransitionInfo(
-                                hasTransition: true,
-                                transitionType: PageTransitionType.topToBottom,
-                                duration: Duration(milliseconds: 200),
-                              ),
-                            },
-                          );
-                        } else {
-                          context.goNamed(
-                            'taskDetails',
-                            queryParameters: {
-                              'taskId': serializeParam(
-                                widget.taskId,
-                                ParamType.String,
-                              ),
-                              'taskStatus': serializeParam(
-                                'ongoing',
-                                ParamType.String,
-                              ),
-                            }.withoutNulls,
-                            extra: <String, dynamic>{
-                              kTransitionInfoKey: const TransitionInfo(
-                                hasTransition: true,
-                                transitionType: PageTransitionType.topToBottom,
-                                duration: Duration(milliseconds: 200),
-                              ),
-                            },
-                          );
                         }
+
+                        context.goNamed(
+                          'taskDetails',
+                          queryParameters: {
+                            'taskId': serializeParam(
+                              widget.taskId,
+                              ParamType.String,
+                            ),
+                            'taskStatus': serializeParam(
+                              'ongoing',
+                              ParamType.String,
+                            ),
+                          }.withoutNulls,
+                          extra: <String, dynamic>{
+                            kTransitionInfoKey: const TransitionInfo(
+                              hasTransition: true,
+                              transitionType: PageTransitionType.rightToLeft,
+                              duration: Duration(milliseconds: 800),
+                            ),
+                          },
+                        );
                       }
 
                       safeSetState(() {});
@@ -3958,31 +3939,19 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                         'longlat':
                                             '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
                                       });
-
-                                      context.pushNamed(
-                                        'dashboard',
-                                        extra: <String, dynamic>{
-                                          kTransitionInfoKey: const TransitionInfo(
-                                            hasTransition: true,
-                                            transitionType:
-                                                PageTransitionType.fade,
-                                            duration: Duration(milliseconds: 0),
-                                          ),
-                                        },
-                                      );
-                                    } else {
-                                      context.pushNamed(
-                                        'dashboard',
-                                        extra: <String, dynamic>{
-                                          kTransitionInfoKey: const TransitionInfo(
-                                            hasTransition: true,
-                                            transitionType:
-                                                PageTransitionType.fade,
-                                            duration: Duration(milliseconds: 0),
-                                          ),
-                                        },
-                                      );
                                     }
+
+                                    context.goNamed(
+                                      'dashboard',
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: const TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.topToBottom,
+                                          duration: Duration(milliseconds: 800),
+                                        ),
+                                      },
+                                    );
                                   }
 
                                   safeSetState(() {});
@@ -4143,7 +4112,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                       });
                                     }
 
-                                    context.pushNamed(
+                                    context.goNamed(
                                       'formSuccess',
                                       queryParameters: {
                                         'taskId': serializeParam(
@@ -4159,9 +4128,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                         kTransitionInfoKey: const TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
-                                              PageTransitionType.scale,
-                                          alignment: Alignment.bottomCenter,
-                                          duration: Duration(milliseconds: 300),
+                                              PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 0),
                                         ),
                                       },
                                     );
@@ -4448,11 +4416,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         hasTransition: true,
                                                         transitionType:
                                                             PageTransitionType
-                                                                .scale,
-                                                        alignment: Alignment
-                                                            .bottomCenter,
+                                                                .fade,
                                                         duration: Duration(
-                                                            milliseconds: 300),
+                                                            milliseconds: 0),
                                                       ),
                                                     },
                                                   );
@@ -4488,11 +4454,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                       widget.taskId,
                                                     ),
                                                   );
-                                                  if (Navigator.of(context)
-                                                      .canPop()) {
-                                                    context.pop();
-                                                  }
-                                                  context.pushNamed(
+
+                                                  context.goNamed(
                                                     'fail',
                                                     queryParameters: {
                                                       'error': serializeParam(
@@ -4506,11 +4469,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         hasTransition: true,
                                                         transitionType:
                                                             PageTransitionType
-                                                                .scale,
-                                                        alignment: Alignment
-                                                            .bottomCenter,
+                                                                .fade,
                                                         duration: Duration(
-                                                            milliseconds: 300),
+                                                            milliseconds: 0),
                                                       ),
                                                     },
                                                   );
