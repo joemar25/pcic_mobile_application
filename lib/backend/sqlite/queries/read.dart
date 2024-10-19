@@ -8,19 +8,19 @@ Future<List<T>> _readQuery<T>(
 ) =>
     database.rawQuery(query).then((r) => r.map((e) => create(e)).toList());
 
-/// BEGIN SELECT USERS IN SAME REGION
-Future<List<SELECTUSERSInSameRegionRow>> performSELECTUSERSInSameRegion(
+/// BEGIN RETRIEVE ALL USERS BY REGION ID
+Future<List<RetrieveAllUsersByRegionIDRow>> performRetrieveAllUsersByRegionID(
   Database database, {
   String? regionId,
 }) {
   final query = '''
 SELECT * FROM users WHERE region_id='$regionId'
 ''';
-  return _readQuery(database, query, (d) => SELECTUSERSInSameRegionRow(d));
+  return _readQuery(database, query, (d) => RetrieveAllUsersByRegionIDRow(d));
 }
 
-class SELECTUSERSInSameRegionRow extends SqliteRow {
-  SELECTUSERSInSameRegionRow(super.data);
+class RetrieveAllUsersByRegionIDRow extends SqliteRow {
+  RetrieveAllUsersByRegionIDRow(super.data);
 
   String? get id => data['id'] as String?;
   String? get role => data['role'] as String?;
@@ -36,21 +36,22 @@ class SELECTUSERSInSameRegionRow extends SqliteRow {
   String? get regionId => data['region_id'] as String?;
 }
 
-/// END SELECT USERS IN SAME REGION
+/// END RETRIEVE ALL USERS BY REGION ID
 
-/// BEGIN SELECT PPIR FORMS
-Future<List<SelectPpirFormsRow>> performSelectPpirForms(
+/// BEGIN RETRIEVE ALL PPIR FORMS BY TASK ID
+Future<List<RetrieveAllPPIRFormsByTaskIDRow>>
+    performRetrieveAllPPIRFormsByTaskID(
   Database database, {
   String? taskId,
 }) {
   final query = '''
 SELECT * FROM ppir_forms WHERE task_id='$taskId'
 ''';
-  return _readQuery(database, query, (d) => SelectPpirFormsRow(d));
+  return _readQuery(database, query, (d) => RetrieveAllPPIRFormsByTaskIDRow(d));
 }
 
-class SelectPpirFormsRow extends SqliteRow {
-  SelectPpirFormsRow(super.data);
+class RetrieveAllPPIRFormsByTaskIDRow extends SqliteRow {
+  RetrieveAllPPIRFormsByTaskIDRow(super.data);
 
   String? get taskId => data['task_id'] as String?;
   String? get ppirAssignmentid => data['ppir_assignmentid'] as String?;
@@ -101,20 +102,20 @@ class SelectPpirFormsRow extends SqliteRow {
   String? get gpx => data['gpx'] as String?;
 }
 
-/// END SELECT PPIR FORMS
+/// END RETRIEVE ALL PPIR FORMS BY TASK ID
 
-/// BEGIN SELECT MESSAGES
-Future<List<SelectMessagesRow>> performSelectMessages(
+/// BEGIN RETRIEVE ALL MESSAGES
+Future<List<RetrieveAllMessagesRow>> performRetrieveAllMessages(
   Database database,
 ) {
   const query = '''
 SELECT * FROM messages
 ''';
-  return _readQuery(database, query, (d) => SelectMessagesRow(d));
+  return _readQuery(database, query, (d) => RetrieveAllMessagesRow(d));
 }
 
-class SelectMessagesRow extends SqliteRow {
-  SelectMessagesRow(super.data);
+class RetrieveAllMessagesRow extends SqliteRow {
+  RetrieveAllMessagesRow(super.data);
 
   String? get id => data['id'] as String?;
   String? get chatId => data['chat_id'] as String?;
@@ -130,20 +131,20 @@ class SelectMessagesRow extends SqliteRow {
   bool? get isDirty => data['is_dirty'] as bool?;
 }
 
-/// END SELECT MESSAGES
+/// END RETRIEVE ALL MESSAGES
 
-/// BEGIN SELECT SYNC LOGS
-Future<List<SelectSyncLogsRow>> performSelectSyncLogs(
+/// BEGIN RETRIEVE ALL SYNC LOGS
+Future<List<RetrieveAllSyncLogsRow>> performRetrieveAllSyncLogs(
   Database database,
 ) {
   const query = '''
 SELECT * FROM sync_log
 ''';
-  return _readQuery(database, query, (d) => SelectSyncLogsRow(d));
+  return _readQuery(database, query, (d) => RetrieveAllSyncLogsRow(d));
 }
 
-class SelectSyncLogsRow extends SqliteRow {
-  SelectSyncLogsRow(super.data);
+class RetrieveAllSyncLogsRow extends SqliteRow {
+  RetrieveAllSyncLogsRow(super.data);
 
   String? get id => data['id'] as String?;
   DateTime? get syncStartTime => data['sync_start_time'] as DateTime?;
@@ -154,20 +155,20 @@ class SelectSyncLogsRow extends SqliteRow {
   String? get deviceIdentifier => data['device_identifier'] as String?;
 }
 
-/// END SELECT SYNC LOGS
+/// END RETRIEVE ALL SYNC LOGS
 
-/// BEGIN SELECT ATTEMPTS
-Future<List<SelectAttemptsRow>> performSelectAttempts(
+/// BEGIN RETRIEVE ALL ATTEMPTS
+Future<List<RetrieveAllAttemptsRow>> performRetrieveAllAttempts(
   Database database,
 ) {
   const query = '''
 SELECT * FROM attempts
 ''';
-  return _readQuery(database, query, (d) => SelectAttemptsRow(d));
+  return _readQuery(database, query, (d) => RetrieveAllAttemptsRow(d));
 }
 
-class SelectAttemptsRow extends SqliteRow {
-  SelectAttemptsRow(super.data);
+class RetrieveAllAttemptsRow extends SqliteRow {
+  RetrieveAllAttemptsRow(super.data);
 
   String? get id => data['id'] as String?;
   String? get taskId => data['task_id'] as String?;
@@ -184,10 +185,10 @@ class SelectAttemptsRow extends SqliteRow {
   bool? get isUpdating => data['is_updating'] as bool?;
 }
 
-/// END SELECT ATTEMPTS
+/// END RETRIEVE ALL ATTEMPTS
 
-/// BEGIN SELECT PROFILE
-Future<List<SelectProfileRow>> performSelectProfile(
+/// BEGIN RETRIEVE PROFILE
+Future<List<RetrieveProfileRow>> performRetrieveProfile(
   Database database, {
   String? email,
 }) {
@@ -195,11 +196,11 @@ Future<List<SelectProfileRow>> performSelectProfile(
 SELECT * FROM users WHERE email='$email'
 
 ''';
-  return _readQuery(database, query, (d) => SelectProfileRow(d));
+  return _readQuery(database, query, (d) => RetrieveProfileRow(d));
 }
 
-class SelectProfileRow extends SqliteRow {
-  SelectProfileRow(super.data);
+class RetrieveProfileRow extends SqliteRow {
+  RetrieveProfileRow(super.data);
 
   String? get id => data['id'] as String?;
   String? get role => data['role'] as String?;
@@ -215,75 +216,63 @@ class SelectProfileRow extends SqliteRow {
   String? get regionId => data['region_id'] as String?;
 }
 
-/// END SELECT PROFILE
+/// END RETRIEVE PROFILE
 
-/// BEGIN GET LAST SYNC TIMESTAMP
-Future<List<GetLastSyncTimestampRow>> performGetLastSyncTimestamp(
-  Database database,
-) {
-  const query = '''
-SELECT last_sync_timestamp FROM sync_status WHERE table_name = ?;
-''';
-  return _readQuery(database, query, (d) => GetLastSyncTimestampRow(d));
-}
-
-class GetLastSyncTimestampRow extends SqliteRow {
-  GetLastSyncTimestampRow(super.data);
-}
-
-/// END GET LAST SYNC TIMESTAMP
-
-/// BEGIN GET QUEUED CHANGES
-Future<List<GetQueuedChangesRow>> performGetQueuedChanges(
+/// BEGIN RETRIEVE AND SORT SYNC QUEUE BY OLDEST TIMESTAMP
+Future<List<RetrieveAndSortSyncQueueByOldestTimestampRow>>
+    performRetrieveAndSortSyncQueueByOldestTimestamp(
   Database database,
 ) {
   const query = '''
 SELECT * FROM sync_queue ORDER BY timestamp ASC;
 ''';
-  return _readQuery(database, query, (d) => GetQueuedChangesRow(d));
+  return _readQuery(
+      database, query, (d) => RetrieveAndSortSyncQueueByOldestTimestampRow(d));
 }
 
-class GetQueuedChangesRow extends SqliteRow {
-  GetQueuedChangesRow(super.data);
+class RetrieveAndSortSyncQueueByOldestTimestampRow extends SqliteRow {
+  RetrieveAndSortSyncQueueByOldestTimestampRow(super.data);
 
   String? get tableName => data['table_name'] as String?;
 }
 
-/// END GET QUEUED CHANGES
+/// END RETRIEVE AND SORT SYNC QUEUE BY OLDEST TIMESTAMP
 
-/// BEGIN GET MODIFIED RECORDS
-Future<List<GetModifiedRecordsRow>> performGetModifiedRecords(
+/// BEGIN RETRIEVE TASKS MODIFIED AFTER A SPECIFIC DATE
+Future<List<RetrieveTasksModifiedAfterASpecificDateRow>>
+    performRetrieveTasksModifiedAfterASpecificDate(
   Database database,
 ) {
   const query = '''
 SELECT * FROM tasks WHERE last_modified > ?;
 ''';
-  return _readQuery(database, query, (d) => GetModifiedRecordsRow(d));
+  return _readQuery(
+      database, query, (d) => RetrieveTasksModifiedAfterASpecificDateRow(d));
 }
 
-class GetModifiedRecordsRow extends SqliteRow {
-  GetModifiedRecordsRow(super.data);
+class RetrieveTasksModifiedAfterASpecificDateRow extends SqliteRow {
+  RetrieveTasksModifiedAfterASpecificDateRow(super.data);
 
   DateTime? get lastModified => data['last_modified'] as DateTime?;
 }
 
-/// END GET MODIFIED RECORDS
+/// END RETRIEVE TASKS MODIFIED AFTER A SPECIFIC DATE
 
-/// BEGIN OFFLINE SELECT ALL TASKS BY ASSIGNEE
-Future<List<OFFLINESelectAllTasksByAssigneeRow>>
-    performOFFLINESelectAllTasksByAssignee(
+/// BEGIN RETRIEVE ALL TASKS ASSIGNED TO A SPECIFIC ASSIGNEE
+Future<List<RetrieveAllTasksAssignedToASpecificAssigneeRow>>
+    performRetrieveAllTasksAssignedToASpecificAssignee(
   Database database, {
   String? assignee,
 }) {
   final query = '''
 SELECT * FROM tasks WHERE assignee='$assignee'
 ''';
-  return _readQuery(
-      database, query, (d) => OFFLINESelectAllTasksByAssigneeRow(d));
+  return _readQuery(database, query,
+      (d) => RetrieveAllTasksAssignedToASpecificAssigneeRow(d));
 }
 
-class OFFLINESelectAllTasksByAssigneeRow extends SqliteRow {
-  OFFLINESelectAllTasksByAssigneeRow(super.data);
+class RetrieveAllTasksAssignedToASpecificAssigneeRow extends SqliteRow {
+  RetrieveAllTasksAssignedToASpecificAssigneeRow(super.data);
 
   String? get id => data['id'] as String?;
   String? get taskNumber => data['task_number'] as String?;
@@ -307,11 +296,11 @@ class OFFLINESelectAllTasksByAssigneeRow extends SqliteRow {
   bool? get isUpdating => data['is_updating'] as bool?;
 }
 
-/// END OFFLINE SELECT ALL TASKS BY ASSIGNEE
+/// END RETRIEVE ALL TASKS ASSIGNED TO A SPECIFIC ASSIGNEE
 
-/// BEGIN OFFLINE SELECT COUNT FOR DISPATCH
-Future<List<OFFLINESelectCountForDispatchRow>>
-    performOFFLINESelectCountForDispatch(
+/// BEGIN COUNT OF TASKS FOR DISPATCH ASSIGNED TO A SPECIFIC ASSIGNEE
+Future<List<CountOfTasksForDispatchAssignedToASpecificAssigneeRow>>
+    performCountOfTasksForDispatchAssignedToASpecificAssignee(
   Database database, {
   String? assignee,
 }) {
@@ -321,31 +310,32 @@ FROM tasks
 WHERE status = 'for dispatch' 
 AND assignee = '$assignee';
 ''';
-  return _readQuery(
-      database, query, (d) => OFFLINESelectCountForDispatchRow(d));
+  return _readQuery(database, query,
+      (d) => CountOfTasksForDispatchAssignedToASpecificAssigneeRow(d));
 }
 
-class OFFLINESelectCountForDispatchRow extends SqliteRow {
-  OFFLINESelectCountForDispatchRow(super.data);
+class CountOfTasksForDispatchAssignedToASpecificAssigneeRow extends SqliteRow {
+  CountOfTasksForDispatchAssignedToASpecificAssigneeRow(
+      super.data);
 
   String? get id => data['id'] as String?;
 }
 
-/// END OFFLINE SELECT COUNT FOR DISPATCH
+/// END COUNT OF TASKS FOR DISPATCH ASSIGNED TO A SPECIFIC ASSIGNEE
 
-/// BEGIN OFFLINE SELECT TASK BY ID
-Future<List<OFFLINESelectTaskByIDRow>> performOFFLINESelectTaskByID(
+/// BEGIN RETRIEVE TASK DETAILS BY TASK ID
+Future<List<RetrieveTaskDetailsByTaskIDRow>> performRetrieveTaskDetailsByTaskID(
   Database database, {
   String? taskId,
 }) {
   final query = '''
 SELECT * FROM tasks WHERE  id = '$taskId'
 ''';
-  return _readQuery(database, query, (d) => OFFLINESelectTaskByIDRow(d));
+  return _readQuery(database, query, (d) => RetrieveTaskDetailsByTaskIDRow(d));
 }
 
-class OFFLINESelectTaskByIDRow extends SqliteRow {
-  OFFLINESelectTaskByIDRow(super.data);
+class RetrieveTaskDetailsByTaskIDRow extends SqliteRow {
+  RetrieveTaskDetailsByTaskIDRow(super.data);
 
   String? get id => data['id'] as String?;
   String? get taskNumber => data['task_number'] as String?;
@@ -369,7 +359,7 @@ class OFFLINESelectTaskByIDRow extends SqliteRow {
   bool? get isUpdating => data['is_updating'] as bool?;
 }
 
-/// END OFFLINE SELECT TASK BY ID
+/// END RETRIEVE TASK DETAILS BY TASK ID
 
 /// BEGIN SELECT TASKS AND PPIR BY ASSIGNEE
 Future<List<SELECTTASKSAndPPIRByAssigneeRow>>
@@ -522,107 +512,115 @@ class SELECTTASKSAndPPIRByAssigneeRow extends SqliteRow {
 
 /// END SELECT TASKS AND PPIR BY ASSIGNEE
 
-/// BEGIN SELECT RICE SEEDS
-Future<List<SELECTRiceSEEDSRow>> performSELECTRiceSEEDS(
+/// BEGIN RETRIEVE ALL RICE SEEDS BY REGION ID
+Future<List<RetrieveAllRiceSeedsByRegionIDRow>>
+    performRetrieveAllRiceSeedsByRegionID(
   Database database, {
   String? regionId,
 }) {
   final query = '''
 SELECT * FROM seeds WHERE seed_type = 'rice' AND region_id = '$regionId';
 ''';
-  return _readQuery(database, query, (d) => SELECTRiceSEEDSRow(d));
+  return _readQuery(
+      database, query, (d) => RetrieveAllRiceSeedsByRegionIDRow(d));
 }
 
-class SELECTRiceSEEDSRow extends SqliteRow {
-  SELECTRiceSEEDSRow(super.data);
+class RetrieveAllRiceSeedsByRegionIDRow extends SqliteRow {
+  RetrieveAllRiceSeedsByRegionIDRow(super.data);
 
   String? get seed => data['seed'] as String?;
   String? get seedType => data['seed_type'] as String?;
 }
 
-/// END SELECT RICE SEEDS
+/// END RETRIEVE ALL RICE SEEDS BY REGION ID
 
-/// BEGIN SELECT CORN SEEDS
-Future<List<SELECTCornSEEDSRow>> performSELECTCornSEEDS(
+/// BEGIN RETRIEVE ALL CORN SEEDS BY REGION ID
+Future<List<RetrieveAllCornSeedsByRegionIDRow>>
+    performRetrieveAllCornSeedsByRegionID(
   Database database, {
   String? regionId,
 }) {
   final query = '''
 SELECT * FROM seeds WHERE seed_type = 'corn' AND region_id = '$regionId';
 ''';
-  return _readQuery(database, query, (d) => SELECTCornSEEDSRow(d));
+  return _readQuery(
+      database, query, (d) => RetrieveAllCornSeedsByRegionIDRow(d));
 }
 
-class SELECTCornSEEDSRow extends SqliteRow {
-  SELECTCornSEEDSRow(super.data);
+class RetrieveAllCornSeedsByRegionIDRow extends SqliteRow {
+  RetrieveAllCornSeedsByRegionIDRow(super.data);
 
   String? get seed => data['seed'] as String?;
   String? get seedType => data['seed_type'] as String?;
 }
 
-/// END SELECT CORN SEEDS
+/// END RETRIEVE ALL CORN SEEDS BY REGION ID
 
-/// BEGIN SELECT PPIR FORMS SIGNATURES
-Future<List<SELECTPPIRFORMSSignaturesRow>> performSELECTPPIRFORMSSignatures(
+/// BEGIN RETRIEVE PPIR FORMS BY TASK ID
+Future<List<RetrievePPIRFormsByTaskIDRow>> performRetrievePPIRFormsByTaskID(
   Database database, {
   String? taskId,
 }) {
   final query = '''
 SELECT * FROM ppir_forms WHERE task_id='$taskId'
 ''';
-  return _readQuery(database, query, (d) => SELECTPPIRFORMSSignaturesRow(d));
+  return _readQuery(database, query, (d) => RetrievePPIRFormsByTaskIDRow(d));
 }
 
-class SELECTPPIRFORMSSignaturesRow extends SqliteRow {
-  SELECTPPIRFORMSSignaturesRow(super.data);
+class RetrievePPIRFormsByTaskIDRow extends SqliteRow {
+  RetrievePPIRFormsByTaskIDRow(super.data);
 
   String? get taskId => data['task_id'] as String?;
   String? get ppirSigInsured => data['ppir_sig_insured'] as String?;
   String? get ppirSigIuia => data['ppir_sig_iuia'] as String?;
 }
 
-/// END SELECT PPIR FORMS SIGNATURES
+/// END RETRIEVE PPIR FORMS BY TASK ID
 
-/// BEGIN OFFLINE SELECT REGION CODE
-Future<List<OFFLINESelectREGIONCODERow>> performOFFLINESelectREGIONCODE(
+/// BEGIN RETRIEVE REGION CODE BY REGION ID
+Future<List<RetrieveRegionCodeByRegionIDRow>>
+    performRetrieveRegionCodeByRegionID(
   Database database, {
   String? id,
 }) {
   final query = '''
 SELECT region_code FROM regions WHERE id = '$id'
 ''';
-  return _readQuery(database, query, (d) => OFFLINESelectREGIONCODERow(d));
+  return _readQuery(database, query, (d) => RetrieveRegionCodeByRegionIDRow(d));
 }
 
-class OFFLINESelectREGIONCODERow extends SqliteRow {
-  OFFLINESelectREGIONCODERow(super.data);
+class RetrieveRegionCodeByRegionIDRow extends SqliteRow {
+  RetrieveRegionCodeByRegionIDRow(super.data);
 
   String? get regionCode => data['region_code'] as String?;
 }
 
-/// END OFFLINE SELECT REGION CODE
+/// END RETRIEVE REGION CODE BY REGION ID
 
-/// BEGIN SELECT PPIR FORMS GPX
-Future<List<SELECTPPIRFORMSGpxRow>> performSELECTPPIRFORMSGpx(
+/// BEGIN RETRIEVE GPX DATA FROM PPIR FORMS BY TASK ID
+Future<List<RetrieveGPXDataFromPPIRFormsByTaskIDRow>>
+    performRetrieveGPXDataFromPPIRFormsByTaskID(
   Database database, {
   String? taskId,
 }) {
   final query = '''
 SELECT gpx FROM ppir_forms WHERE task_id='$taskId'
 ''';
-  return _readQuery(database, query, (d) => SELECTPPIRFORMSGpxRow(d));
+  return _readQuery(
+      database, query, (d) => RetrieveGPXDataFromPPIRFormsByTaskIDRow(d));
 }
 
-class SELECTPPIRFORMSGpxRow extends SqliteRow {
-  SELECTPPIRFORMSGpxRow(super.data);
+class RetrieveGPXDataFromPPIRFormsByTaskIDRow extends SqliteRow {
+  RetrieveGPXDataFromPPIRFormsByTaskIDRow(super.data);
 
   String? get gpx => data['gpx'] as String?;
 }
 
-/// END SELECT PPIR FORMS GPX
+/// END RETRIEVE GPX DATA FROM PPIR FORMS BY TASK ID
 
-/// BEGIN COUNT ISDIRTY
-Future<List<COUNTIsDirtyRow>> performCOUNTIsDirty(
+/// BEGIN RETRIEVE PPIR IS DIRTY STATUS FOR TASKS ASSIGNED TO A SPECIFIC ASSIGNEE
+Future<List<RetrievePPIRIsDirtyStatusForTasksAssignedToASpecificAssigneeRow>>
+    performRetrievePPIRIsDirtyStatusForTasksAssignedToASpecificAssignee(
   Database database, {
   String? assignee,
 }) {
@@ -636,19 +634,26 @@ JOIN
 WHERE 
     t.assignee = '$assignee';
 ''';
-  return _readQuery(database, query, (d) => COUNTIsDirtyRow(d));
+  return _readQuery(
+      database,
+      query,
+      (d) =>
+          RetrievePPIRIsDirtyStatusForTasksAssignedToASpecificAssigneeRow(d));
 }
 
-class COUNTIsDirtyRow extends SqliteRow {
-  COUNTIsDirtyRow(super.data);
+class RetrievePPIRIsDirtyStatusForTasksAssignedToASpecificAssigneeRow
+    extends SqliteRow {
+  RetrievePPIRIsDirtyStatusForTasksAssignedToASpecificAssigneeRow(
+      super.data);
 
   String? get ppirIsDirty => data['ppir_is_dirty'] as String?;
 }
 
-/// END COUNT ISDIRTY
+/// END RETRIEVE PPIR IS DIRTY STATUS FOR TASKS ASSIGNED TO A SPECIFIC ASSIGNEE
 
-/// BEGIN SELECT PPIR FORMS BY ASSIGNEE
-Future<List<SELECTPPIRFormsByAssigneeRow>> performSELECTPPIRFormsByAssignee(
+/// BEGIN RETRIEVE DETAILED TASK AND PPIR FORM DATA FOR A SPECIFIC ASSIGNEE
+Future<List<RetrieveDetailedTaskAndPPIRFormDataForASpecificAssigneeRow>>
+    performRetrieveDetailedTaskAndPPIRFormDataForASpecificAssignee(
   Database database, {
   String? assignee,
 }) {
@@ -723,11 +728,14 @@ LEFT JOIN
 WHERE 
     t.assignee = '$assignee';
 ''';
-  return _readQuery(database, query, (d) => SELECTPPIRFormsByAssigneeRow(d));
+  return _readQuery(database, query,
+      (d) => RetrieveDetailedTaskAndPPIRFormDataForASpecificAssigneeRow(d));
 }
 
-class SELECTPPIRFormsByAssigneeRow extends SqliteRow {
-  SELECTPPIRFormsByAssigneeRow(super.data);
+class RetrieveDetailedTaskAndPPIRFormDataForASpecificAssigneeRow
+    extends SqliteRow {
+  RetrieveDetailedTaskAndPPIRFormDataForASpecificAssigneeRow(
+      super.data);
 
   String? get taskId => data['task_id'] as String?;
   String? get taskNumber => data['task_number'] as String?;
@@ -793,11 +801,11 @@ class SELECTPPIRFormsByAssigneeRow extends SqliteRow {
   String? get capturedArea => data['captured_area'] as String?;
 }
 
-/// END SELECT PPIR FORMS BY ASSIGNEE
+/// END RETRIEVE DETAILED TASK AND PPIR FORM DATA FOR A SPECIFIC ASSIGNEE
 
 /// BEGIN SELECT PPIR FORMS BY ASSIGNEE AND TASK STATUS
-Future<List<SELECTPPIRFormsByAssigneeAndTaskStatusRow>>
-    performSELECTPPIRFormsByAssigneeAndTaskStatus(
+Future<List<SelectPpirFormsByAssigneeAndTaskStatusRow>>
+    performSelectPpirFormsByAssigneeAndTaskStatus(
   Database database, {
   String? assignee,
   String? status,
@@ -874,11 +882,11 @@ WHERE
     AND t.status = '$status';
 ''';
   return _readQuery(
-      database, query, (d) => SELECTPPIRFormsByAssigneeAndTaskStatusRow(d));
+      database, query, (d) => SelectPpirFormsByAssigneeAndTaskStatusRow(d));
 }
 
-class SELECTPPIRFormsByAssigneeAndTaskStatusRow extends SqliteRow {
-  SELECTPPIRFormsByAssigneeAndTaskStatusRow(super.data);
+class SelectPpirFormsByAssigneeAndTaskStatusRow extends SqliteRow {
+  SelectPpirFormsByAssigneeAndTaskStatusRow(super.data);
 
   String? get taskId => data['task_id'] as String?;
   String? get taskNumber => data['task_number'] as String?;

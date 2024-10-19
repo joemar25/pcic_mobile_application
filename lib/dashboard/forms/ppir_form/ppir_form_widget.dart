@@ -63,9 +63,12 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
       await actions.updateUserLogs(
         context,
       );
-      _model.profile = await SQLiteManager.instance.selectProfile(
+      _model.profile = await SQLiteManager.instance.retrieveProfile(
         email: currentUserEmail,
       );
+      _model.capturedBlobOutput =
+          _model.capturedImageBlobInputTextController.text;
+      safeSetState(() {});
     });
 
     _model.ppirTrackCoordinatesFocusNode ??= FocusNode();
@@ -104,8 +107,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return FutureBuilder<List<SelectPpirFormsRow>>(
-      future: SQLiteManager.instance.selectPpirForms(
+    return FutureBuilder<List<RetrieveAllPPIRFormsByTaskIDRow>>(
+      future: SQLiteManager.instance.retrieveAllPPIRFormsByTaskID(
         taskId: widget.taskId,
       ),
       builder: (context, snapshot) {
@@ -120,7 +123,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
             ),
           );
         }
-        final ppirFormSelectPpirFormsRowList = snapshot.data!;
+        final ppirFormRetrieveAllPPIRFormsByTaskIDRowList = snapshot.data!;
 
         return GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -232,7 +235,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                   children: [
                     Text(
                       valueOrDefault<String>(
-                        ppirFormSelectPpirFormsRowList.first.ppirFarmername,
+                        ppirFormRetrieveAllPPIRFormsByTaskIDRowList
+                            .first.ppirFarmername,
                         'Farmer Name',
                       ),
                       style: FlutterFlowTheme.of(context).titleSmall.override(
@@ -444,7 +448,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                         .height *
                                                                     0.2,
                                                                 blob:
-                                                                    ppirFormSelectPpirFormsRowList
+                                                                    ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                                         .first
                                                                         .gpx,
                                                                 accessToken:
@@ -549,7 +553,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   }
                                                                   await SQLiteManager
                                                                       .instance
-                                                                      .updatePPIRFormGpx(
+                                                                      .updatePPIRFormGPXDataByTaskID(
                                                                     taskId: widget
                                                                         .taskId,
                                                                     gpx: ' ',
@@ -589,7 +593,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                       ),
                                                                       'assignmentId':
                                                                           serializeParam(
-                                                                        ppirFormSelectPpirFormsRowList
+                                                                        ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                                             .first
                                                                             .ppirAssignmentid,
                                                                         ParamType
@@ -816,7 +820,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                             .ppirTrackCoordinatesTextController ??=
                                                         TextEditingController(
                                                       text:
-                                                          ppirFormSelectPpirFormsRowList
+                                                          ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                               .first
                                                               .trackLastCoord,
                                                     ),
@@ -946,7 +950,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                             .ppirTrackTotalAreaTextController1 ??=
                                                         TextEditingController(
                                                       text:
-                                                          ppirFormSelectPpirFormsRowList
+                                                          ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                               .first
                                                               .trackTotalArea,
                                                     ),
@@ -1072,7 +1076,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         TextEditingController(
                                                       text: functions
                                                           .timesStampConverter(
-                                                              ppirFormSelectPpirFormsRowList
+                                                              ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                                   .first
                                                                   .trackDateTime),
                                                     ),
@@ -1196,7 +1200,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     controller: _model
                                                             .ppirTrackTotalAreaTextController2 ??=
                                                         TextEditingController(
-                                                      text: ppirFormSelectPpirFormsRowList
+                                                      text: ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                           .first
                                                           .trackTotalDistance,
                                                     ),
@@ -1321,7 +1325,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                             .ppirTrackFarmlocTextController ??=
                                                         TextEditingController(
                                                       text:
-                                                          ppirFormSelectPpirFormsRowList
+                                                          ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                               .first
                                                               .ppirFarmloc,
                                                     ),
@@ -1517,16 +1521,16 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   controller: _model
                                                           .ppirSvpActSelectionValueController ??=
                                                       FormFieldController<
-                                                          String>((ppirFormSelectPpirFormsRowList
+                                                          String>((ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                                       .first
                                                                       .ppirSvpAct ==
                                                                   'null') ||
-                                                              (ppirFormSelectPpirFormsRowList
+                                                              (ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                                       .first
                                                                       .ppirSvpAct ==
                                                                   '')
                                                           ? 'rice'
-                                                          : ppirFormSelectPpirFormsRowList
+                                                          : ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                               .first
                                                               .ppirSvpAct!),
                                                   optionHeight: 32.0,
@@ -1619,10 +1623,10 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                       ),
                                                       FutureBuilder<
                                                           List<
-                                                              SELECTRiceSEEDSRow>>(
+                                                              RetrieveAllRiceSeedsByRegionIDRow>>(
                                                         future: SQLiteManager
                                                             .instance
-                                                            .sELECTRiceSEEDS(
+                                                            .retrieveAllRiceSeedsByRegionID(
                                                           regionId:
                                                               valueOrDefault<
                                                                   String>(
@@ -1652,7 +1656,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               ),
                                                             );
                                                           }
-                                                          final riceDropdownSELECTRiceSEEDSRowList =
+                                                          final riceDropdownRetrieveAllRiceSeedsByRegionIDRowList =
                                                               snapshot.data!;
 
                                                           return FlutterFlowDropDown<
@@ -1662,12 +1666,12 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                 FormFieldController<
                                                                     String>(
                                                               _model.riceDropdownValue ??=
-                                                                  ppirFormSelectPpirFormsRowList
+                                                                  ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                                       .first
                                                                       .ppirVariety,
                                                             ),
                                                             options:
-                                                                riceDropdownSELECTRiceSEEDSRowList
+                                                                riceDropdownRetrieveAllRiceSeedsByRegionIDRowList
                                                                     .map((e) =>
                                                                         e.seed)
                                                                     .withoutNulls
@@ -1824,10 +1828,10 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                       ),
                                                       FutureBuilder<
                                                           List<
-                                                              SELECTCornSEEDSRow>>(
+                                                              RetrieveAllCornSeedsByRegionIDRow>>(
                                                         future: SQLiteManager
                                                             .instance
-                                                            .sELECTCornSEEDS(
+                                                            .retrieveAllCornSeedsByRegionID(
                                                           regionId:
                                                               valueOrDefault<
                                                                   String>(
@@ -1857,7 +1861,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               ),
                                                             );
                                                           }
-                                                          final cornDropdownSELECTCornSEEDSRowList =
+                                                          final cornDropdownRetrieveAllCornSeedsByRegionIDRowList =
                                                               snapshot.data!;
 
                                                           return FlutterFlowDropDown<
@@ -1867,12 +1871,12 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                 FormFieldController<
                                                                     String>(
                                                               _model.cornDropdownValue ??=
-                                                                  ppirFormSelectPpirFormsRowList
+                                                                  ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                                       .first
                                                                       .ppirVariety,
                                                             ),
                                                             options:
-                                                                cornDropdownSELECTCornSEEDSRowList
+                                                                cornDropdownRetrieveAllCornSeedsByRegionIDRowList
                                                                     .map((e) =>
                                                                         e.seed)
                                                                     .withoutNulls
@@ -2039,7 +2043,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                             .ppirAreaActFieldTextController ??=
                                                         TextEditingController(
                                                       text:
-                                                          ppirFormSelectPpirFormsRowList
+                                                          ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                               .first
                                                               .ppirAreaAct,
                                                     ),
@@ -2184,7 +2188,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                           controller: _model
                                                                   .ppirAreaDopDsFieldTextController ??=
                                                               TextEditingController(
-                                                            text: ppirFormSelectPpirFormsRowList
+                                                            text: ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                                 .first
                                                                 .ppirDopdsAct,
                                                           ),
@@ -2409,7 +2413,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                 .ppirAreaDopTpFieldTextController ??=
                                                             TextEditingController(
                                                           text:
-                                                              ppirFormSelectPpirFormsRowList
+                                                              ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                                   .first
                                                                   .ppirDoptpAct,
                                                         ),
@@ -2712,10 +2716,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                         context)
                                                                     .height *
                                                                 1.0,
-                                                        imageBlob:
-                                                            ppirFormSelectPpirFormsRowList
-                                                                .first
-                                                                .capturedArea,
+                                                        imageBlob: _model
+                                                            .capturedBlobOutput,
                                                       ),
                                                     ),
                                                   ),
@@ -2795,9 +2797,6 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   .capturedArea =
                                                               _model.base64!;
                                                           safeSetState(() {});
-                                                          _model.capturedBlobOutput =
-                                                              _model.base64;
-                                                          safeSetState(() {});
                                                           safeSetState(() {
                                                             _model.capturedImageBlobInputTextController
                                                                     ?.text =
@@ -2810,6 +2809,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                         .text
                                                                         .length);
                                                           });
+                                                          _model.capturedBlobOutput =
+                                                              _model.base64;
+                                                          safeSetState(() {});
                                                           safeSetState(() {
                                                             _model.isDataUploading =
                                                                 false;
@@ -2883,7 +2885,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                           controller: _model
                                                                   .capturedImageBlobInputTextController ??=
                                                               TextEditingController(
-                                                            text: ppirFormSelectPpirFormsRowList
+                                                            text: ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                                 .first
                                                                 .capturedArea,
                                                           ),
@@ -3094,7 +3096,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                             .ppirRemarksFieldTextController ??=
                                                         TextEditingController(
                                                       text:
-                                                          ppirFormSelectPpirFormsRowList
+                                                          ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                               .first
                                                               .ppirRemarks,
                                                     ),
@@ -3226,7 +3228,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                             .ppirPreparedByNameFieldTextController ??=
                                                         TextEditingController(
                                                       text:
-                                                          ppirFormSelectPpirFormsRowList
+                                                          ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                               .first
                                                               .ppirNameInsured,
                                                     ),
@@ -3445,7 +3447,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     .center,
                                                             children: [
                                                               Text(
-                                                                ppirFormSelectPpirFormsRowList
+                                                                ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                                             .first
                                                                             .ppirSigInsured !=
                                                                         'null'
@@ -3463,7 +3465,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               ),
                                                               Stack(
                                                                 children: [
-                                                                  if (ppirFormSelectPpirFormsRowList
+                                                                  if (ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                                           .first
                                                                           .ppirSigInsured ==
                                                                       'null')
@@ -3495,7 +3497,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                             .contain,
                                                                       ),
                                                                     ),
-                                                                  if (ppirFormSelectPpirFormsRowList
+                                                                  if (ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                                           .first
                                                                           .ppirSigInsured !=
                                                                       'null')
@@ -3536,7 +3538,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                               MediaQuery.sizeOf(context).height * 1.0,
                                                                           taskId:
                                                                               widget.taskId,
-                                                                          imageBase64: ppirFormSelectPpirFormsRowList
+                                                                          imageBase64: ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                                               .first
                                                                               .ppirSigInsured,
                                                                         ),
@@ -3560,7 +3562,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                             .ppirConfirmedByNameFieldTextController ??=
                                                         TextEditingController(
                                                       text:
-                                                          ppirFormSelectPpirFormsRowList
+                                                          ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                               .first
                                                               .ppirNameIuia,
                                                     ),
@@ -3781,7 +3783,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                     .center,
                                                             children: [
                                                               Text(
-                                                                ppirFormSelectPpirFormsRowList
+                                                                ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                                             .first
                                                                             .ppirSigIuia !=
                                                                         'null'
@@ -3799,7 +3801,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               ),
                                                               Stack(
                                                                 children: [
-                                                                  if (ppirFormSelectPpirFormsRowList
+                                                                  if (ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                                           .first
                                                                           .ppirSigIuia ==
                                                                       'null')
@@ -3831,7 +3833,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                             .contain,
                                                                       ),
                                                                     ),
-                                                                  if (ppirFormSelectPpirFormsRowList
+                                                                  if (ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                                           .first
                                                                           .ppirSigIuia !=
                                                                       'null')
@@ -3872,7 +3874,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                               MediaQuery.sizeOf(context).height * 1.0,
                                                                           taskId:
                                                                               widget.taskId,
-                                                                          imageBase64: ppirFormSelectPpirFormsRowList
+                                                                          imageBase64: ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                                               .first
                                                                               .ppirSigIuia,
                                                                         ),
@@ -4044,7 +4046,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                       () => _model.continueSave = value));
 
                                   if (_model.continueSave!) {
-                                    await SQLiteManager.instance.updatePPIRForm(
+                                    await SQLiteManager.instance
+                                        .updatePPIRFormDetailsAndDirtyFlagByTaskID(
                                       taskId: widget.taskId,
                                       ppirSvpAct:
                                           _model.ppirSvpActSelectionValue,
@@ -4077,7 +4080,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                           .text,
                                     );
                                     await SQLiteManager.instance
-                                        .updateTaskStatus(
+                                        .updateTaskStatusAndDirtyFlagByID(
                                       taskId: widget.taskId,
                                       status: 'ongoing',
                                       isDirty: !FFAppState().ONLINE,
@@ -4207,13 +4210,13 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                               await getCurrentUserLocation(
                                                   defaultLocation:
                                                       const LatLng(0.0, 0.0));
-                                          if (!((ppirFormSelectPpirFormsRowList
+                                          if (!((ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                       .first.gpx ==
                                                   ' ') ||
-                                              (ppirFormSelectPpirFormsRowList
+                                              (ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                       .first.ppirSigIuia ==
                                                   'null') ||
-                                              (ppirFormSelectPpirFormsRowList
+                                              (ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                       .first.ppirSigInsured ==
                                                   'null'))) {
                                             _model.isValidated = true;
@@ -4262,18 +4265,18 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   () => _model.continueSubmit =
                                                       value));
 
-                                              if (!((ppirFormSelectPpirFormsRowList
+                                              if (!((ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                           .first.gpx ==
                                                       ' ') ||
-                                                  (ppirFormSelectPpirFormsRowList
+                                                  (ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                           .first.ppirSigIuia ==
                                                       'null') ||
-                                                  (ppirFormSelectPpirFormsRowList
+                                                  (ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                           .first
                                                           .ppirSigInsured ==
                                                       'null'))) {
                                                 await SQLiteManager.instance
-                                                    .updatePPIRForm(
+                                                    .updatePPIRFormDetailsAndDirtyFlagByTaskID(
                                                   taskId: widget.taskId,
                                                   ppirSvpAct: _model
                                                       .ppirSvpActSelectionValue,
@@ -4342,13 +4345,13 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         : _model
                                                             .cornDropdownValue,
                                                     'gpx':
-                                                        ppirFormSelectPpirFormsRowList
+                                                        ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                             .first.gpx,
                                                     'ppir_sig_iuia':
-                                                        ppirFormSelectPpirFormsRowList
+                                                        ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                             .first.ppirSigIuia,
                                                     'ppir_sig_insured':
-                                                        ppirFormSelectPpirFormsRowList
+                                                        ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                             .first
                                                             .ppirSigInsured,
                                                     'track_last_coord': _model
@@ -4384,7 +4387,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   ),
                                                 );
                                                 await SQLiteManager.instance
-                                                    .updateTaskStatus(
+                                                    .updateTaskStatusAndDirtyFlagByID(
                                                   taskId: widget.taskId,
                                                   status: 'completed',
                                                   isDirty: false,
@@ -4500,15 +4503,15 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                             }
                                           } else {
                                             _model.hasGpx =
-                                                ppirFormSelectPpirFormsRowList
+                                                ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                         .first.gpx !=
                                                     ' ';
                                             _model.hasSigInsured =
-                                                ppirFormSelectPpirFormsRowList
+                                                ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                         .first.ppirSigInsured !=
                                                     'null';
                                             _model.hasSigIuia =
-                                                ppirFormSelectPpirFormsRowList
+                                                ppirFormRetrieveAllPPIRFormsByTaskIDRowList
                                                         .first.ppirSigIuia !=
                                                     'null';
                                             safeSetState(() {});

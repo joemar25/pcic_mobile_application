@@ -22,8 +22,8 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
-  // Stores action output result for [Backend Call - SQLite (SELECT PROFILE)] action in ppirForm widget.
-  List<SelectProfileRow>? profile;
+  // Stores action output result for [Backend Call - SQLite (Retrieve Profile)] action in ppirForm widget.
+  List<RetrieveProfileRow>? profile;
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in IconButton widget.

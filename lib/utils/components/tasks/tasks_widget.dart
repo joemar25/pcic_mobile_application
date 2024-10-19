@@ -74,8 +74,8 @@ class _TasksWidgetState extends State<TasksWidget>
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(3.0),
-      child: FutureBuilder<List<SelectPpirFormsRow>>(
-        future: SQLiteManager.instance.selectPpirForms(
+      child: FutureBuilder<List<RetrieveAllPPIRFormsByTaskIDRow>>(
+        future: SQLiteManager.instance.retrieveAllPPIRFormsByTaskID(
           taskId: widget.task,
         ),
         builder: (context, snapshot) {
@@ -90,7 +90,7 @@ class _TasksWidgetState extends State<TasksWidget>
               ),
             );
           }
-          final containerSelectPpirFormsRowList = snapshot.data!;
+          final containerRetrieveAllPPIRFormsByTaskIDRowList = snapshot.data!;
 
           return InkWell(
             splashColor: Colors.transparent,
@@ -181,7 +181,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                     20.0, 0.0, 20.0, 0.0),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    containerSelectPpirFormsRowList
+                                    containerRetrieveAllPPIRFormsByTaskIDRowList
                                         .first.ppirFarmername,
                                     'Farmer Name',
                                   ),
@@ -197,7 +197,7 @@ class _TasksWidgetState extends State<TasksWidget>
                             ),
                             Text(
                               valueOrDefault<String>(
-                                containerSelectPpirFormsRowList
+                                containerRetrieveAllPPIRFormsByTaskIDRowList
                                     .first.ppirInsuranceid,
                                 'Insurance Id',
                               ),
@@ -254,7 +254,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                           ),
                                           Text(
                                             valueOrDefault<String>(
-                                              containerSelectPpirFormsRowList
+                                              containerRetrieveAllPPIRFormsByTaskIDRowList
                                                   .first.ppirNorth,
                                               'North',
                                             ),
@@ -298,7 +298,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                           ),
                                           Text(
                                             valueOrDefault<String>(
-                                              containerSelectPpirFormsRowList
+                                              containerRetrieveAllPPIRFormsByTaskIDRowList
                                                   .first.ppirWest,
                                               'West',
                                             ),
@@ -358,7 +358,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                                   ),
                                                   Text(
                                                     valueOrDefault<String>(
-                                                      containerSelectPpirFormsRowList
+                                                      containerRetrieveAllPPIRFormsByTaskIDRowList
                                                           .first.ppirSouth,
                                                       'South',
                                                     ),
@@ -402,7 +402,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                                   ),
                                                   Text(
                                                     valueOrDefault<String>(
-                                                      containerSelectPpirFormsRowList
+                                                      containerRetrieveAllPPIRFormsByTaskIDRowList
                                                           .first.ppirEast,
                                                       'East',
                                                     ),
@@ -468,7 +468,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                           8.0, 0.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
-                                          containerSelectPpirFormsRowList
+                                          containerRetrieveAllPPIRFormsByTaskIDRowList
                                               .first.ppirAssignmentid,
                                           'Assignment Id',
                                         ),
@@ -511,7 +511,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                           8.0, 0.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
-                                          containerSelectPpirFormsRowList
+                                          containerRetrieveAllPPIRFormsByTaskIDRowList
                                               .first.ppirAddress,
                                           'Address',
                                         ),

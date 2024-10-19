@@ -127,8 +127,8 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<SelectProfileRow>>(
-      future: SQLiteManager.instance.selectProfile(
+    return FutureBuilder<List<RetrieveProfileRow>>(
+      future: SQLiteManager.instance.retrieveProfile(
         email: currentUserEmail,
       ),
       builder: (context, snapshot) {
@@ -139,7 +139,7 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
             body: const PageLoaderWidget(),
           );
         }
-        final syncSelectProfileRowList = snapshot.data!;
+        final syncRetrieveProfileRowList = snapshot.data!;
 
         return GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -176,15 +176,15 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
                                   defaultLocation: const LatLng(0.0, 0.0));
                           if (!_model.isSync) {
                             await SQLiteManager.instance
-                                .dELETEAllRowsForTASKSAndPPIR();
+                                .deleteAllRecordsFromTasksAndPPIRForms();
                             // Number Iteration
                             _model.startSync = true;
                             _model.isSync = true;
                             _model.isSynced = false;
                             safeSetState(() {});
                             _model.regionCode = await SQLiteManager.instance
-                                .oFFLINESelectREGIONCODE(
-                              id: syncSelectProfileRowList.first.regionId,
+                                .retrieveRegionCodeByRegionID(
+                              id: syncRetrieveProfileRowList.first.regionId,
                             );
                             _model.isSyced = await actions.syncFromFTP(
                               _model.regionCode?.first.regionCode,

@@ -1500,17 +1500,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                 MainAxisAlignment.center,
                                             children: [
                                               Flexible(
-                                                child: SizedBox(
+                                                child: Container(
                                                   width:
                                                       MediaQuery.sizeOf(context)
                                                               .width *
                                                           1.0,
-                                                  height:
-                                                      MediaQuery.sizeOf(context)
-                                                              .height *
-                                                          0.3,
-                                                  child:
-                                                      custom_widgets.MapBase64(
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .alternate,
+                                                  ),
+                                                  child: SizedBox(
                                                     width: MediaQuery.sizeOf(
                                                                 context)
                                                             .width *
@@ -1519,18 +1519,29 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                 context)
                                                             .height *
                                                         0.3,
-                                                    blob: valueOrDefault<
-                                                                String>(
-                                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                  .first.gpx,
-                                                              'null',
-                                                            ) ==
-                                                            'null'
-                                                        ? ' '
-                                                        : taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                            .first.gpx,
-                                                    accessToken: FFAppState()
-                                                        .accessToken,
+                                                    child: custom_widgets
+                                                        .MapBase64(
+                                                      width: MediaQuery.sizeOf(
+                                                                  context)
+                                                              .width *
+                                                          1.0,
+                                                      height: MediaQuery.sizeOf(
+                                                                  context)
+                                                              .height *
+                                                          0.3,
+                                                      blob: valueOrDefault<
+                                                                  String>(
+                                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                    .first.gpx,
+                                                                'null',
+                                                              ) ==
+                                                              'null'
+                                                          ? ' '
+                                                          : taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                              .first.gpx,
+                                                      accessToken: FFAppState()
+                                                          .accessToken,
+                                                    ),
                                                   ),
                                                 ),
                                               ),
@@ -2592,13 +2603,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   );
                                                 }
                                                 await SQLiteManager.instance
-                                                    .updateTaskStatus(
+                                                    .updateTaskStatusAndDirtyFlagByID(
                                                   taskId: widget.taskId,
                                                   status: 'ongoing',
                                                   isDirty: !FFAppState().ONLINE,
                                                 );
                                                 await SQLiteManager.instance
-                                                    .updatePPIRFormGpx(
+                                                    .updatePPIRFormGPXDataByTaskID(
                                                   taskId: widget.taskId,
                                                   gpx: ' ',
                                                   isDirty: !FFAppState().ONLINE,

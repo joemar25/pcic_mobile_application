@@ -1,316 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 
-/// BEGIN UPDATEATTEMPTSTATUS
-Future performUpdateAttemptStatus(
-  Database database, {
-  String? comments,
-  bool? updatedat,
-  bool? syncstatus,
-  bool? isdirty,
-}) {
-  const query = '''
-UPDATE attempts
-SET status = ?, 
-    comments = ?, 
-    updated_at = ?, 
-    sync_status = ?, 
-    is_dirty = ?
-WHERE id = ?
-''';
-  return database.rawQuery(query);
-}
-
-/// END UPDATEATTEMPTSTATUS
-
-/// BEGIN UPDATESYNCSTATUS
-Future performUpdateSyncStatus(
-  Database database, {
-  String? id,
-  bool? syncstatus,
-  DateTime? lastsyncedat,
-  DateTime? updatedat,
-}) {
-  const query = '''
-UPDATE attempts
-SET sync_status = ?,
-    last_synced_at = ?,
-    is_dirty = false,
-    updated_at = ?
-WHERE id = ?
-''';
-  return database.rawQuery(query);
-}
-
-/// END UPDATESYNCSTATUS
-
-/// BEGIN UPDATEPPIRBASICINFO
-Future performUpdatePPIRBasicInfo(
-  Database database, {
-  String? ppirfarmername,
-  String? ppiraddress,
-  String? ppirfarmertype,
-  String? ppirmobileno,
-  String? ppirgroupname,
-  String? ppirgroupaddress,
-  DateTime? updatedat,
-  String? taskid,
-}) {
-  const query = '''
-UPDATE ppir_forms
-SET ppir_farmername = ?,
-    ppir_address = ?,
-    ppir_farmer_type = ?,
-    ppir_mobileno = ?,
-    ppir_group_name = ?,
-    ppir_group_address = ?,
-    updated_at = ?,
-    is_dirty = true
-WHERE task_id = ?
-''';
-  return database.rawQuery(query);
-}
-
-/// END UPDATEPPIRBASICINFO
-
-/// BEGIN UPDATEPPIRLOCATION
-Future performUpdatePPIRLocation(
-  Database database, {
-  String? ppirsouth,
-  String? ppirnorth,
-  String? ppireast,
-  String? ppirwest,
-  String? ppirfarmloc,
-  DateTime? isupdatedat,
-  bool? isdirty,
-  String? taskid,
-}) {
-  const query = '''
-UPDATE ppir_forms
-SET ppir_north = ?,
-    ppir_south = ?,
-    ppir_east = ?,
-    ppir_west = ?,
-    ppir_farmloc = ?,
-    updated_at = ?,
-    is_dirty = true
-WHERE task_id = ?
-''';
-  return database.rawQuery(query);
-}
-
-/// END UPDATEPPIRLOCATION
-
-/// BEGIN UPDATEPPIRCROPINFO
-Future performUpdatePPIRCropInfo(
-  Database database, {
-  String? ppirvariety,
-  String? ppirareaaci,
-  String? ppirstagecrop,
-  String? ppirareaact,
-  DateTime? updatedat,
-  bool? isdirty,
-  String? taskid,
-}) {
-  const query = '''
-UPDATE ppir_forms
-SET ppir_variety = ?,
-    ppir_stage_crop = ?,
-    ppir_area_aci = ?,
-    ppir_area_act = ?,
-    updated_at = ?,
-    is_dirty = true
-WHERE task_id = ?
-''';
-  return database.rawQuery(query);
-}
-
-/// END UPDATEPPIRCROPINFO
-
-/// BEGIN UPDATETASK
-Future performUpdateTask(
-  Database database, {
-  String? id,
-  String? tasknumber,
-  String? servicegroup,
-  String? servicetypes,
-  String? priority,
-  String? assignee,
-  String? fileid,
-  DateTime? dateadded,
-  DateTime? dateaccess,
-  bool? status,
-  String? tasktype,
-  int? attemptcount,
-  DateTime? updatedat,
-  bool? isdeleted,
-  bool? syncstatus,
-  DateTime? lastsyncedat,
-  String? localid,
-  bool? isdirty,
-  bool? isupdating,
-}) {
-  const query = '''
-UPDATE tasks
-SET 
-  task_number = ?,
-  service_group = ?,
-  service_type = ?,
-  priority = ?,
-  assignee = ?,
-  file_id = ?,
-  date_added = ?,
-  date_access = ?,
-  status = ?,
-  task_type = ?,
-  attempt_count = ?,
-  created_at = ?,
-  updated_at = ?,
-  is_deleted = ?,
-  sync_status = ?,
-  last_synced_at = ?,
-  local_id = ?,
-  is_dirty = ?,
-  is_updating = ?
-WHERE id = ?
-''';
-  return database.rawQuery(query);
-}
-
-/// END UPDATETASK
-
-/// BEGIN UPDATEUSERS
-Future performUpdateUsers(
-  Database database, {
-  String? id,
-  String? role,
-  String? email,
-  String? photourl,
-  String? inspectorname,
-  String? mobilenumber,
-  bool? isonline,
-  String? authuserid,
-  String? createduserid,
-  String? createdat,
-  String? updatedat,
-  String? regionid,
-}) {
-  const query = '''
-UPDATE users
-SET 
-  role = ?,
-  email = ?,
-  photo_url = ?,
-  inspector_name = ?,
-  mobile_number = ?,
-  is_online = ?,
-  auth_user_id = ?,
-  created_user_id = ?,
-  created_at = ?,
-  updated_at = ?,
-  region_id = ?
-WHERE id = ?
-''';
-  return database.rawQuery(query);
-}
-
-/// END UPDATEUSERS
-
-/// BEGIN UPDATE DASHBOARD QUERY
-Future performUpdateDashboardQuery(
-  Database database, {
-  String? role,
-  String? email,
-  String? photourl,
-  String? inspectorname,
-  String? mobilenumber,
-  bool? isonline,
-  String? authuserid,
-  String? createduserid,
-  DateTime? updatedat,
-  String? regionid,
-}) {
-  const query = '''
-UPDATE users
-SET 
-  role = ?,
-  email = ?,
-  photo_url = ?,
-  inspector_name = ?,
-  mobile_number = ?,
-  is_online = ?,
-  auth_user_id = ?,
-  created_user_id = ?,
-  updated_at = ?,
-  region_id = ?
-WHERE id = ?
-''';
-  return database.rawQuery(query);
-}
-
-/// END UPDATE DASHBOARD QUERY
-
-/// BEGIN INSERTUPDATE SYNC STATUS
-Future performInsertUpdateSyncStatus(
-  Database database, {
-  String? tablename,
-  DateTime? lastsynctimestamp,
-}) {
-  const query = '''
-INSERT OR REPLACE INTO sync_status (table_name, last_sync_timestamp)
-VALUES (?, ?);
-''';
-  return database.rawQuery(query);
-}
-
-/// END INSERTUPDATE SYNC STATUS
-
-/// BEGIN ADD TO SYNC QUEUE
-Future performAddToSyncQueue(
-  Database database, {
-  String? tablename,
-  String? recordid,
-  String? action,
-  String? data,
-  DateTime? timestamp,
-}) {
-  const query = '''
-INSERT INTO sync_queue (table_name, record_id, action, data, timestamp)
-VALUES (?, ?, ?, ?, ?);
-''';
-  return database.rawQuery(query);
-}
-
-/// END ADD TO SYNC QUEUE
-
-/// BEGIN REMOVE FROM SYNC QUEUE
-Future performRemoveFromSyncQueue(
-  Database database, {
-  String? id,
-}) {
-  const query = '''
-DELETE FROM sync_queue WHERE id = ?;
-''';
-  return database.rawQuery(query);
-}
-
-/// END REMOVE FROM SYNC QUEUE
-
-/// BEGIN UPDATE LAST MODIFIED TIMESTAMP
-Future performUpdateLastModifiedTimestamp(
-  Database database, {
-  DateTime? lastmodified,
-  String? id,
-}) {
-  const query = '''
-UPDATE tasks SET ..., last_modified = ? WHERE id = ?;
-''';
-  return database.rawQuery(query);
-}
-
-/// END UPDATE LAST MODIFIED TIMESTAMP
-
-/// BEGIN INSERT OFFLINE TASK
-Future performInsertOfflineTask(
+/// BEGIN INSERT OR REPLACE TASK RECORD
+Future performInsertOrReplaceTaskRecord(
   Database database, {
   String? id,
   String? taskNumber,
@@ -330,10 +21,10 @@ VALUES ('$id', '$taskNumber', '$serviceGroup', '$status', '$serviceType', '$prio
   return database.rawQuery(query);
 }
 
-/// END INSERT OFFLINE TASK
+/// END INSERT OR REPLACE TASK RECORD
 
-/// BEGIN INSERT OFFLINE PPIR FORM
-Future performInsertOfflinePPIRForm(
+/// BEGIN INSERT OR REPLACE PPIR FORM RECORD
+Future performInsertOrReplacePPIRFormRecord(
   Database database, {
   String? taskId,
   String? ppirAssignmentId,
@@ -413,10 +104,10 @@ INSERT OR REPLACE INTO ppir_forms (
   return database.rawQuery(query);
 }
 
-/// END INSERT OFFLINE PPIR FORM
+/// END INSERT OR REPLACE PPIR FORM RECORD
 
-/// BEGIN UPDATE PPIR SET A BLANK GPX
-Future performUpdatePPIRSetABlankGpx(
+/// BEGIN CLEAR GPX DATA IN PPIR FORM BY TASK ID
+Future performClearGPXDataInPPIRFormByTaskID(
   Database database, {
   String? taskId,
   bool? isDirty,
@@ -429,10 +120,10 @@ WHERE task_id = '$taskId';
   return database.rawQuery(query);
 }
 
-/// END UPDATE PPIR SET A BLANK GPX
+/// END CLEAR GPX DATA IN PPIR FORM BY TASK ID
 
-/// BEGIN UPDATE PPIR FORM
-Future performUpdatePPIRForm(
+/// BEGIN UPDATE PPIR FORM DETAILS AND DIRTY FLAG BY TASK ID
+Future performUpdatePPIRFormDetailsAndDirtyFlagByTaskID(
   Database database, {
   String? taskId,
   String? ppirSvpAct,
@@ -466,10 +157,10 @@ WHERE task_id = '$taskId';
   return database.rawQuery(query);
 }
 
-/// END UPDATE PPIR FORM
+/// END UPDATE PPIR FORM DETAILS AND DIRTY FLAG BY TASK ID
 
-/// BEGIN UPDATE TASK STATUS
-Future performUpdateTaskStatus(
+/// BEGIN UPDATE TASK STATUS AND DIRTY FLAG BY ID
+Future performUpdateTaskStatusAndDirtyFlagByID(
   Database database, {
   String? taskId,
   String? status,
@@ -485,10 +176,10 @@ WHERE id = '$taskId';
   return database.rawQuery(query);
 }
 
-/// END UPDATE TASK STATUS
+/// END UPDATE TASK STATUS AND DIRTY FLAG BY ID
 
-/// BEGIN UPDATE PPIR FORM VALIDITY
-Future performUpdatePPIRFormValidity(
+/// BEGIN UPDATE PPIR FORM DIRTY FLAG BY TASK ID
+Future performUpdatePPIRFormDirtyFlagByTaskID(
   Database database, {
   String? taskId,
   bool? isDirty,
@@ -501,10 +192,10 @@ WHERE task_id = '$taskId';
   return database.rawQuery(query);
 }
 
-/// END UPDATE PPIR FORM VALIDITY
+/// END UPDATE PPIR FORM DIRTY FLAG BY TASK ID
 
-/// BEGIN UPDATE PPIR FORM GPX
-Future performUpdatePPIRFormGpx(
+/// BEGIN UPDATE PPIR FORM GPX DATA BY TASK ID
+Future performUpdatePPIRFormGPXDataByTaskID(
   Database database, {
   String? taskId,
   String? gpx,
@@ -520,10 +211,10 @@ WHERE task_id = '$taskId';
   return database.rawQuery(query);
 }
 
-/// END UPDATE PPIR FORM GPX
+/// END UPDATE PPIR FORM GPX DATA BY TASK ID
 
-/// BEGIN UPDATE PPIR FORM AFTER GEOTAG
-Future performUpdatePPIRFormAfterGeotag(
+/// BEGIN UPDATE PPIR FORM TRACKING DATA BY TASK ID
+Future performUpdatePPIRFormTrackingDataByTaskID(
   Database database, {
   String? taskId,
   String? trackLastCoord,
@@ -547,10 +238,10 @@ WHERE task_id = '$taskId';
   return database.rawQuery(query);
 }
 
-/// END UPDATE PPIR FORM AFTER GEOTAG
+/// END UPDATE PPIR FORM TRACKING DATA BY TASK ID
 
-/// BEGIN UPDATE PPIR FORM IUIA SIGNATURE BLOB
-Future performUpdatePPIRFormIUIASignatureBlob(
+/// BEGIN UPDATE PPIR IUAI SIGNATURE BY TASK ID
+Future performUpdatePPIRIUAISignatureByTaskID(
   Database database, {
   String? taskId,
   String? signatureBlob,
@@ -563,10 +254,10 @@ WHERE task_id = '$taskId';
   return database.rawQuery(query);
 }
 
-/// END UPDATE PPIR FORM IUIA SIGNATURE BLOB
+/// END UPDATE PPIR IUAI SIGNATURE BY TASK ID
 
-/// BEGIN UPDATE PPIR FORM INSURED SIGNATURE BLOB
-Future performUpdatePPIRFormINSUREDSignatureBlob(
+/// BEGIN UPDATE PPIR INSURED SIGNATURE BY TASK ID
+Future performUpdatePPIRInsuredSignatureByTaskID(
   Database database, {
   String? taskId,
   String? signatureBlob,
@@ -579,10 +270,10 @@ WHERE task_id = '$taskId';
   return database.rawQuery(query);
 }
 
-/// END UPDATE PPIR FORM INSURED SIGNATURE BLOB
+/// END UPDATE PPIR INSURED SIGNATURE BY TASK ID
 
-/// BEGIN UPDATE USERS PROFILE NAME
-Future performUpdateUsersProfileName(
+/// BEGIN UPDATE INSPECTOR NAME BY USER ID
+Future performUpdateInspectorNameByUserID(
   Database database, {
   String? id,
   String? inspectorName,
@@ -595,10 +286,10 @@ WHERE id = '$id';
   return database.rawQuery(query);
 }
 
-/// END UPDATE USERS PROFILE NAME
+/// END UPDATE INSPECTOR NAME BY USER ID
 
-/// BEGIN DELETE ALL ROWS FOR TASKS AND PPIR
-Future performDELETEAllRowsForTASKSAndPPIR(
+/// BEGIN DELETE ALL RECORDS FROM TASKS AND PPIR FORMS
+Future performDeleteAllRecordsFromTasksAndPPIRForms(
   Database database,
 ) {
   const query = '''
@@ -608,10 +299,10 @@ DELETE FROM ppir_forms;
   return database.rawQuery(query);
 }
 
-/// END DELETE ALL ROWS FOR TASKS AND PPIR
+/// END DELETE ALL RECORDS FROM TASKS AND PPIR FORMS
 
-/// BEGIN OFFLINE INSERT USERS
-Future performOfflineInsertUsers(
+/// BEGIN INSERT OR REPLACE USER DATA
+Future performInsertOrReplaceUserData(
   Database database, {
   String? id,
   String? role,
@@ -654,10 +345,10 @@ VALUES (
   return database.rawQuery(query);
 }
 
-/// END OFFLINE INSERT USERS
+/// END INSERT OR REPLACE USER DATA
 
-/// BEGIN UPDATE OFFLINE PPIR FORM SYNC STATUS
-Future performUpdateOfflinePPIRFormSyncStatus(
+/// BEGIN UPDATE PPIR FORM SYNC STATUS AND DIRTY FLAG BY TASK ID
+Future performUpdatePPIRFormSyncStatusAndDirtyFlagByTaskID(
   Database database, {
   String? taskId,
   String? syncStatus,
@@ -673,10 +364,10 @@ WHERE task_id = '$taskId';
   return database.rawQuery(query);
 }
 
-/// END UPDATE OFFLINE PPIR FORM SYNC STATUS
+/// END UPDATE PPIR FORM SYNC STATUS AND DIRTY FLAG BY TASK ID
 
-/// BEGIN UPDATE OFFLINE TASK SYNC STATUS
-Future performUpdateOfflineTaskSyncStatus(
+/// BEGIN UPDATE TASK SYNC STATUS AND DIRTY FLAG BY ID
+Future performUpdateTaskSyncStatusAndDirtyFlagByID(
   Database database, {
   String? taskId,
   String? syncStatus,
@@ -692,4 +383,4 @@ WHERE id = '$taskId';
   return database.rawQuery(query);
 }
 
-/// END UPDATE OFFLINE TASK SYNC STATUS
+/// END UPDATE TASK SYNC STATUS AND DIRTY FLAG BY ID

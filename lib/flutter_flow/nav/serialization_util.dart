@@ -254,48 +254,48 @@ dynamic deserializeParam<T>(
       case ParamType.SqliteRow:
         final data = json.decode(param) as Map<String, dynamic>;
         switch (T) {
-          case SELECTUSERSInSameRegionRow:
-            return SELECTUSERSInSameRegionRow(data);
-          case SelectPpirFormsRow:
-            return SelectPpirFormsRow(data);
-          case SelectMessagesRow:
-            return SelectMessagesRow(data);
-          case SelectSyncLogsRow:
-            return SelectSyncLogsRow(data);
-          case SelectAttemptsRow:
-            return SelectAttemptsRow(data);
-          case SelectProfileRow:
-            return SelectProfileRow(data);
-          case GetLastSyncTimestampRow:
-            return GetLastSyncTimestampRow(data);
-          case GetQueuedChangesRow:
-            return GetQueuedChangesRow(data);
-          case GetModifiedRecordsRow:
-            return GetModifiedRecordsRow(data);
-          case OFFLINESelectAllTasksByAssigneeRow:
-            return OFFLINESelectAllTasksByAssigneeRow(data);
-          case OFFLINESelectCountForDispatchRow:
-            return OFFLINESelectCountForDispatchRow(data);
-          case OFFLINESelectTaskByIDRow:
-            return OFFLINESelectTaskByIDRow(data);
+          case RetrieveAllUsersByRegionIDRow:
+            return RetrieveAllUsersByRegionIDRow(data);
+          case RetrieveAllPPIRFormsByTaskIDRow:
+            return RetrieveAllPPIRFormsByTaskIDRow(data);
+          case RetrieveAllMessagesRow:
+            return RetrieveAllMessagesRow(data);
+          case RetrieveAllSyncLogsRow:
+            return RetrieveAllSyncLogsRow(data);
+          case RetrieveAllAttemptsRow:
+            return RetrieveAllAttemptsRow(data);
+          case RetrieveProfileRow:
+            return RetrieveProfileRow(data);
+          case RetrieveAndSortSyncQueueByOldestTimestampRow:
+            return RetrieveAndSortSyncQueueByOldestTimestampRow(data);
+          case RetrieveTasksModifiedAfterASpecificDateRow:
+            return RetrieveTasksModifiedAfterASpecificDateRow(data);
+          case RetrieveAllTasksAssignedToASpecificAssigneeRow:
+            return RetrieveAllTasksAssignedToASpecificAssigneeRow(data);
+          case CountOfTasksForDispatchAssignedToASpecificAssigneeRow:
+            return CountOfTasksForDispatchAssignedToASpecificAssigneeRow(data);
+          case RetrieveTaskDetailsByTaskIDRow:
+            return RetrieveTaskDetailsByTaskIDRow(data);
           case SELECTTASKSAndPPIRByAssigneeRow:
             return SELECTTASKSAndPPIRByAssigneeRow(data);
-          case SELECTRiceSEEDSRow:
-            return SELECTRiceSEEDSRow(data);
-          case SELECTCornSEEDSRow:
-            return SELECTCornSEEDSRow(data);
-          case SELECTPPIRFORMSSignaturesRow:
-            return SELECTPPIRFORMSSignaturesRow(data);
-          case OFFLINESelectREGIONCODERow:
-            return OFFLINESelectREGIONCODERow(data);
-          case SELECTPPIRFORMSGpxRow:
-            return SELECTPPIRFORMSGpxRow(data);
-          case COUNTIsDirtyRow:
-            return COUNTIsDirtyRow(data);
-          case SELECTPPIRFormsByAssigneeRow:
-            return SELECTPPIRFormsByAssigneeRow(data);
-          case SELECTPPIRFormsByAssigneeAndTaskStatusRow:
-            return SELECTPPIRFormsByAssigneeAndTaskStatusRow(data);
+          case RetrieveAllRiceSeedsByRegionIDRow:
+            return RetrieveAllRiceSeedsByRegionIDRow(data);
+          case RetrieveAllCornSeedsByRegionIDRow:
+            return RetrieveAllCornSeedsByRegionIDRow(data);
+          case RetrievePPIRFormsByTaskIDRow:
+            return RetrievePPIRFormsByTaskIDRow(data);
+          case RetrieveRegionCodeByRegionIDRow:
+            return RetrieveRegionCodeByRegionIDRow(data);
+          case RetrieveGPXDataFromPPIRFormsByTaskIDRow:
+            return RetrieveGPXDataFromPPIRFormsByTaskIDRow(data);
+          case RetrievePPIRIsDirtyStatusForTasksAssignedToASpecificAssigneeRow:
+            return RetrievePPIRIsDirtyStatusForTasksAssignedToASpecificAssigneeRow(
+                data);
+          case RetrieveDetailedTaskAndPPIRFormDataForASpecificAssigneeRow:
+            return RetrieveDetailedTaskAndPPIRFormDataForASpecificAssigneeRow(
+                data);
+          case SelectPpirFormsByAssigneeAndTaskStatusRow:
+            return SelectPpirFormsByAssigneeAndTaskStatusRow(data);
           default:
             return null;
         }

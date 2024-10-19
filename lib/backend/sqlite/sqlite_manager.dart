@@ -29,78 +29,79 @@ class SQLiteManager {
 
   /// START READ QUERY CALLS
 
-  Future<List<SELECTUSERSInSameRegionRow>> sELECTUSERSInSameRegion({
+  Future<List<RetrieveAllUsersByRegionIDRow>> retrieveAllUsersByRegionID({
     String? regionId,
   }) =>
-      performSELECTUSERSInSameRegion(
+      performRetrieveAllUsersByRegionID(
         _database,
         regionId: regionId,
       );
 
-  Future<List<SelectPpirFormsRow>> selectPpirForms({
+  Future<List<RetrieveAllPPIRFormsByTaskIDRow>> retrieveAllPPIRFormsByTaskID({
     String? taskId,
   }) =>
-      performSelectPpirForms(
+      performRetrieveAllPPIRFormsByTaskID(
         _database,
         taskId: taskId,
       );
 
-  Future<List<SelectMessagesRow>> selectMessages() => performSelectMessages(
+  Future<List<RetrieveAllMessagesRow>> retrieveAllMessages() =>
+      performRetrieveAllMessages(
         _database,
       );
 
-  Future<List<SelectSyncLogsRow>> selectSyncLogs() => performSelectSyncLogs(
+  Future<List<RetrieveAllSyncLogsRow>> retrieveAllSyncLogs() =>
+      performRetrieveAllSyncLogs(
         _database,
       );
 
-  Future<List<SelectAttemptsRow>> selectAttempts() => performSelectAttempts(
+  Future<List<RetrieveAllAttemptsRow>> retrieveAllAttempts() =>
+      performRetrieveAllAttempts(
         _database,
       );
 
-  Future<List<SelectProfileRow>> selectProfile({
+  Future<List<RetrieveProfileRow>> retrieveProfile({
     String? email,
   }) =>
-      performSelectProfile(
+      performRetrieveProfile(
         _database,
         email: email,
       );
 
-  Future<List<GetLastSyncTimestampRow>> getLastSyncTimestamp() =>
-      performGetLastSyncTimestamp(
-        _database,
-      );
+  Future<List<RetrieveAndSortSyncQueueByOldestTimestampRow>>
+      retrieveAndSortSyncQueueByOldestTimestamp() =>
+          performRetrieveAndSortSyncQueueByOldestTimestamp(
+            _database,
+          );
 
-  Future<List<GetQueuedChangesRow>> getQueuedChanges() =>
-      performGetQueuedChanges(
-        _database,
-      );
+  Future<List<RetrieveTasksModifiedAfterASpecificDateRow>>
+      retrieveTasksModifiedAfterASpecificDate() =>
+          performRetrieveTasksModifiedAfterASpecificDate(
+            _database,
+          );
 
-  Future<List<GetModifiedRecordsRow>> getModifiedRecords() =>
-      performGetModifiedRecords(
-        _database,
-      );
-
-  Future<List<OFFLINESelectAllTasksByAssigneeRow>>
-      oFFLINESelectAllTasksByAssignee({
+  Future<List<RetrieveAllTasksAssignedToASpecificAssigneeRow>>
+      retrieveAllTasksAssignedToASpecificAssignee({
     String? assignee,
   }) =>
-          performOFFLINESelectAllTasksByAssignee(
+          performRetrieveAllTasksAssignedToASpecificAssignee(
             _database,
             assignee: assignee,
           );
 
-  Future<List<OFFLINESelectCountForDispatchRow>> oFFLINESelectCountForDispatch({
+  Future<List<CountOfTasksForDispatchAssignedToASpecificAssigneeRow>>
+      countOfTasksForDispatchAssignedToASpecificAssignee({
     String? assignee,
   }) =>
-      performOFFLINESelectCountForDispatch(
-        _database,
-        assignee: assignee,
-      );
+          performCountOfTasksForDispatchAssignedToASpecificAssignee(
+            _database,
+            assignee: assignee,
+          );
 
-  Future<List<OFFLINESelectTaskByIDRow>> oFFLINESelectTaskByID({
+  Future<List<RetrieveTaskDetailsByTaskIDRow>> retrieveTaskDetailsByTaskID({
     String? taskId,
   }) =>
-      performOFFLINESelectTaskByID(
+      performRetrieveTaskDetailsByTaskID(
         _database,
         taskId: taskId,
       );
@@ -115,68 +116,73 @@ class SQLiteManager {
         assignee: assignee,
       );
 
-  Future<List<SELECTRiceSEEDSRow>> sELECTRiceSEEDS({
+  Future<List<RetrieveAllRiceSeedsByRegionIDRow>>
+      retrieveAllRiceSeedsByRegionID({
     String? regionId,
   }) =>
-      performSELECTRiceSEEDS(
-        _database,
-        regionId: regionId,
-      );
+          performRetrieveAllRiceSeedsByRegionID(
+            _database,
+            regionId: regionId,
+          );
 
-  Future<List<SELECTCornSEEDSRow>> sELECTCornSEEDS({
+  Future<List<RetrieveAllCornSeedsByRegionIDRow>>
+      retrieveAllCornSeedsByRegionID({
     String? regionId,
   }) =>
-      performSELECTCornSEEDS(
-        _database,
-        regionId: regionId,
-      );
+          performRetrieveAllCornSeedsByRegionID(
+            _database,
+            regionId: regionId,
+          );
 
-  Future<List<SELECTPPIRFORMSSignaturesRow>> sELECTPPIRFORMSSignatures({
+  Future<List<RetrievePPIRFormsByTaskIDRow>> retrievePPIRFormsByTaskID({
     String? taskId,
   }) =>
-      performSELECTPPIRFORMSSignatures(
+      performRetrievePPIRFormsByTaskID(
         _database,
         taskId: taskId,
       );
 
-  Future<List<OFFLINESelectREGIONCODERow>> oFFLINESelectREGIONCODE({
+  Future<List<RetrieveRegionCodeByRegionIDRow>> retrieveRegionCodeByRegionID({
     String? id,
   }) =>
-      performOFFLINESelectREGIONCODE(
+      performRetrieveRegionCodeByRegionID(
         _database,
         id: id,
       );
 
-  Future<List<SELECTPPIRFORMSGpxRow>> sELECTPPIRFORMSGpx({
+  Future<List<RetrieveGPXDataFromPPIRFormsByTaskIDRow>>
+      retrieveGPXDataFromPPIRFormsByTaskID({
     String? taskId,
   }) =>
-      performSELECTPPIRFORMSGpx(
-        _database,
-        taskId: taskId,
-      );
+          performRetrieveGPXDataFromPPIRFormsByTaskID(
+            _database,
+            taskId: taskId,
+          );
 
-  Future<List<COUNTIsDirtyRow>> cOUNTIsDirty({
+  Future<List<RetrievePPIRIsDirtyStatusForTasksAssignedToASpecificAssigneeRow>>
+      retrievePPIRIsDirtyStatusForTasksAssignedToASpecificAssignee({
     String? assignee,
   }) =>
-      performCOUNTIsDirty(
-        _database,
-        assignee: assignee,
-      );
+          performRetrievePPIRIsDirtyStatusForTasksAssignedToASpecificAssignee(
+            _database,
+            assignee: assignee,
+          );
 
-  Future<List<SELECTPPIRFormsByAssigneeRow>> sELECTPPIRFormsByAssignee({
+  Future<List<RetrieveDetailedTaskAndPPIRFormDataForASpecificAssigneeRow>>
+      retrieveDetailedTaskAndPPIRFormDataForASpecificAssignee({
     String? assignee,
   }) =>
-      performSELECTPPIRFormsByAssignee(
-        _database,
-        assignee: assignee,
-      );
+          performRetrieveDetailedTaskAndPPIRFormDataForASpecificAssignee(
+            _database,
+            assignee: assignee,
+          );
 
-  Future<List<SELECTPPIRFormsByAssigneeAndTaskStatusRow>>
-      sELECTPPIRFormsByAssigneeAndTaskStatus({
+  Future<List<SelectPpirFormsByAssigneeAndTaskStatusRow>>
+      selectPpirFormsByAssigneeAndTaskStatus({
     String? assignee,
     String? status,
   }) =>
-          performSELECTPPIRFormsByAssigneeAndTaskStatus(
+          performSelectPpirFormsByAssigneeAndTaskStatus(
             _database,
             assignee: assignee,
             status: status,
@@ -186,243 +192,7 @@ class SQLiteManager {
 
   /// START UPDATE QUERY CALLS
 
-  Future updateAttemptStatus({
-    String? comments,
-    bool? updatedat,
-    bool? syncstatus,
-    bool? isdirty,
-  }) =>
-      performUpdateAttemptStatus(
-        _database,
-        comments: comments,
-        updatedat: updatedat,
-        syncstatus: syncstatus,
-        isdirty: isdirty,
-      );
-
-  Future updateSyncStatus({
-    String? id,
-    bool? syncstatus,
-    DateTime? lastsyncedat,
-    DateTime? updatedat,
-  }) =>
-      performUpdateSyncStatus(
-        _database,
-        id: id,
-        syncstatus: syncstatus,
-        lastsyncedat: lastsyncedat,
-        updatedat: updatedat,
-      );
-
-  Future updatePPIRBasicInfo({
-    String? ppirfarmername,
-    String? ppiraddress,
-    String? ppirfarmertype,
-    String? ppirmobileno,
-    String? ppirgroupname,
-    String? ppirgroupaddress,
-    DateTime? updatedat,
-    String? taskid,
-  }) =>
-      performUpdatePPIRBasicInfo(
-        _database,
-        ppirfarmername: ppirfarmername,
-        ppiraddress: ppiraddress,
-        ppirfarmertype: ppirfarmertype,
-        ppirmobileno: ppirmobileno,
-        ppirgroupname: ppirgroupname,
-        ppirgroupaddress: ppirgroupaddress,
-        updatedat: updatedat,
-        taskid: taskid,
-      );
-
-  Future updatePPIRLocation({
-    String? ppirsouth,
-    String? ppirnorth,
-    String? ppireast,
-    String? ppirwest,
-    String? ppirfarmloc,
-    DateTime? isupdatedat,
-    bool? isdirty,
-    String? taskid,
-  }) =>
-      performUpdatePPIRLocation(
-        _database,
-        ppirsouth: ppirsouth,
-        ppirnorth: ppirnorth,
-        ppireast: ppireast,
-        ppirwest: ppirwest,
-        ppirfarmloc: ppirfarmloc,
-        isupdatedat: isupdatedat,
-        isdirty: isdirty,
-        taskid: taskid,
-      );
-
-  Future updatePPIRCropInfo({
-    String? ppirvariety,
-    String? ppirareaaci,
-    String? ppirstagecrop,
-    String? ppirareaact,
-    DateTime? updatedat,
-    bool? isdirty,
-    String? taskid,
-  }) =>
-      performUpdatePPIRCropInfo(
-        _database,
-        ppirvariety: ppirvariety,
-        ppirareaaci: ppirareaaci,
-        ppirstagecrop: ppirstagecrop,
-        ppirareaact: ppirareaact,
-        updatedat: updatedat,
-        isdirty: isdirty,
-        taskid: taskid,
-      );
-
-  Future updateTask({
-    String? id,
-    String? tasknumber,
-    String? servicegroup,
-    String? servicetypes,
-    String? priority,
-    String? assignee,
-    String? fileid,
-    DateTime? dateadded,
-    DateTime? dateaccess,
-    bool? status,
-    String? tasktype,
-    int? attemptcount,
-    DateTime? updatedat,
-    bool? isdeleted,
-    bool? syncstatus,
-    DateTime? lastsyncedat,
-    String? localid,
-    bool? isdirty,
-    bool? isupdating,
-  }) =>
-      performUpdateTask(
-        _database,
-        id: id,
-        tasknumber: tasknumber,
-        servicegroup: servicegroup,
-        servicetypes: servicetypes,
-        priority: priority,
-        assignee: assignee,
-        fileid: fileid,
-        dateadded: dateadded,
-        dateaccess: dateaccess,
-        status: status,
-        tasktype: tasktype,
-        attemptcount: attemptcount,
-        updatedat: updatedat,
-        isdeleted: isdeleted,
-        syncstatus: syncstatus,
-        lastsyncedat: lastsyncedat,
-        localid: localid,
-        isdirty: isdirty,
-        isupdating: isupdating,
-      );
-
-  Future updateUsers({
-    String? id,
-    String? role,
-    String? email,
-    String? photourl,
-    String? inspectorname,
-    String? mobilenumber,
-    bool? isonline,
-    String? authuserid,
-    String? createduserid,
-    String? createdat,
-    String? updatedat,
-    String? regionid,
-  }) =>
-      performUpdateUsers(
-        _database,
-        id: id,
-        role: role,
-        email: email,
-        photourl: photourl,
-        inspectorname: inspectorname,
-        mobilenumber: mobilenumber,
-        isonline: isonline,
-        authuserid: authuserid,
-        createduserid: createduserid,
-        createdat: createdat,
-        updatedat: updatedat,
-        regionid: regionid,
-      );
-
-  Future updateDashboardQuery({
-    String? role,
-    String? email,
-    String? photourl,
-    String? inspectorname,
-    String? mobilenumber,
-    bool? isonline,
-    String? authuserid,
-    String? createduserid,
-    DateTime? updatedat,
-    String? regionid,
-  }) =>
-      performUpdateDashboardQuery(
-        _database,
-        role: role,
-        email: email,
-        photourl: photourl,
-        inspectorname: inspectorname,
-        mobilenumber: mobilenumber,
-        isonline: isonline,
-        authuserid: authuserid,
-        createduserid: createduserid,
-        updatedat: updatedat,
-        regionid: regionid,
-      );
-
-  Future insertUpdateSyncStatus({
-    String? tablename,
-    DateTime? lastsynctimestamp,
-  }) =>
-      performInsertUpdateSyncStatus(
-        _database,
-        tablename: tablename,
-        lastsynctimestamp: lastsynctimestamp,
-      );
-
-  Future addToSyncQueue({
-    String? tablename,
-    String? recordid,
-    String? action,
-    String? data,
-    DateTime? timestamp,
-  }) =>
-      performAddToSyncQueue(
-        _database,
-        tablename: tablename,
-        recordid: recordid,
-        action: action,
-        data: data,
-        timestamp: timestamp,
-      );
-
-  Future removeFromSyncQueue({
-    String? id,
-  }) =>
-      performRemoveFromSyncQueue(
-        _database,
-        id: id,
-      );
-
-  Future updateLastModifiedTimestamp({
-    DateTime? lastmodified,
-    String? id,
-  }) =>
-      performUpdateLastModifiedTimestamp(
-        _database,
-        lastmodified: lastmodified,
-        id: id,
-      );
-
-  Future insertOfflineTask({
+  Future insertOrReplaceTaskRecord({
     String? id,
     String? taskNumber,
     String? serviceGroup,
@@ -434,7 +204,7 @@ class SQLiteManager {
     String? dateAccess,
     String? fileId,
   }) =>
-      performInsertOfflineTask(
+      performInsertOrReplaceTaskRecord(
         _database,
         id: id,
         taskNumber: taskNumber,
@@ -448,7 +218,7 @@ class SQLiteManager {
         fileId: fileId,
       );
 
-  Future insertOfflinePPIRForm({
+  Future insertOrReplacePPIRFormRecord({
     String? taskId,
     String? ppirAssignmentId,
     String? gpx,
@@ -498,7 +268,7 @@ class SQLiteManager {
     String? isDirty,
     String? capturedArea,
   }) =>
-      performInsertOfflinePPIRForm(
+      performInsertOrReplacePPIRFormRecord(
         _database,
         taskId: taskId,
         ppirAssignmentId: ppirAssignmentId,
@@ -550,17 +320,17 @@ class SQLiteManager {
         capturedArea: capturedArea,
       );
 
-  Future updatePPIRSetABlankGpx({
+  Future clearGPXDataInPPIRFormByTaskID({
     String? taskId,
     bool? isDirty,
   }) =>
-      performUpdatePPIRSetABlankGpx(
+      performClearGPXDataInPPIRFormByTaskID(
         _database,
         taskId: taskId,
         isDirty: isDirty,
       );
 
-  Future updatePPIRForm({
+  Future updatePPIRFormDetailsAndDirtyFlagByTaskID({
     String? taskId,
     String? ppirSvpAct,
     String? ppirDopdsAct,
@@ -574,7 +344,7 @@ class SQLiteManager {
     bool? isDirty,
     String? capturedArea,
   }) =>
-      performUpdatePPIRForm(
+      performUpdatePPIRFormDetailsAndDirtyFlagByTaskID(
         _database,
         taskId: taskId,
         ppirSvpAct: ppirSvpAct,
@@ -590,41 +360,41 @@ class SQLiteManager {
         capturedArea: capturedArea,
       );
 
-  Future updateTaskStatus({
+  Future updateTaskStatusAndDirtyFlagByID({
     String? taskId,
     String? status,
     bool? isDirty,
   }) =>
-      performUpdateTaskStatus(
+      performUpdateTaskStatusAndDirtyFlagByID(
         _database,
         taskId: taskId,
         status: status,
         isDirty: isDirty,
       );
 
-  Future updatePPIRFormValidity({
+  Future updatePPIRFormDirtyFlagByTaskID({
     String? taskId,
     bool? isDirty,
   }) =>
-      performUpdatePPIRFormValidity(
+      performUpdatePPIRFormDirtyFlagByTaskID(
         _database,
         taskId: taskId,
         isDirty: isDirty,
       );
 
-  Future updatePPIRFormGpx({
+  Future updatePPIRFormGPXDataByTaskID({
     String? taskId,
     String? gpx,
     bool? isDirty,
   }) =>
-      performUpdatePPIRFormGpx(
+      performUpdatePPIRFormGPXDataByTaskID(
         _database,
         taskId: taskId,
         gpx: gpx,
         isDirty: isDirty,
       );
 
-  Future updatePPIRFormAfterGeotag({
+  Future updatePPIRFormTrackingDataByTaskID({
     String? taskId,
     String? trackLastCoord,
     String? trackDateTime,
@@ -633,7 +403,7 @@ class SQLiteManager {
     String? gpx,
     bool? isDirty,
   }) =>
-      performUpdatePPIRFormAfterGeotag(
+      performUpdatePPIRFormTrackingDataByTaskID(
         _database,
         taskId: taskId,
         trackLastCoord: trackLastCoord,
@@ -644,41 +414,42 @@ class SQLiteManager {
         isDirty: isDirty,
       );
 
-  Future updatePPIRFormIUIASignatureBlob({
+  Future updatePPIRIUAISignatureByTaskID({
     String? taskId,
     String? signatureBlob,
   }) =>
-      performUpdatePPIRFormIUIASignatureBlob(
+      performUpdatePPIRIUAISignatureByTaskID(
         _database,
         taskId: taskId,
         signatureBlob: signatureBlob,
       );
 
-  Future updatePPIRFormINSUREDSignatureBlob({
+  Future updatePPIRInsuredSignatureByTaskID({
     String? taskId,
     String? signatureBlob,
   }) =>
-      performUpdatePPIRFormINSUREDSignatureBlob(
+      performUpdatePPIRInsuredSignatureByTaskID(
         _database,
         taskId: taskId,
         signatureBlob: signatureBlob,
       );
 
-  Future updateUsersProfileName({
+  Future updateInspectorNameByUserID({
     String? id,
     String? inspectorName,
   }) =>
-      performUpdateUsersProfileName(
+      performUpdateInspectorNameByUserID(
         _database,
         id: id,
         inspectorName: inspectorName,
       );
 
-  Future dELETEAllRowsForTASKSAndPPIR() => performDELETEAllRowsForTASKSAndPPIR(
+  Future deleteAllRecordsFromTasksAndPPIRForms() =>
+      performDeleteAllRecordsFromTasksAndPPIRForms(
         _database,
       );
 
-  Future offlineInsertUsers({
+  Future insertOrReplaceUserData({
     String? id,
     String? role,
     String? email,
@@ -690,7 +461,7 @@ class SQLiteManager {
     String? updatedAt,
     String? regionId,
   }) =>
-      performOfflineInsertUsers(
+      performInsertOrReplaceUserData(
         _database,
         id: id,
         role: role,
@@ -704,24 +475,24 @@ class SQLiteManager {
         regionId: regionId,
       );
 
-  Future updateOfflinePPIRFormSyncStatus({
+  Future updatePPIRFormSyncStatusAndDirtyFlagByTaskID({
     String? taskId,
     String? syncStatus,
     String? isDirty,
   }) =>
-      performUpdateOfflinePPIRFormSyncStatus(
+      performUpdatePPIRFormSyncStatusAndDirtyFlagByTaskID(
         _database,
         taskId: taskId,
         syncStatus: syncStatus,
         isDirty: isDirty,
       );
 
-  Future updateOfflineTaskSyncStatus({
+  Future updateTaskSyncStatusAndDirtyFlagByID({
     String? taskId,
     String? syncStatus,
     String? isDirty,
   }) =>
-      performUpdateOfflineTaskSyncStatus(
+      performUpdateTaskSyncStatusAndDirtyFlagByID(
         _database,
         taskId: taskId,
         syncStatus: syncStatus,

@@ -232,7 +232,7 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
 
                                                 if (_model.confirmBack!) {
                                                   await SQLiteManager.instance
-                                                      .updatePPIRFormGpx(
+                                                      .updatePPIRFormGPXDataByTaskID(
                                                     taskId: widget.taskId,
                                                     gpx: ' ',
                                                     isDirty:
@@ -627,7 +627,8 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                         ),
                       );
                     }
-                    await SQLiteManager.instance.updateTaskStatus(
+                    await SQLiteManager.instance
+                        .updateTaskStatusAndDirtyFlagByID(
                       taskId: widget.taskId,
                       status: 'ongoing',
                       isDirty: !FFAppState().ONLINE,
