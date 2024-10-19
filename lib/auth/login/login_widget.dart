@@ -706,7 +706,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                     }(),
                                                   );
                                                   await SQLiteManager.instance
-                                                      .insertOrReplaceUserData(
+                                                      .offlineInsertUsers(
                                                     id: _model.authUserQuery
                                                         ?.first.id,
                                                     role: _model.authUserQuery

@@ -22,8 +22,8 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
-  // Stores action output result for [Backend Call - SQLite (Retrieve Profile)] action in ppirForm widget.
-  List<RetrieveProfileRow>? profile;
+  // Stores action output result for [Backend Call - SQLite (SELECT PROFILE)] action in ppirForm widget.
+  List<SelectProfileRow>? profile;
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in IconButton widget.
@@ -187,7 +187,7 @@ class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
       BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
-        'c2yh7kit' /* Must have a captured Image */,
+        'q79tvmns' /* Must have a captured Image */,
       );
     }
 

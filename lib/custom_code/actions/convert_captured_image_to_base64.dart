@@ -15,7 +15,6 @@ import 'dart:convert';
 Future<String> convertCapturedImageToBase64(FFUploadedFile? uploaded) async {
   if (uploaded == null || uploaded.bytes == null) {
     throw Exception("No file uploaded.");
-    //
   }
 
   // Convert the bytes to a Base64 encoded string.

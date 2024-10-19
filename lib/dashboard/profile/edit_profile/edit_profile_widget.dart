@@ -53,8 +53,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return FutureBuilder<List<RetrieveProfileRow>>(
-      future: SQLiteManager.instance.retrieveProfile(
+    return FutureBuilder<List<SelectProfileRow>>(
+      future: SQLiteManager.instance.selectProfile(
         email: currentUserEmail,
       ),
       builder: (context, snapshot) {
@@ -74,7 +74,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
             ),
           );
         }
-        final editProfileRetrieveProfileRowList = snapshot.data!;
+        final editProfileSelectProfileRowList = snapshot.data!;
 
         return GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -289,7 +289,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                             TextFormField(
                               controller: _model.displayNameTextController ??=
                                   TextEditingController(
-                                text: editProfileRetrieveProfileRowList
+                                text: editProfileSelectProfileRowList
                                     .first.inspectorName,
                               ),
                               focusNode: _model.displayNameFocusNode,
@@ -380,7 +380,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                         ),
                                       );
                                       await SQLiteManager.instance
-                                          .updateInspectorNameByUserId(
+                                          .updateUsersProfileName(
                                         id: currentUserUid,
                                         inspectorName: _model
                                             .displayNameTextController.text,

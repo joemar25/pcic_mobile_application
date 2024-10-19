@@ -177,7 +177,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                                   defaultLocation: const LatLng(0.0, 0.0));
                           if (FFAppState().ONLINE) {
                             await SQLiteManager.instance
-                                .deleteAllRecordsFromTasksAndPpirForms();
+                                .dELETEAllRowsForTASKSAndPPIR();
                             await UsersTable().update(
                               data: {
                                 'is_online': false,

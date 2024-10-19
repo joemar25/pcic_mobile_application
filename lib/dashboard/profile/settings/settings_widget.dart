@@ -54,8 +54,8 @@ class _SettingsWidgetState extends State<SettingsWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return FutureBuilder<List<RetrieveProfileRow>>(
-      future: SQLiteManager.instance.retrieveProfile(
+    return FutureBuilder<List<SelectProfileRow>>(
+      future: SQLiteManager.instance.selectProfile(
         email: currentUserEmail,
       ),
       builder: (context, snapshot) {
@@ -66,7 +66,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
             body: const PageLoaderWidget(),
           );
         }
-        final settingsRetrieveProfileRowList = snapshot.data!;
+        final settingsSelectProfileRowList = snapshot.data!;
 
         return WillPopScope(
           onWillPop: () async => false,
@@ -243,7 +243,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                               Text(
                                                 valueOrDefault<String>(
                                                   functions.sentenceCaseWords(
-                                                      settingsRetrieveProfileRowList
+                                                      settingsSelectProfileRowList
                                                           .first.inspectorName),
                                                   'Agent',
                                                 ),

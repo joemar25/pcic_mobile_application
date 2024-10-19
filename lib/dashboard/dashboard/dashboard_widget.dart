@@ -123,9 +123,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return FutureBuilder<List<RetrieveAllTasksAssignedToASpecificAssigneeRow>>(
-      future:
-          SQLiteManager.instance.retrieveAllTasksAssignedToASpecificAssignee(
+    return FutureBuilder<List<OFFLINESelectAllTasksByAssigneeRow>>(
+      future: SQLiteManager.instance.oFFLINESelectAllTasksByAssignee(
         assignee: currentUserUid,
       ),
       builder: (context, snapshot) {
@@ -136,8 +135,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
             body: const PageLoaderWidget(),
           );
         }
-        final dashboardRetrieveAllTasksAssignedToASpecificAssigneeRowList =
-            snapshot.data!;
+        final dashboardOFFLINESelectAllTasksByAssigneeRowList = snapshot.data!;
 
         return GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -418,10 +416,10 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                       Flexible(
                                                         child: FutureBuilder<
                                                             List<
-                                                                RetrieveProfileRow>>(
+                                                                SelectProfileRow>>(
                                                           future: SQLiteManager
                                                               .instance
-                                                              .retrieveProfile(
+                                                              .selectProfile(
                                                             email:
                                                                 currentUserEmail,
                                                           ),
@@ -444,7 +442,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                 ),
                                                               );
                                                             }
-                                                            final richTextRetrieveProfileRowList =
+                                                            final richTextSelectProfileRowList =
                                                                 snapshot.data!;
 
                                                             return RichText(
@@ -475,7 +473,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                   TextSpan(
                                                                     text: valueOrDefault<
                                                                         String>(
-                                                                      functions.sentenceCaseWords(richTextRetrieveProfileRowList
+                                                                      functions.sentenceCaseWords(richTextSelectProfileRowList
                                                                           .first
                                                                           .inspectorName),
                                                                       'Inspector Name',
@@ -571,7 +569,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
-                                                  if (dashboardRetrieveAllTasksAssignedToASpecificAssigneeRowList
+                                                  if (dashboardOFFLINESelectAllTasksByAssigneeRowList
                                                           .where((e) =>
                                                               e.status ==
                                                               'for dispatch')
@@ -669,7 +667,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                             curve:
                                                                 Curves.easeIn,
                                                             child: Text(
-                                                              dashboardRetrieveAllTasksAssignedToASpecificAssigneeRowList
+                                                              dashboardOFFLINESelectAllTasksByAssigneeRowList
                                                                   .where((e) =>
                                                                       e.status ==
                                                                       'for dispatch')
@@ -737,7 +735,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
-                                                  if (dashboardRetrieveAllTasksAssignedToASpecificAssigneeRowList
+                                                  if (dashboardOFFLINESelectAllTasksByAssigneeRowList
                                                           .where((e) =>
                                                               e.status ==
                                                               'ongoing')
@@ -832,7 +830,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                             curve:
                                                                 Curves.easeIn,
                                                             child: Text(
-                                                              dashboardRetrieveAllTasksAssignedToASpecificAssigneeRowList
+                                                              dashboardOFFLINESelectAllTasksByAssigneeRowList
                                                                   .where((e) =>
                                                                       e.status ==
                                                                       'ongoing')
@@ -900,7 +898,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
-                                                  if (dashboardRetrieveAllTasksAssignedToASpecificAssigneeRowList
+                                                  if (dashboardOFFLINESelectAllTasksByAssigneeRowList
                                                           .where((e) =>
                                                               e.status ==
                                                               'completed')
@@ -995,7 +993,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                             curve:
                                                                 Curves.easeIn,
                                                             child: Text(
-                                                              dashboardRetrieveAllTasksAssignedToASpecificAssigneeRowList
+                                                              dashboardOFFLINESelectAllTasksByAssigneeRowList
                                                                   .where((e) =>
                                                                       e.status ==
                                                                       'completed')
@@ -1171,7 +1169,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                           child: Builder(
                                                             builder: (context) {
                                                               final forDispatchTasks =
-                                                                  dashboardRetrieveAllTasksAssignedToASpecificAssigneeRowList
+                                                                  dashboardOFFLINESelectAllTasksByAssigneeRowList
                                                                       .where((e) =>
                                                                           e.status ==
                                                                           'for dispatch')
@@ -1252,7 +1250,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                             },
                                                           ),
                                                         ),
-                                                        if (dashboardRetrieveAllTasksAssignedToASpecificAssigneeRowList
+                                                        if (dashboardOFFLINESelectAllTasksByAssigneeRowList
                                                                 .where((e) =>
                                                                     e.status ==
                                                                     'for dispatch')
@@ -1355,7 +1353,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                           child: Builder(
                                                             builder: (context) {
                                                               final forDispatchTasks =
-                                                                  dashboardRetrieveAllTasksAssignedToASpecificAssigneeRowList
+                                                                  dashboardOFFLINESelectAllTasksByAssigneeRowList
                                                                       .where((e) =>
                                                                           e.status ==
                                                                           'ongoing')
@@ -1436,7 +1434,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                             },
                                                           ),
                                                         ),
-                                                        if (dashboardRetrieveAllTasksAssignedToASpecificAssigneeRowList
+                                                        if (dashboardOFFLINESelectAllTasksByAssigneeRowList
                                                                 .where((e) =>
                                                                     e.status ==
                                                                     'ongoing')
@@ -1539,7 +1537,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                           child: Builder(
                                                             builder: (context) {
                                                               final completedTasks =
-                                                                  dashboardRetrieveAllTasksAssignedToASpecificAssigneeRowList
+                                                                  dashboardOFFLINESelectAllTasksByAssigneeRowList
                                                                       .where((e) =>
                                                                           e.status ==
                                                                           'completed')
@@ -1620,7 +1618,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                             },
                                                           ),
                                                         ),
-                                                        if (dashboardRetrieveAllTasksAssignedToASpecificAssigneeRowList
+                                                        if (dashboardOFFLINESelectAllTasksByAssigneeRowList
                                                                 .where((e) =>
                                                                     e.status ==
                                                                     'completed')

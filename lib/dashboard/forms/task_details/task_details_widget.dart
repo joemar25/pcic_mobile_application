@@ -76,8 +76,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return FutureBuilder<List<SelectAllTaskAndPpirByAssigneeRow>>(
-      future: SQLiteManager.instance.selectAllTaskAndPpirByAssignee(
+    return FutureBuilder<List<SELECTTASKSAndPPIRByAssigneeRow>>(
+      future: SQLiteManager.instance.sELECTTASKSAndPPIRByAssignee(
         taskId: widget.taskId,
         assignee: currentUserUid,
       ),
@@ -89,7 +89,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
             body: const PageLoaderWidget(),
           );
         }
-        final taskDetailsSelectAllTaskAndPpirByAssigneeRowList = snapshot.data!;
+        final taskDetailsSELECTTASKSAndPPIRByAssigneeRowList = snapshot.data!;
 
         return GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -134,7 +134,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                           const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
                       child: Text(
                         valueOrDefault<String>(
-                          taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                               .first.ppirFarmername,
                           'Farmer Name',
                         ),
@@ -169,7 +169,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                 safeSetState(() {});
                               },
                               child: Text(
-                                '[ ${taskDetailsSelectAllTaskAndPpirByAssigneeRowList.first.ppirIsDirty == '1' ? 'Outdated. Tap to sync' : _model.statusOutput} ]',
+                                '[ ${taskDetailsSELECTTASKSAndPPIRByAssigneeRowList.first.ppirIsDirty == '1' ? 'Outdated. Tap to sync' : _model.statusOutput} ]',
                                 style: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
@@ -312,7 +312,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   curve: Curves.easeIn,
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                           .first
                                                           .ppirAssignmentid,
                                                       'Assignment Id',
@@ -360,7 +360,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   curve: Curves.easeIn,
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                           .first.ppirFarmername,
                                                       'Farmer Name',
                                                     ),
@@ -409,7 +409,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   curve: Curves.easeIn,
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                           .first.ppirAddress,
                                                       'Address',
                                                     ),
@@ -458,7 +458,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   curve: Curves.easeIn,
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                           .first
                                                           .ppirInsuranceid,
                                                       'Insurance Id',
@@ -508,7 +508,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   curve: Curves.easeIn,
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                           .first.ppirMobileno,
                                                       'Mobile Number',
                                                     ),
@@ -557,7 +557,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   curve: Curves.easeIn,
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                           .first.ppirFarmertype,
                                                       'Famer Type',
                                                     ),
@@ -606,7 +606,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   curve: Curves.easeIn,
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                           .first.ppirGroupname,
                                                       'Group Name',
                                                     ),
@@ -655,7 +655,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   curve: Curves.easeIn,
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                           .first
                                                           .ppirGroupaddress,
                                                       'Group Address',
@@ -705,7 +705,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   curve: Curves.easeIn,
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                           .first.ppirLendername,
                                                       'Lender Name',
                                                     ),
@@ -754,7 +754,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   curve: Curves.easeIn,
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                           .first
                                                           .ppirLenderaddress,
                                                       'Lender Address',
@@ -805,7 +805,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   child: Text(
                                                     valueOrDefault<String>(
                                                       functions.removePpirOnString(
-                                                          taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                               .first
                                                               .serviceType),
                                                       'CIC Number',
@@ -855,7 +855,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   curve: Curves.easeIn,
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                           .first.ppirCicno,
                                                       'CIC Number',
                                                     ),
@@ -904,7 +904,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   curve: Curves.easeIn,
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                           .first.ppirFarmloc,
                                                       'Farm Location',
                                                     ),
@@ -987,7 +987,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   curve: Curves.easeIn,
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                           .first.ppirNorth,
                                                       'North',
                                                     ),
@@ -1036,7 +1036,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   curve: Curves.easeIn,
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                           .first.ppirEast,
                                                       'East',
                                                     ),
@@ -1084,7 +1084,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   curve: Curves.easeIn,
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                           .first.ppirSouth,
                                                       'South',
                                                     ),
@@ -1132,7 +1132,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   curve: Curves.easeIn,
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                           .first.ppirWest,
                                                       'West',
                                                     ),
@@ -1215,7 +1215,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   curve: Curves.easeIn,
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                           .first.ppirAreaAci,
                                                       'Area Planted',
                                                     ),
@@ -1264,7 +1264,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   curve: Curves.easeIn,
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                           .first.ppirDopdsAci,
                                                       'Date of Planting',
                                                     ),
@@ -1313,7 +1313,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   curve: Curves.easeIn,
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                           .first.ppirDoptpAci,
                                                       'Datee of Planting',
                                                     ),
@@ -1362,7 +1362,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   curve: Curves.easeIn,
                                                   child: Text(
                                                     valueOrDefault<String>(
-                                                      taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                           .first.ppirSvpAci,
                                                       'Seed Variety Planted',
                                                     ),
@@ -1451,7 +1451,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                         imageBlob:
                                                             valueOrDefault<
                                                                 String>(
-                                                          taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                               .first
                                                               .capturedArea,
                                                           'No Value',
@@ -1509,15 +1509,6 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .alternate,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            0.0),
-                                                    border: Border.all(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .alternate,
-                                                    ),
                                                   ),
                                                   child: SizedBox(
                                                     width: MediaQuery.sizeOf(
@@ -1540,13 +1531,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           0.3,
                                                       blob: valueOrDefault<
                                                                   String>(
-                                                                taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                                     .first.gpx,
                                                                 'null',
                                                               ) ==
                                                               'null'
                                                           ? ' '
-                                                          : taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                          : taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                               .first.gpx,
                                                       accessToken: FFAppState()
                                                           .accessToken,
@@ -1697,7 +1688,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           child: Text(
                                                             valueOrDefault<
                                                                 String>(
-                                                              taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                                   .first
                                                                   .trackLastCoord,
                                                               'Last Coordinates',
@@ -1758,7 +1749,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               functions.timesStampConverter(
                                                                   valueOrDefault<
                                                                       String>(
-                                                                taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                                     .first
                                                                     .trackDateTime,
                                                                 'Track Date',
@@ -1818,7 +1809,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           child: Text(
                                                             valueOrDefault<
                                                                 String>(
-                                                              taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                                   .first
                                                                   .trackTotalArea,
                                                               'Track Area',
@@ -1876,7 +1867,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           child: Text(
                                                             valueOrDefault<
                                                                 String>(
-                                                              taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                                   .first
                                                                   .trackTotalDistance,
                                                               'Total Distance',
@@ -1984,7 +1975,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           child: Text(
                                                             valueOrDefault<
                                                                 String>(
-                                                              taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                                   .first
                                                                   .ppirVariety,
                                                               'Type',
@@ -2042,7 +2033,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           child: Text(
                                                             valueOrDefault<
                                                                 String>(
-                                                              taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                                   .first
                                                                   .ppirSvpAct,
                                                               'Variety',
@@ -2097,7 +2088,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           child: Text(
                                                             valueOrDefault<
                                                                 String>(
-                                                              taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                                   .first
                                                                   .ppirAreaAct,
                                                               'Actual Area Planted',
@@ -2155,7 +2146,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           child: Text(
                                                             valueOrDefault<
                                                                 String>(
-                                                              taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                                   .first
                                                                   .ppirDopdsAct,
                                                               'Date of Planting',
@@ -2213,7 +2204,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           child: Text(
                                                             valueOrDefault<
                                                                 String>(
-                                                              taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                                   .first
                                                                   .ppirDoptpAct,
                                                               'Date of Planting',
@@ -2324,7 +2315,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           child: Text(
                                                             valueOrDefault<
                                                                 String>(
-                                                              taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                                   .first
                                                                   .ppirRemarks,
                                                               'Address',
@@ -2382,7 +2373,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           child: Text(
                                                             valueOrDefault<
                                                                 String>(
-                                                              taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                                   .first
                                                                   .ppirNameInsured,
                                                               'Address',
@@ -2431,7 +2422,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               taskId: widget
                                                                   .taskId,
                                                               imageBase64:
-                                                                  taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                                  taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                                       .first
                                                                       .ppirSigInsured,
                                                             ),
@@ -2488,7 +2479,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           child: Text(
                                                             valueOrDefault<
                                                                 String>(
-                                                              taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                                   .first
                                                                   .ppirNameIuia,
                                                               'Address',
@@ -2537,7 +2528,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               taskId: widget
                                                                   .taskId,
                                                               imageBase64:
-                                                                  taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                                  taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                                       .first
                                                                       .ppirSigIuia,
                                                             ),
@@ -2571,7 +2562,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 if (valueOrDefault<String>(
-                                      taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                           .first.status,
                                       'Value',
                                     ) !=
@@ -2581,13 +2572,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       if ((valueOrDefault<String>(
-                                                taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                     .first.gpx,
                                                 'null',
                                               ) ==
                                               'null') ||
                                           (valueOrDefault<String>(
-                                                taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                     .first.gpx,
                                                 'null',
                                               ) ==
@@ -2612,13 +2603,13 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   );
                                                 }
                                                 await SQLiteManager.instance
-                                                    .updateTaskStatusAndDirtyFlagById(
+                                                    .updateTaskStatus(
                                                   taskId: widget.taskId,
                                                   status: 'ongoing',
                                                   isDirty: !FFAppState().ONLINE,
                                                 );
                                                 await SQLiteManager.instance
-                                                    .updatePPIRFormGPXDataByTaskID(
+                                                    .updatePPIRFormGpx(
                                                   taskId: widget.taskId,
                                                   gpx: ' ',
                                                   isDirty: !FFAppState().ONLINE,
@@ -2632,7 +2623,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       ParamType.String,
                                                     ),
                                                     'taskType': serializeParam(
-                                                      taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                           .first.taskType,
                                                       ParamType.String,
                                                     ),
@@ -2643,7 +2634,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     ),
                                                     'assignmentId':
                                                         serializeParam(
-                                                      taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                           .first
                                                           .ppirAssignmentid,
                                                       ParamType.String,
@@ -2709,19 +2700,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           ),
                                         ),
                                       if (((valueOrDefault<String>(
-                                                    taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                         .first.gpx,
                                                     'null',
                                                   ) !=
                                                   'null') &&
                                               (valueOrDefault<String>(
-                                                    taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                         .first.gpx,
                                                     'null',
                                                   ) !=
                                                   ' ')) &&
                                           (valueOrDefault<String>(
-                                                taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                     .first.status,
                                                 'Value',
                                               ) ==
@@ -2803,7 +2794,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                     ],
                                   ),
                                 if (valueOrDefault<String>(
-                                      taskDetailsSelectAllTaskAndPpirByAssigneeRowList
+                                      taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                           .first.status,
                                       'Value',
                                     ) ==
