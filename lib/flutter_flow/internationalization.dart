@@ -1253,10 +1253,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Note: ',
       'tl': '',
     },
-    '6sf4iafs': {
-      'en': '           ',
-      'tl': '',
-    },
   },
   // chat
   {

@@ -424,15 +424,24 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                       ),
                                                       child: Stack(
                                                         children: [
-                                                          if (FFAppState()
-                                                                  .ONLINE ||
-                                                              _model
-                                                                  .isMapDownloaded)
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .all(2.0),
-                                                              child: SizedBox(
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets.all(
+                                                                    2.0),
+                                                            child: SizedBox(
+                                                              width: MediaQuery
+                                                                          .sizeOf(
+                                                                              context)
+                                                                      .width *
+                                                                  1.0,
+                                                              height: MediaQuery
+                                                                          .sizeOf(
+                                                                              context)
+                                                                      .height *
+                                                                  0.2,
+                                                              child:
+                                                                  custom_widgets
+                                                                      .MapBase64(
                                                                 width: MediaQuery.sizeOf(
                                                                             context)
                                                                         .width *
@@ -441,26 +450,16 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                             context)
                                                                         .height *
                                                                     0.2,
-                                                                child: custom_widgets
-                                                                    .MapBase64(
-                                                                  width: MediaQuery.sizeOf(
-                                                                              context)
-                                                                          .width *
-                                                                      1.0,
-                                                                  height: MediaQuery.sizeOf(
-                                                                              context)
-                                                                          .height *
-                                                                      0.2,
-                                                                  blob:
-                                                                      ppirFormSelectPpirFormsRowList
-                                                                          .first
-                                                                          .gpx,
-                                                                  accessToken:
-                                                                      FFAppState()
-                                                                          .accessToken,
-                                                                ),
+                                                                blob:
+                                                                    ppirFormSelectPpirFormsRowList
+                                                                        .first
+                                                                        .gpx,
+                                                                accessToken:
+                                                                    FFAppState()
+                                                                        .accessToken,
                                                               ),
                                                             ),
+                                                          ),
                                                         ],
                                                       ),
                                                     ),

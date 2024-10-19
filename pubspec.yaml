@@ -115,6 +115,7 @@ dependencies:
   url_launcher_android: 6.3.4
   url_launcher_ios: 6.3.1
   url_launcher_platform_interface: 2.3.2
+  vector_map_tiles: ^8.0.0
   video_player: 2.8.6
   video_player_android: 2.4.16
   video_player_avfoundation: 2.6.1
