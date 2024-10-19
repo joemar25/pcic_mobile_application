@@ -245,24 +245,24 @@ class _FlutterFlowDataTableState<T> extends State<FlutterFlowDataTable<T>> {
     );
 
     final checkboxThemeData = CheckboxThemeData(
-      checkColor: WidgetStateProperty.all(
+      checkColor: MaterialStateProperty.all(
         widget.checkboxCheckColor ?? Colors.black54,
       ),
-      fillColor: WidgetStateProperty.resolveWith(
-        (states) => states.contains(WidgetState.selected)
+      fillColor: MaterialStateProperty.resolveWith(
+        (states) => states.contains(MaterialState.selected)
             ? widget.checkboxSelectedFillColor ?? Colors.white.withOpacity(0.01)
             : widget.checkboxUnselectedFillColor ??
                 Colors.white.withOpacity(0.01),
       ),
-      side: WidgetStateBorderSide.resolveWith(
+      side: MaterialStateBorderSide.resolveWith(
         (states) => BorderSide(
           width: 2.0,
-          color: states.contains(WidgetState.selected)
+          color: states.contains(MaterialState.selected)
               ? widget.checkboxSelectedBorderColor ?? Colors.black54
               : widget.checkboxUnselectedBorderColor ?? Colors.black54,
         ),
       ),
-      overlayColor: WidgetStateProperty.all(Colors.transparent),
+      overlayColor: MaterialStateProperty.all(Colors.transparent),
     );
 
     final horizontalBorder = widget.addHorizontalDivider
@@ -324,7 +324,7 @@ class _FlutterFlowDataTableState<T> extends State<FlutterFlowDataTable<T>> {
                   : BorderSide.none,
             ),
             dividerThickness: widget.hideDefaultHorizontalDivider ? 0.0 : null,
-            headingRowColor: WidgetStateProperty.all(widget.headingRowColor),
+            headingRowColor: MaterialStateProperty.all(widget.headingRowColor),
             headingRowHeight: widget.headingRowHeight,
             dataRowHeight: widget.dataRowHeight,
             showFirstLastButtons: widget.showFirstLastButtons,

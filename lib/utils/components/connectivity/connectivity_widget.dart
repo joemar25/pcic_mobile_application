@@ -1,8 +1,12 @@
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'connectivity_model.dart';
 export 'connectivity_model.dart';
@@ -40,7 +44,7 @@ class _ConnectivityWidgetState extends State<ConnectivityWidget>
             delay: 0.0.ms,
             duration: 1000.0.ms,
             hz: 10,
-            offset: const Offset(0.0, 0.0),
+            offset: Offset(0.0, 0.0),
             rotation: 0.087,
           ),
         ],
@@ -64,13 +68,13 @@ class _ConnectivityWidgetState extends State<ConnectivityWidget>
       elevation: 1.0,
       shape: const CircleBorder(),
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 100),
+        duration: Duration(milliseconds: 100),
         curve: Curves.easeInOutQuint,
         width: 30.0,
         height: 30.0,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).info,
-          boxShadow: const [
+          boxShadow: [
             BoxShadow(
               blurRadius: 4.0,
               color: Color(0x33000000),
@@ -92,7 +96,7 @@ class _ConnectivityWidgetState extends State<ConnectivityWidget>
           children: [
             if (FFAppState().ONLINE)
               Align(
-                alignment: const AlignmentDirectional(0.0, 0.0),
+                alignment: AlignmentDirectional(0.0, 0.0),
                 child: Icon(
                   Icons.wifi,
                   color: FlutterFlowTheme.of(context).primary,
@@ -101,7 +105,7 @@ class _ConnectivityWidgetState extends State<ConnectivityWidget>
               ),
             if (!FFAppState().ONLINE)
               Align(
-                alignment: const AlignmentDirectional(0.0, 0.0),
+                alignment: AlignmentDirectional(0.0, 0.0),
                 child: Icon(
                   Icons.wifi_off,
                   color: FlutterFlowTheme.of(context).error,

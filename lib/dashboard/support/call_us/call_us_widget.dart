@@ -2,9 +2,15 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'call_us_model.dart';
 export 'call_us_model.dart';
@@ -44,8 +50,8 @@ class _CallUsWidgetState extends State<CallUsWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 110.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 110.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -98,7 +104,7 @@ class _CallUsWidgetState extends State<CallUsWidget>
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 0.0,
         ),
@@ -111,7 +117,7 @@ class _CallUsWidgetState extends State<CallUsWidget>
               Expanded(
                 child: Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
@@ -119,7 +125,7 @@ class _CallUsWidgetState extends State<CallUsWidget>
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: Lottie.asset(
                             'assets/jsons/callUs.json',
                             width: 125.0,
@@ -130,11 +136,11 @@ class _CallUsWidgetState extends State<CallUsWidget>
                           ),
                         ),
                         Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           child: Container(
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 4.0, 0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
@@ -152,7 +158,7 @@ class _CallUsWidgetState extends State<CallUsWidget>
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 12.0, 0.0, 4.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
@@ -167,7 +173,7 @@ class _CallUsWidgetState extends State<CallUsWidget>
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
@@ -182,7 +188,7 @@ class _CallUsWidgetState extends State<CallUsWidget>
                             },
                             child: Container(
                               width: double.infinity,
-                              constraints: const BoxConstraints(
+                              constraints: BoxConstraints(
                                 maxWidth: 500.0,
                               ),
                               decoration: BoxDecoration(
@@ -195,7 +201,7 @@ class _CallUsWidgetState extends State<CallUsWidget>
                                 ),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(12.0),
+                                padding: EdgeInsets.all(12.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -213,9 +219,9 @@ class _CallUsWidgetState extends State<CallUsWidget>
                                     ),
                                     Align(
                                       alignment:
-                                          const AlignmentDirectional(-1.0, 0.0),
+                                          AlignmentDirectional(-1.0, 0.0),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 4.0, 0.0, 0.0),
                                         child: Text(
                                           FFLocalizations.of(context).getText(

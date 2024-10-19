@@ -8,7 +8,7 @@ Future performUpdateAttemptStatus(
   bool? syncstatus,
   bool? isdirty,
 }) {
-  const query = '''
+  final query = '''
 UPDATE attempts
 SET status = ?, 
     comments = ?, 
@@ -30,7 +30,7 @@ Future performUpdateSyncStatus(
   DateTime? lastsyncedat,
   DateTime? updatedat,
 }) {
-  const query = '''
+  final query = '''
 UPDATE attempts
 SET sync_status = ?,
     last_synced_at = ?,
@@ -55,7 +55,7 @@ Future performUpdatePPIRBasicInfo(
   DateTime? updatedat,
   String? taskid,
 }) {
-  const query = '''
+  final query = '''
 UPDATE ppir_forms
 SET ppir_farmername = ?,
     ppir_address = ?,
@@ -84,7 +84,7 @@ Future performUpdatePPIRLocation(
   bool? isdirty,
   String? taskid,
 }) {
-  const query = '''
+  final query = '''
 UPDATE ppir_forms
 SET ppir_north = ?,
     ppir_south = ?,
@@ -111,7 +111,7 @@ Future performUpdatePPIRCropInfo(
   bool? isdirty,
   String? taskid,
 }) {
-  const query = '''
+  final query = '''
 UPDATE ppir_forms
 SET ppir_variety = ?,
     ppir_stage_crop = ?,
@@ -149,7 +149,7 @@ Future performUpdateTask(
   bool? isdirty,
   bool? isupdating,
 }) {
-  const query = '''
+  final query = '''
 UPDATE tasks
 SET 
   task_number = ?,
@@ -194,7 +194,7 @@ Future performUpdateUsers(
   String? updatedat,
   String? regionid,
 }) {
-  const query = '''
+  final query = '''
 UPDATE users
 SET 
   role = ?,
@@ -229,7 +229,7 @@ Future performUpdateDashboardQuery(
   DateTime? updatedat,
   String? regionid,
 }) {
-  const query = '''
+  final query = '''
 UPDATE users
 SET 
   role = ?,
@@ -255,7 +255,7 @@ Future performInsertUpdateSyncStatus(
   String? tablename,
   DateTime? lastsynctimestamp,
 }) {
-  const query = '''
+  final query = '''
 INSERT OR REPLACE INTO sync_status (table_name, last_sync_timestamp)
 VALUES (?, ?);
 ''';
@@ -273,7 +273,7 @@ Future performAddToSyncQueue(
   String? data,
   DateTime? timestamp,
 }) {
-  const query = '''
+  final query = '''
 INSERT INTO sync_queue (table_name, record_id, action, data, timestamp)
 VALUES (?, ?, ?, ?, ?);
 ''';
@@ -287,7 +287,7 @@ Future performRemoveFromSyncQueue(
   Database database, {
   String? id,
 }) {
-  const query = '''
+  final query = '''
 DELETE FROM sync_queue WHERE id = ?;
 ''';
   return database.rawQuery(query);
@@ -301,7 +301,7 @@ Future performUpdateLastModifiedTimestamp(
   DateTime? lastmodified,
   String? id,
 }) {
-  const query = '''
+  final query = '''
 UPDATE tasks SET ..., last_modified = ? WHERE id = ?;
 ''';
   return database.rawQuery(query);
@@ -325,7 +325,7 @@ Future performInsertOfflineTask(
 }) {
   final query = '''
 INSERT OR REPLACE INTO tasks (id, task_number, service_group, status, service_type, priority, assignee, file_id, date_added, date_access)
-VALUES ('$id', '$taskNumber', '$serviceGroup', '$status', '$serviceType', '$priority', '$assignee', '$fileId', '$dateAdded', '$dateAccess')
+VALUES ('${id}', '${taskNumber}', '${serviceGroup}', '${status}', '${serviceType}', '${priority}', '${assignee}', '${fileId}', '${dateAdded}', '${dateAccess}')
 ''';
   return database.rawQuery(query);
 }
@@ -397,17 +397,17 @@ INSERT OR REPLACE INTO ppir_forms (
     track_last_coord, track_date_time, track_total_area, track_total_distance, 
     created_at, updated_at, sync_status, last_synced_at, local_id, is_dirty, captured_area
 ) VALUES (
-    '$taskId', '$ppirAssignmentId', '$gpx', '$ppirInsuranceId', '$ppirFarmerName', 
-    '$ppirAddress', '$ppirFarmerType', '$ppirMobileNo', '$ppirGroupName', 
-    '$ppirGroupAddress', '$ppirLenderName', '$ppirLenderAddress', '$ppirCICNo', 
-    '$ppirFarmLoc', '$ppirNorth', '$ppirSouth', '$ppirEast', '$ppirWest', 
-    '$ppirAtt1', '$ppirAtt2', '$ppirAtt3', '$ppirAtt4', '$ppirAreaAci', 
-    '$ppirAreaAct', '$ppirDopdsAci', '$ppirDopdsAct', '$ppirDoptpAci', 
-    '$ppirDoptpAct', '$ppirSvpAci', '$ppirSvpAct', '$ppirVariety', 
-    '$ppirStageCrop', '$ppirRemarks', '$ppirNameInsured', '$ppirNameIUIA', 
-    '$ppirSigInsured', '$ppirSigIUIA', '$trackLastCoord', '$trackDateTime', 
-    '$trackTotalArea', '$trackTotalDistance', '$createdAt', '$updatedAt', 
-    '$syncStatus', '$lastSyncedAt', '$localId', '$isDirty', '$capturedArea'
+    '${taskId}', '${ppirAssignmentId}', '${gpx}', '${ppirInsuranceId}', '${ppirFarmerName}', 
+    '${ppirAddress}', '${ppirFarmerType}', '${ppirMobileNo}', '${ppirGroupName}', 
+    '${ppirGroupAddress}', '${ppirLenderName}', '${ppirLenderAddress}', '${ppirCICNo}', 
+    '${ppirFarmLoc}', '${ppirNorth}', '${ppirSouth}', '${ppirEast}', '${ppirWest}', 
+    '${ppirAtt1}', '${ppirAtt2}', '${ppirAtt3}', '${ppirAtt4}', '${ppirAreaAci}', 
+    '${ppirAreaAct}', '${ppirDopdsAci}', '${ppirDopdsAct}', '${ppirDoptpAci}', 
+    '${ppirDoptpAct}', '${ppirSvpAci}', '${ppirSvpAct}', '${ppirVariety}', 
+    '${ppirStageCrop}', '${ppirRemarks}', '${ppirNameInsured}', '${ppirNameIUIA}', 
+    '${ppirSigInsured}', '${ppirSigIUIA}', '${trackLastCoord}', '${trackDateTime}', 
+    '${trackTotalArea}', '${trackTotalDistance}', '${createdAt}', '${updatedAt}', 
+    '${syncStatus}', '${lastSyncedAt}', '${localId}', '${isDirty}', '${capturedArea}'
 );
 ''';
   return database.rawQuery(query);
@@ -424,7 +424,7 @@ Future performUpdatePPIRSetABlankGpx(
   final query = '''
 UPDATE ppir_forms
 SET gpx =  ''
-WHERE task_id = '$taskId';
+WHERE task_id = '${taskId}';
 ''';
   return database.rawQuery(query);
 }
@@ -450,18 +450,18 @@ Future performUpdatePPIRForm(
   final query = '''
 UPDATE ppir_forms
 SET 
-  ppir_svp_act = '$ppirSvpAct',
-  ppir_dopds_act = '$ppirDopdsAct',
-  ppir_doptp_act = '$ppirDoptpAct',
-  ppir_remarks = '$ppirRemarks',
-  ppir_name_insured = '$ppirNameInsured',
-  ppir_name_iuia = '$ppirNameIuia',
-  ppir_farmloc = '$ppirFarmloc',
-  ppir_area_act = '$ppirAreaAct',
-  ppir_variety = '$ppirVariety',
-  captured_area = '$capturedArea',
-  is_dirty = $isDirty
-WHERE task_id = '$taskId';
+  ppir_svp_act = '${ppirSvpAct}',
+  ppir_dopds_act = '${ppirDopdsAct}',
+  ppir_doptp_act = '${ppirDoptpAct}',
+  ppir_remarks = '${ppirRemarks}',
+  ppir_name_insured = '${ppirNameInsured}',
+  ppir_name_iuia = '${ppirNameIuia}',
+  ppir_farmloc = '${ppirFarmloc}',
+  ppir_area_act = '${ppirAreaAct}',
+  ppir_variety = '${ppirVariety}',
+  captured_area = '${capturedArea}',
+  is_dirty = ${isDirty}
+WHERE task_id = '${taskId}';
 ''';
   return database.rawQuery(query);
 }
@@ -478,9 +478,9 @@ Future performUpdateTaskStatus(
   final query = '''
 UPDATE tasks
 SET 
-  status = '$status',
-  is_dirty = '$isDirty'
-WHERE id = '$taskId';
+  status = '${status}',
+  is_dirty = '${isDirty}'
+WHERE id = '${taskId}';
 ''';
   return database.rawQuery(query);
 }
@@ -495,8 +495,8 @@ Future performUpdatePPIRFormValidity(
 }) {
   final query = '''
 UPDATE ppir_forms
-SET is_dirty = '$isDirty'
-WHERE task_id = '$taskId';
+SET is_dirty = '${isDirty}'
+WHERE task_id = '${taskId}';
 ''';
   return database.rawQuery(query);
 }
@@ -513,9 +513,9 @@ Future performUpdatePPIRFormGpx(
   final query = '''
 UPDATE ppir_forms
 SET 
-  gpx = '$gpx',
-  is_dirty = '$isDirty'
-WHERE task_id = '$taskId';
+  gpx = '${gpx}',
+  is_dirty = '${isDirty}'
+WHERE task_id = '${taskId}';
 ''';
   return database.rawQuery(query);
 }
@@ -536,13 +536,13 @@ Future performUpdatePPIRFormAfterGeotag(
   final query = '''
 UPDATE ppir_forms
 SET 
-  gpx = '$gpx',
-  track_last_coord = '$trackLastCoord',
-  track_date_time = '$trackDateTime',
-  track_total_area = '$trackTotalArea',
-  track_total_distance = '$trackTotalDistance',
-  is_dirty = '$isDirty'
-WHERE task_id = '$taskId';
+  gpx = '${gpx}',
+  track_last_coord = '${trackLastCoord}',
+  track_date_time = '${trackDateTime}',
+  track_total_area = '${trackTotalArea}',
+  track_total_distance = '${trackTotalDistance}',
+  is_dirty = '${isDirty}'
+WHERE task_id = '${taskId}';
 ''';
   return database.rawQuery(query);
 }
@@ -557,8 +557,8 @@ Future performUpdatePPIRFormIUIASignatureBlob(
 }) {
   final query = '''
 UPDATE ppir_forms
-SET  ppir_sig_iuia = '$signatureBlob'
-WHERE task_id = '$taskId';
+SET  ppir_sig_iuia = '${signatureBlob}'
+WHERE task_id = '${taskId}';
 ''';
   return database.rawQuery(query);
 }
@@ -573,8 +573,8 @@ Future performUpdatePPIRFormINSUREDSignatureBlob(
 }) {
   final query = '''
 UPDATE ppir_forms
-SET  ppir_sig_insured = '$signatureBlob'
-WHERE task_id = '$taskId';
+SET  ppir_sig_insured = '${signatureBlob}'
+WHERE task_id = '${taskId}';
 ''';
   return database.rawQuery(query);
 }
@@ -589,8 +589,8 @@ Future performUpdateUsersProfileName(
 }) {
   final query = '''
 UPDATE users
-SET  inspector_name = '$inspectorName'
-WHERE id = '$id';
+SET  inspector_name = '${inspectorName}'
+WHERE id = '${id}';
 ''';
   return database.rawQuery(query);
 }
@@ -601,7 +601,7 @@ WHERE id = '$id';
 Future performDELETEAllRowsForTASKSAndPPIR(
   Database database,
 ) {
-  const query = '''
+  final query = '''
 DELETE FROM tasks;
 DELETE FROM ppir_forms;
 ''';
@@ -638,16 +638,16 @@ INSERT OR REPLACE INTO users (
     region_id
 ) 
 VALUES (
-    '$id', 
-    '$role', 
-    '$email', 
-    '$photoUrl', 
-    '$inspectorName', 
-    '$mobileNumber', 
-    '$authUserId', 
-    '$createdAt', 
-    '$updatedAt', 
-    '$regionId'
+    '${id}', 
+    '${role}', 
+    '${email}', 
+    '${photoUrl}', 
+    '${inspectorName}', 
+    '${mobileNumber}', 
+    '${authUserId}', 
+    '${createdAt}', 
+    '${updatedAt}', 
+    '${regionId}'
 );
 
 ''';
@@ -666,9 +666,9 @@ Future performUpdateOfflinePPIRFormSyncStatus(
   final query = '''
 UPDATE ppir_forms
 SET 
-  sync_status = '$syncStatus',
-  is_dirty = '$isDirty'
-WHERE task_id = '$taskId';
+  sync_status = '${syncStatus}',
+  is_dirty = '${isDirty}'
+WHERE task_id = '${taskId}';
 ''';
   return database.rawQuery(query);
 }
@@ -685,9 +685,9 @@ Future performUpdateOfflineTaskSyncStatus(
   final query = '''
 UPDATE tasks
 SET 
-  sync_status = '$syncStatus',
-  is_dirty = '$isDirty'
-WHERE id = '$taskId';
+  sync_status = '${syncStatus}',
+  is_dirty = '${isDirty}'
+WHERE id = '${taskId}';
 ''';
   return database.rawQuery(query);
 }

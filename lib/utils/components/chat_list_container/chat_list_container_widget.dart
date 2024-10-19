@@ -2,6 +2,9 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'chat_list_container_model.dart';
 export 'chat_list_container_model.dart';
 
@@ -63,7 +66,7 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
         children: [
           Expanded(
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -74,7 +77,7 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                         child: Container(
                           width: 60.0,
                           height: 60.0,
@@ -97,7 +100,7 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
                         children: [
                           Text(
                             valueOrDefault<String>(
-                              widget.recieverName,
+                              widget!.recieverName,
                               'Reciever Name',
                             ),
                             textAlign: TextAlign.start,
@@ -109,11 +112,11 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
                                     ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 4.0, 0.0, 0.0),
                             child: Text(
                               valueOrDefault<String>(
-                                widget.lastConvo,
+                                widget!.lastConvo,
                                 'Last convo.',
                               ),
                               textAlign: TextAlign.start,
@@ -127,11 +130,11 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 4.0, 0.0, 0.0),
                             child: Text(
                               valueOrDefault<String>(
-                                functions.timesStampConverter(widget.date),
+                                functions.timesStampConverter(widget!.date),
                                 'Date',
                               ),
                               textAlign: TextAlign.start,
@@ -152,13 +155,13 @@ class _ChatListContainerWidgetState extends State<ChatListContainerWidget> {
               ),
             ),
           ),
-          if (widget.isSeen != true)
+          if (widget!.isSeen != true)
             Icon(
               Icons.circle_rounded,
               color: FlutterFlowTheme.of(context).tertiary,
               size: 24.0,
             ),
-          if (widget.isSeen == true)
+          if (widget!.isSeen == true)
             Icon(
               Icons.check_circle,
               color: FlutterFlowTheme.of(context).primary,

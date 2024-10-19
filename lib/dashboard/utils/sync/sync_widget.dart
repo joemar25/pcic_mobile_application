@@ -6,12 +6,16 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/page_loader/page_loader_widget.dart';
+import 'dart:math';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'sync_model.dart';
 export 'sync_model.dart';
 
@@ -64,22 +68,22 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
             curve: Curves.easeInOut,
             delay: 150.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0.8, 0.8),
-            end: const Offset(1.0, 1.0),
+            begin: Offset(0.8, 0.8),
+            end: Offset(1.0, 1.0),
           ),
           TiltEffect(
             curve: Curves.easeInOut,
             delay: 150.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0, 1.396),
-            end: const Offset(0, 0),
+            begin: Offset(0, 1.396),
+            end: Offset(0, 0),
           ),
           MoveEffect(
             curve: Curves.easeInOut,
             delay: 150.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0.0, 40.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 40.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -91,8 +95,8 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
             curve: Curves.easeInOutQuint,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(1.0, 1.0),
-            end: const Offset(1.0, 1.0),
+            begin: Offset(1.0, 1.0),
+            end: Offset(1.0, 1.0),
           ),
         ],
       ),
@@ -104,7 +108,7 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            color: const Color(0x80FFFFFF),
+            color: Color(0x80FFFFFF),
             angle: 0.524,
           ),
         ],
@@ -136,7 +140,7 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
         if (!snapshot.hasData) {
           return Scaffold(
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            body: const PageLoaderWidget(),
+            body: PageLoaderWidget(),
           );
         }
         final syncSelectProfileRowList = snapshot.data!;
@@ -149,7 +153,7 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
             body: SafeArea(
               top: true,
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
                 child: Container(
                   width: MediaQuery.sizeOf(context).width * 1.0,
                   height: MediaQuery.sizeOf(context).height * 1.0,
@@ -159,9 +163,9 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
                     maxWidth: MediaQuery.sizeOf(context).width * 1.0,
                     maxHeight: MediaQuery.sizeOf(context).height * 1.0,
                   ),
-                  decoration: const BoxDecoration(),
+                  decoration: BoxDecoration(),
                   child: Column(
-                    key: const ValueKey('Column_d3zz'),
+                    key: ValueKey('Column_d3zz'),
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -173,7 +177,7 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
                         onTap: () async {
                           currentUserLocationValue =
                               await getCurrentUserLocation(
-                                  defaultLocation: const LatLng(0.0, 0.0));
+                                  defaultLocation: LatLng(0.0, 0.0));
                           if (!_model.isSync) {
                             await SQLiteManager.instance
                                 .dELETEAllRowsForTASKSAndPPIR();
@@ -187,7 +191,7 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
                               id: syncSelectProfileRowList.first.regionId,
                             );
                             _model.isSyced = await actions.syncFromFTP(
-                              _model.regionCode?.first.regionCode,
+                              _model.regionCode?.first?.regionCode,
                             );
                             _model.syncMessage =
                                 await actions.syncOnlineTaskAndPpirToOffline();
@@ -212,7 +216,7 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
                                         .primaryText,
                                   ),
                                 ),
-                                duration: const Duration(milliseconds: 4000),
+                                duration: Duration(milliseconds: 4000),
                                 backgroundColor:
                                     FlutterFlowTheme.of(context).secondary,
                               ),
@@ -223,7 +227,7 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
                         },
                         child: Container(
                           width: 300.0,
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -248,7 +252,7 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
                                 ],
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(0.0, -1.0),
+                                alignment: AlignmentDirectional(0.0, -1.0),
                                 child: AnimatedDefaultTextStyle(
                                   style: FlutterFlowTheme.of(context)
                                       .labelMedium
@@ -256,7 +260,7 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
                                         fontFamily: 'Readex Pro',
                                         letterSpacing: 0.0,
                                       ),
-                                  duration: const Duration(milliseconds: 600),
+                                  duration: Duration(milliseconds: 600),
                                   curve: Curves.easeIn,
                                   child: Text(
                                     () {
@@ -276,8 +280,8 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
                                     animationsMap['textOnPageLoadAnimation']!),
                               ),
                             ]
-                                .divide(const SizedBox(height: 20.0))
-                                .around(const SizedBox(height: 20.0)),
+                                .divide(SizedBox(height: 20.0))
+                                .around(SizedBox(height: 20.0)),
                           ),
                         ),
                       ),
@@ -304,7 +308,7 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
                                 context.pushNamed(
                                   'dashboard',
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
+                                    kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.scale,
                                       alignment: Alignment.bottomCenter,
@@ -319,16 +323,16 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
                               text: FFLocalizations.of(context).getText(
                                 'nzwziy9t' /* Dashboard */,
                               ),
-                              icon: const Icon(
+                              icon: Icon(
                                 Icons.dashboard,
                                 size: 15.0,
                               ),
                               options: FFButtonOptions(
                                 width: 200.0,
                                 height: 40.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
@@ -339,7 +343,7 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 3.0,
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
@@ -349,14 +353,14 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
                               animationsMap['buttonOnActionTriggerAnimation']!,
                             ),
                           ]
-                              .divide(const SizedBox(height: 10.0))
-                              .around(const SizedBox(height: 10.0)),
+                              .divide(SizedBox(height: 10.0))
+                              .around(SizedBox(height: 10.0)),
                         ).animateOnActionTrigger(
                           animationsMap['columnOnActionTriggerAnimation']!,
                         ),
                     ]
-                        .divide(const SizedBox(height: 10.0))
-                        .around(const SizedBox(height: 10.0)),
+                        .divide(SizedBox(height: 10.0))
+                        .around(SizedBox(height: 10.0)),
                   ),
                 ),
               ),

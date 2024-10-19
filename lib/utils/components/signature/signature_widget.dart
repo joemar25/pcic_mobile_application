@@ -2,10 +2,15 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:math';
 import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'signature_model.dart';
 export 'signature_model.dart';
 
@@ -62,8 +67,8 @@ class _SignatureWidgetState extends State<SignatureWidget>
             curve: Curves.easeInOut,
             delay: 250.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 70.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 70.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -85,20 +90,20 @@ class _SignatureWidgetState extends State<SignatureWidget>
         sigmaY: 4.0,
       ),
       child: Align(
-        alignment: const AlignmentDirectional(0.0, 0.0),
+        alignment: AlignmentDirectional(0.0, 0.0),
         child: Container(
           width: MediaQuery.sizeOf(context).width * 1.0,
           height: MediaQuery.sizeOf(context).height * 1.0,
-          decoration: const BoxDecoration(),
+          decoration: BoxDecoration(),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.all(12.0),
+                padding: EdgeInsets.all(12.0),
                 child: Container(
                   width: double.infinity,
-                  constraints: const BoxConstraints(
+                  constraints: BoxConstraints(
                     maxWidth: 800.0,
                   ),
                   decoration: BoxDecoration(
@@ -107,7 +112,7 @@ class _SignatureWidgetState extends State<SignatureWidget>
                       BoxShadow(
                         blurRadius: 4.0,
                         color: FlutterFlowTheme.of(context).alternate,
-                        offset: const Offset(
+                        offset: Offset(
                           0.0,
                           2.0,
                         ),
@@ -127,13 +132,13 @@ class _SignatureWidgetState extends State<SignatureWidget>
                           key: _model.formKey,
                           autovalidateMode: AutovalidateMode.always,
                           child: Padding(
-                            padding: const EdgeInsets.all(24.0),
+                            padding: EdgeInsets.all(24.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 12.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -147,7 +152,7 @@ class _SignatureWidgetState extends State<SignatureWidget>
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 4.0),
                                               child: Text(
                                                 FFLocalizations.of(context)
@@ -192,7 +197,7 @@ class _SignatureWidgetState extends State<SignatureWidget>
                                   children: [
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 16.0),
                                         child: Container(
                                           decoration: BoxDecoration(
@@ -204,16 +209,16 @@ class _SignatureWidgetState extends State<SignatureWidget>
                                                       .secondaryText,
                                             ),
                                           ),
-                                          child: SizedBox(
+                                          child: Container(
                                             width: double.infinity,
                                             height: 450.0,
                                             child:
                                                 custom_widgets.CustomSignature(
                                               width: double.infinity,
                                               height: 450.0,
-                                              taskId: widget.taskId!,
+                                              taskId: widget!.taskId!,
                                               signatureFor:
-                                                  widget.signatureFor,
+                                                  widget!.signatureFor,
                                             ),
                                           ),
                                         ),

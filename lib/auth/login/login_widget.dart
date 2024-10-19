@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/no_internet_dialog/no_internet_dialog_widget.dart';
 import '/utils/components/permission_dialog/permission_dialog_widget.dart';
 import 'dart:async';
+import 'dart:math';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/permissions_util.dart';
@@ -15,7 +16,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'login_model.dart';
 export 'login_model.dart';
@@ -24,7 +27,7 @@ class LoginWidget extends StatefulWidget {
   const LoginWidget({
     super.key,
     String? routeName,
-  }) : routeName = routeName ?? '/login';
+  }) : this.routeName = routeName ?? '/login';
 
   final String routeName;
 
@@ -68,8 +71,8 @@ class _LoginWidgetState extends State<LoginWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, -500.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, -500.0),
+            end: Offset(0.0, 0.0),
           ),
           FadeEffect(
             curve: Curves.easeInOut,
@@ -88,8 +91,8 @@ class _LoginWidgetState extends State<LoginWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(1.0, 1.0),
-            end: const Offset(-5.0, -5.0),
+            begin: Offset(1.0, 1.0),
+            end: Offset(-5.0, -5.0),
           ),
         ],
       ),
@@ -100,8 +103,8 @@ class _LoginWidgetState extends State<LoginWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 100.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 100.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -135,7 +138,7 @@ class _LoginWidgetState extends State<LoginWidget>
           body: Container(
             width: double.infinity,
             height: double.infinity,
-            decoration: const BoxDecoration(),
+            decoration: BoxDecoration(),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.end,
@@ -144,14 +147,14 @@ class _LoginWidgetState extends State<LoginWidget>
                   Expanded(
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(40.0, 50.0, 40.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(40.0, 50.0, 40.0, 0.0),
                       child: Container(
                         width: double.infinity,
                         height: double.infinity,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           color: Color(0x00FFFFFF),
                         ),
-                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        alignment: AlignmentDirectional(0.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -160,7 +163,7 @@ class _LoginWidgetState extends State<LoginWidget>
                             Container(
                               width: 200.0,
                               height: 200.0,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(10.0),
                                 child: SvgPicture.asset(
@@ -173,7 +176,7 @@ class _LoginWidgetState extends State<LoginWidget>
                             ),
                             Flexible(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 0.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -216,7 +219,7 @@ class _LoginWidgetState extends State<LoginWidget>
                       width: MediaQuery.sizeOf(context).width * 1.0,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).primaryBackground,
-                        borderRadius: const BorderRadius.only(
+                        borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(0.0),
                           bottomRight: Radius.circular(0.0),
                           topLeft: Radius.circular(24.0),
@@ -224,7 +227,7 @@ class _LoginWidgetState extends State<LoginWidget>
                         ),
                       ),
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             40.0, 40.0, 40.0, 40.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -253,7 +256,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                 if (Theme.of(context).brightness ==
                                     Brightness.light)
                                   Align(
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    alignment: AlignmentDirectional(0.0, 0.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
                                       focusColor: Colors.transparent,
@@ -282,7 +285,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                 if (Theme.of(context).brightness ==
                                     Brightness.dark)
                                   Align(
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    alignment: AlignmentDirectional(0.0, 0.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
                                       focusColor: Colors.transparent,
@@ -309,11 +312,11 @@ class _LoginWidgetState extends State<LoginWidget>
                                     ),
                                   ),
                               ]
-                                  .divide(const SizedBox(width: 0.0))
-                                  .around(const SizedBox(width: 0.0)),
+                                  .divide(SizedBox(width: 0.0))
+                                  .around(SizedBox(width: 0.0)),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 5.0, 0.0, 40.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -335,7 +338,7 @@ class _LoginWidgetState extends State<LoginWidget>
                               ),
                             ),
                             Align(
-                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: Form(
                                 key: _model.formKey,
                                 autovalidateMode: AutovalidateMode.disabled,
@@ -345,10 +348,10 @@ class _LoginWidgetState extends State<LoginWidget>
                                   crossAxisAlignment:
                                       CrossAxisAlignment.stretch,
                                   children: [
-                                    SizedBox(
+                                    Container(
                                       width: double.infinity,
                                       child: TextFormField(
-                                        key: const ValueKey('emailField_vg1w'),
+                                        key: ValueKey('emailField_vg1w'),
                                         controller:
                                             _model.emailFieldTextController,
                                         focusNode: _model.emailFieldFocusNode,
@@ -430,7 +433,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                               FlutterFlowTheme.of(context)
                                                   .secondaryBackground,
                                           contentPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   15.0, 10.0, 15.0, 10.0),
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -449,10 +452,10 @@ class _LoginWidgetState extends State<LoginWidget>
                                       ),
                                     ),
                                     Builder(
-                                      builder: (context) => SizedBox(
+                                      builder: (context) => Container(
                                         width: double.infinity,
                                         child: TextFormField(
-                                          key: const ValueKey('passwordField_5h9n'),
+                                          key: ValueKey('passwordField_5h9n'),
                                           controller: _model
                                               .passwordFieldTextController,
                                           focusNode:
@@ -486,7 +489,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                 context.mounted,
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
-                                                      const TransitionInfo(
+                                                      TransitionInfo(
                                                     hasTransition: true,
                                                     transitionType:
                                                         PageTransitionType
@@ -509,7 +512,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                     backgroundColor:
                                                         Colors.transparent,
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                                 0.0, 0.0)
                                                             .resolve(
                                                                 Directionality.of(
@@ -520,7 +523,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                                   dialogContext)
                                                               .unfocus(),
                                                       child:
-                                                          const PermissionDialogWidget(),
+                                                          PermissionDialogWidget(),
                                                     ),
                                                   );
                                                 },
@@ -606,7 +609,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                 FlutterFlowTheme.of(context)
                                                     .secondaryBackground,
                                             contentPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     15.0, 10.0, 15.0, 10.0),
                                             suffixIcon: InkWell(
                                               onTap: () => safeSetState(
@@ -622,7 +625,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                     ? Icons.visibility_outlined
                                                     : Icons
                                                         .visibility_off_outlined,
-                                                color: const Color(0xFF757575),
+                                                color: Color(0xFF757575),
                                                 size: 24.0,
                                               ),
                                             ),
@@ -644,15 +647,15 @@ class _LoginWidgetState extends State<LoginWidget>
                                       ),
                                     ),
                                     Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
                                       child: Builder(
                                         builder: (context) => FFButtonWidget(
-                                          key: const ValueKey('loginButton_f3dh'),
+                                          key: ValueKey('loginButton_f3dh'),
                                           onPressed: () async {
                                             currentUserLocationValue =
                                                 await getCurrentUserLocation(
                                                     defaultLocation:
-                                                        const LatLng(0.0, 0.0));
+                                                        LatLng(0.0, 0.0));
                                             if (_model.formKey.currentState ==
                                                     null ||
                                                 !_model.formKey.currentState!
@@ -691,7 +694,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                   ),
                                                 );
                                                 if (_model.authUserQuery?.first
-                                                        .role ==
+                                                        ?.role ==
                                                     'Agent') {
                                                   unawaited(
                                                     () async {
@@ -708,41 +711,41 @@ class _LoginWidgetState extends State<LoginWidget>
                                                   await SQLiteManager.instance
                                                       .offlineInsertUsers(
                                                     id: _model.authUserQuery
-                                                        ?.first.id,
+                                                        ?.first?.id,
                                                     role: _model.authUserQuery
-                                                        ?.first.role,
+                                                        ?.first?.role,
                                                     email: _model.authUserQuery
-                                                        ?.first.email,
+                                                        ?.first?.email,
                                                     photoUrl: _model
                                                         .authUserQuery
                                                         ?.first
-                                                        .photoUrl,
+                                                        ?.photoUrl,
                                                     inspectorName: _model
                                                         .authUserQuery
                                                         ?.first
-                                                        .inspectorName,
+                                                        ?.inspectorName,
                                                     mobileNumber: _model
                                                         .authUserQuery
                                                         ?.first
-                                                        .mobileNumber,
+                                                        ?.mobileNumber,
                                                     authUserId: _model
                                                         .authUserQuery
                                                         ?.first
-                                                        .authUserId,
+                                                        ?.authUserId,
                                                     createdAt: _model
                                                         .authUserQuery
                                                         ?.first
-                                                        .createdAt
+                                                        ?.createdAt
                                                         ?.toString(),
                                                     updatedAt: _model
                                                         .authUserQuery
                                                         ?.first
-                                                        .updatedAt
+                                                        ?.updatedAt
                                                         ?.toString(),
                                                     regionId: _model
                                                         .authUserQuery
                                                         ?.first
-                                                        .regionId,
+                                                        ?.regionId,
                                                   );
                                                   if (Navigator.of(context)
                                                       .canPop()) {
@@ -753,7 +756,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                     context.mounted,
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
-                                                          const TransitionInfo(
+                                                          TransitionInfo(
                                                         hasTransition: true,
                                                         transitionType:
                                                             PageTransitionType
@@ -777,7 +780,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                               .primaryText,
                                                         ),
                                                       ),
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 4000),
                                                       backgroundColor:
                                                           FlutterFlowTheme.of(
@@ -797,7 +800,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                       backgroundColor:
                                                           Colors.transparent,
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                                   0.0, 0.0)
                                                               .resolve(
                                                                   Directionality.of(
@@ -808,7 +811,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                                     dialogContext)
                                                                 .unfocus(),
                                                         child:
-                                                            const PermissionDialogWidget(),
+                                                            PermissionDialogWidget(),
                                                       ),
                                                     );
                                                   },
@@ -825,7 +828,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                     backgroundColor:
                                                         Colors.transparent,
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                                 0.0, 0.0)
                                                             .resolve(
                                                                 Directionality.of(
@@ -836,7 +839,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                                   dialogContext)
                                                               .unfocus(),
                                                       child:
-                                                          const NoInternetDialogWidget(),
+                                                          NoInternetDialogWidget(),
                                                     ),
                                                   );
                                                 },
@@ -853,10 +856,10 @@ class _LoginWidgetState extends State<LoginWidget>
                                             width: double.infinity,
                                             height: 50.0,
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     24.0, 0.0, 24.0, 0.0),
                                             iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
@@ -871,7 +874,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                           FontWeight.w500,
                                                     ),
                                             elevation: 0.0,
-                                            borderSide: const BorderSide(
+                                            borderSide: BorderSide(
                                               width: 1.0,
                                             ),
                                             borderRadius:
@@ -892,10 +895,10 @@ class _LoginWidgetState extends State<LoginWidget>
                                         options: FFButtonOptions(
                                           height: 40.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 16.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
@@ -924,10 +927,10 @@ class _LoginWidgetState extends State<LoginWidget>
                                         options: FFButtonOptions(
                                           height: 40.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 16.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
@@ -945,8 +948,8 @@ class _LoginWidgetState extends State<LoginWidget>
                                         ),
                                       ),
                                   ]
-                                      .divide(const SizedBox(height: 20.0))
-                                      .around(const SizedBox(height: 20.0)),
+                                      .divide(SizedBox(height: 20.0))
+                                      .around(SizedBox(height: 20.0)),
                                 ),
                               ),
                             ),

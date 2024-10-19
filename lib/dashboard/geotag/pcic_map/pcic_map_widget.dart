@@ -1,12 +1,16 @@
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/empty_lists/empty_lists_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'pcic_map_model.dart';
 export 'pcic_map_model.dart';
@@ -76,7 +80,7 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
               context.goNamed(
                 'dashboard',
                 extra: <String, dynamic>{
-                  kTransitionInfoKey: const TransitionInfo(
+                  kTransitionInfoKey: TransitionInfo(
                     hasTransition: true,
                     transitionType: PageTransitionType.fade,
                     duration: Duration(milliseconds: 0),
@@ -102,11 +106,11 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
               wrapWithModel(
                 model: _model.connectivityModel,
                 updateCallback: () => safeSetState(() {}),
-                child: const ConnectivityWidget(),
+                child: ConnectivityWidget(),
               ),
             ],
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 2.0,
         ),
@@ -116,7 +120,7 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
               child: TabBarView(
                 controller: _model.tabBarController,
                 children: [
-                  SizedBox(
+                  Container(
                     width: double.infinity,
                     height: double.infinity,
                     child: custom_widgets.SearchableMapWidget(
@@ -132,7 +136,7 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                           .map((e) => e)
                           .toList();
                       if (listOfDownloads.isEmpty) {
-                        return const Center(
+                        return Center(
                           child: EmptyListsWidget(
                             type: 'downloaded maps',
                           ),
@@ -165,14 +169,14 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                               return Visibility(
                                 visible: listOfDownloadsIndex != null,
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       16.0, 16.0, 16.0, 16.0),
                                   child: Container(
                                     width: double.infinity,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
-                                      boxShadow: const [
+                                      boxShadow: [
                                         BoxShadow(
                                           blurRadius: 7.0,
                                           color: Color(0x2F1D2429),
@@ -185,14 +189,14 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           12.0, 8.0, 12.0, 8.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Expanded(
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 0.0, 8.0, 0.0),
                                               child: Column(
@@ -216,7 +220,7 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 4.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -234,7 +238,7 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 4.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -255,7 +259,7 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 4.0, 0.0),
                                             child: FlutterFlowIconButton(
                                               borderColor:
@@ -278,9 +282,9 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                                                           builder:
                                                               (alertDialogContext) {
                                                             return AlertDialog(
-                                                              title: const Text(
+                                                              title: Text(
                                                                   'Delete Map'),
-                                                              content: const Text(
+                                                              content: Text(
                                                                   'Are you sure you want to delete this map?'),
                                                               actions: [
                                                                 TextButton(
@@ -288,7 +292,7 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                                                                       Navigator.pop(
                                                                           alertDialogContext,
                                                                           false),
-                                                                  child: const Text(
+                                                                  child: Text(
                                                                       'Cancel'),
                                                                 ),
                                                                 TextButton(
@@ -296,7 +300,7 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                                                                       Navigator.pop(
                                                                           alertDialogContext,
                                                                           true),
-                                                                  child: const Text(
+                                                                  child: Text(
                                                                       'Confirm'),
                                                                 ),
                                                               ],
@@ -335,19 +339,19 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
               ),
             ),
             Align(
-              alignment: const Alignment(0.0, 0),
+              alignment: Alignment(0.0, 0),
               child: TabBar(
                 labelColor: FlutterFlowTheme.of(context).primaryText,
                 unselectedLabelColor:
                     FlutterFlowTheme.of(context).secondaryText,
-                labelPadding: const EdgeInsets.all(10.0),
+                labelPadding: EdgeInsets.all(10.0),
                 labelStyle: FlutterFlowTheme.of(context).titleMedium.override(
                       fontFamily: 'Readex Pro',
                       letterSpacing: 0.0,
                     ),
-                unselectedLabelStyle: const TextStyle(),
+                unselectedLabelStyle: TextStyle(),
                 indicatorColor: FlutterFlowTheme.of(context).primary,
-                padding: const EdgeInsets.all(4.0),
+                padding: EdgeInsets.all(4.0),
                 tabs: [
                   Tab(
                     text: FFLocalizations.of(context).getText(

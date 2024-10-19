@@ -1,5 +1,6 @@
 import '/custom_code/actions/index.dart' as actions;
 import 'package:provider/provider.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -13,6 +14,9 @@ import '/backend/sqlite/sqlite_manager.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'flutter_flow/nav/nav.dart';
 import 'index.dart';
 
 void main() async {
@@ -44,7 +48,7 @@ void main() async {
 
   runApp(ChangeNotifierProvider(
     create: (context) => appState,
-    child: const MyApp(),
+    child: MyApp(),
   ));
 }
 
@@ -83,7 +87,7 @@ class _MyAppState extends State<MyApp> {
       });
     jwtTokenStream.listen((_) {});
     Future.delayed(
-      const Duration(milliseconds: 5000),
+      Duration(milliseconds: 5000),
       () => _appStateNotifier.stopShowingSplashImage(),
     );
   }
@@ -102,7 +106,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'PCIC Mobile App',
-      localizationsDelegates: const [
+      localizationsDelegates: [
         FFLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -116,19 +120,19 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         brightness: Brightness.light,
         scrollbarTheme: ScrollbarThemeData(
-          thumbVisibility: WidgetStateProperty.all(true),
-          trackVisibility: WidgetStateProperty.all(false),
+          thumbVisibility: MaterialStateProperty.all(true),
+          trackVisibility: MaterialStateProperty.all(false),
           interactive: false,
-          thickness: WidgetStateProperty.all(1.0),
-          radius: const Radius.circular(1.0),
-          thumbColor: WidgetStateProperty.resolveWith((states) {
-            if (states.contains(WidgetState.dragged)) {
-              return const Color(0xff2e865f);
+          thickness: MaterialStateProperty.all(1.0),
+          radius: Radius.circular(1.0),
+          thumbColor: MaterialStateProperty.resolveWith((states) {
+            if (states.contains(MaterialState.dragged)) {
+              return Color(4281239135);
             }
-            if (states.contains(WidgetState.hovered)) {
-              return const Color(0xff2e865f);
+            if (states.contains(MaterialState.hovered)) {
+              return Color(4281239135);
             }
-            return const Color(0xff2e865f);
+            return Color(4281239135);
           }),
           minThumbLength: 1.0,
           crossAxisMargin: 1.0,
@@ -138,19 +142,19 @@ class _MyAppState extends State<MyApp> {
       darkTheme: ThemeData(
         brightness: Brightness.dark,
         scrollbarTheme: ScrollbarThemeData(
-          thumbVisibility: WidgetStateProperty.all(true),
-          trackVisibility: WidgetStateProperty.all(false),
+          thumbVisibility: MaterialStateProperty.all(true),
+          trackVisibility: MaterialStateProperty.all(false),
           interactive: false,
-          thickness: WidgetStateProperty.all(1.0),
-          radius: const Radius.circular(1.0),
-          thumbColor: WidgetStateProperty.resolveWith((states) {
-            if (states.contains(WidgetState.dragged)) {
-              return const Color(0xff2e865f);
+          thickness: MaterialStateProperty.all(1.0),
+          radius: Radius.circular(1.0),
+          thumbColor: MaterialStateProperty.resolveWith((states) {
+            if (states.contains(MaterialState.dragged)) {
+              return Color(4281239135);
             }
-            if (states.contains(WidgetState.hovered)) {
-              return const Color(0xff2e865f);
+            if (states.contains(MaterialState.hovered)) {
+              return Color(4281239135);
             }
-            return const Color(0xff2e865f);
+            return Color(4281239135);
           }),
           minThumbLength: 1.0,
           crossAxisMargin: 1.0,
@@ -164,7 +168,7 @@ class _MyAppState extends State<MyApp> {
 }
 
 class NavBarPage extends StatefulWidget {
-  const NavBarPage({super.key, this.initialPage, this.page});
+  NavBarPage({Key? key, this.initialPage, this.page}) : super(key: key);
 
   final String? initialPage;
   final Widget? page;
@@ -188,9 +192,9 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'dashboard': const DashboardWidget(),
-      'chats': const ChatsWidget(),
-      'settings': const SettingsWidget(),
+      'dashboard': DashboardWidget(),
+      'chats': ChatsWidget(),
+      'settings': SettingsWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -210,11 +214,11 @@ class _NavBarPageState extends State<NavBarPage> {
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: const Icon(
+            icon: Icon(
               FFIcons.kicons8Home,
               size: 24.0,
             ),
-            activeIcon: const Icon(
+            activeIcon: Icon(
               FFIcons.kicons8Home1,
               size: 24.0,
             ),
@@ -224,11 +228,11 @@ class _NavBarPageState extends State<NavBarPage> {
             tooltip: '',
           ),
           BottomNavigationBarItem(
-            icon: const Icon(
+            icon: Icon(
               Icons.chat_outlined,
               size: 24.0,
             ),
-            activeIcon: const Icon(
+            activeIcon: Icon(
               Icons.chat,
               size: 24.0,
             ),
@@ -238,11 +242,11 @@ class _NavBarPageState extends State<NavBarPage> {
             tooltip: '',
           ),
           BottomNavigationBarItem(
-            icon: const Icon(
+            icon: Icon(
               Icons.settings_outlined,
               size: 24.0,
             ),
-            activeIcon: const Icon(
+            activeIcon: Icon(
               Icons.settings_sharp,
               size: 24.0,
             ),

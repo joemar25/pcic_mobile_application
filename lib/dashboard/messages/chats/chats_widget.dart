@@ -3,6 +3,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/chat_list_container/chat_list_container_widget.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/page_loader/page_loader_widget.dart';
@@ -10,6 +11,8 @@ import '/utils/components/user_chats/user_chats_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'chats_model.dart';
 export 'chats_model.dart';
@@ -59,7 +62,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
         if (!snapshot.hasData) {
           return Scaffold(
             backgroundColor: FlutterFlowTheme.of(context).alternate,
-            body: const PageLoaderWidget(),
+            body: PageLoaderWidget(),
           );
         }
         final chatsGetUserLastConversationsResponse = snapshot.data!;
@@ -85,9 +88,9 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                           onTap: () => FocusScope.of(context).unfocus(),
                           child: Padding(
                             padding: MediaQuery.viewInsetsOf(context),
-                            child: SizedBox(
+                            child: Container(
                               height: MediaQuery.sizeOf(context).height * 0.5,
-                              child: const UserChatsWidget(),
+                              child: UserChatsWidget(),
                             ),
                           ),
                         );
@@ -121,7 +124,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                           ),
                         ],
                       ),
-                    ].divide(const SizedBox(width: 10.0)),
+                    ].divide(SizedBox(width: 10.0)),
                   ),
                 ),
               ),
@@ -132,13 +135,13 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                   color: FlutterFlowTheme.of(context).accent1,
                 ),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 60.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 60.0, 0.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -150,7 +153,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                               children: [
                                 Expanded(
                                   child: Align(
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    alignment: AlignmentDirectional(0.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
@@ -162,7 +165,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                         ),
                                         Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             FFLocalizations.of(context).getText(
                                               'pue7zwxs' /* Messages */,
@@ -179,14 +182,14 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                 ),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(width: 20.0)),
+                                      ].divide(SizedBox(width: 20.0)),
                                     ),
                                   ),
                                 ),
                                 wrapWithModel(
                                   model: _model.connectivityModel,
                                   updateCallback: () => safeSetState(() {}),
-                                  child: const ConnectivityWidget(),
+                                  child: ConnectivityWidget(),
                                 ),
                               ],
                             ),
@@ -198,14 +201,14 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                           children: [
                             if (FFAppState().ONLINE)
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 15.0, 0.0, 0.0),
                                 child: Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .primaryBackground,
-                                    borderRadius: const BorderRadius.only(
+                                    borderRadius: BorderRadius.only(
                                       bottomLeft: Radius.circular(0.0),
                                       bottomRight: Radius.circular(0.0),
                                       topLeft: Radius.circular(24.0),
@@ -213,7 +216,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         20.0, 20.0, 20.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -246,10 +249,10 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                           flex: 15,
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 15.0, 0.0, 0.0),
                                             child: Container(
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Builder(
                                                 builder: (context) {
                                                   final messagesData =
@@ -263,8 +266,8 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                                   as Iterable<
                                                                       LastMessagesStruct?>)
                                                               .withoutNulls
-                                                              .unique((e) => e)
-                                                              .toList() ??
+                                                              ?.unique((e) => e)
+                                                              ?.toList() ??
                                                           [];
 
                                                   return RefreshIndicator(
@@ -279,7 +282,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                     onRefresh: () async {},
                                                     child: ListView.separated(
                                                       padding:
-                                                          const EdgeInsets.symmetric(
+                                                          EdgeInsets.symmetric(
                                                               vertical: 20.0),
                                                       shrinkWrap: true,
                                                       scrollDirection:
@@ -287,7 +290,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                       itemCount:
                                                           messagesData.length,
                                                       separatorBuilder:
-                                                          (_, __) => const SizedBox(
+                                                          (_, __) => SizedBox(
                                                               height: 20.0),
                                                       itemBuilder: (context,
                                                           messagesDataIndex) {
@@ -332,7 +335,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                               extra: <String,
                                                                   dynamic>{
                                                                 kTransitionInfoKey:
-                                                                    const TransitionInfo(
+                                                                    TransitionInfo(
                                                                   hasTransition:
                                                                       true,
                                                                   transitionType:
@@ -397,9 +400,9 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                               ),
                             if (!FFAppState().ONLINE)
                               Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 15.0, 0.0, 0.0),
                                   child: Container(
                                     width:

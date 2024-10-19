@@ -11,6 +11,8 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'settings_model.dart';
 export 'settings_model.dart';
@@ -63,7 +65,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
         if (!snapshot.hasData) {
           return Scaffold(
             backgroundColor: FlutterFlowTheme.of(context).accent1,
-            body: const PageLoaderWidget(),
+            body: PageLoaderWidget(),
           );
         }
         final settingsSelectProfileRowList = snapshot.data!;
@@ -80,14 +82,14 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                 color: FlutterFlowTheme.of(context).accent1,
               ),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 60.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 60.0, 0.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -118,13 +120,13 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                             letterSpacing: 0.0,
                                           ),
                                     ),
-                                  ].divide(const SizedBox(width: 20.0)),
+                                  ].divide(SizedBox(width: 20.0)),
                                 ),
                               ),
                               wrapWithModel(
                                 model: _model.connectivityModel,
                                 updateCallback: () => safeSetState(() {}),
-                                child: const ConnectivityWidget(),
+                                child: ConnectivityWidget(),
                               ),
                             ],
                           ),
@@ -134,13 +136,13 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                     Expanded(
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
                         child: Container(
                           width: double.infinity,
                           decoration: BoxDecoration(
                             color:
                                 FlutterFlowTheme.of(context).primaryBackground,
-                            borderRadius: const BorderRadius.only(
+                            borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(0.0),
                               bottomRight: Radius.circular(0.0),
                               topLeft: Radius.circular(24.0),
@@ -148,7 +150,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                             ),
                           ),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 20.0, 20.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -169,7 +171,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                             'editProfile',
                                             extra: <String, dynamic>{
                                               kTransitionInfoKey:
-                                                  const TransitionInfo(
+                                                  TransitionInfo(
                                                 hasTransition: true,
                                                 transitionType:
                                                     PageTransitionType.scale,
@@ -193,7 +195,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                 ),
                                               ),
                                               duration:
-                                                  const Duration(milliseconds: 4000),
+                                                  Duration(milliseconds: 4000),
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
                                                       .secondary,
@@ -203,12 +205,12 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                       },
                                       child: Container(
                                         decoration: BoxDecoration(
-                                          color: const Color(0x3F7ED957),
+                                          color: Color(0x3F7ED957),
                                           borderRadius:
                                               BorderRadius.circular(12.0),
                                         ),
                                         child: Padding(
-                                          padding: const EdgeInsets.all(5.0),
+                                          padding: EdgeInsets.all(5.0),
                                           child: ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(6.0),
@@ -287,7 +289,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                         ],
                                       ),
                                     ),
-                                  ].divide(const SizedBox(width: 15.0)),
+                                  ].divide(SizedBox(width: 15.0)),
                                 ),
                                 Divider(
                                   height: 40.0,
@@ -359,29 +361,29 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                             ),
                                                       ),
                                                     ].divide(
-                                                        const SizedBox(width: 10.0)),
+                                                        SizedBox(width: 10.0)),
                                                   ),
                                                   Container(
                                                     width: 80.0,
                                                     height: 40.0,
                                                     decoration: BoxDecoration(
-                                                      color: const Color(0x33004D26),
+                                                      color: Color(0x33004D26),
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               20.0),
                                                     ),
                                                     child: Stack(
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               0.0, 0.0),
                                                       children: [
                                                         Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   0.95, 0.0),
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -398,7 +400,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                         ),
                                                         Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   -0.85, 0.0),
                                                           child: Container(
                                                             width: 36.0,
@@ -408,7 +410,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                               color: FlutterFlowTheme
                                                                       .of(context)
                                                                   .secondaryBackground,
-                                                              boxShadow: const [
+                                                              boxShadow: [
                                                                 BoxShadow(
                                                                   blurRadius:
                                                                       4.0,
@@ -494,29 +496,29 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                             ),
                                                       ),
                                                     ].divide(
-                                                        const SizedBox(width: 10.0)),
+                                                        SizedBox(width: 10.0)),
                                                   ),
                                                   Container(
                                                     width: 80.0,
                                                     height: 40.0,
                                                     decoration: BoxDecoration(
-                                                      color: const Color(0x3200743B),
+                                                      color: Color(0x3200743B),
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               20.0),
                                                     ),
                                                     child: Stack(
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               0.0, 0.0),
                                                       children: [
                                                         Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   -0.9, 0.0),
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         8.0,
                                                                         2.0,
@@ -534,7 +536,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                         ),
                                                         Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   0.9, 0.0),
                                                           child: Container(
                                                             width: 36.0,
@@ -544,7 +546,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                               color: FlutterFlowTheme
                                                                       .of(context)
                                                                   .secondaryBackground,
-                                                              boxShadow: const [
+                                                              boxShadow: [
                                                                 BoxShadow(
                                                                   blurRadius:
                                                                       4.0,
@@ -577,7 +579,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                     ),
                                     if (kDebugMode)
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 10.0, 0.0, 10.0),
                                         child: InkWell(
                                           splashColor: Colors.transparent,
@@ -590,7 +592,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                 'editProfile',
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
-                                                      const TransitionInfo(
+                                                      TransitionInfo(
                                                     hasTransition: true,
                                                     transitionType:
                                                         PageTransitionType
@@ -615,7 +617,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                               .primaryText,
                                                     ),
                                                   ),
-                                                  duration: const Duration(
+                                                  duration: Duration(
                                                       milliseconds: 4000),
                                                   backgroundColor:
                                                       FlutterFlowTheme.of(
@@ -657,7 +659,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                               FontWeight.normal,
                                                         ),
                                                   ),
-                                                ].divide(const SizedBox(width: 10.0)),
+                                                ].divide(SizedBox(width: 10.0)),
                                               ),
                                               Icon(
                                                 Icons.chevron_right_rounded,
@@ -671,7 +673,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                         ),
                                       ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 10.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
@@ -683,7 +685,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                             'editPassword',
                                             extra: <String, dynamic>{
                                               kTransitionInfoKey:
-                                                  const TransitionInfo(
+                                                  TransitionInfo(
                                                 hasTransition: true,
                                                 transitionType:
                                                     PageTransitionType
@@ -726,7 +728,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                             FontWeight.normal,
                                                       ),
                                                 ),
-                                              ].divide(const SizedBox(width: 10.0)),
+                                              ].divide(SizedBox(width: 10.0)),
                                             ),
                                             Icon(
                                               Icons.chevron_right_rounded,
@@ -740,7 +742,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 10.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
@@ -752,7 +754,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                             'pcicMap',
                                             extra: <String, dynamic>{
                                               kTransitionInfoKey:
-                                                  const TransitionInfo(
+                                                  TransitionInfo(
                                                 hasTransition: true,
                                                 transitionType:
                                                     PageTransitionType
@@ -795,7 +797,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                             FontWeight.normal,
                                                       ),
                                                 ),
-                                              ].divide(const SizedBox(width: 10.0)),
+                                              ].divide(SizedBox(width: 10.0)),
                                             ),
                                             Icon(
                                               Icons.chevron_right_rounded,
@@ -809,7 +811,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 10.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
@@ -821,7 +823,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                             'supportPage',
                                             extra: <String, dynamic>{
                                               kTransitionInfoKey:
-                                                  const TransitionInfo(
+                                                  TransitionInfo(
                                                 hasTransition: true,
                                                 transitionType:
                                                     PageTransitionType
@@ -864,7 +866,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                             FontWeight.normal,
                                                       ),
                                                 ),
-                                              ].divide(const SizedBox(width: 10.0)),
+                                              ].divide(SizedBox(width: 10.0)),
                                             ),
                                             Icon(
                                               Icons.chevron_right_rounded,
@@ -879,7 +881,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                     ),
                                     if (FFAppState().ONLINE)
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 10.0, 0.0, 10.0),
                                         child: InkWell(
                                           splashColor: Colors.transparent,
@@ -891,7 +893,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                               'sync',
                                               extra: <String, dynamic>{
                                                 kTransitionInfoKey:
-                                                    const TransitionInfo(
+                                                    TransitionInfo(
                                                   hasTransition: true,
                                                   transitionType:
                                                       PageTransitionType.scale,
@@ -935,7 +937,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                               FontWeight.normal,
                                                         ),
                                                   ),
-                                                ].divide(const SizedBox(width: 10.0)),
+                                                ].divide(SizedBox(width: 10.0)),
                                               ),
                                               Icon(
                                                 Icons.chevron_right_rounded,
@@ -961,10 +963,10 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                         options: FFButtonOptions(
                                           height: 40.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 16.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
@@ -982,8 +984,8 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                         ),
                                       ),
                                   ]
-                                      .divide(const SizedBox(height: 10.0))
-                                      .around(const SizedBox(height: 10.0)),
+                                      .divide(SizedBox(height: 10.0))
+                                      .around(SizedBox(height: 10.0)),
                                 ),
                                 Divider(
                                   height: 40.0,
@@ -992,7 +994,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                 ),
                                 Builder(
                                   builder: (context) => Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 20.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -1009,17 +1011,17 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                               backgroundColor:
                                                   Colors.transparent,
                                               alignment:
-                                                  const AlignmentDirectional(0.0, 0.0)
+                                                  AlignmentDirectional(0.0, 0.0)
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
-                                              child: SizedBox(
+                                              child: Container(
                                                 height:
                                                     MediaQuery.sizeOf(context)
                                                             .height *
                                                         0.4,
                                                 width: 300.0,
-                                                child: const SignoutDialogWidget(),
+                                                child: SignoutDialogWidget(),
                                               ),
                                             );
                                           },
@@ -1058,9 +1060,9 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                           FontWeight.normal,
                                                     ),
                                               ),
-                                            ].divide(const SizedBox(width: 10.0)),
+                                            ].divide(SizedBox(width: 10.0)),
                                           ),
-                                        ].divide(const SizedBox(width: 10.0)),
+                                        ].divide(SizedBox(width: 10.0)),
                                       ),
                                     ),
                                   ),

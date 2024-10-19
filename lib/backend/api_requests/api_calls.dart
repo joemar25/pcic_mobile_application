@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:typed_data';
+import '../schema/structs/index.dart';
 
 import 'package:flutter/foundation.dart';
 
@@ -15,7 +17,7 @@ class GetMessagesCall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "p_chat_id": "$chatId"
+  "p_chat_id": "${chatId}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Get Messages',
@@ -164,8 +166,8 @@ class UpdateLastSeenAndReadCall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "p_chat_id": "$chatId",
-  "p_user_id": "$userId"
+  "p_chat_id": "${chatId}",
+  "p_user_id": "${userId}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Update Last Seen and Read',
@@ -313,7 +315,7 @@ class GetUserLastConversationsCall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "p_user_id": "$pUserId"
+  "p_user_id": "${pUserId}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Get User Last Conversations',

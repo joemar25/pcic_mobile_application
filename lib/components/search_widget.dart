@@ -1,6 +1,9 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'search_model.dart';
 export 'search_model.dart';
 
@@ -43,7 +46,7 @@ class _SearchWidgetState extends State<SearchWidget> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
           child: Container(
             width: double.infinity,
             height: 50.0,
@@ -52,7 +55,7 @@ class _SearchWidgetState extends State<SearchWidget> {
               borderRadius: BorderRadius.circular(10.0),
             ),
             child: Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: EdgeInsets.all(12.0),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -83,7 +86,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                         focusedBorder: InputBorder.none,
                         errorBorder: InputBorder.none,
                         focusedErrorBorder: InputBorder.none,
-                        suffixIcon: const Icon(
+                        suffixIcon: Icon(
                           Icons.clear,
                         ),
                       ),
@@ -96,12 +99,12 @@ class _SearchWidgetState extends State<SearchWidget> {
                           _model.textControllerValidator.asValidator(context),
                     ),
                   ),
-                ].divide(const SizedBox(width: 8.0)),
+                ].divide(SizedBox(width: 8.0)),
               ),
             ),
           ),
         ),
-      ].divide(const SizedBox(height: 12.0)).around(const SizedBox(height: 12.0)),
+      ].divide(SizedBox(height: 12.0)).around(SizedBox(height: 12.0)),
     );
   }
 }
