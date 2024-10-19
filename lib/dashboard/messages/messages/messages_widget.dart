@@ -121,7 +121,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                 icon: Icon(
                   Icons.chevron_left,
                   color: FlutterFlowTheme.of(context).info,
-                  size: 30.0,
+                  size: 20.0,
                 ),
                 onPressed: () async {
                   context.pushNamed(
@@ -140,47 +140,17 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  FutureBuilder<List<UsersRow>>(
-                    future: UsersTable().querySingleRow(
-                      queryFn: (q) => q.eq(
-                        'id',
-                        widget.recieverId,
-                      ),
+                  Text(
+                    valueOrDefault<String>(
+                      widget.recieverName,
+                      'Reciever',
                     ),
-                    builder: (context, snapshot) {
-                      // Customize what your widget looks like when it's loading.
-                      if (!snapshot.hasData) {
-                        return Center(
-                          child: SizedBox(
-                            width: 100.0,
-                            height: 100.0,
-                            child: SpinKitRipple(
-                              color: FlutterFlowTheme.of(context).primary,
-                              size: 100.0,
-                            ),
-                          ),
-                        );
-                      }
-                      List<UsersRow> textUsersRowList = snapshot.data!;
-
-                      final textUsersRow = textUsersRowList.isNotEmpty
-                          ? textUsersRowList.first
-                          : null;
-
-                      return Text(
-                        valueOrDefault<String>(
-                          widget.recieverName,
-                          'Reciever',
+                    style: FlutterFlowTheme.of(context).displaySmall.override(
+                          fontFamily: 'Inter',
+                          color: FlutterFlowTheme.of(context).info,
+                          fontSize: 14.0,
+                          letterSpacing: 0.0,
                         ),
-                        style:
-                            FlutterFlowTheme.of(context).displaySmall.override(
-                                  fontFamily: 'Inter',
-                                  color: FlutterFlowTheme.of(context).info,
-                                  fontSize: 18.0,
-                                  letterSpacing: 0.0,
-                                ),
-                      );
-                    },
                   ),
                   wrapWithModel(
                     model: _model.connectivityModel,

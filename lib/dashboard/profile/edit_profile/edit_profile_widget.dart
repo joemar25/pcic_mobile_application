@@ -92,7 +92,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                 icon: Icon(
                   Icons.chevron_left,
                   color: FlutterFlowTheme.of(context).primaryText,
-                  size: 30.0,
+                  size: 20.0,
                 ),
                 onPressed: () async {
                   context.safePop();

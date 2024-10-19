@@ -1,20 +1,28 @@
+import '/auth/supabase_auth/auth_util.dart';
+import '/backend/sqlite/sqlite_manager.dart';
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/utils/components/no_internet_dialog/no_internet_dialog_widget.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'signout_dialog_model.dart';
-export 'signout_dialog_model.dart';
+import 'package:provider/provider.dart';
+import 'signout_dialog_x_x_x_model.dart';
+export 'signout_dialog_x_x_x_model.dart';
 
-class SignoutDialogWidget extends StatefulWidget {
-  const SignoutDialogWidget({super.key});
+class SignoutDialogXXXWidget extends StatefulWidget {
+  const SignoutDialogXXXWidget({super.key});
 
   @override
-  State<SignoutDialogWidget> createState() => _SignoutDialogWidgetState();
+  State<SignoutDialogXXXWidget> createState() => _SignoutDialogXXXWidgetState();
 }
 
-class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
-  late SignoutDialogModel _model;
+class _SignoutDialogXXXWidgetState extends State<SignoutDialogXXXWidget> {
+  late SignoutDialogXXXModel _model;
+
+  LatLng? currentUserLocationValue;
 
   @override
   void setState(VoidCallback callback) {
@@ -25,7 +33,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => SignoutDialogModel());
+    _model = createModel(context, () => SignoutDialogXXXModel());
   }
 
   @override
@@ -37,6 +45,8 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Align(
       alignment: const AlignmentDirectional(0.0, 0.0),
       child: Container(
@@ -77,7 +87,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                               alignment: const AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  'pd2yz8ne' /* Confirm Sign Out */,
+                                  '3ggjdxuz' /* Confirm Sign Out */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .displaySmall
@@ -104,7 +114,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                                 0.0, 8.0, 0.0, 0.0),
                             child: Text(
                               FFLocalizations.of(context).getText(
-                                'q15wq9be' /* Are you sure you want to sign ... */,
+                                'xpnzvy8f' /* Are you sure you want to sign ... */,
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
@@ -133,7 +143,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                         Navigator.pop(context);
                       },
                       text: FFLocalizations.of(context).getText(
-                        'm2zyxgem' /* Cancel */,
+                        'iizzkt3d' /* Cancel */,
                       ),
                       options: FFButtonOptions(
                         height: 40.0,
@@ -159,33 +169,85 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                     ),
                   ),
                   Expanded(
-                    child: FFButtonWidget(
-                      onPressed: () async {
-                        Navigator.pop(context, true);
-                      },
-                      text: FFLocalizations.of(context).getText(
-                        'quqrp02y' /* Sign Out */,
-                      ),
-                      options: FFButtonOptions(
-                        height: 40.0,
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).error,
-                        textStyle:
-                            FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Readex Pro',
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w500,
+                    child: Builder(
+                      builder: (context) => FFButtonWidget(
+                        onPressed: () async {
+                          currentUserLocationValue =
+                              await getCurrentUserLocation(
+                                  defaultLocation: const LatLng(0.0, 0.0));
+                          if (FFAppState().ONLINE) {
+                            await SQLiteManager.instance
+                                .dELETEAllRowsForTASKSAndPPIR();
+                            await UsersTable().update(
+                              data: {
+                                'is_online': false,
+                              },
+                              matchingRows: (rows) => rows.eq(
+                                'auth_user_id',
+                                currentUserUid,
+                              ),
+                            );
+                            await UserLogsTable().insert({
+                              'user_id': currentUserUid,
+                              'activity': 'Log out',
+                              'longlat':
+                                  '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                            });
+                            GoRouter.of(context).prepareAuthEvent();
+                            await authManager.signOut();
+                            GoRouter.of(context).clearRedirectLocation();
+
+                            context.pushNamedAuth(
+                              'onboarding',
+                              context.mounted,
+                              extra: <String, dynamic>{
+                                kTransitionInfoKey: const TransitionInfo(
+                                  hasTransition: true,
+                                  transitionType: PageTransitionType.fade,
+                                  duration: Duration(milliseconds: 200),
                                 ),
-                        elevation: 0.0,
-                        borderSide: const BorderSide(
-                          color: Colors.transparent,
-                          width: 1.0,
+                              },
+                            );
+                          } else {
+                            await showDialog(
+                              context: context,
+                              builder: (dialogContext) {
+                                return Dialog(
+                                  elevation: 0,
+                                  insetPadding: EdgeInsets.zero,
+                                  backgroundColor: Colors.transparent,
+                                  alignment: const AlignmentDirectional(0.0, 0.0)
+                                      .resolve(Directionality.of(context)),
+                                  child: const NoInternetDialogWidget(),
+                                );
+                              },
+                            );
+                          }
+                        },
+                        text: FFLocalizations.of(context).getText(
+                          'x2nc5my5' /* Sign Out */,
                         ),
-                        borderRadius: BorderRadius.circular(12.0),
+                        options: FFButtonOptions(
+                          height: 40.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).error,
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                          elevation: 0.0,
+                          borderSide: const BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
                       ),
                     ),
                   ),

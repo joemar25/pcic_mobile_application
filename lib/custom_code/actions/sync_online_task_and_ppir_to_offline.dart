@@ -73,7 +73,7 @@ Future<String> syncOnlineTaskAndPpirToOffline() async {
 
     print('Sync completed successfully');
     return 'Updated $updatedOnlineTasksCount tasks, $updatedOnlinePPIRFormsCount PPIR forms. '
-        'Added $newOfflineTasksCount new tasks, $newOfflinePPIRFormsCount new PPIR forms offline.';
+        'Added $newOfflineTasksCount new tasks, $newOfflinePPIRFormsCount new PPIR forms.';
   } catch (e) {
     print('Sync failed: $e');
     return 'Sync failed: ${e.toString()}';

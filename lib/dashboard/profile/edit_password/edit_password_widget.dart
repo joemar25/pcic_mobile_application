@@ -116,7 +116,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
           icon: Icon(
             Icons.chevron_left,
             color: FlutterFlowTheme.of(context).primaryText,
-            size: 30.0,
+            size: 20.0,
           ),
           onPressed: () async {
             context.safePop();
@@ -571,7 +571,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
-                                      'password change failed',
+                                      'Password Change Failed',
                                       style: TextStyle(
                                         color: FlutterFlowTheme.of(context)
                                             .primaryText,

@@ -1596,6 +1596,25 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
+  // signoutDialogXXX
+  {
+    '3ggjdxuz': {
+      'en': 'Confirm Sign Out',
+      'tl': '',
+    },
+    'xpnzvy8f': {
+      'en': 'Are you sure you want to sign out?',
+      'tl': '',
+    },
+    'iizzkt3d': {
+      'en': 'Cancel',
+      'tl': '',
+    },
+    'x2nc5my5': {
+      'en': 'Sign Out',
+      'tl': '',
+    },
+  },
   // Miscellaneous
   {
     '0ftylq1b': {

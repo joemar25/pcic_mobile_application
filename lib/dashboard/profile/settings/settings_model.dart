@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 class SettingsModel extends FlutterFlowModel<SettingsWidget> {
   ///  State fields for stateful widgets in this page.
 
-  // Stores action output result for [Custom Action - getTheSavedLocalProfile] action in settings widget.
-  FFUploadedFile? getProfilePic;
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in Row widget.
+  bool? logOutTrue;
 
   @override
   void initState(BuildContext context) {

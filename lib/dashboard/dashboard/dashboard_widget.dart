@@ -181,7 +181,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                             Icons.home_rounded,
                                             color: FlutterFlowTheme.of(context)
                                                 .info,
-                                            size: 34.0,
+                                            size: 20.0,
                                           ),
                                           Text(
                                             FFLocalizations.of(context).getText(
@@ -194,7 +194,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .info,
-                                                  fontSize: 28.0,
+                                                  fontSize: 20.0,
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),

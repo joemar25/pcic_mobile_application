@@ -70,7 +70,7 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
             icon: Icon(
               Icons.chevron_left,
               color: FlutterFlowTheme.of(context).info,
-              size: 30.0,
+              size: 20.0,
             ),
             onPressed: () async {
               context.goNamed(
@@ -96,6 +96,7 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                 style: FlutterFlowTheme.of(context).titleSmall.override(
                       fontFamily: 'Readex Pro',
                       color: FlutterFlowTheme.of(context).info,
+                      fontSize: 20.0,
                       letterSpacing: 0.0,
                     ),
               ),

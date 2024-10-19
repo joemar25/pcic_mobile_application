@@ -102,7 +102,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                       Icon(
                         Icons.edit_rounded,
                         color: FlutterFlowTheme.of(context).info,
-                        size: 24.0,
+                        size: 20.0,
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
@@ -158,7 +158,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                           Icons.message_rounded,
                                           color:
                                               FlutterFlowTheme.of(context).info,
-                                          size: 30.0,
+                                          size: 20.0,
                                         ),
                                         Align(
                                           alignment:
@@ -174,7 +174,7 @@ class _ChatsWidgetState extends State<ChatsWidget> {
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .info,
-                                                  fontSize: 28.0,
+                                                  fontSize: 20.0,
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),

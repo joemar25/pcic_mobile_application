@@ -109,7 +109,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                   icon: Icon(
                     Icons.chevron_left,
                     color: FlutterFlowTheme.of(context).info,
-                    size: 30.0,
+                    size: 20.0,
                   ),
                   onPressed: () async {
                     context.pushNamed(
@@ -2665,7 +2665,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ),
                                               icon: const Icon(
                                                 Icons.map_outlined,
-                                                size: 15.0,
+                                                size: 20.0,
                                               ),
                                               options: FFButtonOptions(
                                                 width:
@@ -2757,7 +2757,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ),
                                               icon: const FaIcon(
                                                 FontAwesomeIcons.fileAlt,
-                                                size: 15.0,
+                                                size: 20.0,
                                               ),
                                               options: FFButtonOptions(
                                                 width:
@@ -2923,7 +2923,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ),
                                               icon: const Icon(
                                                 Icons.swap_vert_sharp,
-                                                size: 15.0,
+                                                size: 20.0,
                                               ),
                                               options: FFButtonOptions(
                                                 width:

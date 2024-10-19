@@ -110,7 +110,7 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                 icon: Icon(
                   Icons.chevron_left,
                   color: FlutterFlowTheme.of(context).info,
-                  size: 30.0,
+                  size: 20.0,
                 ),
                 onPressed: () async {
                   context.pushNamed(
@@ -686,15 +686,26 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                                           );
                                         },
                                         child: Text(
-                                          (allTasksSELECTPPIRFormsByAssigneeAndTaskStatusRowList
-                                                          .first.gpx ==
+                                          (valueOrDefault<String>(
+                                                        tasksItem.gpx,
+                                                        'task number',
+                                                      ) ==
                                                       ' ') ||
-                                                  (allTasksSELECTPPIRFormsByAssigneeAndTaskStatusRowList
-                                                          .first.gpx ==
+                                                  (valueOrDefault<String>(
+                                                        tasksItem.gpx,
+                                                        'task number',
+                                                      ) ==
                                                       'null') ||
-                                                  (allTasksSELECTPPIRFormsByAssigneeAndTaskStatusRowList
-                                                          .first.gpx ==
-                                                      '')
+                                                  (valueOrDefault<String>(
+                                                        tasksItem.gpx,
+                                                        'task number',
+                                                      ) ==
+                                                      '') ||
+                                                  (valueOrDefault<String>(
+                                                            tasksItem.gpx,
+                                                            'task number',
+                                                          ) ==
+                                                          '')
                                               ? 'No GPX'
                                               : 'Has GPX',
                                           style: FlutterFlowTheme.of(context)

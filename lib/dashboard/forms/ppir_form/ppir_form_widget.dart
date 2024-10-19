@@ -146,7 +146,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                     icon: Icon(
                       Icons.chevron_left,
                       color: FlutterFlowTheme.of(context).info,
-                      size: 30.0,
+                      size: 20.0,
                     ),
                     onPressed: () async {
                       currentUserLocationValue = await getCurrentUserLocation(
@@ -627,7 +627,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                               icon: const Icon(
                                                                 Icons
                                                                     .map_outlined,
-                                                                size: 15.0,
+                                                                size: 20.0,
                                                               ),
                                                               options:
                                                                   FFButtonOptions(
@@ -2834,7 +2834,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                           : 'Capture',
                                                       icon: const Icon(
                                                         Icons.camera_alt,
-                                                        size: 15.0,
+                                                        size: 20.0,
                                                       ),
                                                       options: FFButtonOptions(
                                                         width: 120.0,
@@ -3992,7 +3992,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                 ),
                                 icon: const Icon(
                                   Icons.cancel_presentation_sharp,
-                                  size: 15.0,
+                                  size: 20.0,
                                 ),
                                 options: FFButtonOptions(
                                   width: 120.0,
@@ -4174,7 +4174,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                 ),
                                 icon: const Icon(
                                   Icons.save,
-                                  size: 15.0,
+                                  size: 20.0,
                                 ),
                                 options: FFButtonOptions(
                                   width: 120.0,
@@ -4300,8 +4300,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                           : _model
                                                               .cornDropdownValue,
                                                   isDirty: false,
-                                                  capturedArea:
-                                                      FFAppState().capturedArea,
+                                                  capturedArea: _model
+                                                      .capturedImageBlobInputTextController
+                                                      .text,
                                                 );
                                                 await PpirFormsTable().update(
                                                   data: {
@@ -4357,9 +4358,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     'track_total_distance': _model
                                                         .ppirTrackTotalAreaTextController2
                                                         .text,
-                                                    'captured_area':
-                                                        FFAppState()
-                                                            .capturedArea,
+                                                    'captured_area': _model
+                                                        .capturedImageBlobInputTextController
+                                                        .text,
                                                   },
                                                   matchingRows: (rows) =>
                                                       rows.eq(
@@ -4590,7 +4591,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                   ),
                                   icon: const Icon(
                                     Icons.check_sharp,
-                                    size: 15.0,
+                                    size: 20.0,
                                   ),
                                   options: FFButtonOptions(
                                     width: 120.0,

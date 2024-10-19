@@ -1,10 +1,12 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/sqlite/sqlite_manager.dart';
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/dialogs/signout_dialog/signout_dialog_widget.dart';
+import '/utils/components/no_internet_dialog/no_internet_dialog_widget.dart';
 import '/utils/components/page_loader/page_loader_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -26,6 +28,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
   late SettingsModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  LatLng? currentUserLocationValue;
 
   @override
   void initState() {
@@ -37,7 +40,6 @@ class _SettingsWidgetState extends State<SettingsWidget> {
       await actions.updateUserLogs(
         context,
       );
-      _model.getProfilePic = await actions.getTheSavedLocalProfile();
       FFAppState().syncCount = 0;
       FFAppState().update(() {});
     });
@@ -102,7 +104,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                     Icon(
                                       Icons.settings,
                                       color: FlutterFlowTheme.of(context).info,
-                                      size: 34.0,
+                                      size: 20.0,
                                     ),
                                     Text(
                                       FFLocalizations.of(context).getText(
@@ -114,7 +116,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                             fontFamily: 'Inter',
                                             color: FlutterFlowTheme.of(context)
                                                 .primaryText,
-                                            fontSize: 28.0,
+                                            fontSize: 20.0,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -212,20 +214,11 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                           child: ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(6.0),
-                                            child: Image.memory(
-                                              _model.getProfilePic?.bytes ??
-                                                  Uint8List.fromList([]),
+                                            child: Image.asset(
+                                              'assets/images/default-profile.png',
                                               width: 70.0,
                                               height: 70.0,
                                               fit: BoxFit.cover,
-                                              errorBuilder: (context, error,
-                                                      stackTrace) =>
-                                                  Image.asset(
-                                                'assets/images/error_image.gif',
-                                                width: 70.0,
-                                                height: 70.0,
-                                                fit: BoxFit.cover,
-                                              ),
                                             ),
                                           ),
                                         ),
@@ -1000,6 +993,10 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
+                                        currentUserLocationValue =
+                                            await getCurrentUserLocation(
+                                                defaultLocation:
+                                                    const LatLng(0.0, 0.0));
                                         await showDialog(
                                           context: context,
                                           builder: (dialogContext) {
@@ -1023,7 +1020,72 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                               ),
                                             );
                                           },
-                                        );
+                                        ).then((value) => safeSetState(
+                                            () => _model.logOutTrue = value));
+
+                                        if (_model.logOutTrue!) {
+                                          if (FFAppState().ONLINE) {
+                                            await SQLiteManager.instance
+                                                .dELETEAllRowsForTASKSAndPPIR();
+                                            await UsersTable().update(
+                                              data: {
+                                                'is_online': false,
+                                              },
+                                              matchingRows: (rows) => rows.eq(
+                                                'auth_user_id',
+                                                currentUserUid,
+                                              ),
+                                            );
+                                            await UserLogsTable().insert({
+                                              'user_id': currentUserUid,
+                                              'activity': 'Log out',
+                                              'longlat':
+                                                  '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                                            });
+                                            GoRouter.of(context)
+                                                .prepareAuthEvent();
+                                            await authManager.signOut();
+                                            GoRouter.of(context)
+                                                .clearRedirectLocation();
+
+                                            context.goNamedAuth(
+                                              'onboarding',
+                                              context.mounted,
+                                              extra: <String, dynamic>{
+                                                kTransitionInfoKey:
+                                                    const TransitionInfo(
+                                                  hasTransition: true,
+                                                  transitionType:
+                                                      PageTransitionType.fade,
+                                                  duration: Duration(
+                                                      milliseconds: 300),
+                                                ),
+                                              },
+                                            );
+                                          } else {
+                                            await showDialog(
+                                              context: context,
+                                              builder: (dialogContext) {
+                                                return Dialog(
+                                                  elevation: 0,
+                                                  insetPadding: EdgeInsets.zero,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  alignment:
+                                                      const AlignmentDirectional(
+                                                              0.0, 0.0)
+                                                          .resolve(
+                                                              Directionality.of(
+                                                                  context)),
+                                                  child:
+                                                      const NoInternetDialogWidget(),
+                                                );
+                                              },
+                                            );
+                                          }
+                                        }
+
+                                        safeSetState(() {});
                                       },
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
