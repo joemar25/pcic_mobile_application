@@ -76,7 +76,7 @@ class _ContinueSubmitDialogWidgetState
                               alignment: const AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  '2gqa0lrn' /* Task Saved */,
+                                  '2gqa0lrn' /* Info */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .headlineLarge
@@ -126,7 +126,7 @@ class _ContinueSubmitDialogWidgetState
                   Expanded(
                     child: FFButtonWidget(
                       onPressed: () async {
-                        context.pushNamed('dashboard');
+                        Navigator.pop(context, false);
                       },
                       text: FFLocalizations.of(context).getText(
                         '30viluzv' /* Cancel */,
