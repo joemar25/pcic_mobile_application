@@ -64,6 +64,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
           safeSetState(() {});
         }
       }
+
+      safeSetState(() {});
     });
 
     _model.tabBarController = TabController(
