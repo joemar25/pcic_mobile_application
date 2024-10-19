@@ -1461,7 +1461,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // continueSubmitDialog
   {
     '2gqa0lrn': {
-      'en': 'Info',
+      'en': 'For Confirmation',
       'tl': 'Impormasyon',
     },
     'x6p50a5s': {

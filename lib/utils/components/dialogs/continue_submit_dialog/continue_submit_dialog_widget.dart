@@ -76,7 +76,7 @@ class _ContinueSubmitDialogWidgetState
                               alignment: const AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  '2gqa0lrn' /* Info */,
+                                  '2gqa0lrn' /* For Confirmation */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .headlineLarge

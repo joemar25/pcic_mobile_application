@@ -37,7 +37,7 @@ Future<bool> saveToFTP(String? taskId) async {
 
     if (latestFolder == null) {
       print('No matching folder found for the task');
-      throw Exception('No matching folder found for the task');
+      return false;
     }
 
     print('Latest folder found: $latestFolder');
@@ -66,11 +66,16 @@ Future<bool> saveToFTP(String? taskId) async {
 
     final (ftpUsername, remoteBasePath, fileNamePrefix) =
         await getFtpSettings(serviceGroup);
-    // 122.55.242.110 -- PLDT
-    // 103.82.46.134 -- NON PLDT
+
     ftpClient = FTPConnect('34.143.129.187',
         user: ftpUsername, pass: 'K2c#%!pc!c', port: 21);
-    await ftpClient.connect();
+
+    try {
+      await ftpClient.connect();
+    } catch (e) {
+      print('FTP connection error: $e');
+      return false;
+    }
 
     final fileName = '$taskNumber.task';
     final remotePath = '/$remoteBasePath/$fileName';
@@ -79,13 +84,25 @@ Future<bool> saveToFTP(String? taskId) async {
       await ftpClient.makeDirectory(remoteBasePath);
     } catch (e) {
       if (!e.toString().contains('Directory already exists')) {
-        rethrow;
+        print('Error creating directory: $e');
+        return false;
       }
     }
-    await ftpClient.changeDirectory(remoteBasePath);
 
-    await ftpClient.uploadFile(zipFile, sRemoteName: fileName);
-    print('File uploaded successfully to FTP: $fileName');
+    try {
+      await ftpClient.changeDirectory(remoteBasePath);
+    } catch (e) {
+      print('Error changing directory: $e');
+      return false;
+    }
+
+    try {
+      await ftpClient.uploadFile(zipFile, sRemoteName: fileName);
+      print('File uploaded successfully to FTP: $fileName');
+    } catch (e) {
+      print('Error uploading file: $e');
+      return false;
+    }
 
     await zipFile.delete();
 
@@ -94,7 +111,13 @@ Future<bool> saveToFTP(String? taskId) async {
     print('Error in saveToFTP: $e');
     return false;
   } finally {
-    await ftpClient?.disconnect();
+    if (ftpClient != null) {
+      try {
+        await ftpClient.disconnect();
+      } catch (e) {
+        print('Error disconnecting from FTP: $e');
+      }
+    }
   }
 }
 
