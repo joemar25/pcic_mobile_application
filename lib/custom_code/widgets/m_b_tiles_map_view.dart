@@ -17,6 +17,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:io';
+import 'package:image/image.dart';
 
 class MBTilesMapView extends StatefulWidget {
   const MBTilesMapView({

@@ -70,6 +70,7 @@ dependencies:
   gotrue: 1.12.6
   hive: 2.2.3
   http: 1.2.1
+  image: ^4.3.0
   image_picker: 1.0.4
   image_picker_android: 0.8.8
   image_picker_for_web: 3.0.1
@@ -141,7 +142,6 @@ dependency_overrides:
 dev_dependencies:
   flutter_launcher_icons: 0.13.1
   flutter_lints: 4.0.0
-  image: 4.0.17
   integration_test: 
     sdk: flutter
   lints: 4.0.0
