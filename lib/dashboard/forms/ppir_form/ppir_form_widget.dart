@@ -4486,8 +4486,11 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                       widget.taskId,
                                                     ),
                                                   );
-
-                                                  context.goNamed(
+                                                  if (Navigator.of(context)
+                                                      .canPop()) {
+                                                    context.pop();
+                                                  }
+                                                  context.pushNamed(
                                                     'fail',
                                                     queryParameters: {
                                                       'error': serializeParam(
