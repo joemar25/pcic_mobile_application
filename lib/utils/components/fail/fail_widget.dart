@@ -35,7 +35,7 @@ class _FailWidgetState extends State<FailWidget> with TickerProviderStateMixin {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await Future.delayed(const Duration(milliseconds: 1000));
+      await Future.delayed(const Duration(milliseconds: 5000));
 
       context.goNamed(
         'dashboard',

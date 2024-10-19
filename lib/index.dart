@@ -7,7 +7,7 @@ export '/dashboard/profile/edit_password/edit_password_widget.dart'
 export '/dashboard/profile/edit_profile/edit_profile_widget.dart'
     show EditProfileWidget;
 export '/dashboard/messages/messages/messages_widget.dart' show MessagesWidget;
-export '/dashboard/forms/task_details/task_details_widget.dart'
+export '/dashboard/task_details/task_details_widget.dart'
     show TaskDetailsWidget;
 export '/utils/components/form_success/form_success_widget.dart'
     show FormSuccessWidget;
