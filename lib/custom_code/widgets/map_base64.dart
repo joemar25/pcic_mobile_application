@@ -20,12 +20,12 @@ import 'package:flutter_map_tile_caching/flutter_map_tile_caching.dart' as FMTC;
 
 class MapBase64 extends StatefulWidget {
   const MapBase64({
-    Key? key,
+    super.key,
     this.width,
     this.height,
     this.blob,
     required this.accessToken,
-  }) : super(key: key);
+  });
 
   final double? width;
   final double? height;
@@ -52,20 +52,72 @@ class _MapBase64State extends State<MapBase64> {
     _initializeMap();
   }
 
+  @override
+  void didUpdateWidget(MapBase64 oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.blob != oldWidget.blob) {
+      _resetState();
+      _initializeMap();
+    }
+  }
+
+  void _resetState() {
+    setState(() {
+      _coordinates = [];
+      _isLoading = true;
+      _tileProvider = null;
+      _storeName = null;
+      _errorMessage = null;
+      _currentZoom = 18.0;
+    });
+  }
+
+  @override
+  void dispose() {
+    _mapController.dispose();
+    super.dispose();
+  }
+
   Future<void> _initializeMap() async {
     try {
-      if (widget.blob != null) {
-        _parseGPX(widget.blob!);
+      print('Initializing map with blob: ${widget.blob}');
+      if (widget.blob != null &&
+          widget.blob!.trim().isNotEmpty &&
+          widget.blob!.toLowerCase() != "null") {
+        await _parseGPX(widget.blob!);
+        if (_coordinates.isNotEmpty) {
+          await _initializeTileProvider();
+        }
+      } else {
+        _errorMessage = 'No GPS data available';
       }
-      await _initializeTileProvider();
-      setState(() {
-        _isLoading = false;
-      });
     } catch (e) {
+      _errorMessage = e.toString();
+    } finally {
       setState(() {
-        _errorMessage = e.toString();
         _isLoading = false;
       });
+    }
+  }
+
+  Future<void> _parseGPX(String base64Data) async {
+    try {
+      final document = XmlDocument.parse(utf8.decode(base64Decode(base64Data)));
+      _coordinates = document.findAllElements('trkpt').map((trkpt) {
+        return latlong.LatLng(
+          double.parse(trkpt.getAttribute('lat')!),
+          double.parse(trkpt.getAttribute('lon')!),
+        );
+      }).toList();
+
+      if (_coordinates.isEmpty) {
+        _errorMessage = 'No GPS coordinates found in the data';
+      } else {
+        WidgetsBinding.instance.addPostFrameCallback((_) => _centerMap());
+      }
+    } catch (e) {
+      print('Error parsing GPX data: $e');
+      _errorMessage = 'Error parsing GPX data: $e';
     }
   }
 
@@ -151,23 +203,6 @@ class _MapBase64State extends State<MapBase64> {
     }
   }
 
-  void _parseGPX(String base64Data) {
-    try {
-      final document = XmlDocument.parse(utf8.decode(base64Decode(base64Data)));
-      _coordinates = document.findAllElements('trkpt').map((trkpt) {
-        return latlong.LatLng(
-          double.parse(trkpt.getAttribute('lat')!),
-          double.parse(trkpt.getAttribute('lon')!),
-        );
-      }).toList();
-
-      WidgetsBinding.instance.addPostFrameCallback((_) => _centerMap());
-    } catch (e) {
-      print('Error parsing GPX data: $e');
-      _errorMessage = 'Error parsing GPX data: $e';
-    }
-  }
-
   void _centerMap() {
     if (_coordinates.isNotEmpty) {
       final bounds = _calculateBounds(_coordinates);
@@ -216,16 +251,20 @@ class _MapBase64State extends State<MapBase64> {
   @override
   Widget build(BuildContext context) {
     if (_isLoading) {
-      return Center(child: CircularProgressIndicator());
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    if (_errorMessage != null) {
+      return Center(child: Text(_errorMessage!));
     }
 
     if (_coordinates.isEmpty) {
-      return Center(child: Text('No GPS data available'));
+      return const Center(child: Text('No GPS data available'));
     }
 
     return Stack(
       children: [
-        Container(
+        SizedBox(
           width: widget.width,
           height: widget.height,
           child: FlutterMap(
@@ -262,17 +301,18 @@ class _MapBase64State extends State<MapBase64> {
           right: 16,
           bottom: 16,
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               FloatingActionButton(
                 mini: true,
-                child: Icon(Icons.add),
                 onPressed: _zoomIn,
+                child: const Icon(Icons.add),
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               FloatingActionButton(
                 mini: true,
-                child: Icon(Icons.remove),
                 onPressed: _zoomOut,
+                child: const Icon(Icons.remove),
               ),
             ],
           ),

@@ -33,6 +33,7 @@ class IndividualBlobImageLoader extends StatefulWidget {
 
 class _IndividualBlobImageLoaderState extends State<IndividualBlobImageLoader> {
   Uint8List? _decodedImageData;
+  String? _message;
 
   @override
   void initState() {
@@ -49,20 +50,35 @@ class _IndividualBlobImageLoaderState extends State<IndividualBlobImageLoader> {
   }
 
   void _decodeImage() {
-    if (widget.imageBlob != null && widget.imageBlob!.isNotEmpty) {
-      try {
+    setState(() {
+      _decodedImageData = null;
+      _message = null;
+    });
+
+    if (widget.imageBlob == null ||
+        widget.imageBlob!.isEmpty ||
+        widget.imageBlob!.toLowerCase() == 'no value') {
+      setState(() {
+        _message = 'No image';
+      });
+      return;
+    }
+
+    try {
+      final decodedData = base64.decode(widget.imageBlob!);
+      if (decodedData.isEmpty) {
         setState(() {
-          _decodedImageData = base64.decode(widget.imageBlob!);
+          _message = 'No image';
         });
-      } catch (e) {
-        print('Error decoding image: $e');
+      } else {
         setState(() {
-          _decodedImageData = null;
+          _decodedImageData = decodedData;
         });
       }
-    } else {
+    } catch (e) {
+      print('Error decoding image: $e');
       setState(() {
-        _decodedImageData = null;
+        _message = 'No image';
       });
     }
   }
@@ -78,19 +94,29 @@ class _IndividualBlobImageLoaderState extends State<IndividualBlobImageLoader> {
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8),
-        child: _decodedImageData != null
-            ? Image.memory(
-                _decodedImageData!,
-                fit: BoxFit.contain,
-                width: double.infinity,
-                height: double.infinity,
-                errorBuilder: (context, error, stackTrace) {
-                  print('Error loading image: $error');
-                  return const Center(child: Text('Failed to load image'));
-                },
-              )
-            : const Center(child: Text('No image available')),
+        child: _buildContent(),
       ),
     );
+  }
+
+  Widget _buildContent() {
+    if (_message != null) {
+      return Center(child: Text(_message!));
+    }
+
+    if (_decodedImageData != null) {
+      return Image.memory(
+        _decodedImageData!,
+        fit: BoxFit.contain,
+        width: double.infinity,
+        height: double.infinity,
+        errorBuilder: (context, error, stackTrace) {
+          print('Error displaying image: $error');
+          return const Center(child: Text('No image'));
+        },
+      );
+    }
+
+    return const Center(child: CircularProgressIndicator());
   }
 }

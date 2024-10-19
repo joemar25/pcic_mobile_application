@@ -1474,13 +1474,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       .spaceBetween,
                                               children: [
                                                 Text(
-                                                  (valueOrDefault<String>(
-                                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                .first.gpx,
-                                                            'null',
-                                                          ) ==
-                                                          'null')
-                                                      .toString(),
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'yesr8tfi' /* Geotag */,
+                                                  ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyLarge
@@ -1540,8 +1537,12 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               ) ==
                                                               'null'
                                                           ? 'null'
-                                                          : taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                              .first.gpx,
+                                                          : valueOrDefault<
+                                                              String>(
+                                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                  .first.gpx,
+                                                              'null',
+                                                            ),
                                                       accessToken: FFAppState()
                                                           .accessToken,
                                                     ),
