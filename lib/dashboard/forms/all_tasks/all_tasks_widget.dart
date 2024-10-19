@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/empty_lists/empty_lists_widget.dart';
 import '/utils/components/page_loader/page_loader_widget.dart';
@@ -14,8 +13,6 @@ import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:text_search/text_search.dart';
 import 'all_tasks_model.dart';
@@ -25,7 +22,7 @@ class AllTasksWidget extends StatefulWidget {
   const AllTasksWidget({
     super.key,
     String? taskStatus,
-  }) : this.taskStatus = taskStatus ?? 'taskStatus';
+  }) : taskStatus = taskStatus ?? 'taskStatus';
 
   final String taskStatus;
 
@@ -79,14 +76,14 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
     return FutureBuilder<List<SELECTPPIRFormsByAssigneeAndTaskStatusRow>>(
       future: SQLiteManager.instance.sELECTPPIRFormsByAssigneeAndTaskStatus(
         assignee: currentUserUid,
-        status: widget!.taskStatus,
+        status: widget.taskStatus,
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
           return Scaffold(
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            body: Center(
+            body: const Center(
               child: PageLoaderWidget(),
             ),
           );
@@ -118,7 +115,7 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                     context.pushNamed(
                       'dashboard',
                       extra: <String, dynamic>{
-                        kTransitionInfoKey: TransitionInfo(
+                        kTransitionInfoKey: const TransitionInfo(
                           hasTransition: true,
                           transitionType: PageTransitionType.scale,
                           alignment: Alignment.bottomCenter,
@@ -134,12 +131,12 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
                       child: Text(
                         () {
-                          if (widget!.taskStatus == 'for dispatch') {
+                          if (widget.taskStatus == 'for dispatch') {
                             return 'For Dispatch Tasks';
-                          } else if (widget!.taskStatus == 'ongoing') {
+                          } else if (widget.taskStatus == 'ongoing') {
                             return 'Ongoing Tasks';
                           } else {
                             return 'Completed Tasks';
@@ -153,15 +150,15 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                       ),
                     ),
                     Container(
-                      decoration: BoxDecoration(),
+                      decoration: const BoxDecoration(),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 5.0, 0.0),
                             child: Container(
-                              decoration: BoxDecoration(),
+                              decoration: const BoxDecoration(),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
@@ -215,21 +212,21 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                                             fontWeight: FontWeight.w600,
                                           ),
                                     ),
-                                ].divide(SizedBox(width: 5.0)),
+                                ].divide(const SizedBox(width: 5.0)),
                               ),
                             ),
                           ),
                           wrapWithModel(
                             model: _model.connectivityModel,
                             updateCallback: () => safeSetState(() {}),
-                            child: ConnectivityWidget(),
+                            child: const ConnectivityWidget(),
                           ),
-                        ].divide(SizedBox(width: 5.0)),
+                        ].divide(const SizedBox(width: 5.0)),
                       ),
                     ),
                   ],
                 ),
-                actions: [],
+                actions: const [],
                 centerTitle: false,
                 elevation: 0.0,
               ),
@@ -238,14 +235,14 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsets.all(18.0),
+                    padding: const EdgeInsets.all(18.0),
                     child: Container(
                       width: double.infinity,
                       height: 50.0,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
-                      child: Container(
+                      child: SizedBox(
                         width: double.infinity,
                         child: TextFormField(
                           controller: _model.textController,
@@ -260,7 +257,7 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                                         .primaryText,
                                   ),
                                 ),
-                                duration: Duration(milliseconds: 4000),
+                                duration: const Duration(milliseconds: 4000),
                                 backgroundColor:
                                     FlutterFlowTheme.of(context).secondary,
                               ),
@@ -278,7 +275,6 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                                   .search(_model.textController.text)
                                   .map((r) => r.object)
                                   .toList();
-                              ;
                             });
                           },
                           autofocus: false,
@@ -304,14 +300,14 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Color(0x00000000),
                                 width: 1.0,
                               ),
                               borderRadius: BorderRadius.circular(12.0),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Color(0x00000000),
                                 width: 1.0,
                               ),
@@ -334,11 +330,11 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                             filled: true,
                             fillColor: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.search_sharp,
                               size: 24.0,
                             ),
-                            suffixIcon: Icon(
+                            suffixIcon: const Icon(
                               Icons.send_sharp,
                             ),
                           ),
@@ -360,7 +356,7 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                   ),
                   Flexible(
                     child: Padding(
-                      padding: EdgeInsets.all(18.0),
+                      padding: const EdgeInsets.all(18.0),
                       child: Container(
                         width: 0.0,
                         height: MediaQuery.sizeOf(context).height * 1.0,
@@ -373,22 +369,22 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                           borderRadius: BorderRadius.circular(0.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(2.0),
+                          padding: const EdgeInsets.all(2.0),
                           child: Builder(
                             builder: (context) {
                               final tasks =
                                   allTasksSELECTPPIRFormsByAssigneeAndTaskStatusRowList
                                       .where(
-                                          (e) => e.status == widget!.taskStatus)
+                                          (e) => e.status == widget.taskStatus)
                                       .toList();
                               if (tasks.isEmpty) {
                                 return Center(
                                   child: EmptyListsWidget(
                                     type: '${() {
-                                      if (widget!.taskStatus ==
+                                      if (widget.taskStatus ==
                                           'for dispatch') {
                                         return 'Dispatch';
-                                      } else if (widget!.taskStatus ==
+                                      } else if (widget.taskStatus ==
                                           'ongoing') {
                                         return 'Ongoing';
                                       } else {
@@ -504,7 +500,7 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                                 dataRowBuilder: (tasksItem, tasksIndex,
                                         selected, onSelectChanged) =>
                                     DataRow(
-                                  color: MaterialStateProperty.all(
+                                  color: WidgetStateProperty.all(
                                     tasksIndex % 2 == 0
                                         ? FlutterFlowTheme.of(context)
                                             .secondaryBackground
@@ -526,7 +522,7 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                                               currentUserLocationValue =
                                                   await getCurrentUserLocation(
                                                       defaultLocation:
-                                                          LatLng(0.0, 0.0));
+                                                          const LatLng(0.0, 0.0));
                                               unawaited(
                                                 () async {
                                                   await UserLogsTable().insert({
@@ -546,13 +542,13 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                                                     ParamType.String,
                                                   ),
                                                   'taskStatus': serializeParam(
-                                                    widget!.taskStatus,
+                                                    widget.taskStatus,
                                                     ParamType.String,
                                                   ),
                                                 }.withoutNulls,
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
-                                                      TransitionInfo(
+                                                      const TransitionInfo(
                                                     hasTransition: true,
                                                     transitionType:
                                                         PageTransitionType
@@ -599,7 +595,7 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                                               currentUserLocationValue =
                                                   await getCurrentUserLocation(
                                                       defaultLocation:
-                                                          LatLng(0.0, 0.0));
+                                                          const LatLng(0.0, 0.0));
                                               unawaited(
                                                 () async {
                                                   await UserLogsTable().insert({
@@ -619,13 +615,13 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                                                     ParamType.String,
                                                   ),
                                                   'taskStatus': serializeParam(
-                                                    widget!.taskStatus,
+                                                    widget.taskStatus,
                                                     ParamType.String,
                                                   ),
                                                 }.withoutNulls,
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
-                                                      TransitionInfo(
+                                                      const TransitionInfo(
                                                     hasTransition: true,
                                                     transitionType:
                                                         PageTransitionType
@@ -670,7 +666,7 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                                             currentUserLocationValue =
                                                 await getCurrentUserLocation(
                                                     defaultLocation:
-                                                        LatLng(0.0, 0.0));
+                                                        const LatLng(0.0, 0.0));
                                             unawaited(
                                               () async {
                                                 await UserLogsTable().insert({
@@ -690,13 +686,13 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                                                   ParamType.String,
                                                 ),
                                                 'taskStatus': serializeParam(
-                                                  widget!.taskStatus,
+                                                  widget.taskStatus,
                                                   ParamType.String,
                                                 ),
                                               }.withoutNulls,
                                               extra: <String, dynamic>{
                                                 kTransitionInfoKey:
-                                                    TransitionInfo(
+                                                    const TransitionInfo(
                                                   hasTransition: true,
                                                   transitionType:
                                                       PageTransitionType.scale,
@@ -735,10 +731,10 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                                 emptyBuilder: () => Center(
                                   child: EmptyListsWidget(
                                     type: '${() {
-                                      if (widget!.taskStatus ==
+                                      if (widget.taskStatus ==
                                           'for dispatch') {
                                         return 'Dispatch';
-                                      } else if (widget!.taskStatus ==
+                                      } else if (widget.taskStatus ==
                                           'ongoing') {
                                         return 'Ongoing';
                                       } else {
@@ -766,7 +762,7 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                       ),
                     ),
                   ),
-                ].divide(SizedBox(height: 0.0)).around(SizedBox(height: 0.0)),
+                ].divide(const SizedBox(height: 0.0)).around(const SizedBox(height: 0.0)),
               ),
             ),
           ),

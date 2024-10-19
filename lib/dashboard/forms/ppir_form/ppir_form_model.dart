@@ -1,36 +1,10 @@
-import '/auth/supabase_auth/auth_util.dart';
 import '/backend/sqlite/sqlite_manager.dart';
 import '/backend/supabase/supabase.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_radio_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/flutter_flow/upload_data.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
-import '/utils/components/dialogs/continue_cancel_dialog/continue_cancel_dialog_widget.dart';
-import '/utils/components/dialogs/continue_re_geotag_dialog/continue_re_geotag_dialog_widget.dart';
-import '/utils/components/dialogs/continue_save_dialog/continue_save_dialog_widget.dart';
-import '/utils/components/dialogs/continue_submit_dialog/continue_submit_dialog_widget.dart';
-import '/utils/components/dialogs/fill_out_all_fields_dialog/fill_out_all_fields_dialog_widget.dart';
-import '/utils/components/page_loader/page_loader_widget.dart';
-import '/utils/components/signature/signature_widget.dart';
-import 'dart:async';
-import '/custom_code/actions/index.dart' as actions;
-import '/custom_code/widgets/index.dart' as custom_widgets;
-import '/flutter_flow/custom_functions.dart' as functions;
-import '/flutter_flow/permissions_util.dart';
-import 'package:styled_divider/styled_divider.dart';
 import 'ppir_form_widget.dart' show PpirFormWidget;
-import 'package:easy_debounce/easy_debounce.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class PpirFormModel extends FlutterFlowModel<PpirFormWidget> {
   ///  Local state fields for this page.

@@ -1,24 +1,15 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:go_router/go_router.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import '/backend/schema/structs/index.dart';
 
-import '/backend/supabase/supabase.dart';
-import '/backend/sqlite/sqlite_manager.dart';
 import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
 import '/main.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/lat_lng.dart';
-import '/flutter_flow/place.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'serialization_util.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
@@ -85,8 +76,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) => RootPageContext.wrap(
         appStateNotifier.loggedIn
-            ? entryPage ?? NavBarPage()
-            : OnboardingWidget(),
+            ? entryPage ?? const NavBarPage()
+            : const OnboardingWidget(),
         errorRoute: state.uri.toString(),
       ),
       routes: [
@@ -95,8 +86,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           path: '/',
           builder: (context, _) => RootPageContext.wrap(
             appStateNotifier.loggedIn
-                ? entryPage ?? NavBarPage()
-                : OnboardingWidget(),
+                ? entryPage ?? const NavBarPage()
+                : const OnboardingWidget(),
           ),
         ),
         FFRoute(
@@ -114,27 +105,27 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           path: '/settings',
           requireAuth: true,
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'settings')
-              : SettingsWidget(),
+              ? const NavBarPage(initialPage: 'settings')
+              : const SettingsWidget(),
         ),
         FFRoute(
           name: 'chats',
           path: '/chats',
           requireAuth: true,
           builder: (context, params) =>
-              params.isEmpty ? NavBarPage(initialPage: 'chats') : ChatsWidget(),
+              params.isEmpty ? const NavBarPage(initialPage: 'chats') : const ChatsWidget(),
         ),
         FFRoute(
           name: 'editPassword',
           path: '/editPassword',
           requireAuth: true,
-          builder: (context, params) => EditPasswordWidget(),
+          builder: (context, params) => const EditPasswordWidget(),
         ),
         FFRoute(
           name: 'editProfile',
           path: '/editProfile',
           requireAuth: true,
-          builder: (context, params) => EditProfileWidget(),
+          builder: (context, params) => const EditProfileWidget(),
         ),
         FFRoute(
           name: 'messages',
@@ -200,8 +191,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           path: '/dashboard',
           requireAuth: true,
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'dashboard')
-              : DashboardWidget(),
+              ? const NavBarPage(initialPage: 'dashboard')
+              : const DashboardWidget(),
         ),
         FFRoute(
           name: 'successProfile',
@@ -240,24 +231,24 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
         FFRoute(
           name: 'mapTest',
           path: '/mapTest',
-          builder: (context, params) => MapTestWidget(),
+          builder: (context, params) => const MapTestWidget(),
         ),
         FFRoute(
           name: 'pcicMap',
           path: '/pcicMap',
           requireAuth: true,
-          builder: (context, params) => PcicMapWidget(),
+          builder: (context, params) => const PcicMapWidget(),
         ),
         FFRoute(
           name: 'onboarding',
           path: '/onboarding',
-          builder: (context, params) => OnboardingWidget(),
+          builder: (context, params) => const OnboardingWidget(),
         ),
         FFRoute(
           name: 'sync',
           path: '/sync',
           requireAuth: true,
-          builder: (context, params) => SyncWidget(),
+          builder: (context, params) => const SyncWidget(),
         ),
         FFRoute(
           name: 'ppirForm',
@@ -274,19 +265,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           name: 'supportPage',
           path: '/supportPage',
           requireAuth: true,
-          builder: (context, params) => SupportPageWidget(),
+          builder: (context, params) => const SupportPageWidget(),
         ),
         FFRoute(
           name: 'callUs',
           path: '/callUs',
           requireAuth: true,
-          builder: (context, params) => CallUsWidget(),
+          builder: (context, params) => const CallUsWidget(),
         ),
         FFRoute(
           name: 'sendFeedback',
           path: '/sendFeedback',
           requireAuth: true,
-          builder: (context, params) => SendFeedbackWidget(),
+          builder: (context, params) => const SendFeedbackWidget(),
         ),
         FFRoute(
           name: 'gpxSuccess',
@@ -313,7 +304,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
         FFRoute(
           name: 'mapTestTest',
           path: '/mapTestTest',
-          builder: (context, params) => MapTestTestWidget(),
+          builder: (context, params) => const MapTestTestWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -551,7 +542,7 @@ class TransitionInfo {
   final Duration duration;
   final Alignment? alignment;
 
-  static TransitionInfo appDefault() => TransitionInfo(hasTransition: false);
+  static TransitionInfo appDefault() => const TransitionInfo(hasTransition: false);
 }
 
 class RootPageContext {

@@ -2,10 +2,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:provider/provider.dart';
 import 'no_internet_dialog_model.dart';
 export 'no_internet_dialog_model.dart';
 
@@ -41,7 +38,7 @@ class _NoInternetDialogWidgetState extends State<NoInternetDialogWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Container(
         width: 338.0,
         height: 392.0,
@@ -50,7 +47,7 @@ class _NoInternetDialogWidgetState extends State<NoInternetDialogWidget> {
           borderRadius: BorderRadius.circular(24.0),
         ),
         child: Padding(
-          padding: EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -74,7 +71,7 @@ class _NoInternetDialogWidgetState extends State<NoInternetDialogWidget> {
                         children: [
                           Expanded(
                             child: Align(
-                              alignment: AlignmentDirectional(0.0, 0.0),
+                              alignment: const AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
                                   'm2d8uxk3' /* Info */,
@@ -99,7 +96,7 @@ class _NoInternetDialogWidgetState extends State<NoInternetDialogWidget> {
                     children: [
                       Expanded(
                         child: Align(
-                          alignment: AlignmentDirectional(0.0, 0.0),
+                          alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
                               'wreq3f64' /* You have no current internet c... */,
@@ -118,7 +115,7 @@ class _NoInternetDialogWidgetState extends State<NoInternetDialogWidget> {
                       ),
                     ],
                   ),
-                ].divide(SizedBox(height: 15.0)),
+                ].divide(const SizedBox(height: 15.0)),
               ),
               Expanded(
                 child: Row(
@@ -134,9 +131,9 @@ class _NoInternetDialogWidgetState extends State<NoInternetDialogWidget> {
                         ),
                         options: FFButtonOptions(
                           height: 40.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).warning,
                           textStyle:
@@ -147,7 +144,7 @@ class _NoInternetDialogWidgetState extends State<NoInternetDialogWidget> {
                                     fontWeight: FontWeight.w500,
                                   ),
                           elevation: 0.0,
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
@@ -155,10 +152,10 @@ class _NoInternetDialogWidgetState extends State<NoInternetDialogWidget> {
                         ),
                       ),
                     ),
-                  ].divide(SizedBox(width: 20.0)).around(SizedBox(width: 20.0)),
+                  ].divide(const SizedBox(width: 20.0)).around(const SizedBox(width: 20.0)),
                 ),
               ),
-            ].divide(SizedBox(height: 15.0)),
+            ].divide(const SizedBox(height: 15.0)),
           ),
         ),
       ),

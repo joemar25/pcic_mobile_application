@@ -9,7 +9,7 @@ class RegionsTable extends SupabaseTable<RegionsRow> {
 }
 
 class RegionsRow extends SupabaseDataRow {
-  RegionsRow(Map<String, dynamic> data) : super(data);
+  RegionsRow(super.data);
 
   @override
   SupabaseTable get table => RegionsTable();

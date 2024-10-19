@@ -11,7 +11,6 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'messages_model.dart';
 export 'messages_model.dart';
@@ -52,7 +51,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
         'user_id': currentUserUid,
       });
       _model.apiResultw5j = await UpdateLastSeenAndReadCall.call(
-        chatId: widget!.chatId,
+        chatId: widget.chatId,
         userId: currentUserUid,
       );
 
@@ -80,7 +79,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
       future: MessagesTable().querySingleRow(
         queryFn: (q) => q.eq(
           'chat_id',
-          widget!.chatId,
+          widget.chatId,
         ),
       ),
       builder: (context, snapshot) {
@@ -128,7 +127,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                   context.pushNamed(
                     'chats',
                     extra: <String, dynamic>{
-                      kTransitionInfoKey: TransitionInfo(
+                      kTransitionInfoKey: const TransitionInfo(
                         hasTransition: true,
                         transitionType: PageTransitionType.leftToRight,
                         duration: Duration(milliseconds: 250),
@@ -145,7 +144,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                     future: UsersTable().querySingleRow(
                       queryFn: (q) => q.eq(
                         'id',
-                        widget!.recieverId,
+                        widget.recieverId,
                       ),
                     ),
                     builder: (context, snapshot) {
@@ -170,7 +169,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
 
                       return Text(
                         valueOrDefault<String>(
-                          widget!.recieverName,
+                          widget.recieverName,
                           'Reciever',
                         ),
                         style:
@@ -186,11 +185,11 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                   wrapWithModel(
                     model: _model.connectivityModel,
                     updateCallback: () => safeSetState(() {}),
-                    child: ConnectivityWidget(),
+                    child: const ConnectivityWidget(),
                   ),
                 ],
               ),
-              actions: [],
+              actions: const [],
               centerTitle: false,
               elevation: 0.0,
             ),
@@ -206,7 +205,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                         queryFn: (q) => q
                             .eq(
                               'chat_id',
-                              widget!.chatId,
+                              widget.chatId,
                             )
                             .order('timestamp', ascending: true),
                       ),
@@ -240,19 +239,19 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                 if (listViewMessagesRow.senderName !=
                                     currentUserUid)
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         10.0, 10.0, 10.0, 10.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Container(
-                                          constraints: BoxConstraints(
+                                          constraints: const BoxConstraints(
                                             maxWidth: 300.0,
                                           ),
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
                                                 .secondary,
-                                            borderRadius: BorderRadius.only(
+                                            borderRadius: const BorderRadius.only(
                                               bottomLeft: Radius.circular(6.0),
                                               bottomRight:
                                                   Radius.circular(24.0),
@@ -262,7 +261,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                           ),
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     20.0, 20.0, 20.0, 20.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -271,11 +270,11 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                               children: [
                                                 Align(
                                                   alignment:
-                                                      AlignmentDirectional(
+                                                      const AlignmentDirectional(
                                                           -1.0, 0.0),
                                                   child: Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 4.0,
                                                                 10.0, 4.0),
                                                     child: Text(
@@ -294,7 +293,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                                 ),
                                                 Align(
                                                   alignment:
-                                                      AlignmentDirectional(
+                                                      const AlignmentDirectional(
                                                           -1.0, 0.0),
                                                   child: Text(
                                                     valueOrDefault<String>(
@@ -329,20 +328,20 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                 if (listViewMessagesRow.senderName ==
                                     currentUserUid)
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         10.0, 10.0, 10.0, 10.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
                                         Container(
-                                          constraints: BoxConstraints(
+                                          constraints: const BoxConstraints(
                                             maxWidth: 300.0,
                                           ),
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
-                                            borderRadius: BorderRadius.only(
+                                            borderRadius: const BorderRadius.only(
                                               bottomLeft: Radius.circular(24.0),
                                               bottomRight: Radius.circular(6.0),
                                               topLeft: Radius.circular(24.0),
@@ -351,7 +350,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                           ),
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     20.0, 20.0, 20.0, 20.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -362,11 +361,11 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                               children: [
                                                 Align(
                                                   alignment:
-                                                      AlignmentDirectional(
+                                                      const AlignmentDirectional(
                                                           1.0, 0.0),
                                                   child: Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(10.0, 4.0,
                                                                 0.0, 4.0),
                                                     child: Text(
@@ -428,19 +427,19 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                       key: _model.formKey,
                       autovalidateMode: AutovalidateMode.disabled,
                       child: Padding(
-                        padding: EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Expanded(
-                              child: Container(
+                              child: SizedBox(
                                 width: MediaQuery.sizeOf(context).width * 1.0,
                                 child: TextFormField(
                                   controller: _model.inputChatTextController,
                                   focusNode: _model.inputChatFocusNode,
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.inputChatTextController',
-                                    Duration(milliseconds: 0),
+                                    const Duration(milliseconds: 0),
                                     () => safeSetState(() {}),
                                   ),
                                   autofocus: false,
@@ -499,7 +498,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                       ),
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    contentPadding: EdgeInsets.all(10.0),
+                                    contentPadding: const EdgeInsets.all(10.0),
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
@@ -516,7 +515,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                             FFButtonWidget(
                               onPressed: () async {
                                 await MessagesTable().insert({
-                                  'chat_id': widget!.chatId,
+                                  'chat_id': widget.chatId,
                                   'content':
                                       _model.inputChatTextController.text,
                                   'sender_name': currentUserUid,
@@ -539,8 +538,8 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                 size: 15.0,
                               ),
                               options: FFButtonOptions(
-                                padding: EdgeInsets.all(20.0),
-                                iconPadding: EdgeInsets.all(0.0),
+                                padding: const EdgeInsets.all(20.0),
+                                iconPadding: const EdgeInsets.all(0.0),
                                 color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
@@ -551,7 +550,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 3.0,
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
@@ -559,8 +558,8 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                               ),
                             ),
                           ]
-                              .divide(SizedBox(width: 8.0))
-                              .around(SizedBox(width: 8.0)),
+                              .divide(const SizedBox(width: 8.0))
+                              .around(const SizedBox(width: 8.0)),
                         ),
                       ),
                     ),

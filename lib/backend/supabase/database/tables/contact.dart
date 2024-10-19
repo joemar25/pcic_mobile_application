@@ -9,7 +9,7 @@ class ContactTable extends SupabaseTable<ContactRow> {
 }
 
 class ContactRow extends SupabaseDataRow {
-  ContactRow(Map<String, dynamic> data) : super(data);
+  ContactRow(super.data);
 
   @override
   SupabaseTable get table => ContactTable();

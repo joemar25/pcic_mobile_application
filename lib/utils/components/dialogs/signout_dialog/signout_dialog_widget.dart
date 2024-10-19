@@ -7,8 +7,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/no_internet_dialog/no_internet_dialog_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'signout_dialog_model.dart';
@@ -50,7 +48,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Container(
         width: 338.0,
         height: 392.0,
@@ -59,9 +57,9 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
           borderRadius: BorderRadius.circular(24.0),
           shape: BoxShape.rectangle,
         ),
-        alignment: AlignmentDirectional(0.0, 0.0),
+        alignment: const AlignmentDirectional(0.0, 0.0),
         child: Padding(
-          padding: EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -86,7 +84,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                         children: [
                           Expanded(
                             child: Align(
-                              alignment: AlignmentDirectional(0.0, 0.0),
+                              alignment: const AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
                                   'pd2yz8ne' /* Confirm Sign Out */,
@@ -110,9 +108,9 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                     children: [
                       Expanded(
                         child: Align(
-                          alignment: AlignmentDirectional(0.0, 0.0),
+                          alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 0.0),
                             child: Text(
                               FFLocalizations.of(context).getText(
@@ -133,7 +131,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                       ),
                     ],
                   ),
-                ].divide(SizedBox(height: 5.0)).around(SizedBox(height: 5.0)),
+                ].divide(const SizedBox(height: 5.0)).around(const SizedBox(height: 5.0)),
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
@@ -150,9 +148,9 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                       options: FFButtonOptions(
                         height: 40.0,
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).primaryBackground,
                         textStyle: FlutterFlowTheme.of(context)
                             .titleSmall
@@ -163,7 +161,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                               fontWeight: FontWeight.w500,
                             ),
                         elevation: 0.0,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           width: 0.0,
                         ),
                         borderRadius: BorderRadius.circular(12.0),
@@ -176,7 +174,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                         onPressed: () async {
                           currentUserLocationValue =
                               await getCurrentUserLocation(
-                                  defaultLocation: LatLng(0.0, 0.0));
+                                  defaultLocation: const LatLng(0.0, 0.0));
                           if (FFAppState().ONLINE) {
                             await SQLiteManager.instance
                                 .dELETEAllRowsForTASKSAndPPIR();
@@ -203,7 +201,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                               'onboarding',
                               context.mounted,
                               extra: <String, dynamic>{
-                                kTransitionInfoKey: TransitionInfo(
+                                kTransitionInfoKey: const TransitionInfo(
                                   hasTransition: true,
                                   transitionType: PageTransitionType.fade,
                                   duration: Duration(milliseconds: 200),
@@ -218,9 +216,9 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                                   elevation: 0,
                                   insetPadding: EdgeInsets.zero,
                                   backgroundColor: Colors.transparent,
-                                  alignment: AlignmentDirectional(0.0, 0.0)
+                                  alignment: const AlignmentDirectional(0.0, 0.0)
                                       .resolve(Directionality.of(context)),
-                                  child: NoInternetDialogWidget(),
+                                  child: const NoInternetDialogWidget(),
                                 );
                               },
                             );
@@ -231,9 +229,9 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                         ),
                         options: FFButtonOptions(
                           height: 40.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).error,
                           textStyle:
@@ -244,7 +242,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                                     fontWeight: FontWeight.w500,
                                   ),
                           elevation: 0.0,
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
@@ -253,9 +251,9 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                       ),
                     ),
                   ),
-                ].divide(SizedBox(width: 10.0)).around(SizedBox(width: 10.0)),
+                ].divide(const SizedBox(width: 10.0)).around(const SizedBox(width: 10.0)),
               ),
-            ].divide(SizedBox(height: 15.0)),
+            ].divide(const SizedBox(height: 15.0)),
           ),
         ),
       ),
