@@ -1635,10 +1635,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Address',
       'tl': '',
     },
-    'k3w8638b': {
-      'en': 'Has GPX',
-      'tl': '',
-    },
   },
   // Miscellaneous
   {
