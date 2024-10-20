@@ -13,22 +13,36 @@ import 'package:flutter/material.dart';
 import 'index.dart'; // Imports other custom actions
 
 import 'dart:convert';
-import 'dart:math';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_map_tile_caching/flutter_map_tile_caching.dart' as FMTC;
 
 Future<void> initializePhilippinesRegionStores() async {
-  // Read GeoJSON file from assets
+  // Read the JSON file from assets
   String jsonString =
-      await rootBundle.loadString('assets/jsons/philippines-with-regions.json');
-  Map<String, dynamic> geoJson = json.decode(jsonString);
+      await rootBundle.loadString('assets/jsons/regionBoundaries.json');
+  List<dynamic> regions = json.decode(jsonString);
 
-  Map<String, Map<String, double>> regionBoundingBoxes =
-      calculateRegionBoundingBoxes(geoJson);
+  // Iterate over each region and save their metadata as stores
+  for (var feature in regions) {
+    String? region = feature['Region'] as String?;
+    double? minLat = feature['min_lat'] as double?;
+    double? maxLat = feature['max_lat'] as double?;
+    double? minLon = feature['min_lon'] as double?;
+    double? maxLon = feature['max_lon'] as double?;
+    double? centreLat = feature['centre_lat'] as double?;
+    double? centreLon = feature['centre_lon'] as double?;
 
-  for (var entry in regionBoundingBoxes.entries) {
-    String region = entry.key;
-    Map<String, double> bbox = entry.value;
+    // Ensure that all necessary values are present
+    if (region == null ||
+        minLat == null ||
+        maxLat == null ||
+        minLon == null ||
+        maxLon == null ||
+        centreLat == null ||
+        centreLon == null) {
+      print('Skipping feature with missing data for region $region.');
+      continue;
+    }
 
     String storeName = region.replaceAll(' ', '_').toLowerCase();
     final mgmt = FMTC.FMTCStore(storeName).manage;
@@ -37,162 +51,20 @@ Future<void> initializePhilippinesRegionStores() async {
       await mgmt.create();
       print('Store created successfully for $region');
 
-      // Set metadata for the region's bounding box
+      // Set metadata for the region's bounding box and center
       await FMTC.FMTCStore(storeName).metadata.setBulk(kvs: {
-        'minLat': bbox['minLat'].toString(),
-        'maxLat': bbox['maxLat'].toString(),
-        'minLon': bbox['minLon'].toString(),
-        'maxLon': bbox['maxLon'].toString(),
+        'minLat': minLat.toString(),
+        'maxLat': maxLat.toString(),
+        'minLon': minLon.toString(),
+        'maxLon': maxLon.toString(),
+        'centreLat': centreLat.toString(),
+        'centreLon': centreLon.toString(),
       });
       print('Bounding box metadata set for $region');
     } catch (e) {
       print('Error processing $region: $e');
     }
   }
-}
-
-Map<String, Map<String, double>> calculateRegionBoundingBoxes(
-    Map<String, dynamic> geoJson) {
-  Map<String, Map<String, double>> regionBoundingBoxes = {};
-
-  for (var feature in geoJson['features']) {
-    String provinceName = feature['properties']['name'];
-    String region = getRegionForProvince(provinceName);
-
-    if (region.isEmpty) continue;
-
-    if (!regionBoundingBoxes.containsKey(region)) {
-      regionBoundingBoxes[region] = {
-        'minLat': double.infinity,
-        'maxLat': double.negativeInfinity,
-        'minLon': double.infinity,
-        'maxLon': double.negativeInfinity
-      };
-    }
-
-    var coordinates = feature['geometry']['coordinates'];
-    updateBoundingBox(coordinates, regionBoundingBoxes[region]!);
-  }
-
-  return regionBoundingBoxes;
-}
-
-void updateBoundingBox(dynamic coordinates, Map<String, double> bbox) {
-  if (coordinates is List) {
-    if (coordinates.isEmpty) return;
-    if (coordinates[0] is num) {
-      // We've reached a single coordinate pair
-      double lon = coordinates[0].toDouble();
-      double lat = coordinates[1].toDouble();
-      bbox['minLat'] = min(bbox['minLat']!, lat);
-      bbox['maxLat'] = max(bbox['maxLat']!, lat);
-      bbox['minLon'] = min(bbox['minLon']!, lon);
-      bbox['maxLon'] = max(bbox['maxLon']!, lon);
-    } else {
-      // We're still in a nested structure, recurse
-      for (var coord in coordinates) {
-        updateBoundingBox(coord, bbox);
-      }
-    }
-  }
-}
-
-String getRegionForProvince(String provinceName) {
-  Map<String, List<String>> regionProvinces = {
-    'Region I': ['Ilocos Norte', 'Ilocos Sur', 'La Union', 'Pangasinan'],
-    'Region II': ['Batanes', 'Cagayan', 'Isabela', 'Nueva Vizcaya', 'Quirino'],
-    'Region III': [
-      'Aurora',
-      'Bataan',
-      'Bulacan',
-      'Nueva Ecija',
-      'Pampanga',
-      'Tarlac',
-      'Zambales'
-    ],
-    'Region IV-A': ['Batangas', 'Cavite', 'Laguna', 'Quezon', 'Rizal'],
-    'Region IV-B': [
-      'Marinduque',
-      'Occidental Mindoro',
-      'Oriental Mindoro',
-      'Palawan',
-      'Romblon'
-    ],
-    'Region V': [
-      'Albay',
-      'Camarines Norte',
-      'Camarines Sur',
-      'Catanduanes',
-      'Masbate',
-      'Sorsogon'
-    ],
-    'Region VI': [
-      'Aklan',
-      'Antique',
-      'Capiz',
-      'Guimaras',
-      'Iloilo',
-      'Negros Occidental'
-    ],
-    'Region VII': ['Bohol', 'Cebu', 'Negros Oriental', 'Siquijor'],
-    'Region VIII': [
-      'Biliran',
-      'Eastern Samar',
-      'Leyte',
-      'Northern Samar',
-      'Samar',
-      'Southern Leyte'
-    ],
-    'Region IX': [
-      'Zamboanga del Norte',
-      'Zamboanga del Sur',
-      'Zamboanga Sibugay'
-    ],
-    'Region X': [
-      'Bukidnon',
-      'Camiguin',
-      'Lanao del Norte',
-      'Misamis Occidental',
-      'Misamis Oriental'
-    ],
-    'Region XI': [
-      'Davao de Oro',
-      'Davao del Norte',
-      'Davao del Sur',
-      'Davao Oriental'
-    ],
-    'Region XII': [
-      'North Cotabato',
-      'Sarangani',
-      'South Cotabato',
-      'Sultan Kudarat'
-    ],
-    'Region XIII': [
-      'Agusan del Norte',
-      'Agusan del Sur',
-      'Dinagat Islands',
-      'Surigao del Norte',
-      'Surigao del Sur'
-    ],
-    'NCR': ['Metropolitan Manila'],
-    'CAR': [
-      'Abra',
-      'Apayao',
-      'Benguet',
-      'Ifugao',
-      'Kalinga',
-      'Mountain Province'
-    ],
-    'BARMM': ['Basilan', 'Lanao del Sur', 'Maguindanao', 'Sulu', 'Tawi-Tawi']
-  };
-
-  for (var entry in regionProvinces.entries) {
-    if (entry.value.contains(provinceName)) {
-      return entry.key;
-    }
-  }
-
-  return '';
 }
 
 Future<void> initializeRegionStores() async {

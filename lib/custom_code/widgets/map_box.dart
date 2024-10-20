@@ -13,6 +13,8 @@ import 'package:flutter/material.dart';
 
 import 'index.dart'; // Imports other custom widgets
 
+import 'index.dart'; // Imports other custom widgets
+
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter_map/flutter_map.dart';
@@ -206,15 +208,26 @@ class _MapBoxState extends State<MapBox> {
 
       if (metadata != null) {
         try {
-          Map<String, num> regionData = {
-            'region_south': _parseNum(metadata['region_south']),
-            'region_north': _parseNum(metadata['region_north']),
-            'region_west': _parseNum(metadata['region_west']),
-            'region_east': _parseNum(metadata['region_east']),
-          };
-          print('Parsed region data: $regionData');
+          // Parse metadata for region boundaries
+          double? minLat = double.tryParse(metadata['minLat'] ?? '');
+          double? maxLat = double.tryParse(metadata['maxLat'] ?? '');
+          double? minLon = double.tryParse(metadata['minLon'] ?? '');
+          double? maxLon = double.tryParse(metadata['maxLon'] ?? '');
 
-          if (_isLocationInRegion(_currentLocation!, regionData)) {
+          if (minLat == null ||
+              maxLat == null ||
+              minLon == null ||
+              maxLon == null) {
+            print('Invalid metadata for ${store.storeName}');
+            continue;
+          }
+
+          print(
+              'Parsed region data: minLat: $minLat, maxLat: $maxLat, minLon: $minLon, maxLon: $maxLon');
+
+          // Check if the current location is within this region's boundaries
+          if (_isLocationInRegion(
+              _currentLocation!, minLat, maxLat, minLon, maxLon)) {
             _storeName = store.storeName;
             print(
                 'FOUND MAP BASED ON THE CURRENT LOCATION OF THE USER: $_storeName');
@@ -232,6 +245,7 @@ class _MapBoxState extends State<MapBox> {
     if (!storeFound) {
       print('No matching store found for the current location.');
     } else if (_storeName != null) {
+      // Initialize the offline tile layer using the store
       final tileProvider = FMTC.FMTCStore(_storeName!).getTileProvider(
         settings: FMTC.FMTCTileProviderSettings(
           behavior: FMTC.CacheBehavior.cacheFirst,
@@ -251,6 +265,7 @@ class _MapBoxState extends State<MapBox> {
       print('No store available to initialize offline tile layer');
     }
 
+    // Initialize the online tile layer
     _onlineTileLayer = TileLayer(
       urlTemplate:
           'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}@2x?access_token=${widget.accessToken}',
@@ -260,14 +275,17 @@ class _MapBoxState extends State<MapBox> {
     );
   }
 
-  bool _isLocationInRegion(ll.LatLng location, Map<String, num> region) {
+  // Helper function to check if a location is within the region's bounds
+  bool _isLocationInRegion(ll.LatLng location, double minLat, double maxLat,
+      double minLon, double maxLon) {
     print('Checking location: ${location.latitude}, ${location.longitude}');
-    print('Region: $region');
+    print(
+        'Region: minLat: $minLat, maxLat: $maxLat, minLon: $minLon, maxLon: $maxLon');
 
-    return location.latitude >= region['region_south']! &&
-        location.latitude <= region['region_north']! &&
-        location.longitude >= region['region_west']! &&
-        location.longitude <= region['region_east']!;
+    return location.latitude >= minLat &&
+        location.latitude <= maxLat &&
+        location.longitude >= minLon &&
+        location.longitude <= maxLon;
   }
 
   num _parseNum(dynamic value) {

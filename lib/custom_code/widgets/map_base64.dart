@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'index.dart'; // Imports other custom widgets
+
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart' as latlong;
 import 'package:xml/xml.dart';
@@ -127,16 +129,12 @@ class _MapBase64State extends State<MapBase64> {
       return;
     }
 
-    var currentLocation = _coordinates.first;
-    print(
-        'Current location: ${currentLocation.latitude}, ${currentLocation.longitude}');
+    // Use the first coordinate from the GPX data
+    final firstCoordinate = _coordinates.first;
 
     final stats = FMTC.FMTCRoot.stats;
     final stores = await stats.storesAvailable;
-
     print('Available stores: ${stores.length}');
-
-    bool storeFound = false;
 
     for (var store in stores) {
       print('Checking store: ${store.storeName}');
@@ -146,19 +144,27 @@ class _MapBase64State extends State<MapBase64> {
 
       if (metadata != null) {
         try {
-          Map<String, num> regionData = {
-            'region_south': _parseNum(metadata['region_south']),
-            'region_north': _parseNum(metadata['region_north']),
-            'region_west': _parseNum(metadata['region_west']),
-            'region_east': _parseNum(metadata['region_east']),
+          // Extract the region boundaries from the metadata
+          Map<String, double> regionData = {
+            'region_south': double.tryParse(metadata['minLat'] ?? '') ?? 0.0,
+            'region_north': double.tryParse(metadata['maxLat'] ?? '') ?? 0.0,
+            'region_west': double.tryParse(metadata['minLon'] ?? '') ?? 0.0,
+            'region_east': double.tryParse(metadata['maxLon'] ?? '') ?? 0.0,
           };
           print('Parsed region data: $regionData');
 
-          if (_isLocationInRegion(currentLocation, regionData)) {
+          // Check if the first coordinate is within this region's boundaries
+          if (_isLocationInRegion(firstCoordinate, regionData)) {
             _storeName = store.storeName;
-            print('Matched store: $_storeName');
-            storeFound = true;
-            break;
+            print('Found store based on the first coordinate: $_storeName');
+
+            _tileProvider = FMTC.FMTCStore(_storeName!).getTileProvider(
+              settings: FMTC.FMTCTileProviderSettings(
+                behavior: FMTC.CacheBehavior.cacheFirst,
+              ),
+            );
+            print('Tile provider initialized with store: $_storeName');
+            break; // Stop checking further stores once a match is found
           }
         } catch (e) {
           print('Error processing metadata for ${store.storeName}: $e');
@@ -168,22 +174,13 @@ class _MapBase64State extends State<MapBase64> {
       }
     }
 
-    if (!storeFound) {
-      print('No matching store found for the current location.');
-    } else if (_storeName != null) {
-      _tileProvider = FMTC.FMTCStore(_storeName!).getTileProvider(
-        settings: FMTC.FMTCTileProviderSettings(
-          behavior: FMTC.CacheBehavior.cacheFirst,
-        ),
-      );
-      print('Tile provider initialized with store: $_storeName');
-      print('_tileProvider: $_tileProvider');
-    } else {
-      print('No store available to initialize tile provider');
+    if (_storeName == null) {
+      print('No matching store found for the provided GPX data.');
     }
   }
 
-  bool _isLocationInRegion(latlong.LatLng location, Map<String, num> region) {
+  bool _isLocationInRegion(
+      latlong.LatLng location, Map<String, double> region) {
     print('Checking location: ${location.latitude}, ${location.longitude}');
     print('Region: $region');
 
@@ -191,16 +188,6 @@ class _MapBase64State extends State<MapBase64> {
         location.latitude <= region['region_north']! &&
         location.longitude >= region['region_west']! &&
         location.longitude <= region['region_east']!;
-  }
-
-  num _parseNum(dynamic value) {
-    if (value is num) {
-      return value;
-    } else if (value is String) {
-      return num.parse(value);
-    } else {
-      throw FormatException('Cannot parse $value to num');
-    }
   }
 
   void _centerMap() {
@@ -274,17 +261,21 @@ class _MapBase64State extends State<MapBase64> {
               maxZoom: 22,
               initialCenter: _coordinates.first,
               initialZoom: _currentZoom,
-              interactionOptions: const InteractionOptions(
-                flags: InteractiveFlag.all & ~InteractiveFlag.rotate,
-              ),
             ),
             children: [
-              TileLayer(
-                urlTemplate:
-                    'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}@2x?access_token=${widget.accessToken}',
-                additionalOptions: {'accessToken': widget.accessToken},
-                tileProvider: _tileProvider,
-              ),
+              if (_tileProvider != null)
+                TileLayer(
+                  tileProvider: _tileProvider!,
+                  urlTemplate:
+                      'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}@2x?access_token=${widget.accessToken}',
+                  additionalOptions: {'accessToken': widget.accessToken},
+                )
+              else
+                TileLayer(
+                  urlTemplate:
+                      'https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}@2x?access_token=${widget.accessToken}',
+                  additionalOptions: {'accessToken': widget.accessToken},
+                ),
               PolylineLayer(
                 polylines: [
                   Polyline(
