@@ -115,7 +115,6 @@ String? lowerCaseWords(String? text) {
 }
 
 String? capitalizeWords(String? text) {
-  // make all text all capital
   if (text == null || text.isEmpty) {
     return text;
   }

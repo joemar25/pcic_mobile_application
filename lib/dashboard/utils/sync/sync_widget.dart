@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/utils/components/page_loader/page_loader_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -211,21 +212,23 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
                               _model.isSynced = true;
                               safeSetState(() {});
                             } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    'Already Syncing',
-                                    style: GoogleFonts.getFont(
-                                      'Roboto',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
+                              if (kDebugMode) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Already Syncing',
+                                      style: GoogleFonts.getFont(
+                                        'Roboto',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                      ),
                                     ),
+                                    duration: const Duration(milliseconds: 4000),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).secondary,
                                   ),
-                                  duration: const Duration(milliseconds: 4000),
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).secondary,
-                                ),
-                              );
+                                );
+                              }
                             }
 
                             safeSetState(() {});
@@ -313,24 +316,13 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
                                   FFAppState().syncCount = 0;
                                   FFAppState().update(() {});
 
-                                  context.goNamed(
-                                    'dashboard',
-                                    extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
-                                        hasTransition: true,
-                                        transitionType:
-                                            PageTransitionType.scale,
-                                        alignment: Alignment.bottomCenter,
-                                        duration: Duration(milliseconds: 800),
-                                      ),
-                                    },
-                                  );
+                                  context.goNamed('dashboard');
                                 },
                                 text: FFLocalizations.of(context).getText(
                                   'nzwziy9t' /* Dashboard */,
                                 ),
                                 icon: const Icon(
-                                  Icons.dashboard,
+                                  Icons.home,
                                   size: 15.0,
                                 ),
                                 options: FFButtonOptions(

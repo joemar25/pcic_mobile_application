@@ -55,9 +55,9 @@ class _SendFeedbackWidgetState extends State<SendFeedbackWidget> {
             borderWidth: 1.0,
             buttonSize: 60.0,
             icon: Icon(
-              Icons.arrow_back_rounded,
+              Icons.chevron_left,
               color: FlutterFlowTheme.of(context).primaryText,
-              size: 30.0,
+              size: 20.0,
             ),
             onPressed: () async {
               context.pop();
@@ -69,6 +69,7 @@ class _SendFeedbackWidgetState extends State<SendFeedbackWidget> {
             ),
             style: FlutterFlowTheme.of(context).titleLarge.override(
                   fontFamily: 'Readex Pro',
+                  fontSize: 20.0,
                   letterSpacing: 0.0,
                 ),
           ),

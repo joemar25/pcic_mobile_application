@@ -272,18 +272,6 @@ class _GeotaggingWidgetState extends State<GeotaggingWidget>
                                                           ParamType.String,
                                                         ),
                                                       }.withoutNulls,
-                                                      extra: <String, dynamic>{
-                                                        kTransitionInfoKey:
-                                                            const TransitionInfo(
-                                                          hasTransition: true,
-                                                          transitionType:
-                                                              PageTransitionType
-                                                                  .rightToLeft,
-                                                          duration: Duration(
-                                                              milliseconds:
-                                                                  800),
-                                                        ),
-                                                      },
                                                     );
                                                   }
                                                   FFAppState().routeStarted =

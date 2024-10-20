@@ -198,13 +198,6 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                               ParamType.String,
                             ),
                           }.withoutNulls,
-                          extra: <String, dynamic>{
-                            kTransitionInfoKey: const TransitionInfo(
-                              hasTransition: true,
-                              transitionType: PageTransitionType.rightToLeft,
-                              duration: Duration(milliseconds: 800),
-                            ),
-                          },
                         );
                       }
 

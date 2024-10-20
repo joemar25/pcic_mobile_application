@@ -83,7 +83,7 @@ class _CallUsWidgetState extends State<CallUsWidget>
             icon: Icon(
               Icons.arrow_back_rounded,
               color: FlutterFlowTheme.of(context).primaryText,
-              size: 30.0,
+              size: 20.0,
             ),
             onPressed: () async {
               context.pop();
@@ -95,6 +95,7 @@ class _CallUsWidgetState extends State<CallUsWidget>
             ),
             style: FlutterFlowTheme.of(context).titleLarge.override(
                   fontFamily: 'Readex Pro',
+                  fontSize: 20.0,
                   letterSpacing: 0.0,
                 ),
           ),

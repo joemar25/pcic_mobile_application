@@ -119,16 +119,7 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                     size: 20.0,
                   ),
                   onPressed: () async {
-                    context.pushNamed(
-                      'dashboard',
-                      extra: <String, dynamic>{
-                        kTransitionInfoKey: const TransitionInfo(
-                          hasTransition: true,
-                          transitionType: PageTransitionType.rightToLeft,
-                          duration: Duration(milliseconds: 800),
-                        ),
-                      },
-                    );
+                    context.goNamed('dashboard');
                   },
                 ),
                 title: Row(

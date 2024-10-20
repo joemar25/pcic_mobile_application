@@ -111,10 +111,8 @@ class _TasksWidgetState extends State<TasksWidget>
                   });
                 }(),
               );
-              if (Navigator.of(context).canPop()) {
-                context.pop();
-              }
-              context.pushNamed(
+
+              context.goNamed(
                 'taskDetails',
                 queryParameters: {
                   'taskId': serializeParam(
@@ -126,13 +124,6 @@ class _TasksWidgetState extends State<TasksWidget>
                     ParamType.String,
                   ),
                 }.withoutNulls,
-                extra: <String, dynamic>{
-                  kTransitionInfoKey: const TransitionInfo(
-                    hasTransition: true,
-                    transitionType: PageTransitionType.bottomToTop,
-                    duration: Duration(milliseconds: 800),
-                  ),
-                },
               );
             },
             child: Material(
@@ -209,7 +200,6 @@ class _TasksWidgetState extends State<TasksWidget>
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryText,
                                     letterSpacing: 0.0,
-                                    decoration: TextDecoration.underline,
                                   ),
                             ),
                           ],

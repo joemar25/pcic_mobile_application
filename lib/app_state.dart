@@ -157,6 +157,12 @@ class FFAppState extends ChangeNotifier {
   set capturedArea(String value) {
     _capturedArea = value;
   }
+
+  String _geoJsonFileName = '';
+  String get geoJsonFileName => _geoJsonFileName;
+  set geoJsonFileName(String value) {
+    _geoJsonFileName = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {

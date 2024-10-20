@@ -75,16 +75,7 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                 size: 20.0,
               ),
               onPressed: () async {
-                context.goNamed(
-                  'dashboard',
-                  extra: <String, dynamic>{
-                    kTransitionInfoKey: const TransitionInfo(
-                      hasTransition: true,
-                      transitionType: PageTransitionType.fade,
-                      duration: Duration(milliseconds: 0),
-                    ),
-                  },
-                );
+                context.goNamed('dashboard');
               },
             ),
             title: Row(

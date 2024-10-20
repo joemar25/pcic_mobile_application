@@ -122,16 +122,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                   size: 20.0,
                 ),
                 onPressed: () async {
-                  context.pushNamed(
-                    'chats',
-                    extra: <String, dynamic>{
-                      kTransitionInfoKey: const TransitionInfo(
-                        hasTransition: true,
-                        transitionType: PageTransitionType.leftToRight,
-                        duration: Duration(milliseconds: 250),
-                      ),
-                    },
-                  );
+                  context.safePop();
                 },
               ),
               title: Row(
