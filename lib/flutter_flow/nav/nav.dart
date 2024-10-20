@@ -184,6 +184,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
               'error',
               ParamType.String,
             ),
+            otherMsg: params.getParam(
+              'otherMsg',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(

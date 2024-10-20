@@ -12,9 +12,12 @@ class FailWidget extends StatefulWidget {
   const FailWidget({
     super.key,
     String? error,
-  }) : error = error ?? 'Error Happen, Try Again.';
+    String? otherMsg,
+  })  : error = error ?? 'Error Happen, Try Again.',
+        otherMsg = otherMsg ?? '';
 
   final String error;
+  final String otherMsg;
 
   @override
   State<FailWidget> createState() => _FailWidgetState();
@@ -102,6 +105,40 @@ class _FailWidgetState extends State<FailWidget> with TickerProviderStateMixin {
         ],
       ),
       'textOnPageLoadAnimation2': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          VisibilityEffect(duration: 100.ms),
+          FadeEffect(
+            curve: Curves.easeInOut,
+            delay: 100.0.ms,
+            duration: 300.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+          ScaleEffect(
+            curve: Curves.easeInOut,
+            delay: 100.0.ms,
+            duration: 300.0.ms,
+            begin: const Offset(0.8, 0.8),
+            end: const Offset(1.0, 1.0),
+          ),
+          TiltEffect(
+            curve: Curves.easeInOut,
+            delay: 100.0.ms,
+            duration: 300.0.ms,
+            begin: const Offset(0, 1.396),
+            end: const Offset(0, 0),
+          ),
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 100.0.ms,
+            duration: 300.0.ms,
+            begin: const Offset(0.0, 40.0),
+            end: const Offset(0.0, 0.0),
+          ),
+        ],
+      ),
+      'textOnPageLoadAnimation3': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
           VisibilityEffect(duration: 100.ms),
@@ -282,12 +319,31 @@ class _FailWidgetState extends State<FailWidget> with TickerProviderStateMixin {
                                         .override(
                                           fontFamily: 'Inter',
                                           color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
+                                              .error,
                                           fontSize: 20.0,
                                           letterSpacing: 0.0,
                                         ),
                                   ).animateOnPageLoad(animationsMap[
                                       'textOnPageLoadAnimation2']!),
+                                ),
+                                Align(
+                                  alignment: const AlignmentDirectional(0.0, -1.0),
+                                  child: Text(
+                                    valueOrDefault<String>(
+                                      widget.otherMsg,
+                                      'Try Again',
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .displaySmall
+                                        .override(
+                                          fontFamily: 'Inter',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          fontSize: 14.0,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ).animateOnPageLoad(animationsMap[
+                                      'textOnPageLoadAnimation3']!),
                                 ),
                               ].divide(const SizedBox(height: 8.0)),
                             ),

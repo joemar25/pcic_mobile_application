@@ -26,7 +26,7 @@ void main() async {
   // Start initial custom actions code
   await actions.connected();
   await actions.initializeFMTCBackend();
-  await actions.initializePhilippinesRegionStores();
+  await actions.initializeRegionStores();
   // End initial custom actions code
 
   await SupaFlow.initialize();
