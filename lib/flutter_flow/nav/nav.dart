@@ -320,6 +320,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
               ParamType.String,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'allTasksCopy',
+          path: '/allTasksCopy',
+          requireAuth: true,
+          builder: (context, params) => AllTasksCopyWidget(
+            taskStatus: params.getParam(
+              'taskStatus',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

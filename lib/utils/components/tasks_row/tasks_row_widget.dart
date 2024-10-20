@@ -14,15 +14,22 @@ export 'tasks_row_model.dart';
 class TasksRowWidget extends StatefulWidget {
   const TasksRowWidget({
     super.key,
-    String? task,
-    String? status,
-    required this.index,
-  })  : task = task ?? '123',
-        status = status ?? 'for dispatch';
+    String? farmerName,
+    String? insuranceId,
+    String? assignmentId,
+    String? ppirAddress,
+    bool? hasGpx,
+  })  : farmerName = farmerName ?? 'Farmer Name',
+        insuranceId = insuranceId ?? 'Insurance Id',
+        assignmentId = assignmentId ?? 'Assignment Id',
+        ppirAddress = ppirAddress ?? 'Address',
+        hasGpx = hasGpx ?? false;
 
-  final String task;
-  final String status;
-  final int? index;
+  final String farmerName;
+  final String insuranceId;
+  final String assignmentId;
+  final String ppirAddress;
+  final bool hasGpx;
 
   @override
   State<TasksRowWidget> createState() => _TasksRowWidgetState();
@@ -76,7 +83,7 @@ class _TasksRowWidgetState extends State<TasksRowWidget>
       padding: const EdgeInsets.all(3.0),
       child: FutureBuilder<List<SelectPpirFormsRow>>(
         future: SQLiteManager.instance.selectPpirForms(
-          taskId: widget.task,
+          taskId: widget.farmerName,
         ),
         builder: (context, snapshot) {
           // Customize what your widget looks like when it's loading.
@@ -107,7 +114,7 @@ class _TasksRowWidgetState extends State<TasksRowWidget>
                     'activity': 'Select a Task',
                     'longlat':
                         '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
-                    'task_id': widget.task,
+                    'task_id': widget.farmerName,
                   });
                 }(),
               );
@@ -116,11 +123,11 @@ class _TasksRowWidgetState extends State<TasksRowWidget>
                 'taskDetails',
                 queryParameters: {
                   'taskId': serializeParam(
-                    widget.task,
+                    widget.farmerName,
                     ParamType.String,
                   ),
                   'taskStatus': serializeParam(
-                    widget.status,
+                    widget.insuranceId,
                     ParamType.String,
                   ),
                 }.withoutNulls,
@@ -172,9 +179,7 @@ class _TasksRowWidgetState extends State<TasksRowWidget>
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 20.0, 0.0),
                                 child: Text(
-                                  FFLocalizations.of(context).getText(
-                                    '3ycqqyxp' /* Farmer Name */,
-                                  ),
+                                  widget.farmerName,
                                   style: FlutterFlowTheme.of(context)
                                       .titleLarge
                                       .override(
@@ -186,9 +191,7 @@ class _TasksRowWidgetState extends State<TasksRowWidget>
                               ),
                             ),
                             Text(
-                              FFLocalizations.of(context).getText(
-                                'e1cnuo6x' /* Insurance Id */,
-                              ),
+                              widget.insuranceId,
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -233,9 +236,7 @@ class _TasksRowWidgetState extends State<TasksRowWidget>
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           8.0, 0.0, 0.0, 0.0),
                                       child: Text(
-                                        FFLocalizations.of(context).getText(
-                                          'xh9gymyx' /* ID */,
-                                        ),
+                                        widget.assignmentId,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -274,9 +275,7 @@ class _TasksRowWidgetState extends State<TasksRowWidget>
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           8.0, 0.0, 0.0, 0.0),
                                       child: Text(
-                                        FFLocalizations.of(context).getText(
-                                          '2f8bvbud' /* Address */,
-                                        ),
+                                        widget.ppirAddress,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -315,9 +314,7 @@ class _TasksRowWidgetState extends State<TasksRowWidget>
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           8.0, 0.0, 0.0, 0.0),
                                       child: Text(
-                                        FFLocalizations.of(context).getText(
-                                          '3h3t30vk' /* Has GPX */,
-                                        ),
+                                        widget.hasGpx.toString(),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(

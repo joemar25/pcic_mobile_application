@@ -34,3 +34,5 @@ export '/utils/test/map_test_test/map_test_test_widget.dart'
     show MapTestTestWidget;
 export '/dashboard/forms/all_tasks_original/all_tasks_original_widget.dart'
     show AllTasksOriginalWidget;
+export '/dashboard/forms/all_tasks_copy/all_tasks_copy_widget.dart'
+    show AllTasksCopyWidget;

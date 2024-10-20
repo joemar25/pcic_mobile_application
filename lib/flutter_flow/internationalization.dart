@@ -1226,6 +1226,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
+  // allTasksCopy
+  {
+    'q4didzar': {
+      'en': 'Home',
+      'tl': '',
+    },
+  },
   // tasks
   {
     '83q8pggh': {
@@ -1627,35 +1634,15 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // tasksRow
   {
-    '3ycqqyxp': {
-      'en': 'Farmer Name',
-      'tl': '',
-    },
-    'e1cnuo6x': {
-      'en': 'Insurance Id',
-      'tl': '',
-    },
     'ows2z6ni': {
       'en': 'Assignment Id',
-      'tl': '',
-    },
-    'xh9gymyx': {
-      'en': 'ID',
       'tl': '',
     },
     'pw7ohr2y': {
       'en': 'Address',
       'tl': '',
     },
-    '2f8bvbud': {
-      'en': 'Address',
-      'tl': '',
-    },
     'k3w8638b': {
-      'en': 'Has GPX',
-      'tl': '',
-    },
-    '3h3t30vk': {
       'en': 'Has GPX',
       'tl': '',
     },
