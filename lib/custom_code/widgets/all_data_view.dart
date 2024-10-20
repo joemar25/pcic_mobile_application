@@ -52,8 +52,12 @@ class _AllDataViewState extends State<AllDataView> {
       } else {
         final textSearch = TextSearch(
           widget.data!
-              .map((task) => TextSearchItem(
-                  task, [TextSearchItemTerm(task.ppirFarmername ?? '')]))
+              .map((task) => TextSearchItem(task, [
+                    TextSearchItemTerm(task.ppirFarmername ?? ''),
+                    TextSearchItemTerm(task.ppirInsuranceid ?? ''),
+                    TextSearchItemTerm(task.ppirAssignmentid ?? ''),
+                    TextSearchItemTerm(task.ppirAddress ?? ''),
+                  ]))
               .toList(),
         );
         _searchResults =

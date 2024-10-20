@@ -244,7 +244,10 @@ class _TasksRowWidgetState extends State<TasksRowWidget>
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           8.0, 0.0, 0.0, 0.0),
                                       child: Text(
-                                        widget.assignmentId,
+                                        valueOrDefault<String>(
+                                          widget.assignmentId,
+                                          'Assignment Id',
+                                        ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -283,7 +286,10 @@ class _TasksRowWidgetState extends State<TasksRowWidget>
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           8.0, 0.0, 0.0, 0.0),
                                       child: Text(
-                                        widget.ppirAddress,
+                                        valueOrDefault<String>(
+                                          widget.ppirAddress,
+                                          'Address',
+                                        ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
