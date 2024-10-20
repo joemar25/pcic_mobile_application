@@ -49,7 +49,7 @@ class _FormSuccessWidgetState extends State<FormSuccessWidget>
           kTransitionInfoKey: const TransitionInfo(
             hasTransition: true,
             transitionType: PageTransitionType.fade,
-            duration: Duration(milliseconds: 300),
+            duration: Duration(milliseconds: 0),
           ),
         },
       );
@@ -684,13 +684,13 @@ class _FormSuccessWidgetState extends State<FormSuccessWidget>
                             ),
                             FFButtonWidget(
                               onPressed: () async {
-                                context.pushNamed(
+                                context.goNamed(
                                   'dashboard',
                                   extra: <String, dynamic>{
                                     kTransitionInfoKey: const TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
-                                      duration: Duration(milliseconds: 200),
+                                      duration: Duration(milliseconds: 0),
                                     ),
                                   },
                                 );

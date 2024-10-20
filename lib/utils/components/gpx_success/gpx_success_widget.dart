@@ -52,7 +52,7 @@ class _GpxSuccessWidgetState extends State<GpxSuccessWidget>
           kTransitionInfoKey: const TransitionInfo(
             hasTransition: true,
             transitionType: PageTransitionType.fade,
-            duration: Duration(milliseconds: 300),
+            duration: Duration(milliseconds: 0),
           ),
         },
       );

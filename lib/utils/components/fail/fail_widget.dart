@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lottie/lottie.dart';
 import 'fail_model.dart';
@@ -32,22 +31,6 @@ class _FailWidgetState extends State<FailWidget> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     _model = createModel(context, () => FailModel());
-
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await Future.delayed(const Duration(milliseconds: 5000));
-
-      context.goNamed(
-        'dashboard',
-        extra: <String, dynamic>{
-          kTransitionInfoKey: const TransitionInfo(
-            hasTransition: true,
-            transitionType: PageTransitionType.fade,
-            duration: Duration(milliseconds: 300),
-          ),
-        },
-      );
-    });
 
     animationsMap.addAll({
       'containerOnPageLoadAnimation': AnimationInfo(

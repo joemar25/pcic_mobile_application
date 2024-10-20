@@ -1,6 +1,5 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/sqlite/sqlite_manager.dart';
-import '/components/profile_container_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -10,6 +9,7 @@ import '/utils/components/empty_lists/empty_lists_widget.dart';
 import '/utils/components/page_loader/page_loader_widget.dart';
 import '/utils/components/saving_mode/saving_mode_widget.dart';
 import '/utils/components/tasks/tasks_widget.dart';
+import '/utils/profile_container/profile_container_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';

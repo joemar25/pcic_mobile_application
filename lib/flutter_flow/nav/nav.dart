@@ -544,8 +544,9 @@ class TransitionInfo {
 
   static TransitionInfo appDefault() => const TransitionInfo(
         hasTransition: true,
-        transitionType: PageTransitionType.fade,
-        duration: Duration(milliseconds: 500),
+        transitionType: PageTransitionType.scale,
+        alignment: Alignment.bottomCenter,
+        duration: Duration(milliseconds: 300),
       );
 }
 

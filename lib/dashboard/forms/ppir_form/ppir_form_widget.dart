@@ -28,6 +28,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'ppir_form_model.dart';
 export 'ppir_form_model.dart';
@@ -4196,6 +4197,26 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                               safeSetState(() {});
                                               return;
                                             }
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  _model.isValidated!
+                                                      .toString(),
+                                                  style: GoogleFonts.getFont(
+                                                    'Roboto',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                  ),
+                                                ),
+                                                duration: const Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondary,
+                                              ),
+                                            );
                                             if (_model.isValidated!) {
                                               await showDialog(
                                                 context: context,
