@@ -107,18 +107,13 @@ String? getAddress(dynamic data) {
 }
 
 String? lowerCaseWords(String? text) {
-  // lower Case Text
-  if (text == null) {
-    return null;
-  }
-  return text.toLowerCase();
+  //  if (text == null) { return null; } return text.toLowerCase();
+  return text != null ? text.toLowerCase() : null;
 }
 
 String? capitalizeWords(String? text) {
-  if (text == null || text.isEmpty) {
-    return text;
-  }
-  return text.toUpperCase();
+  // if (text == null || text.isEmpty) { return text;  } return text.toUpperCase();
+  return (text == null || text.isEmpty) ? text : text.toUpperCase();
 }
 
 String sanitizeStoreName(String storeName) {
@@ -126,12 +121,8 @@ String sanitizeStoreName(String storeName) {
 }
 
 bool? checkIfNull(String? attribute) {
-  // check If the value given is Null
-  if (attribute == null) {
-    return true;
-  } else {
-    return false;
-  }
+  // if (attribute == null) { return true;  } else { return false; }
+  return attribute == null;
 }
 
 String? convertDateToString(String? date) {

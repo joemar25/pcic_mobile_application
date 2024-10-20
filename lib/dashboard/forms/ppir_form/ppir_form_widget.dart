@@ -4458,12 +4458,12 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                     'fail',
                                                     queryParameters: {
                                                       'error': serializeParam(
-                                                        'Failed to submit FTP!',
+                                                        'Failed to submit Task!',
                                                         ParamType.String,
                                                       ),
                                                       'otherMsg':
                                                           serializeParam(
-                                                        'Form Details are save',
+                                                        'But the Form Details are saved. You may try to submit again later.',
                                                         ParamType.String,
                                                       ),
                                                     }.withoutNulls,

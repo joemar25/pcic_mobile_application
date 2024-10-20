@@ -1183,26 +1183,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // allTasks
   {
-    'agvkb82b': {
-      'en': 'Farmer Name',
-      'tl': '',
-    },
-    'q2ma3u37': {
-      'en': 'Farmer Name',
-      'tl': '',
-    },
-    'hialfg9h': {
-      'en': 'Task Number',
-      'tl': '',
-    },
-    'n3zqay7i': {
-      'en': 'Farmer Name',
-      'tl': '',
-    },
-    'xpwbz0mf': {
-      'en': 'GPX',
-      'tl': '',
-    },
     'flnyt26u': {
       'en': 'Home',
       'tl': '',
@@ -1215,6 +1195,33 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
     'tg8n88l3': {
+      'en': 'Home',
+      'tl': '',
+    },
+  },
+  // allTasksOriginal
+  {
+    '4v9lcl24': {
+      'en': 'Farmer Name',
+      'tl': '',
+    },
+    '5d2q239b': {
+      'en': 'Farmer Name',
+      'tl': '',
+    },
+    '7l2bp27m': {
+      'en': 'Task Number',
+      'tl': '',
+    },
+    'cgr1q7ps': {
+      'en': 'Farmer Name',
+      'tl': '',
+    },
+    'bfwfsbf1': {
+      'en': 'GPX',
+      'tl': '',
+    },
+    'bk5uwlsi': {
       'en': 'Home',
       'tl': '',
     },
@@ -1615,6 +1622,41 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'um1b1tjj': {
       'en': '!',
+      'tl': '',
+    },
+  },
+  // tasksRow
+  {
+    '3ycqqyxp': {
+      'en': 'Farmer Name',
+      'tl': '',
+    },
+    'e1cnuo6x': {
+      'en': 'Insurance Id',
+      'tl': '',
+    },
+    'ows2z6ni': {
+      'en': 'Assignment Id',
+      'tl': '',
+    },
+    'xh9gymyx': {
+      'en': 'ID',
+      'tl': '',
+    },
+    'pw7ohr2y': {
+      'en': 'Address',
+      'tl': '',
+    },
+    '2f8bvbud': {
+      'en': 'Address',
+      'tl': '',
+    },
+    'k3w8638b': {
+      'en': 'Has GPX',
+      'tl': '',
+    },
+    '3h3t30vk': {
+      'en': 'Has GPX',
       'tl': '',
     },
   },

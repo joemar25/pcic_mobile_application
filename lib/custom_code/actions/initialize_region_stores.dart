@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'index.dart'; // Imports other custom actions
+
 import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/services.dart' show rootBundle;
@@ -36,7 +38,7 @@ Future<void> initializePhilippinesRegionStores() async {
       print('Store created successfully for $region');
 
       // Set metadata for the region's bounding box
-      await FMTC.FMTCStore(storeName).metadata.setBulk({
+      await FMTC.FMTCStore(storeName).metadata.setBulk(kvs: {
         'minLat': bbox['minLat'].toString(),
         'maxLat': bbox['maxLat'].toString(),
         'minLon': bbox['minLon'].toString(),
@@ -68,29 +70,31 @@ Map<String, Map<String, double>> calculateRegionBoundingBoxes(
       };
     }
 
-    List<List<List<List<double>>>> coordinates =
-        (feature['geometry']['coordinates'] as List)
-            .cast<List<List<List<double>>>>();
-
-    for (var polygon in coordinates) {
-      for (var ring in polygon) {
-        for (var point in ring) {
-          double lon = point[0];
-          double lat = point[1];
-          regionBoundingBoxes[region]!['minLat'] =
-              min(regionBoundingBoxes[region]!['minLat']!, lat);
-          regionBoundingBoxes[region]!['maxLat'] =
-              max(regionBoundingBoxes[region]!['maxLat']!, lat);
-          regionBoundingBoxes[region]!['minLon'] =
-              min(regionBoundingBoxes[region]!['minLon']!, lon);
-          regionBoundingBoxes[region]!['maxLon'] =
-              max(regionBoundingBoxes[region]!['maxLon']!, lon);
-        }
-      }
-    }
+    var coordinates = feature['geometry']['coordinates'];
+    updateBoundingBox(coordinates, regionBoundingBoxes[region]!);
   }
 
   return regionBoundingBoxes;
+}
+
+void updateBoundingBox(dynamic coordinates, Map<String, double> bbox) {
+  if (coordinates is List) {
+    if (coordinates.isEmpty) return;
+    if (coordinates[0] is num) {
+      // We've reached a single coordinate pair
+      double lon = coordinates[0].toDouble();
+      double lat = coordinates[1].toDouble();
+      bbox['minLat'] = min(bbox['minLat']!, lat);
+      bbox['maxLat'] = max(bbox['maxLat']!, lat);
+      bbox['minLon'] = min(bbox['minLon']!, lon);
+      bbox['maxLon'] = max(bbox['maxLon']!, lon);
+    } else {
+      // We're still in a nested structure, recurse
+      for (var coord in coordinates) {
+        updateBoundingBox(coord, bbox);
+      }
+    }
+  }
 }
 
 String getRegionForProvince(String provinceName) {
@@ -191,6 +195,6 @@ String getRegionForProvince(String provinceName) {
   return '';
 }
 
-Future initializeRegionStores() async {
+Future<void> initializeRegionStores() async {
   await initializePhilippinesRegionStores();
 }

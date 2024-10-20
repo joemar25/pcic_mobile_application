@@ -7,3 +7,4 @@ export 'map_test.dart' show MapTest;
 export 'geo_json.dart' show GeoJson;
 export 'individual_blob_image_loader.dart' show IndividualBlobImageLoader;
 export 'm_b_tiles_map_view.dart' show MBTilesMapView;
+export 'all_data_view.dart' show AllDataView;

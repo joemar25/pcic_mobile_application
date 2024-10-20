@@ -1,5 +1,3 @@
-import '/backend/sqlite/sqlite_manager.dart';
-import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import 'all_tasks_widget.dart' show AllTasksWidget;
@@ -22,14 +20,6 @@ class AllTasksModel extends FlutterFlowModel<AllTasksWidget> {
   String? message;
   // Model for connectivity component.
   late ConnectivityModel connectivityModel;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
-  List<String> simpleSearchResults = [];
-  // State field(s) for PaginatedDataTable widget.
-  final paginatedDataTableController = FlutterFlowDataTableController<
-      SELECTPPIRFormsByAssigneeAndTaskStatusRow>();
 
   @override
   void initState(BuildContext context) {
@@ -39,9 +29,5 @@ class AllTasksModel extends FlutterFlowModel<AllTasksWidget> {
   @override
   void dispose() {
     connectivityModel.dispose();
-    textFieldFocusNode?.dispose();
-    textController?.dispose();
-
-    paginatedDataTableController.dispose();
   }
 }
