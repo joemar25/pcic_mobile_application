@@ -19,17 +19,22 @@ class TasksRowWidget extends StatefulWidget {
     String? assignmentId,
     String? ppirAddress,
     bool? hasGpx,
+    String? taskStatus,
+    required this.taskId,
   })  : farmerName = farmerName ?? 'Farmer Name',
         insuranceId = insuranceId ?? 'Insurance Id',
         assignmentId = assignmentId ?? 'Assignment Id',
         ppirAddress = ppirAddress ?? 'Address',
-        hasGpx = hasGpx ?? false;
+        hasGpx = hasGpx ?? false,
+        taskStatus = taskStatus ?? 'ongoing';
 
   final String farmerName;
   final String insuranceId;
   final String assignmentId;
   final String ppirAddress;
   final bool hasGpx;
+  final String taskStatus;
+  final String? taskId;
 
   @override
   State<TasksRowWidget> createState() => _TasksRowWidgetState();
@@ -114,7 +119,7 @@ class _TasksRowWidgetState extends State<TasksRowWidget>
                     'activity': 'Select a Task',
                     'longlat':
                         '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
-                    'task_id': widget.farmerName,
+                    'task_id': widget.taskId,
                   });
                 }(),
               );
@@ -123,11 +128,11 @@ class _TasksRowWidgetState extends State<TasksRowWidget>
                 'taskDetails',
                 queryParameters: {
                   'taskId': serializeParam(
-                    widget.farmerName,
+                    widget.taskId,
                     ParamType.String,
                   ),
                   'taskStatus': serializeParam(
-                    widget.insuranceId,
+                    widget.taskStatus,
                     ParamType.String,
                   ),
                 }.withoutNulls,

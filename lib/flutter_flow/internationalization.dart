@@ -1226,13 +1226,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
-  // allTasksCopy
-  {
-    'q4didzar': {
-      'en': 'Home',
-      'tl': '',
-    },
-  },
   // tasks
   {
     '83q8pggh': {
