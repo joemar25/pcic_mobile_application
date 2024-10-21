@@ -309,17 +309,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           name: 'mapTestTest',
           path: '/mapTestTest',
           builder: (context, params) => const MapTestTestWidget(),
-        ),
-        FFRoute(
-          name: 'allTasksOriginal',
-          path: '/allTasksOriginal',
-          requireAuth: true,
-          builder: (context, params) => AllTasksOriginalWidget(
-            taskStatus: params.getParam(
-              'taskStatus',
-              ParamType.String,
-            ),
-          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

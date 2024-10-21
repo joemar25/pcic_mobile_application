@@ -4180,8 +4180,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                               (ppirFormSelectPpirFormsRowList
                                                       .first.ppirSigInsured ==
                                                   'null') ||
-                                              (_model.capturedImageBlobInputTextController
-                                                          .text ==
+                                              (_model.capturedBlobOutput ==
+                                                      null ||
+                                                  _model.capturedBlobOutput ==
                                                       ''))) {
                                             _model.isValidated = true;
                                             if (_model.formKey.currentState ==

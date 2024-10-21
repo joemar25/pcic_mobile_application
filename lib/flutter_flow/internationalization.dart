@@ -1191,33 +1191,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tl': '',
     },
   },
-  // allTasksOriginal
-  {
-    '4v9lcl24': {
-      'en': 'Farmer Name',
-      'tl': '',
-    },
-    '5d2q239b': {
-      'en': 'Farmer Name',
-      'tl': '',
-    },
-    '7l2bp27m': {
-      'en': 'Task Number',
-      'tl': '',
-    },
-    'cgr1q7ps': {
-      'en': 'Farmer Name',
-      'tl': '',
-    },
-    'bfwfsbf1': {
-      'en': 'GPX',
-      'tl': '',
-    },
-    'bk5uwlsi': {
-      'en': 'Home',
-      'tl': '',
-    },
-  },
   // tasks
   {
     '83q8pggh': {
