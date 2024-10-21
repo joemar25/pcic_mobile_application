@@ -2768,10 +2768,6 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                             _model
                                                                 .uploadedLocalFile,
                                                           );
-                                                          FFAppState()
-                                                                  .capturedArea =
-                                                              _model.base64!;
-                                                          safeSetState(() {});
                                                           safeSetState(() {
                                                             _model.capturedImageBlobInputTextController
                                                                     ?.text =
@@ -2854,47 +2850,53 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                 .circular(8.0),
                                                       ),
                                                     ),
-                                                    if (kDebugMode)
-                                                      Expanded(
-                                                        child: TextFormField(
-                                                          controller: _model
-                                                                  .capturedImageBlobInputTextController ??=
-                                                              TextEditingController(
-                                                            text: ppirFormSelectPpirFormsRowList
-                                                                .first
-                                                                .capturedArea,
-                                                          ),
-                                                          focusNode: _model
-                                                              .capturedImageBlobInputFocusNode,
-                                                          onChanged: (_) =>
-                                                              EasyDebounce
-                                                                  .debounce(
-                                                            '_model.capturedImageBlobInputTextController',
-                                                            const Duration(
-                                                                milliseconds:
-                                                                    2000),
-                                                            () => safeSetState(
-                                                                () {}),
-                                                          ),
-                                                          autofocus: false,
-                                                          textCapitalization:
-                                                              TextCapitalization
-                                                                  .none,
-                                                          textInputAction:
-                                                              TextInputAction
-                                                                  .next,
-                                                          readOnly: true,
-                                                          obscureText: false,
-                                                          decoration:
-                                                              InputDecoration(
-                                                            labelText:
-                                                                FFLocalizations.of(
-                                                                        context)
-                                                                    .getText(
-                                                              'w9s8lti0' /* Base 64 (debug only) */,
-                                                            ),
-                                                            labelStyle:
-                                                                FlutterFlowTheme.of(
+                                                    if (false)
+                                                      Flexible(
+                                                        child: Opacity(
+                                                          opacity: 0.0,
+                                                          child: SizedBox(
+                                                            width: 0.0,
+                                                            child:
+                                                                TextFormField(
+                                                              controller: _model
+                                                                      .capturedImageBlobInputTextController ??=
+                                                                  TextEditingController(
+                                                                text: ppirFormSelectPpirFormsRowList
+                                                                    .first
+                                                                    .capturedArea,
+                                                              ),
+                                                              focusNode: _model
+                                                                  .capturedImageBlobInputFocusNode,
+                                                              onChanged: (_) =>
+                                                                  EasyDebounce
+                                                                      .debounce(
+                                                                '_model.capturedImageBlobInputTextController',
+                                                                const Duration(
+                                                                    milliseconds:
+                                                                        2000),
+                                                                () =>
+                                                                    safeSetState(
+                                                                        () {}),
+                                                              ),
+                                                              autofocus: false,
+                                                              textCapitalization:
+                                                                  TextCapitalization
+                                                                      .none,
+                                                              textInputAction:
+                                                                  TextInputAction
+                                                                      .next,
+                                                              readOnly: true,
+                                                              obscureText:
+                                                                  false,
+                                                              decoration:
+                                                                  InputDecoration(
+                                                                labelText:
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                  'w9s8lti0' /* Base 64 (debug only) */,
+                                                                ),
+                                                                labelStyle: FlutterFlowTheme.of(
                                                                         context)
                                                                     .labelMedium
                                                                     .override(
@@ -2903,8 +2905,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                       letterSpacing:
                                                                           0.0,
                                                                     ),
-                                                            hintStyle:
-                                                                FlutterFlowTheme.of(
+                                                                hintStyle: FlutterFlowTheme.of(
                                                                         context)
                                                                     .labelMedium
                                                                     .override(
@@ -2913,95 +2914,96 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                       letterSpacing:
                                                                           0.0,
                                                                     ),
-                                                            enabledBorder:
-                                                                OutlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: FlutterFlowTheme.of(
+                                                                enabledBorder:
+                                                                    OutlineInputBorder(
+                                                                  borderSide:
+                                                                      BorderSide(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                    width: 2.0,
+                                                                  ),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              12.0),
+                                                                ),
+                                                                focusedBorder:
+                                                                    OutlineInputBorder(
+                                                                  borderSide:
+                                                                      BorderSide(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                    width: 2.0,
+                                                                  ),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              12.0),
+                                                                ),
+                                                                errorBorder:
+                                                                    OutlineInputBorder(
+                                                                  borderSide:
+                                                                      BorderSide(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .error,
+                                                                    width: 2.0,
+                                                                  ),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              12.0),
+                                                                ),
+                                                                focusedErrorBorder:
+                                                                    OutlineInputBorder(
+                                                                  borderSide:
+                                                                      BorderSide(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .error,
+                                                                    width: 2.0,
+                                                                  ),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              12.0),
+                                                                ),
+                                                                filled: true,
+                                                                fillColor: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .secondaryText,
-                                                                width: 2.0,
+                                                                    .secondaryBackground,
+                                                                contentPadding:
+                                                                    const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            16.0,
+                                                                            12.0,
+                                                                            16.0,
+                                                                            12.0),
                                                               ),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          12.0),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                              keyboardType:
+                                                                  TextInputType
+                                                                      .datetime,
+                                                              cursorColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                              validator: _model
+                                                                  .capturedImageBlobInputTextControllerValidator
+                                                                  .asValidator(
+                                                                      context),
                                                             ),
-                                                            focusedBorder:
-                                                                OutlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primary,
-                                                                width: 2.0,
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          12.0),
-                                                            ),
-                                                            errorBorder:
-                                                                OutlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .error,
-                                                                width: 2.0,
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          12.0),
-                                                            ),
-                                                            focusedErrorBorder:
-                                                                OutlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .error,
-                                                                width: 2.0,
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          12.0),
-                                                            ),
-                                                            filled: true,
-                                                            fillColor: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryBackground,
-                                                            contentPadding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        16.0,
-                                                                        12.0,
-                                                                        16.0,
-                                                                        12.0),
                                                           ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                          maxLines: 5,
-                                                          keyboardType:
-                                                              TextInputType
-                                                                  .datetime,
-                                                          cursorColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .primary,
-                                                          validator: _model
-                                                              .capturedImageBlobInputTextControllerValidator
-                                                              .asValidator(
-                                                                  context),
                                                         ),
                                                       ),
                                                   ].divide(

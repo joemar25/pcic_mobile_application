@@ -82,7 +82,7 @@ class FFAppState extends ChangeNotifier {
   }
 
   String _accessToken =
-      'pk.eyJ1IjoicXVhbmJ5ZGV2cyIsImEiOiJjbHplNmtybm4wbHZsMmlva3pkbDY2bG1yIn0.I-82-7hu310FPXYvKTIMMQ';
+      'pk.eyJ1IjoicXVhbmJ5IiwiYSI6ImNtMmR2MnQ4ODFnbnoyanE0MWc3Nm1kZDgifQ.dc3sgovzWACKf0JK_DaP7g';
   String get accessToken => _accessToken;
   set accessToken(String value) {
     _accessToken = value;

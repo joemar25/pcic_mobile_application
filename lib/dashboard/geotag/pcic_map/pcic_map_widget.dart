@@ -5,6 +5,7 @@ import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/empty_lists/empty_lists_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -265,73 +266,77 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                                                   ),
                                                 ),
                                               ),
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 4.0, 0.0),
-                                                child: FlutterFlowIconButton(
-                                                  borderColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .alternate,
-                                                  borderRadius: 8.0,
-                                                  borderWidth: 2.0,
-                                                  buttonSize: 40.0,
-                                                  icon: Icon(
-                                                    Icons
-                                                        .delete_forever_outlined,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .error,
-                                                    size: 20.0,
+                                              if (kDebugMode)
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 4.0, 0.0),
+                                                  child: FlutterFlowIconButton(
+                                                    borderColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .alternate,
+                                                    borderRadius: 8.0,
+                                                    borderWidth: 2.0,
+                                                    buttonSize: 40.0,
+                                                    icon: Icon(
+                                                      Icons
+                                                          .delete_forever_outlined,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .error,
+                                                      size: 20.0,
+                                                    ),
+                                                    onPressed: () async {
+                                                      var confirmDialogResponse =
+                                                          await showDialog<
+                                                                  bool>(
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (alertDialogContext) {
+                                                                  return AlertDialog(
+                                                                    title: const Text(
+                                                                        'Delete Map'),
+                                                                    content: const Text(
+                                                                        'Are you sure you want to delete this map?'),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed: () => Navigator.pop(
+                                                                            alertDialogContext,
+                                                                            false),
+                                                                        child: const Text(
+                                                                            'Cancel'),
+                                                                      ),
+                                                                      TextButton(
+                                                                        onPressed: () => Navigator.pop(
+                                                                            alertDialogContext,
+                                                                            true),
+                                                                        child: const Text(
+                                                                            'Confirm'),
+                                                                      ),
+                                                                    ],
+                                                                  );
+                                                                },
+                                                              ) ??
+                                                              false;
+                                                      if (confirmDialogResponse) {
+                                                        await actions
+                                                            .deleteMapStore(
+                                                          listOfDownloadsItem
+                                                              .rawStoreName,
+                                                        );
+                                                        FFAppState()
+                                                            .removeAtIndexFromListOfMapDownloads(
+                                                                listOfDownloadsIndex);
+                                                        safeSetState(() {});
+                                                      } else {
+                                                        Navigator.pop(context);
+                                                      }
+                                                    },
                                                   ),
-                                                  onPressed: () async {
-                                                    var confirmDialogResponse =
-                                                        await showDialog<bool>(
-                                                              context: context,
-                                                              builder:
-                                                                  (alertDialogContext) {
-                                                                return AlertDialog(
-                                                                  title: const Text(
-                                                                      'Delete Map'),
-                                                                  content: const Text(
-                                                                      'Are you sure you want to delete this map?'),
-                                                                  actions: [
-                                                                    TextButton(
-                                                                      onPressed: () => Navigator.pop(
-                                                                          alertDialogContext,
-                                                                          false),
-                                                                      child: const Text(
-                                                                          'Cancel'),
-                                                                    ),
-                                                                    TextButton(
-                                                                      onPressed: () => Navigator.pop(
-                                                                          alertDialogContext,
-                                                                          true),
-                                                                      child: const Text(
-                                                                          'Confirm'),
-                                                                    ),
-                                                                  ],
-                                                                );
-                                                              },
-                                                            ) ??
-                                                            false;
-                                                    if (confirmDialogResponse) {
-                                                      await actions
-                                                          .deleteMapStore(
-                                                        listOfDownloadsItem
-                                                            .rawStoreName,
-                                                      );
-                                                      FFAppState()
-                                                          .removeAtIndexFromListOfMapDownloads(
-                                                              listOfDownloadsIndex);
-                                                      safeSetState(() {});
-                                                    } else {
-                                                      Navigator.pop(context);
-                                                    }
-                                                  },
                                                 ),
-                                              ),
                                             ],
                                           ),
                                         ),
