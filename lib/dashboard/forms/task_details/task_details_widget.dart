@@ -1301,7 +1301,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       valueOrDefault<String>(
                                                         taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                             .first.ppirDoptpAci,
-                                                        'Datee of Planting',
+                                                        'Date of Planting',
                                                       ),
                                                     ),
                                                   ),

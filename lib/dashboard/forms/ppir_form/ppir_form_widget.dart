@@ -4039,9 +4039,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                               ? _model.riceDropdownValue
                                               : _model.cornDropdownValue,
                                       isDirty: !FFAppState().ONLINE,
-                                      capturedArea: _model
-                                          .capturedImageBlobInputTextController
-                                          .text,
+                                      capturedArea: _model.capturedBlobOutput,
                                     );
                                     await SQLiteManager.instance
                                         .updateTaskStatus(
@@ -4080,9 +4078,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                       'rice'
                                                   ? _model.riceDropdownValue
                                                   : _model.cornDropdownValue,
-                                          'captured_area': _model
-                                              .capturedImageBlobInputTextController
-                                              .text,
+                                          'captured_area':
+                                              _model.capturedBlobOutput,
                                         },
                                         matchingRows: (rows) => rows.eq(
                                           'task_id',
@@ -4267,9 +4264,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                           : _model
                                                               .cornDropdownValue,
                                                   isDirty: false,
-                                                  capturedArea: _model
-                                                      .capturedImageBlobInputTextController
-                                                      .text,
+                                                  capturedArea:
+                                                      _model.capturedBlobOutput,
                                                 );
                                                 await PpirFormsTable().update(
                                                   data: {
@@ -4326,8 +4322,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         .ppirTrackTotalAreaTextController2
                                                         .text,
                                                     'captured_area': _model
-                                                        .capturedImageBlobInputTextController
-                                                        .text,
+                                                        .capturedBlobOutput,
                                                   },
                                                   matchingRows: (rows) =>
                                                       rows.eq(
