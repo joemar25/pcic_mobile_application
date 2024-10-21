@@ -39,3 +39,4 @@ export 'fetch_process_and_export_stores.dart' show fetchProcessAndExportStores;
 export 'download_map.dart' show downloadMap;
 export 'mb_tile_renderer.dart' show mbTileRenderer;
 export 'initialize_region_stores.dart' show initializeRegionStores;
+export 'get_date_time_now.dart' show getDateTimeNow;

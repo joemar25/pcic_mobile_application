@@ -97,6 +97,12 @@ Future<String> updateOnlinePpirFormsFromOfflinePpirForms(String? taskId) async {
       isDirty: false,
     );
 
+    // Update the offline PPIR form updated at
+    await SQLiteManager.instance.UpdatePpirUpdateTime(
+      taskId: taskId,
+      updated_at: DateTime.now().toIso8601String(),
+    );
+
     return 'Up to Data';
   } catch (e) {
     print('Update Error: $e');

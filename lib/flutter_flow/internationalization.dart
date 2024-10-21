@@ -202,13 +202,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Change Password',
       'tl': 'Baguhin ang Password',
     },
-    '3r8ompzr': {
-      'en': 'Download Maps',
-      'tl': 'I-download ang Maps',
-    },
     'i23guhwp': {
       'en': 'Support',
       'tl': 'Suporta',
+    },
+    '3r8ompzr': {
+      'en': 'Download Maps',
+      'tl': 'I-download ang Maps',
     },
     'xliyfzs6': {
       'en': 'Sync FTP',
@@ -379,7 +379,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'ACI Form Details',
       'tl': '',
     },
-    'vv9uawbi': {
+    '50bcfk9g': {
       'en': 'Assignment Id',
       'tl': '',
     },

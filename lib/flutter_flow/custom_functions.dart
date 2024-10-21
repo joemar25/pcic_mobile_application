@@ -168,3 +168,43 @@ String formatDate(String? input) {
     return input; // Return original string if parsing fails
   }
 }
+
+String? timeStampToMoment(String? timestampString) {
+  // Check if the input string is null or empty.
+  if (timestampString == null ||
+      timestampString == 'null' ||
+      timestampString.isEmpty) return 'a';
+
+  // Parse the timestamp string into a DateTime object.
+  DateTime? timestamp;
+  try {
+    timestamp = DateTime.parse(timestampString);
+  } catch (e) {
+    // If parsing fails, return an empty string.
+    return 'b';
+  }
+
+  // Calculate the time difference between the parsed timestamp and the current time.
+  final now = DateTime.now();
+  final difference = now.difference(timestamp);
+
+  // Handle custom time ranges for weeks, months, and years.
+  if (difference.inMinutes < 1) {
+    return 'a moment ago';
+  } else if (difference.inMinutes < 60) {
+    return '${difference.inMinutes} minutes ago';
+  } else if (difference.inHours < 24) {
+    return '${difference.inHours} hours ago';
+  } else if (difference.inDays < 7) {
+    return '${difference.inDays} days ago';
+  } else if (difference.inDays < 30) {
+    final weeks = (difference.inDays / 7).floor();
+    return '$weeks week${weeks > 1 ? 's' : ''} ago';
+  } else if (difference.inDays < 365) {
+    final months = (difference.inDays / 30).floor();
+    return '$months month${months > 1 ? 's' : ''} ago';
+  } else {
+    final years = (difference.inDays / 365).floor();
+    return '$years year${years > 1 ? 's' : ''} ago';
+  }
+}

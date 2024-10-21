@@ -113,8 +113,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return FutureBuilder<List<OFFLINESelectAllTasksByAssigneeRow>>(
-      future: SQLiteManager.instance.oFFLINESelectAllTasksByAssignee(
+    return FutureBuilder<List<SELECTPPIRFormsByAssigneeRow>>(
+      future: SQLiteManager.instance.sELECTPPIRFormsByAssignee(
         assignee: currentUserUid,
       ),
       builder: (context, snapshot) {
@@ -131,7 +131,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
             ),
           );
         }
-        final dashboardOFFLINESelectAllTasksByAssigneeRowList = snapshot.data!;
+        final dashboardSELECTPPIRFormsByAssigneeRowList = snapshot.data!;
 
         return GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -356,7 +356,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
-                                                  if (dashboardOFFLINESelectAllTasksByAssigneeRowList
+                                                  if (dashboardSELECTPPIRFormsByAssigneeRowList
                                                           .where((e) =>
                                                               e.status ==
                                                               'for dispatch')
@@ -460,7 +460,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                             curve:
                                                                 Curves.easeIn,
                                                             child: Text(
-                                                              dashboardOFFLINESelectAllTasksByAssigneeRowList
+                                                              dashboardSELECTPPIRFormsByAssigneeRowList
                                                                   .where((e) =>
                                                                       e.status ==
                                                                       'for dispatch')
@@ -528,7 +528,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
-                                                  if (dashboardOFFLINESelectAllTasksByAssigneeRowList
+                                                  if (dashboardSELECTPPIRFormsByAssigneeRowList
                                                           .where((e) =>
                                                               e.status ==
                                                               'ongoing')
@@ -629,7 +629,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                             curve:
                                                                 Curves.easeIn,
                                                             child: Text(
-                                                              dashboardOFFLINESelectAllTasksByAssigneeRowList
+                                                              dashboardSELECTPPIRFormsByAssigneeRowList
                                                                   .where((e) =>
                                                                       e.status ==
                                                                       'ongoing')
@@ -697,7 +697,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
-                                                  if (dashboardOFFLINESelectAllTasksByAssigneeRowList
+                                                  if (dashboardSELECTPPIRFormsByAssigneeRowList
                                                           .where((e) =>
                                                               e.status ==
                                                               'completed')
@@ -798,7 +798,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                             curve:
                                                                 Curves.easeIn,
                                                             child: Text(
-                                                              dashboardOFFLINESelectAllTasksByAssigneeRowList
+                                                              dashboardSELECTPPIRFormsByAssigneeRowList
                                                                   .where((e) =>
                                                                       e.status ==
                                                                       'completed')
@@ -974,10 +974,12 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                           child: Builder(
                                                             builder: (context) {
                                                               final forDispatchTasks =
-                                                                  dashboardOFFLINESelectAllTasksByAssigneeRowList
+                                                                  dashboardSELECTPPIRFormsByAssigneeRowList
                                                                       .where((e) =>
                                                                           e.status ==
                                                                           'for dispatch')
+                                                                      .toList()
+                                                                      .take(5)
                                                                       .toList()
                                                                       .take(5)
                                                                       .toList();
@@ -1042,11 +1044,13 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                           'Key6rs_${forDispatchTasksIndex.toString()}',
                                                                         ),
                                                                         task: forDispatchTasksItem
-                                                                            .id!,
+                                                                            .taskId!,
                                                                         status:
                                                                             forDispatchTasksItem.status!,
                                                                         index:
                                                                             forDispatchTasksIndex,
+                                                                        time: forDispatchTasksItem
+                                                                            .ppirUpdatedAt,
                                                                       ),
                                                                     ),
                                                                   );
@@ -1055,7 +1059,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                             },
                                                           ),
                                                         ),
-                                                        if (dashboardOFFLINESelectAllTasksByAssigneeRowList
+                                                        if (dashboardSELECTPPIRFormsByAssigneeRowList
                                                                 .where((e) =>
                                                                     e.status ==
                                                                     'for dispatch')
@@ -1158,10 +1162,12 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                           child: Builder(
                                                             builder: (context) {
                                                               final forDispatchTasks =
-                                                                  dashboardOFFLINESelectAllTasksByAssigneeRowList
+                                                                  dashboardSELECTPPIRFormsByAssigneeRowList
                                                                       .where((e) =>
                                                                           e.status ==
                                                                           'ongoing')
+                                                                      .toList()
+                                                                      .take(5)
                                                                       .toList()
                                                                       .take(5)
                                                                       .toList();
@@ -1226,11 +1232,13 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                           'Keyjo5_${forDispatchTasksIndex.toString()}',
                                                                         ),
                                                                         task: forDispatchTasksItem
-                                                                            .id!,
+                                                                            .taskId!,
                                                                         status:
                                                                             forDispatchTasksItem.status!,
                                                                         index:
                                                                             forDispatchTasksIndex,
+                                                                        time: forDispatchTasksItem
+                                                                            .ppirUpdatedAt,
                                                                       ),
                                                                     ),
                                                                   );
@@ -1239,7 +1247,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                             },
                                                           ),
                                                         ),
-                                                        if (dashboardOFFLINESelectAllTasksByAssigneeRowList
+                                                        if (dashboardSELECTPPIRFormsByAssigneeRowList
                                                                 .where((e) =>
                                                                     e.status ==
                                                                     'ongoing')
@@ -1342,10 +1350,12 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                           child: Builder(
                                                             builder: (context) {
                                                               final completedTasks =
-                                                                  dashboardOFFLINESelectAllTasksByAssigneeRowList
+                                                                  dashboardSELECTPPIRFormsByAssigneeRowList
                                                                       .where((e) =>
                                                                           e.status ==
                                                                           'completed')
+                                                                      .toList()
+                                                                      .take(5)
                                                                       .toList()
                                                                       .take(5)
                                                                       .toList();
@@ -1410,11 +1420,13 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                           'Keyim2_${completedTasksIndex.toString()}',
                                                                         ),
                                                                         task: completedTasksItem
-                                                                            .id!,
+                                                                            .taskId!,
                                                                         status:
                                                                             completedTasksItem.status!,
                                                                         index:
                                                                             completedTasksIndex,
+                                                                        time: completedTasksItem
+                                                                            .ppirUpdatedAt,
                                                                       ),
                                                                     ),
                                                                   );
@@ -1423,7 +1435,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                             },
                                                           ),
                                                         ),
-                                                        if (dashboardOFFLINESelectAllTasksByAssigneeRowList
+                                                        if (dashboardSELECTPPIRFormsByAssigneeRowList
                                                                 .where((e) =>
                                                                     e.status ==
                                                                     'completed')

@@ -43,34 +43,21 @@ WHERE id = ?
 
 /// END UPDATESYNCSTATUS
 
-/// BEGIN UPDATEPPIRBASICINFO
-Future performUpdatePPIRBasicInfo(
+/// BEGIN UPDATEPPIRUPDATETIME
+Future performUpdatePpirUpdateTime(
   Database database, {
-  String? ppirfarmername,
-  String? ppiraddress,
-  String? ppirfarmertype,
-  String? ppirmobileno,
-  String? ppirgroupname,
-  String? ppirgroupaddress,
-  DateTime? updatedat,
-  String? taskid,
+  String? taskId,
+  String? updatedAt,
 }) {
-  const query = '''
+  final query = '''
 UPDATE ppir_forms
-SET ppir_farmername = ?,
-    ppir_address = ?,
-    ppir_farmer_type = ?,
-    ppir_mobileno = ?,
-    ppir_group_name = ?,
-    ppir_group_address = ?,
-    updated_at = ?,
-    is_dirty = true
-WHERE task_id = ?
+SET  updated_at = '$updatedAt'
+WHERE task_id = '$taskId';
 ''';
   return database.rawQuery(query);
 }
 
-/// END UPDATEPPIRBASICINFO
+/// END UPDATEPPIRUPDATETIME
 
 /// BEGIN UPDATEPPIRLOCATION
 Future performUpdatePPIRLocation(
@@ -446,6 +433,7 @@ Future performUpdatePPIRForm(
   String? ppirVariety,
   bool? isDirty,
   String? capturedArea,
+  DateTime? updatedAt,
 }) {
   final query = '''
 UPDATE ppir_forms
@@ -460,6 +448,7 @@ SET
   ppir_area_act = '$ppirAreaAct',
   ppir_variety = '$ppirVariety',
   captured_area = '$capturedArea',
+  updated_at = '$updatedAt',
   is_dirty = $isDirty
 WHERE task_id = '$taskId';
 ''';

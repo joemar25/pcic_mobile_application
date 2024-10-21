@@ -1407,6 +1407,27 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   12.0,
                                                                   16.0,
                                                                   12.0),
+                                                      suffixIcon: _model
+                                                              .ppirTrackFarmlocTextController!
+                                                              .text
+                                                              .isNotEmpty
+                                                          ? InkWell(
+                                                              onTap: () async {
+                                                                _model
+                                                                    .ppirTrackFarmlocTextController
+                                                                    ?.clear();
+                                                                safeSetState(
+                                                                    () {});
+                                                              },
+                                                              child: Icon(
+                                                                Icons.clear,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                size: 20.0,
+                                                              ),
+                                                            )
+                                                          : null,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -2121,6 +2142,27 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   12.0,
                                                                   16.0,
                                                                   12.0),
+                                                      suffixIcon: _model
+                                                              .ppirAreaActFieldTextController!
+                                                              .text
+                                                              .isNotEmpty
+                                                          ? InkWell(
+                                                              onTap: () async {
+                                                                _model
+                                                                    .ppirAreaActFieldTextController
+                                                                    ?.clear();
+                                                                safeSetState(
+                                                                    () {});
+                                                              },
+                                                              child: Icon(
+                                                                Icons.clear,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                size: 20.0,
+                                                              ),
+                                                            )
+                                                          : null,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -3308,6 +3350,27 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   12.0,
                                                                   16.0,
                                                                   12.0),
+                                                      suffixIcon: _model
+                                                              .ppirPreparedByNameFieldTextController!
+                                                              .text
+                                                              .isNotEmpty
+                                                          ? InkWell(
+                                                              onTap: () async {
+                                                                _model
+                                                                    .ppirPreparedByNameFieldTextController
+                                                                    ?.clear();
+                                                                safeSetState(
+                                                                    () {});
+                                                              },
+                                                              child: Icon(
+                                                                Icons.clear,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                size: 20.0,
+                                                              ),
+                                                            )
+                                                          : null,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -3644,6 +3707,27 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                                   12.0,
                                                                   16.0,
                                                                   12.0),
+                                                      suffixIcon: _model
+                                                              .ppirConfirmedByNameFieldTextController!
+                                                              .text
+                                                              .isNotEmpty
+                                                          ? InkWell(
+                                                              onTap: () async {
+                                                                _model
+                                                                    .ppirConfirmedByNameFieldTextController
+                                                                    ?.clear();
+                                                                safeSetState(
+                                                                    () {});
+                                                              },
+                                                              child: Icon(
+                                                                Icons.clear,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                size: 20.0,
+                                                              ),
+                                                            )
+                                                          : null,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -4011,6 +4095,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                       () => _model.continueSave = value));
 
                                   if (_model.continueSave!) {
+                                    _model.dateNow =
+                                        await actions.getDateTimeNow();
                                     await SQLiteManager.instance.updatePPIRForm(
                                       taskId: widget.taskId,
                                       ppirSvpAct:
@@ -4040,6 +4126,7 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                               : _model.cornDropdownValue,
                                       isDirty: !FFAppState().ONLINE,
                                       capturedArea: _model.capturedBlobOutput,
+                                      updatedAt: _model.dateNow,
                                     );
                                     await SQLiteManager.instance
                                         .updateTaskStatus(
@@ -4080,6 +4167,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   : _model.cornDropdownValue,
                                           'captured_area':
                                               _model.capturedBlobOutput,
+                                          'updated_at': supaSerialize<DateTime>(
+                                              _model.dateNow),
                                         },
                                         matchingRows: (rows) => rows.eq(
                                           'task_id',
@@ -4230,6 +4319,9 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                       value));
 
                                               if (_model.continueSubmit!) {
+                                                _model.dateNowForSubmit =
+                                                    await actions
+                                                        .getDateTimeNow();
                                                 await SQLiteManager.instance
                                                     .updatePPIRForm(
                                                   taskId: widget.taskId,
@@ -4266,6 +4358,8 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                   isDirty: false,
                                                   capturedArea:
                                                       _model.capturedBlobOutput,
+                                                  updatedAt:
+                                                      _model.dateNowForSubmit,
                                                 );
                                                 await PpirFormsTable().update(
                                                   data: {
@@ -4323,6 +4417,10 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                         .text,
                                                     'captured_area': _model
                                                         .capturedBlobOutput,
+                                                    'updated_at': supaSerialize<
+                                                            DateTime>(
+                                                        _model
+                                                            .dateNowForSubmit),
                                                   },
                                                   matchingRows: (rows) =>
                                                       rows.eq(

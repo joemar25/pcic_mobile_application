@@ -13,6 +13,8 @@ class TaskDetailsModel extends FlutterFlowModel<TaskDetailsWidget> {
 
   ///  State fields for stateful widgets in this page.
 
+  // Stores action output result for [Custom Action - getDateTimeNow] action in taskDetails widget.
+  DateTime? dateNow;
   // Stores action output result for [Custom Action - updateOnlinePpirFormsFromOfflinePpirForms] action in taskDetails widget.
   String? message;
   // Stores action output result for [Custom Action - updateOnlinePpirFormsFromOfflinePpirForms] action in Text widget.

@@ -17,12 +17,15 @@ class TasksWidget extends StatefulWidget {
     String? task,
     String? status,
     required this.index,
+    String? time,
   })  : task = task ?? '123',
-        status = status ?? 'for dispatch';
+        status = status ?? 'for dispatch',
+        time = time ?? '';
 
   final String task;
   final String status;
   final int? index;
+  final String time;
 
   @override
   State<TasksWidget> createState() => _TasksWidgetState();
@@ -513,6 +516,47 @@ class _TasksWidgetState extends State<TasksWidget>
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryText,
+                                              fontSize: 12.0,
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          8.0, 0.0, 0.0, 0.0),
+                                      child: Text(
+                                        functions
+                                            .timeStampToMoment(widget.time)!,
+                                        textAlign: TextAlign.end,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              fontSize: 12.0,
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          8.0, 0.0, 0.0, 0.0),
+                                      child: Text(
+                                        'hey raw: ${widget.time}',
+                                        textAlign: TextAlign.end,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
                                               fontSize: 12.0,
                                               letterSpacing: 0.0,
                                             ),

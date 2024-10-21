@@ -215,26 +215,14 @@ class SQLiteManager {
         updatedat: updatedat,
       );
 
-  Future updatePPIRBasicInfo({
-    String? ppirfarmername,
-    String? ppiraddress,
-    String? ppirfarmertype,
-    String? ppirmobileno,
-    String? ppirgroupname,
-    String? ppirgroupaddress,
-    DateTime? updatedat,
-    String? taskid,
+  Future updatePpirUpdateTime({
+    String? taskId,
+    String? updatedAt,
   }) =>
-      performUpdatePPIRBasicInfo(
+      performUpdatePpirUpdateTime(
         _database,
-        ppirfarmername: ppirfarmername,
-        ppiraddress: ppiraddress,
-        ppirfarmertype: ppirfarmertype,
-        ppirmobileno: ppirmobileno,
-        ppirgroupname: ppirgroupname,
-        ppirgroupaddress: ppirgroupaddress,
-        updatedat: updatedat,
-        taskid: taskid,
+        taskId: taskId,
+        updatedAt: updatedAt,
       );
 
   Future updatePPIRLocation({
@@ -574,6 +562,7 @@ class SQLiteManager {
     String? ppirVariety,
     bool? isDirty,
     String? capturedArea,
+    DateTime? updatedAt,
   }) =>
       performUpdatePPIRForm(
         _database,
@@ -589,6 +578,7 @@ class SQLiteManager {
         ppirVariety: ppirVariety,
         isDirty: isDirty,
         capturedArea: capturedArea,
+        updatedAt: updatedAt,
       );
 
   Future updateTaskStatus({

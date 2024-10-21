@@ -276,7 +276,7 @@ Future<List<OFFLINESelectAllTasksByAssigneeRow>>
   String? assignee,
 }) {
   final query = '''
-SELECT * FROM tasks WHERE assignee='$assignee'
+SELECT * FROM tasks WHERE assignee='$assignee' ORDER BY updated_at DESC;
 ''';
   return _readQuery(
       database, query, (d) => OFFLINESelectAllTasksByAssigneeRow(d));
@@ -721,7 +721,9 @@ FROM
 LEFT JOIN 
     ppir_forms p ON t.id = p.task_id
 WHERE 
-    t.assignee = '$assignee';
+    t.assignee = '$assignee'
+ORDER BY 
+    p.updated_at DESC;
 ''';
   return _readQuery(database, query, (d) => SELECTPPIRFormsByAssigneeRow(d));
 }
@@ -871,7 +873,9 @@ LEFT JOIN
     ppir_forms p ON t.id = p.task_id
 WHERE 
     t.assignee = '$assignee'
-    AND t.status = '$status';
+    AND t.status = '$status'
+ORDER BY 
+    p.updated_at DESC;
 ''';
   return _readQuery(
       database, query, (d) => SELECTPPIRFormsByAssigneeAndTaskStatusRow(d));

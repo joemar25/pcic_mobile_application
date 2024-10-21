@@ -47,6 +47,23 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.dateNow = await actions.getDateTimeNow();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            _model.dateNow!.toString(),
+            style: TextStyle(
+              color: FlutterFlowTheme.of(context).primaryText,
+            ),
+          ),
+          duration: const Duration(milliseconds: 4000),
+          backgroundColor: FlutterFlowTheme.of(context).secondary,
+        ),
+      );
+      await SQLiteManager.instance.updatePpirUpdateTime(
+        taskId: widget.taskId,
+        updatedAt: _model.dateNow?.toString(),
+      );
       if (FFAppState().ONLINE) {
         await actions.updateUserLogs(
           context,
@@ -284,9 +301,57 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                         .spaceBetween,
                                                 children: [
                                                   Text(
+                                                    valueOrDefault<String>(
+                                                      _model.dateNow
+                                                          ?.toString(),
+                                                      'x',
+                                                    ),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                  AnimatedDefaultTextStyle(
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    duration: const Duration(
+                                                        milliseconds: 600),
+                                                    curve: Curves.easeIn,
+                                                    child: Text(
+                                                      valueOrDefault<String>(
+                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                            .first
+                                                            .ppirUpdatedAt,
+                                                        'Assignment Id',
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 8.0, 0.0, 0.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      'vv9uawbi' /* Assignment Id */,
+                                                      '50bcfk9g' /* Assignment Id */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
