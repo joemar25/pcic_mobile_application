@@ -21,6 +21,7 @@ class TasksRowWidget extends StatefulWidget {
     bool? hasGpx,
     String? taskStatus,
     required this.taskId,
+    this.timeAccess,
   })  : farmerName = farmerName ?? 'Farmer Name',
         insuranceId = insuranceId ?? 'Insurance Id',
         assignmentId = assignmentId ?? 'Assignment Id',
@@ -35,6 +36,7 @@ class TasksRowWidget extends StatefulWidget {
   final bool hasGpx;
   final String taskStatus;
   final String? taskId;
+  final String? timeAccess;
 
   @override
   State<TasksRowWidget> createState() => _TasksRowWidgetState();
@@ -213,8 +215,8 @@ class _TasksRowWidgetState extends State<TasksRowWidget>
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            20.0, 0.0, 20.0, 0.0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
                         child: Container(
                           width: 100.0,
                           decoration: const BoxDecoration(),
@@ -261,6 +263,23 @@ class _TasksRowWidgetState extends State<TasksRowWidget>
                                       ),
                                     ),
                                   ),
+                                  if (widget.taskStatus == 'ongoing')
+                                    Expanded(
+                                      child: Text(
+                                        'Accessed ${functions.timeStampToMoment(widget.timeAccess)}',
+                                        textAlign: TextAlign.end,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              fontSize: 12.0,
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                    ),
                                 ],
                               ),
                               Row(

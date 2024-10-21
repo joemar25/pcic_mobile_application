@@ -170,33 +170,33 @@ String formatDate(String? input) {
 }
 
 String? timeStampToMoment(String? timestampString) {
-  // Check if the input string is null or empty.
+  // Check if the input string is null, 'null', or empty.
   if (timestampString == null ||
       timestampString == 'null' ||
-      timestampString.isEmpty) return 'a';
+      timestampString.isEmpty) return 'a moment ago';
 
   // Parse the timestamp string into a DateTime object.
   DateTime? timestamp;
   try {
     timestamp = DateTime.parse(timestampString);
   } catch (e) {
-    // If parsing fails, return an empty string.
-    return 'b';
+    // If parsing fails, return an error indication or fallback.
+    return 'Invalid timestamp';
   }
 
   // Calculate the time difference between the parsed timestamp and the current time.
   final now = DateTime.now();
   final difference = now.difference(timestamp);
 
-  // Handle custom time ranges for weeks, months, and years.
-  if (difference.inMinutes < 1) {
+  // Handle custom time ranges for seconds, minutes, hours, days, weeks, months, and years.
+  if (difference.inSeconds < 60) {
     return 'a moment ago';
   } else if (difference.inMinutes < 60) {
-    return '${difference.inMinutes} minutes ago';
+    return '${difference.inMinutes} minute${difference.inMinutes > 1 ? 's' : ''} ago';
   } else if (difference.inHours < 24) {
-    return '${difference.inHours} hours ago';
+    return '${difference.inHours} hour${difference.inHours > 1 ? 's' : ''} ago';
   } else if (difference.inDays < 7) {
-    return '${difference.inDays} days ago';
+    return '${difference.inDays} day${difference.inDays > 1 ? 's' : ''} ago';
   } else if (difference.inDays < 30) {
     final weeks = (difference.inDays / 7).floor();
     return '$weeks week${weeks > 1 ? 's' : ''} ago';

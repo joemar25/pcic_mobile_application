@@ -99,7 +99,7 @@ class _AllDataViewState extends State<AllDataView> {
                               ppirAddress: task.ppirAddress ?? '',
                               taskStatus: task.status ?? '',
                               taskId: task.taskId ?? '',
-                              // hasGpx: true, for now
+                              timeAccess: task.ppirUpdatedAt ?? '',
                             );
                           },
                         ),

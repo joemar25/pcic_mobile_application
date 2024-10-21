@@ -76,7 +76,7 @@ Future<String> updateOnlinePpirFormsFromOfflinePpirForms(String? taskId) async {
         'captured_area': offlinePPIR.capturedArea,
         'sync_status': 'synced',
         'is_dirty': false,
-        'updated_at': DateTime.now().toIso8601String(),
+        // 'updated_at': DateTime.now().toIso8601String(),
       },
       matchingRows: (row) => row.eq('task_id', taskId),
     );
