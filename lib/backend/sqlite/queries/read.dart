@@ -875,7 +875,7 @@ WHERE
     t.assignee = '$assignee'
     AND t.status = '$status'
 ORDER BY 
-    p.updated_at DESC;
+    p.updated_at DESC; 
 ''';
   return _readQuery(
       database, query, (d) => SELECTPPIRFormsByAssigneeAndTaskStatusRow(d));
