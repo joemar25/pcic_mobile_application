@@ -503,19 +503,27 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Total Distance',
       'tl': 'Kabuuang Distansya',
     },
-    'v9d4i47l': {
+    'ho7vbock': {
       'en': 'Seed Details',
-      'tl': 'Mga Detalye ng Binhi',
+      'tl': '',
     },
     '762mtpey': {
       'en': 'Actual Variety',
       'tl': 'Uri',
     },
     'veh8acpl': {
-      'en': 'Actual Seed Variety Planted - Corn/Rice',
+      'en': 'Actual Seed Variety Planted\n(Corn/Rice)',
       'tl': 'Iba\'t-ibang',
     },
+    'lnj6pjl7': {
+      'en': 'Date Details',
+      'tl': 'Kumpirmasyon ng Ahente',
+    },
     '4s2psn11': {
+      'en': 'Actual Area Planted',
+      'tl': '',
+    },
+    'n91720z3': {
       'en': 'Actual - Date of Planting (DS)',
       'tl': '',
     },
@@ -523,9 +531,9 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Actual - Date of Planting (TP)',
       'tl': 'Petsa ng Pagtatanim (TP)',
     },
-    'lnj6pjl7': {
+    'q51vy5pn': {
       'en': 'Agent Confirmation',
-      'tl': 'Kumpirmasyon ng Ahente',
+      'tl': '',
     },
     '966yfol9': {
       'en': 'Remarks',
@@ -1553,25 +1561,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'mcwvr395': {
       'en': 'Continue',
-      'tl': '',
-    },
-  },
-  // signoutDialogXXX
-  {
-    '3ggjdxuz': {
-      'en': 'Confirm Sign Out',
-      'tl': '',
-    },
-    'xpnzvy8f': {
-      'en': 'Are you sure you want to sign out?',
-      'tl': '',
-    },
-    'iizzkt3d': {
-      'en': 'Cancel',
-      'tl': '',
-    },
-    'x2nc5my5': {
-      'en': 'Sign Out',
       'tl': '',
     },
   },

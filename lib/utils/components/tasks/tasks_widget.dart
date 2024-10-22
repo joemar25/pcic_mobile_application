@@ -16,7 +16,7 @@ class TasksWidget extends StatefulWidget {
     super.key,
     String? task,
     String? status,
-    required this.index,
+    this.index,
     String? time,
   })  : task = task ?? '123',
         status = status ?? 'for dispatch',

@@ -871,8 +871,11 @@ class _LoginWidgetState extends State<LoginWidget>
                                                           FontWeight.w500,
                                                     ),
                                             elevation: 0.0,
-                                            borderSide: const BorderSide(
-                                              width: 1.0,
+                                            borderSide: BorderSide(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              width: 0.0,
                                             ),
                                             borderRadius:
                                                 BorderRadius.circular(12.0),

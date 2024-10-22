@@ -302,24 +302,31 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
-                                                  AnimatedDefaultTextStyle(
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
+                                                  Expanded(
+                                                    child:
+                                                        AnimatedDefaultTextStyle(
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w300,
+                                                          ),
+                                                      duration: const Duration(
+                                                          milliseconds: 600),
+                                                      curve: Curves.easeIn,
+                                                      child: Text(
+                                                        valueOrDefault<String>(
+                                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                              .first
+                                                              .ppirAssignmentid,
+                                                          '-',
                                                         ),
-                                                    duration: const Duration(
-                                                        milliseconds: 600),
-                                                    curve: Curves.easeIn,
-                                                    child: Text(
-                                                      valueOrDefault<String>(
-                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                            .first
-                                                            .ppirAssignmentid,
-                                                        'Assignment Id',
+                                                        textAlign:
+                                                            TextAlign.end,
                                                       ),
                                                     ),
                                                   ),
@@ -349,24 +356,31 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
-                                                  AnimatedDefaultTextStyle(
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
+                                                  Expanded(
+                                                    child:
+                                                        AnimatedDefaultTextStyle(
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w300,
+                                                          ),
+                                                      duration: const Duration(
+                                                          milliseconds: 600),
+                                                      curve: Curves.easeIn,
+                                                      child: Text(
+                                                        valueOrDefault<String>(
+                                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                              .first
+                                                              .ppirFarmername,
+                                                          '-',
                                                         ),
-                                                    duration: const Duration(
-                                                        milliseconds: 600),
-                                                    curve: Curves.easeIn,
-                                                    child: Text(
-                                                      valueOrDefault<String>(
-                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                            .first
-                                                            .ppirFarmername,
-                                                        'Farmer Name',
+                                                        textAlign:
+                                                            TextAlign.end,
                                                       ),
                                                     ),
                                                   ),
@@ -398,23 +412,32 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               FontWeight.normal,
                                                         ),
                                                   ),
-                                                  AnimatedDefaultTextStyle(
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
+                                                  Expanded(
+                                                    child:
+                                                        AnimatedDefaultTextStyle(
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w300,
+                                                          ),
+                                                      duration: const Duration(
+                                                          milliseconds: 600),
+                                                      curve: Curves.easeIn,
+                                                      child: Text(
+                                                        valueOrDefault<String>(
+                                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                              .first
+                                                              .ppirAddress,
+                                                          '-',
                                                         ),
-                                                    duration: const Duration(
-                                                        milliseconds: 600),
-                                                    curve: Curves.easeIn,
-                                                    child: Text(
-                                                      valueOrDefault<String>(
-                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                            .first.ppirAddress,
-                                                        'Address',
+                                                        textAlign:
+                                                            TextAlign.end,
+                                                        maxLines: 3,
                                                       ),
                                                     ),
                                                   ),
@@ -446,24 +469,31 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               FontWeight.normal,
                                                         ),
                                                   ),
-                                                  AnimatedDefaultTextStyle(
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
+                                                  Expanded(
+                                                    child:
+                                                        AnimatedDefaultTextStyle(
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w300,
+                                                          ),
+                                                      duration: const Duration(
+                                                          milliseconds: 600),
+                                                      curve: Curves.easeIn,
+                                                      child: Text(
+                                                        valueOrDefault<String>(
+                                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                              .first
+                                                              .ppirInsuranceid,
+                                                          '-',
                                                         ),
-                                                    duration: const Duration(
-                                                        milliseconds: 600),
-                                                    curve: Curves.easeIn,
-                                                    child: Text(
-                                                      valueOrDefault<String>(
-                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                            .first
-                                                            .ppirInsuranceid,
-                                                        'Insurance Id',
+                                                        textAlign:
+                                                            TextAlign.end,
                                                       ),
                                                     ),
                                                   ),
@@ -495,23 +525,31 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               FontWeight.normal,
                                                         ),
                                                   ),
-                                                  AnimatedDefaultTextStyle(
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
+                                                  Expanded(
+                                                    child:
+                                                        AnimatedDefaultTextStyle(
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w300,
+                                                          ),
+                                                      duration: const Duration(
+                                                          milliseconds: 600),
+                                                      curve: Curves.easeIn,
+                                                      child: Text(
+                                                        valueOrDefault<String>(
+                                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                              .first
+                                                              .ppirMobileno,
+                                                          '-',
                                                         ),
-                                                    duration: const Duration(
-                                                        milliseconds: 600),
-                                                    curve: Curves.easeIn,
-                                                    child: Text(
-                                                      valueOrDefault<String>(
-                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                            .first.ppirMobileno,
-                                                        'Mobile Number',
+                                                        textAlign:
+                                                            TextAlign.end,
                                                       ),
                                                     ),
                                                   ),
@@ -543,24 +581,31 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               FontWeight.normal,
                                                         ),
                                                   ),
-                                                  AnimatedDefaultTextStyle(
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
+                                                  Expanded(
+                                                    child:
+                                                        AnimatedDefaultTextStyle(
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w300,
+                                                          ),
+                                                      duration: const Duration(
+                                                          milliseconds: 600),
+                                                      curve: Curves.easeIn,
+                                                      child: Text(
+                                                        valueOrDefault<String>(
+                                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                              .first
+                                                              .ppirFarmertype,
+                                                          '-',
                                                         ),
-                                                    duration: const Duration(
-                                                        milliseconds: 600),
-                                                    curve: Curves.easeIn,
-                                                    child: Text(
-                                                      valueOrDefault<String>(
-                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                            .first
-                                                            .ppirFarmertype,
-                                                        'Famer Type',
+                                                        textAlign:
+                                                            TextAlign.end,
                                                       ),
                                                     ),
                                                   ),
@@ -592,24 +637,31 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               FontWeight.normal,
                                                         ),
                                                   ),
-                                                  AnimatedDefaultTextStyle(
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
+                                                  Expanded(
+                                                    child:
+                                                        AnimatedDefaultTextStyle(
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w300,
+                                                          ),
+                                                      duration: const Duration(
+                                                          milliseconds: 600),
+                                                      curve: Curves.easeIn,
+                                                      child: Text(
+                                                        valueOrDefault<String>(
+                                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                              .first
+                                                              .ppirGroupname,
+                                                          '-',
                                                         ),
-                                                    duration: const Duration(
-                                                        milliseconds: 600),
-                                                    curve: Curves.easeIn,
-                                                    child: Text(
-                                                      valueOrDefault<String>(
-                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                            .first
-                                                            .ppirGroupname,
-                                                        'Group Name',
+                                                        textAlign:
+                                                            TextAlign.end,
                                                       ),
                                                     ),
                                                   ),
@@ -641,24 +693,31 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               FontWeight.normal,
                                                         ),
                                                   ),
-                                                  AnimatedDefaultTextStyle(
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
+                                                  Expanded(
+                                                    child:
+                                                        AnimatedDefaultTextStyle(
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w300,
+                                                          ),
+                                                      duration: const Duration(
+                                                          milliseconds: 600),
+                                                      curve: Curves.easeIn,
+                                                      child: Text(
+                                                        valueOrDefault<String>(
+                                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                              .first
+                                                              .ppirGroupaddress,
+                                                          '-',
                                                         ),
-                                                    duration: const Duration(
-                                                        milliseconds: 600),
-                                                    curve: Curves.easeIn,
-                                                    child: Text(
-                                                      valueOrDefault<String>(
-                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                            .first
-                                                            .ppirGroupaddress,
-                                                        'Group Address',
+                                                        textAlign:
+                                                            TextAlign.end,
                                                       ),
                                                     ),
                                                   ),
@@ -690,24 +749,31 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               FontWeight.normal,
                                                         ),
                                                   ),
-                                                  AnimatedDefaultTextStyle(
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
+                                                  Expanded(
+                                                    child:
+                                                        AnimatedDefaultTextStyle(
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w300,
+                                                          ),
+                                                      duration: const Duration(
+                                                          milliseconds: 600),
+                                                      curve: Curves.easeIn,
+                                                      child: Text(
+                                                        valueOrDefault<String>(
+                                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                              .first
+                                                              .ppirLendername,
+                                                          '-',
                                                         ),
-                                                    duration: const Duration(
-                                                        milliseconds: 600),
-                                                    curve: Curves.easeIn,
-                                                    child: Text(
-                                                      valueOrDefault<String>(
-                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                            .first
-                                                            .ppirLendername,
-                                                        'Lender Name',
+                                                        textAlign:
+                                                            TextAlign.end,
                                                       ),
                                                     ),
                                                   ),
@@ -739,24 +805,31 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               FontWeight.normal,
                                                         ),
                                                   ),
-                                                  AnimatedDefaultTextStyle(
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
+                                                  Expanded(
+                                                    child:
+                                                        AnimatedDefaultTextStyle(
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w300,
+                                                          ),
+                                                      duration: const Duration(
+                                                          milliseconds: 600),
+                                                      curve: Curves.easeIn,
+                                                      child: Text(
+                                                        valueOrDefault<String>(
+                                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                              .first
+                                                              .ppirLenderaddress,
+                                                          '-',
                                                         ),
-                                                    duration: const Duration(
-                                                        milliseconds: 600),
-                                                    curve: Curves.easeIn,
-                                                    child: Text(
-                                                      valueOrDefault<String>(
-                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                            .first
-                                                            .ppirLenderaddress,
-                                                        'Lender Address',
+                                                        textAlign:
+                                                            TextAlign.end,
                                                       ),
                                                     ),
                                                   ),
@@ -788,25 +861,32 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               FontWeight.normal,
                                                         ),
                                                   ),
-                                                  AnimatedDefaultTextStyle(
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
+                                                  Expanded(
+                                                    child:
+                                                        AnimatedDefaultTextStyle(
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w300,
+                                                          ),
+                                                      duration: const Duration(
+                                                          milliseconds: 600),
+                                                      curve: Curves.easeIn,
+                                                      child: Text(
+                                                        valueOrDefault<String>(
+                                                          functions.removePpirOnString(
+                                                              taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                  .first
+                                                                  .serviceType),
+                                                          '-',
                                                         ),
-                                                    duration: const Duration(
-                                                        milliseconds: 600),
-                                                    curve: Curves.easeIn,
-                                                    child: Text(
-                                                      valueOrDefault<String>(
-                                                        functions.removePpirOnString(
-                                                            taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                .first
-                                                                .serviceType),
-                                                        'CIC Number',
+                                                        textAlign:
+                                                            TextAlign.end,
                                                       ),
                                                     ),
                                                   ),
@@ -838,23 +918,30 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               FontWeight.normal,
                                                         ),
                                                   ),
-                                                  AnimatedDefaultTextStyle(
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
+                                                  Expanded(
+                                                    child:
+                                                        AnimatedDefaultTextStyle(
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w300,
+                                                          ),
+                                                      duration: const Duration(
+                                                          milliseconds: 600),
+                                                      curve: Curves.easeIn,
+                                                      child: Text(
+                                                        valueOrDefault<String>(
+                                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                              .first.ppirCicno,
+                                                          '-',
                                                         ),
-                                                    duration: const Duration(
-                                                        milliseconds: 600),
-                                                    curve: Curves.easeIn,
-                                                    child: Text(
-                                                      valueOrDefault<String>(
-                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                            .first.ppirCicno,
-                                                        'CIC Number',
+                                                        textAlign:
+                                                            TextAlign.end,
                                                       ),
                                                     ),
                                                   ),
@@ -886,23 +973,31 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               FontWeight.normal,
                                                         ),
                                                   ),
-                                                  AnimatedDefaultTextStyle(
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
+                                                  Expanded(
+                                                    child:
+                                                        AnimatedDefaultTextStyle(
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w300,
+                                                          ),
+                                                      duration: const Duration(
+                                                          milliseconds: 600),
+                                                      curve: Curves.easeIn,
+                                                      child: Text(
+                                                        valueOrDefault<String>(
+                                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                              .first
+                                                              .ppirFarmloc,
+                                                          '-',
                                                         ),
-                                                    duration: const Duration(
-                                                        milliseconds: 600),
-                                                    curve: Curves.easeIn,
-                                                    child: Text(
-                                                      valueOrDefault<String>(
-                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                            .first.ppirFarmloc,
-                                                        'Farm Location',
+                                                        textAlign:
+                                                            TextAlign.end,
                                                       ),
                                                     ),
                                                   ),
@@ -969,23 +1064,30 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               FontWeight.normal,
                                                         ),
                                                   ),
-                                                  AnimatedDefaultTextStyle(
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
+                                                  Expanded(
+                                                    child:
+                                                        AnimatedDefaultTextStyle(
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w300,
+                                                          ),
+                                                      duration: const Duration(
+                                                          milliseconds: 600),
+                                                      curve: Curves.easeIn,
+                                                      child: Text(
+                                                        valueOrDefault<String>(
+                                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                              .first.ppirNorth,
+                                                          '-',
                                                         ),
-                                                    duration: const Duration(
-                                                        milliseconds: 600),
-                                                    curve: Curves.easeIn,
-                                                    child: Text(
-                                                      valueOrDefault<String>(
-                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                            .first.ppirNorth,
-                                                        'North',
+                                                        textAlign:
+                                                            TextAlign.end,
                                                       ),
                                                     ),
                                                   ),
@@ -1017,23 +1119,30 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               FontWeight.normal,
                                                         ),
                                                   ),
-                                                  AnimatedDefaultTextStyle(
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
+                                                  Expanded(
+                                                    child:
+                                                        AnimatedDefaultTextStyle(
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w300,
+                                                          ),
+                                                      duration: const Duration(
+                                                          milliseconds: 600),
+                                                      curve: Curves.easeIn,
+                                                      child: Text(
+                                                        valueOrDefault<String>(
+                                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                              .first.ppirEast,
+                                                          '-',
                                                         ),
-                                                    duration: const Duration(
-                                                        milliseconds: 600),
-                                                    curve: Curves.easeIn,
-                                                    child: Text(
-                                                      valueOrDefault<String>(
-                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                            .first.ppirEast,
-                                                        'East',
+                                                        textAlign:
+                                                            TextAlign.end,
                                                       ),
                                                     ),
                                                   ),
@@ -1064,23 +1173,30 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
-                                                  AnimatedDefaultTextStyle(
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
+                                                  Expanded(
+                                                    child:
+                                                        AnimatedDefaultTextStyle(
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w300,
+                                                          ),
+                                                      duration: const Duration(
+                                                          milliseconds: 600),
+                                                      curve: Curves.easeIn,
+                                                      child: Text(
+                                                        valueOrDefault<String>(
+                                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                              .first.ppirSouth,
+                                                          '-',
                                                         ),
-                                                    duration: const Duration(
-                                                        milliseconds: 600),
-                                                    curve: Curves.easeIn,
-                                                    child: Text(
-                                                      valueOrDefault<String>(
-                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                            .first.ppirSouth,
-                                                        'South',
+                                                        textAlign:
+                                                            TextAlign.end,
                                                       ),
                                                     ),
                                                   ),
@@ -1111,23 +1227,30 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
-                                                  AnimatedDefaultTextStyle(
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
+                                                  Expanded(
+                                                    child:
+                                                        AnimatedDefaultTextStyle(
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w300,
+                                                          ),
+                                                      duration: const Duration(
+                                                          milliseconds: 600),
+                                                      curve: Curves.easeIn,
+                                                      child: Text(
+                                                        valueOrDefault<String>(
+                                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                              .first.ppirWest,
+                                                          '-',
                                                         ),
-                                                    duration: const Duration(
-                                                        milliseconds: 600),
-                                                    curve: Curves.easeIn,
-                                                    child: Text(
-                                                      valueOrDefault<String>(
-                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                            .first.ppirWest,
-                                                        'West',
+                                                        textAlign:
+                                                            TextAlign.end,
                                                       ),
                                                     ),
                                                   ),
@@ -1194,23 +1317,31 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               FontWeight.normal,
                                                         ),
                                                   ),
-                                                  AnimatedDefaultTextStyle(
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
+                                                  Expanded(
+                                                    child:
+                                                        AnimatedDefaultTextStyle(
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w300,
+                                                          ),
+                                                      duration: const Duration(
+                                                          milliseconds: 600),
+                                                      curve: Curves.easeIn,
+                                                      child: Text(
+                                                        valueOrDefault<String>(
+                                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                              .first
+                                                              .ppirAreaAci,
+                                                          '-',
                                                         ),
-                                                    duration: const Duration(
-                                                        milliseconds: 600),
-                                                    curve: Curves.easeIn,
-                                                    child: Text(
-                                                      valueOrDefault<String>(
-                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                            .first.ppirAreaAci,
-                                                        'Area Planted',
+                                                        textAlign:
+                                                            TextAlign.end,
                                                       ),
                                                     ),
                                                   ),
@@ -1242,23 +1373,31 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               FontWeight.normal,
                                                         ),
                                                   ),
-                                                  AnimatedDefaultTextStyle(
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
+                                                  Expanded(
+                                                    child:
+                                                        AnimatedDefaultTextStyle(
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w300,
+                                                          ),
+                                                      duration: const Duration(
+                                                          milliseconds: 600),
+                                                      curve: Curves.easeIn,
+                                                      child: Text(
+                                                        valueOrDefault<String>(
+                                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                              .first
+                                                              .ppirDopdsAci,
+                                                          '-',
                                                         ),
-                                                    duration: const Duration(
-                                                        milliseconds: 600),
-                                                    curve: Curves.easeIn,
-                                                    child: Text(
-                                                      valueOrDefault<String>(
-                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                            .first.ppirDopdsAci,
-                                                        'Date of Planting',
+                                                        textAlign:
+                                                            TextAlign.end,
                                                       ),
                                                     ),
                                                   ),
@@ -1290,23 +1429,31 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               FontWeight.normal,
                                                         ),
                                                   ),
-                                                  AnimatedDefaultTextStyle(
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
+                                                  Expanded(
+                                                    child:
+                                                        AnimatedDefaultTextStyle(
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w300,
+                                                          ),
+                                                      duration: const Duration(
+                                                          milliseconds: 600),
+                                                      curve: Curves.easeIn,
+                                                      child: Text(
+                                                        valueOrDefault<String>(
+                                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                              .first
+                                                              .ppirDoptpAci,
+                                                          '-',
                                                         ),
-                                                    duration: const Duration(
-                                                        milliseconds: 600),
-                                                    curve: Curves.easeIn,
-                                                    child: Text(
-                                                      valueOrDefault<String>(
-                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                            .first.ppirDoptpAci,
-                                                        'Date of Planting',
+                                                        textAlign:
+                                                            TextAlign.end,
                                                       ),
                                                     ),
                                                   ),
@@ -1338,23 +1485,30 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               FontWeight.normal,
                                                         ),
                                                   ),
-                                                  AnimatedDefaultTextStyle(
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
+                                                  Expanded(
+                                                    child:
+                                                        AnimatedDefaultTextStyle(
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w300,
+                                                          ),
+                                                      duration: const Duration(
+                                                          milliseconds: 600),
+                                                      curve: Curves.easeIn,
+                                                      child: Text(
+                                                        valueOrDefault<String>(
+                                                          taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                              .first.ppirSvpAci,
+                                                          '-',
                                                         ),
-                                                    duration: const Duration(
-                                                        milliseconds: 600),
-                                                    curve: Curves.easeIn,
-                                                    child: Text(
-                                                      valueOrDefault<String>(
-                                                        taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                            .first.ppirSvpAci,
-                                                        'Seed Variety Planted',
+                                                        textAlign:
+                                                            TextAlign.end,
                                                       ),
                                                     ),
                                                   ),
@@ -1683,28 +1837,37 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                           .normal,
                                                                 ),
                                                           ),
-                                                          AnimatedDefaultTextStyle(
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  letterSpacing:
-                                                                      0.0,
+                                                          Expanded(
+                                                            child:
+                                                                AnimatedDefaultTextStyle(
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w300,
+                                                                  ),
+                                                              duration: const Duration(
+                                                                  milliseconds:
+                                                                      600),
+                                                              curve:
+                                                                  Curves.easeIn,
+                                                              child: Text(
+                                                                valueOrDefault<
+                                                                    String>(
+                                                                  taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                      .first
+                                                                      .trackLastCoord,
+                                                                  '-',
                                                                 ),
-                                                            duration: const Duration(
-                                                                milliseconds:
-                                                                    600),
-                                                            curve:
-                                                                Curves.easeIn,
-                                                            child: Text(
-                                                              valueOrDefault<
-                                                                  String>(
-                                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                    .first
-                                                                    .trackLastCoord,
-                                                                'Last Coordinates',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .end,
                                                               ),
                                                             ),
                                                           ),
@@ -1745,33 +1908,42 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                           .normal,
                                                                 ),
                                                           ),
-                                                          AnimatedDefaultTextStyle(
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  letterSpacing:
-                                                                      0.0,
+                                                          Expanded(
+                                                            child:
+                                                                AnimatedDefaultTextStyle(
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w300,
+                                                                  ),
+                                                              duration: const Duration(
+                                                                  milliseconds:
+                                                                      600),
+                                                              curve:
+                                                                  Curves.easeIn,
+                                                              child: Text(
+                                                                valueOrDefault<
+                                                                    String>(
+                                                                  functions.timesStampConverter(
+                                                                      valueOrDefault<
+                                                                          String>(
+                                                                    taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                        .first
+                                                                        .trackDateTime,
+                                                                    'Track Date',
+                                                                  )),
+                                                                  '\'\'',
                                                                 ),
-                                                            duration: const Duration(
-                                                                milliseconds:
-                                                                    600),
-                                                            curve:
-                                                                Curves.easeIn,
-                                                            child: Text(
-                                                              valueOrDefault<
-                                                                  String>(
-                                                                functions.timesStampConverter(
-                                                                    valueOrDefault<
-                                                                        String>(
-                                                                  taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                      .first
-                                                                      .trackDateTime,
-                                                                  'Track Date',
-                                                                )),
-                                                                '\'\'',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .end,
                                                               ),
                                                             ),
                                                           ),
@@ -1812,28 +1984,37 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                           .normal,
                                                                 ),
                                                           ),
-                                                          AnimatedDefaultTextStyle(
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  letterSpacing:
-                                                                      0.0,
+                                                          Expanded(
+                                                            child:
+                                                                AnimatedDefaultTextStyle(
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w300,
+                                                                  ),
+                                                              duration: const Duration(
+                                                                  milliseconds:
+                                                                      600),
+                                                              curve:
+                                                                  Curves.easeIn,
+                                                              child: Text(
+                                                                valueOrDefault<
+                                                                    String>(
+                                                                  taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                      .first
+                                                                      .trackTotalArea,
+                                                                  '-',
                                                                 ),
-                                                            duration: const Duration(
-                                                                milliseconds:
-                                                                    600),
-                                                            curve:
-                                                                Curves.easeIn,
-                                                            child: Text(
-                                                              valueOrDefault<
-                                                                  String>(
-                                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                    .first
-                                                                    .trackTotalArea,
-                                                                'Track Area',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .end,
                                                               ),
                                                             ),
                                                           ),
@@ -1874,28 +2055,37 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                           .normal,
                                                                 ),
                                                           ),
-                                                          AnimatedDefaultTextStyle(
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  letterSpacing:
-                                                                      0.0,
+                                                          Expanded(
+                                                            child:
+                                                                AnimatedDefaultTextStyle(
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w300,
+                                                                  ),
+                                                              duration: const Duration(
+                                                                  milliseconds:
+                                                                      600),
+                                                              curve:
+                                                                  Curves.easeIn,
+                                                              child: Text(
+                                                                valueOrDefault<
+                                                                    String>(
+                                                                  taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                      .first
+                                                                      .trackTotalDistance,
+                                                                  '-',
                                                                 ),
-                                                            duration: const Duration(
-                                                                milliseconds:
-                                                                    600),
-                                                            curve:
-                                                                Curves.easeIn,
-                                                            child: Text(
-                                                              valueOrDefault<
-                                                                  String>(
-                                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                    .first
-                                                                    .trackTotalDistance,
-                                                                'Total Distance',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .end,
                                                               ),
                                                             ),
                                                           ),
@@ -1921,42 +2111,28 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                 .dashed,
                                                       ),
                                                     ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  8.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      child: Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          Text(
-                                                            FFLocalizations.of(
-                                                                    context)
-                                                                .getText(
-                                                              'v9d4i47l' /* Seed Details */,
-                                                            ),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .labelMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                ),
-                                                          ),
-                                                        ],
+                                                    Text(
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .getText(
+                                                        'ho7vbock' /* Seed Details */,
                                                       ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                              ),
                                                     ),
                                                     Padding(
                                                       padding:
@@ -1992,28 +2168,37 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                           .normal,
                                                                 ),
                                                           ),
-                                                          AnimatedDefaultTextStyle(
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  letterSpacing:
-                                                                      0.0,
+                                                          Expanded(
+                                                            child:
+                                                                AnimatedDefaultTextStyle(
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w300,
+                                                                  ),
+                                                              duration: const Duration(
+                                                                  milliseconds:
+                                                                      600),
+                                                              curve:
+                                                                  Curves.easeIn,
+                                                              child: Text(
+                                                                valueOrDefault<
+                                                                    String>(
+                                                                  taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                      .first
+                                                                      .ppirVariety,
+                                                                  '-',
                                                                 ),
-                                                            duration: const Duration(
-                                                                milliseconds:
-                                                                    600),
-                                                            curve:
-                                                                Curves.easeIn,
-                                                            child: Text(
-                                                              valueOrDefault<
-                                                                  String>(
-                                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                    .first
-                                                                    .ppirVariety,
-                                                                'Type',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .end,
                                                               ),
                                                             ),
                                                           ),
@@ -2039,7 +2224,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             FFLocalizations.of(
                                                                     context)
                                                                 .getText(
-                                                              'veh8acpl' /* Actual Seed Variety Planted - ... */,
+                                                              'veh8acpl' /* Actual Seed Variety Planted
+(C... */
+                                                              ,
                                                             ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
@@ -2054,28 +2241,37 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                           .normal,
                                                                 ),
                                                           ),
-                                                          AnimatedDefaultTextStyle(
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  letterSpacing:
-                                                                      0.0,
+                                                          Expanded(
+                                                            child:
+                                                                AnimatedDefaultTextStyle(
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w300,
+                                                                  ),
+                                                              duration: const Duration(
+                                                                  milliseconds:
+                                                                      600),
+                                                              curve:
+                                                                  Curves.easeIn,
+                                                              child: Text(
+                                                                valueOrDefault<
+                                                                    String>(
+                                                                  taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                      .first
+                                                                      .ppirSvpAct,
+                                                                  '-',
                                                                 ),
-                                                            duration: const Duration(
-                                                                milliseconds:
-                                                                    600),
-                                                            curve:
-                                                                Curves.easeIn,
-                                                            child: Text(
-                                                              valueOrDefault<
-                                                                  String>(
-                                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                    .first
-                                                                    .ppirSvpAct,
-                                                                'Variety',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .end,
                                                               ),
                                                             ),
                                                           ),
@@ -2105,9 +2301,9 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       padding:
                                                           const EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  20.0,
+                                                                  0.0,
                                                                   8.0,
-                                                                  20.0,
+                                                                  0.0,
                                                                   0.0),
                                                       child: Row(
                                                         mainAxisSize:
@@ -2116,30 +2312,27 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             MainAxisAlignment
                                                                 .spaceBetween,
                                                         children: [
-                                                          AnimatedDefaultTextStyle(
+                                                          Text(
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .getText(
+                                                              'lnj6pjl7' /* Date Details */,
+                                                            ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .bodyMedium
+                                                                .labelMedium
                                                                 .override(
                                                                   fontFamily:
                                                                       'Readex Pro',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
                                                                 ),
-                                                            duration: const Duration(
-                                                                milliseconds:
-                                                                    600),
-                                                            curve:
-                                                                Curves.easeIn,
-                                                            child: Text(
-                                                              valueOrDefault<
-                                                                  String>(
-                                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                    .first
-                                                                    .ppirAreaAct,
-                                                                'Actual Area Planted',
-                                                              ),
-                                                            ),
                                                           ),
                                                         ],
                                                       ),
@@ -2163,7 +2356,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             FFLocalizations.of(
                                                                     context)
                                                                 .getText(
-                                                              '4s2psn11' /* Actual - Date of Planting (DS) */,
+                                                              '4s2psn11' /* Actual Area Planted */,
                                                             ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
@@ -2198,8 +2391,76 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   String>(
                                                                 taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
                                                                     .first
-                                                                    .ppirDopdsAct,
-                                                                'Date of Planting',
+                                                                    .ppirAreaAct,
+                                                                '-',
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  20.0,
+                                                                  8.0,
+                                                                  20.0,
+                                                                  0.0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Text(
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .getText(
+                                                              'n91720z3' /* Actual - Date of Planting (DS) */,
+                                                            ),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                ),
+                                                          ),
+                                                          Expanded(
+                                                            child:
+                                                                AnimatedDefaultTextStyle(
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                              duration: const Duration(
+                                                                  milliseconds:
+                                                                      600),
+                                                              curve:
+                                                                  Curves.easeIn,
+                                                              child: Text(
+                                                                valueOrDefault<
+                                                                    String>(
+                                                                  taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                      .first
+                                                                      .ppirDopdsAct,
+                                                                  '-',
+                                                                ),
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .end,
                                                               ),
                                                             ),
                                                           ),
@@ -2240,28 +2501,34 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                           .normal,
                                                                 ),
                                                           ),
-                                                          AnimatedDefaultTextStyle(
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  letterSpacing:
-                                                                      0.0,
+                                                          Expanded(
+                                                            child:
+                                                                AnimatedDefaultTextStyle(
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                              duration: const Duration(
+                                                                  milliseconds:
+                                                                      600),
+                                                              curve:
+                                                                  Curves.easeIn,
+                                                              child: Text(
+                                                                valueOrDefault<
+                                                                    String>(
+                                                                  taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                      .first
+                                                                      .ppirDoptpAct,
+                                                                  '-',
                                                                 ),
-                                                            duration: const Duration(
-                                                                milliseconds:
-                                                                    600),
-                                                            curve:
-                                                                Curves.easeIn,
-                                                            child: Text(
-                                                              valueOrDefault<
-                                                                  String>(
-                                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                    .first
-                                                                    .ppirDoptpAct,
-                                                                'Date of Planting',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .end,
                                                               ),
                                                             ),
                                                           ),
@@ -2306,7 +2573,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             FFLocalizations.of(
                                                                     context)
                                                                 .getText(
-                                                              'lnj6pjl7' /* Agent Confirmation */,
+                                                              'q51vy5pn' /* Agent Confirmation */,
                                                             ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
@@ -2317,6 +2584,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primaryText,
+                                                                  fontSize:
+                                                                      16.0,
                                                                   letterSpacing:
                                                                       0.0,
                                                                   fontWeight:
@@ -2361,28 +2630,34 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                           .normal,
                                                                 ),
                                                           ),
-                                                          AnimatedDefaultTextStyle(
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  letterSpacing:
-                                                                      0.0,
+                                                          Expanded(
+                                                            child:
+                                                                AnimatedDefaultTextStyle(
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                              duration: const Duration(
+                                                                  milliseconds:
+                                                                      600),
+                                                              curve:
+                                                                  Curves.easeIn,
+                                                              child: Text(
+                                                                valueOrDefault<
+                                                                    String>(
+                                                                  taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                      .first
+                                                                      .ppirRemarks,
+                                                                  '-',
                                                                 ),
-                                                            duration: const Duration(
-                                                                milliseconds:
-                                                                    600),
-                                                            curve:
-                                                                Curves.easeIn,
-                                                            child: Text(
-                                                              valueOrDefault<
-                                                                  String>(
-                                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                    .first
-                                                                    .ppirRemarks,
-                                                                'Address',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .end,
                                                               ),
                                                             ),
                                                           ),
@@ -2423,28 +2698,34 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                           .normal,
                                                                 ),
                                                           ),
-                                                          AnimatedDefaultTextStyle(
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  letterSpacing:
-                                                                      0.0,
+                                                          Expanded(
+                                                            child:
+                                                                AnimatedDefaultTextStyle(
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                              duration: const Duration(
+                                                                  milliseconds:
+                                                                      600),
+                                                              curve:
+                                                                  Curves.easeIn,
+                                                              child: Text(
+                                                                valueOrDefault<
+                                                                    String>(
+                                                                  taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                      .first
+                                                                      .ppirNameInsured,
+                                                                  '-',
                                                                 ),
-                                                            duration: const Duration(
-                                                                milliseconds:
-                                                                    600),
-                                                            curve:
-                                                                Curves.easeIn,
-                                                            child: Text(
-                                                              valueOrDefault<
-                                                                  String>(
-                                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                    .first
-                                                                    .ppirNameInsured,
-                                                                'Address',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .end,
                                                               ),
                                                             ),
                                                           ),
@@ -2534,28 +2815,34 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                           .normal,
                                                                 ),
                                                           ),
-                                                          AnimatedDefaultTextStyle(
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  letterSpacing:
-                                                                      0.0,
+                                                          Expanded(
+                                                            child:
+                                                                AnimatedDefaultTextStyle(
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                              duration: const Duration(
+                                                                  milliseconds:
+                                                                      600),
+                                                              curve:
+                                                                  Curves.easeIn,
+                                                              child: Text(
+                                                                valueOrDefault<
+                                                                    String>(
+                                                                  taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
+                                                                      .first
+                                                                      .ppirNameIuia,
+                                                                  '-',
                                                                 ),
-                                                            duration: const Duration(
-                                                                milliseconds:
-                                                                    600),
-                                                            curve:
-                                                                Curves.easeIn,
-                                                            child: Text(
-                                                              valueOrDefault<
-                                                                  String>(
-                                                                taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                    .first
-                                                                    .ppirNameIuia,
-                                                                'Address',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .end,
                                                               ),
                                                             ),
                                                           ),
