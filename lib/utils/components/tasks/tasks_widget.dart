@@ -522,27 +522,68 @@ class _TasksWidgetState extends State<TasksWidget>
                                       ),
                                     ),
                                   ),
-                                  if (widget.status == 'ongoing')
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            8.0, 0.0, 0.0, 0.0),
-                                        child: Text(
-                                          'Accessed ${functions.timeStampToMoment(widget.time)}',
-                                          textAlign: TextAlign.end,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Readex Pro',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                fontSize: 12.0,
-                                                letterSpacing: 0.0,
-                                              ),
+                                  Flexible(
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            color: () {
+                                              if (widget.status ==
+                                                  'completed') {
+                                                return FlutterFlowTheme.of(
+                                                        context)
+                                                    .tertiary;
+                                              } else if (widget.status ==
+                                                  'ongoing') {
+                                                return FlutterFlowTheme.of(
+                                                        context)
+                                                    .success;
+                                              } else {
+                                                return FlutterFlowTheme.of(
+                                                        context)
+                                                    .secondary;
+                                              }
+                                            }(),
+                                            borderRadius:
+                                                BorderRadius.circular(24.0),
+                                            shape: BoxShape.rectangle,
+                                          ),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    4.0, 2.0, 4.0, 2.0),
+                                            child: Text(
+                                              () {
+                                                if (widget.status ==
+                                                    'completed') {
+                                                  return 'Completed';
+                                                } else if (widget.status ==
+                                                    'ongoing') {
+                                                  return 'Accessed ${functions.timeStampToMoment(widget.time)}';
+                                                } else {
+                                                  return 'Ready';
+                                                }
+                                              }(),
+                                              textAlign: TextAlign.center,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .info,
+                                                    fontSize: 10.0,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                            ),
+                                          ),
                                         ),
-                                      ),
+                                      ],
                                     ),
+                                  ),
                                 ],
                               ),
                             ],

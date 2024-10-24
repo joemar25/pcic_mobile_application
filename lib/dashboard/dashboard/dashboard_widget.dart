@@ -884,6 +884,10 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                       FlutterFlowTheme.of(
                                                               context)
                                                           .primaryText,
+                                                  unselectedLabelColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primaryText,
                                                   labelStyle:
                                                       FlutterFlowTheme.of(
                                                               context)

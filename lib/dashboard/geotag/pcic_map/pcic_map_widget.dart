@@ -357,7 +357,7 @@ class _PcicMapWidgetState extends State<PcicMapWidget>
                   child: TabBar(
                     labelColor: FlutterFlowTheme.of(context).primaryText,
                     unselectedLabelColor:
-                        FlutterFlowTheme.of(context).secondaryText,
+                        FlutterFlowTheme.of(context).primaryText,
                     labelPadding: const EdgeInsets.all(10.0),
                     labelStyle:
                         FlutterFlowTheme.of(context).titleMedium.override(
