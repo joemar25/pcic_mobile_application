@@ -71,4 +71,13 @@ class TasksRow extends SupabaseDataRow {
 
   bool? get isUpdating => getField<bool>('is_updating');
   set isUpdating(bool? value) => setField<bool>('is_updating', value);
+
+  bool get active => getField<bool>('active')!;
+  set active(bool value) => setField<bool>('active', value);
+
+  DateTime? get submitDate => getField<DateTime>('submit_date');
+  set submitDate(DateTime? value) => setField<DateTime>('submit_date', value);
+
+  DateTime? get archiveDate => getField<DateTime>('archive_date');
+  set archiveDate(DateTime? value) => setField<DateTime>('archive_date', value);
 }
