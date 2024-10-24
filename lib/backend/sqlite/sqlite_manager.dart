@@ -23,7 +23,7 @@ class SQLiteManager {
     }
     _database = await initializeDatabaseFromDbFile(
       'db_sync',
-      'offline_db.db',
+      'bmt4t_db.db',
     );
   }
 
