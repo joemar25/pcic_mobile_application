@@ -4489,6 +4489,19 @@ class _PpirFormWidgetState extends State<PpirFormWidget> {
                                                       });
                                                     }(),
                                                   );
+                                                  await TasksTable().update(
+                                                    data: {
+                                                      'submit_date': supaSerialize<
+                                                              DateTime>(
+                                                          _model
+                                                              .dateNowForSubmit),
+                                                    },
+                                                    matchingRows: (rows) =>
+                                                        rows.eq(
+                                                      'id',
+                                                      widget.taskId,
+                                                    ),
+                                                  );
 
                                                   context.goNamed(
                                                     'formSuccess',

@@ -682,3 +682,19 @@ WHERE id = '$taskId';
 }
 
 /// END UPDATE OFFLINE TASK SYNC STATUS
+
+/// BEGIN UPDATEPPIRSUBMITDATETIME
+Future performUpdatePpirSubmitDateTime(
+  Database database, {
+  String? taskId,
+  String? submitDate,
+}) {
+  final query = '''
+UPDATE tasks
+SET  submit_date = '$submitDate'
+WHERE task_id = '$taskId';
+''';
+  return database.rawQuery(query);
+}
+
+/// END UPDATEPPIRSUBMITDATETIME

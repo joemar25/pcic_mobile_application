@@ -299,9 +299,8 @@ class _SyncWidgetState extends State<SyncWidget> with TickerProviderStateMixin {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                valueOrDefault<String>(
-                                  _model.syncMessage,
-                                  'Sync Count',
+                                FFLocalizations.of(context).getText(
+                                  '2algl1qt' /* Sync Success */,
                                 ),
                                 textAlign: TextAlign.center,
                                 style: FlutterFlowTheme.of(context)

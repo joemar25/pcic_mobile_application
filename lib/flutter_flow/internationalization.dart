@@ -781,6 +781,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // sync
   {
+    '2algl1qt': {
+      'en': 'Sync Success',
+      'tl': '',
+    },
     'nzwziy9t': {
       'en': 'Dashboard',
       'tl': 'Dashboard',
@@ -1648,10 +1652,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           '\"PCIC Mobile Application requires access to your location to enable geotagging. This will allow us to accurately obtain GPX data with your current location, improving our service. Please grant location access to continue.\"',
       'tl':
           '\"Ang PCI Mobile Application ay nangangailangan ng access sa iyong lokasyon upang paganahin ang geotagging. Ito ay magbibigay-daan sa amin na tumpak na makakuha ng data ng GPX sa iyong kasalukuyang lokasyon, pagpapabuti ng aming serbisyo. Mangyaring bigyan ng access sa lokasyon upang magpatuloy.\"',
-    },
-    'v9s5k3mv': {
-      'en': '',
-      'tl': '',
     },
     'klzb3gt7': {
       'en': '',

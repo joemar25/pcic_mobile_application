@@ -23,7 +23,7 @@ class SQLiteManager {
     }
     _database = await initializeDatabaseFromDbFile(
       'db_sync',
-      'bmt4t_db.db',
+      'offline_db.db',
     );
   }
 
@@ -717,6 +717,16 @@ class SQLiteManager {
         taskId: taskId,
         syncStatus: syncStatus,
         isDirty: isDirty,
+      );
+
+  Future updatePpirSubmitDateTime({
+    String? taskId,
+    String? submitDate,
+  }) =>
+      performUpdatePpirSubmitDateTime(
+        _database,
+        taskId: taskId,
+        submitDate: submitDate,
       );
 
   /// END UPDATE QUERY CALLS
