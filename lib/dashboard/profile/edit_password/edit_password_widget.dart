@@ -29,59 +29,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
     _model = createModel(context, () => EditPasswordModel());
 
     // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      // Edit Password
-      await actions.editPassword(
-        _model.oldPasswordTextController.text,
-        _model.newPasswordTextController.text,
-      );
-      // CHECK PASSWORD
-      await actions.verifyPassword(
-        '0',
-      );
-      if (_model.isPasswordVerified) {
-        // Compare Password
-        await actions.comparePasswords(
-          _model.newPasswordTextController.text,
-          _model.confirmNewPasswordTextController.text,
-        );
-        // Update Password
-        await actions.updatePassword(
-          _model.newPasswordTextController.text,
-        );
-        // Password changed
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              'Password changed',
-              style: FlutterFlowTheme.of(context).titleMedium.override(
-                    fontFamily: 'Readex Pro',
-                    color: FlutterFlowTheme.of(context).primaryText,
-                    letterSpacing: 0.0,
-                  ),
-            ),
-            duration: const Duration(milliseconds: 4000),
-            backgroundColor: FlutterFlowTheme.of(context).secondary,
-          ),
-        );
-      } else {
-        // Password change failed
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              'Password change failed',
-              style: FlutterFlowTheme.of(context).titleSmall.override(
-                    fontFamily: 'Readex Pro',
-                    color: FlutterFlowTheme.of(context).primaryText,
-                    letterSpacing: 0.0,
-                  ),
-            ),
-            duration: const Duration(milliseconds: 4000),
-            backgroundColor: FlutterFlowTheme.of(context).secondary,
-          ),
-        );
-      }
-    });
+    SchedulerBinding.instance.addPostFrameCallback((_) async {});
 
     _model.oldPasswordTextController ??= TextEditingController();
     _model.oldPasswordFocusNode ??= FocusNode();
