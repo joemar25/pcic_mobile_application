@@ -688,9 +688,9 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                 hasTransition: true,
                                                 transitionType:
                                                     PageTransitionType
-                                                        .rightToLeft,
+                                                        .topToBottom,
                                                 duration:
-                                                    Duration(milliseconds: 800),
+                                                    Duration(milliseconds: 500),
                                               ),
                                             },
                                           );
@@ -762,7 +762,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                     PageTransitionType
                                                         .topToBottom,
                                                 duration:
-                                                    Duration(milliseconds: 800),
+                                                    Duration(milliseconds: 500),
                                               ),
                                             },
                                           );
@@ -834,9 +834,9 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                   hasTransition: true,
                                                   transitionType:
                                                       PageTransitionType
-                                                          .rightToLeft,
+                                                          .topToBottom,
                                                   duration: Duration(
-                                                      milliseconds: 800),
+                                                      milliseconds: 500),
                                                 ),
                                               },
                                             );
@@ -911,7 +911,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                   alignment:
                                                       Alignment.bottomCenter,
                                                   duration: Duration(
-                                                      milliseconds: 800),
+                                                      milliseconds: 500),
                                                 ),
                                               },
                                             );
@@ -965,155 +965,158 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                       .divide(const SizedBox(height: 10.0))
                                       .around(const SizedBox(height: 10.0)),
                                 ),
-                                Divider(
-                                  height: 40.0,
-                                  thickness: 1.0,
-                                  color: FlutterFlowTheme.of(context).primary,
-                                ),
-                                Builder(
-                                  builder: (context) => Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 20.0),
-                                    child: InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        currentUserLocationValue =
-                                            await getCurrentUserLocation(
-                                                defaultLocation:
-                                                    const LatLng(0.0, 0.0));
-                                        await showDialog(
-                                          context: context,
-                                          builder: (dialogContext) {
-                                            return Dialog(
-                                              elevation: 0,
-                                              insetPadding: EdgeInsets.zero,
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              alignment:
-                                                  const AlignmentDirectional(0.0, 0.0)
-                                                      .resolve(
-                                                          Directionality.of(
-                                                              context)),
-                                              child: SizedBox(
-                                                height:
-                                                    MediaQuery.sizeOf(context)
-                                                            .height *
-                                                        0.4,
-                                                width: 300.0,
-                                                child: const SignoutDialogWidget(),
-                                              ),
-                                            );
-                                          },
-                                        ).then((value) => safeSetState(
-                                            () => _model.logOutTrue = value));
-
-                                        if (_model.logOutTrue!) {
-                                          if (FFAppState().ONLINE) {
-                                            await SQLiteManager.instance
-                                                .dELETEAllRowsForTASKSAndPPIR();
-                                            await UsersTable().update(
-                                              data: {
-                                                'is_online': false,
-                                              },
-                                              matchingRows: (rows) => rows.eq(
-                                                'auth_user_id',
-                                                currentUserUid,
-                                              ),
-                                            );
-                                            await UserLogsTable().insert({
-                                              'user_id': currentUserUid,
-                                              'activity': 'Log out',
-                                              'longlat':
-                                                  '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
-                                            });
-                                            GoRouter.of(context)
-                                                .prepareAuthEvent();
-                                            await authManager.signOut();
-                                            GoRouter.of(context)
-                                                .clearRedirectLocation();
-
-                                            context.goNamedAuth(
-                                              'onboarding',
-                                              context.mounted,
-                                              extra: <String, dynamic>{
-                                                kTransitionInfoKey:
-                                                    const TransitionInfo(
-                                                  hasTransition: true,
-                                                  transitionType:
-                                                      PageTransitionType.fade,
-                                                  duration:
-                                                      Duration(milliseconds: 0),
+                                if (FFAppState().ONLINE)
+                                  Divider(
+                                    height: 40.0,
+                                    thickness: 1.0,
+                                    color: FlutterFlowTheme.of(context).primary,
+                                  ),
+                                if (FFAppState().ONLINE)
+                                  Builder(
+                                    builder: (context) => Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 20.0),
+                                      child: InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          currentUserLocationValue =
+                                              await getCurrentUserLocation(
+                                                  defaultLocation:
+                                                      const LatLng(0.0, 0.0));
+                                          await showDialog(
+                                            context: context,
+                                            builder: (dialogContext) {
+                                              return Dialog(
+                                                elevation: 0,
+                                                insetPadding: EdgeInsets.zero,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                alignment: const AlignmentDirectional(
+                                                        0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                                child: SizedBox(
+                                                  height:
+                                                      MediaQuery.sizeOf(context)
+                                                              .height *
+                                                          0.4,
+                                                  width: 300.0,
+                                                  child: const SignoutDialogWidget(),
                                                 ),
-                                              },
-                                            );
-                                          } else {
-                                            await showDialog(
-                                              context: context,
-                                              builder: (dialogContext) {
-                                                return Dialog(
-                                                  elevation: 0,
-                                                  insetPadding: EdgeInsets.zero,
-                                                  backgroundColor:
-                                                      Colors.transparent,
-                                                  alignment:
-                                                      const AlignmentDirectional(
-                                                              0.0, 0.0)
-                                                          .resolve(
-                                                              Directionality.of(
-                                                                  context)),
-                                                  child:
-                                                      const NoInternetDialogWidget(),
-                                                );
-                                              },
-                                            );
+                                              );
+                                            },
+                                          ).then((value) => safeSetState(
+                                              () => _model.logOutTrue = value));
+
+                                          if (_model.logOutTrue!) {
+                                            if (FFAppState().ONLINE) {
+                                              await SQLiteManager.instance
+                                                  .dELETEAllRowsForTASKSAndPPIR();
+                                              await UsersTable().update(
+                                                data: {
+                                                  'is_online': false,
+                                                },
+                                                matchingRows: (rows) => rows.eq(
+                                                  'auth_user_id',
+                                                  currentUserUid,
+                                                ),
+                                              );
+                                              await UserLogsTable().insert({
+                                                'user_id': currentUserUid,
+                                                'activity': 'Log out',
+                                                'longlat':
+                                                    '${functions.getLng(currentUserLocationValue).toString()}, ${functions.getLat(currentUserLocationValue).toString()}',
+                                              });
+                                              GoRouter.of(context)
+                                                  .prepareAuthEvent();
+                                              await authManager.signOut();
+                                              GoRouter.of(context)
+                                                  .clearRedirectLocation();
+
+                                              context.goNamedAuth(
+                                                'onboarding',
+                                                context.mounted,
+                                                extra: <String, dynamic>{
+                                                  kTransitionInfoKey:
+                                                      const TransitionInfo(
+                                                    hasTransition: true,
+                                                    transitionType:
+                                                        PageTransitionType.fade,
+                                                    duration: Duration(
+                                                        milliseconds: 0),
+                                                  ),
+                                                },
+                                              );
+                                            } else {
+                                              await showDialog(
+                                                context: context,
+                                                builder: (dialogContext) {
+                                                  return Dialog(
+                                                    elevation: 0,
+                                                    insetPadding:
+                                                        EdgeInsets.zero,
+                                                    backgroundColor:
+                                                        Colors.transparent,
+                                                    alignment:
+                                                        const AlignmentDirectional(
+                                                                0.0, 0.0)
+                                                            .resolve(
+                                                                Directionality.of(
+                                                                    context)),
+                                                    child:
+                                                        const NoInternetDialogWidget(),
+                                                  );
+                                                },
+                                              );
+                                            }
                                           }
-                                        }
 
-                                        safeSetState(() {});
-                                      },
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Icon(
-                                                Icons.logout_rounded,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .error,
-                                                size: 30.0,
-                                              ),
-                                              Text(
-                                                FFLocalizations.of(context)
-                                                    .getText(
-                                                  'yttqc4w2' /* Sign Out */,
+                                          safeSetState(() {});
+                                        },
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Icon(
+                                                  Icons.logout_rounded,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .error,
+                                                  size: 30.0,
                                                 ),
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily: 'Readex Pro',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .error,
-                                                      fontSize: 16.0,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.normal,
-                                                    ),
-                                              ),
-                                            ].divide(const SizedBox(width: 10.0)),
-                                          ),
-                                        ].divide(const SizedBox(width: 10.0)),
+                                                Text(
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'yttqc4w2' /* Sign Out */,
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        fontSize: 16.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
+                                                ),
+                                              ].divide(const SizedBox(width: 10.0)),
+                                            ),
+                                          ].divide(const SizedBox(width: 10.0)),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
                               ],
                             ),
                           ),
