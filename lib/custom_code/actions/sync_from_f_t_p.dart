@@ -28,16 +28,18 @@ class FTPSyncException implements Exception {
 
 String convertStatus(String? status) {
   switch (status?.toLowerCase()) {
+    case 'for dispatch':
     case 'pending':
-      return 'for_dispatch';
-    case 'in_progress':
-      return 'in_progress';
+      return 'for dispatch';
+    case 'in progress':
+    case 'ongoing':
+      return 'ongoing';
     case 'completed':
       return 'completed';
     case 'cancelled':
       return 'cancelled';
     default:
-      return 'for_dispatch';
+      return 'for dispatch';
   }
 }
 

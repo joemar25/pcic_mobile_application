@@ -31,6 +31,7 @@ Future<bool> saveToFTP(String? taskId) async {
     final String folderPrefix = '${taskNumber}_$insuranceId';
 
     print('Searching for latest folder with basePath: $basePath');
+    print('Task Number: $taskNumber');
     print('Folder prefix: $folderPrefix');
 
     final latestFolder = await findLatestFolder(basePath, folderPrefix);
@@ -79,6 +80,7 @@ Future<bool> saveToFTP(String? taskId) async {
     }
 
     final fileName = '$taskNumber.task';
+    print('Filename is: $fileName');
     final remotePath = '/$remoteBasePath/$fileName';
 
     try {

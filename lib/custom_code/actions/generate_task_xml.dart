@@ -3211,8 +3211,8 @@ Future<String> generateTaskXml(String? taskId) async {
               builder.element('Sequence', nest: '6');
               builder.element('Type', nest: 'Text');
               builder.element('Value',
-                  nest: ppirForm['track_date_time']?.toString() ??
-                      ''); // last value is 04/08/2024 1:29:22 pm
+                  nest: timesStampConverter(ppirForm['track_date_time']
+                      .toString())); // last value is 04/08/2024 1:29:22 pm
             });
 
             builder.element('FormFieldZipModel', nest: () {
