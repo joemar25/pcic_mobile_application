@@ -1,4 +1,5 @@
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'geotagging_widget.dart' show GeotaggingWidget;
 import 'package:flutter/material.dart';
 

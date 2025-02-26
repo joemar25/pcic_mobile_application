@@ -9,7 +9,7 @@ class AttemptsTable extends SupabaseTable<AttemptsRow> {
 }
 
 class AttemptsRow extends SupabaseDataRow {
-  AttemptsRow(super.data);
+  AttemptsRow(Map<String, dynamic> data) : super(data);
 
   @override
   SupabaseTable get table => AttemptsTable();

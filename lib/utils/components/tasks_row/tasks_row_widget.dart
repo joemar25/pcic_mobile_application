@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:async';
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'tasks_row_model.dart';
@@ -22,12 +23,12 @@ class TasksRowWidget extends StatefulWidget {
     String? taskStatus,
     required this.taskId,
     this.timeAccess,
-  })  : farmerName = farmerName ?? 'Farmer Name',
-        insuranceId = insuranceId ?? 'Insurance Id',
-        assignmentId = assignmentId ?? 'Assignment Id',
-        ppirAddress = ppirAddress ?? 'Address',
-        hasGpx = hasGpx ?? false,
-        taskStatus = taskStatus ?? 'ongoing';
+  })  : this.farmerName = farmerName ?? 'Farmer Name',
+        this.insuranceId = insuranceId ?? 'Insurance Id',
+        this.assignmentId = assignmentId ?? 'Assignment Id',
+        this.ppirAddress = ppirAddress ?? 'Address',
+        this.hasGpx = hasGpx ?? false,
+        this.taskStatus = taskStatus ?? 'ongoing';
 
   final String farmerName;
   final String insuranceId;
@@ -87,7 +88,7 @@ class _TasksRowWidgetState extends State<TasksRowWidget>
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(3.0),
+      padding: EdgeInsets.all(3.0),
       child: FutureBuilder<List<SelectPpirFormsRow>>(
         future: SQLiteManager.instance.selectPpirForms(
           taskId: widget.farmerName,
@@ -97,7 +98,7 @@ class _TasksRowWidgetState extends State<TasksRowWidget>
           if (!snapshot.hasData) {
             return Center(
               child: Padding(
-                padding: const EdgeInsets.all(24.0),
+                padding: EdgeInsets.all(24.0),
                 child: LinearProgressIndicator(
                   color: FlutterFlowTheme.of(context).primary,
                 ),
@@ -113,7 +114,7 @@ class _TasksRowWidgetState extends State<TasksRowWidget>
             highlightColor: Colors.transparent,
             onTap: () async {
               currentUserLocationValue = await getCurrentUserLocation(
-                  defaultLocation: const LatLng(0.0, 0.0));
+                  defaultLocation: LatLng(0.0, 0.0));
               unawaited(
                 () async {
                   await UserLogsTable().insert({
@@ -127,7 +128,7 @@ class _TasksRowWidgetState extends State<TasksRowWidget>
               );
 
               context.goNamed(
-                'taskDetails',
+                TaskDetailsWidget.routeName,
                 queryParameters: {
                   'taskId': serializeParam(
                     widget.taskId,
@@ -150,7 +151,7 @@ class _TasksRowWidgetState extends State<TasksRowWidget>
                 width: MediaQuery.sizeOf(context).width * 1.0,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).alternate,
-                  boxShadow: const [
+                  boxShadow: [
                     BoxShadow(
                       blurRadius: 5.0,
                       color: Color(0x21000000),
@@ -168,7 +169,7 @@ class _TasksRowWidgetState extends State<TasksRowWidget>
                 ),
                 child: Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(10.0, 20.0, 10.0, 20.0),
+                      EdgeInsetsDirectional.fromSTEB(10.0, 20.0, 10.0, 20.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -176,14 +177,14 @@ class _TasksRowWidgetState extends State<TasksRowWidget>
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 20.0, 0.0),
                                 child: Text(
                                   valueOrDefault<String>(
@@ -216,10 +217,10 @@ class _TasksRowWidgetState extends State<TasksRowWidget>
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
                         child: Container(
                           width: 100.0,
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -243,7 +244,7 @@ class _TasksRowWidgetState extends State<TasksRowWidget>
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           8.0, 0.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
@@ -302,7 +303,7 @@ class _TasksRowWidgetState extends State<TasksRowWidget>
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           8.0, 0.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(

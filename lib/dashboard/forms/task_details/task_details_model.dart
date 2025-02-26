@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/saving_mode/saving_mode_widget.dart';
+import '/index.dart';
 import 'task_details_widget.dart' show TaskDetailsWidget;
 import 'package:flutter/material.dart';
 

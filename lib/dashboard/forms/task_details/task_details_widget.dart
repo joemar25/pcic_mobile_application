@@ -12,6 +12,7 @@ import '/utils/components/saving_mode/saving_mode_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'package:styled_divider/styled_divider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -29,6 +30,9 @@ class TaskDetailsWidget extends StatefulWidget {
 
   final String? taskId;
   final String? taskStatus;
+
+  static String routeName = 'taskDetails';
+  static String routePath = '/task_details';
 
   @override
   State<TaskDetailsWidget> createState() => _TaskDetailsWidgetState();
@@ -91,8 +95,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
         if (!snapshot.hasData) {
           return Scaffold(
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            body: const Center(
-              child: SizedBox(
+            body: Center(
+              child: Container(
                 width: 100.0,
                 height: 100.0,
                 child: PageLoaderWidget(),
@@ -103,7 +107,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
         final taskDetailsSELECTTASKSAndPPIRByAssigneeRowList = snapshot.data!;
 
         return GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+          onTap: () {
+            FocusScope.of(context).unfocus();
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
           child: WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(
@@ -123,7 +130,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                     size: 20.0,
                   ),
                   onPressed: () async {
-                    context.goNamed('dashboard');
+                    context.goNamed(DashboardWidget.routeName);
                   },
                 ),
                 title: Row(
@@ -132,11 +139,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
                       child: Text(
                         valueOrDefault<String>(
                           taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                              .first.ppirFarmername,
+                              .firstOrNull?.ppirFarmername,
                           'Farmer Name',
                         ),
                         style: FlutterFlowTheme.of(context).titleSmall.override(
@@ -147,7 +154,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                       ),
                     ),
                     Container(
-                      decoration: const BoxDecoration(),
+                      decoration: BoxDecoration(),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -170,7 +177,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                 safeSetState(() {});
                               },
                               child: Text(
-                                '[ ${taskDetailsSELECTTASKSAndPPIRByAssigneeRowList.first.ppirIsDirty == '1' ? 'Outdated. Tap to sync' : _model.statusOutput} ]',
+                                '[ ${taskDetailsSELECTTASKSAndPPIRByAssigneeRowList.firstOrNull?.ppirIsDirty == '1' ? 'Outdated. Tap to sync' : _model.statusOutput} ]',
                                 style: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
@@ -198,14 +205,14 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                           wrapWithModel(
                             model: _model.connectivityModel,
                             updateCallback: () => safeSetState(() {}),
-                            child: const ConnectivityWidget(),
+                            child: ConnectivityWidget(),
                           ),
-                        ].divide(const SizedBox(width: 5.0)),
+                        ].divide(SizedBox(width: 5.0)),
                       ),
                     ),
                   ],
                 ),
-                actions: const [],
+                actions: [],
                 centerTitle: false,
                 elevation: 0.0,
               ),
@@ -236,10 +243,10 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.all(22.0),
+                                    padding: EdgeInsets.all(22.0),
                                     child: Container(
                                       width: 600.0,
-                                      constraints: const BoxConstraints(
+                                      constraints: BoxConstraints(
                                         maxWidth: 570.0,
                                       ),
                                       decoration: BoxDecoration(
@@ -249,7 +256,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                             BorderRadius.circular(12.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(24.0),
+                                        padding: EdgeInsets.all(24.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
@@ -258,7 +265,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 0.0, 0.0, 12.0),
                                               child: Text(
@@ -280,7 +287,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -315,14 +322,14 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             fontWeight:
                                                                 FontWeight.w300,
                                                           ),
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 600),
                                                       curve: Curves.easeIn,
                                                       child: Text(
                                                         valueOrDefault<String>(
                                                           taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                              .first
-                                                              .ppirAssignmentid,
+                                                              .firstOrNull
+                                                              ?.ppirAssignmentid,
                                                           '-',
                                                         ),
                                                         textAlign:
@@ -334,7 +341,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -369,14 +376,14 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             fontWeight:
                                                                 FontWeight.w300,
                                                           ),
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 600),
                                                       curve: Curves.easeIn,
                                                       child: Text(
                                                         valueOrDefault<String>(
                                                           taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                              .first
-                                                              .ppirFarmername,
+                                                              .firstOrNull
+                                                              ?.ppirFarmername,
                                                           '-',
                                                         ),
                                                         textAlign:
@@ -388,7 +395,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -425,14 +432,14 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             fontWeight:
                                                                 FontWeight.w300,
                                                           ),
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 600),
                                                       curve: Curves.easeIn,
                                                       child: Text(
                                                         valueOrDefault<String>(
                                                           taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                              .first
-                                                              .ppirAddress,
+                                                              .firstOrNull
+                                                              ?.ppirAddress,
                                                           '-',
                                                         ),
                                                         textAlign:
@@ -445,7 +452,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -482,14 +489,14 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             fontWeight:
                                                                 FontWeight.w300,
                                                           ),
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 600),
                                                       curve: Curves.easeIn,
                                                       child: Text(
                                                         valueOrDefault<String>(
                                                           taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                              .first
-                                                              .ppirInsuranceid,
+                                                              .firstOrNull
+                                                              ?.ppirInsuranceid,
                                                           '-',
                                                         ),
                                                         textAlign:
@@ -501,7 +508,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -538,14 +545,14 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             fontWeight:
                                                                 FontWeight.w300,
                                                           ),
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 600),
                                                       curve: Curves.easeIn,
                                                       child: Text(
                                                         valueOrDefault<String>(
                                                           taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                              .first
-                                                              .ppirMobileno,
+                                                              .firstOrNull
+                                                              ?.ppirMobileno,
                                                           '-',
                                                         ),
                                                         textAlign:
@@ -557,7 +564,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -594,14 +601,14 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             fontWeight:
                                                                 FontWeight.w300,
                                                           ),
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 600),
                                                       curve: Curves.easeIn,
                                                       child: Text(
                                                         valueOrDefault<String>(
                                                           taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                              .first
-                                                              .ppirFarmertype,
+                                                              .firstOrNull
+                                                              ?.ppirFarmertype,
                                                           '-',
                                                         ),
                                                         textAlign:
@@ -613,7 +620,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -650,14 +657,14 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             fontWeight:
                                                                 FontWeight.w300,
                                                           ),
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 600),
                                                       curve: Curves.easeIn,
                                                       child: Text(
                                                         valueOrDefault<String>(
                                                           taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                              .first
-                                                              .ppirGroupname,
+                                                              .firstOrNull
+                                                              ?.ppirGroupname,
                                                           '-',
                                                         ),
                                                         textAlign:
@@ -669,7 +676,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -706,14 +713,14 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             fontWeight:
                                                                 FontWeight.w300,
                                                           ),
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 600),
                                                       curve: Curves.easeIn,
                                                       child: Text(
                                                         valueOrDefault<String>(
                                                           taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                              .first
-                                                              .ppirGroupaddress,
+                                                              .firstOrNull
+                                                              ?.ppirGroupaddress,
                                                           '-',
                                                         ),
                                                         textAlign:
@@ -725,7 +732,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -762,14 +769,14 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             fontWeight:
                                                                 FontWeight.w300,
                                                           ),
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 600),
                                                       curve: Curves.easeIn,
                                                       child: Text(
                                                         valueOrDefault<String>(
                                                           taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                              .first
-                                                              .ppirLendername,
+                                                              .firstOrNull
+                                                              ?.ppirLendername,
                                                           '-',
                                                         ),
                                                         textAlign:
@@ -781,7 +788,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -818,14 +825,14 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             fontWeight:
                                                                 FontWeight.w300,
                                                           ),
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 600),
                                                       curve: Curves.easeIn,
                                                       child: Text(
                                                         valueOrDefault<String>(
                                                           taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                              .first
-                                                              .ppirLenderaddress,
+                                                              .firstOrNull
+                                                              ?.ppirLenderaddress,
                                                           '-',
                                                         ),
                                                         textAlign:
@@ -837,7 +844,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -874,15 +881,15 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             fontWeight:
                                                                 FontWeight.w300,
                                                           ),
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 600),
                                                       curve: Curves.easeIn,
                                                       child: Text(
                                                         valueOrDefault<String>(
                                                           functions.removePpirOnString(
                                                               taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                  .first
-                                                                  .serviceType),
+                                                                  .firstOrNull
+                                                                  ?.serviceType),
                                                           '-',
                                                         ),
                                                         textAlign:
@@ -894,7 +901,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -931,13 +938,14 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             fontWeight:
                                                                 FontWeight.w300,
                                                           ),
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 600),
                                                       curve: Curves.easeIn,
                                                       child: Text(
                                                         valueOrDefault<String>(
                                                           taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                              .first.ppirCicno,
+                                                              .firstOrNull
+                                                              ?.ppirCicno,
                                                           '-',
                                                         ),
                                                         textAlign:
@@ -949,7 +957,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -986,14 +994,14 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             fontWeight:
                                                                 FontWeight.w300,
                                                           ),
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 600),
                                                       curve: Curves.easeIn,
                                                       child: Text(
                                                         valueOrDefault<String>(
                                                           taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                              .first
-                                                              .ppirFarmloc,
+                                                              .firstOrNull
+                                                              ?.ppirFarmloc,
                                                           '-',
                                                         ),
                                                         textAlign:
@@ -1005,7 +1013,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 16.0, 0.0, 16.0),
                                               child: StyledDivider(
@@ -1018,7 +1026,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 0.0, 0.0, 12.0),
                                               child: Text(
@@ -1040,7 +1048,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1077,13 +1085,14 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             fontWeight:
                                                                 FontWeight.w300,
                                                           ),
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 600),
                                                       curve: Curves.easeIn,
                                                       child: Text(
                                                         valueOrDefault<String>(
                                                           taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                              .first.ppirNorth,
+                                                              .firstOrNull
+                                                              ?.ppirNorth,
                                                           '-',
                                                         ),
                                                         textAlign:
@@ -1095,7 +1104,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1132,13 +1141,14 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             fontWeight:
                                                                 FontWeight.w300,
                                                           ),
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 600),
                                                       curve: Curves.easeIn,
                                                       child: Text(
                                                         valueOrDefault<String>(
                                                           taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                              .first.ppirEast,
+                                                              .firstOrNull
+                                                              ?.ppirEast,
                                                           '-',
                                                         ),
                                                         textAlign:
@@ -1150,7 +1160,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1186,13 +1196,14 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             fontWeight:
                                                                 FontWeight.w300,
                                                           ),
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 600),
                                                       curve: Curves.easeIn,
                                                       child: Text(
                                                         valueOrDefault<String>(
                                                           taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                              .first.ppirSouth,
+                                                              .firstOrNull
+                                                              ?.ppirSouth,
                                                           '-',
                                                         ),
                                                         textAlign:
@@ -1204,7 +1215,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1240,13 +1251,14 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             fontWeight:
                                                                 FontWeight.w300,
                                                           ),
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 600),
                                                       curve: Curves.easeIn,
                                                       child: Text(
                                                         valueOrDefault<String>(
                                                           taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                              .first.ppirWest,
+                                                              .firstOrNull
+                                                              ?.ppirWest,
                                                           '-',
                                                         ),
                                                         textAlign:
@@ -1258,7 +1270,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 16.0, 0.0, 16.0),
                                               child: StyledDivider(
@@ -1271,7 +1283,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 0.0, 0.0, 12.0),
                                               child: Text(
@@ -1293,7 +1305,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1330,14 +1342,14 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             fontWeight:
                                                                 FontWeight.w300,
                                                           ),
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 600),
                                                       curve: Curves.easeIn,
                                                       child: Text(
                                                         valueOrDefault<String>(
                                                           taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                              .first
-                                                              .ppirAreaAci,
+                                                              .firstOrNull
+                                                              ?.ppirAreaAci,
                                                           '-',
                                                         ),
                                                         textAlign:
@@ -1349,7 +1361,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1386,14 +1398,14 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             fontWeight:
                                                                 FontWeight.w300,
                                                           ),
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 600),
                                                       curve: Curves.easeIn,
                                                       child: Text(
                                                         valueOrDefault<String>(
                                                           taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                              .first
-                                                              .ppirDopdsAci,
+                                                              .firstOrNull
+                                                              ?.ppirDopdsAci,
                                                           '-',
                                                         ),
                                                         textAlign:
@@ -1405,7 +1417,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1442,14 +1454,14 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             fontWeight:
                                                                 FontWeight.w300,
                                                           ),
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 600),
                                                       curve: Curves.easeIn,
                                                       child: Text(
                                                         valueOrDefault<String>(
                                                           taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                              .first
-                                                              .ppirDoptpAci,
+                                                              .firstOrNull
+                                                              ?.ppirDoptpAci,
                                                           '-',
                                                         ),
                                                         textAlign:
@@ -1461,7 +1473,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1498,13 +1510,14 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             fontWeight:
                                                                 FontWeight.w300,
                                                           ),
-                                                      duration: const Duration(
+                                                      duration: Duration(
                                                           milliseconds: 600),
                                                       curve: Curves.easeIn,
                                                       child: Text(
                                                         valueOrDefault<String>(
                                                           taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                              .first.ppirSvpAci,
+                                                              .firstOrNull
+                                                              ?.ppirSvpAci,
                                                           '-',
                                                         ),
                                                         textAlign:
@@ -1516,7 +1529,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 16.0, 0.0, 16.0),
                                               child: StyledDivider(
@@ -1532,7 +1545,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 8.0, 0.0, 8.0),
                                                   child: Row(
@@ -1572,7 +1585,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       MainAxisAlignment.center,
                                                   children: [
                                                     Flexible(
-                                                      child: SizedBox(
+                                                      child: Container(
                                                         width:
                                                             MediaQuery.sizeOf(
                                                                         context)
@@ -1599,8 +1612,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               valueOrDefault<
                                                                   String>(
                                                             taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                .first
-                                                                .capturedArea,
+                                                                .firstOrNull
+                                                                ?.capturedArea,
                                                             'No Value',
                                                           ),
                                                         ),
@@ -1611,7 +1624,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                               ],
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1656,7 +1669,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   context)
                                                               .alternate,
                                                     ),
-                                                    child: SizedBox(
+                                                    child: Container(
                                                       width: MediaQuery.sizeOf(
                                                                   context)
                                                               .width *
@@ -1680,8 +1693,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                         blob: valueOrDefault<
                                                                     String>(
                                                                   taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                      .first
-                                                                      .gpx,
+                                                                      .firstOrNull
+                                                                      ?.gpx,
                                                                   'null',
                                                                 ) ==
                                                                 'null'
@@ -1689,7 +1702,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             : valueOrDefault<
                                                                 String>(
                                                                 taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                    .first.gpx,
+                                                                    .firstOrNull
+                                                                    ?.gpx,
                                                                 'null',
                                                               ),
                                                         accessToken:
@@ -1715,7 +1729,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   16.0,
@@ -1738,7 +1752,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -1768,7 +1782,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   8.0,
@@ -1805,7 +1819,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   20.0,
                                                                   8.0,
@@ -1852,7 +1866,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         FontWeight
                                                                             .w300,
                                                                   ),
-                                                              duration: const Duration(
+                                                              duration: Duration(
                                                                   milliseconds:
                                                                       600),
                                                               curve:
@@ -1861,8 +1875,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                 valueOrDefault<
                                                                     String>(
                                                                   taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                      .first
-                                                                      .trackLastCoord,
+                                                                      .firstOrNull
+                                                                      ?.trackLastCoord,
                                                                   '-',
                                                                 ),
                                                                 textAlign:
@@ -1876,7 +1890,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   20.0,
                                                                   8.0,
@@ -1923,7 +1937,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         FontWeight
                                                                             .w300,
                                                                   ),
-                                                              duration: const Duration(
+                                                              duration: Duration(
                                                                   milliseconds:
                                                                       600),
                                                               curve:
@@ -1935,8 +1949,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                       valueOrDefault<
                                                                           String>(
                                                                     taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                        .first
-                                                                        .trackDateTime,
+                                                                        .firstOrNull
+                                                                        ?.trackDateTime,
                                                                     'Track Date',
                                                                   )),
                                                                   '\'\'',
@@ -1952,7 +1966,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   20.0,
                                                                   8.0,
@@ -1999,7 +2013,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         FontWeight
                                                                             .w300,
                                                                   ),
-                                                              duration: const Duration(
+                                                              duration: Duration(
                                                                   milliseconds:
                                                                       600),
                                                               curve:
@@ -2008,8 +2022,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                 valueOrDefault<
                                                                     String>(
                                                                   taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                      .first
-                                                                      .trackTotalArea,
+                                                                      .firstOrNull
+                                                                      ?.trackTotalArea,
                                                                   '-',
                                                                 ),
                                                                 textAlign:
@@ -2023,7 +2037,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   20.0,
                                                                   8.0,
@@ -2070,7 +2084,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         FontWeight
                                                                             .w300,
                                                                   ),
-                                                              duration: const Duration(
+                                                              duration: Duration(
                                                                   milliseconds:
                                                                       600),
                                                               curve:
@@ -2079,8 +2093,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                 valueOrDefault<
                                                                     String>(
                                                                   taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                      .first
-                                                                      .trackTotalDistance,
+                                                                      .firstOrNull
+                                                                      ?.trackTotalDistance,
                                                                   '-',
                                                                 ),
                                                                 textAlign:
@@ -2094,7 +2108,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   16.0,
@@ -2136,7 +2150,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   20.0,
                                                                   8.0,
@@ -2183,7 +2197,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         FontWeight
                                                                             .w300,
                                                                   ),
-                                                              duration: const Duration(
+                                                              duration: Duration(
                                                                   milliseconds:
                                                                       600),
                                                               curve:
@@ -2192,8 +2206,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                 valueOrDefault<
                                                                     String>(
                                                                   taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                      .first
-                                                                      .ppirVariety,
+                                                                      .firstOrNull
+                                                                      ?.ppirVariety,
                                                                   '-',
                                                                 ),
                                                                 textAlign:
@@ -2207,7 +2221,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   20.0,
                                                                   8.0,
@@ -2256,7 +2270,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                         FontWeight
                                                                             .w300,
                                                                   ),
-                                                              duration: const Duration(
+                                                              duration: Duration(
                                                                   milliseconds:
                                                                       600),
                                                               curve:
@@ -2265,8 +2279,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                 valueOrDefault<
                                                                     String>(
                                                                   taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                      .first
-                                                                      .ppirSvpAct,
+                                                                      .firstOrNull
+                                                                      ?.ppirSvpAct,
                                                                   '-',
                                                                 ),
                                                                 textAlign:
@@ -2280,7 +2294,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   16.0,
@@ -2299,7 +2313,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   8.0,
@@ -2339,7 +2353,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   20.0,
                                                                   8.0,
@@ -2381,7 +2395,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
-                                                            duration: const Duration(
+                                                            duration: Duration(
                                                                 milliseconds:
                                                                     600),
                                                             curve:
@@ -2390,8 +2404,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               valueOrDefault<
                                                                   String>(
                                                                 taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                    .first
-                                                                    .ppirAreaAct,
+                                                                    .firstOrNull
+                                                                    ?.ppirAreaAct,
                                                                 '-',
                                                               ),
                                                             ),
@@ -2401,7 +2415,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   20.0,
                                                                   8.0,
@@ -2445,7 +2459,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     letterSpacing:
                                                                         0.0,
                                                                   ),
-                                                              duration: const Duration(
+                                                              duration: Duration(
                                                                   milliseconds:
                                                                       600),
                                                               curve:
@@ -2454,8 +2468,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                 valueOrDefault<
                                                                     String>(
                                                                   taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                      .first
-                                                                      .ppirDopdsAct,
+                                                                      .firstOrNull
+                                                                      ?.ppirDopdsAct,
                                                                   '-',
                                                                 ),
                                                                 textAlign:
@@ -2469,7 +2483,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   20.0,
                                                                   8.0,
@@ -2513,7 +2527,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     letterSpacing:
                                                                         0.0,
                                                                   ),
-                                                              duration: const Duration(
+                                                              duration: Duration(
                                                                   milliseconds:
                                                                       600),
                                                               curve:
@@ -2522,8 +2536,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                 valueOrDefault<
                                                                     String>(
                                                                   taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                      .first
-                                                                      .ppirDoptpAct,
+                                                                      .firstOrNull
+                                                                      ?.ppirDoptpAct,
                                                                   '-',
                                                                 ),
                                                                 textAlign:
@@ -2537,7 +2551,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   16.0,
@@ -2556,7 +2570,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   8.0,
@@ -2598,7 +2612,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   20.0,
                                                                   8.0,
@@ -2642,7 +2656,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     letterSpacing:
                                                                         0.0,
                                                                   ),
-                                                              duration: const Duration(
+                                                              duration: Duration(
                                                                   milliseconds:
                                                                       600),
                                                               curve:
@@ -2651,8 +2665,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                 valueOrDefault<
                                                                     String>(
                                                                   taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                      .first
-                                                                      .ppirRemarks,
+                                                                      .firstOrNull
+                                                                      ?.ppirRemarks,
                                                                   '-',
                                                                 ),
                                                                 textAlign:
@@ -2666,7 +2680,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   20.0,
                                                                   8.0,
@@ -2710,7 +2724,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     letterSpacing:
                                                                         0.0,
                                                                   ),
-                                                              duration: const Duration(
+                                                              duration: Duration(
                                                                   milliseconds:
                                                                       600),
                                                               curve:
@@ -2719,8 +2733,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                 valueOrDefault<
                                                                     String>(
                                                                   taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                      .first
-                                                                      .ppirNameInsured,
+                                                                      .firstOrNull
+                                                                      ?.ppirNameInsured,
                                                                   '-',
                                                                 ),
                                                                 textAlign:
@@ -2734,7 +2748,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   20.0,
                                                                   8.0,
@@ -2748,7 +2762,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                 .spaceBetween,
                                                         children: [
                                                           Flexible(
-                                                            child: SizedBox(
+                                                            child: Container(
                                                               width: MediaQuery
                                                                           .sizeOf(
                                                                               context)
@@ -2773,8 +2787,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     .taskId,
                                                                 imageBase64:
                                                                     taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                        .first
-                                                                        .ppirSigInsured,
+                                                                        .firstOrNull
+                                                                        ?.ppirSigInsured,
                                                               ),
                                                             ),
                                                           ),
@@ -2783,7 +2797,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   20.0,
                                                                   8.0,
@@ -2827,7 +2841,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     letterSpacing:
                                                                         0.0,
                                                                   ),
-                                                              duration: const Duration(
+                                                              duration: Duration(
                                                                   milliseconds:
                                                                       600),
                                                               curve:
@@ -2836,8 +2850,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                 valueOrDefault<
                                                                     String>(
                                                                   taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                      .first
-                                                                      .ppirNameIuia,
+                                                                      .firstOrNull
+                                                                      ?.ppirNameIuia,
                                                                   '-',
                                                                 ),
                                                                 textAlign:
@@ -2851,7 +2865,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   20.0,
                                                                   8.0,
@@ -2865,7 +2879,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                 .spaceBetween,
                                                         children: [
                                                           Flexible(
-                                                            child: SizedBox(
+                                                            child: Container(
                                                               width: MediaQuery
                                                                           .sizeOf(
                                                                               context)
@@ -2890,8 +2904,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                     .taskId,
                                                                 imageBase64:
                                                                     taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                                        .first
-                                                                        .ppirSigIuia,
+                                                                        .firstOrNull
+                                                                        ?.ppirSigIuia,
                                                               ),
                                                             ),
                                                           ),
@@ -2902,8 +2916,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                 ),
                                               ),
                                           ]
-                                              .divide(const SizedBox(height: 10.0))
-                                              .around(const SizedBox(height: 10.0)),
+                                              .divide(SizedBox(height: 10.0))
+                                              .around(SizedBox(height: 10.0)),
                                         ),
                                       ),
                                     ),
@@ -2913,7 +2927,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(12.0),
+                            padding: EdgeInsets.all(12.0),
                             child: Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(0.0),
@@ -2924,7 +2938,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                 children: [
                                   if (valueOrDefault<String>(
                                         taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                            .first.status,
+                                            .firstOrNull?.status,
                                         'Value',
                                       ) !=
                                       'completed')
@@ -2935,19 +2949,19 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                       children: [
                                         if ((valueOrDefault<String>(
                                                   taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                      .first.gpx,
+                                                      .firstOrNull?.gpx,
                                                   'null',
                                                 ) ==
                                                 'null') ||
                                             (valueOrDefault<String>(
                                                   taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                      .first.gpx,
+                                                      .firstOrNull?.gpx,
                                                   'null',
                                                 ) ==
                                                 ' '))
                                           Flexible(
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       16.0, 8.0, 16.0, 8.0),
                                               child: FFButtonWidget(
@@ -2980,7 +2994,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                   );
 
                                                   context.goNamed(
-                                                    'geotagging',
+                                                    GeotaggingWidget.routeName,
                                                     queryParameters: {
                                                       'taskId': serializeParam(
                                                         widget.taskId,
@@ -2989,7 +3003,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       'taskType':
                                                           serializeParam(
                                                         taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                            .first.taskType,
+                                                            .firstOrNull
+                                                            ?.taskType,
                                                         ParamType.String,
                                                       ),
                                                       'taskStatus':
@@ -3000,14 +3015,14 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                       'assignmentId':
                                                           serializeParam(
                                                         taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                            .first
-                                                            .ppirAssignmentid,
+                                                            .firstOrNull
+                                                            ?.ppirAssignmentid,
                                                         ParamType.String,
                                                       ),
                                                     }.withoutNulls,
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
-                                                          const TransitionInfo(
+                                                          TransitionInfo(
                                                         hasTransition: true,
                                                         transitionType:
                                                             PageTransitionType
@@ -3023,7 +3038,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                         .getText(
                                                   '65kky15n' /* Geotag */,
                                                 ),
-                                                icon: const Icon(
+                                                icon: Icon(
                                                   Icons.map_outlined,
                                                   size: 20.0,
                                                 ),
@@ -3033,11 +3048,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               .width *
                                                           0.35,
                                                   height: 50.0,
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           24.0, 0.0, 24.0, 0.0),
                                                   iconPadding:
-                                                      const EdgeInsetsDirectional
+                                                      EdgeInsetsDirectional
                                                           .fromSTEB(0.0, 0.0,
                                                               0.0, 0.0),
                                                   color: FlutterFlowTheme.of(
@@ -3054,7 +3069,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             letterSpacing: 0.0,
                                                           ),
                                                   elevation: 3.0,
-                                                  borderSide: const BorderSide(
+                                                  borderSide: BorderSide(
                                                     color: Colors.transparent,
                                                     width: 1.0,
                                                   ),
@@ -3067,31 +3082,31 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                           ),
                                         if (((valueOrDefault<String>(
                                                       taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                          .first.gpx,
+                                                          .firstOrNull?.gpx,
                                                       'null',
                                                     ) !=
                                                     'null') &&
                                                 (valueOrDefault<String>(
                                                       taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                          .first.gpx,
+                                                          .firstOrNull?.gpx,
                                                       'null',
                                                     ) !=
                                                     ' ')) &&
                                             (valueOrDefault<String>(
                                                   taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                                      .first.status,
+                                                      .firstOrNull?.status,
                                                   'Value',
                                                 ) ==
                                                 'ongoing'))
                                           Flexible(
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       16.0, 8.0, 16.0, 8.0),
                                               child: FFButtonWidget(
                                                 onPressed: () async {
                                                   context.goNamed(
-                                                    'ppirForm',
+                                                    PpirFormWidget.routeName,
                                                     queryParameters: {
                                                       'taskId': serializeParam(
                                                         widget.taskId,
@@ -3100,7 +3115,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                     }.withoutNulls,
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
-                                                          const TransitionInfo(
+                                                          TransitionInfo(
                                                         hasTransition: true,
                                                         transitionType:
                                                             PageTransitionType
@@ -3116,7 +3131,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                         .getText(
                                                   '7qj8fid9' /* Continue Form */,
                                                 ),
-                                                icon: const FaIcon(
+                                                icon: FaIcon(
                                                   FontAwesomeIcons.fileAlt,
                                                   size: 20.0,
                                                 ),
@@ -3126,11 +3141,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               .width *
                                                           0.35,
                                                   height: 50.0,
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           24.0, 0.0, 24.0, 0.0),
                                                   iconPadding:
-                                                      const EdgeInsetsDirectional
+                                                      EdgeInsetsDirectional
                                                           .fromSTEB(0.0, 0.0,
                                                               0.0, 0.0),
                                                   color: FlutterFlowTheme.of(
@@ -3147,7 +3162,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             letterSpacing: 0.0,
                                                           ),
                                                   elevation: 3.0,
-                                                  borderSide: const BorderSide(
+                                                  borderSide: BorderSide(
                                                     color: Colors.transparent,
                                                     width: 1.0,
                                                   ),
@@ -3162,7 +3177,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                     ),
                                   if (valueOrDefault<String>(
                                         taskDetailsSELECTTASKSAndPPIRByAssigneeRowList
-                                            .first.status,
+                                            .firstOrNull?.status,
                                         'Value',
                                       ) ==
                                       'completed')
@@ -3175,7 +3190,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                         Flexible(
                                           child: Builder(
                                             builder: (context) => Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       16.0, 8.0, 16.0, 8.0),
                                               child: FFButtonWidget(
@@ -3185,7 +3200,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                         currentUserLocationValue =
                                                             await getCurrentUserLocation(
                                                                 defaultLocation:
-                                                                    const LatLng(0.0,
+                                                                    LatLng(0.0,
                                                                         0.0));
                                                         _model.isReFTPClicked =
                                                             true;
@@ -3226,7 +3241,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                         if (_model
                                                             .isFtpSaved!) {
                                                           context.pushNamed(
-                                                            'successProfile',
+                                                            SuccessProfileWidget
+                                                                .routeName,
                                                             queryParameters: {
                                                               'message':
                                                                   serializeParam(
@@ -3238,7 +3254,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             extra: <String,
                                                                 dynamic>{
                                                               kTransitionInfoKey:
-                                                                  const TransitionInfo(
+                                                                  TransitionInfo(
                                                                 hasTransition:
                                                                     true,
                                                                 transitionType:
@@ -3263,7 +3279,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                 backgroundColor:
                                                                     Colors
                                                                         .transparent,
-                                                                alignment: const AlignmentDirectional(
+                                                                alignment: AlignmentDirectional(
                                                                         0.0,
                                                                         0.0)
                                                                     .resolve(
@@ -3271,12 +3287,17 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                                             context)),
                                                                 child:
                                                                     GestureDetector(
-                                                                  onTap: () =>
-                                                                      FocusScope.of(
-                                                                              dialogContext)
-                                                                          .unfocus(),
+                                                                  onTap: () {
+                                                                    FocusScope.of(
+                                                                            dialogContext)
+                                                                        .unfocus();
+                                                                    FocusManager
+                                                                        .instance
+                                                                        .primaryFocus
+                                                                        ?.unfocus();
+                                                                  },
                                                                   child:
-                                                                      const UploadFailedDialogWidget(),
+                                                                      UploadFailedDialogWidget(),
                                                                 ),
                                                               );
                                                             },
@@ -3290,7 +3311,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                         .getText(
                                                   'auvo0ea6' /* Resubmit */,
                                                 ),
-                                                icon: const Icon(
+                                                icon: Icon(
                                                   Icons.swap_vert_sharp,
                                                   size: 20.0,
                                                 ),
@@ -3300,11 +3321,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                               .width *
                                                           0.35,
                                                   height: 50.0,
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           24.0, 0.0, 24.0, 0.0),
                                                   iconPadding:
-                                                      const EdgeInsetsDirectional
+                                                      EdgeInsetsDirectional
                                                           .fromSTEB(0.0, 0.0,
                                                               0.0, 0.0),
                                                   color: FlutterFlowTheme.of(
@@ -3321,7 +3342,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                                             letterSpacing: 0.0,
                                                           ),
                                                   elevation: 3.0,
-                                                  borderSide: const BorderSide(
+                                                  borderSide: BorderSide(
                                                     color: Colors.transparent,
                                                     width: 1.0,
                                                   ),
@@ -3340,8 +3361,8 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                       ],
                                     ),
                                 ]
-                                    .divide(const SizedBox(height: 10.0))
-                                    .around(const SizedBox(height: 10.0)),
+                                    .divide(SizedBox(height: 10.0))
+                                    .around(SizedBox(height: 10.0)),
                               ),
                             ),
                           ),
@@ -3349,11 +3370,11 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                       ),
                       if (_model.isReFTPClicked == true)
                         Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           child: wrapWithModel(
                             model: _model.savingModeModel,
                             updateCallback: () => safeSetState(() {}),
-                            child: const SavingModeWidget(
+                            child: SavingModeWidget(
                               savingWhat: 'Loading...',
                             ),
                           ),

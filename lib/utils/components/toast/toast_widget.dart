@@ -53,8 +53,8 @@ class _ToastWidgetState extends State<ToastWidget>
             curve: Curves.easeInOut,
             delay: 500.0.ms,
             duration: 200.0.ms,
-            begin: const Offset(500.0, -780.0),
-            end: const Offset(100.0, -780.0),
+            begin: Offset(500.0, -780.0),
+            end: Offset(100.0, -780.0),
           ),
           FadeEffect(
             curve: Curves.easeInOut,
@@ -78,9 +78,9 @@ class _ToastWidgetState extends State<ToastWidget>
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+        padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
         child: Container(
           width: 250.0,
           height: MediaQuery.sizeOf(context).height * 0.5,
@@ -91,7 +91,7 @@ class _ToastWidgetState extends State<ToastWidget>
                   : FlutterFlowTheme.of(context).warning,
               FlutterFlowTheme.of(context).success,
             ),
-            boxShadow: const [
+            boxShadow: [
               BoxShadow(
                 blurRadius: 5.0,
                 color: Color(0x33000000),
@@ -107,7 +107,7 @@ class _ToastWidgetState extends State<ToastWidget>
             ),
           ),
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 12.0, 8.0),
+            padding: EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 12.0, 8.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,7 +122,7 @@ class _ToastWidgetState extends State<ToastWidget>
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.all(4.0),
+                            padding: EdgeInsets.all(4.0),
                             child: Icon(
                               Icons.add_task_rounded,
                               color: FlutterFlowTheme.of(context)
@@ -145,7 +145,7 @@ class _ToastWidgetState extends State<ToastWidget>
                                   letterSpacing: 0.0,
                                 ),
                           ),
-                        ].divide(const SizedBox(width: 8.0)),
+                        ].divide(SizedBox(width: 8.0)),
                       ),
                       Expanded(
                         child: Text(
@@ -163,7 +163,7 @@ class _ToastWidgetState extends State<ToastWidget>
                                   ),
                         ),
                       ),
-                    ].divide(const SizedBox(height: 2.0)),
+                    ].divide(SizedBox(height: 2.0)),
                   ),
                 ),
                 FlutterFlowIconButton(
@@ -181,7 +181,7 @@ class _ToastWidgetState extends State<ToastWidget>
                     context.safePop();
                   },
                 ),
-              ].divide(const SizedBox(width: 8.0)),
+              ].divide(SizedBox(width: 8.0)),
             ),
           ),
         ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation']!),

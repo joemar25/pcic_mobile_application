@@ -9,7 +9,7 @@ class FileReadTable extends SupabaseTable<FileReadRow> {
 }
 
 class FileReadRow extends SupabaseDataRow {
-  FileReadRow(super.data);
+  FileReadRow(Map<String, dynamic> data) : super(data);
 
   @override
   SupabaseTable get table => FileReadTable();

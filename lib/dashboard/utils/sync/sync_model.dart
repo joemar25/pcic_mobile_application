@@ -1,5 +1,6 @@
 import '/backend/sqlite/sqlite_manager.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'sync_widget.dart' show SyncWidget;
 import 'package:flutter/material.dart';
 

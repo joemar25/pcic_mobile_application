@@ -40,7 +40,7 @@ class _ContinueSubmitDialogWidgetState
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Container(
         width: 338.0,
         height: 392.0,
@@ -49,7 +49,7 @@ class _ContinueSubmitDialogWidgetState
           borderRadius: BorderRadius.circular(24.0),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: EdgeInsets.all(20.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -73,7 +73,7 @@ class _ContinueSubmitDialogWidgetState
                         children: [
                           Expanded(
                             child: Align(
-                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
                                   '2gqa0lrn' /* For Confirmation */,
@@ -98,7 +98,7 @@ class _ContinueSubmitDialogWidgetState
                     children: [
                       Expanded(
                         child: Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
                               'x6p50a5s' /* Do you want to Submit all the ... */,
@@ -117,7 +117,7 @@ class _ContinueSubmitDialogWidgetState
                       ),
                     ],
                   ),
-                ].divide(const SizedBox(height: 15.0)),
+                ].divide(SizedBox(height: 15.0)),
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
@@ -133,10 +133,10 @@ class _ContinueSubmitDialogWidgetState
                       ),
                       options: FFButtonOptions(
                         height: 40.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).primaryBackground,
                         textStyle: FlutterFlowTheme.of(context)
                             .titleSmall
@@ -147,7 +147,7 @@ class _ContinueSubmitDialogWidgetState
                               fontWeight: FontWeight.w500,
                             ),
                         elevation: 0.0,
-                        borderSide: const BorderSide(
+                        borderSide: BorderSide(
                           width: 0.0,
                         ),
                         borderRadius: BorderRadius.circular(12.0),
@@ -164,10 +164,10 @@ class _ContinueSubmitDialogWidgetState
                       ),
                       options: FFButtonOptions(
                         height: 40.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).success,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
@@ -177,7 +177,7 @@ class _ContinueSubmitDialogWidgetState
                                   fontWeight: FontWeight.w500,
                                 ),
                         elevation: 0.0,
-                        borderSide: const BorderSide(
+                        borderSide: BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),
@@ -185,9 +185,9 @@ class _ContinueSubmitDialogWidgetState
                       ),
                     ),
                   ),
-                ].divide(const SizedBox(width: 15.0)),
+                ].divide(SizedBox(width: 15.0)),
               ),
-            ].divide(const SizedBox(height: 20.0)),
+            ].divide(SizedBox(height: 20.0)),
           ),
         ),
       ),

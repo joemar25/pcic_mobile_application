@@ -38,7 +38,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Container(
         width: 338.0,
         height: 392.0,
@@ -47,9 +47,9 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
           borderRadius: BorderRadius.circular(24.0),
           shape: BoxShape.rectangle,
         ),
-        alignment: const AlignmentDirectional(0.0, 0.0),
+        alignment: AlignmentDirectional(0.0, 0.0),
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: EdgeInsets.all(20.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -74,7 +74,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                         children: [
                           Expanded(
                             child: Align(
-                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
                                   'pd2yz8ne' /* Confirm Sign Out */,
@@ -98,9 +98,9 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                     children: [
                       Expanded(
                         child: Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 0.0),
                             child: Text(
                               FFLocalizations.of(context).getText(
@@ -121,7 +121,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                       ),
                     ],
                   ),
-                ].divide(const SizedBox(height: 5.0)).around(const SizedBox(height: 5.0)),
+                ].divide(SizedBox(height: 5.0)).around(SizedBox(height: 5.0)),
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
@@ -138,9 +138,9 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                       options: FFButtonOptions(
                         height: 40.0,
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).primaryBackground,
                         textStyle: FlutterFlowTheme.of(context)
                             .titleSmall
@@ -151,7 +151,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                               fontWeight: FontWeight.w500,
                             ),
                         elevation: 0.0,
-                        borderSide: const BorderSide(
+                        borderSide: BorderSide(
                           width: 0.0,
                         ),
                         borderRadius: BorderRadius.circular(12.0),
@@ -169,9 +169,9 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                       options: FFButtonOptions(
                         height: 40.0,
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).error,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
@@ -181,7 +181,7 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                                   fontWeight: FontWeight.w500,
                                 ),
                         elevation: 0.0,
-                        borderSide: const BorderSide(
+                        borderSide: BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),
@@ -189,9 +189,9 @@ class _SignoutDialogWidgetState extends State<SignoutDialogWidget> {
                       ),
                     ),
                   ),
-                ].divide(const SizedBox(width: 10.0)).around(const SizedBox(width: 10.0)),
+                ].divide(SizedBox(width: 10.0)).around(SizedBox(width: 10.0)),
               ),
-            ].divide(const SizedBox(height: 15.0)),
+            ].divide(SizedBox(height: 15.0)),
           ),
         ),
       ),

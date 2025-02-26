@@ -848,10 +848,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Select the Type of Rice ',
       'tl': 'Piliin ang Uri ng Bigas',
     },
-    '9vpclvfb': {
-      'en': 'Option 1',
-      'tl': 'Opsyon 1',
-    },
     'svwg4lfn': {
       'en': 'Please select...',
       'tl': 'Mangyaring pumili...',
@@ -860,13 +856,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Search for an item...',
       'tl': 'Maghanap ng item...',
     },
+    '9vpclvfb': {
+      'en': 'Option 1',
+      'tl': 'Opsyon 1',
+    },
     'aqzhnbj5': {
       'en': 'Select the Type of Corn ',
       'tl': 'Piliin ang Uri ng Mais',
-    },
-    'kyt3fdec': {
-      'en': 'Option 1',
-      'tl': 'Opsyon 1',
     },
     'frfbun0t': {
       'en': 'Please select...',
@@ -875,6 +871,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'vkwu56pa': {
       'en': 'Search for an item...',
       'tl': 'Maghanap ng item...',
+    },
+    'kyt3fdec': {
+      'en': 'Option 1',
+      'tl': 'Opsyon 1',
     },
     'n872ktx2': {
       'en': 'Area',
@@ -1156,6 +1156,14 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Feedback',
       'tl': 'Feedback',
     },
+    'msi4fo1j': {
+      'en': 'Choose the type of purpose',
+      'tl': 'Piliin ang uri ng layunin',
+    },
+    'd9wispbd': {
+      'en': 'Search for an item...',
+      'tl': 'Maghanap ng item...',
+    },
     'ps8o96jz': {
       'en': 'Feedback',
       'tl': 'Feedback',
@@ -1175,14 +1183,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'z3u9d6fz': {
       'en': 'Bug Encountered',
       'tl': 'Ulat ng Bug',
-    },
-    'msi4fo1j': {
-      'en': 'Choose the type of purpose',
-      'tl': 'Piliin ang uri ng layunin',
-    },
-    'd9wispbd': {
-      'en': 'Search for an item...',
-      'tl': 'Maghanap ng item...',
     },
     'gd6lp3vu': {
       'en': 'Message',

@@ -51,7 +51,30 @@ class SupabaseAuthManager extends AuthManager with EmailSignInManager {
       return;
     }
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Email change confirmation email sent')),
+      SnackBar(content: Text('Email change confirmation email sent')),
+    );
+  }
+
+  @override
+  Future updatePassword({
+    required String newPassword,
+    required BuildContext context,
+  }) async {
+    try {
+      if (!loggedIn) {
+        print('Error: update password attempted with no logged in user!');
+        return;
+      }
+      await currentUser?.updatePassword(newPassword);
+    } on AuthException catch (e) {
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: ${e.message}')),
+      );
+      return;
+    }
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Password updated successfully')),
     );
   }
 
@@ -59,9 +82,11 @@ class SupabaseAuthManager extends AuthManager with EmailSignInManager {
   Future resetPassword({
     required String email,
     required BuildContext context,
+    String? redirectTo,
   }) async {
     try {
-      await SupaFlow.client.auth.resetPasswordForEmail(email);
+      await SupaFlow.client.auth
+          .resetPasswordForEmail(email, redirectTo: redirectTo);
     } on AuthException catch (e) {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
@@ -70,7 +95,7 @@ class SupabaseAuthManager extends AuthManager with EmailSignInManager {
       return null;
     }
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Password reset email sent')),
+      SnackBar(content: Text('Password reset email sent')),
     );
   }
 
@@ -96,7 +121,7 @@ class SupabaseAuthManager extends AuthManager with EmailSignInManager {
         () => emailCreateAccountFunc(email, password),
       );
 
-  /// Tries to sign in or create an account using Firebase Auth.
+  /// Tries to sign in or create an account using Supabase Auth.
   /// Returns the User object if sign in was successful.
   Future<BaseAuthUser?> _signInOrCreateAccount(
     BuildContext context,
@@ -116,7 +141,7 @@ class SupabaseAuthManager extends AuthManager with EmailSignInManager {
       }
       return authUser;
     } on AuthException catch (e) {
-      final errorMsg = e.message.contains('User already registered') ?? false
+      final errorMsg = e.message.contains('User already registered')
           ? 'Error: The email is already in use by a different account'
           : 'Error: ${e.message}';
       ScaffoldMessenger.of(context).hideCurrentSnackBar();

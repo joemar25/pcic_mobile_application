@@ -28,6 +28,9 @@ class MessagesWidget extends StatefulWidget {
   final String? recieverId;
   final String? recieverName;
 
+  static String routeName = 'messages';
+  static String routePath = '/messages';
+
   @override
   State<MessagesWidget> createState() => _MessagesWidgetState();
 }
@@ -89,10 +92,10 @@ class _MessagesWidgetState extends State<MessagesWidget> {
           return Scaffold(
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             body: Center(
-              child: SizedBox(
+              child: Container(
                 width: MediaQuery.sizeOf(context).width * 1.0,
                 height: MediaQuery.sizeOf(context).height * 1.0,
-                child: const PageLoaderWidget(),
+                child: PageLoaderWidget(),
               ),
             ),
           );
@@ -104,7 +107,10 @@ class _MessagesWidgetState extends State<MessagesWidget> {
             : null;
 
         return GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+          onTap: () {
+            FocusScope.of(context).unfocus();
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -144,11 +150,11 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                   wrapWithModel(
                     model: _model.connectivityModel,
                     updateCallback: () => safeSetState(() {}),
-                    child: const ConnectivityWidget(),
+                    child: ConnectivityWidget(),
                   ),
                 ],
               ),
-              actions: const [],
+              actions: [],
               centerTitle: false,
               elevation: 0.0,
             ),
@@ -198,19 +204,19 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                 if (listViewMessagesRow.senderName !=
                                     currentUserUid)
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         10.0, 10.0, 10.0, 10.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Container(
-                                          constraints: const BoxConstraints(
+                                          constraints: BoxConstraints(
                                             maxWidth: 300.0,
                                           ),
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
                                                 .secondary,
-                                            borderRadius: const BorderRadius.only(
+                                            borderRadius: BorderRadius.only(
                                               bottomLeft: Radius.circular(6.0),
                                               bottomRight:
                                                   Radius.circular(24.0),
@@ -220,7 +226,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                           ),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     20.0, 20.0, 20.0, 20.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -229,11 +235,11 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                               children: [
                                                 Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           -1.0, 0.0),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 4.0,
                                                                 10.0, 4.0),
                                                     child: Text(
@@ -252,7 +258,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                                 ),
                                                 Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           -1.0, 0.0),
                                                   child: Text(
                                                     valueOrDefault<String>(
@@ -287,20 +293,20 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                 if (listViewMessagesRow.senderName ==
                                     currentUserUid)
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         10.0, 10.0, 10.0, 10.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
                                         Container(
-                                          constraints: const BoxConstraints(
+                                          constraints: BoxConstraints(
                                             maxWidth: 300.0,
                                           ),
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
-                                            borderRadius: const BorderRadius.only(
+                                            borderRadius: BorderRadius.only(
                                               bottomLeft: Radius.circular(24.0),
                                               bottomRight: Radius.circular(6.0),
                                               topLeft: Radius.circular(24.0),
@@ -309,7 +315,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                           ),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     20.0, 20.0, 20.0, 20.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -320,11 +326,11 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                               children: [
                                                 Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           1.0, 0.0),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(10.0, 4.0,
                                                                 0.0, 4.0),
                                                     child: Text(
@@ -386,19 +392,19 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                       key: _model.formKey,
                       autovalidateMode: AutovalidateMode.disabled,
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Expanded(
-                              child: SizedBox(
+                              child: Container(
                                 width: MediaQuery.sizeOf(context).width * 1.0,
                                 child: TextFormField(
                                   controller: _model.inputChatTextController,
                                   focusNode: _model.inputChatFocusNode,
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.inputChatTextController',
-                                    const Duration(milliseconds: 0),
+                                    Duration(milliseconds: 0),
                                     () => safeSetState(() {}),
                                   ),
                                   autofocus: false,
@@ -457,7 +463,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                       ),
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    contentPadding: const EdgeInsets.all(10.0),
+                                    contentPadding: EdgeInsets.all(10.0),
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
@@ -497,8 +503,8 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                 size: 15.0,
                               ),
                               options: FFButtonOptions(
-                                padding: const EdgeInsets.all(20.0),
-                                iconPadding: const EdgeInsets.all(0.0),
+                                padding: EdgeInsets.all(20.0),
+                                iconPadding: EdgeInsets.all(0.0),
                                 color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
@@ -509,7 +515,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 3.0,
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
@@ -517,8 +523,8 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                               ),
                             ),
                           ]
-                              .divide(const SizedBox(width: 8.0))
-                              .around(const SizedBox(width: 8.0)),
+                              .divide(SizedBox(width: 8.0))
+                              .around(SizedBox(width: 8.0)),
                         ),
                       ),
                     ),

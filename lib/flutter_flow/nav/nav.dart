@@ -7,14 +7,17 @@ import '/backend/schema/structs/index.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
-import '/index.dart';
 import '/main.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+
+import '/index.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
 
 const kTransitionInfoKey = '__transition_info__';
+
+GlobalKey<NavigatorState> appNavigatorKey = GlobalKey<NavigatorState>();
 
 class AppStateNotifier extends ChangeNotifier {
   AppStateNotifier._();
@@ -74,10 +77,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
+      navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) => RootPageContext.wrap(
         appStateNotifier.loggedIn
-            ? entryPage ?? const NavBarPage()
-            : const OnboardingWidget(),
+            ? entryPage ?? NavBarPage()
+            : OnboardingWidget(),
         errorRoute: state.uri.toString(),
       ),
       routes: [
@@ -86,13 +90,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           path: '/',
           builder: (context, _) => RootPageContext.wrap(
             appStateNotifier.loggedIn
-                ? entryPage ?? const NavBarPage()
-                : const OnboardingWidget(),
+                ? entryPage ?? NavBarPage()
+                : OnboardingWidget(),
           ),
         ),
         FFRoute(
-          name: 'login',
-          path: '/login',
+          name: LoginWidget.routeName,
+          path: LoginWidget.routePath,
           builder: (context, params) => LoginWidget(
             routeName: params.getParam(
               'routeName',
@@ -101,35 +105,35 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           ),
         ),
         FFRoute(
-          name: 'settings',
-          path: '/settings',
+          name: SettingsWidget.routeName,
+          path: SettingsWidget.routePath,
           requireAuth: true,
           builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'settings')
-              : const SettingsWidget(),
+              ? NavBarPage(initialPage: 'settings')
+              : SettingsWidget(),
         ),
         FFRoute(
-          name: 'chats',
-          path: '/chats',
+          name: ChatsWidget.routeName,
+          path: ChatsWidget.routePath,
           requireAuth: true,
           builder: (context, params) =>
-              params.isEmpty ? const NavBarPage(initialPage: 'chats') : const ChatsWidget(),
+              params.isEmpty ? NavBarPage(initialPage: 'chats') : ChatsWidget(),
         ),
         FFRoute(
-          name: 'editPassword',
-          path: '/editPassword',
+          name: EditPasswordWidget.routeName,
+          path: EditPasswordWidget.routePath,
           requireAuth: true,
-          builder: (context, params) => const EditPasswordWidget(),
+          builder: (context, params) => EditPasswordWidget(),
         ),
         FFRoute(
-          name: 'editProfile',
-          path: '/editProfile',
+          name: EditProfileWidget.routeName,
+          path: EditProfileWidget.routePath,
           requireAuth: true,
-          builder: (context, params) => const EditProfileWidget(),
+          builder: (context, params) => EditProfileWidget(),
         ),
         FFRoute(
-          name: 'messages',
-          path: '/messages',
+          name: MessagesWidget.routeName,
+          path: MessagesWidget.routePath,
           requireAuth: true,
           builder: (context, params) => MessagesWidget(
             chatId: params.getParam(
@@ -147,8 +151,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           ),
         ),
         FFRoute(
-          name: 'taskDetails',
-          path: '/task_details',
+          name: TaskDetailsWidget.routeName,
+          path: TaskDetailsWidget.routePath,
           requireAuth: true,
           builder: (context, params) => TaskDetailsWidget(
             taskId: params.getParam(
@@ -162,8 +166,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           ),
         ),
         FFRoute(
-          name: 'formSuccess',
-          path: '/formSuccess',
+          name: FormSuccessWidget.routeName,
+          path: FormSuccessWidget.routePath,
           requireAuth: true,
           builder: (context, params) => FormSuccessWidget(
             taskId: params.getParam(
@@ -177,8 +181,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           ),
         ),
         FFRoute(
-          name: 'fail',
-          path: '/fail',
+          name: FailWidget.routeName,
+          path: FailWidget.routePath,
           builder: (context, params) => FailWidget(
             error: params.getParam(
               'error',
@@ -191,16 +195,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           ),
         ),
         FFRoute(
-          name: 'dashboard',
-          path: '/dashboard',
+          name: DashboardWidget.routeName,
+          path: DashboardWidget.routePath,
           requireAuth: true,
           builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'dashboard')
-              : const DashboardWidget(),
+              ? NavBarPage(initialPage: 'dashboard')
+              : DashboardWidget(),
         ),
         FFRoute(
-          name: 'successProfile',
-          path: '/successProfile',
+          name: SuccessProfileWidget.routeName,
+          path: SuccessProfileWidget.routePath,
           requireAuth: true,
           builder: (context, params) => SuccessProfileWidget(
             message: params.getParam(
@@ -210,8 +214,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           ),
         ),
         FFRoute(
-          name: 'geotagging',
-          path: '/geotagging',
+          name: GeotaggingWidget.routeName,
+          path: GeotaggingWidget.routePath,
           requireAuth: true,
           builder: (context, params) => GeotaggingWidget(
             taskId: params.getParam(
@@ -233,30 +237,30 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           ),
         ),
         FFRoute(
-          name: 'mapTest',
-          path: '/mapTest',
-          builder: (context, params) => const MapTestWidget(),
+          name: MapTestWidget.routeName,
+          path: MapTestWidget.routePath,
+          builder: (context, params) => MapTestWidget(),
         ),
         FFRoute(
-          name: 'pcicMap',
-          path: '/pcicMap',
+          name: PcicMapWidget.routeName,
+          path: PcicMapWidget.routePath,
           requireAuth: true,
-          builder: (context, params) => const PcicMapWidget(),
+          builder: (context, params) => PcicMapWidget(),
         ),
         FFRoute(
-          name: 'onboarding',
-          path: '/onboarding',
-          builder: (context, params) => const OnboardingWidget(),
+          name: OnboardingWidget.routeName,
+          path: OnboardingWidget.routePath,
+          builder: (context, params) => OnboardingWidget(),
         ),
         FFRoute(
-          name: 'sync',
-          path: '/sync',
+          name: SyncWidget.routeName,
+          path: SyncWidget.routePath,
           requireAuth: true,
-          builder: (context, params) => const SyncWidget(),
+          builder: (context, params) => SyncWidget(),
         ),
         FFRoute(
-          name: 'ppirForm',
-          path: '/ppirForm',
+          name: PpirFormWidget.routeName,
+          path: PpirFormWidget.routePath,
           requireAuth: true,
           builder: (context, params) => PpirFormWidget(
             taskId: params.getParam(
@@ -266,26 +270,26 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           ),
         ),
         FFRoute(
-          name: 'supportPage',
-          path: '/supportPage',
+          name: SupportPageWidget.routeName,
+          path: SupportPageWidget.routePath,
           requireAuth: true,
-          builder: (context, params) => const SupportPageWidget(),
+          builder: (context, params) => SupportPageWidget(),
         ),
         FFRoute(
-          name: 'callUs',
-          path: '/callUs',
+          name: CallUsWidget.routeName,
+          path: CallUsWidget.routePath,
           requireAuth: true,
-          builder: (context, params) => const CallUsWidget(),
+          builder: (context, params) => CallUsWidget(),
         ),
         FFRoute(
-          name: 'sendFeedback',
-          path: '/sendFeedback',
+          name: SendFeedbackWidget.routeName,
+          path: SendFeedbackWidget.routePath,
           requireAuth: true,
-          builder: (context, params) => const SendFeedbackWidget(),
+          builder: (context, params) => SendFeedbackWidget(),
         ),
         FFRoute(
-          name: 'gpxSuccess',
-          path: '/gpxSuccess',
+          name: GpxSuccessWidget.routeName,
+          path: GpxSuccessWidget.routePath,
           requireAuth: true,
           builder: (context, params) => GpxSuccessWidget(
             taskId: params.getParam(
@@ -295,8 +299,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           ),
         ),
         FFRoute(
-          name: 'allTasks',
-          path: '/allTasks',
+          name: AllTasksWidget.routeName,
+          path: AllTasksWidget.routePath,
           requireAuth: true,
           builder: (context, params) => AllTasksWidget(
             taskStatus: params.getParam(
@@ -306,9 +310,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           ),
         ),
         FFRoute(
-          name: 'mapTestTest',
-          path: '/mapTestTest',
-          builder: (context, params) => const MapTestTestWidget(),
+          name: MapTestTestWidget.routeName,
+          path: MapTestTestWidget.routePath,
+          builder: (context, params) => MapTestTestWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -546,7 +550,7 @@ class TransitionInfo {
   final Duration duration;
   final Alignment? alignment;
 
-  static TransitionInfo appDefault() => const TransitionInfo(
+  static TransitionInfo appDefault() => TransitionInfo(
         hasTransition: true,
         transitionType: PageTransitionType.scale,
         alignment: Alignment.bottomCenter,

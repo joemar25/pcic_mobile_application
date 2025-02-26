@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -12,12 +13,12 @@ import 'package:provider/provider.dart';
 import 'profile_container_model.dart';
 export 'profile_container_model.dart';
 
+/// Contains the profile
 class ProfileContainerWidget extends StatefulWidget {
-  /// Contains the profile
   const ProfileContainerWidget({
     super.key,
     String? userName,
-  }) : userName = userName ?? 'Agent';
+  }) : this.userName = userName ?? 'Agent';
 
   final String userName;
 
@@ -51,7 +52,7 @@ class _ProfileContainerWidgetState extends State<ProfileContainerWidget>
             delay: 0.0.ms,
             duration: 1450.0.ms,
             hz: 10,
-            offset: const Offset(0.0, 0.0),
+            offset: Offset(0.0, 0.0),
             rotation: 0.087,
           ),
         ],
@@ -77,14 +78,14 @@ class _ProfileContainerWidgetState extends State<ProfileContainerWidget>
         borderRadius: BorderRadius.circular(12.0),
       ),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
+        padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
         child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Align(
-              alignment: const AlignmentDirectional(0.0, 0.0),
+              alignment: AlignmentDirectional(0.0, 0.0),
               child: Container(
                 width: 75.0,
                 height: 75.0,
@@ -100,7 +101,7 @@ class _ProfileContainerWidgetState extends State<ProfileContainerWidget>
                   width: 75.0,
                   height: 75.0,
                   clipBehavior: Clip.antiAlias,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     shape: BoxShape.circle,
                   ),
                   child: Image.asset(
@@ -134,9 +135,9 @@ class _ProfileContainerWidgetState extends State<ProfileContainerWidget>
                             ),
                       ),
                       Align(
-                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        alignment: AlignmentDirectional(0.0, 0.0),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               5.0, 0.0, 0.0, 0.0),
                           child: Lottie.asset(
                             'assets/jsons/Animation_-_1720082435989.json',
@@ -187,7 +188,7 @@ class _ProfileContainerWidgetState extends State<ProfileContainerWidget>
                                 text: FFLocalizations.of(context).getText(
                                   'um1b1tjj' /* ! */,
                                 ),
-                                style: const TextStyle(),
+                                style: TextStyle(),
                               )
                             ],
                             style: FlutterFlowTheme.of(context)
@@ -209,7 +210,7 @@ class _ProfileContainerWidgetState extends State<ProfileContainerWidget>
                 borderRadius: 6.0,
                 borderWidth: 1.0,
                 buttonSize: 40.0,
-                fillColor: const Color(0x4D66CC33),
+                fillColor: Color(0x4D66CC33),
                 icon: Icon(
                   Icons.edit_rounded,
                   color: FlutterFlowTheme.of(context).primaryText,
@@ -217,9 +218,9 @@ class _ProfileContainerWidgetState extends State<ProfileContainerWidget>
                 ),
                 onPressed: () async {
                   context.pushNamed(
-                    'editProfile',
+                    EditProfileWidget.routeName,
                     extra: <String, dynamic>{
-                      kTransitionInfoKey: const TransitionInfo(
+                      kTransitionInfoKey: TransitionInfo(
                         hasTransition: true,
                         transitionType: PageTransitionType.fade,
                         duration: Duration(milliseconds: 0),
@@ -228,7 +229,7 @@ class _ProfileContainerWidgetState extends State<ProfileContainerWidget>
                   );
                 },
               ),
-          ].divide(const SizedBox(width: 10.0)).around(const SizedBox(width: 10.0)),
+          ].divide(SizedBox(width: 10.0)).around(SizedBox(width: 10.0)),
         ),
       ),
     );

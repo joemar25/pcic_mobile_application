@@ -45,14 +45,14 @@ class _PageLoaderWidgetState extends State<PageLoaderWidget> {
           ),
         ),
         Align(
-          alignment: const AlignmentDirectional(0.0, 0.0),
+          alignment: AlignmentDirectional(0.0, 0.0),
           child: Container(
             width: double.infinity,
             height: 100.0,
             decoration: BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.contain,
-                alignment: const AlignmentDirectional(0.0, 0.0),
+                alignment: AlignmentDirectional(0.0, 0.0),
                 image: Image.asset(
                   'assets/images/pccc.gif',
                 ).image,

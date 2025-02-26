@@ -45,7 +45,7 @@ void main() async {
 
   runApp(ChangeNotifierProvider(
     create: (context) => appState,
-    child: const MyApp(),
+    child: MyApp(),
   ));
 }
 
@@ -69,6 +69,19 @@ class _MyAppState extends State<MyApp> {
 
   late AppStateNotifier _appStateNotifier;
   late GoRouter _router;
+  String getRoute([RouteMatch? routeMatch]) {
+    final RouteMatch lastMatch =
+        routeMatch ?? _router.routerDelegate.currentConfiguration.last;
+    final RouteMatchList matchList = lastMatch is ImperativeRouteMatch
+        ? lastMatch.matches
+        : _router.routerDelegate.currentConfiguration;
+    return matchList.uri.toString();
+  }
+
+  List<String> getRouteStack() =>
+      _router.routerDelegate.currentConfiguration.matches
+          .map((e) => getRoute(e))
+          .toList();
 
   late Stream<BaseAuthUser> userStream;
 
@@ -84,7 +97,7 @@ class _MyAppState extends State<MyApp> {
       });
     jwtTokenStream.listen((_) {});
     Future.delayed(
-      const Duration(milliseconds: 5000),
+      Duration(milliseconds: 5000),
       () => _appStateNotifier.stopShowingSplashImage(),
     );
   }
@@ -102,8 +115,9 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       title: 'PCIC Mobile App',
-      localizationsDelegates: const [
+      localizationsDelegates: [
         FFLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -123,15 +137,15 @@ class _MyAppState extends State<MyApp> {
           trackVisibility: WidgetStateProperty.all(false),
           interactive: false,
           thickness: WidgetStateProperty.all(1.0),
-          radius: const Radius.circular(1.0),
+          radius: Radius.circular(1.0),
           thumbColor: WidgetStateProperty.resolveWith((states) {
             if (states.contains(WidgetState.dragged)) {
-              return const Color(0xff2e865f);
+              return Color(4281239135);
             }
             if (states.contains(WidgetState.hovered)) {
-              return const Color(0xff2e865f);
+              return Color(4281239135);
             }
-            return const Color(0xff2e865f);
+            return Color(4281239135);
           }),
           minThumbLength: 1.0,
           crossAxisMargin: 1.0,
@@ -145,15 +159,15 @@ class _MyAppState extends State<MyApp> {
           trackVisibility: WidgetStateProperty.all(false),
           interactive: false,
           thickness: WidgetStateProperty.all(1.0),
-          radius: const Radius.circular(1.0),
+          radius: Radius.circular(1.0),
           thumbColor: WidgetStateProperty.resolveWith((states) {
             if (states.contains(WidgetState.dragged)) {
-              return const Color(0xff2e865f);
+              return Color(4281239135);
             }
             if (states.contains(WidgetState.hovered)) {
-              return const Color(0xff2e865f);
+              return Color(4281239135);
             }
-            return const Color(0xff2e865f);
+            return Color(4281239135);
           }),
           minThumbLength: 1.0,
           crossAxisMargin: 1.0,
@@ -167,7 +181,7 @@ class _MyAppState extends State<MyApp> {
 }
 
 class NavBarPage extends StatefulWidget {
-  const NavBarPage({super.key, this.initialPage, this.page});
+  NavBarPage({Key? key, this.initialPage, this.page}) : super(key: key);
 
   final String? initialPage;
   final Widget? page;
@@ -191,9 +205,9 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'dashboard': const DashboardWidget(),
-      'chats': const ChatsWidget(),
-      'settings': const SettingsWidget(),
+      'dashboard': DashboardWidget(),
+      'chats': ChatsWidget(),
+      'settings': SettingsWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -213,11 +227,11 @@ class _NavBarPageState extends State<NavBarPage> {
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: const Icon(
+            icon: Icon(
               FFIcons.kicons8Home,
               size: 24.0,
             ),
-            activeIcon: const Icon(
+            activeIcon: Icon(
               FFIcons.kicons8Home1,
               size: 24.0,
             ),
@@ -227,11 +241,11 @@ class _NavBarPageState extends State<NavBarPage> {
             tooltip: '',
           ),
           BottomNavigationBarItem(
-            icon: const Icon(
+            icon: Icon(
               Icons.chat_outlined,
               size: 24.0,
             ),
-            activeIcon: const Icon(
+            activeIcon: Icon(
               Icons.chat,
               size: 24.0,
             ),
@@ -241,11 +255,11 @@ class _NavBarPageState extends State<NavBarPage> {
             tooltip: '',
           ),
           BottomNavigationBarItem(
-            icon: const Icon(
+            icon: Icon(
               Icons.settings_outlined,
               size: 24.0,
             ),
-            activeIcon: const Icon(
+            activeIcon: Icon(
               Icons.settings_sharp,
               size: 24.0,
             ),

@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 class FFDevEnvironmentValues {
   static const String currentEnvironment = 'Production';
   static const String environmentValuesPath =
-      'assets/environment_values/production.json';
+      'assets/environment_values/environment.json';
 
   static final FFDevEnvironmentValues _instance =
       FFDevEnvironmentValues._internal();

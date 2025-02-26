@@ -3,6 +3,7 @@ import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/profile_container/profile_container_widget.dart';
 import '/utils/components/saving_mode/saving_mode_widget.dart';
 import '/utils/components/tasks/tasks_widget.dart';
+import '/index.dart';
 import 'dashboard_widget.dart' show DashboardWidget;
 import 'package:flutter/material.dart';
 

@@ -57,8 +57,8 @@ class _SavingModeWidgetState extends State<SavingModeWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0, 0),
-            end: const Offset(0, 0.349),
+            begin: Offset(0, 0),
+            end: Offset(0, 0.349),
           ),
         ],
       ),
@@ -77,7 +77,7 @@ class _SavingModeWidgetState extends State<SavingModeWidget>
     return Container(
       width: MediaQuery.sizeOf(context).width * 1.0,
       height: MediaQuery.sizeOf(context).height * 1.0,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: Color(0x1E1E1E1E),
       ),
       child: Column(

@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'send_feedback_model.dart';
@@ -13,6 +14,9 @@ export 'send_feedback_model.dart';
 
 class SendFeedbackWidget extends StatefulWidget {
   const SendFeedbackWidget({super.key});
+
+  static String routeName = 'sendFeedback';
+  static String routePath = '/sendFeedback';
 
   @override
   State<SendFeedbackWidget> createState() => _SendFeedbackWidgetState();
@@ -42,7 +46,10 @@ class _SendFeedbackWidgetState extends State<SendFeedbackWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -73,7 +80,7 @@ class _SendFeedbackWidgetState extends State<SendFeedbackWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 0.0,
         ),
@@ -84,7 +91,7 @@ class _SendFeedbackWidgetState extends State<SendFeedbackWidget> {
             children: [
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.all(12.0),
+                  padding: EdgeInsets.all(12.0),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
@@ -95,7 +102,7 @@ class _SendFeedbackWidgetState extends State<SendFeedbackWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Container(
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Lottie.asset(
                                 'assets/jsons/emailUs.json',
                                 width: 125.0,
@@ -105,11 +112,11 @@ class _SendFeedbackWidgetState extends State<SendFeedbackWidget> {
                               ),
                             ),
                             Align(
-                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: Container(
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 4.0, 0.0, 0.0),
                                   child: Text(
                                     FFLocalizations.of(context).getText(
@@ -139,9 +146,9 @@ class _SendFeedbackWidgetState extends State<SendFeedbackWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Align(
-                                    alignment: const AlignmentDirectional(-1.0, -1.0),
+                                    alignment: AlignmentDirectional(-1.0, -1.0),
                                     child: Container(
-                                      decoration: const BoxDecoration(),
+                                      decoration: BoxDecoration(),
                                       child: Text(
                                         FFLocalizations.of(context).getText(
                                           'bwb2aldx' /* What is your Purpose? */,
@@ -159,12 +166,12 @@ class _SendFeedbackWidgetState extends State<SendFeedbackWidget> {
                                     ),
                                   ),
                                   Align(
-                                    alignment: const AlignmentDirectional(-1.0, -1.0),
+                                    alignment: AlignmentDirectional(-1.0, -1.0),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 0.0),
                                       child: Container(
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: FlutterFlowDropDown<String>(
                                           controller: _model
                                                   .purposeDropDownValueController ??=
@@ -226,7 +233,7 @@ class _SendFeedbackWidgetState extends State<SendFeedbackWidget> {
                                           borderWidth: 2.0,
                                           borderRadius: 8.0,
                                           margin:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 4.0, 16.0, 4.0),
                                           hidesUnderline: true,
                                           isOverButton: false,
@@ -250,9 +257,9 @@ class _SendFeedbackWidgetState extends State<SendFeedbackWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Align(
-                                    alignment: const AlignmentDirectional(-1.0, -1.0),
+                                    alignment: AlignmentDirectional(-1.0, -1.0),
                                     child: Container(
-                                      decoration: const BoxDecoration(),
+                                      decoration: BoxDecoration(),
                                       child: Text(
                                         FFLocalizations.of(context).getText(
                                           'gd6lp3vu' /* Message */,
@@ -270,12 +277,12 @@ class _SendFeedbackWidgetState extends State<SendFeedbackWidget> {
                                     ),
                                   ),
                                   Align(
-                                    alignment: const AlignmentDirectional(-1.0, -1.0),
+                                    alignment: AlignmentDirectional(-1.0, -1.0),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 0.0),
                                       child: Container(
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: TextFormField(
                                           controller:
                                               _model.inputMessageTextController,
@@ -388,7 +395,7 @@ class _SendFeedbackWidgetState extends State<SendFeedbackWidget> {
                                   });
 
                                   context.pushNamed(
-                                    'successProfile',
+                                    SuccessProfileWidget.routeName,
                                     queryParameters: {
                                       'message': serializeParam(
                                         'Thank you for submitting a ${_model.purposeDropDownValue} report.',
@@ -396,7 +403,7 @@ class _SendFeedbackWidgetState extends State<SendFeedbackWidget> {
                                       ),
                                     }.withoutNulls,
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
+                                      kTransitionInfoKey: TransitionInfo(
                                         hasTransition: true,
                                         transitionType:
                                             PageTransitionType.scale,
@@ -414,9 +421,9 @@ class _SendFeedbackWidgetState extends State<SendFeedbackWidget> {
                                 options: FFButtonOptions(
                                   width: 373.0,
                                   height: 50.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).primary,
                                   textStyle: FlutterFlowTheme.of(context)
@@ -428,7 +435,7 @@ class _SendFeedbackWidgetState extends State<SendFeedbackWidget> {
                                         fontWeight: FontWeight.normal,
                                       ),
                                   elevation: 3.0,
-                                  borderSide: const BorderSide(
+                                  borderSide: BorderSide(
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),
@@ -436,8 +443,8 @@ class _SendFeedbackWidgetState extends State<SendFeedbackWidget> {
                                 ),
                               ),
                             ]
-                                .divide(const SizedBox(height: 20.0))
-                                .around(const SizedBox(height: 20.0)),
+                                .divide(SizedBox(height: 20.0))
+                                .around(SizedBox(height: 20.0)),
                           ),
                         ),
                       ],

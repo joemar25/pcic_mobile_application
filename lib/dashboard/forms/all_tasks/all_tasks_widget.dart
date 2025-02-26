@@ -7,6 +7,7 @@ import '/utils/components/connectivity/connectivity_widget.dart';
 import '/utils/components/page_loader/page_loader_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -17,9 +18,12 @@ class AllTasksWidget extends StatefulWidget {
   const AllTasksWidget({
     super.key,
     String? taskStatus,
-  }) : taskStatus = taskStatus ?? 'taskStatus';
+  }) : this.taskStatus = taskStatus ?? 'taskStatus';
 
   final String taskStatus;
+
+  static String routeName = 'allTasks';
+  static String routePath = '/allTasks';
 
   @override
   State<AllTasksWidget> createState() => _AllTasksWidgetState();
@@ -77,8 +81,8 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
         if (!snapshot.hasData) {
           return Scaffold(
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            body: const Center(
-              child: SizedBox(
+            body: Center(
+              child: Container(
                 width: 100.0,
                 height: 100.0,
                 child: PageLoaderWidget(),
@@ -90,7 +94,10 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
             snapshot.data!;
 
         return GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+          onTap: () {
+            FocusScope.of(context).unfocus();
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
           child: WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(
@@ -110,7 +117,7 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                     size: 20.0,
                   ),
                   onPressed: () async {
-                    context.goNamed('dashboard');
+                    context.goNamed(DashboardWidget.routeName);
                   },
                 ),
                 title: Row(
@@ -119,7 +126,7 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
                       child: Text(
                         () {
                           if (widget.taskStatus == 'for dispatch') {
@@ -138,15 +145,15 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                       ),
                     ),
                     Container(
-                      decoration: const BoxDecoration(),
+                      decoration: BoxDecoration(),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 5.0, 0.0),
                             child: Container(
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
@@ -200,21 +207,21 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                                             fontWeight: FontWeight.w600,
                                           ),
                                     ),
-                                ].divide(const SizedBox(width: 5.0)),
+                                ].divide(SizedBox(width: 5.0)),
                               ),
                             ),
                           ),
                           wrapWithModel(
                             model: _model.connectivityModel,
                             updateCallback: () => safeSetState(() {}),
-                            child: const ConnectivityWidget(),
+                            child: ConnectivityWidget(),
                           ),
-                        ].divide(const SizedBox(width: 5.0)),
+                        ].divide(SizedBox(width: 5.0)),
                       ),
                     ),
                   ],
                 ),
-                actions: const [],
+                actions: [],
                 centerTitle: false,
                 elevation: 0.0,
               ),
@@ -226,7 +233,7 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                   children: [
                     Flexible(
                       child: Padding(
-                        padding: const EdgeInsets.all(18.0),
+                        padding: EdgeInsets.all(18.0),
                         child: Container(
                           width: 0.0,
                           height: MediaQuery.sizeOf(context).height * 1.0,
@@ -239,7 +246,7 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                                 FlutterFlowTheme.of(context).primaryBackground,
                             borderRadius: BorderRadius.circular(0.0),
                           ),
-                          child: SizedBox(
+                          child: Container(
                             width: MediaQuery.sizeOf(context).width * 1.0,
                             height: MediaQuery.sizeOf(context).height * 1.0,
                             child: custom_widgets.AllDataView(
@@ -255,7 +262,7 @@ class _AllTasksWidgetState extends State<AllTasksWidget> {
                         ),
                       ),
                     ),
-                  ].divide(const SizedBox(height: 0.0)).around(const SizedBox(height: 0.0)),
+                  ].divide(SizedBox(height: 0.0)).around(SizedBox(height: 0.0)),
                 ),
               ),
             ),

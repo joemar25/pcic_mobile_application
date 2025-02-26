@@ -9,6 +9,9 @@ export 'map_test_model.dart';
 class MapTestWidget extends StatefulWidget {
   const MapTestWidget({super.key});
 
+  static String routeName = 'mapTest';
+  static String routePath = '/mapTest';
+
   @override
   State<MapTestWidget> createState() => _MapTestWidgetState();
 }
@@ -36,7 +39,10 @@ class _MapTestWidgetState extends State<MapTestWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -54,7 +60,7 @@ class _MapTestWidgetState extends State<MapTestWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 2.0,
         ),
@@ -65,7 +71,7 @@ class _MapTestWidgetState extends State<MapTestWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
-                child: SizedBox(
+                child: Container(
                   width: double.infinity,
                   height: 500.0,
                   child: custom_widgets.MBTilesMapView(

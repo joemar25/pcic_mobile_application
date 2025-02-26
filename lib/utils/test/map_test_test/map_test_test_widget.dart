@@ -8,6 +8,9 @@ export 'map_test_test_model.dart';
 class MapTestTestWidget extends StatefulWidget {
   const MapTestTestWidget({super.key});
 
+  static String routeName = 'mapTestTest';
+  static String routePath = '/mapTestTest';
+
   @override
   State<MapTestTestWidget> createState() => _MapTestTestWidgetState();
 }
@@ -33,7 +36,10 @@ class _MapTestTestWidgetState extends State<MapTestTestWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -51,7 +57,7 @@ class _MapTestTestWidgetState extends State<MapTestTestWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 2.0,
         ),
@@ -61,7 +67,7 @@ class _MapTestTestWidgetState extends State<MapTestTestWidget> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(
+              Container(
                 width: MediaQuery.sizeOf(context).width * 1.0,
                 height: MediaQuery.sizeOf(context).height * 1.0,
                 child: custom_widgets.GeoJson(

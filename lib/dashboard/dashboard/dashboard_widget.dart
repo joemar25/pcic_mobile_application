@@ -11,6 +11,7 @@ import '/utils/components/profile_container/profile_container_widget.dart';
 import '/utils/components/saving_mode/saving_mode_widget.dart';
 import '/utils/components/tasks/tasks_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -21,6 +22,9 @@ export 'dashboard_model.dart';
 
 class DashboardWidget extends StatefulWidget {
   const DashboardWidget({super.key});
+
+  static String routeName = 'dashboard';
+  static String routePath = '/dashboard';
 
   @override
   State<DashboardWidget> createState() => _DashboardWidgetState();
@@ -76,8 +80,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -88,8 +92,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -123,10 +127,10 @@ class _DashboardWidgetState extends State<DashboardWidget>
           return Scaffold(
             backgroundColor: FlutterFlowTheme.of(context).accent1,
             body: Center(
-              child: SizedBox(
+              child: Container(
                 width: MediaQuery.sizeOf(context).width * 1.0,
                 height: MediaQuery.sizeOf(context).height * 1.0,
-                child: const PageLoaderWidget(),
+                child: PageLoaderWidget(),
               ),
             ),
           );
@@ -134,14 +138,17 @@ class _DashboardWidgetState extends State<DashboardWidget>
         final dashboardSELECTPPIRFormsByAssigneeRowList = snapshot.data!;
 
         return GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+          onTap: () {
+            FocusScope.of(context).unfocus();
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
           child: WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(
               key: scaffoldKey,
               backgroundColor: FlutterFlowTheme.of(context).accent1,
               body: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 60.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 60.0, 0.0, 0.0),
                 child: Container(
                   width: double.infinity,
                   height: double.infinity,
@@ -155,7 +162,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 20.0, 20.0, 20.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
@@ -192,14 +199,14 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
-                                        ].divide(const SizedBox(width: 20.0)),
+                                        ].divide(SizedBox(width: 20.0)),
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 5.0, 0.0),
                                       child: Container(
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -263,14 +270,14 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                           FontWeight.w600,
                                                     ),
                                               ),
-                                          ].divide(const SizedBox(width: 5.0)),
+                                          ].divide(SizedBox(width: 5.0)),
                                         ),
                                       ),
                                     ),
                                     wrapWithModel(
                                       model: _model.connectivityModel,
                                       updateCallback: () => safeSetState(() {}),
-                                      child: const ConnectivityWidget(),
+                                      child: ConnectivityWidget(),
                                     ),
                                   ],
                                 ),
@@ -283,7 +290,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .primaryBackground,
-                                borderRadius: const BorderRadius.only(
+                                borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(0.0),
                                   bottomRight: Radius.circular(0.0),
                                   topLeft: Radius.circular(24.0),
@@ -291,7 +298,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                 ),
                               ),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 20.0, 20.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -328,7 +335,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                           child: ProfileContainerWidget(
                                             userName: valueOrDefault<String>(
                                               profileContainerSelectProfileRowList
-                                                  .first.inspectorName,
+                                                  .firstOrNull?.inspectorName,
                                               'Agent',
                                             ),
                                           ),
@@ -336,11 +343,11 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                       },
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 15.0, 0.0, 0.0),
                                       child: Container(
                                         width: double.infinity,
-                                        decoration: const BoxDecoration(
+                                        decoration: BoxDecoration(
                                           color: Color(0x00FFFFFF),
                                         ),
                                         child: Row(
@@ -360,13 +367,15 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                           .where((e) =>
                                                               e.status ==
                                                               'for dispatch')
-                                                          .toList().isNotEmpty) {
+                                                          .toList()
+                                                          .length !=
+                                                      0) {
                                                     if (Navigator.of(context)
                                                         .canPop()) {
                                                       context.pop();
                                                     }
                                                     context.pushNamed(
-                                                      'allTasks',
+                                                      AllTasksWidget.routeName,
                                                       queryParameters: {
                                                         'taskStatus':
                                                             serializeParam(
@@ -376,7 +385,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                       }.withoutNulls,
                                                       extra: <String, dynamic>{
                                                         kTransitionInfoKey:
-                                                            const TransitionInfo(
+                                                            TransitionInfo(
                                                           hasTransition: true,
                                                           transitionType:
                                                               PageTransitionType
@@ -421,11 +430,11 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                       ),
                                                     ),
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsets.all(12.0),
+                                                          EdgeInsets.all(12.0),
                                                       child: Column(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
@@ -454,7 +463,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                       FontWeight
                                                                           .bold,
                                                                 ),
-                                                            duration: const Duration(
+                                                            duration: Duration(
                                                                 milliseconds:
                                                                     600),
                                                             curve:
@@ -481,7 +490,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         4.0,
@@ -532,13 +541,15 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                           .where((e) =>
                                                               e.status ==
                                                               'ongoing')
-                                                          .toList().isNotEmpty) {
+                                                          .toList()
+                                                          .length !=
+                                                      0) {
                                                     if (Navigator.of(context)
                                                         .canPop()) {
                                                       context.pop();
                                                     }
                                                     context.pushNamed(
-                                                      'allTasks',
+                                                      AllTasksWidget.routeName,
                                                       queryParameters: {
                                                         'taskStatus':
                                                             serializeParam(
@@ -548,7 +559,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                       }.withoutNulls,
                                                       extra: <String, dynamic>{
                                                         kTransitionInfoKey:
-                                                            const TransitionInfo(
+                                                            TransitionInfo(
                                                           hasTransition: true,
                                                           transitionType:
                                                               PageTransitionType
@@ -594,7 +605,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                     ),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsets.all(12.0),
+                                                          EdgeInsets.all(12.0),
                                                       child: Column(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
@@ -623,7 +634,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                       FontWeight
                                                                           .bold,
                                                                 ),
-                                                            duration: const Duration(
+                                                            duration: Duration(
                                                                 milliseconds:
                                                                     600),
                                                             curve:
@@ -651,7 +662,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         4.0,
@@ -701,13 +712,15 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                           .where((e) =>
                                                               e.status ==
                                                               'completed')
-                                                          .toList().isNotEmpty) {
+                                                          .toList()
+                                                          .length !=
+                                                      0) {
                                                     if (Navigator.of(context)
                                                         .canPop()) {
                                                       context.pop();
                                                     }
                                                     context.pushNamed(
-                                                      'allTasks',
+                                                      AllTasksWidget.routeName,
                                                       queryParameters: {
                                                         'taskStatus':
                                                             serializeParam(
@@ -717,7 +730,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                       }.withoutNulls,
                                                       extra: <String, dynamic>{
                                                         kTransitionInfoKey:
-                                                            const TransitionInfo(
+                                                            TransitionInfo(
                                                           hasTransition: true,
                                                           transitionType:
                                                               PageTransitionType
@@ -763,7 +776,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                     ),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsets.all(12.0),
+                                                          EdgeInsets.all(12.0),
                                                       child: Column(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
@@ -792,7 +805,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                       FontWeight
                                                                           .bold,
                                                                 ),
-                                                            duration: const Duration(
+                                                            duration: Duration(
                                                                 milliseconds:
                                                                     600),
                                                             curve:
@@ -819,7 +832,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         4.0,
@@ -871,20 +884,16 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 15.0, 0.0, 0.0),
                                         child: Container(
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Column(
                                             children: [
                                               Align(
-                                                alignment: const Alignment(0.0, 0),
+                                                alignment: Alignment(0.0, 0),
                                                 child: TabBar(
                                                   labelColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryText,
-                                                  unselectedLabelColor:
                                                       FlutterFlowTheme.of(
                                                               context)
                                                           .primaryText,
@@ -899,7 +908,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                             letterSpacing: 0.0,
                                                           ),
                                                   unselectedLabelStyle:
-                                                      const TextStyle(),
+                                                      TextStyle(),
                                                   indicatorColor:
                                                       FlutterFlowTheme.of(
                                                               context)
@@ -989,7 +998,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                       .toList();
                                                               if (forDispatchTasks
                                                                   .isEmpty) {
-                                                                return const Center(
+                                                                return Center(
                                                                   child:
                                                                       EmptyListsWidget(
                                                                     type:
@@ -1013,7 +1022,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                         .length,
                                                                 separatorBuilder: (_,
                                                                         __) =>
-                                                                    const SizedBox(
+                                                                    SizedBox(
                                                                         height:
                                                                             15.0),
                                                                 itemBuilder:
@@ -1024,7 +1033,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                           forDispatchTasksIndex];
                                                                   return Align(
                                                                     alignment:
-                                                                        const AlignmentDirectional(
+                                                                        AlignmentDirectional(
                                                                             0.0,
                                                                             0.0),
                                                                     child:
@@ -1074,7 +1083,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                             onPressed:
                                                                 () async {
                                                               context.pushNamed(
-                                                                'allTasks',
+                                                                AllTasksWidget
+                                                                    .routeName,
                                                                 queryParameters:
                                                                     {
                                                                   'taskStatus':
@@ -1087,7 +1097,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                 extra: <String,
                                                                     dynamic>{
                                                                   kTransitionInfoKey:
-                                                                      const TransitionInfo(
+                                                                      TransitionInfo(
                                                                     hasTransition:
                                                                         true,
                                                                     transitionType:
@@ -1109,20 +1119,20 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                 FFButtonOptions(
                                                               height: 40.0,
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           16.0,
                                                                           0.0,
                                                                           16.0,
                                                                           0.0),
                                                               iconPadding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
                                                                           0.0),
-                                                              color: const Color(
+                                                              color: Color(
                                                                   0x00FFFFFF),
                                                               textStyle:
                                                                   FlutterFlowTheme.of(
@@ -1150,9 +1160,9 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                 false,
                                                           ),
                                                       ]
-                                                          .divide(const SizedBox(
+                                                          .divide(SizedBox(
                                                               height: 15.0))
-                                                          .around(const SizedBox(
+                                                          .around(SizedBox(
                                                               height: 15.0)),
                                                     ),
                                                     Column(
@@ -1177,7 +1187,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                       .toList();
                                                               if (forDispatchTasks
                                                                   .isEmpty) {
-                                                                return const Center(
+                                                                return Center(
                                                                   child:
                                                                       EmptyListsWidget(
                                                                     type:
@@ -1201,7 +1211,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                         .length,
                                                                 separatorBuilder: (_,
                                                                         __) =>
-                                                                    const SizedBox(
+                                                                    SizedBox(
                                                                         height:
                                                                             15.0),
                                                                 itemBuilder:
@@ -1212,7 +1222,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                           forDispatchTasksIndex];
                                                                   return Align(
                                                                     alignment:
-                                                                        const AlignmentDirectional(
+                                                                        AlignmentDirectional(
                                                                             0.0,
                                                                             0.0),
                                                                     child:
@@ -1262,7 +1272,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                             onPressed:
                                                                 () async {
                                                               context.pushNamed(
-                                                                'allTasks',
+                                                                AllTasksWidget
+                                                                    .routeName,
                                                                 queryParameters:
                                                                     {
                                                                   'taskStatus':
@@ -1275,7 +1286,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                 extra: <String,
                                                                     dynamic>{
                                                                   kTransitionInfoKey:
-                                                                      const TransitionInfo(
+                                                                      TransitionInfo(
                                                                     hasTransition:
                                                                         true,
                                                                     transitionType:
@@ -1297,20 +1308,20 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                 FFButtonOptions(
                                                               height: 40.0,
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           16.0,
                                                                           0.0,
                                                                           16.0,
                                                                           0.0),
                                                               iconPadding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
                                                                           0.0),
-                                                              color: const Color(
+                                                              color: Color(
                                                                   0x00FFFFFF),
                                                               textStyle:
                                                                   FlutterFlowTheme.of(
@@ -1338,9 +1349,9 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                 false,
                                                           ),
                                                       ]
-                                                          .divide(const SizedBox(
+                                                          .divide(SizedBox(
                                                               height: 15.0))
-                                                          .around(const SizedBox(
+                                                          .around(SizedBox(
                                                               height: 15.0)),
                                                     ),
                                                     Column(
@@ -1365,7 +1376,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                       .toList();
                                                               if (completedTasks
                                                                   .isEmpty) {
-                                                                return const Center(
+                                                                return Center(
                                                                   child:
                                                                       EmptyListsWidget(
                                                                     type:
@@ -1389,7 +1400,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                         .length,
                                                                 separatorBuilder: (_,
                                                                         __) =>
-                                                                    const SizedBox(
+                                                                    SizedBox(
                                                                         height:
                                                                             15.0),
                                                                 itemBuilder:
@@ -1400,7 +1411,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                           completedTasksIndex];
                                                                   return Align(
                                                                     alignment:
-                                                                        const AlignmentDirectional(
+                                                                        AlignmentDirectional(
                                                                             0.0,
                                                                             0.0),
                                                                     child:
@@ -1450,7 +1461,8 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                             onPressed:
                                                                 () async {
                                                               context.pushNamed(
-                                                                'allTasks',
+                                                                AllTasksWidget
+                                                                    .routeName,
                                                                 queryParameters:
                                                                     {
                                                                   'taskStatus':
@@ -1463,7 +1475,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                 extra: <String,
                                                                     dynamic>{
                                                                   kTransitionInfoKey:
-                                                                      const TransitionInfo(
+                                                                      TransitionInfo(
                                                                     hasTransition:
                                                                         true,
                                                                     transitionType:
@@ -1485,20 +1497,20 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                 FFButtonOptions(
                                                               height: 40.0,
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           16.0,
                                                                           0.0,
                                                                           16.0,
                                                                           0.0),
                                                               iconPadding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
                                                                           0.0),
-                                                              color: const Color(
+                                                              color: Color(
                                                                   0x00FFFFFF),
                                                               textStyle:
                                                                   FlutterFlowTheme.of(
@@ -1526,9 +1538,9 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                                                 false,
                                                           ),
                                                       ]
-                                                          .divide(const SizedBox(
+                                                          .divide(SizedBox(
                                                               height: 15.0))
-                                                          .around(const SizedBox(
+                                                          .around(SizedBox(
                                                               height: 15.0)),
                                                     ),
                                                   ],
@@ -1550,7 +1562,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                         wrapWithModel(
                           model: _model.savingModeModel,
                           updateCallback: () => safeSetState(() {}),
-                          child: const SavingModeWidget(
+                          child: SavingModeWidget(
                             savingWhat: 'Loading...',
                           ),
                         ),

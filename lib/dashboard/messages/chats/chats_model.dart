@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/utils/components/chat_list_container/chat_list_container_widget.dart';
 import '/utils/components/connectivity/connectivity_widget.dart';
+import '/index.dart';
 import 'chats_widget.dart' show ChatsWidget;
 import 'package:flutter/material.dart';
 

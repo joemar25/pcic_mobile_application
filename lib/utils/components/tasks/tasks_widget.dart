@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:async';
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'tasks_model.dart';
@@ -18,9 +19,9 @@ class TasksWidget extends StatefulWidget {
     String? status,
     this.index,
     String? time,
-  })  : task = task ?? '123',
-        status = status ?? 'for dispatch',
-        time = time ?? '';
+  })  : this.task = task ?? '123',
+        this.status = status ?? 'for dispatch',
+        this.time = time ?? '';
 
   final String task;
   final String status;
@@ -76,7 +77,7 @@ class _TasksWidgetState extends State<TasksWidget>
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(3.0),
+      padding: EdgeInsets.all(3.0),
       child: FutureBuilder<List<SelectPpirFormsRow>>(
         future: SQLiteManager.instance.selectPpirForms(
           taskId: widget.task,
@@ -86,7 +87,7 @@ class _TasksWidgetState extends State<TasksWidget>
           if (!snapshot.hasData) {
             return Center(
               child: Padding(
-                padding: const EdgeInsets.all(24.0),
+                padding: EdgeInsets.all(24.0),
                 child: LinearProgressIndicator(
                   color: FlutterFlowTheme.of(context).primary,
                 ),
@@ -102,7 +103,7 @@ class _TasksWidgetState extends State<TasksWidget>
             highlightColor: Colors.transparent,
             onTap: () async {
               currentUserLocationValue = await getCurrentUserLocation(
-                  defaultLocation: const LatLng(0.0, 0.0));
+                  defaultLocation: LatLng(0.0, 0.0));
               unawaited(
                 () async {
                   await UserLogsTable().insert({
@@ -116,7 +117,7 @@ class _TasksWidgetState extends State<TasksWidget>
               );
 
               context.goNamed(
-                'taskDetails',
+                TaskDetailsWidget.routeName,
                 queryParameters: {
                   'taskId': serializeParam(
                     widget.task,
@@ -139,7 +140,7 @@ class _TasksWidgetState extends State<TasksWidget>
                 width: MediaQuery.sizeOf(context).width * 1.0,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).alternate,
-                  boxShadow: const [
+                  boxShadow: [
                     BoxShadow(
                       blurRadius: 5.0,
                       color: Color(0x21000000),
@@ -157,7 +158,7 @@ class _TasksWidgetState extends State<TasksWidget>
                 ),
                 child: Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(10.0, 20.0, 10.0, 20.0),
+                      EdgeInsetsDirectional.fromSTEB(10.0, 20.0, 10.0, 20.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -165,19 +166,19 @@ class _TasksWidgetState extends State<TasksWidget>
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 20.0, 0.0),
                                 child: Text(
                                   valueOrDefault<String>(
                                     containerSelectPpirFormsRowList
-                                        .first.ppirFarmername,
+                                        .firstOrNull?.ppirFarmername,
                                     'Farmer Name',
                                   ),
                                   style: FlutterFlowTheme.of(context)
@@ -193,7 +194,7 @@ class _TasksWidgetState extends State<TasksWidget>
                             Text(
                               valueOrDefault<String>(
                                 containerSelectPpirFormsRowList
-                                    .first.ppirInsuranceid,
+                                    .firstOrNull?.ppirInsuranceid,
                                 'Insurance Id',
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -210,13 +211,13 @@ class _TasksWidgetState extends State<TasksWidget>
                       ),
                       Container(
                         width: 100.0,
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 0.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -227,7 +228,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                   Expanded(
                                     child: Container(
                                       width: 150.0,
-                                      decoration: const BoxDecoration(),
+                                      decoration: BoxDecoration(),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         crossAxisAlignment:
@@ -249,7 +250,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                           Text(
                                             valueOrDefault<String>(
                                               containerSelectPpirFormsRowList
-                                                  .first.ppirNorth,
+                                                  .firstOrNull?.ppirNorth,
                                               'North',
                                             ),
                                             style: FlutterFlowTheme.of(context)
@@ -293,7 +294,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                           Text(
                                             valueOrDefault<String>(
                                               containerSelectPpirFormsRowList
-                                                  .first.ppirWest,
+                                                  .firstOrNull?.ppirWest,
                                               'West',
                                             ),
                                             style: FlutterFlowTheme.of(context)
@@ -308,18 +309,18 @@ class _TasksWidgetState extends State<TasksWidget>
                                       ),
                                     ),
                                   ),
-                                ].divide(const SizedBox(width: 10.0)),
+                                ].divide(SizedBox(width: 10.0)),
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 5.0, 0.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Expanded(
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           20.0, 0.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -329,7 +330,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                           Expanded(
                                             child: Container(
                                               width: 150.0,
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 crossAxisAlignment:
@@ -353,7 +354,8 @@ class _TasksWidgetState extends State<TasksWidget>
                                                   Text(
                                                     valueOrDefault<String>(
                                                       containerSelectPpirFormsRowList
-                                                          .first.ppirSouth,
+                                                          .firstOrNull
+                                                          ?.ppirSouth,
                                                       'South',
                                                     ),
                                                     style: FlutterFlowTheme.of(
@@ -373,7 +375,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                           Expanded(
                                             child: Container(
                                               width: 150.0,
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 crossAxisAlignment:
@@ -397,7 +399,8 @@ class _TasksWidgetState extends State<TasksWidget>
                                                   Text(
                                                     valueOrDefault<String>(
                                                       containerSelectPpirFormsRowList
-                                                          .first.ppirEast,
+                                                          .firstOrNull
+                                                          ?.ppirEast,
                                                       'East',
                                                     ),
                                                     style: FlutterFlowTheme.of(
@@ -414,7 +417,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                               ),
                                             ),
                                           ),
-                                        ].divide(const SizedBox(width: 10.0)),
+                                        ].divide(SizedBox(width: 10.0)),
                                       ),
                                     ),
                                   ),
@@ -424,17 +427,17 @@ class _TasksWidgetState extends State<TasksWidget>
                           ],
                         ),
                       ),
-                      const Divider(
+                      Divider(
                         height: 24.0,
                         thickness: 1.0,
                         color: Color(0x7F61818F),
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
                         child: Container(
                           width: 100.0,
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -458,12 +461,12 @@ class _TasksWidgetState extends State<TasksWidget>
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           8.0, 0.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
                                           containerSelectPpirFormsRowList
-                                              .first.ppirAssignmentid,
+                                              .firstOrNull?.ppirAssignmentid,
                                           'Assignment Id',
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -501,12 +504,12 @@ class _TasksWidgetState extends State<TasksWidget>
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           8.0, 0.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
                                           containerSelectPpirFormsRowList
-                                              .first.ppirAddress,
+                                              .firstOrNull?.ppirAddress,
                                           'Address',
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -552,7 +555,7 @@ class _TasksWidgetState extends State<TasksWidget>
                                           ),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     4.0, 2.0, 4.0, 2.0),
                                             child: Text(
                                               () {
